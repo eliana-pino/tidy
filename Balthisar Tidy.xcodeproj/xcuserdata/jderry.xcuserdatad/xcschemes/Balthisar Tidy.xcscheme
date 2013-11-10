@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0460"
+   LastUpgradeVersion = "0500"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D0B3C52C0CF257E800633C82"
+               BlueprintIdentifier = "D016A925182FD80700712C60"
                BuildableName = "Balthisar Tidy.app"
                BlueprintName = "Balthisar Tidy"
                ReferencedContainer = "container:Balthisar Tidy.xcodeproj">
@@ -24,15 +24,25 @@
    </BuildAction>
    <TestAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.GDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
-      buildConfiguration = "Development">
+      buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D016A949182FD80700712C60"
+               BuildableName = "Balthisar TidyTests.xctest"
+               BlueprintName = "Balthisar TidyTests"
+               ReferencedContainer = "container:Balthisar Tidy.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D0B3C52C0CF257E800633C82"
+            BlueprintIdentifier = "D016A925182FD80700712C60"
             BuildableName = "Balthisar Tidy.app"
             BlueprintName = "Balthisar Tidy"
             ReferencedContainer = "container:Balthisar Tidy.xcodeproj">
@@ -41,17 +51,17 @@
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.GDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Development"
+      buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D0B3C52C0CF257E800633C82"
+            BlueprintIdentifier = "D016A925182FD80700712C60"
             BuildableName = "Balthisar Tidy.app"
             BlueprintName = "Balthisar Tidy"
             ReferencedContainer = "container:Balthisar Tidy.xcodeproj">
@@ -64,12 +74,12 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Deployment"
+      buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D0B3C52C0CF257E800633C82"
+            BlueprintIdentifier = "D016A925182FD80700712C60"
             BuildableName = "Balthisar Tidy.app"
             BlueprintName = "Balthisar Tidy"
             ReferencedContainer = "container:Balthisar Tidy.xcodeproj">
@@ -77,10 +87,10 @@
       </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
-      buildConfiguration = "Development">
+      buildConfiguration = "Debug">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Deployment"
+      buildConfiguration = "Release"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

@@ -1,0 +1,64 @@
+<html>
+
+	<HEAD>
+		<META NAME="AppleTitle" CONTENT="Balthisar Tidy Help"></META>
+		<META NAME="AppleIcon" CONTENT="Balthisar Tidy Help/graphics/iconbroom.gif"></META>
+		<META NAME="AppleFont" CONTENT="Lucida Grande,Helvetica,Arial"></META>
+		<META NAME="AppleSearchResultsFont" CONTENT="Lucida Grande,Geneva,Arial"></META>
+
+		
+		<TITLE>Balthisar Tidy Help</TITLE>
+	</HEAD>
+
+	</head>
+
+	<body>
+		<p>Welcome to Help for Balthisar Tidy!</p>
+		<p>Most of the options should be self-explanatory. If not, don't worry at this point; Balthisar Tidy is still very experimental, and documentation will be forthcoming.</p>
+		<p>Release History:</p>
+		<p><b>version 0.60<br>
+			</b>Added the following features:</p>
+		<ul>
+			<li>Batch mode!
+		</ul>
+		<p>Implemented the following architectural changes:</p>
+		<ul>
+			<li>Use TidyLib's native load/save routines to prevent the Mac OS from trying to do the conversions by itself. This actually works transparently to the user most of the time, but gave unexpected results because TidyLib tried to convert the encoding formats, too.
+			<li>For display purposes, synched the text-view encodings manually to accomodate the user-selected input- and output-encodings.
+		</ul>
+		<p>Corrected the following bugs from 0.50:</p>
+		<ul>
+			<li>fixed a drawing problem when clicking on an error and being transported to that error.
+			<li>fixed a problem whereby clicking an error, moving the text view, and then clicking the error again wouldn't reshow the error in the HTML viewer/editor.
+		</ul>
+		<p><b>version 0.50</b><br>
+			Complete rewrite of the entire application, encompassing the following:</p>
+		<ul>
+			<li>Rewrote the Cocoa wrapper to TidyLib to make is more Cocoa-like.
+			<ul>
+				<li>Behavior is more like what I think a Cocoa programmer expects.
+				<li>Dynamically generates all preferences based on compiled-in TidyLib.
+			</ul>
+			<li>Implemented virtually all Tidy options.
+			<li>Upgraded to the 01-Mar-03 version of TidyLib.
+			<li>The multiple options required a table-like interface to the options settings. Please tell me if it's too Windows-like (personally I like having the large quantity of options in a scroller).
+			<li>Added a new mechanism to add line numbers to NSTextView classes.
+			<ul>
+				<li>Added line numbering to the Source HTML viewer/editor.
+				<li>Added line numbering to the Tidy'd HTML viewer.
+			</ul>
+			<li>Added a new mechanism to turn on temporary highlighting in NSTextView classes.
+			<ul>
+				<li>When user selects an error, the Source HTML viewer/editor highlights and moves the user to the location of that error.
+			</ul>
+			<li>Replaced the TidyLib text output viewer with a more Mac-like table view of errors.
+			<ul>
+				<li>No Unix text (but no Tidy Information, either).
+				<li>Selected a line transports the user to the error in the HTML viewer/editor.
+			</ul>
+		</ul>
+		<p><b>version 0.10</b><br>
+			Initial Release of Balthisar Tidy</p>
+	</body>
+
+</html>
