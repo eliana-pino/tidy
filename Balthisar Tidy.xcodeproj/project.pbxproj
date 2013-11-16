@@ -180,26 +180,26 @@
 		D016A92F182FD80700712C60 /* Balthisar Tidy */ = {
 			isa = PBXGroup;
 			children = (
+				D026169F1836F927002ABD72 /* Classes */,
+				D07AF4AC1836596E00913067 /* tidylib-src */,
 				D07AF49A183658F100913067 /* Base.lproj */,
+				D016A944182FD80700712C60 /* Images.xcassets */,
+				D026169E1836F48A002ABD72 /* Balthisar Tidy.entitlements */,
+				D016A931182FD80700712C60 /* Balthisar Tidy-Info.plist */,
+				D016A937182FD80700712C60 /* Balthisar Tidy-Prefix.pch */,
+				D016A935182FD80700712C60 /* main.m */,
+			);
+			path = "Balthisar Tidy";
+			sourceTree = SOURCE_ROOT;
+		};
+		D026169F1836F927002ABD72 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
 				D07AF48A183658D300913067 /* App Pieces */,
 				D07AF49B1836591400913067 /* JSDTidy */,
 				D07AF49C1836592300913067 /* Support Pieces */,
-				D07AF4AC1836596E00913067 /* tidylib-src */,
-				D016A944182FD80700712C60 /* Images.xcassets */,
-				D016A930182FD80700712C60 /* Supporting Files */,
 			);
-			path = "Balthisar Tidy";
-			sourceTree = "<group>";
-		};
-		D016A930182FD80700712C60 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D026169E1836F48A002ABD72 /* Balthisar Tidy.entitlements */,
-				D016A931182FD80700712C60 /* Balthisar Tidy-Info.plist */,
-				D016A935182FD80700712C60 /* main.m */,
-				D016A937182FD80700712C60 /* Balthisar Tidy-Prefix.pch */,
-			);
-			name = "Supporting Files";
+			name = Classes;
 			sourceTree = "<group>";
 		};
 		D07AF48A183658D300913067 /* App Pieces */ = {
@@ -224,10 +224,10 @@
 			isa = PBXGroup;
 			children = (
 				D07AF4781836581E00913067 /* Batch.xib */,
+				D016A941182FD80700712C60 /* MainMenu.xib */,
 				D07AF47A1836581E00913067 /* OptionPane.xib */,
 				D07AF47C1836581E00913067 /* Preferences.xib */,
 				D07AF47E1836581E00913067 /* TidyDocument.xib */,
-				D016A941182FD80700712C60 /* MainMenu.xib */,
 			);
 			name = Base.lproj;
 			sourceTree = "<group>";
@@ -535,6 +535,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
