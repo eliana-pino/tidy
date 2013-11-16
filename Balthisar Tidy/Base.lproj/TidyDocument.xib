@@ -22,7 +22,7 @@
             <rect key="contentRect" x="178" y="407" width="640" height="380"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1152" height="848"/>
             <view key="contentView" autoresizesSubviews="NO" id="6">
-                <rect key="frame" x="1" y="9" width="640" height="380"/>
+                <rect key="frame" x="0.0" y="0.0" width="640" height="380"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <splitView vertical="YES" id="385">
@@ -42,7 +42,7 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView">
                                             <rect key="frame" x="0.0" y="0.0" width="314" height="96"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <customView autoresizesSubviews="NO" id="390" customClass="JSDTextView">
                                                     <rect key="frame" x="8" y="1" width="304" height="95"/>
@@ -62,7 +62,7 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView">
                                             <rect key="frame" x="0.0" y="0.0" width="314" height="96"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <customView autoresizesSubviews="NO" id="395" customClass="JSDTextView">
                                                     <rect key="frame" x="8" y="1" width="304" height="95"/>
@@ -79,14 +79,14 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView">
                                             <rect key="frame" x="0.0" y="0.0" width="314" height="116"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <scrollView horizontalLineScroll="16" horizontalPageScroll="10" verticalLineScroll="16" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="399">
                                                     <rect key="frame" x="7" y="1" width="304" height="114"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <clipView key="contentView" id="bX9-bB-xqE">
                                                         <rect key="frame" x="1" y="17" width="287" height="81"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <tableView autoresizesSubviews="NO" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="14" headerView="413" id="398">
                                                                 <rect key="frame" x="0.0" y="0.0" width="287" height="81"/>
@@ -121,7 +121,7 @@
                                                                         </textFieldCell>
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                     </tableColumn>
-                                                                    <tableColumn identifier="description" editable="NO" width="98" minWidth="94.791999816894531" maxWidth="1000" id="405">
+                                                                    <tableColumn identifier="description" editable="NO" width="97.791999816894531" minWidth="94.791999816894531" maxWidth="1000" id="405">
                                                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Error Description">
                                                                             <font key="font" size="11" name="LucidaGrande"/>
                                                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>

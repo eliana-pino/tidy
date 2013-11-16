@@ -8,26 +8,45 @@
 
 /* Begin PBXBuildFile section */
 		D016A92A182FD80700712C60 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D016A929182FD80700712C60 /* Cocoa.framework */; };
-		D016A934182FD80700712C60 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D016A932182FD80700712C60 /* InfoPlist.strings */; };
 		D016A936182FD80700712C60 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D016A935182FD80700712C60 /* main.m */; };
-		D016A93A182FD80700712C60 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D016A938182FD80700712C60 /* Credits.rtf */; };
 		D016A943182FD80700712C60 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D016A941182FD80700712C60 /* MainMenu.xib */; };
 		D016A945182FD80700712C60 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D016A944182FD80700712C60 /* Images.xcassets */; };
-		D016A94C182FD80700712C60 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D016A94B182FD80700712C60 /* XCTest.framework */; };
-		D016A94D182FD80700712C60 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D016A929182FD80700712C60 /* Cocoa.framework */; };
-		D016A955182FD80700712C60 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D016A953182FD80700712C60 /* InfoPlist.strings */; };
-		D016A957182FD80700712C60 /* Balthisar_TidyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D016A956182FD80700712C60 /* Balthisar_TidyTests.m */; };
+		D07AF4801836581E00913067 /* Batch.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07AF4781836581E00913067 /* Batch.xib */; };
+		D07AF4811836581E00913067 /* OptionPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07AF47A1836581E00913067 /* OptionPane.xib */; };
+		D07AF4821836581E00913067 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07AF47C1836581E00913067 /* Preferences.xib */; };
+		D07AF4831836581E00913067 /* TidyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07AF47E1836581E00913067 /* TidyDocument.xib */; };
+		D07AF495183658D300913067 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF48C183658D300913067 /* AppController.m */; };
+		D07AF496183658D300913067 /* BatchController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF48E183658D300913067 /* BatchController.m */; };
+		D07AF497183658D300913067 /* OptionPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF490183658D300913067 /* OptionPaneController.m */; };
+		D07AF498183658D300913067 /* PreferenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF492183658D300913067 /* PreferenceController.m */; };
+		D07AF499183658D300913067 /* TidyDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF494183658D300913067 /* TidyDocument.m */; };
+		D07AF49F1836593A00913067 /* JSDTidy.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF49E1836593A00913067 /* JSDTidy.m */; };
+		D07AF4A81836594900913067 /* JSDTableColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF4A11836594900913067 /* JSDTableColumn.m */; };
+		D07AF4A91836594900913067 /* JSDTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF4A31836594900913067 /* JSDTableView.m */; };
+		D07AF4AA1836594900913067 /* JSDTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF4A51836594900913067 /* JSDTextView.m */; };
+		D07AF4AB1836594900913067 /* TreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF4A71836594900913067 /* TreeNode.m */; };
+		D07AF5041836596F00913067 /* access.c in Sources */ = {isa = PBXBuildFile; fileRef = D07AF4CE1836596F00913067 /* access.c */; };
+		D07AF5051836596F00913067 /* alloc.c in Sources */ = {isa = PBXBuildFile; fileRef = D07AF4D01836596F00913067 /* alloc.c */; };
+		D07AF5061836596F00913067 /* attrask.c in Sources */ = {isa = PBXBuildFile; fileRef = D07AF4D11836596F00913067 /* attrask.c */; };
+		D07AF5071836596F00913067 /* attrget.c in Sources */ = {isa = PBXBuildFile; fileRef = D07AF4D21836596F00913067 /* attrget.c */; };
+		D07AF5081836596F00913067 /* attrs.c in Sources */ = {isa = PBXBuildFile; fileRef = D07AF4D31836596F00913067 /* attrs.c */; };
+		D07AF5091836596F00913067 /* buffio.c in Sources */ = {isa = PBXBuildFile; fileRef = D07AF4D51836596F00913067 /* buffio.c */; };
+		D07AF50A1836596F00913067 /* clean.c in Sources */ = {isa = PBXBuildFile; fileRef = D07AF4D61836596F00913067 /* clean.c */; };
+		D07AF50B1836596F00913067 /* config.c in Sources */ = {isa = PBXBuildFile; fileRef = D07AF4D81836596F00913067 /* config.c */; };
+		D07AF50C1836596F00913067 /* entities.c in Sources */ = {isa = PBXBuildFile; fileRef = D07AF4DA1836596F00913067 /* entities.c */; };
+		D07AF50D1836596F00913067 /* fileio.c in Sources */ = {isa = PBXBuildFile; fileRef = D07AF4DC1836596F00913067 /* fileio.c */; };
+		D07AF50E1836596F00913067 /* istack.c in Sources */ = {isa = PBXBuildFile; fileRef = D07AF4DE1836596F00913067 /* istack.c */; };
+		D07AF50F1836596F00913067 /* lexer.c in Sources */ = {isa = PBXBuildFile; fileRef = D07AF4DF1836596F00913067 /* lexer.c */; };
+		D07AF5101836596F00913067 /* localize.c in Sources */ = {isa = PBXBuildFile; fileRef = D07AF4E11836596F00913067 /* localize.c */; };
+		D07AF5111836596F00913067 /* parser.c in Sources */ = {isa = PBXBuildFile; fileRef = D07AF4E31836596F00913067 /* parser.c */; };
+		D07AF5121836596F00913067 /* pprint.c in Sources */ = {isa = PBXBuildFile; fileRef = D07AF4E51836596F00913067 /* pprint.c */; };
+		D07AF5131836596F00913067 /* streamio.c in Sources */ = {isa = PBXBuildFile; fileRef = D07AF4E71836596F00913067 /* streamio.c */; };
+		D07AF5141836596F00913067 /* tagask.c in Sources */ = {isa = PBXBuildFile; fileRef = D07AF4E91836596F00913067 /* tagask.c */; };
+		D07AF5151836596F00913067 /* tags.c in Sources */ = {isa = PBXBuildFile; fileRef = D07AF4EA1836596F00913067 /* tags.c */; };
+		D07AF5161836596F00913067 /* tidylib.c in Sources */ = {isa = PBXBuildFile; fileRef = D07AF4ED1836596F00913067 /* tidylib.c */; };
+		D07AF5171836596F00913067 /* tmbstr.c in Sources */ = {isa = PBXBuildFile; fileRef = D07AF4EE1836596F00913067 /* tmbstr.c */; };
+		D07AF5181836596F00913067 /* utf8.c in Sources */ = {isa = PBXBuildFile; fileRef = D07AF4F01836596F00913067 /* utf8.c */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		D016A94E182FD80700712C60 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D016A91E182FD80700712C60 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D016A925182FD80700712C60;
-			remoteInfo = "Balthisar Tidy";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		D016A926182FD80700712C60 /* Balthisar Tidy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Balthisar Tidy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -36,17 +55,77 @@
 		D016A92D182FD80700712C60 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D016A92E182FD80700712C60 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D016A931182FD80700712C60 /* Balthisar Tidy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Balthisar Tidy-Info.plist"; sourceTree = "<group>"; };
-		D016A933182FD80700712C60 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D016A935182FD80700712C60 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D016A937182FD80700712C60 /* Balthisar Tidy-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Balthisar Tidy-Prefix.pch"; sourceTree = "<group>"; };
-		D016A939182FD80700712C60 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		D016A942182FD80700712C60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		D016A944182FD80700712C60 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		D016A94A182FD80700712C60 /* Balthisar TidyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Balthisar TidyTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D016A94B182FD80700712C60 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		D016A952182FD80700712C60 /* Balthisar TidyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Balthisar TidyTests-Info.plist"; sourceTree = "<group>"; };
-		D016A954182FD80700712C60 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D016A956182FD80700712C60 /* Balthisar_TidyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Balthisar_TidyTests.m; sourceTree = "<group>"; };
+		D026169E1836F48A002ABD72 /* Balthisar Tidy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Balthisar Tidy.entitlements"; sourceTree = "<group>"; };
+		D07AF4791836581E00913067 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Batch.xib; sourceTree = "<group>"; };
+		D07AF47B1836581E00913067 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/OptionPane.xib; sourceTree = "<group>"; };
+		D07AF47D1836581E00913067 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Preferences.xib; sourceTree = "<group>"; };
+		D07AF47F1836581E00913067 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TidyDocument.xib; sourceTree = "<group>"; };
+		D07AF48B183658D300913067 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
+		D07AF48C183658D300913067 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
+		D07AF48D183658D300913067 /* BatchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BatchController.h; sourceTree = "<group>"; };
+		D07AF48E183658D300913067 /* BatchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BatchController.m; sourceTree = "<group>"; };
+		D07AF48F183658D300913067 /* OptionPaneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionPaneController.h; sourceTree = "<group>"; };
+		D07AF490183658D300913067 /* OptionPaneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionPaneController.m; sourceTree = "<group>"; };
+		D07AF491183658D300913067 /* PreferenceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceController.h; sourceTree = "<group>"; };
+		D07AF492183658D300913067 /* PreferenceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceController.m; sourceTree = "<group>"; };
+		D07AF493183658D300913067 /* TidyDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TidyDocument.h; sourceTree = "<group>"; };
+		D07AF494183658D300913067 /* TidyDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TidyDocument.m; sourceTree = "<group>"; };
+		D07AF49D1836593900913067 /* JSDTidy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSDTidy.h; path = Classes/JSDTidy/JSDTidy.h; sourceTree = "<group>"; };
+		D07AF49E1836593A00913067 /* JSDTidy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSDTidy.m; path = Classes/JSDTidy/JSDTidy.m; sourceTree = "<group>"; };
+		D07AF4A01836594900913067 /* JSDTableColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSDTableColumn.h; path = "Classes/Support Pieces/JSDTableColumn.h"; sourceTree = "<group>"; };
+		D07AF4A11836594900913067 /* JSDTableColumn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSDTableColumn.m; path = "Classes/Support Pieces/JSDTableColumn.m"; sourceTree = "<group>"; };
+		D07AF4A21836594900913067 /* JSDTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSDTableView.h; path = "Classes/Support Pieces/JSDTableView.h"; sourceTree = "<group>"; };
+		D07AF4A31836594900913067 /* JSDTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSDTableView.m; path = "Classes/Support Pieces/JSDTableView.m"; sourceTree = "<group>"; };
+		D07AF4A41836594900913067 /* JSDTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSDTextView.h; path = "Classes/Support Pieces/JSDTextView.h"; sourceTree = "<group>"; };
+		D07AF4A51836594900913067 /* JSDTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSDTextView.m; path = "Classes/Support Pieces/JSDTextView.m"; sourceTree = "<group>"; };
+		D07AF4A61836594900913067 /* TreeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TreeNode.h; path = "Classes/Support Pieces/TreeNode.h"; sourceTree = "<group>"; };
+		D07AF4A71836594900913067 /* TreeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TreeNode.m; path = "Classes/Support Pieces/TreeNode.m"; sourceTree = "<group>"; };
+		D07AF4C81836596F00913067 /* buffio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffio.h; sourceTree = "<group>"; };
+		D07AF4C91836596F00913067 /* fileio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fileio.h; sourceTree = "<group>"; };
+		D07AF4CA1836596F00913067 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
+		D07AF4CB1836596F00913067 /* tidy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tidy.h; sourceTree = "<group>"; };
+		D07AF4CC1836596F00913067 /* tidyenum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tidyenum.h; sourceTree = "<group>"; };
+		D07AF4CE1836596F00913067 /* access.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = access.c; sourceTree = "<group>"; };
+		D07AF4CF1836596F00913067 /* access.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = access.h; sourceTree = "<group>"; };
+		D07AF4D01836596F00913067 /* alloc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = alloc.c; sourceTree = "<group>"; };
+		D07AF4D11836596F00913067 /* attrask.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = attrask.c; sourceTree = "<group>"; };
+		D07AF4D21836596F00913067 /* attrget.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = attrget.c; sourceTree = "<group>"; };
+		D07AF4D31836596F00913067 /* attrs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = attrs.c; sourceTree = "<group>"; };
+		D07AF4D41836596F00913067 /* attrs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = attrs.h; sourceTree = "<group>"; };
+		D07AF4D51836596F00913067 /* buffio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = buffio.c; sourceTree = "<group>"; };
+		D07AF4D61836596F00913067 /* clean.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = clean.c; sourceTree = "<group>"; };
+		D07AF4D71836596F00913067 /* clean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clean.h; sourceTree = "<group>"; };
+		D07AF4D81836596F00913067 /* config.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = config.c; sourceTree = "<group>"; };
+		D07AF4D91836596F00913067 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		D07AF4DA1836596F00913067 /* entities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = entities.c; sourceTree = "<group>"; };
+		D07AF4DB1836596F00913067 /* entities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = entities.h; sourceTree = "<group>"; };
+		D07AF4DC1836596F00913067 /* fileio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fileio.c; sourceTree = "<group>"; };
+		D07AF4DD1836596F00913067 /* forward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = forward.h; sourceTree = "<group>"; };
+		D07AF4DE1836596F00913067 /* istack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = istack.c; sourceTree = "<group>"; };
+		D07AF4DF1836596F00913067 /* lexer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lexer.c; sourceTree = "<group>"; };
+		D07AF4E01836596F00913067 /* lexer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lexer.h; sourceTree = "<group>"; };
+		D07AF4E11836596F00913067 /* localize.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = localize.c; sourceTree = "<group>"; };
+		D07AF4E21836596F00913067 /* message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = message.h; sourceTree = "<group>"; };
+		D07AF4E31836596F00913067 /* parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = parser.c; sourceTree = "<group>"; };
+		D07AF4E41836596F00913067 /* parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parser.h; sourceTree = "<group>"; };
+		D07AF4E51836596F00913067 /* pprint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pprint.c; sourceTree = "<group>"; };
+		D07AF4E61836596F00913067 /* pprint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pprint.h; sourceTree = "<group>"; };
+		D07AF4E71836596F00913067 /* streamio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = streamio.c; sourceTree = "<group>"; };
+		D07AF4E81836596F00913067 /* streamio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = streamio.h; sourceTree = "<group>"; };
+		D07AF4E91836596F00913067 /* tagask.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tagask.c; sourceTree = "<group>"; };
+		D07AF4EA1836596F00913067 /* tags.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tags.c; sourceTree = "<group>"; };
+		D07AF4EB1836596F00913067 /* tags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tags.h; sourceTree = "<group>"; };
+		D07AF4EC1836596F00913067 /* tidy-int.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "tidy-int.h"; sourceTree = "<group>"; };
+		D07AF4ED1836596F00913067 /* tidylib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tidylib.c; sourceTree = "<group>"; };
+		D07AF4EE1836596F00913067 /* tmbstr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tmbstr.c; sourceTree = "<group>"; };
+		D07AF4EF1836596F00913067 /* tmbstr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tmbstr.h; sourceTree = "<group>"; };
+		D07AF4F01836596F00913067 /* utf8.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = utf8.c; sourceTree = "<group>"; };
+		D07AF4F11836596F00913067 /* utf8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utf8.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,15 +137,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D016A947182FD80700712C60 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D016A94D182FD80700712C60 /* Cocoa.framework in Frameworks */,
-				D016A94C182FD80700712C60 /* XCTest.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -74,7 +144,6 @@
 			isa = PBXGroup;
 			children = (
 				D016A92F182FD80700712C60 /* Balthisar Tidy */,
-				D016A950182FD80700712C60 /* Balthisar TidyTests */,
 				D016A928182FD80700712C60 /* Frameworks */,
 				D016A927182FD80700712C60 /* Products */,
 			);
@@ -84,7 +153,6 @@
 			isa = PBXGroup;
 			children = (
 				D016A926182FD80700712C60 /* Balthisar Tidy.app */,
-				D016A94A182FD80700712C60 /* Balthisar TidyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -112,7 +180,11 @@
 		D016A92F182FD80700712C60 /* Balthisar Tidy */ = {
 			isa = PBXGroup;
 			children = (
-				D016A941182FD80700712C60 /* MainMenu.xib */,
+				D07AF49A183658F100913067 /* Base.lproj */,
+				D07AF48A183658D300913067 /* App Pieces */,
+				D07AF49B1836591400913067 /* JSDTidy */,
+				D07AF49C1836592300913067 /* Support Pieces */,
+				D07AF4AC1836596E00913067 /* tidylib-src */,
 				D016A944182FD80700712C60 /* Images.xcassets */,
 				D016A930182FD80700712C60 /* Supporting Files */,
 			);
@@ -122,31 +194,130 @@
 		D016A930182FD80700712C60 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D026169E1836F48A002ABD72 /* Balthisar Tidy.entitlements */,
 				D016A931182FD80700712C60 /* Balthisar Tidy-Info.plist */,
-				D016A932182FD80700712C60 /* InfoPlist.strings */,
 				D016A935182FD80700712C60 /* main.m */,
 				D016A937182FD80700712C60 /* Balthisar Tidy-Prefix.pch */,
-				D016A938182FD80700712C60 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		D016A950182FD80700712C60 /* Balthisar TidyTests */ = {
+		D07AF48A183658D300913067 /* App Pieces */ = {
 			isa = PBXGroup;
 			children = (
-				D016A956182FD80700712C60 /* Balthisar_TidyTests.m */,
-				D016A951182FD80700712C60 /* Supporting Files */,
+				D07AF48B183658D300913067 /* AppController.h */,
+				D07AF48C183658D300913067 /* AppController.m */,
+				D07AF48D183658D300913067 /* BatchController.h */,
+				D07AF48E183658D300913067 /* BatchController.m */,
+				D07AF48F183658D300913067 /* OptionPaneController.h */,
+				D07AF490183658D300913067 /* OptionPaneController.m */,
+				D07AF491183658D300913067 /* PreferenceController.h */,
+				D07AF492183658D300913067 /* PreferenceController.m */,
+				D07AF493183658D300913067 /* TidyDocument.h */,
+				D07AF494183658D300913067 /* TidyDocument.m */,
 			);
-			path = "Balthisar TidyTests";
+			name = "App Pieces";
+			path = "Classes/App Pieces";
 			sourceTree = "<group>";
 		};
-		D016A951182FD80700712C60 /* Supporting Files */ = {
+		D07AF49A183658F100913067 /* Base.lproj */ = {
 			isa = PBXGroup;
 			children = (
-				D016A952182FD80700712C60 /* Balthisar TidyTests-Info.plist */,
-				D016A953182FD80700712C60 /* InfoPlist.strings */,
+				D07AF4781836581E00913067 /* Batch.xib */,
+				D07AF47A1836581E00913067 /* OptionPane.xib */,
+				D07AF47C1836581E00913067 /* Preferences.xib */,
+				D07AF47E1836581E00913067 /* TidyDocument.xib */,
+				D016A941182FD80700712C60 /* MainMenu.xib */,
 			);
-			name = "Supporting Files";
+			name = Base.lproj;
+			sourceTree = "<group>";
+		};
+		D07AF49B1836591400913067 /* JSDTidy */ = {
+			isa = PBXGroup;
+			children = (
+				D07AF49D1836593900913067 /* JSDTidy.h */,
+				D07AF49E1836593A00913067 /* JSDTidy.m */,
+			);
+			name = JSDTidy;
+			sourceTree = "<group>";
+		};
+		D07AF49C1836592300913067 /* Support Pieces */ = {
+			isa = PBXGroup;
+			children = (
+				D07AF4A01836594900913067 /* JSDTableColumn.h */,
+				D07AF4A11836594900913067 /* JSDTableColumn.m */,
+				D07AF4A21836594900913067 /* JSDTableView.h */,
+				D07AF4A31836594900913067 /* JSDTableView.m */,
+				D07AF4A41836594900913067 /* JSDTextView.h */,
+				D07AF4A51836594900913067 /* JSDTextView.m */,
+				D07AF4A61836594900913067 /* TreeNode.h */,
+				D07AF4A71836594900913067 /* TreeNode.m */,
+			);
+			name = "Support Pieces";
+			sourceTree = "<group>";
+		};
+		D07AF4AC1836596E00913067 /* tidylib-src */ = {
+			isa = PBXGroup;
+			children = (
+				D07AF4C71836596F00913067 /* include */,
+				D07AF4CD1836596F00913067 /* src */,
+			);
+			path = "tidylib-src";
+			sourceTree = "<group>";
+		};
+		D07AF4C71836596F00913067 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				D07AF4C81836596F00913067 /* buffio.h */,
+				D07AF4C91836596F00913067 /* fileio.h */,
+				D07AF4CA1836596F00913067 /* platform.h */,
+				D07AF4CB1836596F00913067 /* tidy.h */,
+				D07AF4CC1836596F00913067 /* tidyenum.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		D07AF4CD1836596F00913067 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D07AF4CE1836596F00913067 /* access.c */,
+				D07AF4CF1836596F00913067 /* access.h */,
+				D07AF4D01836596F00913067 /* alloc.c */,
+				D07AF4D11836596F00913067 /* attrask.c */,
+				D07AF4D21836596F00913067 /* attrget.c */,
+				D07AF4D31836596F00913067 /* attrs.c */,
+				D07AF4D41836596F00913067 /* attrs.h */,
+				D07AF4D51836596F00913067 /* buffio.c */,
+				D07AF4D61836596F00913067 /* clean.c */,
+				D07AF4D71836596F00913067 /* clean.h */,
+				D07AF4D81836596F00913067 /* config.c */,
+				D07AF4D91836596F00913067 /* config.h */,
+				D07AF4DA1836596F00913067 /* entities.c */,
+				D07AF4DB1836596F00913067 /* entities.h */,
+				D07AF4DC1836596F00913067 /* fileio.c */,
+				D07AF4DD1836596F00913067 /* forward.h */,
+				D07AF4DE1836596F00913067 /* istack.c */,
+				D07AF4DF1836596F00913067 /* lexer.c */,
+				D07AF4E01836596F00913067 /* lexer.h */,
+				D07AF4E11836596F00913067 /* localize.c */,
+				D07AF4E21836596F00913067 /* message.h */,
+				D07AF4E31836596F00913067 /* parser.c */,
+				D07AF4E41836596F00913067 /* parser.h */,
+				D07AF4E51836596F00913067 /* pprint.c */,
+				D07AF4E61836596F00913067 /* pprint.h */,
+				D07AF4E71836596F00913067 /* streamio.c */,
+				D07AF4E81836596F00913067 /* streamio.h */,
+				D07AF4E91836596F00913067 /* tagask.c */,
+				D07AF4EA1836596F00913067 /* tags.c */,
+				D07AF4EB1836596F00913067 /* tags.h */,
+				D07AF4EC1836596F00913067 /* tidy-int.h */,
+				D07AF4ED1836596F00913067 /* tidylib.c */,
+				D07AF4EE1836596F00913067 /* tmbstr.c */,
+				D07AF4EF1836596F00913067 /* tmbstr.h */,
+				D07AF4F01836596F00913067 /* utf8.c */,
+				D07AF4F11836596F00913067 /* utf8.h */,
+			);
+			path = src;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,24 +340,6 @@
 			productReference = D016A926182FD80700712C60 /* Balthisar Tidy.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D016A949182FD80700712C60 /* Balthisar TidyTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D016A95D182FD80700712C60 /* Build configuration list for PBXNativeTarget "Balthisar TidyTests" */;
-			buildPhases = (
-				D016A946182FD80700712C60 /* Sources */,
-				D016A947182FD80700712C60 /* Frameworks */,
-				D016A948182FD80700712C60 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D016A94F182FD80700712C60 /* PBXTargetDependency */,
-			);
-			name = "Balthisar TidyTests";
-			productName = "Balthisar TidyTests";
-			productReference = D016A94A182FD80700712C60 /* Balthisar TidyTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -196,8 +349,12 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Jim Derry";
 				TargetAttributes = {
-					D016A949182FD80700712C60 = {
-						TestTargetID = D016A925182FD80700712C60;
+					D016A925182FD80700712C60 = {
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -215,7 +372,6 @@
 			projectRoot = "";
 			targets = (
 				D016A925182FD80700712C60 /* Balthisar Tidy */,
-				D016A949182FD80700712C60 /* Balthisar TidyTests */,
 			);
 		};
 /* End PBXProject section */
@@ -225,18 +381,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D07AF4801836581E00913067 /* Batch.xib in Resources */,
 				D016A945182FD80700712C60 /* Images.xcassets in Resources */,
-				D016A934182FD80700712C60 /* InfoPlist.strings in Resources */,
-				D016A93A182FD80700712C60 /* Credits.rtf in Resources */,
+				D07AF4831836581E00913067 /* TidyDocument.xib in Resources */,
+				D07AF4811836581E00913067 /* OptionPane.xib in Resources */,
+				D07AF4821836581E00913067 /* Preferences.xib in Resources */,
 				D016A943182FD80700712C60 /* MainMenu.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D016A948182FD80700712C60 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D016A955182FD80700712C60 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,45 +397,44 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D07AF5141836596F00913067 /* tagask.c in Sources */,
+				D07AF49F1836593A00913067 /* JSDTidy.m in Sources */,
+				D07AF499183658D300913067 /* TidyDocument.m in Sources */,
+				D07AF4A81836594900913067 /* JSDTableColumn.m in Sources */,
+				D07AF5051836596F00913067 /* alloc.c in Sources */,
+				D07AF5181836596F00913067 /* utf8.c in Sources */,
+				D07AF5151836596F00913067 /* tags.c in Sources */,
+				D07AF50E1836596F00913067 /* istack.c in Sources */,
+				D07AF4AA1836594900913067 /* JSDTextView.m in Sources */,
+				D07AF50A1836596F00913067 /* clean.c in Sources */,
+				D07AF50C1836596F00913067 /* entities.c in Sources */,
+				D07AF5161836596F00913067 /* tidylib.c in Sources */,
+				D07AF5041836596F00913067 /* access.c in Sources */,
+				D07AF4A91836594900913067 /* JSDTableView.m in Sources */,
+				D07AF5091836596F00913067 /* buffio.c in Sources */,
+				D07AF5061836596F00913067 /* attrask.c in Sources */,
+				D07AF4AB1836594900913067 /* TreeNode.m in Sources */,
+				D07AF5111836596F00913067 /* parser.c in Sources */,
+				D07AF5101836596F00913067 /* localize.c in Sources */,
 				D016A936182FD80700712C60 /* main.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D016A946182FD80700712C60 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D016A957182FD80700712C60 /* Balthisar_TidyTests.m in Sources */,
+				D07AF495183658D300913067 /* AppController.m in Sources */,
+				D07AF5071836596F00913067 /* attrget.c in Sources */,
+				D07AF50D1836596F00913067 /* fileio.c in Sources */,
+				D07AF498183658D300913067 /* PreferenceController.m in Sources */,
+				D07AF50F1836596F00913067 /* lexer.c in Sources */,
+				D07AF5131836596F00913067 /* streamio.c in Sources */,
+				D07AF497183658D300913067 /* OptionPaneController.m in Sources */,
+				D07AF5081836596F00913067 /* attrs.c in Sources */,
+				D07AF496183658D300913067 /* BatchController.m in Sources */,
+				D07AF5171836596F00913067 /* tmbstr.c in Sources */,
+				D07AF5121836596F00913067 /* pprint.c in Sources */,
+				D07AF50B1836596F00913067 /* config.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		D016A94F182FD80700712C60 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D016A925182FD80700712C60 /* Balthisar Tidy */;
-			targetProxy = D016A94E182FD80700712C60 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
-		D016A932182FD80700712C60 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D016A933182FD80700712C60 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		D016A938182FD80700712C60 /* Credits.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D016A939182FD80700712C60 /* en */,
-			);
-			name = Credits.rtf;
-			sourceTree = "<group>";
-		};
 		D016A941182FD80700712C60 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -294,12 +443,36 @@
 			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
-		D016A953182FD80700712C60 /* InfoPlist.strings */ = {
+		D07AF4781836581E00913067 /* Batch.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				D016A954182FD80700712C60 /* en */,
+				D07AF4791836581E00913067 /* Base */,
 			);
-			name = InfoPlist.strings;
+			name = Batch.xib;
+			sourceTree = "<group>";
+		};
+		D07AF47A1836581E00913067 /* OptionPane.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D07AF47B1836581E00913067 /* Base */,
+			);
+			name = OptionPane.xib;
+			sourceTree = "<group>";
+		};
+		D07AF47C1836581E00913067 /* Preferences.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D07AF47D1836581E00913067 /* Base */,
+			);
+			name = Preferences.xib;
+			sourceTree = "<group>";
+		};
+		D07AF47E1836581E00913067 /* TidyDocument.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D07AF47F1836581E00913067 /* Base */,
+			);
+			name = TidyDocument.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -311,7 +484,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
@@ -337,7 +510,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -348,7 +521,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
@@ -369,6 +542,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -377,6 +551,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy.entitlements";
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Balthisar Tidy/Balthisar Tidy-Prefix.pch";
@@ -390,52 +566,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy.entitlements";
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Balthisar Tidy/Balthisar Tidy-Prefix.pch";
 				INFOPLIST_FILE = "Balthisar Tidy/Balthisar Tidy-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		D016A95E182FD80700712C60 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Balthisar Tidy.app/Contents/MacOS/Balthisar Tidy";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Balthisar Tidy/Balthisar Tidy-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "Balthisar TidyTests/Balthisar TidyTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		D016A95F182FD80700712C60 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Balthisar Tidy.app/Contents/MacOS/Balthisar Tidy";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Balthisar Tidy/Balthisar Tidy-Prefix.pch";
-				INFOPLIST_FILE = "Balthisar TidyTests/Balthisar TidyTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
@@ -456,15 +594,6 @@
 			buildConfigurations = (
 				D016A95B182FD80700712C60 /* Debug */,
 				D016A95C182FD80700712C60 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D016A95D182FD80700712C60 /* Build configuration list for PBXNativeTarget "Balthisar TidyTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D016A95E182FD80700712C60 /* Debug */,
-				D016A95F182FD80700712C60 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

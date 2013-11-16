@@ -14,7 +14,7 @@
 			<key>CFBundleTypeIconFile</key>
 			<string></string>
 			<key>CFBundleTypeName</key>
-			<string>DocumentType</string>
+			<string>Tidy Document</string>
 			<key>CFBundleTypeOSTypes</key>
 			<array>
 				<string>????</string>
@@ -22,7 +22,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>NSDocumentClass</key>
-			<string>Document</string>
+			<string>TidyDocument</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
@@ -30,7 +30,7 @@
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
-	<string>balthisar.com.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>com.balthisar.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -38,7 +38,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>0.7</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
@@ -48,7 +48,7 @@
 	<key>LSMinimumSystemVersion</key>
 	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2013 Jim Derry. All rights reserved.</string>
+	<string>Copyright © 2013 balthisar.com and Jim Derry. All rights reserved.</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>

@@ -122,7 +122,7 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr) {
         newText = [[NSString alloc] initWithData:[workingText dataUsingEncoding:lastEncoding] encoding:inputEncoding];
         [workingText release];
         workingText = newText;
-#warning HERE is where to call encodingChange event.
+//#warning HERE is where to call encodingChange event.
     } // if
 } // fixSourceCoding
 

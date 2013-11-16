@@ -8,7 +8,7 @@
  ***************************************************************************************/
 
 #import <Cocoa/Cocoa.h>
-#import <TreeNode.h>
+#import "TreeNode.h"
 #import "OptionPaneController.h"
 
 @interface BatchController : NSWindowController {

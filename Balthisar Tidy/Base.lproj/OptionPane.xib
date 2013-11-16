@@ -23,21 +23,21 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <view key="contentView">
                         <rect key="frame" x="0.0" y="0.0" width="315" height="345"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <splitView id="25">
                                 <rect key="frame" x="16" y="0.0" width="299" height="342"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <scrollView horizontalLineScroll="22" horizontalPageScroll="10" verticalLineScroll="22" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="22">
-                                        <rect key="frame" x="0.0" y="0.0" width="299" height="285"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="299" height="319"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <clipView key="contentView" id="HVo-cq-L9Z">
-                                            <rect key="frame" x="1" y="1" width="282" height="268"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                            <rect key="frame" x="1" y="1" width="282" height="302"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView autoresizesSubviews="NO" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowHeight="20" id="23" customClass="JSDTableView">
-                                                    <rect key="frame" x="0.0" y="0.0" width="282" height="268"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="282" height="302"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -80,16 +80,16 @@
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </clipView>
                                         <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="53">
-                                            <rect key="frame" x="1" y="269" width="282" height="15"/>
+                                            <rect key="frame" x="1" y="303" width="282" height="15"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="54">
-                                            <rect key="frame" x="283" y="1" width="15" height="268"/>
+                                            <rect key="frame" x="283" y="1" width="15" height="302"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
                                     <textField autoresizesSubviews="NO" verticalHuggingPriority="750" id="29">
-                                        <rect key="frame" x="0.0" y="294" width="299" height="48"/>
+                                        <rect key="frame" x="-2" y="328" width="303" height="14"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Description" id="50">
                                             <font key="font" metaFont="smallSystem"/>

@@ -20,7 +20,7 @@
             <rect key="contentRect" x="91" y="324" width="603" height="369"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1152" height="848"/>
             <view key="contentView" autoresizesSubviews="NO" id="11">
-                <rect key="frame" x="1" y="9" width="603" height="369"/>
+                <rect key="frame" x="0.0" y="0.0" width="603" height="369"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <splitView vertical="YES" id="101">
@@ -49,14 +49,14 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <view key="contentView">
                                     <rect key="frame" x="0.0" y="0.0" width="284" height="369"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <scrollView horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="85">
                                             <rect key="frame" x="6" y="41" width="266" height="299"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <clipView key="contentView" id="fhN-zA-Eac">
                                                 <rect key="frame" x="1" y="17" width="249" height="266"/>
-                                                <autoresizingMask key="autoresizingMask"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <outlineView autoresizesSubviews="NO" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" headerView="111" indentationPerLevel="16" autoresizesOutlineColumn="YES" outlineTableColumn="86" id="83">
                                                         <rect key="frame" x="0.0" y="0.0" width="249" height="266"/>
