@@ -3,37 +3,42 @@
 
 /* tmbstr.h - Tidy string utility functions
 
-  (c) 1998-2002 (W3C) MIT, INRIA, Keio University
+  (c) 1998-2006 (W3C) MIT, ERCIM, Keio University
   See tidy.h for the copyright notice.
 
   CVS Info :
 
-    $Author: creitzel $ 
-    $Date: 2003/02/16 19:33:11 $ 
-    $Revision: 1.2 $ 
+    $Author: arnaud02 $ 
+    $Date: 2006/12/29 16:31:09 $ 
+    $Revision: 1.11 $ 
 
 */
 
 #include "platform.h"
 
-/* like strdup but using MemAlloc */
-tmbstr tmbstrdup( ctmbstr str );
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 
-/* like strndup but using MemAlloc */
-tmbstr tmbstrndup( ctmbstr str, uint len);
+/* like strdup but using an allocator */
+tmbstr TY_(tmbstrdup)( TidyAllocator *allocator, ctmbstr str );
+
+/* like strndup but using an allocator */
+tmbstr TY_(tmbstrndup)( TidyAllocator *allocator, ctmbstr str, uint len);
 
 /* exactly same as strncpy */
-uint tmbstrncpy( tmbstr s1, ctmbstr s2, uint size );
+uint TY_(tmbstrncpy)( tmbstr s1, ctmbstr s2, uint size );
 
-uint tmbstrcpy( tmbstr s1, ctmbstr s2 );
+uint TY_(tmbstrcpy)( tmbstr s1, ctmbstr s2 );
 
-uint tmbstrcat( tmbstr s1, ctmbstr s2 );
+uint TY_(tmbstrcat)( tmbstr s1, ctmbstr s2 );
 
 /* exactly same as strcmp */
-int tmbstrcmp( ctmbstr s1, ctmbstr s2 );
+int TY_(tmbstrcmp)( ctmbstr s1, ctmbstr s2 );
 
 /* returns byte count, not char count */
-uint tmbstrlen( ctmbstr str );
+uint TY_(tmbstrlen)( ctmbstr str );
 
 /*
   MS C 4.2 doesn't include strcasecmp.
@@ -46,24 +51,42 @@ uint tmbstrlen( ctmbstr str );
   we are always comparing to ascii element and
   attribute names defined by HTML specs.
 */
-int tmbstrcasecmp( ctmbstr s1, ctmbstr s2 );
+int TY_(tmbstrcasecmp)( ctmbstr s1, ctmbstr s2 );
 
-int tmbstrncmp( ctmbstr s1, ctmbstr s2, uint n );
+int TY_(tmbstrncmp)( ctmbstr s1, ctmbstr s2, uint n );
 
-int tmbstrncasecmp( ctmbstr s1, ctmbstr s2, uint n );
+int TY_(tmbstrncasecmp)( ctmbstr s1, ctmbstr s2, uint n );
 
 /* return offset of cc from beginning of s1,
 ** -1 if not found.
 */
-int tmbstrnchr( ctmbstr s1, uint len1, tmbchar cc );
+/* int TY_(tmbstrnchr)( ctmbstr s1, uint len1, tmbchar cc ); */
 
-ctmbstr tmbsubstrn( ctmbstr s1, uint len1, ctmbstr s2 );
-ctmbstr tmbsubstrncase( ctmbstr s1, uint len1, ctmbstr s2 );
-ctmbstr tmbsubstr( ctmbstr s1, ctmbstr s2 );
+ctmbstr TY_(tmbsubstrn)( ctmbstr s1, uint len1, ctmbstr s2 );
+/* ctmbstr TY_(tmbsubstrncase)( ctmbstr s1, uint len1, ctmbstr s2 ); */
+ctmbstr TY_(tmbsubstr)( ctmbstr s1, ctmbstr s2 );
 
 /* transform string to lower case */
-tmbstr tmbstrtolower( tmbstr s );
+tmbstr TY_(tmbstrtolower)( tmbstr s );
 
-Bool tmbsamefile( ctmbstr filename1, ctmbstr filename2 );
+/* Transform ASCII chars in string to upper case */
+tmbstr TY_(tmbstrtoupper)( tmbstr s );
+
+/* Bool TY_(tmbsamefile)( ctmbstr filename1, ctmbstr filename2 ); */
+
+int TY_(tmbvsnprintf)(tmbstr buffer, size_t count, ctmbstr format, va_list args)
+#ifdef __GNUC__
+__attribute__((format(printf, 3, 0)))
+#endif
+;
+int TY_(tmbsnprintf)(tmbstr buffer, size_t count, ctmbstr format, ...)
+#ifdef __GNUC__
+__attribute__((format(printf, 3, 4)))
+#endif
+;
+
+#ifdef __cplusplus
+}  /* extern "C" */
+#endif
 
 #endif /* __TMBSTR_H__ */

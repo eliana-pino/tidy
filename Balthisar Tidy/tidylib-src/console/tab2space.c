@@ -27,9 +27,9 @@ typedef struct
     FILE *fp;
 } Stream;
 
-int tabsize = TABSIZE;
-int endline = DOS_CRLF;
-Bool tabs = false;
+static int tabsize = TABSIZE;
+static int endline = DOS_CRLF;
+static Bool tabs = false;
 
 /*
  Memory allocation functions vary from one environment to
@@ -70,10 +70,10 @@ void *MemRealloc(void *old, size_t size)
 void MemFree(void *p)
 {
     free(p);
-    p = null;
+    p = NULL;
 }
 
-Stream *NewStream(FILE *fp)
+static Stream *NewStream(FILE *fp)
 {
     Stream *in;
 
@@ -84,7 +84,7 @@ Stream *NewStream(FILE *fp)
     return in;
 }
 
-void FreeStream(Stream *in)
+static void FreeStream(Stream *in)
 {
     if (in->buf)
         MemFree(in->buf);
@@ -92,7 +92,7 @@ void FreeStream(Stream *in)
     MemFree(in);
 }
 
-void AddByte(Stream *in, uint c)
+static void AddByte(Stream *in, uint c)
 {
     if (in->size + 1 >= in->length)
     {
@@ -120,9 +120,9 @@ void AddByte(Stream *in, uint c)
   pushback is allowed with UngetChar(c, in).
   Returns EndOfStream if there's nothing more to read.
 */
-int ReadChar(Stream *in)
+static int ReadChar(Stream *in)
 {
-    uint c;
+    int c;
 
     if (in->pushed)
     {
@@ -203,7 +203,7 @@ int ReadChar(Stream *in)
     return c;
 }
 
-Stream  *ReadFile(FILE *fin)
+static Stream *ReadFile(FILE *fin)
 {
     int c;
     Stream *in  = NewStream(fin);
@@ -214,7 +214,7 @@ Stream  *ReadFile(FILE *fin)
     return in;
 }
 
-void WriteFile(Stream *in, FILE *fout)
+static void WriteFile(Stream *in, FILE *fout)
 {
     int i, c;
     char *p;
@@ -245,7 +245,7 @@ void WriteFile(Stream *in, FILE *fout)
     }
 }
 
-void HelpText(FILE *errout, char *prog)
+static void HelpText(FILE *errout, char *prog)
 {
     fprintf(errout, "%s: [options] [infile [outfile]] ...\n", prog);
     fprintf(errout, "Utility to expand tabs and ensure consistent line endings\n");
@@ -261,9 +261,10 @@ void HelpText(FILE *errout, char *prog)
 
 int main(int argc, char **argv)
 {
-    char *infile, *outfile, *prog;
+    char const *infile, *outfile;
+    char *prog;
     FILE *fin, *fout;
-    Stream *in = null;
+    Stream *in = NULL;
 
     prog = argv[0];
 
@@ -314,7 +315,7 @@ int main(int argc, char **argv)
         if (argc > 2)
         {
             outfile = argv[2];
-            fout = null;
+            fout = NULL;
             --argc;
             ++argv;
         }

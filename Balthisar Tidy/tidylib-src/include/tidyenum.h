@@ -1,21 +1,21 @@
 #ifndef __TIDYENUM_H__
 #define __TIDYENUM_H__
 
-/* tidyenum.h -- Split public enums into separate header
+/* @file tidyenum.h -- Split public enums into separate header
 
-  Simplifies enum re-use in various wrappers.  E.g. SWIG
+  Simplifies enum re-use in various wrappers.  e.g. SWIG
   generated wrappers and COM IDL files.
 
-  Copyright (c) 1998-2002 World Wide Web Consortium
-  (Massachusetts Institute of Technology, Institut National de
-  Recherche en Informatique et en Automatique, Keio University).
+  Copyright (c) 1998-2008 World Wide Web Consortium
+  (Massachusetts Institute of Technology, European Research 
+  Consortium for Informatics and Mathematics, Keio University).
   All Rights Reserved.
 
   CVS Info :
 
-    $Author: creitzel $ 
-    $Date: 2003/02/16 19:33:09 $ 
-    $Revision: 1.2 $ 
+    $Author: arnaud02 $ 
+    $Date: 2008/06/18 20:18:54 $ 
+    $Revision: 1.18 $ 
 
   Contributing Author(s):
 
@@ -59,9 +59,7 @@
 
   Created 2001-05-20 by Charles Reitzel
   Updated 2002-07-01 by Charles Reitzel - 1st Implementation
-*/
 
-/** @file tidyenum.h - Enumerations defined for use with TidyLib.
 */
 
 #ifdef __cplusplus
@@ -102,7 +100,10 @@ typedef enum
 
   TidyDuplicateAttrs,  /**< Keep first or last duplicate attribute */
   TidyAltText,         /**< Default text for alt attribute */
+  
+  /* obsolete */
   TidySlideStyle,      /**< Style sheet for slides: not used for anything yet */
+
   TidyErrFile,         /**< File name to write errors to */
   TidyOutFile,         /**< File name to write markup to */
   TidyWriteBack,       /**< If true then output tidied markup */
@@ -128,7 +129,10 @@ typedef enum
   TidyDropEmptyParas,  /**< Discard empty p elements */
   TidyFixComments,     /**< Fix comments with adjacent hyphens */
   TidyBreakBeforeBR,   /**< Output newline before <br> or not? */
+
+  /* obsolete */
   TidyBurstSlides,     /**< Create slides on each h2 element */
+
   TidyNumEntities,     /**< Use numeric entities */
   TidyQuoteMarks,      /**< Output " marks as &quot; */
   TidyQuoteNbsp,       /**< Output non-breaking space as entity */
@@ -166,10 +170,15 @@ typedef enum
 #if SUPPORT_ASIAN_ENCODINGS
   TidyLanguage,        /**< Language property: not used for anything yet */
   TidyNCR,             /**< Allow numeric character references */
+#else
+  TidyLanguageNotUsed,
+  TidyNCRNotUsed,
 #endif
 #if SUPPORT_UTF16_ENCODINGS
   TidyOutputBOM,      /**< Output a Byte Order Mark (BOM) for UTF-16 encodings */
                       /**< auto: if input stream has BOM, we output a BOM */
+#else
+  TidyOutputBOMNotUsed,
 #endif
 
   TidyReplaceColor,    /**< Replace hex color attribute values with names */
@@ -183,6 +192,18 @@ typedef enum
   TidyAccessibilityCheckLevel, /**< Accessibility check level 
                                    0 (old style), or 1, 2, 3 */
 
+  TidyVertSpace,       /**< degree to which markup is spread out vertically */
+#if SUPPORT_ASIAN_ENCODINGS
+  TidyPunctWrap,       /**< consider punctuation and breaking spaces for wrapping */
+#else
+  TidyPunctWrapNotUsed,
+#endif
+  TidyMergeDivs,       /**< Merge multiple DIVs */
+  TidyDecorateInferredUL,  /**< Mark inferred UL elements with no indent CSS */
+  TidyPreserveEntities,    /**< Preserve entities */
+  TidySortAttributes,      /**< Sort attributes */
+  TidyMergeSpans,       /**< Merge multiple SPANs */
+  TidyAnchorAsName,    /**< Define anchors as name attributes */
   N_TIDY_OPTIONS       /**< Must be last */
 } TidyOptionId;
 
@@ -235,6 +256,13 @@ typedef enum
     TidyKeepLast
 } TidyDupAttrModes;
 
+/** Mode controlling treatment of sorting attributes
+*/
+typedef enum
+{
+    TidySortAttrNone,
+    TidySortAttrAlpha
+} TidyAttrSortStrategy;
 
 /* I/O and Message handling interface
 **
@@ -290,126 +318,128 @@ typedef enum
 */
 typedef enum
 {
-  TidyTag_UNKNOWN,	/**< Unknown tag! */
-  TidyTag_A,		/**< A */
-  TidyTag_ABBR,		/**< ABBR */
-  TidyTag_ACRONYM,	/**< ACRONYM */
-  TidyTag_ADDRESS,	/**< ADDRESS */
-  TidyTag_ALIGN,	/**< ALIGN */
-  TidyTag_APPLET,	/**< APPLET */
-  TidyTag_AREA,		/**< AREA */
-  TidyTag_B,		/**< B */
-  TidyTag_BASE,		/**< BASE */
-  TidyTag_BASEFONT,	/**< BASEFONT */
-  TidyTag_BDO,		/**< BDO */
-  TidyTag_BGSOUND,	/**< BGSOUND */
-  TidyTag_BIG,		/**< BIG */
-  TidyTag_BLINK,	/**< BLINK */
-  TidyTag_BLOCKQUOTE,	/**< BLOCKQUOTE */
-  TidyTag_BODY,		/**< BODY */
-  TidyTag_BR,		/**< BR */
-  TidyTag_BUTTON,	/**< BUTTON */
-  TidyTag_CAPTION,	/**< CAPTION */
-  TidyTag_CENTER,	/**< CENTER */
-  TidyTag_CITE,		/**< CITE */
-  TidyTag_CODE,		/**< CODE */
-  TidyTag_COL,		/**< COL */
-  TidyTag_COLGROUP,	/**< COLGROUP */
-  TidyTag_COMMENT,	/**< COMMENT */
-  TidyTag_DD,		/**< DD */
-  TidyTag_DEL,		/**< DEL */
-  TidyTag_DFN,		/**< DFN */
-  TidyTag_DIR,		/**< DIR */
-  TidyTag_DIV,		/**< DIF */
-  TidyTag_DL,		/**< DL */
-  TidyTag_DT,		/**< DT */
-  TidyTag_EM,		/**< EM */
-  TidyTag_EMBED,	/**< EMBED */
-  TidyTag_FIELDSET,	/**< FIELDSET */
-  TidyTag_FONT,		/**< FONT */
-  TidyTag_FORM,		/**< FORM */
-  TidyTag_FRAME,	/**< FRAME */
-  TidyTag_FRAMESET,	/**< FRAMESET */
-  TidyTag_H1,		/**< H1 */
-  TidyTag_H2,		/**< H2 */
-  TidyTag_H3,		/**< H3 */
-  TidyTag_H4,		/**< H4 */
-  TidyTag_H5,		/**< H5 */
-  TidyTag_H6,		/**< H6 */
-  TidyTag_HEAD,		/**< HEAD */
-  TidyTag_HR,		/**< HR */
-  TidyTag_HTML,		/**< HTML */
-  TidyTag_I,		/**< I */
-  TidyTag_IFRAME,	/**< IFRAME */
-  TidyTag_ILAYER,	/**< ILAYER */
-  TidyTag_IMG,		/**< IMG */
-  TidyTag_INPUT,	/**< INPUT */
-  TidyTag_INS,		/**< INS */
-  TidyTag_ISINDEX,	/**< ISINDEX */
-  TidyTag_KBD,		/**< KBD */
-  TidyTag_KEYGEN,	/**< KEYGEN */
-  TidyTag_LABEL,	/**< LABEL */
-  TidyTag_LAYER,	/**< LAYER */
-  TidyTag_LEGEND,	/**< LEGEND */
-  TidyTag_LI,		/**< LI */
-  TidyTag_LINK,		/**< LINK */
-  TidyTag_LISTING,	/**< LISTING */
-  TidyTag_MAP,		/**< MAP */
-  TidyTag_MARQUEE,	/**< MARQUEE */
-  TidyTag_MENU,		/**< MENU */
-  TidyTag_META,		/**< META */
-  TidyTag_MULTICOL,	/**< MULTICOL */
-  TidyTag_NOBR,		/**< NOBR */
-  TidyTag_NOEMBED,	/**< NOEMBED */
-  TidyTag_NOFRAMES,	/**< NOFRAMES */
-  TidyTag_NOLAYER,	/**< NOLAYER */
-  TidyTag_NOSAVE,	/**< NOSAVE */
-  TidyTag_NOSCRIPT,	/**< NOSCRIPT */
-  TidyTag_OBJECT,	/**< OBJECT */
-  TidyTag_OL,		/**< OL */
-  TidyTag_OPTGROUP,	/**< OPTGROUP */
-  TidyTag_OPTION,	/**< OPTION */
-  TidyTag_P,		/**< P */
-  TidyTag_PARAM,	/**< PARAM */
-  TidyTag_PLAINTEXT,	/**< PLAINTEXT */
-  TidyTag_PRE,		/**< PRE */
-  TidyTag_Q,		/**< Q */
-  TidyTag_RB,		/**< RB */
-  TidyTag_RBC,		/**< RBC */
-  TidyTag_RP,		/**< RP */
-  TidyTag_RT,		/**< RT */
-  TidyTag_RTC,		/**< RTC */
-  TidyTag_RUBY,		/**< RUBY */
-  TidyTag_S,		/**< S */
-  TidyTag_SAMP,		/**< SAMP */
-  TidyTag_SCRIPT,	/**< SCRIPT */
-  TidyTag_SELECT,	/**< SELECT */
-  TidyTag_SERVER,	/**< SERVER */
-  TidyTag_SERVLET,	/**< SERVLET */
-  TidyTag_SMALL,	/**< SMALL */
-  TidyTag_SPACER,	/**< SPACER */
-  TidyTag_SPAN,		/**< SPAN */
-  TidyTag_STRIKE,	/**< STRIKE */
-  TidyTag_STRONG,	/**< STRONG */
-  TidyTag_STYLE,	/**< STYLE */
-  TidyTag_SUB,		/**< SUB */
-  TidyTag_SUP,		/**< SUP */
-  TidyTag_TABLE,	/**< TABLE */
-  TidyTag_TBODY,	/**< TBODY */
-  TidyTag_TD,		/**< TD */
-  TidyTag_TEXTAREA,	/**< TEXTAREA */
-  TidyTag_TFOOT,	/**< TFOOT */
-  TidyTag_TH,		/**< TH */
-  TidyTag_THEAD,	/**< THEAD */
-  TidyTag_TITLE,	/**< TITLE */
-  TidyTag_TR,		/**< TR */
-  TidyTag_TT,		/**< TT */
-  TidyTag_U,		/**< U */
-  TidyTag_UL,		/**< UL */
-  TidyTag_VAR,		/**< VAR */
-  TidyTag_WBR,		/**< WBR */
-  TidyTag_XMP,		/**< XMP */
-  N_TIDY_TAGS   	/**< Must be last */
+  TidyTag_UNKNOWN,  /**< Unknown tag! */
+  TidyTag_A,        /**< A */
+  TidyTag_ABBR,     /**< ABBR */
+  TidyTag_ACRONYM,  /**< ACRONYM */
+  TidyTag_ADDRESS,  /**< ADDRESS */
+  TidyTag_ALIGN,    /**< ALIGN */
+  TidyTag_APPLET,   /**< APPLET */
+  TidyTag_AREA,     /**< AREA */
+  TidyTag_B,        /**< B */
+  TidyTag_BASE,     /**< BASE */
+  TidyTag_BASEFONT, /**< BASEFONT */
+  TidyTag_BDO,      /**< BDO */
+  TidyTag_BGSOUND,  /**< BGSOUND */
+  TidyTag_BIG,      /**< BIG */
+  TidyTag_BLINK,    /**< BLINK */
+  TidyTag_BLOCKQUOTE,   /**< BLOCKQUOTE */
+  TidyTag_BODY,     /**< BODY */
+  TidyTag_BR,       /**< BR */
+  TidyTag_BUTTON,   /**< BUTTON */
+  TidyTag_CAPTION,  /**< CAPTION */
+  TidyTag_CENTER,   /**< CENTER */
+  TidyTag_CITE,     /**< CITE */
+  TidyTag_CODE,     /**< CODE */
+  TidyTag_COL,      /**< COL */
+  TidyTag_COLGROUP, /**< COLGROUP */
+  TidyTag_COMMENT,  /**< COMMENT */
+  TidyTag_DD,       /**< DD */
+  TidyTag_DEL,      /**< DEL */
+  TidyTag_DFN,      /**< DFN */
+  TidyTag_DIR,      /**< DIR */
+  TidyTag_DIV,      /**< DIF */
+  TidyTag_DL,       /**< DL */
+  TidyTag_DT,       /**< DT */
+  TidyTag_EM,       /**< EM */
+  TidyTag_EMBED,    /**< EMBED */
+  TidyTag_FIELDSET, /**< FIELDSET */
+  TidyTag_FONT,     /**< FONT */
+  TidyTag_FORM,     /**< FORM */
+  TidyTag_FRAME,    /**< FRAME */
+  TidyTag_FRAMESET, /**< FRAMESET */
+  TidyTag_H1,       /**< H1 */
+  TidyTag_H2,       /**< H2 */
+  TidyTag_H3,       /**< H3 */
+  TidyTag_H4,       /**< H4 */
+  TidyTag_H5,       /**< H5 */
+  TidyTag_H6,       /**< H6 */
+  TidyTag_HEAD,     /**< HEAD */
+  TidyTag_HR,       /**< HR */
+  TidyTag_HTML,     /**< HTML */
+  TidyTag_I,        /**< I */
+  TidyTag_IFRAME,   /**< IFRAME */
+  TidyTag_ILAYER,   /**< ILAYER */
+  TidyTag_IMG,      /**< IMG */
+  TidyTag_INPUT,    /**< INPUT */
+  TidyTag_INS,      /**< INS */
+  TidyTag_ISINDEX,  /**< ISINDEX */
+  TidyTag_KBD,      /**< KBD */
+  TidyTag_KEYGEN,   /**< KEYGEN */
+  TidyTag_LABEL,    /**< LABEL */
+  TidyTag_LAYER,    /**< LAYER */
+  TidyTag_LEGEND,   /**< LEGEND */
+  TidyTag_LI,       /**< LI */
+  TidyTag_LINK,     /**< LINK */
+  TidyTag_LISTING,  /**< LISTING */
+  TidyTag_MAP,      /**< MAP */
+  TidyTag_MARQUEE,  /**< MARQUEE */
+  TidyTag_MENU,     /**< MENU */
+  TidyTag_META,     /**< META */
+  TidyTag_MULTICOL, /**< MULTICOL */
+  TidyTag_NOBR,     /**< NOBR */
+  TidyTag_NOEMBED,  /**< NOEMBED */
+  TidyTag_NOFRAMES, /**< NOFRAMES */
+  TidyTag_NOLAYER,  /**< NOLAYER */
+  TidyTag_NOSAVE,   /**< NOSAVE */
+  TidyTag_NOSCRIPT, /**< NOSCRIPT */
+  TidyTag_OBJECT,   /**< OBJECT */
+  TidyTag_OL,       /**< OL */
+  TidyTag_OPTGROUP, /**< OPTGROUP */
+  TidyTag_OPTION,   /**< OPTION */
+  TidyTag_P,        /**< P */
+  TidyTag_PARAM,    /**< PARAM */
+  TidyTag_PLAINTEXT,/**< PLAINTEXT */
+  TidyTag_PRE,      /**< PRE */
+  TidyTag_Q,        /**< Q */
+  TidyTag_RB,       /**< RB */
+  TidyTag_RBC,      /**< RBC */
+  TidyTag_RP,       /**< RP */
+  TidyTag_RT,       /**< RT */
+  TidyTag_RTC,      /**< RTC */
+  TidyTag_RUBY,     /**< RUBY */
+  TidyTag_S,        /**< S */
+  TidyTag_SAMP,     /**< SAMP */
+  TidyTag_SCRIPT,   /**< SCRIPT */
+  TidyTag_SELECT,   /**< SELECT */
+  TidyTag_SERVER,   /**< SERVER */
+  TidyTag_SERVLET,  /**< SERVLET */
+  TidyTag_SMALL,    /**< SMALL */
+  TidyTag_SPACER,   /**< SPACER */
+  TidyTag_SPAN,     /**< SPAN */
+  TidyTag_STRIKE,   /**< STRIKE */
+  TidyTag_STRONG,   /**< STRONG */
+  TidyTag_STYLE,    /**< STYLE */
+  TidyTag_SUB,      /**< SUB */
+  TidyTag_SUP,      /**< SUP */
+  TidyTag_TABLE,    /**< TABLE */
+  TidyTag_TBODY,    /**< TBODY */
+  TidyTag_TD,       /**< TD */
+  TidyTag_TEXTAREA, /**< TEXTAREA */
+  TidyTag_TFOOT,    /**< TFOOT */
+  TidyTag_TH,       /**< TH */
+  TidyTag_THEAD,    /**< THEAD */
+  TidyTag_TITLE,    /**< TITLE */
+  TidyTag_TR,       /**< TR */
+  TidyTag_TT,       /**< TT */
+  TidyTag_U,        /**< U */
+  TidyTag_UL,       /**< UL */
+  TidyTag_VAR,      /**< VAR */
+  TidyTag_WBR,      /**< WBR */
+  TidyTag_XMP,      /**< XMP */
+  TidyTag_NEXTID,   /**< NEXTID */
+
+  N_TIDY_TAGS       /**< Must be last */
 } TidyTagId;
 
 /* Attribute interrogation
@@ -574,6 +604,15 @@ typedef enum
   TidyAttr_XML_LANG,          /**< XML_LANG= */
   TidyAttr_XML_SPACE,         /**< XML_SPACE= */
   TidyAttr_XMLNS,             /**< XMLNS= */
+
+  TidyAttr_EVENT,             /**< EVENT= */
+  TidyAttr_METHODS,           /**< METHODS= */
+  TidyAttr_N,                 /**< N= */
+  TidyAttr_SDAFORM,           /**< SDAFORM= */
+  TidyAttr_SDAPREF,           /**< SDAPREF= */
+  TidyAttr_SDASUFF,           /**< SDASUFF= */
+  TidyAttr_URN,               /**< URN= */
+
   N_TIDY_ATTRIBS              /**< Must be last */
 } TidyAttrId;
 

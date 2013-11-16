@@ -1,13 +1,13 @@
 /* entities.c -- recognize HTML ISO entities
 
-  (c) 1998-2002 (W3C) MIT, INRIA, Keio University
+  (c) 1998-2008 (W3C) MIT, ERCIM, Keio University
   See tidy.h for the copyright notice.
 
   CVS Info :
 
-    $Author: creitzel $ 
-    $Date: 2003/02/16 19:33:10 $ 
-    $Revision: 1.8 $ 
+    $Author: hoehrmann $ 
+    $Date: 2008/08/09 11:55:27 $ 
+    $Revision: 1.19 $ 
 
   Entity handling can be static because there are no config or
   document-specific values.  Lookup table is 100% defined at 
@@ -19,8 +19,6 @@
 #include "entities.h"
 #include "tidy-int.h"
 #include "tmbstr.h"
-
-#define ENTITY_HASHSIZE 731
 
 struct _entity;
 typedef struct _entity entity;
@@ -303,7 +301,7 @@ static const entity entities[] =
     { "lsaquo",   VERS_FROM40,  8249 },
     { "rsaquo",   VERS_FROM40,  8250 },
     { "euro",     VERS_FROM40,  8364 },
-    { null,       0,               0 }
+    { NULL,       VERS_UNKNOWN, 0 }
 };
 
 
@@ -313,24 +311,17 @@ static const entity entities[] =
 ** speed that hash doesn't improve things without > 500
 ** items in list.
 */
-static const entity* lookup( ctmbstr s )
+static const entity* entitiesLookup( ctmbstr s )
 {
     tmbchar ch = (tmbchar)( s ? *s : 0 );
     const entity *np;
     for ( np = entities; ch && np && np->name; ++np )
-        if ( ch == *np->name && tmbstrcmp(s, np->name) == 0 )
+        if ( ch == *np->name && TY_(tmbstrcmp)(s, np->name) == 0 )
             return np;
-    return null;
+    return NULL;
 }
 
-void InitEntities()
-{
-}
-
-void FreeEntities()
-{
-}
-
+#if 0
 /* entity starting with "&" returns zero on error */
 uint EntityCode( ctmbstr name, uint versions )
 {
@@ -347,13 +338,13 @@ uint EntityCode( ctmbstr name, uint versions )
         if ( name[2] == 'x' || (!isXml && name[2] == 'X') )
             sscanf( name+3, "%x", &c );
         else
-            sscanf( name+2, "%d", &c );
+            sscanf( name+2, "%u", &c );
 
         return (uint) c;
     }
 
    /* Named entity: name ="&" followed by a name */
-    if ( np = lookup(name+1) )
+    if ( NULL != (np = entitiesLookup(name+1)) )
     {
         /* Only recognize entity name if version supports it.  */
         if ( np->versions & versions )
@@ -362,14 +353,51 @@ uint EntityCode( ctmbstr name, uint versions )
 
     return 0;   /* zero signifies unknown entity name */
 }
+#endif
 
-
-ctmbstr EntityName( uint ch, uint versions )
+Bool TY_(EntityInfo)( ctmbstr name, Bool isXml, uint* code, uint* versions )
 {
-    ctmbstr entnam = null;
+    const entity* np;
+    assert( name && name[0] == '&' );
+    assert( code != NULL );
+    assert( versions != NULL );
+
+    /* numeric entitity: name = "&#" followed by number */
+    if ( name[1] == '#' )
+    {
+        uint c = 0;  /* zero on missing/bad number */
+
+        /* 'x' prefix denotes hexadecimal number format */
+        if ( name[2] == 'x' || (!isXml && name[2] == 'X') )
+            sscanf( name+3, "%x", &c );
+        else
+            sscanf( name+2, "%u", &c );
+
+        *code = c;
+        *versions = VERS_ALL;
+        return yes;
+    }
+
+    /* Named entity: name ="&" followed by a name */
+    if ( NULL != (np = entitiesLookup(name+1)) )
+    {
+        *code = np->code;
+        *versions = np->versions;
+        return yes;
+    }
+
+    *code = 0;
+    *versions = ( isXml ? VERS_XML : VERS_PROPRIETARY );
+    return no;
+}
+
+
+ctmbstr TY_(EntityName)( uint ch, uint versions )
+{
+    ctmbstr entnam = NULL;
     const entity *ep;
 
-    for ( ep = entities; ep->name != null; ++ep )
+    for ( ep = entities; ep->name != NULL; ++ep )
     {
         if ( ep->code == ch )
         {
@@ -380,3 +408,12 @@ ctmbstr EntityName( uint ch, uint versions )
     }
     return entnam;
 }
+
+/*
+ * local variables:
+ * mode: c
+ * indent-tabs-mode: nil
+ * c-basic-offset: 4
+ * eval: (c-set-offset 'substatement-open 0)
+ * end:
+ */

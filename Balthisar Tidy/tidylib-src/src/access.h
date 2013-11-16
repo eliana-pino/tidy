@@ -4,14 +4,14 @@
 /* access.h -- carry out accessibility checks
 
   Copyright University of Toronto
-  Portions (c) 1998-2002 (W3C) MIT, INRIA, Keio University
+  Portions (c) 1998-2006 (W3C) MIT, ERCIM, Keio University
   See tidy.h for the copyright notice.
   
   CVS Info :
 
-    $Author: creitzel $ 
-    $Date: 2003/02/16 19:33:09 $ 
-    $Revision: 1.2 $ 
+    $Author: arnaud02 $ 
+    $Date: 2006/09/12 15:14:44 $ 
+    $Revision: 1.7 $ 
 
 */
 
@@ -57,7 +57,9 @@ typedef struct AreaLinks
 } AreaLinks;
 */
 
-#define TEXTBUF_SIZE	128
+enum {
+  TEXTBUF_SIZE=128u
+};
 
 struct _TidyAccessImpl;
 typedef struct _TidyAccessImpl TidyAccessImpl;
@@ -115,9 +117,14 @@ struct _TidyAccessImpl
 /* 
     Determines which error/warning message should be displayed,
     depending on the error code that was called.
+
+    Offset accessibility error codes by FIRST_ACCESS_ERR to avoid conflict with
+    other error codes defined in message.h and used in localize.c.
 */
 enum accessErrorCodes
 {
+                           FIRST_ACCESS_ERR = 1000,    /* must be first */
+ 
     /* [1.1.1.1] */        IMG_MISSING_ALT,
     /* [1.1.1.2] */        IMG_ALT_SUSPICIOUS_FILENAME,
     /* [1.1.1.3] */        IMG_ALT_SUSPICIOUS_FILE_SIZE,
@@ -254,6 +261,9 @@ enum accessErrorCodes
 };
 
 
+void TY_(AccessibilityHelloMessage)( TidyDocImpl* doc );
+void TY_(DisplayHTMLTableAlgorithm)( TidyDocImpl* doc );
+
 /************************************************************
 * AccessibilityChecks
 *
@@ -262,7 +272,7 @@ enum accessErrorCodes
 * after the tree structure has been formed.
 ************************************************************/
 
-void AccessibilityChecks( TidyDocImpl* doc );
+void TY_(AccessibilityChecks)( TidyDocImpl* doc );
 
 
 #endif /* SUPPORT_ACCESSIBILITY_CHECKS */

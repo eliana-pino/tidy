@@ -1,16 +1,16 @@
-#ifndef __PLATFORM_H__
-#define __PLATFORM_H__
+#ifndef __TIDY_PLATFORM_H__
+#define __TIDY_PLATFORM_H__
 
 /* platform.h -- Platform specifics
 
-  (c) 1998-2003 (W3C) MIT, INRIA, Keio University
+  (c) 1998-2008 (W3C) MIT, ERCIM, Keio University
   See tidy.h for the copyright notice.
 
   CVS Info :
 
-    $Author: creitzel $ 
-    $Date: 2003/02/16 19:33:09 $ 
-    $Revision: 1.35 $ 
+    $Author: arnaud02 $ 
+    $Date: 2008/03/17 12:57:01 $ 
+    $Revision: 1.66 $ 
 
 */
 
@@ -23,19 +23,33 @@ extern "C" {
   want to specify the config file at compile-time.
 */
 
-/* #define CONFIG_FILE "/etc/tidy_config.txt" */ /* original */
-/* #define CONFIG_FILE "/etc/tidyrc" */
-/* #define CONFIG_FILE "/etc/tidy.conf" */
+/* #define TIDY_CONFIG_FILE "/etc/tidy_config.txt" */ /* original */
+/* #define TIDY_CONFIG_FILE "/etc/tidyrc" */
+/* #define TIDY_CONFIG_FILE "/etc/tidy.conf" */
 
 /*
-  Uncomment the following #define if you are on a Unix system
-  supporting the call getpwnam() and the HOME environment variable.
-  It enables tidy to find config files named ~/.tidyrc and
-  ~your/.tidyrc etc if the HTML_TIDY environment
-  variable is not set. Contributed by Todd Lewis.
+  Uncomment the following #define if you are on a system
+  supporting the HOME environment variable.
+  It enables tidy to find config files named ~/.tidyrc if 
+  the HTML_TIDY environment variable is not set.
+*/
+/* #define TIDY_USER_CONFIG_FILE "~/.tidyrc" */
+
+/*
+  Uncomment the following #define if your
+  system supports the call getpwnam(). 
+  E.g. Unix and Linux.
+
+  It enables tidy to find files named 
+  ~your/foo for use in the HTML_TIDY environment
+  variable or CONFIG_FILE or USER_CONFIGFILE or
+  on the command line: -config ~joebob/tidy.cfg
+
+  Contributed by Todd Lewis.
 */
 
 /* #define SUPPORT_GETPWNAM */
+
 
 /* Enable/disable support for Big5 and Shift_JIS character encodings */
 #ifndef SUPPORT_ASIAN_ENCODINGS
@@ -52,24 +66,6 @@ extern "C" {
 #define SUPPORT_ACCESSIBILITY_CHECKS 1
 #endif
 
-/* Enable/disable original accessibility checks */
-
-/* Also at runtime : 
-   if !USE_ORIGINAL_ACCESSIBILITY_CHECKS
-       if (AccessibilityCheckLevel == 0) then
-           do the original accessibility checks anyway
-*/
-
-/* If additional accessibility checks are enabled, disable the original accessibility checks by default */
-#ifndef USE_ORIGINAL_ACCESSIBILITY_CHECKS
-#define USE_ORIGINAL_ACCESSIBILITY_CHECKS 0
-#endif
-
-/* If additional accessibility checks are disabled, always enable the original accessibility checks */
-#if !SUPPORT_ACCESSIBILITY_CHECKS
-#undef USE_ORIGINAL_ACCESSIBILITY_CHECKS
-#define USE_ORIGINAL_ACCESSIBILITY_CHECKS 1
-#endif
 
 /* Convenience defines for Mac platforms */
 
@@ -78,6 +74,15 @@ extern "C" {
 #define MAC_OS_CLASSIC
 #ifndef PLATFORM_NAME
 #define PLATFORM_NAME "Mac OS"
+#endif
+
+/* needed for access() */
+#if !defined(_POSIX) && !defined(NO_ACCESS_SUPPORT)
+#define NO_ACCESS_SUPPORT
+#endif
+
+#ifdef SUPPORT_GETPWNAM
+#undef SUPPORT_GETPWNAM
 #endif
 
 #elif defined(__APPLE__) && defined(__MACH__)
@@ -118,6 +123,12 @@ extern "C" {
 #define PLATFORM_NAME "OpenBSD"
 #endif
 
+#elif defined(__DragonFly__)
+#define BSD_BASED_OS
+#ifndef PLATFORM_NAME
+#define PLATFORM_NAME "DragonFly"
+#endif
+
 #elif defined(__MINT__)
 #define BSD_BASED_OS
 #ifndef PLATFORM_NAME
@@ -135,11 +146,35 @@ extern "C" {
 /* Convenience defines for Windows platforms */
  
 #if defined(WINDOWS) || defined(_WIN32)
+
 #define WINDOWS_OS
 #ifndef PLATFORM_NAME
 #define PLATFORM_NAME "Windows"
 #endif
+
+#if defined(__MWERKS__) || defined(__MSL__)
+/* not available with Metrowerks Standard Library */
+
+#ifdef SUPPORT_GETPWNAM
+#undef SUPPORT_GETPWNAM
+#endif
+
+/* needed for setmode() */
+#if !defined(NO_SETMODE_SUPPORT)
+#define NO_SETMODE_SUPPORT
+#endif
+
+#define strcasecmp _stricmp
+
+#endif
+
+#if defined(__BORLANDC__)
+#define strcasecmp stricmp
+#endif
+
 #define FILENAMES_CASE_SENSITIVE 0
+#define SUPPORT_POSIX_MAPPED_FILES 0
+
 #endif
 
 /* Convenience defines for Linux platforms */
@@ -329,8 +364,6 @@ extern "C" {
 #include <pwd.h>
 #endif
 
-/* #define __USE_MISC */
-
 #ifdef NEEDS_UNISTD_H
 #include <unistd.h>  /* needed for unlink on some Unix systems */
 #endif
@@ -422,43 +455,88 @@ extern "C" {
   _WIN32 automatically set by Win32 compilers.
 */
 #if defined(_WIN32) && !defined(__MSL__) && !defined(__BORLANDC__)
+
 #define futime _futime
 #define fstat _fstat
 #define utimbuf _utimbuf /* Windows seems to want utimbuf */
 #define stat _stat
-#define fileno _fileno
-#define strcasecmp _stricmp
 #define utime _utime
+#define vsnprintf _vsnprintf
+#endif /* _WIN32 */
+
+#endif /* PRESERVE_FILE_TIMES */
+
+/*
+  MS Windows needs _ prefix for Unix file functions.
+  Not required by Metrowerks Standard Library (MSL).
+  
+  WINDOWS automatically set by Win16 compilers.
+  _WIN32 automatically set by Win32 compilers.
+*/
+#if defined(_WIN32) && !defined(__MSL__) && !defined(__BORLANDC__)
+
+#ifndef __WATCOMC__
+#define fileno _fileno
+#define setmode _setmode
+#endif
+
+#define access _access
+#define strcasecmp _stricmp
+
 #if _MSC_VER > 1000
 #pragma warning( disable : 4189 ) /* local variable is initialized but not referenced */
 #pragma warning( disable : 4100 ) /* unreferenced formal parameter */
 #pragma warning( disable : 4706 ) /* assignment within conditional expression */
 #endif
-#if  defined(_USRDLL) && !defined(TIDY_EXPORT)
-#define TIDY_EXPORT __declspec( dllexport ) 
+
+#if _MSC_VER > 1300
+#pragma warning( disable : 4996 ) /* disable depreciation warning */
 #endif
-#elif defined(_WIN32) && defined(__MSL__)
-#define strcasecmp _stricmp
+
 #endif /* _WIN32 */
 
-#endif /* PRESERVE_FILE_TIMES */
+#if defined(_WIN32)
 
-/* hack for gnu sys/types.h file  which defines uint and ulong */
-/* you may need to delete the #ifndef and #endif on your system */
+#if (defined(_USRDLL) || defined(_WINDLL)) && !defined(TIDY_EXPORT)
+#define TIDY_EXPORT __declspec( dllexport ) 
+#endif
 
-#ifndef __USE_MISC
-#if defined(BE_OS) || defined(SOLARIS_OS) || defined(BSD_BASED_OS) || defined(MAC_OS_X) || defined(OSF_OS) || defined(IRIX_OS) || defined(AIX_OS)
-#include <sys/types.h>
+#ifndef TIDY_CALL
+#ifdef _WIN64
+#  define TIDY_CALL __fastcall
 #else
-#if !defined(HPUX_OS) && !defined(CYGWIN_OS)
+#  define TIDY_CALL __stdcall
+#endif
+#endif
+
+#endif /* _WIN32 */
+
+/* hack for gnu sys/types.h file which defines uint and ulong */
+
+#if defined(BE_OS) || defined(SOLARIS_OS) || defined(BSD_BASED_OS) || defined(OSF_OS) || defined(IRIX_OS) || defined(AIX_OS)
+#include <sys/types.h>
+#endif
+#if !defined(HPUX_OS) && !defined(CYGWIN_OS) && !defined(MAC_OS_X) && !defined(BE_OS) && !defined(SOLARIS_OS) && !defined(BSD_BASED_OS) && !defined(OSF_OS) && !defined(IRIX_OS) && !defined(AIX_OS) && !defined(LINUX_OS)
+# undef uint
 typedef unsigned int uint;
 #endif
+#if defined(HPUX_OS) || defined(CYGWIN_OS) || defined(MAC_OS) || defined(BSD_BASED_OS) || defined(_WIN32)
+# undef ulong
 typedef unsigned long ulong;
 #endif
-#endif /* __USE_MISC */
+
+/*
+With GCC 4,  __attribute__ ((visibility("default"))) can be used along compiling with tidylib 
+with "-fvisibility=hidden". See http://gcc.gnu.org/wiki/Visibility and build/gmake/Makefile.
+*/
+/*
+#if defined(__GNUC__) && __GNUC__ >= 4
+#define TIDY_EXPORT __attribute__ ((visibility("default")))
+#endif
+*/
 
 #ifndef TIDY_EXPORT /* Define it away for most builds */
-#define TIDY_EXPORT
+#define TIDY_EXPORT 
 #endif
 
 #ifndef TIDY_STRUCT
@@ -472,15 +550,41 @@ typedef char tmbchar;       /* single, possibly partial character */
 #ifndef TMBSTR_DEFINED
 typedef tmbchar* tmbstr;    /* pointer to buffer of possibly partial chars */
 typedef const tmbchar* ctmbstr; /* Ditto, but const */
+#define NULLSTR (tmbstr)""
 #define TMBSTR_DEFINED
 #endif
 
-           
+#ifndef TIDY_CALL
+#define TIDY_CALL
+#endif
+
+#if defined(__GNUC__) || defined(__INTEL_COMPILER)
+# define ARG_UNUSED(x) x __attribute__((unused))
+#else
+# define ARG_UNUSED(x) x
+#endif
+
+/* HAS_VSNPRINTF triggers the use of "vsnprintf", which is safe related to
+   buffer overflow. Therefore, we make it the default unless HAS_VSNPRINTF
+   has been defined. */
+#ifndef HAS_VSNPRINTF
+# define HAS_VSNPRINTF 1
+#endif
+
+#ifndef SUPPORT_POSIX_MAPPED_FILES
+# define SUPPORT_POSIX_MAPPED_FILES 1
+#endif
+
 /*
   bool is a reserved word in some but
   not all C++ compilers depending on age
   work around is to avoid bool altogether
   by introducing a new enum called Bool
+*/
+/* We could use the C99 definition where supported
+typedef _Bool Bool;
+#define no (_Bool)0
+#define yes (_Bool)1
 */
 typedef enum
 {
@@ -488,39 +592,45 @@ typedef enum
    yes
 } Bool;
 
-/* for null pointers */
-#define null 0
+/* for NULL pointers 
+#define null ((const void*)0)
+extern void* null;
+*/
 
 #if defined(DMALLOC)
 #include "dmalloc.h"
 #endif
-
-void *MemAlloc(size_t size);
-void *MemRealloc(void *mem, size_t newsize);
-void MemFree(void *mem);
-void ClearMemory(void *, size_t size);
-void FatalError( ctmbstr msg );
 
 /* Opaque data structure.
 *  Cast to implementation type struct within lib.
 *  This will reduce inter-dependencies/conflicts w/ application code.
 */
 #if 1
-#define opaque( typenam )\
+#define opaque_type( typenam )\
 struct _##typenam { int _opaque; };\
-typedef struct _##typenam* typenam
+typedef struct _##typenam const * typenam
 #else
-#define opaque(typenam) typedef void* typenam
+#define opaque_type(typenam) typedef const void* typenam
 #endif
 
 /* Opaque data structure used to pass back
 ** and forth to keep current position in a
 ** list or other collection.
 */
-opaque( TidyIterator );
+opaque_type( TidyIterator );
 
 #ifdef __cplusplus
 } /* extern "C" */
 #endif
 
-#endif /* __PLATFORM_H__ */
+#endif /* __TIDY_PLATFORM_H__ */
+
+
+/*
+ * local variables:
+ * mode: c
+ * indent-tabs-mode: nil
+ * c-basic-offset: 4
+ * eval: (c-set-offset 'substatement-open 0)
+ * end:
+ */

@@ -1,13 +1,13 @@
 /* utf8.c -- convert characters to/from UTF-8
 
-  (c) 1998-2002 (W3C) MIT, INRIA, Keio University
+  (c) 1998-2007 (W3C) MIT, ERCIM, Keio University
   See tidy.h for the copyright notice.
 
   CVS Info :
 
-    $Author: creitzel $ 
-    $Date: 2003/02/16 19:33:11 $ 
-    $Revision: 1.2 $ 
+    $Author: arnaud02 $ 
+    $Date: 2007/05/30 16:47:31 $ 
+    $Revision: 1.10 $ 
 
   Uses public interfaces to abstract input source and output
   sink, which may be user supplied or either FILE* or memory
@@ -31,6 +31,7 @@
 */
 
 #include "tidy.h"
+#include "forward.h"
 #include "utf8.h"
 
 /* 
@@ -166,8 +167,8 @@ static const struct validUTF8Sequence
     {0x100000, 0x10FFFF, 4, {0xF4, 0xF4, 0x80, 0x8F, 0x80, 0xBF, 0x80, 0xBF}} 
 };
 
-int DecodeUTF8BytesToChar( uint* c, uint firstByte, tmbstr successorBytes,
-                           TidyInputSource* inp, int* count )
+int TY_(DecodeUTF8BytesToChar)( uint* c, uint firstByte, ctmbstr successorBytes,
+                                TidyInputSource* inp, int* count )
 {
     byte tempbuf[10];
     byte *buf = &tempbuf[0];
@@ -241,7 +242,7 @@ int DecodeUTF8BytesToChar( uint* c, uint firstByte, tmbstr successorBytes,
             if ( !buf[i] || (buf[i] & 0xC0) != 0x80 )
             {
                 hasError = yes;
-                bytes = i;
+                bytes = i+1;
                 break;
             }
             n = (n << 6) | (buf[i] & 0x3F);
@@ -258,7 +259,7 @@ int DecodeUTF8BytesToChar( uint* c, uint firstByte, tmbstr successorBytes,
             if ( b == EOF || (buf[i] & 0xC0) != 0x80 )
             {
                 hasError = yes;
-                bytes = i;
+                bytes = i+1;
                 if ( b != EOF )
                     inp->ungetByte( inp->sourceData, buf[i] );
                 break;
@@ -328,7 +329,7 @@ int DecodeUTF8BytesToChar( uint* c, uint firstByte, tmbstr successorBytes,
        fprintf( stderr, "0x%02x ", firstByte );
        for (i = 1; i < bytes; i++)
            fprintf( stderr, "0x%02x ", buf[i - 1] );
-       fprintf( stderr, " = U+%04lx\n", n );
+       fprintf( stderr, " = U+%04ulx\n", n );
     }
 #endif
 
@@ -339,8 +340,8 @@ int DecodeUTF8BytesToChar( uint* c, uint firstByte, tmbstr successorBytes,
     return 0;
 }
 
-int EncodeCharToUTF8Bytes( uint c, tmbstr encodebuf,
-                           TidyOutputSink* outp, int* count )
+int TY_(EncodeCharToUTF8Bytes)( uint c, tmbstr encodebuf,
+                                TidyOutputSink* outp, int* count )
 {
     byte tempbuf[10] = {0};
     byte* buf = &tempbuf[0];
@@ -410,7 +411,7 @@ int EncodeCharToUTF8Bytes( uint c, tmbstr encodebuf,
         hasError = yes;
         
     /* don't output invalid UTF-8 byte sequence to a stream */
-    if ( !hasError && outp != null )
+    if ( !hasError && outp != NULL )
     {
         int ix;
         for ( ix=0; ix < bytes; ++ix )
@@ -422,7 +423,7 @@ int EncodeCharToUTF8Bytes( uint c, tmbstr encodebuf,
     {
         int i;
         fprintf( stderr, "UTF-8 encoding error for U+%x : ", c );
-        for (i = 0; 0 < bytes; i++)
+        for (i = 0; i < bytes; i++)
             fprintf( stderr, "0x%02x ", buf[i] );
         fprintf( stderr, "\n" );
     }
@@ -438,7 +439,7 @@ int EncodeCharToUTF8Bytes( uint c, tmbstr encodebuf,
 /* return one less than the number of bytes used by the UTF-8 byte sequence */
 /* str points to the UTF-8 byte sequence */
 /* the Unicode char is returned in *ch */
-uint GetUTF8( tmbstr str, uint *ch )
+uint TY_(GetUTF8)( ctmbstr str, uint *ch )
 {
     uint n;
     int bytes;
@@ -449,7 +450,7 @@ uint GetUTF8( tmbstr str, uint *ch )
     
     /* first byte "str[0]" is passed in separately from the */
     /* rest of the UTF-8 byte sequence starting at "str[1]" */
-    err = DecodeUTF8BytesToChar( &n, str[0], str+1, null, &bytes );
+    err = TY_(DecodeUTF8BytesToChar)( &n, str[0], str+1, NULL, &bytes );
     if (err)
     {
 #if 1 && defined(_DEBUG)
@@ -463,11 +464,11 @@ uint GetUTF8( tmbstr str, uint *ch )
 }
 
 /* store char c as UTF-8 encoded byte stream */
-tmbstr PutUTF8( tmbstr buf, uint c )
+tmbstr TY_(PutUTF8)( tmbstr buf, uint c )
 {
     int err, count = 0;
         
-    err = EncodeCharToUTF8Bytes( c, buf, null, &count );
+    err = TY_(EncodeCharToUTF8Bytes)( c, buf, NULL, &count );
     if (err)
     {
 #if 1 && defined(_DEBUG)
@@ -484,46 +485,55 @@ tmbstr PutUTF8( tmbstr buf, uint c )
     return buf;
 }
 
-Bool    IsValidUTF16FromUCS4( tchar ucs4 )
+Bool    TY_(IsValidUTF16FromUCS4)( tchar ucs4 )
 {
   return ( ucs4 <= kMaxUTF16FromUCS4 );
 }
 
-Bool    IsHighSurrogate( tchar ch )
+Bool    TY_(IsHighSurrogate)( tchar ch )
 {
     return ( ch >= kUTF16HighSurrogateBegin && ch <= kUTF16HighSurrogateEnd );
 }
-Bool    IsLowSurrogate( tchar ch )
+Bool    TY_(IsLowSurrogate)( tchar ch )
 {
     return ( ch >= kUTF16LowSurrogateBegin && ch <= kUTF16LowSurrogateEnd );
 }
 
-tchar   CombineSurrogatePair( tchar high, tchar low )
+tchar   TY_(CombineSurrogatePair)( tchar high, tchar low )
 {
-    assert( IsHighSurrogate(high) && IsLowSurrogate(low) );
+    assert( TY_(IsHighSurrogate)(high) && TY_(IsLowSurrogate)(low) );
     return ( ((low - kUTF16LowSurrogateBegin) * 0x400) + 
              high - kUTF16HighSurrogateBegin + 0x10000 );
 }
 
-Bool   SplitSurrogatePair( tchar utf16, tchar* low, tchar* high )
+Bool   TY_(SplitSurrogatePair)( tchar utf16, tchar* low, tchar* high )
 {
-    Bool ok = ( IsValidCombinedChar( utf16 ) && high && low );
-    if ( ok )
+    Bool status = ( TY_(IsValidCombinedChar)( utf16 ) && high && low );
+    if ( status )
     {
         *low  = (utf16 - kUTF16SurrogatesBegin) / 0x400 + kUTF16LowSurrogateBegin;
         *high = (utf16 - kUTF16SurrogatesBegin) % 0x400 + kUTF16HighSurrogateBegin;
     }
-    return ok;
+    return status;
 }
 
-Bool    IsValidCombinedChar( tchar ch )
+Bool    TY_(IsValidCombinedChar)( tchar ch )
 {
     return ( ch >= kUTF16SurrogatesBegin &&
              (ch & 0x0000FFFE) != 0x0000FFFE &&
              (ch & 0x0000FFFF) != 0x0000FFFF );
 }
 
-Bool    IsCombinedChar( tchar ch )
+Bool    TY_(IsCombinedChar)( tchar ch )
 {
     return ( ch >= kUTF16SurrogatesBegin );
 }
+
+/*
+ * local variables:
+ * mode: c
+ * indent-tabs-mode: nil
+ * c-basic-offset: 4
+ * eval: (c-set-offset 'substatement-open 0)
+ * end:
+ */

@@ -11,6 +11,11 @@
 		D016A936182FD80700712C60 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D016A935182FD80700712C60 /* main.m */; };
 		D016A943182FD80700712C60 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D016A941182FD80700712C60 /* MainMenu.xib */; };
 		D016A945182FD80700712C60 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D016A944182FD80700712C60 /* Images.xcassets */; };
+		D02A47751837AD6500908F67 /* attrdict.c in Sources */ = {isa = PBXBuildFile; fileRef = D02A47691837AD6500908F67 /* attrdict.c */; };
+		D02A47761837AD6500908F67 /* charsets.c in Sources */ = {isa = PBXBuildFile; fileRef = D02A476B1837AD6500908F67 /* charsets.c */; };
+		D02A47771837AD6500908F67 /* iconvtc.c in Sources */ = {isa = PBXBuildFile; fileRef = D02A476E1837AD6500908F67 /* iconvtc.c */; };
+		D02A47781837AD6500908F67 /* mappedio.c in Sources */ = {isa = PBXBuildFile; fileRef = D02A47701837AD6500908F67 /* mappedio.c */; };
+		D02A47791837AD6500908F67 /* win32tc.c in Sources */ = {isa = PBXBuildFile; fileRef = D02A47731837AD6500908F67 /* win32tc.c */; };
 		D07AF4801836581E00913067 /* Batch.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07AF4781836581E00913067 /* Batch.xib */; };
 		D07AF4811836581E00913067 /* OptionPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07AF47A1836581E00913067 /* OptionPane.xib */; };
 		D07AF4821836581E00913067 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07AF47C1836581E00913067 /* Preferences.xib */; };
@@ -61,6 +66,18 @@
 		D016A944182FD80700712C60 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D016A94B182FD80700712C60 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		D026169E1836F48A002ABD72 /* Balthisar Tidy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Balthisar Tidy.entitlements"; sourceTree = "<group>"; };
+		D02A47691837AD6500908F67 /* attrdict.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = attrdict.c; sourceTree = "<group>"; };
+		D02A476A1837AD6500908F67 /* attrdict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = attrdict.h; sourceTree = "<group>"; };
+		D02A476B1837AD6500908F67 /* charsets.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = charsets.c; sourceTree = "<group>"; };
+		D02A476C1837AD6500908F67 /* charsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = charsets.h; sourceTree = "<group>"; };
+		D02A476D1837AD6500908F67 /* fileio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fileio.h; sourceTree = "<group>"; };
+		D02A476E1837AD6500908F67 /* iconvtc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iconvtc.c; sourceTree = "<group>"; };
+		D02A476F1837AD6500908F67 /* iconvtc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iconvtc.h; sourceTree = "<group>"; };
+		D02A47701837AD6500908F67 /* mappedio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mappedio.c; sourceTree = "<group>"; };
+		D02A47711837AD6500908F67 /* mappedio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mappedio.h; sourceTree = "<group>"; };
+		D02A47721837AD6500908F67 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
+		D02A47731837AD6500908F67 /* win32tc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = win32tc.c; sourceTree = "<group>"; };
+		D02A47741837AD6500908F67 /* win32tc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = win32tc.h; sourceTree = "<group>"; };
 		D07AF4791836581E00913067 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Batch.xib; sourceTree = "<group>"; };
 		D07AF47B1836581E00913067 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/OptionPane.xib; sourceTree = "<group>"; };
 		D07AF47D1836581E00913067 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Preferences.xib; sourceTree = "<group>"; };
@@ -86,7 +103,6 @@
 		D07AF4A61836594900913067 /* TreeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TreeNode.h; path = "Classes/Support Pieces/TreeNode.h"; sourceTree = "<group>"; };
 		D07AF4A71836594900913067 /* TreeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TreeNode.m; path = "Classes/Support Pieces/TreeNode.m"; sourceTree = "<group>"; };
 		D07AF4C81836596F00913067 /* buffio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffio.h; sourceTree = "<group>"; };
-		D07AF4C91836596F00913067 /* fileio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fileio.h; sourceTree = "<group>"; };
 		D07AF4CA1836596F00913067 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		D07AF4CB1836596F00913067 /* tidy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tidy.h; sourceTree = "<group>"; };
 		D07AF4CC1836596F00913067 /* tidyenum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tidyenum.h; sourceTree = "<group>"; };
@@ -269,7 +285,6 @@
 			isa = PBXGroup;
 			children = (
 				D07AF4C81836596F00913067 /* buffio.h */,
-				D07AF4C91836596F00913067 /* fileio.h */,
 				D07AF4CA1836596F00913067 /* platform.h */,
 				D07AF4CB1836596F00913067 /* tidy.h */,
 				D07AF4CC1836596F00913067 /* tidyenum.h */,
@@ -280,6 +295,18 @@
 		D07AF4CD1836596F00913067 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				D02A47691837AD6500908F67 /* attrdict.c */,
+				D02A476A1837AD6500908F67 /* attrdict.h */,
+				D02A476B1837AD6500908F67 /* charsets.c */,
+				D02A476C1837AD6500908F67 /* charsets.h */,
+				D02A476D1837AD6500908F67 /* fileio.h */,
+				D02A476E1837AD6500908F67 /* iconvtc.c */,
+				D02A476F1837AD6500908F67 /* iconvtc.h */,
+				D02A47701837AD6500908F67 /* mappedio.c */,
+				D02A47711837AD6500908F67 /* mappedio.h */,
+				D02A47721837AD6500908F67 /* version.h */,
+				D02A47731837AD6500908F67 /* win32tc.c */,
+				D02A47741837AD6500908F67 /* win32tc.h */,
 				D07AF4CE1836596F00913067 /* access.c */,
 				D07AF4CF1836596F00913067 /* access.h */,
 				D07AF4D01836596F00913067 /* alloc.c */,
@@ -397,12 +424,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D02A47761837AD6500908F67 /* charsets.c in Sources */,
+				D02A47751837AD6500908F67 /* attrdict.c in Sources */,
 				D07AF5141836596F00913067 /* tagask.c in Sources */,
 				D07AF49F1836593A00913067 /* JSDTidy.m in Sources */,
 				D07AF499183658D300913067 /* TidyDocument.m in Sources */,
 				D07AF4A81836594900913067 /* JSDTableColumn.m in Sources */,
 				D07AF5051836596F00913067 /* alloc.c in Sources */,
 				D07AF5181836596F00913067 /* utf8.c in Sources */,
+				D02A47771837AD6500908F67 /* iconvtc.c in Sources */,
 				D07AF5151836596F00913067 /* tags.c in Sources */,
 				D07AF50E1836596F00913067 /* istack.c in Sources */,
 				D07AF4AA1836594900913067 /* JSDTextView.m in Sources */,
@@ -413,9 +443,11 @@
 				D07AF4A91836594900913067 /* JSDTableView.m in Sources */,
 				D07AF5091836596F00913067 /* buffio.c in Sources */,
 				D07AF5061836596F00913067 /* attrask.c in Sources */,
+				D02A47791837AD6500908F67 /* win32tc.c in Sources */,
 				D07AF4AB1836594900913067 /* TreeNode.m in Sources */,
 				D07AF5111836596F00913067 /* parser.c in Sources */,
 				D07AF5101836596F00913067 /* localize.c in Sources */,
+				D02A47781837AD6500908F67 /* mappedio.c in Sources */,
 				D016A936182FD80700712C60 /* main.m in Sources */,
 				D07AF495183658D300913067 /* AppController.m in Sources */,
 				D07AF5071836596F00913067 /* attrget.c in Sources */,
