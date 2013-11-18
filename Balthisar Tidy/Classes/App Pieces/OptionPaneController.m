@@ -85,7 +85,7 @@
     we're here because we're the datasource of the tableview.
     We need to specify how many items are in the table view.
 *********************************************************************/
-- (int)numberOfRowsInTableView:(NSTableView *)aTableView {
+- (NSUInteger)numberOfRowsInTableView:(NSTableView *)aTableView {
     return [optionsInEffect count];
 } // numberOfRowsInTableView
 
@@ -105,13 +105,17 @@
 
     // handle the value column of the option
     if ([[aTableColumn identifier] isEqualToString:@"check"])
+	{
         // if we're working on Encoding, then return the INDEX in allAvailableStringEncodings of the value.
-        if ( (optId == TidyCharEncoding) || (optId == TidyInCharEncoding) || (optId == TidyOutCharEncoding) ) {
+        if ( (optId == TidyCharEncoding) || (optId == TidyInCharEncoding) || (optId == TidyOutCharEncoding) )
+		{
             int i = [[tidyProcess optionValueForId:optId] intValue];							// value of option
-            uint j = [[[tidyProcess class] allAvailableStringEncodings] indexOfObject:[NSNumber numberWithInt:i]];	// index of option
-            return [[NSNumber numberWithInt:j] stringValue];								// return it as a string
-        } else
+            NSUInteger j = [[[tidyProcess class] allAvailableStringEncodings] indexOfObject:[NSNumber numberWithInt:i]];	// index of option
+            return [[NSNumber numberWithLong:j] stringValue];								// return it as a string
+        } else {
             return [tidyProcess optionValueForId:optId];
+		}
+	}
     return @"";
 } //tableView:objectValueForTableColumn:row
 

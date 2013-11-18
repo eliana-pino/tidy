@@ -23,7 +23,7 @@
        
     // internally-used instance variables.
     JSDTidyDocument* tidyProcess;		// our tidy wrapper/processor.
-    int saveBehavior;				// the save behavior from the preferences.
+    NSInteger saveBehavior;				// the save behavior from the preferences.
     bool saveWarning;				// the warning behavior for when saveBehavior == 1;
     bool yesSavedAs;				// disable warnings and protections once a save-as has been done.
     bool tidyOriginalFile;			// flags whether the file was CREATED by Tidy, for writing type/creator codes.

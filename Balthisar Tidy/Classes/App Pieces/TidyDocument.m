@@ -147,7 +147,7 @@
          (saveWarning) && 			// we want to have a warning AND
          (yesSavedAs == NO) && 			// we've NOT yet done a save as... AND
          ([[self fileName] length] != 0 )) {	// the filename isn't zero length
-        int i = NSRunAlertPanel(NSLocalizedString(@"WarnSaveOverwrite", nil), NSLocalizedString(@"WarnSaveOverwriteExplain", nil),
+        NSInteger i = NSRunAlertPanel(NSLocalizedString(@"WarnSaveOverwrite", nil), NSLocalizedString(@"WarnSaveOverwriteExplain", nil),
                                 NSLocalizedString(@"continue save", nil),NSLocalizedString(@"do not save", nil) , nil);
         if (i == NSAlertAlternateReturn)
             return; // don't let user continue the save operation if he chose don't save.
@@ -330,7 +330,7 @@
     we're here because we're the datasource of the tableview.
     We need to specify how many items are in the table view.
 *********************************************************************/
-- (int)numberOfRowsInTableView:(NSTableView *)aTableView {
+- (NSUInteger)numberOfRowsInTableView:(NSTableView *)aTableView {
     return [[tidyProcess errorArray] count];
 } // numberOfRowsInTableView
 
@@ -371,7 +371,7 @@
         column/row in the sourceView.
 *********************************************************************/
 - (IBAction)errorClicked:(id)sender {
-    int errorViewRow = [errorView selectedRow];
+    NSInteger errorViewRow = [errorView selectedRow];
     if (errorViewRow >= 0) {
         int highlightRow = [[[[tidyProcess errorArray] objectAtIndex:errorViewRow] objectForKey:@"line"] intValue];
         int highlightCol = [[[[tidyProcess errorArray] objectAtIndex:errorViewRow] objectForKey:@"column"] intValue];

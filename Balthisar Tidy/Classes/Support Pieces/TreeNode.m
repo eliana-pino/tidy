@@ -119,9 +119,9 @@
 }
 
 - (void)removeChild:(TreeNode*)child {
-    int index = [self indexOfChild: child];
+    NSUInteger index = [self indexOfChild: child];
     if (index!=NSNotFound) {
-        [self _removeChildrenIdenticalTo: [NSArray arrayWithObject: [self childAtIndex:index]]];
+        [self _removeChildrenIdenticalTo:[NSArray arrayWithObject:[self childAtIndex:index]]];
     }
 }
 
@@ -129,15 +129,15 @@
     [[self nodeParent] removeChild:self];
 }
 
-- (int)indexOfChild:(TreeNode*)child {
+- (NSUInteger)indexOfChild:(TreeNode*)child {
     return [nodeChildren indexOfObject:child];
 }
 
-- (int)indexOfChildIdenticalTo:(TreeNode*)child {
+- (NSUInteger)indexOfChildIdenticalTo:(TreeNode*)child {
     return [nodeChildren indexOfObjectIdenticalTo:child];
 }
 
-- (int)numberOfChildren {
+- (NSUInteger)numberOfChildren {
     return [nodeChildren count];
 }
 
@@ -153,7 +153,7 @@
     return [nodeChildren lastObject];
 }
 
-- (TreeNode*)childAtIndex:(int)index {
+- (TreeNode*)childAtIndex:(NSUInteger)index {
     return [nodeChildren objectAtIndex:index];
 }
 

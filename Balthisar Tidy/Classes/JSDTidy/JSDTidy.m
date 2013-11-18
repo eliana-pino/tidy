@@ -72,10 +72,15 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr) {
         memcpy(tmp, cfEncodings, sizeof(CFStringEncoding) * num);	// Copy the list
         qsort(tmp, num, sizeof(CFStringEncoding), encodingCompare);	// Sort it
         allEncodings = [[NSMutableArray alloc] init];			// Now put it in an NSArray
-        for (cnt = 0; cnt < num; cnt++) {
+        for (cnt = 0; cnt < num; cnt++)
+		{
             NSStringEncoding nsEncoding = CFStringConvertEncodingToNSStringEncoding(tmp[cnt]);
-            if (nsEncoding && [NSString localizedNameOfStringEncoding:nsEncoding]) [allEncodings addObject:[NSNumber numberWithUnsignedInt:nsEncoding]];
-        } // for
+
+            if (nsEncoding && [NSString localizedNameOfStringEncoding:nsEncoding])
+			{
+				[allEncodings addObject:[NSNumber numberWithUnsignedLong:nsEncoding]];
+			}
+        }
         free(tmp);
     } // if
     return allEncodings;
@@ -93,7 +98,7 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr) {
         encodingNames = [[NSMutableArray alloc] init];
         NSArray *allEncodings = [[self class] allAvailableStringEncodings];			// reference the list of encoding numbers.
         int cnt;										// init counter.
-        int numEncodings = [allEncodings count];						// get number of encodings usable.
+        NSUInteger numEncodings = [allEncodings count];						// get number of encodings usable.
         for (cnt = 0; cnt < numEncodings; cnt++) {						// loop through the encodings present.
             NSStringEncoding encoding = [[allEncodings objectAtIndex:cnt] unsignedIntValue];	// get the encoding type.
             NSString *encodingName = [NSString localizedNameOfStringEncoding:encoding];		// get the encoding name.
@@ -210,7 +215,7 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr) {
     tidyBufInit( outBuffer );
 
     // setup the error buffer to catch errors here instead of stdout
-    tidySetAppData( newTidy, (uint)self );					// so we can send a message from outside ourself to ourself.
+    tidySetAppData( newTidy, self );					// so we can send a message from outside ourself to ourself.
     tidySetReportFilter( newTidy, (TidyReportFilter)&tidyCallbackFilter);	// the callback will go to this out-of-class C function.
     [errorArray removeAllObjects];						// clear out all of the previous errors.
     TidyBuffer *errBuffer = malloc(sizeof(TidyBuffer));				// allocate a buffer for our error text.
@@ -230,7 +235,7 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr) {
     tidySaveBuffer( newTidy, outBuffer );				// save it to the buffer we set up above.
     [tidyText release];							// release the current tidyText.
     if (outBuffer->size > 0) {						// case the buffer to an NSData that we can use to set the NSString.
-        tidyText = [[NSString alloc] initWithUTF8String:outBuffer->bp];	// make a string from the data.
+        tidyText = [[NSString alloc] initWithUTF8String:(char *)outBuffer->bp];	// make a string from the data.
     } else
         tidyText = @"";							// set to null string -- no output.
     [tidyText retain];
@@ -243,7 +248,7 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr) {
     // callbacks so we don't need to do anything at all to build it right here.
     [errorText release];
     if (errBuffer->size > 0)
-        errorText = [[NSString alloc] initWithCString:errBuffer->bp];
+        errorText = [[NSString alloc] initWithCString:(char *)errBuffer->bp];
     else
         errorText = @"";
     [errorText retain];
@@ -506,9 +511,9 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr) {
 +(NSString *)optionDefaultValueForId:(TidyOptionId)idf {
     // ENCODING OPTIONS -- special case, so handle first.
     if ([self isTidyEncodingOption:idf]) {	// override tidy encodings with our own. 
-        if (idf == TidyCharEncoding) return [NSString stringWithFormat:@"%hu", defaultInputEncoding];
-        if (idf == TidyInCharEncoding) return [NSString stringWithFormat:@"%hu", defaultInputEncoding];
-        if (idf == TidyOutCharEncoding) return [NSString stringWithFormat:@"%hu", defaultOutputEncoding];
+        if (idf == TidyCharEncoding) return [NSString stringWithFormat:@"%u", defaultInputEncoding];
+        if (idf == TidyInCharEncoding) return [NSString stringWithFormat:@"%u", defaultInputEncoding];
+        if (idf == TidyOutCharEncoding) return [NSString stringWithFormat:@"%u", defaultOutputEncoding];
     } // if
 
     TidyOptionType optType = [JSDTidyDocument optionTypeForId:idf];						// get the option type
@@ -519,11 +524,11 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr) {
     } // string type
 
     if (optType == TidyBoolean) {
-        return [NSString stringWithFormat:@"%hu", tidyOptGetDefaultBool( [self optionGetOptionInstance:idf] )];	// return string of the bool.
+        return [NSString stringWithFormat:@"%u", tidyOptGetDefaultBool( [self optionGetOptionInstance:idf] )];	// return string of the bool.
     } // bool type
     
     if (optType == TidyInteger) {
-        return [NSString stringWithFormat:@"%hu", tidyOptGetDefaultInt( [self optionGetOptionInstance:idf] )];	// return string of the integer.
+        return [NSString stringWithFormat:@"%lu", tidyOptGetDefaultInt( [self optionGetOptionInstance:idf] )];	// return string of the integer.
     } // integer type
 
     return @"";
@@ -578,11 +583,10 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr) {
     
     // we need to treat encoding options specially, 'cos we're override Tidy's treatment of them.
     if ( [[self class] isTidyEncodingOption:idf]) {
-        if (idf == TidyCharEncoding) return [[NSNumber numberWithInt:inputEncoding] stringValue];
-        if (idf == TidyInCharEncoding) return [[NSNumber numberWithInt:inputEncoding] stringValue];
-        if (idf == TidyOutCharEncoding) return [[NSNumber numberWithInt:outputEncoding] stringValue];
-    } // if tidy coding option
-
+        if (idf == TidyCharEncoding) return [[NSNumber numberWithUnsignedLong:inputEncoding] stringValue];
+        if (idf == TidyInCharEncoding) return [[NSNumber numberWithUnsignedLong:inputEncoding] stringValue];
+        if (idf == TidyOutCharEncoding) return [[NSNumber numberWithUnsignedLong:outputEncoding] stringValue];
+    } // if tidy coding optionnumberWithUnsignedLong
     TidyOptionType optType = [JSDTidyDocument optionTypeForId:idf];
 
     if (optType == TidyString) {
@@ -599,7 +603,7 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr) {
             if (tidyOptGetInt( prefDoc, idf) == LONG_MAX) 
                 return @"0";
         } // if - special occassion for TidyWrapLen
-        return [[NSNumber numberWithInt:tidyOptGetInt( prefDoc, idf )] stringValue];
+        return [[NSNumber numberWithUnsignedLong:tidyOptGetInt( prefDoc, idf )] stringValue];
     } // if integer type
 
     return @"";

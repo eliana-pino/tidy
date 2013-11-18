@@ -62,7 +62,7 @@
     [self setWidth:[oldTableColumn width]];
     [self setMinWidth:[oldTableColumn minWidth]];
     [self setMaxWidth:[oldTableColumn maxWidth]];
-    [self setResizable:[oldTableColumn isResizable]];
+    [self setResizingMask:[oldTableColumn resizingMask]];
     [self setEditable:[oldTableColumn isEditable]];
     [self setHeaderCell:[oldTableColumn headerCell]];
     [self setDataCell:[oldTableColumn dataCell]];

@@ -414,7 +414,7 @@ const float LargeNumberForText = 1.0e7;
     NSRange lineCharRange;					// a range for counting lines
     int i = 0;							// glyph counter
     int j = 1; 							// line counter
-    int k;							// column counter
+    NSUInteger k;							// column counter
     NSRect r;							// rectange holder
     NSLayoutManager *lm = [self layoutManager];			// get layout manager.
 

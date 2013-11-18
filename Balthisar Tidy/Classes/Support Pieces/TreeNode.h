@@ -41,14 +41,14 @@
 - (void)removeChild:(TreeNode*)child;
 - (void)removeFromParent;
 
-- (int)indexOfChild:(TreeNode*)child;
-- (int)indexOfChildIdenticalTo:(TreeNode*)child;
+- (NSUInteger)indexOfChild:(TreeNode*)child;
+- (NSUInteger)indexOfChildIdenticalTo:(TreeNode*)child;
 
-- (int)numberOfChildren;
+- (NSUInteger)numberOfChildren;
 - (NSArray*)children;
 - (TreeNode*)firstChild;
 - (TreeNode*)lastChild;
-- (TreeNode*)childAtIndex:(int)index;
+- (TreeNode*)childAtIndex:(NSUInteger)index;
 
 - (BOOL)isDescendantOfNode:(TreeNode*)node;
     // returns YES if 'node' is an ancestor.
