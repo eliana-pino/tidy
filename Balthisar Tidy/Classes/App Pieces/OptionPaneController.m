@@ -18,7 +18,9 @@
 *********************************************************************/
 -(id)init {
     if ([super init]) {
-        [NSBundle loadNibNamed:@"OptionPane" owner:self];
+
+		[[NSBundle mainBundle] loadNibNamed:@"OptionPane" owner:self topLevelObjects:nil];
+
         tidyProcess = [[JSDTidyDocument alloc] init];
         // get our options list and exception list (items to treat as string regardless of tidylib definition)
         optionsInEffect = [[NSArray arrayWithArray:[JSDTidyDocument loadConfigurationListFromResource:@"optionsInEffect" ofType:@"txt"]] retain];
