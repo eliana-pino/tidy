@@ -23,7 +23,7 @@ NSString *JSDKeyBatchSavingPrefStyle = @"BatchSavingPrefStyle";
     registerUserDefaults -- CLASS method.
        register all of the user defaults. Implemented as a CLASS
        method in order to keep this with the preferences controller,
-       but the preferences controller won't have been created yet!
+       but the preferences controller won't have been created yet.
 *********************************************************************/
 +(void)registerUserDefaults {
     NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary]; // create a dictionary

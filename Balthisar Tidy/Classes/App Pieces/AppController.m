@@ -1,10 +1,37 @@
-/***************************************************************************************
-    AppController.m -- part of Balthisar Tidy
+/**************************************************************************************************
 
-    The main application controller, which ties together the PreferenceControllers and
-    the BatchController. The DocumentController is implemented automatically, and no
-    special works needs to be done.
- ***************************************************************************************/
+	AppController.h
+
+	part of Balthisar Tidy
+
+	This main application controller ties together the |PreferenceController| and
+	the |BatchController|. The |DocumentController| is implemented automatically and no
+	special works needs to be done.
+
+
+	The MIT License (MIT)
+
+	Copyright (c) 2001 to 2013 James S. Derry <http://www.balthisar.com>
+
+	Permission is hereby granted, free of charge, to any person obtaining a copy
+	of this software and associated documentation files (the "Software"), to deal
+	in the Software without restriction, including without limitation the rights
+	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+	copies of the Software, and to permit persons to whom the Software is
+	furnished to do so, subject to the following conditions:
+
+	The above copyright notice and this permission notice shall be included in
+	all copies or substantial portions of the Software.
+
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+	THE SOFTWARE.
+
+ **************************************************************************************************/
 
 #import <Cocoa/Cocoa.h>
 #import "AppController.h"
@@ -14,57 +41,60 @@
 
 @implementation AppController
 
-/********************************************************************
-    initialize
-        when the class is created, we want to make sure all of the
-        options are registered before anything else happens. We've\
-        implemented this functionality as a class method in our
-        PreferenceController class, which works quite nicely and
-        we don't have to intermix that stuff directly in our code
-        here.
-*********************************************************************/
-+(void)initialize {
+#pragma mark -
+#pragma mark initializers and deallocs
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	When the app is initialized pass off registering of the user
+	defaults to the |PreferenceController|.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
++(void)initialize
+{
     [PreferenceController registerUserDefaults];
-} // end initialize
+}
 
-/********************************************************************
-    dealloc
-        make sure that the preference controller and batch controller
-        are properly disposed of.
-*********************************************************************/
-- (void)dealloc {
-    [preferenceController release];
-    [batchController release];
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	dealloc
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)dealloc
+{
+    [[self thePreferenceController] release];
+    [[self theBatchController] release];
     [super dealloc];
-} // end dealloc
+}
 
-/********************************************************************
-    showPreferences
-        show the prefereces window.
-*********************************************************************/
-- (IBAction)showPreferences:(id)sender {
-    // is preferenceController instance variable (outlet) nil?
-    // if so, then we need to create it.
-    if (!preferenceController) {
-        preferenceController = [[PreferenceController alloc] init];
+
+#pragma mark -
+#pragma mark Handle showing preferences and batch windows.
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	Show the preferences window.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (IBAction)showPreferences:(id)sender
+{
+    if (![self thePreferenceController])
+	{
+        _thePreferenceController = [[PreferenceController alloc] init];
     }
-    // ...and now show it
-    [preferenceController showWindow:self];
-} // end showPreferences
+
+    [[self thePreferenceController] showWindow:self];
+}
 
 
-/********************************************************************
-    showBatch
-        show the batch window.
-*********************************************************************/
-- (IBAction)showBatch:(id)sender {
-    // is batchController instance variable (outlet) nil?
-    // if so, then we need to create it.
-    if (!batchController) {
-        batchController = [[BatchController alloc] init];
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	Show the batch window.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (IBAction)showBatch:(id)sender
+{
+    if (![self theBatchController])
+	{
+        _theBatchController = [[BatchController alloc] init];
     }
-    // ...and now show it
-    [batchController showWindow:self];
-} // end showBatch
+
+    [[self theBatchController] showWindow:self];
+}
 
 @end
