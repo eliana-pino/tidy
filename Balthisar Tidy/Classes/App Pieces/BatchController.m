@@ -71,7 +71,7 @@
     // create a OptionPaneController and put it in place of optionPane
     if (!optionController)
         optionController = [[OptionPaneController alloc] init];
-    [optionController putViewIntoView:optionPane];
+    [optionController putViewIntoView:[self optionPane]];
     [optionController setTarget:self];
     [optionController setAction:@selector(optionChanged:)];
 } // awakeFromNib
@@ -95,7 +95,7 @@
     the NSOutlineView polls this delegate method to determine how
     many children an item has.
 *********************************************************************/
-- (int)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item {
+- (NSUInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item {
     // if item is nil, then we're the root of the VIEW! We should ge the root of the fileTree.
     if (item == nil) 
         return [fileTree numberOfChildren];	// return number of fileList top level nodes.
