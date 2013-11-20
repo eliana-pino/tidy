@@ -6,7 +6,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="OptionPaneController">
             <connections>
-                <outlet property="myView" destination="21" id="47"/>
+                <outlet property="View" destination="21" id="EGf-h1-qXt"/>
                 <outlet property="theDescription" destination="29" id="43"/>
                 <outlet property="theTable" destination="23" id="44"/>
             </connections>
@@ -35,7 +35,7 @@
                                             <rect key="frame" x="1" y="1" width="282" height="302"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <tableView autoresizesSubviews="NO" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowHeight="20" id="23" customClass="JSDTableView">
+                                                <tableView autoresizesSubviews="NO" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowHeight="20" id="23">
                                                     <rect key="frame" x="0.0" y="0.0" width="282" height="302"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
@@ -70,7 +70,6 @@
                                                         </tableColumn>
                                                     </tableColumns>
                                                     <connections>
-                                                        <action selector="optionChanged:" target="-2" id="48"/>
                                                         <outlet property="dataSource" destination="-2" id="45"/>
                                                         <outlet property="delegate" destination="-2" id="46"/>
                                                     </connections>

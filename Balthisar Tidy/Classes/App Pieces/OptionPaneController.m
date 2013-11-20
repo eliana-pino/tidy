@@ -1,243 +1,256 @@
-/***************************************************************************************
-    OptionPaneController.h -- part of Balthisar Tidy
+/**************************************************************************************************
+ 
+	OptionPaneController.m
 
-    The main controller for the multi-use option pane. implemented separately for
-        o use on a document window
-        o use on the preferences window
- ***************************************************************************************/
+	part of Balthisar Tidy
+
+	The main controller for the multi-use option pane. implemented separately for
+
+		o use on a document window
+		o use on the preferences window
+
+	This controller parses optionsInEffect.txt in the application bundle, and compares
+	the options listed there with the linked-in TidyLib to determine which options are
+	in effect and valid. We use an instance of |JSDTidyDocument| to deal with this.
+
+
+	The MIT License (MIT)
+
+	Copyright (c) 2001 to 2013 James S. Derry <http://www.balthisar.com>
+
+	Permission is hereby granted, free of charge, to any person obtaining a copy of this software
+	and associated documentation files (the "Software"), to deal in the Software without
+	restriction, including without limitation the rights to use, copy, modify, merge, publish,
+	distribute, sublicense, and/or sell	copies of the Software, and to permit persons to whom the
+	Software is	furnished to do so, subject to the following conditions:
+
+	The above copyright notice and this permission notice shall be included in
+	all copies or substantial portions of the Software.
+
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+	BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+	NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+	DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+ **************************************************************************************************/
 
 #import "OptionPaneController.h"
 #import "JSDTableColumn.h"
 
+
+#pragma mark -
+#pragma mark Non-Public iVars, Properties, and Method declarations
+
+@interface OptionPaneController ()
+{
+    NSArray *optionsInEffect;		// Array of NSString that holds the options we really want to use.
+    NSArray	*optionsExceptions;		// Array of NSString that holds the options we want to treat as STRINGS
+}
+
+	@property (nonatomic) IBOutlet NSTableView *theTable;			// Pointer to the table
+	@property (nonatomic) IBOutlet NSTextField *theDescription;		// Pointer to the description field.
+
+@end
+
+
+#pragma mark -
+#pragma mark Implementation
+
 @implementation OptionPaneController
 
 
-/********************************************************************
-    init - designated initializer
-    load the bundle so the view can be drawn.
-*********************************************************************/
--(id)init {
-    if ([super init]) {
+#pragma mark -
+#pragma mark initializers and deallocs
 
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	init - designated initializer
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+-(id)init
+{
+	if ([super init])
+	{
 		[[NSBundle mainBundle] loadNibNamed:@"OptionPane" owner:self topLevelObjects:nil];
 
-        tidyProcess = [[JSDTidyDocument alloc] init];
-        // get our options list and exception list (items to treat as string regardless of tidylib definition)
-        optionsInEffect = [[NSArray arrayWithArray:[JSDTidyDocument loadConfigurationListFromResource:@"optionsInEffect" ofType:@"txt"]] retain];
-        optionsExceptions = [[NSArray arrayWithArray:[JSDTidyDocument loadConfigurationListFromResource:@"optionsTypesExceptions" ofType:@"txt"]] retain];
-        
-        // create a custom column for the NSTableView -- the table will retain and control it.
-        [[JSDTableColumn alloc] initReplacingColumn:[theTable tableColumnWithIdentifier:@"check"]];
-    } // if
-    return self;
-} // init
+		_tidyDocument = [[JSDTidyDocument alloc] init];
 
-/*********************************************************************
-    dealloc
-    our destructor -- get rid of stuff
-**********************************************************************/
+		// Get our options list
+		optionsInEffect = [[NSArray arrayWithArray:[JSDTidyDocument loadConfigurationListFromResource:@"optionsInEffect" ofType:@"txt"]] retain];
+
+		// Get our exception list (items to treat as string regardless of tidylib definition)
+		optionsExceptions = [[NSArray arrayWithArray:[JSDTidyDocument loadConfigurationListFromResource:@"optionsTypesExceptions" ofType:@"txt"]] retain];
+
+		// Create a custom column for the NSTableView -- the table will retain and control it.
+		[[JSDTableColumn alloc] initReplacingColumn:[_theTable tableColumnWithIdentifier:@"check"]];
+	}
+	return self;
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	dealloc
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)dealloc
 {   
-    [tidyProcess release];
+    [_tidyDocument release];
     [optionsInEffect release];
     [optionsExceptions release];
     [super dealloc];
 }
 
-/********************************************************************
-    getView
-    return theView so that it can be made a subview in another
-    window.
-*********************************************************************/
--(NSView *)getView {
-    return myView;
-} // getView
 
-/********************************************************************
-    putViewIntoView
-    put the view of this controller into theView
-*********************************************************************/
--(void)putViewIntoView:(NSView *)dstView {
-    // remove all subviews -- should only be one or zero, but let's be safe.
+#pragma mark -
+#pragma mark Setup
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	putViewIntoView:
+	Whoever calls me will put my |View| into THIER |dstView|.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+-(void)putViewIntoView:(NSView *)dstView
+{
     NSEnumerator *enumerator = [[dstView subviews] objectEnumerator];
     NSView *trash;
+
     while (trash = [enumerator nextObject])
+	{
         [trash removeFromSuperview];
-    // and put in the view
-    [dstView addSubview:myView];
+	}
+
+    [dstView addSubview:_View];
 }
 
 
-/********************************************************************
-    tableViewSelectionDidChange:
-        we arrived here by virtue of this controller class being the
-        delegate of the table. Whenever the selection changes
-        we're going to put up a helpful hint of what the selection is.
-*********************************************************************/
-- (void)tableViewSelectionDidChange:(NSNotification *)aNotification {
-    // get the description of the selected row.
-    if ([aNotification object] == theTable)
-        [theDescription setStringValue:NSLocalizedString([optionsInEffect objectAtIndex:[theTable selectedRow]], nil)];
-} // tableViewSelectionDidChange
+#pragma mark -
+#pragma mark Table Handling
 
-/********************************************************************
-    numberOfRowsInTableView
-    we're here because we're the datasource of the tableview.
-    We need to specify how many items are in the table view.
-*********************************************************************/
-- (NSUInteger)numberOfRowsInTableView:(NSTableView *)aTableView {
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	tableViewSelectionDidChange:
+		We arrived here by virtue of this controller class being the
+		delegate of |theTable|. Whenever the selection changes
+		update |theDescription| with the correct, new description
+		from Localizable.strings.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)tableViewSelectionDidChange:(NSNotification *)aNotification
+{
+    // Get the description of the selected row.
+    if ([aNotification object] == _theTable)
+	{
+        [_theDescription setStringValue:NSLocalizedString(optionsInEffect[[_theTable selectedRow]], nil)];
+	}
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	numberOfRowsInTableView
+		We're here because we're the datasource of the |theTable|.
+		We need to specify how many items are in the table view.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (NSUInteger)numberOfRowsInTableView:(NSTableView *)aTableView
+{
     return [optionsInEffect count];
-} // numberOfRowsInTableView
+}
 
 
-/********************************************************************
-    tableView:objectValueForTableColumn:row
-    we're here because we're the datasource of the tableview.
-    We need to specify what to show in the row/column.
-*********************************************************************/
-- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex {
-    // get the id for the option at this row
-    TidyOptionId optId = [JSDTidyDocument optionIdForName:[optionsInEffect objectAtIndex:rowIndex]]; 
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	tableView:objectValueForTableColumn:row
+		We're here because we're the datasource of |theTable|.
+		We need to specify what to show in the row/column.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+{
+    // Get the id for the option at this row.
+    TidyOptionId optId = [JSDTidyDocument optionIdForName:optionsInEffect[rowIndex]]; 
 
-    // handle returning the name of the option.
+    // Handle returning the 'name" of the option.
     if ([[aTableColumn identifier] isEqualToString:@"name"])
-        return [optionsInEffect objectAtIndex:rowIndex];
+	{
+        return optionsInEffect[rowIndex];
+	}
 
-    // handle the value column of the option
+    // Handle returning the 'value' column of the option.
     if ([[aTableColumn identifier] isEqualToString:@"check"])
 	{
         // if we're working on Encoding, then return the INDEX in allAvailableStringEncodings of the value.
         if ( (optId == TidyCharEncoding) || (optId == TidyInCharEncoding) || (optId == TidyOutCharEncoding) )
 		{
-            int i = [[tidyProcess optionValueForId:optId] intValue];							// value of option
-            NSUInteger j = [[[tidyProcess class] allAvailableStringEncodings] indexOfObject:[NSNumber numberWithInt:i]];	// index of option
-            return [[NSNumber numberWithLong:j] stringValue];								// return it as a string
+            int i = [[_tidyDocument optionValueForId:optId] intValue];									// Value of option
+            NSUInteger j = [[[_tidyDocument class] allAvailableStringEncodings] indexOfObject:@(i)];	// Index of option
+            return [[NSNumber numberWithLong:j] stringValue];											// Return Index as a string
         } else {
-            return [tidyProcess optionValueForId:optId];
+            return [_tidyDocument optionValueForId:optId];
 		}
 	}
     return @"";
-} //tableView:objectValueForTableColumn:row
-
-
-
-/********************************************************************
-    tableColumn:customDataCellForRow
-    we're here because we're the datasource of the tableview.
-    We need to specify which cell to use for this particular row.
-*********************************************************************/
--(id)tableColumn:(JSDTableColumn *)aTableColumn customDataCellForRow:(int)row {
-    // get the id for the option at this row
-    TidyOptionId optId = [JSDTidyDocument optionIdForName:[optionsInEffect objectAtIndex:row]]; 
-
-    if ([[aTableColumn identifier] isEqualToString:@"check"]) {
-           NSArray *picks = [JSDTidyDocument optionPickListForId:optId];
-           // only return a popup if there IS a picklist OR the item is in the optionsExceptions array.
-           if ( ([picks count] != 0) && (![optionsExceptions containsObject:[optionsInEffect objectAtIndex:row]] ) )
-                return [aTableColumn usefulPopUpCell:picks];     
-    } // if
-    return nil;
-} // tableColumn:customDataCellForRow
-
-/********************************************************************
-    tableView:shouldEditTableColumn:row
-    we're here because we're the delegate of the tableview.
-    We need to disable for text editing cells with widgets.
-*********************************************************************/
-- (BOOL)tableView:(NSTableView *)aTableView shouldEditTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex {
-    if ([[aTableColumn identifier] isEqualToString:@"check"]) {
-        if ([[aTableColumn dataCellForRow:rowIndex] class] != [NSTextFieldCell class])
-            return NO;
-        else
-            return YES;
-    } // if
-    return NO;
-} // tableView:shouldEditTableColumn:row
-
-
-/********************************************************************
-    tableView:setObjectValue:forTableColumn:row
-    user changed a value -- let's record it!
-*********************************************************************/
-- (void)tableView:(NSTableView *)aTableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)inColumn row:(int)inRow { 
-    TidyOptionId optId = [JSDTidyDocument optionIdForName:[optionsInEffect objectAtIndex:inRow]]; 
-    if ([[inColumn identifier] isEqualToString:@"check"]) {
-        // if we're working with encoding, we need to get the NSStringEncoding instead of the index of the item.
-        if ( (optId == TidyCharEncoding) || (optId == TidyInCharEncoding) || (optId == TidyOutCharEncoding) ) {
-            id myNumber = [[[tidyProcess class] allAvailableStringEncodings] objectAtIndex:[object unsignedLongValue]];
-            [tidyProcess setOptionValueForId:optId fromObject:myNumber];
-        } else
-            [tidyProcess setOptionValueForId:optId fromObject:object];
-    } // if
-} // tableView:setObjectValue:forTableColumn:row
-
-/********************************************************************
-    tidyDocument
-    get method to expose the tidy document.
-*********************************************************************/
--(void)tidyDocument:(JSDTidyDocument *)theDoc {
-    [theDoc retain];
-    [tidyProcess release];
-    tidyProcess = theDoc;
-} // tidyDocument
-
-
-/********************************************************************
-    tidyDocument
-    set method to expose the tidy document.
-*********************************************************************/
--(JSDTidyDocument *)tidyDocument {
-    return tidyProcess;
-} // tidyDocument
-
-//===================================================================================================
-//   TARGETING AND ACTIONING -- we want to behave like a Cocoa component, so support that idea.
-//===================================================================================================
-
-/********************************************************************
-    optionChanged:
-    One of the options changed! See if there's something assigned
-    to _action, and if so, call it! We're here as a result of being
-    the Action of the tableview.
-*********************************************************************/
-- (IBAction)optionChanged:(id)sender {
-    [NSApp sendAction:_action to:_target from:self];
 }
 
-/********************************************************************
-    action
-    return the assigned action.
-*********************************************************************/
--(SEL)action {
-    return _action;
-} // action
 
-/********************************************************************
-    SetAction
-    assign an action to this controller.
-*********************************************************************/
--(void)setAction:(SEL)theAction {
-    _action = theAction;
-} // setAction;
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	tableColumn:customDataCellForRow
+		We're here because we're the datasource of |theTable|.
+		We need to specify which cell to use for this particular row.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+-(id)tableColumn:(JSDTableColumn *)aTableColumn customDataCellForRow:(int)row
+{
+    // Get the id for the option at this row
+    TidyOptionId optId = [JSDTidyDocument optionIdForName:optionsInEffect[row]]; 
 
-/********************************************************************
-    target
-    return the target of this controller.
-*********************************************************************/
--(id)target {
-    return _target;
-} // target
+    if ([[aTableColumn identifier] isEqualToString:@"check"])
+	{
+           NSArray *picks = [JSDTidyDocument optionPickListForId:optId];
 
-/********************************************************************
-    SetTarget
-    assign a target to this controller. Remember that actions work
-    on the target-action paradigm, but that nil-targeted actions are
-    supported. This means if _target isn't used, the action is
-    sent all the way up the responder chain. If there's a target, it
-    only goes to the target.
-*********************************************************************/
--(void)setTarget:(id)theTarget {
-    _target = theTarget;
-} // setTarger
+           // Return a popup only if there IS a picklist and the item is not in the optionsExceptions array
+           if ( ([picks count] != 0) && (![optionsExceptions containsObject:optionsInEffect[row]] ) )
+                return [aTableColumn usefulPopUpCell:picks];     
+    }
+
+    return nil;
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	tableView:shouldEditTableColumn:row
+		We're here because we're the delegate of |theTable|.
+		We need to disable for text editing cells with widgets.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (BOOL)tableView:(NSTableView *)aTableView shouldEditTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+{
+    if ([[aTableColumn identifier] isEqualToString:@"check"])
+	{
+        if ([[aTableColumn dataCellForRow:rowIndex] class] != [NSTextFieldCell class])
+		{
+            return NO;
+        } else {
+            return YES;
+		}
+    }
+
+    return NO;
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	tableView:setObjectValue:forTableColumn:row
+		user changed a value -- let's record it!
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)tableView:(NSTableView *)aTableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)inColumn row:(int)inRow
+{
+    TidyOptionId optId = [JSDTidyDocument optionIdForName:optionsInEffect[inRow]]; 
+    if ([[inColumn identifier] isEqualToString:@"check"])
+	{
+        // if we're working with encoding, we need to get the NSStringEncoding instead of the index of the item.
+        if ( (optId == TidyCharEncoding) || (optId == TidyInCharEncoding) || (optId == TidyOutCharEncoding) ) {
+            id myNumber = [[_tidyDocument class] allAvailableStringEncodings][[object unsignedLongValue]];
+            [_tidyDocument setOptionValueForId:optId fromObject:myNumber];
+        } else {
+            [_tidyDocument setOptionValueForId:optId fromObject:object];
+		}
+		// signal the update
+		[NSApp sendAction:_action to:_target from:self];
+    }
+}
+
 
 @end

@@ -28,7 +28,7 @@ Balthisar Tidy Licensing
 ------------------------
 
 _Balthisar Tidy_ as a whole is also licensed under the MIT license. For full details of the MIT license, you can see <http://www.opensource.org/licenses/mit-license.php>.
-	
+
 
 The MIT License (MIT)
 ---------------------
@@ -47,4 +47,17 @@ Change Log
 Known Issues
 ------------
 
-* Doesn’t work. At all.
+* Lots of bugs.
+
+Todo
+----
+
+- if any of the errors are REMOVED something, then don't save!
+- Substitute the NoodleKit text views.
+- Redesign the main document interface with modern style.
+- Make the batch mode work.
+- Get the configuration dynamically at startup instead of using the file.
+	- We can maintain a list of exceptions separately.
+		- things to leave out
+		- things to override with a text value
+	-Probably add a method to support this directly.

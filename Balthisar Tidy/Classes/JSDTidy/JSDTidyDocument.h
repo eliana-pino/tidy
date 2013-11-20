@@ -1,25 +1,51 @@
-/***************************************************************************************
-    JSDTidy.h
+/**************************************************************************************************
 
-    A Cocoa wrapper for tidylib.
+	JSDTidyDocument.h
 
- IMPORTANT NOTES: please see the file JSDTidy.rtf for some important notes.
- "FORMAL" DOCUMENATATION: please see the file JSDTidy.html for the "formal," Apple-
-                          style documentation. If it shows up as plain-text in
-                          Project-Builder, right-click it and open-as an HTML file.
-       
- ***************************************************************************************/
+	 A Cocoa wrapper for tidylib. Tries to implement all of the "good stuff" from TidyLib,
+	 including the TidyDoc object and methods to use it; options; and HTML parsing. See file
+	 "config.c" for all of Tidy's configuration options.
+
+	 It should be completely self-contained but for linking to Foundation and "tidy.h".
+
+
+
+	The MIT License (MIT)
+
+	Copyright (c) 2001 to 2013 James S. Derry <http://www.balthisar.com>
+
+	Permission is hereby granted, free of charge, to any person obtaining a copy of this software
+	and associated documentation files (the "Software"), to deal in the Software without
+	restriction, including without limitation the rights to use, copy, modify, merge, publish,
+	distribute, sublicense, and/or sell	copies of the Software, and to permit persons to whom the
+	Software is	furnished to do so, subject to the following conditions:
+
+	The above copyright notice and this permission notice shall be included in
+	all copies or substantial portions of the Software.
+
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+	BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+	NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+	DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+ **************************************************************************************************/
+
 
 #import <Foundation/Foundation.h>
 #import "tidy.h"
 #import "tidyenum.h"
 
-//-----------------------------------------------------------------------------------------------------------------
-// SOME DEFINES
-//-----------------------------------------------------------------------------------------------------------------
-// In the prefs file, this prefix will prepend all TidyLib options stored there. This would only be used if you're
-// using the convenience preferences methods defined in JSDTidyDocument that work with the native Cocoa preferences
-// system. This "prefix" support exists in order to isolate the TidyLib configuration names from your own pref names.
+
+#pragma mark -
+#pragma mark Some defines
+
+/*	
+	In the prefs file, this prefix will prepend all TidyLib options stored there. This would only be
+	used if you're using the convenience preferences methods defined in JSDTidyDocument that work
+	with the native Cocoa preferences system. This "prefix" support exists in order to isolate the
+	TidyLib configuration names from your own pref names.
+*/
 #define tidyPrefPrefix @"-tidy-"
 
 // The keys for dealing with errors in errorArray, which is an array of NSDictionary objects with these keys.
@@ -29,19 +55,21 @@
 #define errorKeyMessage  @"message"
 
 // the default encoding styles that override the tidy-implemented character encodings.
-#define defaultInputEncoding	NSMacOSRomanStringEncoding
-#define defaultLastEncoding	NSMacOSRomanStringEncoding
-#define defaultOutputEncoding	NSMacOSRomanStringEncoding
+#define defaultInputEncoding	NSUnicodeStringEncoding
+#define defaultLastEncoding		NSUnicodeStringEncoding
+#define defaultOutputEncoding	NSUnicodeStringEncoding
+
+
+#pragma mark -
+#pragma mark class JSDTidyDocument
 
       
-/****************************************************************************************************
-    JSDTidyDocument
-    A basic TidyLib implementation in Cocoa. Tries to implement all of the "good stuff" from TidyLib,
-    including the TidyDoc object and methods to use it, options, and eventually true HTML parsing.
-    "See config.c" for all of Tidy's configuration options.
-    It should be completely self-contained but for linking to Foundation and tidy.h.
- ****************************************************************************************************/
 @interface JSDTidyDocument : NSObject {
+
+
+#pragma mark -
+#pragma mark iVars
+
 //------------------------------------------------------------------------------------------------------------
 // INSTANCE VARIABLES -- they're protected for subclassing. Use the accessor methods instead of these.
 //------------------------------------------------------------------------------------------------------------
@@ -58,11 +86,20 @@
 }
 
 
+#pragma mark -
+#pragma mark Encoding Support
+
+
 //------------------------------------------------------------------------------------------------------------
 // ENCODING SUPPORT
 //------------------------------------------------------------------------------------------------------------
 +(NSArray *)allAvailableStringEncodings;			// returns an array of NSStringEncoding.
 +(NSArray *)allAvailableStringEncodingsNames;			// returns an array of NSString, correlated to above.
+
+
+#pragma mark -
+#pragma mark Initialization and Deallocation
+
 
 //------------------------------------------------------------------------------------------------------------
 // INITIALIZATION and DESTRUCTION
@@ -76,7 +113,11 @@
 // these convenience initializers will DECODE to the Unicode string using the default set for input-encoding
 -(id)initWithFile:(NSString *)path;				// initialize with a given file.
 -(id)initWithData:(NSData *)data;				// initialize with the given data.
-                                    
+
+
+#pragma mark -
+#pragma mark Text
+
 
 //------------------------------------------------------------------------------------------------------------
 // TEXT - the important, good stuff.
@@ -126,6 +167,11 @@
 -(bool)areEqualWorkingTidy;				// are the working and tidy text identical?
 -(bool)areEqualOriginalTidy;				// are the orginal and tidy text identical?
 
+
+#pragma mark -
+#pragma mark Options management
+
+
 //------------------------------------------------------------------------------------------------------------
 // OPTIONS - methods for dealing with options
 //------------------------------------------------------------------------------------------------------------
@@ -150,10 +196,19 @@
 
 -(void)		     optionCopyFromDocument:(JSDTidyDocument *)theDocument;	// sets options based on those in theDocument.
 
+
+#pragma mark -
+#pragma mark Raw access exposure
+
 //------------------------------------------------------------------------------------------------------------
 // RAW ACCESS EXPOSURE
 //------------------------------------------------------------------------------------------------------------
 -(TidyDoc)tidyDocument;						// return the TidyDoc attached to this instance.
+
+
+#pragma mark -
+#pragma mark Diagnostics and Repair
+
 
 //------------------------------------------------------------------------------------------------------------
 // DIAGNOSTICS and REPAIR
@@ -170,15 +225,30 @@
 // the errorFilter is the instance method that is called from the c-callback in the implementation file. So, callback-to-c-to-this.
 -(bool)errorFilter:(TidyDoc)tDoc Level:(TidyReportLevel)lvl Line:(uint)line Column:(uint)col Message:(ctmbstr)mssg;
 
+
+#pragma mark -
+#pragma mark Miscelleneous
+
+
 //------------------------------------------------------------------------------------------------------------
 // MISCELLENEOUS - misc. Tidy methods supported
 //------------------------------------------------------------------------------------------------------------
 -(NSString *)tidyReleaseDate;					// returns the TidyLib release date
 
+
+#pragma mark -
+#pragma mark Configuration List Support
+
+
 //------------------------------------------------------------------------------------------------------------
 // SUPPORTED CONFIG LIST SUPPORT
 //------------------------------------------------------------------------------------------------------------
 +(NSArray *)loadConfigurationListFromResource:(NSString *)fileName ofType:(NSString *)fileType;	// get list of config options.
+
+
+#pragma mark -
+#pragma mark Mac OS X Prefs Support
+
 
 //------------------------------------------------------------------------------------------------------------
 // MAC OS PREFS SUPPORT
@@ -190,8 +260,9 @@
 -(void)writeOptionValuesWithDefaults:(NSUserDefaults *)defaults;			// write the values right into prefs.
 -(void)takeOptionValuesFromDefaults:(NSUserDefaults *)defaults;				// take config from passed-in defaults.
 
-//------------------------------------------------------------------------------------------------------------
-// DOCUMENT TREE PARSING -- coming soon!
-//------------------------------------------------------------------------------------------------------------
 
-@end // JSDTidyDocument
+#pragma mark -
+#pragma mark Document Tree Parsing (coming soon)
+
+
+@end

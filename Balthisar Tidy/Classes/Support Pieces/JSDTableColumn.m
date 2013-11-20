@@ -1,35 +1,62 @@
-/***************************************************************************************
-    JSDTableColumn.m
+/**************************************************************************************************
 
-    implement dataCellForRow so that we can use different cells in any row of a table.
-    
-    FOR SOME REASON, you cannot implement this in IB -- you'll have to swap out the
-    type in awakeFromNib in the controller that you use. You can use the method
-    swapForTableColumn: for this purpose.
- ***************************************************************************************/
+	JSDTableColumn.m
+
+	implement |dataCellForRow| so that we can use different cells in any row of a table.
+
+	FOR SOME REASON, you cannot implement this in IB -- you'll have to swap out the
+	type in |awakeFromNib| in the controller that you use. See these methods to assist:
+
+		initReplacingColumn:
+		initReplacingColumnId:
+		swapForTableColumn:
+
+
+	The MIT License (MIT)
+
+	Copyright (c) 2001 to 2013 James S. Derry <http://www.balthisar.com>
+
+	Permission is hereby granted, free of charge, to any person obtaining a copy of this software
+	and associated documentation files (the "Software"), to deal in the Software without
+	restriction, including without limitation the rights to use, copy, modify, merge, publish,
+	distribute, sublicense, and/or sell	copies of the Software, and to permit persons to whom the
+	Software is	furnished to do so, subject to the following conditions:
+
+	The above copyright notice and this permission notice shall be included in
+	all copies or substantial portions of the Software.
+
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+	BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+	NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+	DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+ **************************************************************************************************/
 
 #import <Cocoa/Cocoa.h>
 #import "JSDTableColumn.h"
 
 @implementation JSDTableColumn : NSTableColumn
 
-/********************************************************************
-    initReplacingColumn:
-    initialize ourself and replace "aColumn" in its table.
-*********************************************************************/
-- (id)initReplacingColumn:(NSTableColumn *)aColumn {
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	initReplacingColumn:
+		initialize ourself and replace "aColumn" in its table.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (id)initReplacingColumn:(NSTableColumn *)aColumn
+{
     if ([super initWithIdentifier:[aColumn identifier]]) {
         [self swapForTableColumn:aColumn];
     }
     return self;
-} // initReplacingColumn
+}
 
 
-/********************************************************************
-    dataCellForRow:
-    we're going to call the delegate for a cell, if one exists.
-*********************************************************************/
-- (id)dataCellForRow:(int)row {
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	dataCellForRow:
+		we're going to call the delegate for a cell, if one exists.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (id)dataCellForRow:(int)row
+{
 
     // make sure there's a tableview and a delegate and that the row isn't -1.
     if ( ([self tableView] == nil) || ([[self tableView] delegate] == nil) || (row == -1) )
@@ -45,15 +72,16 @@
         return cell;				// not nil, so return what we got.
 
      return [super dataCellForRow:row];		// nothing there, so call the inherited method.
-} // dataCellForRow
+}
 
 
-/********************************************************************
-    swapForTableColumn:
-    convenience method that allows us to substitute ourself for
-    an existing table column.
-*********************************************************************/
-- (void)swapForTableColumn:(NSTableColumn *)oldTableColumn {
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	swapForTableColumn:
+		convenience method that allows us to substitute ourself for
+		an existing table column.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)swapForTableColumn:(NSTableColumn *)oldTableColumn
+{
     NSTableView *table = [oldTableColumn tableView];	    // get the tableview the old column is part of
     if (table == nil)				    // do nothing if there's no table
         return;
@@ -73,42 +101,45 @@
     [table moveColumn:[[table tableColumns] indexOfObject:self] toColumn:[[table tableColumns] indexOfObject:oldTableColumn]];
     // remove the old column -- we know it's position was i
     [table removeTableColumn:oldTableColumn];
-} // swapForTableColumn
+}
 
 
-/********************************************************************
-    usefulCheckCell:
-    return a useful cell type.
-*********************************************************************/
--(NSCell *)usefulCheckCell {
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	usefulCheckCell:
+		return a useful cell type.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+-(NSCell *)usefulCheckCell
+{
     NSButtonCell *myCell = [[[NSButtonCell alloc] initTextCell: @""] autorelease];
     [myCell setEditable: YES];
     [myCell setButtonType:NSSwitchButton];
     [myCell setImagePosition:NSImageOnly];
     [myCell setControlSize:NSSmallControlSize];
     return myCell;
-} // usefulCheckCell;
+}
 
 
-/********************************************************************
-    usefulRadioCell:
-    return a useful cell type.
-*********************************************************************/
--(NSCell *)usefulRadioCell {
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	usefulRadioCell:
+		return a useful cell type.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+-(NSCell *)usefulRadioCell
+{
     NSButtonCell *myCell =  [[[NSButtonCell alloc] initTextCell: @""] autorelease];
     [myCell setEditable: YES];
     [myCell setButtonType:NSRadioButton];
     [myCell setImagePosition:NSImageOnly];
     [myCell setControlSize:NSSmallControlSize];
     return myCell;
-} // usefulRadioCell
+}
 
 
-/********************************************************************
-    usefulPopUpCell:
-    return a useful cell type.
-*********************************************************************/
--(NSCell *)usefulPopUpCell:(NSArray *)picks {
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	usefulPopUpCell:
+		return a useful cell type.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+-(NSCell *)usefulPopUpCell:(NSArray *)picks
+{
     NSPopUpButtonCell *myCell =  [[[NSPopUpButtonCell alloc] initTextCell: @"" pullsDown:NO] autorelease];
     [myCell setEditable: YES];
     [myCell setBordered:YES];
@@ -116,6 +147,6 @@
     [myCell setControlSize:NSSmallControlSize];
     [myCell setFont:[NSFont menuFontOfSize:10]];
     return myCell;
-} // usefulPopCell
+}
 
 @end
