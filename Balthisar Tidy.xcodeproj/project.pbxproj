@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D0107935183C738F00120B57 /* Batch.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07AF4781836581E00913067 /* Batch.xib */; };
+		D0107936183C738F00120B57 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D016A941182FD80700712C60 /* MainMenu.xib */; };
+		D0107937183C738F00120B57 /* OptionPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07AF47A1836581E00913067 /* OptionPane.xib */; };
+		D0107938183C738F00120B57 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07AF47C1836581E00913067 /* Preferences.xib */; };
+		D0107939183C738F00120B57 /* TidyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07AF47E1836581E00913067 /* TidyDocument.xib */; };
 		D016A92A182FD80700712C60 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D016A929182FD80700712C60 /* Cocoa.framework */; };
 		D016A936182FD80700712C60 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D016A935182FD80700712C60 /* main.m */; };
 		D016A945182FD80700712C60 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D016A944182FD80700712C60 /* Images.xcassets */; };
@@ -414,6 +419,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0107935183C738F00120B57 /* Batch.xib in Resources */,
+				D0107936183C738F00120B57 /* MainMenu.xib in Resources */,
+				D0107937183C738F00120B57 /* OptionPane.xib in Resources */,
+				D0107938183C738F00120B57 /* Preferences.xib in Resources */,
+				D0107939183C738F00120B57 /* TidyDocument.xib in Resources */,
 				D016A945182FD80700712C60 /* Images.xcassets in Resources */,
 				D0A4E1D6183A556300999979 /* optionsInEffect.txt in Resources */,
 				D0A4E1D7183A556300999979 /* optionsTypesExceptions.txt in Resources */,
@@ -610,6 +620,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Balthisar Tidy/Balthisar Tidy-Prefix.pch";
 				INFOPLIST_FILE = "Balthisar Tidy/Balthisar Tidy-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -625,6 +636,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Balthisar Tidy/Balthisar Tidy-Prefix.pch";
 				INFOPLIST_FILE = "Balthisar Tidy/Balthisar Tidy-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
