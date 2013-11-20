@@ -40,23 +40,21 @@
 #import "OptionPaneController.h"
 
 @interface BatchController : NSWindowController
-{
-
-	OptionPaneController *optionController;		// this will control the real option pane loaded into optionPane
-	JSDTidyDocument *tidyProcess;			// this will point to the optionPaneController's tidy process.
-
-	TreeNode *fileTree;					// holds a list of everything we'll batch process.
-}
 
 	@property (strong) IBOutlet NSOutlineView *fileList;			// Outlet for the |NSOutlineView|
 	@property (strong) IBOutlet NSView *optionPane;					// Pointer to the empty |OptionPane|
 
+	@property (strong) OptionPaneController *optionsController;		// The "real" optionPane loaded into |optionPane|
+	@property (strong) JSDTidyDocument *tidyProcess;				// Pointer to the local tidy process
 
--(IBAction)startBatch:(id)sender;			// handler for the batch button being pressed.
+	@property (strong) TreeNode *fileTree;							// Holds the list of things we will batch
 
-- (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item;
-- (NSUInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item;
-- (id)outlineView:(NSOutlineView *)outlineView child:(int)index ofItem:(id)item;
-- (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item;
+
+	-(IBAction)startBatch:(id)sender;								// Handler for the batch button being pressed.
+
+	- (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item;
+	- (NSUInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item;
+	- (id)outlineView:(NSOutlineView *)outlineView child:(int)index ofItem:(id)item;
+	- (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item;
 
 @end

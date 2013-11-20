@@ -128,6 +128,10 @@
     return didRevert;						// flag whether we reverted or not.
 } // revertToSavedFromFile:ofType
 
+
+// FIXME: I'm broken.
+// TODO: Need to finish this comment.
+
 /********************************************************************
     saveDocument
     we're going to override the default save to make sure we can
@@ -146,7 +150,7 @@
     if ( (saveBehavior == 1) && 		// behavior is protective AND
          (saveWarning) && 			// we want to have a warning AND
          (yesSavedAs == NO) && 			// we've NOT yet done a save as... AND
-         ([[self fileName] length] != 0 )) {	// the filename isn't zero length
+         ([[[self fileURL] path] length] != 0 )) {	// the filename isn't zero length
         NSInteger i = NSRunAlertPanel(NSLocalizedString(@"WarnSaveOverwrite", nil), NSLocalizedString(@"WarnSaveOverwriteExplain", nil),
                                 NSLocalizedString(@"continue save", nil),NSLocalizedString(@"do not save", nil) , nil);
         if (i == NSAlertAlternateReturn)

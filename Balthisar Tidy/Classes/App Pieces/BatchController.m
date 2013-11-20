@@ -44,8 +44,8 @@
         o call the inherited method to ensure everything else is ok.
 *********************************************************************/
 -(void)dealloc {
-    [optionController release];
-    [fileTree release];
+    [[self optionsController] release];
+    [[self fileTree] release];
     [super dealloc];
 }
 
@@ -69,11 +69,11 @@
 *********************************************************************/
 -(void) awakeFromNib {
     // create a OptionPaneController and put it in place of optionPane
-    if (!optionController)
-        optionController = [[OptionPaneController alloc] init];
-    [optionController putViewIntoView:[self optionPane]];
-    [optionController setTarget:self];
-    [optionController setAction:@selector(optionChanged:)];
+    if (![self optionsController])
+        _optionsController = [[OptionPaneController alloc] init];
+    [_optionsController putViewIntoView:[self optionPane]];
+    [_optionsController setTarget:self];
+    [_optionsController setAction:@selector(optionChanged:)];
 } // awakeFromNib
 
 
@@ -98,7 +98,7 @@
 - (NSUInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item {
     // if item is nil, then we're the root of the VIEW! We should ge the root of the fileTree.
     if (item == nil) 
-        return [fileTree numberOfChildren];	// return number of fileList top level nodes.
+        return [_fileTree numberOfChildren];	// return number of fileList top level nodes.
      else
         return [item numberOfChildren]; 	// return the item number of children already in the view.
 }
@@ -113,7 +113,7 @@
 - (id)outlineView:(NSOutlineView *)outlineView child:(int)index ofItem:(id)item {
     // if item is nil, then we're the root of the VIEW! We should ge the root of the fileTree.
     if (item == nil)
-        return [fileTree childAtIndex:index];	// return the top-level sibling nodes of fileTree.
+        return [_fileTree childAtIndex:index];	// return the top-level sibling nodes of fileTree.
     else
         return [item childAtIndex:index]; 	// otherwise, item will be part of fileTree with its own children.
 }

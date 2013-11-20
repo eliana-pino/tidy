@@ -65,8 +65,6 @@
         [trash removeFromSuperview];
     // and put in the view
     [dstView addSubview:myView];
-    [theTable reloadData];				// this DOES happen automatically, but the scroll bars don't initially appear.
-    [theTable selectRow:0 byExtendingSelection:NO]; 	// this SHOULD happen automatically, but doesn't for some reason.
 }
 
 

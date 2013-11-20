@@ -13,6 +13,11 @@ extern id objc_msgSend( id self, SEL op, ...);
 
 @implementation JSDTidyDocument
 
+
+#pragma mark -
+#pragma mark Tidy Callback Setup
+
+
 /********************************************************************
     tidyCallbackFilter
        In order to support TidyLib's callback function for process-
@@ -28,9 +33,9 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 } // tidyCallbackFilter
 
 
-//------------------------------------------------------------------------------------------------------------
-// ENCODING SUPPORT -- support the full extent of Mac OS X character encoding.
-//------------------------------------------------------------------------------------------------------------
+#pragma mark -
+#pragma mark ENCODING SUPPORT -- support the full extent of Mac OS X character encoding.
+
 
 /********************************************************************
     encodingCompare (regular C-function).
@@ -132,9 +137,9 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr) {
 } // fixSourceCoding
 
 
-//------------------------------------------------------------------------------------------------------------
-// INITIALIZATION and DESTRUCTION
-//------------------------------------------------------------------------------------------------------------
+#pragma mark -
+#pragma mark INITIALIZATION and DESTRUCTION
+
 
 /********************************************************************
     init (the designated initializer)
@@ -197,9 +202,9 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr) {
 } // initWithData
 
 
-//------------------------------------------------------------------------------------------------------------
-// TEXT - the important, good stuff.
-//------------------------------------------------------------------------------------------------------------
+#pragma mark -
+#pragma mark TEXT - the important, good stuff.
+
 
 /********************************************************************
     processTidy - regard as PRIVATE
@@ -412,9 +417,9 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr) {
 } // areEqualOriginalTidy
 
 
-//------------------------------------------------------------------------------------------------------------
-// OPTIONS - methods for dealing with options
-//------------------------------------------------------------------------------------------------------------
+#pragma mark -
+#pragma mark OPTIONS - methods for dealing with options
+
 
 /********************************************************************
     isTidyEncodingOption
@@ -670,9 +675,10 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr) {
     tidyOptCopyConfig( prefDoc, [theDocument tidyDocument] );
 } // optionCopyFromDocument
 
-//------------------------------------------------------------------------------------------------------------
-// RAW ACCESS EXPOSURE
-//------------------------------------------------------------------------------------------------------------
+
+#pragma mark -
+#pragma mark RAW ACCESS EXPOSURE
+
 
 /********************************************************************
     tidyDocument
@@ -683,9 +689,9 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr) {
 } // tidyDocument
 
 
-//------------------------------------------------------------------------------------------------------------
-// DIAGNOSTICS and REPAIR
-//------------------------------------------------------------------------------------------------------------
+#pragma mark -
+#pragma mark DIAGNOSTICS and REPAIR
+
 
 /********************************************************************
     tidyDetectedHtmlVersion
@@ -763,9 +769,9 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr) {
 } // errorFilter:Level:Line:Column:Message
 
 
-//------------------------------------------------------------------------------------------------------------
-// MISCELLENEOUS - misc. Tidy methods supported
-//------------------------------------------------------------------------------------------------------------
+#pragma mark -
+#pragma mark MISCELLENEOUS - misc. Tidy methods supported
+
 
 /********************************************************************
     tidyReleaseDate
@@ -776,9 +782,9 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr) {
 } // tidyReleaseDate
 
 
-//------------------------------------------------------------------------------------------------------------
-// SUPPORTED CONFIG LIST SUPPORT
-//------------------------------------------------------------------------------------------------------------
+#pragma mark -
+#pragma mark SUPPORTED CONFIG LIST SUPPORT
+
 
 /********************************************************************
     loadConfigurationListFromResource:ofType -- CLASS method
@@ -804,9 +810,9 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr) {
 } // loadConfigurationListFromResource:ofType
 
 
-//------------------------------------------------------------------------------------------------------------
-// MAC OS PREFS SUPPORT
-//------------------------------------------------------------------------------------------------------------
+#pragma mark -
+#pragma mark MAC OS PREFS SUPPORT
+
 
 /********************************************************************
     addDefaultsToDictionary -- CLASS method
