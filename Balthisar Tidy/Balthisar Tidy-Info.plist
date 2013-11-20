@@ -50,7 +50,7 @@
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2013 balthisar.com and Jim Derry. All rights reserved.</string>
 	<key>NSMainNibFile</key>
-	<string>MainMenu.xib</string>
+	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>

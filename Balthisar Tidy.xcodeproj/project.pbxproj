@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		D0107935183C738F00120B57 /* Batch.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07AF4781836581E00913067 /* Batch.xib */; };
-		D0107936183C738F00120B57 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D016A941182FD80700712C60 /* MainMenu.xib */; };
 		D0107937183C738F00120B57 /* OptionPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07AF47A1836581E00913067 /* OptionPane.xib */; };
 		D0107938183C738F00120B57 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07AF47C1836581E00913067 /* Preferences.xib */; };
 		D0107939183C738F00120B57 /* TidyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07AF47E1836581E00913067 /* TidyDocument.xib */; };
@@ -21,39 +20,40 @@
 		D07AF498183658D300913067 /* PreferenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF492183658D300913067 /* PreferenceController.m */; };
 		D07AF499183658D300913067 /* TidyDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF494183658D300913067 /* TidyDocument.m */; };
 		D07AF49F1836593A00913067 /* JSDTidy.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF49E1836593A00913067 /* JSDTidy.m */; };
-		D07AF4A81836594900913067 /* JSDTableColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF4A11836594900913067 /* JSDTableColumn.m */; };
-		D07AF4A91836594900913067 /* JSDTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF4A31836594900913067 /* JSDTableView.m */; };
-		D07AF4AA1836594900913067 /* JSDTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF4A51836594900913067 /* JSDTextView.m */; };
-		D07AF4AB1836594900913067 /* TreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF4A71836594900913067 /* TreeNode.m */; };
-		D07F24D4183C6FD900A5ABD0 /* access.c in Sources */ = {isa = PBXBuildFile; fileRef = D07F24A2183C6FD900A5ABD0 /* access.c */; };
-		D07F24D5183C6FD900A5ABD0 /* alloc.c in Sources */ = {isa = PBXBuildFile; fileRef = D07F24A4183C6FD900A5ABD0 /* alloc.c */; };
-		D07F24D6183C6FD900A5ABD0 /* attrask.c in Sources */ = {isa = PBXBuildFile; fileRef = D07F24A5183C6FD900A5ABD0 /* attrask.c */; };
-		D07F24D7183C6FD900A5ABD0 /* attrdict.c in Sources */ = {isa = PBXBuildFile; fileRef = D07F24A6183C6FD900A5ABD0 /* attrdict.c */; };
-		D07F24D8183C6FD900A5ABD0 /* attrget.c in Sources */ = {isa = PBXBuildFile; fileRef = D07F24A8183C6FD900A5ABD0 /* attrget.c */; };
-		D07F24D9183C6FD900A5ABD0 /* attrs.c in Sources */ = {isa = PBXBuildFile; fileRef = D07F24A9183C6FD900A5ABD0 /* attrs.c */; };
-		D07F24DA183C6FD900A5ABD0 /* buffio.c in Sources */ = {isa = PBXBuildFile; fileRef = D07F24AB183C6FD900A5ABD0 /* buffio.c */; };
-		D07F24DB183C6FD900A5ABD0 /* charsets.c in Sources */ = {isa = PBXBuildFile; fileRef = D07F24AC183C6FD900A5ABD0 /* charsets.c */; };
-		D07F24DC183C6FD900A5ABD0 /* clean.c in Sources */ = {isa = PBXBuildFile; fileRef = D07F24AE183C6FD900A5ABD0 /* clean.c */; };
-		D07F24DD183C6FD900A5ABD0 /* config.c in Sources */ = {isa = PBXBuildFile; fileRef = D07F24B0183C6FD900A5ABD0 /* config.c */; };
-		D07F24DE183C6FD900A5ABD0 /* entities.c in Sources */ = {isa = PBXBuildFile; fileRef = D07F24B2183C6FD900A5ABD0 /* entities.c */; };
-		D07F24DF183C6FD900A5ABD0 /* fileio.c in Sources */ = {isa = PBXBuildFile; fileRef = D07F24B4183C6FD900A5ABD0 /* fileio.c */; };
-		D07F24E0183C6FD900A5ABD0 /* gdoc.c in Sources */ = {isa = PBXBuildFile; fileRef = D07F24B7183C6FD900A5ABD0 /* gdoc.c */; };
-		D07F24E1183C6FD900A5ABD0 /* iconvtc.c in Sources */ = {isa = PBXBuildFile; fileRef = D07F24B9183C6FD900A5ABD0 /* iconvtc.c */; };
-		D07F24E2183C6FD900A5ABD0 /* istack.c in Sources */ = {isa = PBXBuildFile; fileRef = D07F24BB183C6FD900A5ABD0 /* istack.c */; };
-		D07F24E3183C6FD900A5ABD0 /* lexer.c in Sources */ = {isa = PBXBuildFile; fileRef = D07F24BC183C6FD900A5ABD0 /* lexer.c */; };
-		D07F24E4183C6FD900A5ABD0 /* localize.c in Sources */ = {isa = PBXBuildFile; fileRef = D07F24BE183C6FD900A5ABD0 /* localize.c */; };
-		D07F24E5183C6FD900A5ABD0 /* mappedio.c in Sources */ = {isa = PBXBuildFile; fileRef = D07F24BF183C6FD900A5ABD0 /* mappedio.c */; };
-		D07F24E6183C6FD900A5ABD0 /* parser.c in Sources */ = {isa = PBXBuildFile; fileRef = D07F24C2183C6FD900A5ABD0 /* parser.c */; };
-		D07F24E7183C6FD900A5ABD0 /* pprint.c in Sources */ = {isa = PBXBuildFile; fileRef = D07F24C4183C6FD900A5ABD0 /* pprint.c */; };
-		D07F24E8183C6FD900A5ABD0 /* streamio.c in Sources */ = {isa = PBXBuildFile; fileRef = D07F24C6183C6FD900A5ABD0 /* streamio.c */; };
-		D07F24E9183C6FD900A5ABD0 /* tagask.c in Sources */ = {isa = PBXBuildFile; fileRef = D07F24C8183C6FD900A5ABD0 /* tagask.c */; };
-		D07F24EA183C6FD900A5ABD0 /* tags.c in Sources */ = {isa = PBXBuildFile; fileRef = D07F24C9183C6FD900A5ABD0 /* tags.c */; };
-		D07F24EB183C6FD900A5ABD0 /* tidylib.c in Sources */ = {isa = PBXBuildFile; fileRef = D07F24CC183C6FD900A5ABD0 /* tidylib.c */; };
-		D07F24EC183C6FD900A5ABD0 /* tmbstr.c in Sources */ = {isa = PBXBuildFile; fileRef = D07F24CD183C6FD900A5ABD0 /* tmbstr.c */; };
-		D07F24ED183C6FD900A5ABD0 /* utf8.c in Sources */ = {isa = PBXBuildFile; fileRef = D07F24CF183C6FD900A5ABD0 /* utf8.c */; };
-		D07F24EE183C6FD900A5ABD0 /* win32tc.c in Sources */ = {isa = PBXBuildFile; fileRef = D07F24D2183C6FD900A5ABD0 /* win32tc.c */; };
 		D0A4E1D6183A556300999979 /* optionsInEffect.txt in Resources */ = {isa = PBXBuildFile; fileRef = D0A4E1D2183A556300999979 /* optionsInEffect.txt */; };
 		D0A4E1D7183A556300999979 /* optionsTypesExceptions.txt in Resources */ = {isa = PBXBuildFile; fileRef = D0A4E1D4183A556300999979 /* optionsTypesExceptions.txt */; };
+		D0C9A8C2183C8C7F000BFC72 /* access.c in Sources */ = {isa = PBXBuildFile; fileRef = D0C9A890183C8C7F000BFC72 /* access.c */; };
+		D0C9A8C3183C8C7F000BFC72 /* alloc.c in Sources */ = {isa = PBXBuildFile; fileRef = D0C9A892183C8C7F000BFC72 /* alloc.c */; };
+		D0C9A8C4183C8C7F000BFC72 /* attrask.c in Sources */ = {isa = PBXBuildFile; fileRef = D0C9A893183C8C7F000BFC72 /* attrask.c */; };
+		D0C9A8C5183C8C7F000BFC72 /* attrdict.c in Sources */ = {isa = PBXBuildFile; fileRef = D0C9A894183C8C7F000BFC72 /* attrdict.c */; };
+		D0C9A8C6183C8C7F000BFC72 /* attrget.c in Sources */ = {isa = PBXBuildFile; fileRef = D0C9A896183C8C7F000BFC72 /* attrget.c */; };
+		D0C9A8C7183C8C7F000BFC72 /* attrs.c in Sources */ = {isa = PBXBuildFile; fileRef = D0C9A897183C8C7F000BFC72 /* attrs.c */; };
+		D0C9A8C8183C8C7F000BFC72 /* buffio.c in Sources */ = {isa = PBXBuildFile; fileRef = D0C9A899183C8C7F000BFC72 /* buffio.c */; };
+		D0C9A8C9183C8C7F000BFC72 /* charsets.c in Sources */ = {isa = PBXBuildFile; fileRef = D0C9A89A183C8C7F000BFC72 /* charsets.c */; };
+		D0C9A8CA183C8C7F000BFC72 /* clean.c in Sources */ = {isa = PBXBuildFile; fileRef = D0C9A89C183C8C7F000BFC72 /* clean.c */; };
+		D0C9A8CB183C8C7F000BFC72 /* config.c in Sources */ = {isa = PBXBuildFile; fileRef = D0C9A89E183C8C7F000BFC72 /* config.c */; };
+		D0C9A8CC183C8C7F000BFC72 /* entities.c in Sources */ = {isa = PBXBuildFile; fileRef = D0C9A8A0183C8C7F000BFC72 /* entities.c */; };
+		D0C9A8CD183C8C7F000BFC72 /* fileio.c in Sources */ = {isa = PBXBuildFile; fileRef = D0C9A8A2183C8C7F000BFC72 /* fileio.c */; };
+		D0C9A8CE183C8C7F000BFC72 /* gdoc.c in Sources */ = {isa = PBXBuildFile; fileRef = D0C9A8A5183C8C7F000BFC72 /* gdoc.c */; };
+		D0C9A8CF183C8C7F000BFC72 /* iconvtc.c in Sources */ = {isa = PBXBuildFile; fileRef = D0C9A8A7183C8C7F000BFC72 /* iconvtc.c */; };
+		D0C9A8D0183C8C7F000BFC72 /* istack.c in Sources */ = {isa = PBXBuildFile; fileRef = D0C9A8A9183C8C7F000BFC72 /* istack.c */; };
+		D0C9A8D1183C8C7F000BFC72 /* lexer.c in Sources */ = {isa = PBXBuildFile; fileRef = D0C9A8AA183C8C7F000BFC72 /* lexer.c */; };
+		D0C9A8D2183C8C7F000BFC72 /* localize.c in Sources */ = {isa = PBXBuildFile; fileRef = D0C9A8AC183C8C7F000BFC72 /* localize.c */; };
+		D0C9A8D3183C8C7F000BFC72 /* mappedio.c in Sources */ = {isa = PBXBuildFile; fileRef = D0C9A8AD183C8C7F000BFC72 /* mappedio.c */; };
+		D0C9A8D4183C8C7F000BFC72 /* parser.c in Sources */ = {isa = PBXBuildFile; fileRef = D0C9A8B0183C8C7F000BFC72 /* parser.c */; };
+		D0C9A8D5183C8C7F000BFC72 /* pprint.c in Sources */ = {isa = PBXBuildFile; fileRef = D0C9A8B2183C8C7F000BFC72 /* pprint.c */; };
+		D0C9A8D6183C8C7F000BFC72 /* streamio.c in Sources */ = {isa = PBXBuildFile; fileRef = D0C9A8B4183C8C7F000BFC72 /* streamio.c */; };
+		D0C9A8D7183C8C7F000BFC72 /* tagask.c in Sources */ = {isa = PBXBuildFile; fileRef = D0C9A8B6183C8C7F000BFC72 /* tagask.c */; };
+		D0C9A8D8183C8C7F000BFC72 /* tags.c in Sources */ = {isa = PBXBuildFile; fileRef = D0C9A8B7183C8C7F000BFC72 /* tags.c */; };
+		D0C9A8D9183C8C7F000BFC72 /* tidylib.c in Sources */ = {isa = PBXBuildFile; fileRef = D0C9A8BA183C8C7F000BFC72 /* tidylib.c */; };
+		D0C9A8DA183C8C7F000BFC72 /* tmbstr.c in Sources */ = {isa = PBXBuildFile; fileRef = D0C9A8BB183C8C7F000BFC72 /* tmbstr.c */; };
+		D0C9A8DB183C8C7F000BFC72 /* utf8.c in Sources */ = {isa = PBXBuildFile; fileRef = D0C9A8BD183C8C7F000BFC72 /* utf8.c */; };
+		D0C9A8DC183C8C7F000BFC72 /* win32tc.c in Sources */ = {isa = PBXBuildFile; fileRef = D0C9A8C0183C8C7F000BFC72 /* win32tc.c */; };
+		D0D3BEB8183C87C500692225 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0D3BEB6183C87C500692225 /* MainMenu.xib */; };
+		D0D3BEC2183C897800692225 /* JSDTableColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D3BEBB183C897800692225 /* JSDTableColumn.m */; };
+		D0D3BEC3183C897800692225 /* JSDTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D3BEBD183C897800692225 /* JSDTableView.m */; };
+		D0D3BEC4183C897800692225 /* JSDTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D3BEBF183C897800692225 /* JSDTextView.m */; };
+		D0D3BEC5183C897800692225 /* TreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D3BEC1183C897800692225 /* TreeNode.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,7 +65,6 @@
 		D016A931182FD80700712C60 /* Balthisar Tidy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Balthisar Tidy-Info.plist"; sourceTree = "<group>"; };
 		D016A935182FD80700712C60 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D016A937182FD80700712C60 /* Balthisar Tidy-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Balthisar Tidy-Prefix.pch"; sourceTree = "<group>"; };
-		D016A942182FD80700712C60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		D016A944182FD80700712C60 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D016A94B182FD80700712C60 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		D026169E1836F48A002ABD72 /* Balthisar Tidy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Balthisar Tidy.entitlements"; sourceTree = "<group>"; };
@@ -85,70 +84,71 @@
 		D07AF494183658D300913067 /* TidyDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TidyDocument.m; sourceTree = "<group>"; };
 		D07AF49D1836593900913067 /* JSDTidy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSDTidy.h; path = Classes/JSDTidy/JSDTidy.h; sourceTree = "<group>"; };
 		D07AF49E1836593A00913067 /* JSDTidy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSDTidy.m; path = Classes/JSDTidy/JSDTidy.m; sourceTree = "<group>"; };
-		D07AF4A01836594900913067 /* JSDTableColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSDTableColumn.h; path = "Classes/Support Pieces/JSDTableColumn.h"; sourceTree = "<group>"; };
-		D07AF4A11836594900913067 /* JSDTableColumn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSDTableColumn.m; path = "Classes/Support Pieces/JSDTableColumn.m"; sourceTree = "<group>"; };
-		D07AF4A21836594900913067 /* JSDTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSDTableView.h; path = "Classes/Support Pieces/JSDTableView.h"; sourceTree = "<group>"; };
-		D07AF4A31836594900913067 /* JSDTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSDTableView.m; path = "Classes/Support Pieces/JSDTableView.m"; sourceTree = "<group>"; };
-		D07AF4A41836594900913067 /* JSDTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSDTextView.h; path = "Classes/Support Pieces/JSDTextView.h"; sourceTree = "<group>"; };
-		D07AF4A51836594900913067 /* JSDTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSDTextView.m; path = "Classes/Support Pieces/JSDTextView.m"; sourceTree = "<group>"; };
-		D07AF4A61836594900913067 /* TreeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TreeNode.h; path = "Classes/Support Pieces/TreeNode.h"; sourceTree = "<group>"; };
-		D07AF4A71836594900913067 /* TreeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TreeNode.m; path = "Classes/Support Pieces/TreeNode.m"; sourceTree = "<group>"; };
-		D07F249E183C6FD000A5ABD0 /* buffio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = buffio.h; path = "balthisar tidy/new tidylib-src/include/buffio.h"; sourceTree = SOURCE_ROOT; };
-		D07F249F183C6FD000A5ABD0 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = platform.h; path = "balthisar tidy/new tidylib-src/include/platform.h"; sourceTree = SOURCE_ROOT; };
-		D07F24A0183C6FD000A5ABD0 /* tidy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tidy.h; path = "balthisar tidy/new tidylib-src/include/tidy.h"; sourceTree = SOURCE_ROOT; };
-		D07F24A1183C6FD000A5ABD0 /* tidyenum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tidyenum.h; path = "balthisar tidy/new tidylib-src/include/tidyenum.h"; sourceTree = SOURCE_ROOT; };
-		D07F24A2183C6FD900A5ABD0 /* access.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = access.c; path = "balthisar tidy/new tidylib-src/src/access.c"; sourceTree = SOURCE_ROOT; };
-		D07F24A3183C6FD900A5ABD0 /* access.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = access.h; path = "balthisar tidy/new tidylib-src/src/access.h"; sourceTree = SOURCE_ROOT; };
-		D07F24A4183C6FD900A5ABD0 /* alloc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = alloc.c; path = "balthisar tidy/new tidylib-src/src/alloc.c"; sourceTree = SOURCE_ROOT; };
-		D07F24A5183C6FD900A5ABD0 /* attrask.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = attrask.c; path = "balthisar tidy/new tidylib-src/src/attrask.c"; sourceTree = SOURCE_ROOT; };
-		D07F24A6183C6FD900A5ABD0 /* attrdict.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = attrdict.c; path = "balthisar tidy/new tidylib-src/src/attrdict.c"; sourceTree = SOURCE_ROOT; };
-		D07F24A7183C6FD900A5ABD0 /* attrdict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = attrdict.h; path = "balthisar tidy/new tidylib-src/src/attrdict.h"; sourceTree = SOURCE_ROOT; };
-		D07F24A8183C6FD900A5ABD0 /* attrget.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = attrget.c; path = "balthisar tidy/new tidylib-src/src/attrget.c"; sourceTree = SOURCE_ROOT; };
-		D07F24A9183C6FD900A5ABD0 /* attrs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = attrs.c; path = "balthisar tidy/new tidylib-src/src/attrs.c"; sourceTree = SOURCE_ROOT; };
-		D07F24AA183C6FD900A5ABD0 /* attrs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = attrs.h; path = "balthisar tidy/new tidylib-src/src/attrs.h"; sourceTree = SOURCE_ROOT; };
-		D07F24AB183C6FD900A5ABD0 /* buffio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = buffio.c; path = "balthisar tidy/new tidylib-src/src/buffio.c"; sourceTree = SOURCE_ROOT; };
-		D07F24AC183C6FD900A5ABD0 /* charsets.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = charsets.c; path = "balthisar tidy/new tidylib-src/src/charsets.c"; sourceTree = SOURCE_ROOT; };
-		D07F24AD183C6FD900A5ABD0 /* charsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = charsets.h; path = "balthisar tidy/new tidylib-src/src/charsets.h"; sourceTree = SOURCE_ROOT; };
-		D07F24AE183C6FD900A5ABD0 /* clean.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = clean.c; path = "balthisar tidy/new tidylib-src/src/clean.c"; sourceTree = SOURCE_ROOT; };
-		D07F24AF183C6FD900A5ABD0 /* clean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = clean.h; path = "balthisar tidy/new tidylib-src/src/clean.h"; sourceTree = SOURCE_ROOT; };
-		D07F24B0183C6FD900A5ABD0 /* config.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = config.c; path = "balthisar tidy/new tidylib-src/src/config.c"; sourceTree = SOURCE_ROOT; };
-		D07F24B1183C6FD900A5ABD0 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = config.h; path = "balthisar tidy/new tidylib-src/src/config.h"; sourceTree = SOURCE_ROOT; };
-		D07F24B2183C6FD900A5ABD0 /* entities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = entities.c; path = "balthisar tidy/new tidylib-src/src/entities.c"; sourceTree = SOURCE_ROOT; };
-		D07F24B3183C6FD900A5ABD0 /* entities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = entities.h; path = "balthisar tidy/new tidylib-src/src/entities.h"; sourceTree = SOURCE_ROOT; };
-		D07F24B4183C6FD900A5ABD0 /* fileio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = fileio.c; path = "balthisar tidy/new tidylib-src/src/fileio.c"; sourceTree = SOURCE_ROOT; };
-		D07F24B5183C6FD900A5ABD0 /* fileio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fileio.h; path = "balthisar tidy/new tidylib-src/src/fileio.h"; sourceTree = SOURCE_ROOT; };
-		D07F24B6183C6FD900A5ABD0 /* forward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = forward.h; path = "balthisar tidy/new tidylib-src/src/forward.h"; sourceTree = SOURCE_ROOT; };
-		D07F24B7183C6FD900A5ABD0 /* gdoc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = gdoc.c; path = "balthisar tidy/new tidylib-src/src/gdoc.c"; sourceTree = SOURCE_ROOT; };
-		D07F24B8183C6FD900A5ABD0 /* gdoc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gdoc.h; path = "balthisar tidy/new tidylib-src/src/gdoc.h"; sourceTree = SOURCE_ROOT; };
-		D07F24B9183C6FD900A5ABD0 /* iconvtc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = iconvtc.c; path = "balthisar tidy/new tidylib-src/src/iconvtc.c"; sourceTree = SOURCE_ROOT; };
-		D07F24BA183C6FD900A5ABD0 /* iconvtc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iconvtc.h; path = "balthisar tidy/new tidylib-src/src/iconvtc.h"; sourceTree = SOURCE_ROOT; };
-		D07F24BB183C6FD900A5ABD0 /* istack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = istack.c; path = "balthisar tidy/new tidylib-src/src/istack.c"; sourceTree = SOURCE_ROOT; };
-		D07F24BC183C6FD900A5ABD0 /* lexer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lexer.c; path = "balthisar tidy/new tidylib-src/src/lexer.c"; sourceTree = SOURCE_ROOT; };
-		D07F24BD183C6FD900A5ABD0 /* lexer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lexer.h; path = "balthisar tidy/new tidylib-src/src/lexer.h"; sourceTree = SOURCE_ROOT; };
-		D07F24BE183C6FD900A5ABD0 /* localize.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = localize.c; path = "balthisar tidy/new tidylib-src/src/localize.c"; sourceTree = SOURCE_ROOT; };
-		D07F24BF183C6FD900A5ABD0 /* mappedio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = mappedio.c; path = "balthisar tidy/new tidylib-src/src/mappedio.c"; sourceTree = SOURCE_ROOT; };
-		D07F24C0183C6FD900A5ABD0 /* mappedio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mappedio.h; path = "balthisar tidy/new tidylib-src/src/mappedio.h"; sourceTree = SOURCE_ROOT; };
-		D07F24C1183C6FD900A5ABD0 /* message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = message.h; path = "balthisar tidy/new tidylib-src/src/message.h"; sourceTree = SOURCE_ROOT; };
-		D07F24C2183C6FD900A5ABD0 /* parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = parser.c; path = "balthisar tidy/new tidylib-src/src/parser.c"; sourceTree = SOURCE_ROOT; };
-		D07F24C3183C6FD900A5ABD0 /* parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = parser.h; path = "balthisar tidy/new tidylib-src/src/parser.h"; sourceTree = SOURCE_ROOT; };
-		D07F24C4183C6FD900A5ABD0 /* pprint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pprint.c; path = "balthisar tidy/new tidylib-src/src/pprint.c"; sourceTree = SOURCE_ROOT; };
-		D07F24C5183C6FD900A5ABD0 /* pprint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pprint.h; path = "balthisar tidy/new tidylib-src/src/pprint.h"; sourceTree = SOURCE_ROOT; };
-		D07F24C6183C6FD900A5ABD0 /* streamio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = streamio.c; path = "balthisar tidy/new tidylib-src/src/streamio.c"; sourceTree = SOURCE_ROOT; };
-		D07F24C7183C6FD900A5ABD0 /* streamio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = streamio.h; path = "balthisar tidy/new tidylib-src/src/streamio.h"; sourceTree = SOURCE_ROOT; };
-		D07F24C8183C6FD900A5ABD0 /* tagask.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tagask.c; path = "balthisar tidy/new tidylib-src/src/tagask.c"; sourceTree = SOURCE_ROOT; };
-		D07F24C9183C6FD900A5ABD0 /* tags.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tags.c; path = "balthisar tidy/new tidylib-src/src/tags.c"; sourceTree = SOURCE_ROOT; };
-		D07F24CA183C6FD900A5ABD0 /* tags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tags.h; path = "balthisar tidy/new tidylib-src/src/tags.h"; sourceTree = SOURCE_ROOT; };
-		D07F24CB183C6FD900A5ABD0 /* tidy-int.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "tidy-int.h"; path = "balthisar tidy/new tidylib-src/src/tidy-int.h"; sourceTree = SOURCE_ROOT; };
-		D07F24CC183C6FD900A5ABD0 /* tidylib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tidylib.c; path = "balthisar tidy/new tidylib-src/src/tidylib.c"; sourceTree = SOURCE_ROOT; };
-		D07F24CD183C6FD900A5ABD0 /* tmbstr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tmbstr.c; path = "balthisar tidy/new tidylib-src/src/tmbstr.c"; sourceTree = SOURCE_ROOT; };
-		D07F24CE183C6FD900A5ABD0 /* tmbstr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tmbstr.h; path = "balthisar tidy/new tidylib-src/src/tmbstr.h"; sourceTree = SOURCE_ROOT; };
-		D07F24CF183C6FD900A5ABD0 /* utf8.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = utf8.c; path = "balthisar tidy/new tidylib-src/src/utf8.c"; sourceTree = SOURCE_ROOT; };
-		D07F24D0183C6FD900A5ABD0 /* utf8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = utf8.h; path = "balthisar tidy/new tidylib-src/src/utf8.h"; sourceTree = SOURCE_ROOT; };
-		D07F24D1183C6FD900A5ABD0 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = version.h; path = "balthisar tidy/new tidylib-src/src/version.h"; sourceTree = SOURCE_ROOT; };
-		D07F24D2183C6FD900A5ABD0 /* win32tc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = win32tc.c; path = "balthisar tidy/new tidylib-src/src/win32tc.c"; sourceTree = SOURCE_ROOT; };
-		D07F24D3183C6FD900A5ABD0 /* win32tc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = win32tc.h; path = "balthisar tidy/new tidylib-src/src/win32tc.h"; sourceTree = SOURCE_ROOT; };
 		D0A4E1D3183A556300999979 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = "balthisar tidy/Base.lproj/optionsInEffect.txt"; sourceTree = SOURCE_ROOT; };
 		D0A4E1D5183A556300999979 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = "balthisar tidy/Base.lproj/optionsTypesExceptions.txt"; sourceTree = SOURCE_ROOT; };
+		D0C9A88C183C8C65000BFC72 /* buffio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = buffio.h; path = "balthisar tidy/tidylib5-src/include/buffio.h"; sourceTree = SOURCE_ROOT; };
+		D0C9A88D183C8C65000BFC72 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = platform.h; path = "balthisar tidy/tidylib5-src/include/platform.h"; sourceTree = SOURCE_ROOT; };
+		D0C9A88E183C8C65000BFC72 /* tidy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tidy.h; path = "balthisar tidy/tidylib5-src/include/tidy.h"; sourceTree = SOURCE_ROOT; };
+		D0C9A88F183C8C65000BFC72 /* tidyenum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tidyenum.h; path = "balthisar tidy/tidylib5-src/include/tidyenum.h"; sourceTree = SOURCE_ROOT; };
+		D0C9A890183C8C7F000BFC72 /* access.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = access.c; path = "balthisar tidy/tidylib5-src/src/access.c"; sourceTree = SOURCE_ROOT; };
+		D0C9A891183C8C7F000BFC72 /* access.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = access.h; path = "balthisar tidy/tidylib5-src/src/access.h"; sourceTree = SOURCE_ROOT; };
+		D0C9A892183C8C7F000BFC72 /* alloc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = alloc.c; path = "balthisar tidy/tidylib5-src/src/alloc.c"; sourceTree = SOURCE_ROOT; };
+		D0C9A893183C8C7F000BFC72 /* attrask.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = attrask.c; path = "balthisar tidy/tidylib5-src/src/attrask.c"; sourceTree = SOURCE_ROOT; };
+		D0C9A894183C8C7F000BFC72 /* attrdict.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = attrdict.c; path = "balthisar tidy/tidylib5-src/src/attrdict.c"; sourceTree = SOURCE_ROOT; };
+		D0C9A895183C8C7F000BFC72 /* attrdict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = attrdict.h; path = "balthisar tidy/tidylib5-src/src/attrdict.h"; sourceTree = SOURCE_ROOT; };
+		D0C9A896183C8C7F000BFC72 /* attrget.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = attrget.c; path = "balthisar tidy/tidylib5-src/src/attrget.c"; sourceTree = SOURCE_ROOT; };
+		D0C9A897183C8C7F000BFC72 /* attrs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = attrs.c; path = "balthisar tidy/tidylib5-src/src/attrs.c"; sourceTree = SOURCE_ROOT; };
+		D0C9A898183C8C7F000BFC72 /* attrs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = attrs.h; path = "balthisar tidy/tidylib5-src/src/attrs.h"; sourceTree = SOURCE_ROOT; };
+		D0C9A899183C8C7F000BFC72 /* buffio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = buffio.c; path = "balthisar tidy/tidylib5-src/src/buffio.c"; sourceTree = SOURCE_ROOT; };
+		D0C9A89A183C8C7F000BFC72 /* charsets.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = charsets.c; path = "balthisar tidy/tidylib5-src/src/charsets.c"; sourceTree = SOURCE_ROOT; };
+		D0C9A89B183C8C7F000BFC72 /* charsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = charsets.h; path = "balthisar tidy/tidylib5-src/src/charsets.h"; sourceTree = SOURCE_ROOT; };
+		D0C9A89C183C8C7F000BFC72 /* clean.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = clean.c; path = "balthisar tidy/tidylib5-src/src/clean.c"; sourceTree = SOURCE_ROOT; };
+		D0C9A89D183C8C7F000BFC72 /* clean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = clean.h; path = "balthisar tidy/tidylib5-src/src/clean.h"; sourceTree = SOURCE_ROOT; };
+		D0C9A89E183C8C7F000BFC72 /* config.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = config.c; path = "balthisar tidy/tidylib5-src/src/config.c"; sourceTree = SOURCE_ROOT; };
+		D0C9A89F183C8C7F000BFC72 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = config.h; path = "balthisar tidy/tidylib5-src/src/config.h"; sourceTree = SOURCE_ROOT; };
+		D0C9A8A0183C8C7F000BFC72 /* entities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = entities.c; path = "balthisar tidy/tidylib5-src/src/entities.c"; sourceTree = SOURCE_ROOT; };
+		D0C9A8A1183C8C7F000BFC72 /* entities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = entities.h; path = "balthisar tidy/tidylib5-src/src/entities.h"; sourceTree = SOURCE_ROOT; };
+		D0C9A8A2183C8C7F000BFC72 /* fileio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = fileio.c; path = "balthisar tidy/tidylib5-src/src/fileio.c"; sourceTree = SOURCE_ROOT; };
+		D0C9A8A3183C8C7F000BFC72 /* fileio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fileio.h; path = "balthisar tidy/tidylib5-src/src/fileio.h"; sourceTree = SOURCE_ROOT; };
+		D0C9A8A4183C8C7F000BFC72 /* forward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = forward.h; path = "balthisar tidy/tidylib5-src/src/forward.h"; sourceTree = SOURCE_ROOT; };
+		D0C9A8A5183C8C7F000BFC72 /* gdoc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = gdoc.c; path = "balthisar tidy/tidylib5-src/src/gdoc.c"; sourceTree = SOURCE_ROOT; };
+		D0C9A8A6183C8C7F000BFC72 /* gdoc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gdoc.h; path = "balthisar tidy/tidylib5-src/src/gdoc.h"; sourceTree = SOURCE_ROOT; };
+		D0C9A8A7183C8C7F000BFC72 /* iconvtc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = iconvtc.c; path = "balthisar tidy/tidylib5-src/src/iconvtc.c"; sourceTree = SOURCE_ROOT; };
+		D0C9A8A8183C8C7F000BFC72 /* iconvtc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iconvtc.h; path = "balthisar tidy/tidylib5-src/src/iconvtc.h"; sourceTree = SOURCE_ROOT; };
+		D0C9A8A9183C8C7F000BFC72 /* istack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = istack.c; path = "balthisar tidy/tidylib5-src/src/istack.c"; sourceTree = SOURCE_ROOT; };
+		D0C9A8AA183C8C7F000BFC72 /* lexer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lexer.c; path = "balthisar tidy/tidylib5-src/src/lexer.c"; sourceTree = SOURCE_ROOT; };
+		D0C9A8AB183C8C7F000BFC72 /* lexer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lexer.h; path = "balthisar tidy/tidylib5-src/src/lexer.h"; sourceTree = SOURCE_ROOT; };
+		D0C9A8AC183C8C7F000BFC72 /* localize.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = localize.c; path = "balthisar tidy/tidylib5-src/src/localize.c"; sourceTree = SOURCE_ROOT; };
+		D0C9A8AD183C8C7F000BFC72 /* mappedio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = mappedio.c; path = "balthisar tidy/tidylib5-src/src/mappedio.c"; sourceTree = SOURCE_ROOT; };
+		D0C9A8AE183C8C7F000BFC72 /* mappedio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mappedio.h; path = "balthisar tidy/tidylib5-src/src/mappedio.h"; sourceTree = SOURCE_ROOT; };
+		D0C9A8AF183C8C7F000BFC72 /* message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = message.h; path = "balthisar tidy/tidylib5-src/src/message.h"; sourceTree = SOURCE_ROOT; };
+		D0C9A8B0183C8C7F000BFC72 /* parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = parser.c; path = "balthisar tidy/tidylib5-src/src/parser.c"; sourceTree = SOURCE_ROOT; };
+		D0C9A8B1183C8C7F000BFC72 /* parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = parser.h; path = "balthisar tidy/tidylib5-src/src/parser.h"; sourceTree = SOURCE_ROOT; };
+		D0C9A8B2183C8C7F000BFC72 /* pprint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pprint.c; path = "balthisar tidy/tidylib5-src/src/pprint.c"; sourceTree = SOURCE_ROOT; };
+		D0C9A8B3183C8C7F000BFC72 /* pprint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pprint.h; path = "balthisar tidy/tidylib5-src/src/pprint.h"; sourceTree = SOURCE_ROOT; };
+		D0C9A8B4183C8C7F000BFC72 /* streamio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = streamio.c; path = "balthisar tidy/tidylib5-src/src/streamio.c"; sourceTree = SOURCE_ROOT; };
+		D0C9A8B5183C8C7F000BFC72 /* streamio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = streamio.h; path = "balthisar tidy/tidylib5-src/src/streamio.h"; sourceTree = SOURCE_ROOT; };
+		D0C9A8B6183C8C7F000BFC72 /* tagask.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tagask.c; path = "balthisar tidy/tidylib5-src/src/tagask.c"; sourceTree = SOURCE_ROOT; };
+		D0C9A8B7183C8C7F000BFC72 /* tags.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tags.c; path = "balthisar tidy/tidylib5-src/src/tags.c"; sourceTree = SOURCE_ROOT; };
+		D0C9A8B8183C8C7F000BFC72 /* tags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tags.h; path = "balthisar tidy/tidylib5-src/src/tags.h"; sourceTree = SOURCE_ROOT; };
+		D0C9A8B9183C8C7F000BFC72 /* tidy-int.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "tidy-int.h"; path = "balthisar tidy/tidylib5-src/src/tidy-int.h"; sourceTree = SOURCE_ROOT; };
+		D0C9A8BA183C8C7F000BFC72 /* tidylib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tidylib.c; path = "balthisar tidy/tidylib5-src/src/tidylib.c"; sourceTree = SOURCE_ROOT; };
+		D0C9A8BB183C8C7F000BFC72 /* tmbstr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tmbstr.c; path = "balthisar tidy/tidylib5-src/src/tmbstr.c"; sourceTree = SOURCE_ROOT; };
+		D0C9A8BC183C8C7F000BFC72 /* tmbstr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tmbstr.h; path = "balthisar tidy/tidylib5-src/src/tmbstr.h"; sourceTree = SOURCE_ROOT; };
+		D0C9A8BD183C8C7F000BFC72 /* utf8.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = utf8.c; path = "balthisar tidy/tidylib5-src/src/utf8.c"; sourceTree = SOURCE_ROOT; };
+		D0C9A8BE183C8C7F000BFC72 /* utf8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = utf8.h; path = "balthisar tidy/tidylib5-src/src/utf8.h"; sourceTree = SOURCE_ROOT; };
+		D0C9A8BF183C8C7F000BFC72 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = version.h; path = "balthisar tidy/tidylib5-src/src/version.h"; sourceTree = SOURCE_ROOT; };
+		D0C9A8C0183C8C7F000BFC72 /* win32tc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = win32tc.c; path = "balthisar tidy/tidylib5-src/src/win32tc.c"; sourceTree = SOURCE_ROOT; };
+		D0C9A8C1183C8C7F000BFC72 /* win32tc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = win32tc.h; path = "balthisar tidy/tidylib5-src/src/win32tc.h"; sourceTree = SOURCE_ROOT; };
+		D0D3BEB7183C87C500692225 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = "balthisar tidy/Base.lproj/MainMenu.xib"; sourceTree = SOURCE_ROOT; };
+		D0D3BEBA183C897800692225 /* JSDTableColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSDTableColumn.h; path = "../balthisar tidy/Classes/Support Pieces/JSDTableColumn.h"; sourceTree = "<group>"; };
+		D0D3BEBB183C897800692225 /* JSDTableColumn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSDTableColumn.m; path = "../balthisar tidy/Classes/Support Pieces/JSDTableColumn.m"; sourceTree = "<group>"; };
+		D0D3BEBC183C897800692225 /* JSDTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSDTableView.h; path = "../balthisar tidy/Classes/Support Pieces/JSDTableView.h"; sourceTree = "<group>"; };
+		D0D3BEBD183C897800692225 /* JSDTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSDTableView.m; path = "../balthisar tidy/Classes/Support Pieces/JSDTableView.m"; sourceTree = "<group>"; };
+		D0D3BEBE183C897800692225 /* JSDTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSDTextView.h; path = "../balthisar tidy/Classes/Support Pieces/JSDTextView.h"; sourceTree = "<group>"; };
+		D0D3BEBF183C897800692225 /* JSDTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSDTextView.m; path = "../balthisar tidy/Classes/Support Pieces/JSDTextView.m"; sourceTree = "<group>"; };
+		D0D3BEC0183C897800692225 /* TreeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TreeNode.h; path = "../balthisar tidy/Classes/Support Pieces/TreeNode.h"; sourceTree = "<group>"; };
+		D0D3BEC1183C897800692225 /* TreeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TreeNode.m; path = "../balthisar tidy/Classes/Support Pieces/TreeNode.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,7 +249,7 @@
 				D0A4E1D2183A556300999979 /* optionsInEffect.txt */,
 				D0A4E1D4183A556300999979 /* optionsTypesExceptions.txt */,
 				D07AF4781836581E00913067 /* Batch.xib */,
-				D016A941182FD80700712C60 /* MainMenu.xib */,
+				D0D3BEB6183C87C500692225 /* MainMenu.xib */,
 				D07AF47A1836581E00913067 /* OptionPane.xib */,
 				D07AF47C1836581E00913067 /* Preferences.xib */,
 				D07AF47E1836581E00913067 /* TidyDocument.xib */,
@@ -269,14 +269,14 @@
 		D07AF49C1836592300913067 /* Support Pieces */ = {
 			isa = PBXGroup;
 			children = (
-				D07AF4A01836594900913067 /* JSDTableColumn.h */,
-				D07AF4A11836594900913067 /* JSDTableColumn.m */,
-				D07AF4A21836594900913067 /* JSDTableView.h */,
-				D07AF4A31836594900913067 /* JSDTableView.m */,
-				D07AF4A41836594900913067 /* JSDTextView.h */,
-				D07AF4A51836594900913067 /* JSDTextView.m */,
-				D07AF4A61836594900913067 /* TreeNode.h */,
-				D07AF4A71836594900913067 /* TreeNode.m */,
+				D0D3BEBA183C897800692225 /* JSDTableColumn.h */,
+				D0D3BEBB183C897800692225 /* JSDTableColumn.m */,
+				D0D3BEBC183C897800692225 /* JSDTableView.h */,
+				D0D3BEBD183C897800692225 /* JSDTableView.m */,
+				D0D3BEBE183C897800692225 /* JSDTextView.h */,
+				D0D3BEBF183C897800692225 /* JSDTextView.m */,
+				D0D3BEC0183C897800692225 /* TreeNode.h */,
+				D0D3BEC1183C897800692225 /* TreeNode.m */,
 			);
 			name = "Support Pieces";
 			sourceTree = "<group>";
@@ -293,10 +293,10 @@
 		D07AF4C71836596F00913067 /* include */ = {
 			isa = PBXGroup;
 			children = (
-				D07F249E183C6FD000A5ABD0 /* buffio.h */,
-				D07F249F183C6FD000A5ABD0 /* platform.h */,
-				D07F24A0183C6FD000A5ABD0 /* tidy.h */,
-				D07F24A1183C6FD000A5ABD0 /* tidyenum.h */,
+				D0C9A88C183C8C65000BFC72 /* buffio.h */,
+				D0C9A88D183C8C65000BFC72 /* platform.h */,
+				D0C9A88E183C8C65000BFC72 /* tidy.h */,
+				D0C9A88F183C8C65000BFC72 /* tidyenum.h */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -304,56 +304,56 @@
 		D07AF4CD1836596F00913067 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				D07F24A2183C6FD900A5ABD0 /* access.c */,
-				D07F24A3183C6FD900A5ABD0 /* access.h */,
-				D07F24A4183C6FD900A5ABD0 /* alloc.c */,
-				D07F24A5183C6FD900A5ABD0 /* attrask.c */,
-				D07F24A6183C6FD900A5ABD0 /* attrdict.c */,
-				D07F24A7183C6FD900A5ABD0 /* attrdict.h */,
-				D07F24A8183C6FD900A5ABD0 /* attrget.c */,
-				D07F24A9183C6FD900A5ABD0 /* attrs.c */,
-				D07F24AA183C6FD900A5ABD0 /* attrs.h */,
-				D07F24AB183C6FD900A5ABD0 /* buffio.c */,
-				D07F24AC183C6FD900A5ABD0 /* charsets.c */,
-				D07F24AD183C6FD900A5ABD0 /* charsets.h */,
-				D07F24AE183C6FD900A5ABD0 /* clean.c */,
-				D07F24AF183C6FD900A5ABD0 /* clean.h */,
-				D07F24B0183C6FD900A5ABD0 /* config.c */,
-				D07F24B1183C6FD900A5ABD0 /* config.h */,
-				D07F24B2183C6FD900A5ABD0 /* entities.c */,
-				D07F24B3183C6FD900A5ABD0 /* entities.h */,
-				D07F24B4183C6FD900A5ABD0 /* fileio.c */,
-				D07F24B5183C6FD900A5ABD0 /* fileio.h */,
-				D07F24B6183C6FD900A5ABD0 /* forward.h */,
-				D07F24B7183C6FD900A5ABD0 /* gdoc.c */,
-				D07F24B8183C6FD900A5ABD0 /* gdoc.h */,
-				D07F24B9183C6FD900A5ABD0 /* iconvtc.c */,
-				D07F24BA183C6FD900A5ABD0 /* iconvtc.h */,
-				D07F24BB183C6FD900A5ABD0 /* istack.c */,
-				D07F24BC183C6FD900A5ABD0 /* lexer.c */,
-				D07F24BD183C6FD900A5ABD0 /* lexer.h */,
-				D07F24BE183C6FD900A5ABD0 /* localize.c */,
-				D07F24BF183C6FD900A5ABD0 /* mappedio.c */,
-				D07F24C0183C6FD900A5ABD0 /* mappedio.h */,
-				D07F24C1183C6FD900A5ABD0 /* message.h */,
-				D07F24C2183C6FD900A5ABD0 /* parser.c */,
-				D07F24C3183C6FD900A5ABD0 /* parser.h */,
-				D07F24C4183C6FD900A5ABD0 /* pprint.c */,
-				D07F24C5183C6FD900A5ABD0 /* pprint.h */,
-				D07F24C6183C6FD900A5ABD0 /* streamio.c */,
-				D07F24C7183C6FD900A5ABD0 /* streamio.h */,
-				D07F24C8183C6FD900A5ABD0 /* tagask.c */,
-				D07F24C9183C6FD900A5ABD0 /* tags.c */,
-				D07F24CA183C6FD900A5ABD0 /* tags.h */,
-				D07F24CB183C6FD900A5ABD0 /* tidy-int.h */,
-				D07F24CC183C6FD900A5ABD0 /* tidylib.c */,
-				D07F24CD183C6FD900A5ABD0 /* tmbstr.c */,
-				D07F24CE183C6FD900A5ABD0 /* tmbstr.h */,
-				D07F24CF183C6FD900A5ABD0 /* utf8.c */,
-				D07F24D0183C6FD900A5ABD0 /* utf8.h */,
-				D07F24D1183C6FD900A5ABD0 /* version.h */,
-				D07F24D2183C6FD900A5ABD0 /* win32tc.c */,
-				D07F24D3183C6FD900A5ABD0 /* win32tc.h */,
+				D0C9A890183C8C7F000BFC72 /* access.c */,
+				D0C9A891183C8C7F000BFC72 /* access.h */,
+				D0C9A892183C8C7F000BFC72 /* alloc.c */,
+				D0C9A893183C8C7F000BFC72 /* attrask.c */,
+				D0C9A894183C8C7F000BFC72 /* attrdict.c */,
+				D0C9A895183C8C7F000BFC72 /* attrdict.h */,
+				D0C9A896183C8C7F000BFC72 /* attrget.c */,
+				D0C9A897183C8C7F000BFC72 /* attrs.c */,
+				D0C9A898183C8C7F000BFC72 /* attrs.h */,
+				D0C9A899183C8C7F000BFC72 /* buffio.c */,
+				D0C9A89A183C8C7F000BFC72 /* charsets.c */,
+				D0C9A89B183C8C7F000BFC72 /* charsets.h */,
+				D0C9A89C183C8C7F000BFC72 /* clean.c */,
+				D0C9A89D183C8C7F000BFC72 /* clean.h */,
+				D0C9A89E183C8C7F000BFC72 /* config.c */,
+				D0C9A89F183C8C7F000BFC72 /* config.h */,
+				D0C9A8A0183C8C7F000BFC72 /* entities.c */,
+				D0C9A8A1183C8C7F000BFC72 /* entities.h */,
+				D0C9A8A2183C8C7F000BFC72 /* fileio.c */,
+				D0C9A8A3183C8C7F000BFC72 /* fileio.h */,
+				D0C9A8A4183C8C7F000BFC72 /* forward.h */,
+				D0C9A8A5183C8C7F000BFC72 /* gdoc.c */,
+				D0C9A8A6183C8C7F000BFC72 /* gdoc.h */,
+				D0C9A8A7183C8C7F000BFC72 /* iconvtc.c */,
+				D0C9A8A8183C8C7F000BFC72 /* iconvtc.h */,
+				D0C9A8A9183C8C7F000BFC72 /* istack.c */,
+				D0C9A8AA183C8C7F000BFC72 /* lexer.c */,
+				D0C9A8AB183C8C7F000BFC72 /* lexer.h */,
+				D0C9A8AC183C8C7F000BFC72 /* localize.c */,
+				D0C9A8AD183C8C7F000BFC72 /* mappedio.c */,
+				D0C9A8AE183C8C7F000BFC72 /* mappedio.h */,
+				D0C9A8AF183C8C7F000BFC72 /* message.h */,
+				D0C9A8B0183C8C7F000BFC72 /* parser.c */,
+				D0C9A8B1183C8C7F000BFC72 /* parser.h */,
+				D0C9A8B2183C8C7F000BFC72 /* pprint.c */,
+				D0C9A8B3183C8C7F000BFC72 /* pprint.h */,
+				D0C9A8B4183C8C7F000BFC72 /* streamio.c */,
+				D0C9A8B5183C8C7F000BFC72 /* streamio.h */,
+				D0C9A8B6183C8C7F000BFC72 /* tagask.c */,
+				D0C9A8B7183C8C7F000BFC72 /* tags.c */,
+				D0C9A8B8183C8C7F000BFC72 /* tags.h */,
+				D0C9A8B9183C8C7F000BFC72 /* tidy-int.h */,
+				D0C9A8BA183C8C7F000BFC72 /* tidylib.c */,
+				D0C9A8BB183C8C7F000BFC72 /* tmbstr.c */,
+				D0C9A8BC183C8C7F000BFC72 /* tmbstr.h */,
+				D0C9A8BD183C8C7F000BFC72 /* utf8.c */,
+				D0C9A8BE183C8C7F000BFC72 /* utf8.h */,
+				D0C9A8BF183C8C7F000BFC72 /* version.h */,
+				D0C9A8C0183C8C7F000BFC72 /* win32tc.c */,
+				D0C9A8C1183C8C7F000BFC72 /* win32tc.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -420,13 +420,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0107935183C738F00120B57 /* Batch.xib in Resources */,
-				D0107936183C738F00120B57 /* MainMenu.xib in Resources */,
 				D0107937183C738F00120B57 /* OptionPane.xib in Resources */,
 				D0107938183C738F00120B57 /* Preferences.xib in Resources */,
 				D0107939183C738F00120B57 /* TidyDocument.xib in Resources */,
 				D016A945182FD80700712C60 /* Images.xcassets in Resources */,
 				D0A4E1D6183A556300999979 /* optionsInEffect.txt in Resources */,
 				D0A4E1D7183A556300999979 /* optionsTypesExceptions.txt in Resources */,
+				D0D3BEB8183C87C500692225 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,58 +437,50 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D07F24ED183C6FD900A5ABD0 /* utf8.c in Sources */,
+				D0C9A8DB183C8C7F000BFC72 /* utf8.c in Sources */,
 				D07AF49F1836593A00913067 /* JSDTidy.m in Sources */,
-				D07F24EC183C6FD900A5ABD0 /* tmbstr.c in Sources */,
-				D07F24E7183C6FD900A5ABD0 /* pprint.c in Sources */,
-				D07F24EB183C6FD900A5ABD0 /* tidylib.c in Sources */,
+				D0C9A8DA183C8C7F000BFC72 /* tmbstr.c in Sources */,
+				D0C9A8D5183C8C7F000BFC72 /* pprint.c in Sources */,
+				D0C9A8D9183C8C7F000BFC72 /* tidylib.c in Sources */,
 				D07AF499183658D300913067 /* TidyDocument.m in Sources */,
-				D07F24D5183C6FD900A5ABD0 /* alloc.c in Sources */,
-				D07F24EA183C6FD900A5ABD0 /* tags.c in Sources */,
-				D07F24D7183C6FD900A5ABD0 /* attrdict.c in Sources */,
-				D07F24E0183C6FD900A5ABD0 /* gdoc.c in Sources */,
-				D07AF4A81836594900913067 /* JSDTableColumn.m in Sources */,
-				D07F24D8183C6FD900A5ABD0 /* attrget.c in Sources */,
-				D07F24DB183C6FD900A5ABD0 /* charsets.c in Sources */,
-				D07F24E1183C6FD900A5ABD0 /* iconvtc.c in Sources */,
-				D07F24E5183C6FD900A5ABD0 /* mappedio.c in Sources */,
-				D07AF4AA1836594900913067 /* JSDTextView.m in Sources */,
-				D07AF4A91836594900913067 /* JSDTableView.m in Sources */,
-				D07F24DF183C6FD900A5ABD0 /* fileio.c in Sources */,
-				D07F24E3183C6FD900A5ABD0 /* lexer.c in Sources */,
-				D07AF4AB1836594900913067 /* TreeNode.m in Sources */,
+				D0C9A8C3183C8C7F000BFC72 /* alloc.c in Sources */,
+				D0C9A8D8183C8C7F000BFC72 /* tags.c in Sources */,
+				D0C9A8C5183C8C7F000BFC72 /* attrdict.c in Sources */,
+				D0C9A8CE183C8C7F000BFC72 /* gdoc.c in Sources */,
+				D0D3BEC2183C897800692225 /* JSDTableColumn.m in Sources */,
+				D0C9A8C6183C8C7F000BFC72 /* attrget.c in Sources */,
+				D0C9A8C9183C8C7F000BFC72 /* charsets.c in Sources */,
+				D0C9A8CF183C8C7F000BFC72 /* iconvtc.c in Sources */,
+				D0C9A8D3183C8C7F000BFC72 /* mappedio.c in Sources */,
+				D0D3BEC4183C897800692225 /* JSDTextView.m in Sources */,
 				D016A936182FD80700712C60 /* main.m in Sources */,
-				D07F24D9183C6FD900A5ABD0 /* attrs.c in Sources */,
-				D07F24D6183C6FD900A5ABD0 /* attrask.c in Sources */,
-				D07F24E9183C6FD900A5ABD0 /* tagask.c in Sources */,
+				D0C9A8CD183C8C7F000BFC72 /* fileio.c in Sources */,
+				D0C9A8D1183C8C7F000BFC72 /* lexer.c in Sources */,
 				D07AF495183658D300913067 /* AppController.m in Sources */,
 				D07AF498183658D300913067 /* PreferenceController.m in Sources */,
-				D07F24DC183C6FD900A5ABD0 /* clean.c in Sources */,
-				D07F24DD183C6FD900A5ABD0 /* config.c in Sources */,
-				D07F24DA183C6FD900A5ABD0 /* buffio.c in Sources */,
-				D07F24E4183C6FD900A5ABD0 /* localize.c in Sources */,
-				D07F24DE183C6FD900A5ABD0 /* entities.c in Sources */,
+				D0C9A8C7183C8C7F000BFC72 /* attrs.c in Sources */,
+				D0C9A8C4183C8C7F000BFC72 /* attrask.c in Sources */,
+				D0C9A8D7183C8C7F000BFC72 /* tagask.c in Sources */,
 				D07AF497183658D300913067 /* OptionPaneController.m in Sources */,
 				D07AF496183658D300913067 /* BatchController.m in Sources */,
-				D07F24E2183C6FD900A5ABD0 /* istack.c in Sources */,
-				D07F24EE183C6FD900A5ABD0 /* win32tc.c in Sources */,
-				D07F24E6183C6FD900A5ABD0 /* parser.c in Sources */,
-				D07F24D4183C6FD900A5ABD0 /* access.c in Sources */,
-				D07F24E8183C6FD900A5ABD0 /* streamio.c in Sources */,
+				D0C9A8CA183C8C7F000BFC72 /* clean.c in Sources */,
+				D0C9A8CB183C8C7F000BFC72 /* config.c in Sources */,
+				D0C9A8C8183C8C7F000BFC72 /* buffio.c in Sources */,
+				D0C9A8D2183C8C7F000BFC72 /* localize.c in Sources */,
+				D0C9A8CC183C8C7F000BFC72 /* entities.c in Sources */,
+				D0D3BEC5183C897800692225 /* TreeNode.m in Sources */,
+				D0D3BEC3183C897800692225 /* JSDTableView.m in Sources */,
+				D0C9A8D0183C8C7F000BFC72 /* istack.c in Sources */,
+				D0C9A8DC183C8C7F000BFC72 /* win32tc.c in Sources */,
+				D0C9A8D4183C8C7F000BFC72 /* parser.c in Sources */,
+				D0C9A8C2183C8C7F000BFC72 /* access.c in Sources */,
+				D0C9A8D6183C8C7F000BFC72 /* streamio.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		D016A941182FD80700712C60 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D016A942182FD80700712C60 /* Base */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
 		D07AF4781836581E00913067 /* Batch.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -535,6 +527,14 @@
 				D0A4E1D5183A556300999979 /* Base */,
 			);
 			name = optionsTypesExceptions.txt;
+			sourceTree = "<group>";
+		};
+		D0D3BEB6183C87C500692225 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0D3BEB7183C87C500692225 /* Base */,
+			);
+			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
