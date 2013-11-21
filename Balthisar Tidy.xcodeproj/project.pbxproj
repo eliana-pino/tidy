@@ -24,6 +24,7 @@
 		D07AF49F1836593A00913067 /* JSDTidyDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF49E1836593A00913067 /* JSDTidyDocument.m */; };
 		D0A4E1D6183A556300999979 /* optionsInEffect.txt in Resources */ = {isa = PBXBuildFile; fileRef = D0A4E1D2183A556300999979 /* optionsInEffect.txt */; };
 		D0A4E1D7183A556300999979 /* optionsTypesExceptions.txt in Resources */ = {isa = PBXBuildFile; fileRef = D0A4E1D4183A556300999979 /* optionsTypesExceptions.txt */; };
+		D0BE6EDB183DEB7A00029BF0 /* NSTextView+JSDExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D0BE6EDA183DEB7A00029BF0 /* NSTextView+JSDExtensions.m */; };
 		D0C9A8C2183C8C7F000BFC72 /* access.c in Sources */ = {isa = PBXBuildFile; fileRef = D0C9A890183C8C7F000BFC72 /* access.c */; };
 		D0C9A8C3183C8C7F000BFC72 /* alloc.c in Sources */ = {isa = PBXBuildFile; fileRef = D0C9A892183C8C7F000BFC72 /* alloc.c */; };
 		D0C9A8C4183C8C7F000BFC72 /* attrask.c in Sources */ = {isa = PBXBuildFile; fileRef = D0C9A893183C8C7F000BFC72 /* attrask.c */; };
@@ -89,6 +90,8 @@
 		D07AF49E1836593A00913067 /* JSDTidyDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSDTidyDocument.m; path = Classes/JSDTidy/JSDTidyDocument.m; sourceTree = "<group>"; };
 		D0A4E1D3183A556300999979 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = "balthisar tidy/Base.lproj/optionsInEffect.txt"; sourceTree = SOURCE_ROOT; };
 		D0A4E1D5183A556300999979 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = "balthisar tidy/Base.lproj/optionsTypesExceptions.txt"; sourceTree = SOURCE_ROOT; };
+		D0BE6ED9183DEB7A00029BF0 /* NSTextView+JSDExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSTextView+JSDExtensions.h"; path = "balthisar tidy/Classes/Support Pieces/NSTextView+JSDExtensions.h"; sourceTree = SOURCE_ROOT; };
+		D0BE6EDA183DEB7A00029BF0 /* NSTextView+JSDExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSTextView+JSDExtensions.m"; path = "balthisar tidy/Classes/Support Pieces/NSTextView+JSDExtensions.m"; sourceTree = SOURCE_ROOT; };
 		D0C9A88C183C8C65000BFC72 /* buffio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = buffio.h; path = "balthisar tidy/tidylib5-src/include/buffio.h"; sourceTree = SOURCE_ROOT; };
 		D0C9A88D183C8C65000BFC72 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = platform.h; path = "balthisar tidy/tidylib5-src/include/platform.h"; sourceTree = SOURCE_ROOT; };
 		D0C9A88E183C8C65000BFC72 /* tidy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tidy.h; path = "balthisar tidy/tidylib5-src/include/tidy.h"; sourceTree = SOURCE_ROOT; };
@@ -168,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				D016A92F182FD80700712C60 /* Balthisar Tidy */,
+				D07AF4AC1836596E00913067 /* tidylib-src */,
 				D016A928182FD80700712C60 /* Frameworks */,
 				D016A927182FD80700712C60 /* Products */,
 			);
@@ -205,7 +209,6 @@
 			isa = PBXGroup;
 			children = (
 				D026169F1836F927002ABD72 /* Classes */,
-				D07AF4AC1836596E00913067 /* tidylib-src */,
 				D07AF49A183658F100913067 /* Base.lproj */,
 				D016A944182FD80700712C60 /* Images.xcassets */,
 				D026169E1836F48A002ABD72 /* Balthisar Tidy.entitlements */,
@@ -278,6 +281,8 @@
 				D0D3BEBF183C897800692225 /* JSDTextView.m */,
 				D0D3BEC0183C897800692225 /* TreeNode.h */,
 				D0D3BEC1183C897800692225 /* TreeNode.m */,
+				D0BE6ED9183DEB7A00029BF0 /* NSTextView+JSDExtensions.h */,
+				D0BE6EDA183DEB7A00029BF0 /* NSTextView+JSDExtensions.m */,
 			);
 			name = "Support Pieces";
 			sourceTree = "<group>";
@@ -288,7 +293,8 @@
 				D07AF4C71836596F00913067 /* include */,
 				D07AF4CD1836596F00913067 /* src */,
 			);
-			path = "tidylib-src";
+			name = "tidylib-src";
+			path = "Balthisar Tidy/tidylib-src";
 			sourceTree = "<group>";
 		};
 		D07AF4C71836596F00913067 /* include */ = {
@@ -462,6 +468,7 @@
 				D07AF495183658D300913067 /* AppController.m in Sources */,
 				D07AF498183658D300913067 /* PreferenceController.m in Sources */,
 				D0C9A8C7183C8C7F000BFC72 /* attrs.c in Sources */,
+				D0BE6EDB183DEB7A00029BF0 /* NSTextView+JSDExtensions.m in Sources */,
 				D0C9A8C4183C8C7F000BFC72 /* attrask.c in Sources */,
 				D0C9A8D7183C8C7F000BFC72 /* tagask.c in Sources */,
 				D07AF497183658D300913067 /* OptionPaneController.m in Sources */,

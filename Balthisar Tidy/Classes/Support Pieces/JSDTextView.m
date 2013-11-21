@@ -404,19 +404,20 @@ const float LargeNumberForText = 1.0e7;
 //========================================================================================================
 @implementation JSDTextViewSub
 
-/********************************************************************
-    highlightLightedLine:
-       sets _litLine to be highlighted.
- *********************************************************************/
--(void)highlightLightedLine {
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	highlightLightedLine:
+		sets _litLine to be highlighted.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+-(void)highlightLightedLine
+{
     // setup the variables we need for the loop
-    NSRange aRange;						// a range for counting lines
-    NSRange lineCharRange;					// a range for counting lines
-    int i = 0;							// glyph counter
-    int j = 1; 							// line counter
-    NSUInteger k;							// column counter
-    NSRect r;							// rectange holder
-    NSLayoutManager *lm = [self layoutManager];			// get layout manager.
+    NSRange aRange;								// a range for counting lines
+    NSRange lineCharRange;						// a range for counting lines
+    int i = 0;									// glyph counter
+    int j = 1;									// line counter
+    NSUInteger k;								// column counter
+    NSRect r;									// rectange holder
+    NSLayoutManager *lm = [self layoutManager];	// get layout manager.
 
     // Remove any existing coloring.
     [lm removeTemporaryAttribute:NSBackgroundColorAttributeName forCharacterRange:NSMakeRange(0, [[self textStorage] length])];
@@ -431,8 +432,8 @@ const float LargeNumberForText = 1.0e7;
                 k = [lm characterIndexForGlyphAtIndex:i] + _litColumn - 1;			// the column position
                 lineCharRange = [lm characterRangeForGlyphRange:aRange actualGlyphRange:NULL];	// the whole role range
                 // color them
-                [lm addTemporaryAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[NSColor cyanColor], NSBackgroundColorAttributeName, nil] forCharacterRange:lineCharRange];
-                [lm addTemporaryAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[NSColor magentaColor], NSBackgroundColorAttributeName, nil] forCharacterRange:NSMakeRange(k, 1)];
+                [lm addTemporaryAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[NSColor secondarySelectedControlColor], NSBackgroundColorAttributeName, nil] forCharacterRange:lineCharRange];
+                [lm addTemporaryAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[NSColor selectedTextBackgroundColor], NSBackgroundColorAttributeName, nil] forCharacterRange:NSMakeRange(k, 1)];
             } // if
             i += [[[self string] substringWithRange:aRange] length];		// advance glyph counter to EOL
             j ++;								// increment the line number
