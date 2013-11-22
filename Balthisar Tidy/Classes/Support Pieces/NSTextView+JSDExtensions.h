@@ -6,7 +6,7 @@
 
 	These extensions will add some features to any NSTextView
 
-		o Highlight a row and character in the text view.
+		o Highlight a logical line number and column in the text view.
 		o Turn word-wrapping on and off.
 		o Own and instantiate its own NoodleLineNumberView.
 
@@ -38,11 +38,13 @@
 
 	@property (nonatomic) NSInteger highlitLine;			// Highlight this row number (0 for none).
 	@property (nonatomic) NSInteger highlitColumn;			// Highlight this column of the row (0 for none).
-	@property (nonatomic) BOOL ShowsHighlight;				// Sets/Indicates the current highlight status.
+	@property (nonatomic) BOOL ShowsHighlight;				// Sets/Indicates the current highlight state.
+
+	@property (nonatomic) BOOL WordwrapsText;	// Sets/Indicates the current wordwrap state.
 
 
-- (void)scrollLineToVisible:(NSInteger)line;
+- (void)scrollLineToVisible:(NSInteger)line;				// Ensures that a logical line is visible in the view.
 
-- (void)highLiteLine:(NSInteger)line Column:(NSInteger)column;	// Additionally scrolls the higlighted line into view.
+- (void)highlightLine:(NSInteger)line Column:(NSInteger)column;	// The above, including scrolling into view.
 
 @end

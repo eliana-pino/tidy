@@ -6,7 +6,7 @@
 
 	These extensions will add some features to any NSTextView
 
-		o Highlight a row and character in the text view.
+		o Highlight a logical line number and column in the text view.
 		o Turn word-wrapping on and off.
 		o Own and instantiate its own NoodleLineNumberView.
 
@@ -45,7 +45,8 @@
 
 static char const * const JSDtagLine = "JSDtagLine";
 static char const * const JSDtagColumn = "JSDtagColumn";
-static char const * const JSDtagIsHighlit = "JSDtagIsHighlit";
+static char const * const JSDtagShowsHighlight = "JSDtagShowsHighlight";
+static char const * const JSDtagWordwrapsText = "JSDtagWordwrapsText";
 
 
 #pragma mark -
@@ -57,7 +58,7 @@ static char const * const JSDtagIsHighlit = "JSDtagIsHighlit";
 
 
 #pragma mark -
-#pragma mark Added property accessors and mutators
+#pragma mark HIGHLIGHT property accessors and mutators
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
@@ -105,11 +106,11 @@ static char const * const JSDtagIsHighlit = "JSDtagIsHighlit";
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	highlit
+	ShowsHighlight
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (BOOL)ShowsHighlight
 {
-	NSNumber *item = objc_getAssociatedObject(self, JSDtagIsHighlit);
+	NSNumber *item = objc_getAssociatedObject(self, JSDtagShowsHighlight);
 
 	if (item != nil)
 	{
@@ -123,7 +124,7 @@ static char const * const JSDtagIsHighlit = "JSDtagIsHighlit";
 - (void)setShowsHighlight:(BOOL)state
 {
 	// Remember the new setting
-	objc_setAssociatedObject(self, JSDtagIsHighlit, [NSNumber numberWithBool:state], OBJC_ASSOCIATION_COPY_NONATOMIC);
+	objc_setAssociatedObject(self, JSDtagShowsHighlight, [NSNumber numberWithBool:state], OBJC_ASSOCIATION_COPY_NONATOMIC);
 
 	if (!state)
 	{
@@ -150,21 +151,22 @@ static char const * const JSDtagIsHighlit = "JSDtagIsHighlit";
 			// The line number counting loop
 			while ( i < [lm numberOfGlyphs] )
 			{
-				r = [lm lineFragmentRectForGlyphAtIndex:i effectiveRange:&aRange];	// Get the range for the current line.
+				// Retrieve the rect |r| and range |aRange| for the current line.
+				r = [lm lineFragmentRectForGlyphAtIndex:i effectiveRange:&aRange];
 
 				// If the current line is what we're looking for, then highlight it
 				if (j == litLine)
 				{
-					k = [lm characterIndexForGlyphAtIndex:i] + litColumn - 1;						// the column position
+					k = [lm characterIndexForGlyphAtIndex:i] + litColumn - 1;						// Column position
 
-					lineCharRange = [lm characterRangeForGlyphRange:aRange actualGlyphRange:NULL];	// the whole row range
+					lineCharRange = [lm characterRangeForGlyphRange:aRange actualGlyphRange:NULL];	// Whole row range
 
-					// color them
+					// Color them
 					[lm addTemporaryAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[NSColor secondarySelectedControlColor], NSBackgroundColorAttributeName, nil] forCharacterRange:lineCharRange];
 					[lm addTemporaryAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[NSColor selectedTextBackgroundColor], NSBackgroundColorAttributeName, nil] forCharacterRange:NSMakeRange(k, 1)];
 				}
 
-				i += [[[self string] substringWithRange:aRange] length];							// advance glyph counter to EOL
+				i += [[[self string] substringWithRange:aRange] length];							// Advance glyph counter to EOL
 				j ++;
 			}
 		}
@@ -178,57 +180,97 @@ static char const * const JSDtagIsHighlit = "JSDtagIsHighlit";
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)scrollLineToVisible:(NSInteger)line
 {
+	// setup the variables we need for the loop
+	NSRange aRange;								// Range for counting lines
+	NSInteger i = 0;							// Glyph counter
+	NSInteger j = 1; 							// Line counter
+	NSRect r;									// Rectange holder
+	NSLayoutManager *lm = [self layoutManager];	// Layout manager
+	if (line >= 1)
+	{
+		// The line number counting loop
+		while ( i < [lm numberOfGlyphs] )
+		{
+			// Retrieve the rect |r| and range |aRange| for the current line.
+			r = [lm lineFragmentRectForGlyphAtIndex:i effectiveRange:&aRange];
 
+			// If the current line is what we're looking for, then scroll to it.
+			if (j == line)
+			{
+				[self scrollRangeToVisible:aRange];
+			}
+
+			i += [[[self string] substringWithRange:aRange] length];	// Advance glyph counter to EOL
+			j ++;														// Increment the line number
+		}
+	}
 }
 
+
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	highLiteLine:
+	highlightLine:
 		Sets |highlitLine|, |highlitColumn|, and |highlit| in
 		one go, as well as scrolls that line into view.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)highLiteLine:(NSInteger)line Column:(NSInteger)column
+- (void)highlightLine:(NSInteger)line Column:(NSInteger)column
 {
-
+	[self setHighlitLine:line];
+	[self setHighlitColumn:column];
+	[self setShowsHighlight:YES];
+	[self scrollLineToVisible:line];
 }
 
+
+#pragma mark -
+#pragma mark WORDWRAP property accessors and mutators
+
+
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
- highlightLightedLine:
- sets _litLine to be highlighted.
+	WordwrapsText
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-/*
-- (void)highlightLightedLine
+- (BOOL)WordwrapsText
 {
-    // setup the variables we need for the loop
-    NSRange aRange;								// a range for counting lines
-    NSRange lineCharRange;						// a range for counting lines
-    int i = 0;									// glyph counter
-    int j = 1;									// line counter
-    NSUInteger k;								// column counter
-    NSRect r;									// rectange holder
-    NSLayoutManager *lm = [self layoutManager];	// get layout manager.
+	NSNumber *item = objc_getAssociatedObject(self, JSDtagWordwrapsText);
 
-    // Remove any existing coloring.
-    [lm removeTemporaryAttribute:NSBackgroundColorAttributeName forCharacterRange:NSMakeRange(0, [[self textStorage] length])];
+	if (item != nil)
+	{
+		return [item boolValue];
 
-    // only highlight if there's a row to highlight.
-    if (_litLine >= 1) {
-        // the line number counting loop
-        while ( i < [lm numberOfGlyphs] ) {
-            r = [lm lineFragmentRectForGlyphAtIndex:i effectiveRange:&aRange];	// get the range for the current line.
-            // if the current line is what we're looking for, then highlight it!
-            if (j == _litLine) {
-                k = [lm characterIndexForGlyphAtIndex:i] + _litColumn - 1;			// the column position
-                lineCharRange = [lm characterRangeForGlyphRange:aRange actualGlyphRange:NULL];	// the whole role range
-                // color them
-                [lm addTemporaryAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[NSColor cyanColor], NSBackgroundColorAttributeName, nil] forCharacterRange:lineCharRange];
-                [lm addTemporaryAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[NSColor magentaColor], NSBackgroundColorAttributeName, nil] forCharacterRange:NSMakeRange(k, 1)];
-            } // if
-            i += [[[self string] substringWithRange:aRange] length];		// advance glyph counter to EOL
-            j ++;								// increment the line number
-        } // while
-    } // if
-} // highlightLightedLine
-*/
+	} else {
+		return YES;
+	}
+}
 
+- (void)setWordwrapsText:(BOOL)state
+{
+
+	// Get current state
+	BOOL currentState = [self WordwrapsText];
+
+	if (state != currentState)
+	{
+		// Remember the new setting
+		objc_setAssociatedObject(self, JSDtagWordwrapsText, [NSNumber numberWithBool:state], OBJC_ASSOCIATION_COPY_NONATOMIC);
+
+        if (!state)
+		{
+			NSSize layoutSize = NSMakeSize(FLT_MAX, FLT_MAX);
+
+			[[self enclosingScrollView] setHasHorizontalScroller:YES];
+			[self setHorizontallyResizable:YES];
+			[self setMaxSize:layoutSize];
+			[[self textContainer] setContainerSize:layoutSize];
+			[[self textContainer] setWidthTracksTextView:NO];
+
+		} else {
+
+			NSSize layoutSize = NSMakeSize([[self enclosingScrollView] contentSize].width , FLT_MAX);
+
+			[[self enclosingScrollView] setHasHorizontalScroller:NO];
+			[[self textContainer] setContainerSize:layoutSize];
+			[[self textContainer] setWidthTracksTextView:YES];
+		}
+    }
+}
 
 @end

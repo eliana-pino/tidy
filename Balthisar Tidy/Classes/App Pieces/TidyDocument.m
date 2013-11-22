@@ -55,6 +55,7 @@
 #import "TidyDocument.h"
 #import "PreferenceController.h"
 #import "JSDTidyDocument.h"
+#import "NSTextView+JSDExtensions.h"
 
 @implementation TidyDocument
 
@@ -275,10 +276,12 @@
 {
     [super windowControllerDidLoadNib:aController];				// inherited method needs to be called.
     
-    // configure the view settings that we can't in IB.
-    [self configureViewSettings:[sourceView textView]];				// setup the sourceView's options.
-    [[sourceView textView] setEditable:YES];					// make the sourceView editable.
-    [self configureViewSettings:[tidyView textView]];				// setup the tidyView's options.
+    [sourceView setEditable:YES];					// make the sourceView editable.
+	[sourceView setWordwrapsText:NO];
+	BOOL tmpSetsWordwrapsText = sourceView.WordwrapsText;
+	 tmpSetsWordwrapsText = sourceView.WordwrapsText;
+	 tmpSetsWordwrapsText = sourceView.WordwrapsText;
+
 
     // honor the defaults system defaults.
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];		// get the default default system
@@ -426,12 +429,12 @@
 {
     NSInteger errorViewRow = [errorView selectedRow];
     if (errorViewRow >= 0) {
-        int highlightRow = [[[[tidyProcess errorArray] objectAtIndex:errorViewRow] objectForKey:@"line"] intValue];
-        int highlightCol = [[[[tidyProcess errorArray] objectAtIndex:errorViewRow] objectForKey:@"column"] intValue];
-        [sourceView setHighlightedLine:highlightRow column:highlightCol];
+		NSInteger row = [[[[tidyProcess errorArray] objectAtIndex:errorViewRow] objectForKey:@"line"] intValue];
+		NSInteger col = [[[[tidyProcess errorArray] objectAtIndex:errorViewRow] objectForKey:@"column"] intValue];
+		[sourceView highlightLine:row Column:col];
     }
     else
-        [sourceView setHighlightedLine:0 column:0];
+        [sourceView setShowsHighlight:NO];
 }
 
 

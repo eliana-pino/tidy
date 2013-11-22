@@ -33,13 +33,12 @@
 #import <Cocoa/Cocoa.h>
 #import "JSDTidyDocument.h"
 #import "OptionPaneController.h"
-#import "JSDTextView.h"
 
 @interface TidyDocument : NSDocument
 {
 	// view outlets
-	IBOutlet JSDTextView *sourceView;		// pointer to the source HTML view.
-	IBOutlet JSDTextView *tidyView;			// pointer to the tidy'd HTML view.
+	IBOutlet NSTextView *sourceView;		// pointer to the source HTML view.
+	IBOutlet NSTextView *tidyView;			// pointer to the tidy'd HTML view.
 	IBOutlet NSTableView *errorView;		// pointer to where to display the error messages.
 
 	// items for the option controller and pane

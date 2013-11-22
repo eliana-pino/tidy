@@ -54,7 +54,6 @@
 		D0C9A8DC183C8C7F000BFC72 /* win32tc.c in Sources */ = {isa = PBXBuildFile; fileRef = D0C9A8C0183C8C7F000BFC72 /* win32tc.c */; };
 		D0D3BEB8183C87C500692225 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0D3BEB6183C87C500692225 /* MainMenu.xib */; };
 		D0D3BEC2183C897800692225 /* JSDTableColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D3BEBB183C897800692225 /* JSDTableColumn.m */; };
-		D0D3BEC4183C897800692225 /* JSDTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D3BEBF183C897800692225 /* JSDTextView.m */; };
 		D0D3BEC5183C897800692225 /* TreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D3BEC1183C897800692225 /* TreeNode.m */; };
 /* End PBXBuildFile section */
 
@@ -149,8 +148,6 @@
 		D0D3BEB7183C87C500692225 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = "balthisar tidy/Base.lproj/MainMenu.xib"; sourceTree = SOURCE_ROOT; };
 		D0D3BEBA183C897800692225 /* JSDTableColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSDTableColumn.h; path = "../balthisar tidy/Classes/Support Pieces/JSDTableColumn.h"; sourceTree = "<group>"; };
 		D0D3BEBB183C897800692225 /* JSDTableColumn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSDTableColumn.m; path = "../balthisar tidy/Classes/Support Pieces/JSDTableColumn.m"; sourceTree = "<group>"; };
-		D0D3BEBE183C897800692225 /* JSDTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSDTextView.h; path = "../balthisar tidy/Classes/Support Pieces/JSDTextView.h"; sourceTree = "<group>"; };
-		D0D3BEBF183C897800692225 /* JSDTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSDTextView.m; path = "../balthisar tidy/Classes/Support Pieces/JSDTextView.m"; sourceTree = "<group>"; };
 		D0D3BEC0183C897800692225 /* TreeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TreeNode.h; path = "../balthisar tidy/Classes/Support Pieces/TreeNode.h"; sourceTree = "<group>"; };
 		D0D3BEC1183C897800692225 /* TreeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TreeNode.m; path = "../balthisar tidy/Classes/Support Pieces/TreeNode.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -277,8 +274,6 @@
 			children = (
 				D0D3BEBA183C897800692225 /* JSDTableColumn.h */,
 				D0D3BEBB183C897800692225 /* JSDTableColumn.m */,
-				D0D3BEBE183C897800692225 /* JSDTextView.h */,
-				D0D3BEBF183C897800692225 /* JSDTextView.m */,
 				D0D3BEC0183C897800692225 /* TreeNode.h */,
 				D0D3BEC1183C897800692225 /* TreeNode.m */,
 				D0BE6ED9183DEB7A00029BF0 /* NSTextView+JSDExtensions.h */,
@@ -461,7 +456,6 @@
 				D0C9A8C9183C8C7F000BFC72 /* charsets.c in Sources */,
 				D0C9A8CF183C8C7F000BFC72 /* iconvtc.c in Sources */,
 				D0C9A8D3183C8C7F000BFC72 /* mappedio.c in Sources */,
-				D0D3BEC4183C897800692225 /* JSDTextView.m in Sources */,
 				D016A936182FD80700712C60 /* main.m in Sources */,
 				D0C9A8CD183C8C7F000BFC72 /* fileio.c in Sources */,
 				D0C9A8D1183C8C7F000BFC72 /* lexer.c in Sources */,
