@@ -24,40 +24,40 @@
                 <rect key="frame" x="0.0" y="0.0" width="664" height="380"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <splitView vertical="YES" id="385">
-                        <rect key="frame" x="0.0" y="10" width="644" height="368"/>
+                    <splitView focusRingType="none" dividerStyle="thin" vertical="YES" id="385">
+                        <rect key="frame" x="0.0" y="0.0" width="664" height="380"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <customView autoresizesSubviews="NO" id="384">
-                                <rect key="frame" x="0.0" y="0.0" width="321" height="368"/>
+                                <rect key="frame" x="0.0" y="0.0" width="350" height="380"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </customView>
-                            <splitView id="244">
-                                <rect key="frame" x="330" y="0.0" width="314" height="368"/>
+                            <splitView dividerStyle="thin" id="244">
+                                <rect key="frame" x="351" y="0.0" width="313" height="380"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <box autoresizesSubviews="NO" title="Source HTML" boxType="oldStyle" borderType="none" id="234">
-                                        <rect key="frame" x="0.0" y="0.0" width="314" height="110"/>
+                                    <box autoresizesSubviews="NO" title="Source HTML" borderType="none" id="234">
+                                        <rect key="frame" x="-3" y="0.0" width="319" height="123"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView">
-                                            <rect key="frame" x="0.0" y="0.0" width="314" height="96"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="319" height="105"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="KOJ-rh-VSQ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="314" height="96"/>
+                                                <scrollView autoresizesSubviews="NO" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="KOJ-rh-VSQ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="319" height="105"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <clipView key="contentView" id="gjN-sq-Uif">
-                                                        <rect key="frame" x="1" y="1" width="297" height="94"/>
+                                                        <rect key="frame" x="1" y="1" width="302" height="103"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <textView importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="LIi-0a-MJV">
-                                                                <rect key="frame" x="0.0" y="0.0" width="297" height="94"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="302" height="103"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <size key="minSize" width="297" height="94"/>
+                                                                <size key="minSize" width="302" height="103"/>
                                                                 <size key="maxSize" width="463" height="10000000"/>
                                                                 <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <size key="minSize" width="297" height="94"/>
+                                                                <size key="minSize" width="302" height="103"/>
                                                                 <size key="maxSize" width="463" height="10000000"/>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="-2" id="2Gm-Rg-YhE"/>
@@ -71,7 +71,7 @@
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                     <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="tfX-6u-K34">
-                                                        <rect key="frame" x="298" y="1" width="15" height="94"/>
+                                                        <rect key="frame" x="303" y="1" width="15" height="103"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                 </scrollView>
@@ -79,30 +79,30 @@
                                         </view>
                                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <font key="titleFont" metaFont="label"/>
+                                        <font key="titleFont" metaFont="titleBar"/>
                                     </box>
-                                    <box autoresizesSubviews="NO" title="Tidy’d HTML" boxType="oldStyle" borderType="none" id="236">
-                                        <rect key="frame" x="0.0" y="119" width="314" height="110"/>
+                                    <box autoresizesSubviews="NO" title="Tidy’d HTML" borderType="none" id="236">
+                                        <rect key="frame" x="-3" y="120" width="319" height="123"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView">
-                                            <rect key="frame" x="0.0" y="0.0" width="314" height="96"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="319" height="105"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="AzS-AA-hy1">
-                                                    <rect key="frame" x="0.0" y="0.0" width="314" height="96"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="319" height="105"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <clipView key="contentView" id="cwj-dT-Xd1">
-                                                        <rect key="frame" x="1" y="1" width="297" height="94"/>
+                                                        <rect key="frame" x="1" y="1" width="302" height="103"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <textView importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="Ecb-zM-Jyq">
-                                                                <rect key="frame" x="0.0" y="0.0" width="297" height="94"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="302" height="103"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <size key="minSize" width="297" height="94"/>
+                                                                <size key="minSize" width="302" height="103"/>
                                                                 <size key="maxSize" width="463" height="10000000"/>
                                                                 <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <size key="minSize" width="297" height="94"/>
+                                                                <size key="minSize" width="302" height="103"/>
                                                                 <size key="maxSize" width="463" height="10000000"/>
                                                             </textView>
                                                         </subviews>
@@ -113,7 +113,7 @@
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                     <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="SnX-ho-q7e">
-                                                        <rect key="frame" x="298" y="1" width="15" height="94"/>
+                                                        <rect key="frame" x="303" y="1" width="15" height="103"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                 </scrollView>
@@ -121,24 +121,24 @@
                                         </view>
                                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <font key="titleFont" metaFont="label"/>
+                                        <font key="titleFont" metaFont="titleBar"/>
                                     </box>
-                                    <box autoresizesSubviews="NO" title="Tidy Messages" boxType="oldStyle" borderType="none" id="238">
-                                        <rect key="frame" x="0.0" y="238" width="314" height="130"/>
+                                    <box autoresizesSubviews="NO" title="Tidy Messages" borderType="none" id="238">
+                                        <rect key="frame" x="-3" y="240" width="319" height="144"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView">
-                                            <rect key="frame" x="0.0" y="0.0" width="314" height="116"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="319" height="126"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <scrollView horizontalLineScroll="16" horizontalPageScroll="10" verticalLineScroll="16" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="399">
-                                                    <rect key="frame" x="0.0" y="0.0" width="314" height="116"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="319" height="126"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <clipView key="contentView" id="bX9-bB-xqE">
-                                                        <rect key="frame" x="1" y="17" width="297" height="83"/>
+                                                        <rect key="frame" x="1" y="17" width="302" height="93"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <tableView autoresizesSubviews="NO" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="14" headerView="413" id="398">
-                                                                <rect key="frame" x="0.0" y="0.0" width="297" height="83"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="302" height="93"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -170,7 +170,7 @@
                                                                         </textFieldCell>
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                     </tableColumn>
-                                                                    <tableColumn identifier="description" editable="NO" width="107.79199981689453" minWidth="94.791999816894531" maxWidth="1000" id="405">
+                                                                    <tableColumn identifier="description" editable="NO" width="112.79199981689453" minWidth="94.791999816894531" maxWidth="1000" id="405">
                                                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Error Description">
                                                                             <font key="font" size="11" name="LucidaGrande"/>
                                                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -194,15 +194,15 @@
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </clipView>
                                                     <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="412">
-                                                        <rect key="frame" x="1" y="100" width="297" height="15"/>
+                                                        <rect key="frame" x="1" y="110" width="302" height="15"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                     <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="414">
-                                                        <rect key="frame" x="298" y="17" width="15" height="83"/>
+                                                        <rect key="frame" x="303" y="17" width="15" height="93"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                     <tableHeaderView key="headerView" id="413">
-                                                        <rect key="frame" x="0.0" y="0.0" width="297" height="17"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="302" height="17"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </tableHeaderView>
                                                 </scrollView>
@@ -210,7 +210,7 @@
                                         </view>
                                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <font key="titleFont" metaFont="label"/>
+                                        <font key="titleFont" metaFont="titleBar"/>
                                     </box>
                                 </subviews>
                                 <holdingPriorities>
