@@ -16,6 +16,8 @@
 		D016A92A182FD80700712C60 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D016A929182FD80700712C60 /* Cocoa.framework */; };
 		D016A936182FD80700712C60 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D016A935182FD80700712C60 /* main.m */; };
 		D016A945182FD80700712C60 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D016A944182FD80700712C60 /* Images.xcassets */; };
+		D04B0510183F158800C0F70F /* NoodleLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = D04B050F183F158800C0F70F /* NoodleLineNumberView.m */; };
+		D04B0513183F15F500C0F70F /* NoodleLineNumberMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = D04B0512183F15F500C0F70F /* NoodleLineNumberMarker.m */; };
 		D07AF495183658D300913067 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF48C183658D300913067 /* AppController.m */; };
 		D07AF496183658D300913067 /* BatchController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF48E183658D300913067 /* BatchController.m */; };
 		D07AF497183658D300913067 /* OptionPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF490183658D300913067 /* OptionPaneController.m */; };
@@ -71,6 +73,10 @@
 		D016A944182FD80700712C60 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D016A94B182FD80700712C60 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		D026169E1836F48A002ABD72 /* Balthisar Tidy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Balthisar Tidy.entitlements"; sourceTree = "<group>"; };
+		D04B050E183F158800C0F70F /* NoodleLineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoodleLineNumberView.h; path = "balthisar tidy/Classes/Support Pieces/NoodleLineNumberView.h"; sourceTree = SOURCE_ROOT; };
+		D04B050F183F158800C0F70F /* NoodleLineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoodleLineNumberView.m; path = "balthisar tidy/Classes/Support Pieces/NoodleLineNumberView.m"; sourceTree = SOURCE_ROOT; };
+		D04B0511183F15F500C0F70F /* NoodleLineNumberMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoodleLineNumberMarker.h; path = "balthisar tidy/Classes/Support Pieces/NoodleLineNumberMarker.h"; sourceTree = SOURCE_ROOT; };
+		D04B0512183F15F500C0F70F /* NoodleLineNumberMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoodleLineNumberMarker.m; path = "balthisar tidy/Classes/Support Pieces/NoodleLineNumberMarker.m"; sourceTree = SOURCE_ROOT; };
 		D07AF4791836581E00913067 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Batch.xib; sourceTree = "<group>"; };
 		D07AF47B1836581E00913067 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/OptionPane.xib; sourceTree = "<group>"; };
 		D07AF47D1836581E00913067 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Preferences.xib; sourceTree = "<group>"; };
@@ -276,6 +282,10 @@
 				D0D3BEBB183C897800692225 /* JSDTableColumn.m */,
 				D0D3BEC0183C897800692225 /* TreeNode.h */,
 				D0D3BEC1183C897800692225 /* TreeNode.m */,
+				D04B0511183F15F500C0F70F /* NoodleLineNumberMarker.h */,
+				D04B0512183F15F500C0F70F /* NoodleLineNumberMarker.m */,
+				D04B050E183F158800C0F70F /* NoodleLineNumberView.h */,
+				D04B050F183F158800C0F70F /* NoodleLineNumberView.m */,
 				D0BE6ED9183DEB7A00029BF0 /* NSTextView+JSDExtensions.h */,
 				D0BE6EDA183DEB7A00029BF0 /* NSTextView+JSDExtensions.m */,
 			);
@@ -449,6 +459,7 @@
 				D07AF499183658D300913067 /* TidyDocument.m in Sources */,
 				D0C9A8C3183C8C7F000BFC72 /* alloc.c in Sources */,
 				D0C9A8D8183C8C7F000BFC72 /* tags.c in Sources */,
+				D04B0513183F15F500C0F70F /* NoodleLineNumberMarker.m in Sources */,
 				D0C9A8C5183C8C7F000BFC72 /* attrdict.c in Sources */,
 				D0C9A8CE183C8C7F000BFC72 /* gdoc.c in Sources */,
 				D0D3BEC2183C897800692225 /* JSDTableColumn.m in Sources */,
@@ -457,6 +468,7 @@
 				D0C9A8CF183C8C7F000BFC72 /* iconvtc.c in Sources */,
 				D0C9A8D3183C8C7F000BFC72 /* mappedio.c in Sources */,
 				D016A936182FD80700712C60 /* main.m in Sources */,
+				D04B0510183F158800C0F70F /* NoodleLineNumberView.m in Sources */,
 				D0C9A8CD183C8C7F000BFC72 /* fileio.c in Sources */,
 				D0C9A8D1183C8C7F000BFC72 /* lexer.c in Sources */,
 				D07AF495183658D300913067 /* AppController.m in Sources */,

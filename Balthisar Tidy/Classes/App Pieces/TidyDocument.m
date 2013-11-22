@@ -247,7 +247,9 @@
     [aView setSelectable:YES];							// text can be selectable.
     [aView setEditable:NO];							// text shouldn't be editable.
     [aView setImportsGraphics:NO];						// don't let user import graphics.
-    [aView setUsesRuler:NO];							// no, the ruler won't be used.
+	[aView setWordwrapsText:NO];
+	[aView setShowsLineNumbers:YES];
+
 }
 
 
@@ -275,13 +277,10 @@
 - (void)windowControllerDidLoadNib:(NSWindowController *) aController
 {
     [super windowControllerDidLoadNib:aController];				// inherited method needs to be called.
-    
-    [sourceView setEditable:YES];					// make the sourceView editable.
-	[sourceView setWordwrapsText:NO];
-	BOOL tmpSetsWordwrapsText = sourceView.WordwrapsText;
-	 tmpSetsWordwrapsText = sourceView.WordwrapsText;
-	 tmpSetsWordwrapsText = sourceView.WordwrapsText;
 
+	[self configureViewSettings:sourceView];
+	[self configureViewSettings:tidyView];
+    [sourceView setEditable:YES];
 
     // honor the defaults system defaults.
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];		// get the default default system
@@ -435,6 +434,8 @@
     }
     else
         [sourceView setShowsHighlight:NO];
+
+
 }
 
 

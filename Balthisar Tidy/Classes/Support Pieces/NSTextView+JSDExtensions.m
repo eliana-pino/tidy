@@ -34,6 +34,7 @@
 
 #import <objc/runtime.h>
 #import "NSTextView+JSDExtensions.h"
+#import "NoodleLineNumberView.h"
 
 
 #pragma mark -
@@ -47,6 +48,7 @@ static char const * const JSDtagLine = "JSDtagLine";
 static char const * const JSDtagColumn = "JSDtagColumn";
 static char const * const JSDtagShowsHighlight = "JSDtagShowsHighlight";
 static char const * const JSDtagWordwrapsText = "JSDtagWordwrapsText";
+static char const * const JSDtagShowsLineNumbers = "JSDtagShowsLineNumbers";
 
 
 #pragma mark -
@@ -272,5 +274,57 @@ static char const * const JSDtagWordwrapsText = "JSDtagWordwrapsText";
 		}
     }
 }
+
+
+#pragma mark -
+#pragma mark LINE NUMBER property accessors and mutators
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	ShowsLineNumbers
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (BOOL)ShowsLineNumbers
+{
+	id item = objc_getAssociatedObject(self, JSDtagShowsLineNumbers);
+
+	if (item != nil)
+	{
+		return YES;
+
+	} else {
+		return NO;
+	}
+}
+
+- (void)setShowsLineNumbers:(BOOL)state
+{
+
+	// Get current state
+	BOOL currentState = [self ShowsLineNumbers];
+
+	if (state != currentState)
+	{
+		// Remember the new setting
+		objc_setAssociatedObject(self, JSDtagShowsLineNumbers, [NSNumber numberWithBool:state], OBJC_ASSOCIATION_COPY_NONATOMIC);
+
+        if (!state)
+		{
+			[[self enclosingScrollView] setHasHorizontalRuler:NO]; // wrong
+			[[self enclosingScrollView] setHasVerticalRuler:NO];
+			[[self enclosingScrollView] setRulersVisible:NO];
+			[[self enclosingScrollView] setVerticalRulerView:nil];
+			objc_setAssociatedObject(self, JSDtagShowsLineNumbers, nil, OBJC_ASSOCIATION_ASSIGN);
+
+		} else {
+			NoodleLineNumberView *lineNumberView = [[NoodleLineNumberView alloc] initWithScrollView:[self enclosingScrollView]];
+			[[self enclosingScrollView] setVerticalRulerView:lineNumberView];
+			[[self enclosingScrollView] setHasHorizontalRuler:NO];
+			[[self enclosingScrollView] setHasVerticalRuler:YES];
+			[[self enclosingScrollView] setRulersVisible:YES];
+			objc_setAssociatedObject(self, JSDtagShowsLineNumbers, lineNumberView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+		}
+    }
+}
+
 
 @end
