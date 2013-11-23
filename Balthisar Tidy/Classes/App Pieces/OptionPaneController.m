@@ -118,6 +118,13 @@
         [trash removeFromSuperview];
 	}
 
+	[_View setFrame:[dstView frame]];
+
+
+	[dstView setAutoresizesSubviews:YES];
+	[_View setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
+	[[_theTable enclosingScrollView] setHasHorizontalScroller:NO];
+
     [dstView addSubview:_View];
 }
 

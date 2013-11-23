@@ -53,8 +53,13 @@ Todo
 ----
 
 - if any of the errors are REMOVED something, then don't save!
-- Substitute the NoodleKit text views.
 - Redesign the main document interface with modern style.
+	- panel for preferences like iTunes, or floating off to the side so it updates
+	  with different documents
+	- webkit preview
+	- modern preferences like Mac OS System preferences
+	- combined toolbar and title bar
+	- help on first run
 - Make the batch mode work.
 - Get the configuration dynamically at startup instead of using the file.
 	- We can maintain a list of exceptions separately.
