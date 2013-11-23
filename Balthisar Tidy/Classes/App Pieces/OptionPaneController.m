@@ -198,8 +198,9 @@
 	tableColumn:customDataCellForRow
 		We're here because we're the datasource of |theTable|.
 		We need to specify which cell to use for this particular row.
+		Here we are providing the cell for use by the table.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
--(id)tableColumn:(JSDTableColumn *)aTableColumn customDataCellForRow:(int)row
+- (id)tableColumn:(JSDTableColumn *)aTableColumn customDataCellForRow:(NSInteger)row
 {
     // Get the id for the option at this row
     TidyOptionId optId = [JSDTidyDocument optionIdForName:optionsInEffect[row]]; 

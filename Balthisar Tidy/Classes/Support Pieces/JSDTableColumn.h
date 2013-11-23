@@ -35,6 +35,11 @@
 
 #import <Cocoa/Cocoa.h>
 
+
+#pragma mark -
+#pragma mark JSDTableColumn Class
+
+
 @interface JSDTableColumn : NSTableColumn
 
 - (id)initReplacingColumn:(NSTableColumn *)aColumn;	// initializer that replaces an existing column with this one.
@@ -42,8 +47,22 @@
 - (id)dataCellForRow:(int)row;				// calls the delegate for each column to get the data cell.
 - (void)swapForTableColumn:(NSTableColumn *)aColumn;	// swaps this instance of JSDTableColumn for an existing one.
 
--(NSCell *)usefulCheckCell;
--(NSCell *)usefulRadioCell;
--(NSCell *)usefulPopUpCell:(NSArray *)picks;
+- (NSCell *)usefulCheckCell;
+- (NSCell *)usefulRadioCell;
+- (NSCell *)usefulPopUpCell:(NSArray *)picks;
 
 @end
+
+
+#pragma mark -
+#pragma mark JSDTableColumn Protocol
+
+
+@protocol JSDTableColumnProtocol <NSObject>
+
+@required
+
+- (id)tableColumn:(JSDTableColumn *)aTableColumn customDataCellForRow:(NSInteger)row;
+
+@end
+

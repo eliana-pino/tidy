@@ -51,25 +51,41 @@
 }
 
 
+// TODO: to eliminate the compiler warning, it's necessary to develop
+// a protocol, and then have the delegate declared to follow that protocol.
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	dataCellForRow:
 		we're going to call the delegate for a cell, if one exists.
+		It will provide the cell that we need for this row.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (id)dataCellForRow:(int)row
 {
 
     // make sure there's a tableview and a delegate and that the row isn't -1.
     if ( ([self tableView] == nil) || ([[self tableView] delegate] == nil) || (row == -1) )
-        return [super dataCellForRow:row];     
-
-    // see if the routine exists
-    if ( ! [ [ [self tableView] delegate] respondsToSelector:@selector(tableColumn:customDataCellForRow:)] )
+	{
         return [super dataCellForRow:row];
-        
-    // try getting the cell we want from the delegate routine -- ignore the compiler warning.
-    id cell = [[[self tableView] delegate] tableColumn:self customDataCellForRow:row];
-    if (cell != nil)
-        return cell;				// not nil, so return what we got.
+	}
+
+    // See if the selector exists, and if not then return the standard result.
+    if ( ! [ [ [self tableView] delegate] respondsToSelector:@selector(tableColumn:customDataCellForRow:)] )
+	{
+        return [super dataCellForRow:row];
+	}
+
+
+	// try getting the cell we want from the delegate routine -- ignore the compiler warning.
+	// the tableview delegate is the owner. For Tidy it's OptionPaneController.
+	// I'm a Colum. My TabViews is my owner, and his delegate is OptionPaneController.
+	// what this should do is call this routine in the OptionPaneController.
+	id <JSDTableColumnProtocol> myTableColumn = [[self tableView] delegate];
+
+	id cell = [myTableColumn tableColumn:self customDataCellForRow:row];
+	if (cell != nil)
+	{
+		return cell;				// not nil, so return what we got.
+	}
+
 
      return [super dataCellForRow:row];		// nothing there, so call the inherited method.
 }

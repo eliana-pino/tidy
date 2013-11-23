@@ -37,8 +37,9 @@
 
 #import <Cocoa/Cocoa.h>
 #import "JSDTidyDocument.h"
+#import "JSDTableColumn.h"
 
-@interface OptionPaneController : NSObject
+@interface OptionPaneController : NSObject <JSDTableColumnProtocol>
 
 	@property (nonatomic, strong) IBOutlet NSView *View;	// Pointer to the NIB's |View|.
 
