@@ -75,7 +75,8 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (id)init
 {
-	if ([super init])
+	self = [super init];
+	if (self)
 	{
 		[[NSBundle mainBundle] loadNibNamed:@"OptionPane" owner:self topLevelObjects:nil];
 
@@ -88,7 +89,7 @@
 		optionsExceptions = [[NSArray arrayWithArray:[JSDTidyDocument loadConfigurationListFromResource:@"optionsTypesExceptions" ofType:@"txt"]] retain];
 
 		// Create a custom column for the NSTableView -- the table will retain and control it.
-		[[JSDTableColumn alloc] initReplacingColumn:[_theTable tableColumnWithIdentifier:@"check"]];
+		[[[JSDTableColumn alloc] initReplacingColumn:[_theTable tableColumnWithIdentifier:@"check"]] autorelease];
 	}
 	return self;
 }

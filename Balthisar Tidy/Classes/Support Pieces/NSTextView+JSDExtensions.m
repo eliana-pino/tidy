@@ -139,7 +139,6 @@ static char const * const JSDtagShowsLineNumbers = "JSDtagShowsLineNumbers";
 		NSUInteger i = 0;							// glyph counter
 		NSUInteger j = 1;							// line counter
 		NSUInteger k;								// column counter
-		NSRect r;									// rectange holder
 		NSLayoutManager *lm = [self layoutManager];	// get layout manager.
 		NSInteger litLine = [self highlitLine];		// get the line to light.
 		NSInteger litColumn = [self highlitColumn];	// Get the column to light.
@@ -154,7 +153,7 @@ static char const * const JSDtagShowsLineNumbers = "JSDtagShowsLineNumbers";
 			while ( i < [lm numberOfGlyphs] )
 			{
 				// Retrieve the rect |r| and range |aRange| for the current line.
-				r = [lm lineFragmentRectForGlyphAtIndex:i effectiveRange:&aRange];
+				[lm lineFragmentRectForGlyphAtIndex:i effectiveRange:&aRange];
 
 				// If the current line is what we're looking for, then highlight it
 				if (j == litLine)
@@ -186,7 +185,6 @@ static char const * const JSDtagShowsLineNumbers = "JSDtagShowsLineNumbers";
 	NSRange aRange;								// Range for counting lines
 	NSInteger i = 0;							// Glyph counter
 	NSInteger j = 1; 							// Line counter
-	NSRect r;									// Rectange holder
 	NSLayoutManager *lm = [self layoutManager];	// Layout manager
 	if (line >= 1)
 	{
@@ -194,7 +192,7 @@ static char const * const JSDtagShowsLineNumbers = "JSDtagShowsLineNumbers";
 		while ( i < [lm numberOfGlyphs] )
 		{
 			// Retrieve the rect |r| and range |aRange| for the current line.
-			r = [lm lineFragmentRectForGlyphAtIndex:i effectiveRange:&aRange];
+			[lm lineFragmentRectForGlyphAtIndex:i effectiveRange:&aRange];
 
 			// If the current line is what we're looking for, then scroll to it.
 			if (j == line)
@@ -309,19 +307,19 @@ static char const * const JSDtagShowsLineNumbers = "JSDtagShowsLineNumbers";
 
 		if (!state)
 		{
-			[[self enclosingScrollView] setHasHorizontalRuler:NO]; // wrong
+			[[self enclosingScrollView] setHasHorizontalRuler:NO];
 			[[self enclosingScrollView] setHasVerticalRuler:NO];
 			[[self enclosingScrollView] setRulersVisible:NO];
 			[[self enclosingScrollView] setVerticalRulerView:nil];
 			objc_setAssociatedObject(self, JSDtagShowsLineNumbers, nil, OBJC_ASSOCIATION_ASSIGN);
 
 		} else {
-			NoodleLineNumberView *lineNumberView = [[NoodleLineNumberView alloc] initWithScrollView:[self enclosingScrollView]];
+			NoodleLineNumberView *lineNumberView = [[[NoodleLineNumberView alloc] initWithScrollView:[self enclosingScrollView]] autorelease];
 			[[self enclosingScrollView] setVerticalRulerView:lineNumberView];
 			[[self enclosingScrollView] setHasHorizontalRuler:NO];
 			[[self enclosingScrollView] setHasVerticalRuler:YES];
 			[[self enclosingScrollView] setRulersVisible:YES];
-			objc_setAssociatedObject(self, JSDtagShowsLineNumbers, lineNumberView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+			objc_setAssociatedObject(self, JSDtagShowsLineNumbers, lineNumberView, OBJC_ASSOCIATION_COPY_NONATOMIC);
 		}
 	}
 }

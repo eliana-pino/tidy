@@ -67,17 +67,6 @@
 }
 
 
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
- dealloc
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)dealloc
-{
-	[[self thePreferenceController] release];
-	[[self theBatchController] release];
-	[super dealloc];
-}
-
-
 #pragma mark -
 #pragma mark Handle showing preferences and batch windows.
 

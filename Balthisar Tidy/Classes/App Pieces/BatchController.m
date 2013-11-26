@@ -80,8 +80,6 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)dealloc
 {
-	[[self optionsController] release];
-	[[self fileTree] release];
 	[super dealloc];
 }
 

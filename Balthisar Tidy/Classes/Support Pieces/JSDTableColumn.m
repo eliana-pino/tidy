@@ -44,7 +44,9 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (id)initReplacingColumn:(NSTableColumn *)aColumn
 {
-	if ([super initWithIdentifier:[aColumn identifier]]) {
+	self = [super initWithIdentifier:[aColumn identifier]];
+	if (self)
+	{
 		[self swapForTableColumn:aColumn];
 	}
 	return self;

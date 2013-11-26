@@ -39,7 +39,7 @@ extern id objc_msgSend( id self, SEL op, ...);
 #pragma mark -
 #pragma mark Tidy Callback Setup
 
-
+// TODO: prepare for ARC by studying how this works below (again, of course I used to know this).
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
  tidyCallbackFilter
  In order to support TidyLib's callback function for process-
@@ -98,22 +98,31 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 		const CFStringEncoding *cfEncodings = CFStringGetListOfAvailableEncodings();
 		CFStringEncoding *tmp;
 		int cnt, num = 0;
-		while (cfEncodings[num] != kCFStringEncodingInvalidId) num++;	// Count
-		tmp = malloc(sizeof(CFStringEncoding) * num);
-		memcpy(tmp, cfEncodings, sizeof(CFStringEncoding) * num);	// Copy the list
-		qsort(tmp, num, sizeof(CFStringEncoding), encodingCompare);	// Sort it
-		allEncodings = [[NSMutableArray alloc] init];			// Now put it in an NSArray
-		for (cnt = 0; cnt < num; cnt++)
+		while (cfEncodings[num] != kCFStringEncodingInvalidId)
 		{
-			NSStringEncoding nsEncoding = CFStringConvertEncodingToNSStringEncoding(tmp[cnt]);
-
-			if (nsEncoding && [NSString localizedNameOfStringEncoding:nsEncoding])
-			{
-				[allEncodings addObject:@(nsEncoding)];
-			}
+			num++;	// Count
 		}
-		free(tmp);
-	} // if
+
+		if (num > 0)
+		{
+			tmp = malloc(sizeof(CFStringEncoding) * num);
+
+
+			memcpy(tmp, cfEncodings, sizeof(CFStringEncoding) * num);	// Copy the list
+			qsort(tmp, num, sizeof(CFStringEncoding), encodingCompare);	// Sort it
+			allEncodings = [[NSMutableArray alloc] init];			// Now put it in an NSArray
+			for (cnt = 0; cnt < num; cnt++)
+			{
+				NSStringEncoding nsEncoding = CFStringConvertEncodingToNSStringEncoding(tmp[cnt]);
+
+				if (nsEncoding && [NSString localizedNameOfStringEncoding:nsEncoding])
+				{
+					[allEncodings addObject:@(nsEncoding)];
+				}
+			}
+			free(tmp);
+		}
+	}
 	return allEncodings;
 }
 
@@ -211,7 +220,11 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (id)initWithString:(NSString *)value
 {
-	[[self init] setOriginalText:value];
+	self = [self init];
+	if (self)
+	{
+		[self setOriginalText:value];
+	}
 	return self;
 }
 
@@ -221,7 +234,11 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (id)initWithFile:(NSString *)path
 {
-	[[self init] setOriginalTextWithFile:path];
+	self = [self init];
+	if (self)
+	{
+		[self setOriginalTextWithFile:path];
+	}
 	return self;
 }
 
@@ -232,7 +249,11 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (id)initWithData:(NSData *)data
 {
-	[[self init] setOriginalTextWithData:data];
+	self = [self init];
+	if (self)
+	{
+		[self setOriginalTextWithData:data];
+	}
 	return self;
 }
 
@@ -868,7 +889,7 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
  top of this file. We CAN'T setup standard C callbacks such
  that they directly callback to an Obj-C method without
  changing the C library to include Obj-C's hidden id and SEL
- parameterss. So this is how it is.
+ parameters. So this is how it is.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (bool)errorFilter:(TidyDoc)tDoc Level:(TidyReportLevel)lvl Line:(uint)line Column:(uint)col Message:(ctmbstr)mssg
 {
@@ -878,6 +899,7 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 	errorDict[errorKeyColumn] = @(col);
 	errorDict[errorKeyMessage] = @(mssg);
 	[errorArray addObject:errorDict];
+	[errorDict release];
 	return YES; // always return yes so errorText works, also.
 }
 
@@ -911,14 +933,16 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 + (NSArray *)loadConfigurationListFromResource:(NSString *)fileName ofType:(NSString *)fileType
 {
-	NSMutableArray *optionsInEffect = [[NSMutableArray alloc] init];
+	NSMutableArray *optionsInEffect = [[[NSMutableArray alloc] init] autorelease];
 	NSString *contentPath = [[NSBundle mainBundle] pathForResource:fileName ofType:fileType];
 	if (contentPath != nil) {
 		NSEnumerator *enumerator = [[[NSString stringWithContentsOfFile: contentPath encoding:NSUTF8StringEncoding error:NULL] componentsSeparatedByString:@"\n"] objectEnumerator];
 		NSString *tmpStr;
 		while (tmpStr = [enumerator nextObject]) {
 			if (([JSDTidyDocument optionIdForName:tmpStr] != 0) && (![optionsInEffect containsObject:tmpStr]))
+			{
 				[optionsInEffect addObject:tmpStr];
+			}
 		} // while
 	} // if
 	return optionsInEffect;
@@ -963,7 +987,9 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 	NSEnumerator *enumerator = [[JSDTidyDocument loadConfigurationListFromResource:fileName ofType:fileType] objectEnumerator]; // just resource options.
 	NSString *optionName;
 	while (optionName = [enumerator nextObject])
+	{
 		defaultDictionary[[tidyPrefPrefix stringByAppendingString:optionName]] = [JSDTidyDocument optionDefaultValueForId:[JSDTidyDocument optionIdForName:optionName]];
+	}
 }
 
 

@@ -213,12 +213,14 @@
  *ÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐ*/
 - (id)init
 {
-	if ([super init]) {
+	self = [super init];
+	if (self)
+	{
 		tidyOriginalFile = YES;							// if yes, we'll write file/creator codes.
 		tidyProcess = [[JSDTidyDocument alloc] init];	// use our own tidy process, NOT the controller's instance.
 		// register for notification
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleSavePrefChange:) name:@"JSDSavePrefChange" object:nil];
-	} // if
+	}
 	return self;
 }
 
