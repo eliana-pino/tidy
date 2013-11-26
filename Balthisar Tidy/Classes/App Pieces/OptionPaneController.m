@@ -191,7 +191,7 @@
 		{
 			int i = [[_tidyDocument optionValueForId:optId] intValue];									// Value of option
 			NSUInteger j = [[[_tidyDocument class] allAvailableStringEncodings] indexOfObject:@(i)];	// Index of option
-			return [[NSNumber numberWithLong:j] stringValue];											// Return Index as a string
+			return [@(j) stringValue];								// Return Index as a string
 		} else {
 			return [_tidyDocument optionValueForId:optId];
 		}

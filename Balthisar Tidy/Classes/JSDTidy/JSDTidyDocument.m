@@ -109,7 +109,7 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 
 			if (nsEncoding && [NSString localizedNameOfStringEncoding:nsEncoding])
 			{
-				[allEncodings addObject:[NSNumber numberWithUnsignedLong:nsEncoding]];
+				[allEncodings addObject:@(nsEncoding)];
 			}
 		}
 		free(tmp);
@@ -133,7 +133,7 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 		int cnt;										// init counter.
 		NSUInteger numEncodings = [allEncodings count];						// get number of encodings usable.
 		for (cnt = 0; cnt < numEncodings; cnt++) {						// loop through the encodings present.
-			NSStringEncoding encoding = [[allEncodings objectAtIndex:cnt] unsignedIntValue];	// get the encoding type.
+			NSStringEncoding encoding = [allEncodings[cnt] unsignedIntValue];	// get the encoding type.
 			NSString *encodingName = [NSString localizedNameOfStringEncoding:encoding];		// get the encoding name.
 			[encodingNames addObject:encodingName];						// add to the array.
 		} // for
@@ -527,7 +527,7 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 		TidyIterator i = tidyGetOptionList( dummyDoc );						// set up an iterator
 		while ( i ) {										// loop...
 			TidyOption topt = tidyGetNextOption( dummyDoc, &i );				// get an option
-			[theArray addObject:[NSString stringWithUTF8String:tidyOptGetName( topt )]];		// add the name to the array
+			[theArray addObject:@(tidyOptGetName( topt ))];		// add the name to the array
 		} // while
 		tidyRelease(dummyDoc);									// release the dummy document.
 	} // if
@@ -564,7 +564,7 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 + (NSString *)optionNameForId:(TidyOptionId)idf
 {
-	return [NSString stringWithUTF8String:tidyOptGetName( [self optionGetOptionInstance:idf] )];
+	return @(tidyOptGetName( [self optionGetOptionInstance:idf] ));
 }
 
 
@@ -609,7 +609,7 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 
 	if (optType == TidyString) {
 		ctmbstr tmp = tidyOptGetDefault( [self optionGetOptionInstance:idf] );
-		return ( (tmp != nil) ? [NSString stringWithUTF8String:tmp] : @"" );					// return either the string or null.
+		return ( (tmp != nil) ? @(tmp) : @"" );					// return either the string or null.
 	} // string type
 
 	if (optType == TidyBoolean) {
@@ -648,7 +648,7 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 	else {
 		TidyIterator i = tidyOptGetPickList( [self optionGetOptionInstance:idf] );
 		while ( i )
-			[theArray addObject:[NSString stringWithUTF8String:tidyOptGetNextPick([self optionGetOptionInstance:idf], &i)]];
+			[theArray addObject:@(tidyOptGetNextPick([self optionGetOptionInstance:idf], &i))];
 	} // else - if
 
 	return theArray;
@@ -670,26 +670,26 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 		while ( i ) {
 			tmp = tidyOptGetNextDeclTag(prefDoc, idf, &i);
 			if (tmp)
-				[theArray addObject:[NSString stringWithUTF8String:tmp]];
+				[theArray addObject:@(tmp)];
 		} // while
 		return [theArray componentsJoinedByString:@", "];
 	} // if user-defined tags.
 
 	// we need to treat encoding options specially, 'cos we're override Tidy's treatment of them.
 	if ( [[self class] isTidyEncodingOption:idf]) {
-		if (idf == TidyCharEncoding) return [[NSNumber numberWithUnsignedLong:inputEncoding] stringValue];
-		if (idf == TidyInCharEncoding) return [[NSNumber numberWithUnsignedLong:inputEncoding] stringValue];
-		if (idf == TidyOutCharEncoding) return [[NSNumber numberWithUnsignedLong:outputEncoding] stringValue];
+		if (idf == TidyCharEncoding) return [@(inputEncoding) stringValue];
+		if (idf == TidyInCharEncoding) return [@(inputEncoding) stringValue];
+		if (idf == TidyOutCharEncoding) return [@(outputEncoding) stringValue];
 	} // if tidy coding optionnumberWithUnsignedLong
 	TidyOptionType optType = [JSDTidyDocument optionTypeForId:idf];
 
 	if (optType == TidyString) {
 		ctmbstr tmp = tidyOptGetValue( prefDoc, idf );
-		return ( (tmp != nil) ? [NSString stringWithUTF8String:tmp] : @"" );
+		return ( (tmp != nil) ? @(tmp) : @"" );
 	} // if string type
 
 	if (optType == TidyBoolean) {
-		return [[NSNumber numberWithBool:tidyOptGetBool( prefDoc, idf )] stringValue];
+		return [@((BOOL)tidyOptGetBool( prefDoc, idf )) stringValue];
 	} // if bool type
 
 	if (optType == TidyInteger) {
@@ -697,7 +697,7 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 			if (tidyOptGetInt( prefDoc, idf) == LONG_MAX)
 				return @"0";
 		} // if - special occassion for TidyWrapLen
-		return [[NSNumber numberWithUnsignedLong:tidyOptGetInt( prefDoc, idf )] stringValue];
+		return [@(tidyOptGetInt( prefDoc, idf )) stringValue];
 	} // if integer type
 
 	return @"";
@@ -873,10 +873,10 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 - (bool)errorFilter:(TidyDoc)tDoc Level:(TidyReportLevel)lvl Line:(uint)line Column:(uint)col Message:(ctmbstr)mssg
 {
 	NSMutableDictionary *errorDict = [[NSMutableDictionary alloc] init];	// create a dictionary to hold the error report
-	[errorDict setObject:[NSNumber numberWithInt:lvl] forKey:errorKeyLevel];
-	[errorDict setObject:[NSNumber numberWithInt:line] forKey:errorKeyLine];
-	[errorDict setObject:[NSNumber numberWithInt:col] forKey:errorKeyColumn];
-	[errorDict setObject:[NSString stringWithUTF8String:mssg] forKey:errorKeyMessage];
+	errorDict[errorKeyLevel] = @((int)lvl);									// lvl is a c enum
+	errorDict[errorKeyLine] = @(line);
+	errorDict[errorKeyColumn] = @(col);
+	errorDict[errorKeyMessage] = @(mssg);
 	[errorArray addObject:errorDict];
 	return YES; // always return yes so errorText works, also.
 }
@@ -892,7 +892,7 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSString *)tidyReleaseDate
 {
-	return [NSString stringWithUTF8String:tidyReleaseDate()];
+	return @(tidyReleaseDate());
 }
 
 
@@ -943,7 +943,7 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 	NSEnumerator *enumerator = [[JSDTidyDocument optionGetList] objectEnumerator];	// uses ALL tidy options.
 	NSString *optionName;
 	while (optionName = [enumerator nextObject])
-		[defaultDictionary setObject:[JSDTidyDocument optionDefaultValueForId:[JSDTidyDocument optionIdForName:optionName]] forKey:[tidyPrefPrefix stringByAppendingString:optionName]];
+		defaultDictionary[[tidyPrefPrefix stringByAppendingString:optionName]] = [JSDTidyDocument optionDefaultValueForId:[JSDTidyDocument optionIdForName:optionName]];
 }
 
 
@@ -963,7 +963,7 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 	NSEnumerator *enumerator = [[JSDTidyDocument loadConfigurationListFromResource:fileName ofType:fileType] objectEnumerator]; // just resource options.
 	NSString *optionName;
 	while (optionName = [enumerator nextObject])
-		[defaultDictionary setObject:[JSDTidyDocument optionDefaultValueForId:[JSDTidyDocument optionIdForName:optionName]] forKey:[tidyPrefPrefix stringByAppendingString:optionName]];
+		defaultDictionary[[tidyPrefPrefix stringByAppendingString:optionName]] = [JSDTidyDocument optionDefaultValueForId:[JSDTidyDocument optionIdForName:optionName]];
 }
 
 
@@ -1003,7 +1003,7 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 		// we've got to convert TidyInteger items into NSNumbers to use them from here. We shouldn't HAVE to,
 		// but doctype-mode in TidyLib doesn't have a string parser, so we'll force integers to integers.
 		if (optType == TidyInteger)
-			[self setOptionValueForId:optId fromObject:[NSNumber numberWithInt:[(NSString *)myObj intValue]]];
+			[self setOptionValueForId:optId fromObject:@([(NSString *)myObj intValue])];
 		else
 			[self setOptionValueForId:optId fromObject:myObj];
 	}

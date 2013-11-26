@@ -55,9 +55,9 @@ NSString *JSDKeyBatchSavingPrefStyle = @"BatchSavingPrefStyle";
 {
 	NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary]; // create a dictionary
 	// put all of the defaults in the dictionary
-	[defaultValues setObject:[NSNumber numberWithInt:2] forKey:JSDKeySavingPrefStyle /* was key 10 */];
-	[defaultValues setObject:[NSNumber numberWithBool:NO] forKey:JSDKeyWarnBeforeOverwrite /* was key 11 */];
-	[defaultValues setObject:[NSNumber numberWithInt:1] forKey:JSDKeyBatchSavingPrefStyle /* was key 14 */];
+	defaultValues[JSDKeySavingPrefStyle] = @2;
+	defaultValues[JSDKeyWarnBeforeOverwrite] = @NO;
+	defaultValues[JSDKeyBatchSavingPrefStyle] = @1;
 	[JSDTidyDocument addDefaultsToDictionary:defaultValues]; // get the defaults ultimately from the linked-in TidyLib
 	// register the defaults with the defaults system
 	[[NSUserDefaults standardUserDefaults] registerDefaults: defaultValues];

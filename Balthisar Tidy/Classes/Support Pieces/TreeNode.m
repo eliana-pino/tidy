@@ -56,7 +56,7 @@
 @implementation TreeNode
 
 + (id)treeNodeWithData:(TreeNodeData*)data {
-    return [[[TreeNode alloc] initWithData: data  parent:nil children:[NSArray array]] autorelease]; 
+    return [[[TreeNode alloc] initWithData: data  parent:nil children:@[]] autorelease]; 
 }
 
 - (id)initWithData:(TreeNodeData*)data parent:(TreeNode*)parent children:(NSArray*)children {
@@ -121,7 +121,7 @@
 - (void)removeChild:(TreeNode*)child {
     NSUInteger index = [self indexOfChild: child];
     if (index!=NSNotFound) {
-        [self _removeChildrenIdenticalTo:[NSArray arrayWithObject:[self childAtIndex:index]]];
+        [self _removeChildrenIdenticalTo:@[[self childAtIndex:index]]];
     }
 }
 
@@ -146,7 +146,7 @@
 }
 
 - (TreeNode*)firstChild {
-    return [nodeChildren objectAtIndex:0];
+    return nodeChildren[0];
 }
 
 - (TreeNode*)lastChild {
@@ -154,7 +154,7 @@
 }
 
 - (TreeNode*)childAtIndex:(NSUInteger)index {
-    return [nodeChildren objectAtIndex:index];
+    return nodeChildren[index];
 }
 
 - (BOOL)isDescendantOfNode:(TreeNode*)node {
@@ -200,7 +200,7 @@
     NSMutableArray *nodeQueue = [NSMutableArray arrayWithArray:allNodes];
     TreeNode *node = nil;
     while ([nodeQueue count]) {
-        node = [nodeQueue objectAtIndex:0];
+        node = nodeQueue[0];
         [nodeQueue removeObjectAtIndex:0];
         while ( [node nodeParent] && [nodeQueue containsObjectIdenticalTo:[node nodeParent]] ) {
             [nodeQueue removeObjectIdenticalTo: node];

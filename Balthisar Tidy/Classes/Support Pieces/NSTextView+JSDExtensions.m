@@ -41,7 +41,7 @@
 #pragma mark Constants for associative references
 
 
-// Can't define new iVars, but associate references help out.
+// Can't define new iVars, but associated references help out.
 // These constants will serve as keys. Values aren't important; only the pointer value is.
 
 static char const * const JSDtagLine = "JSDtagLine";
@@ -81,7 +81,7 @@ static char const * const JSDtagShowsLineNumbers = "JSDtagShowsLineNumbers";
 
 - (void)setHighlitLine:(NSInteger)line
 {
-	objc_setAssociatedObject(self, JSDtagLine, [NSNumber numberWithInteger:line], OBJC_ASSOCIATION_COPY_NONATOMIC);
+	objc_setAssociatedObject(self, JSDtagLine, @(line), OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 
@@ -103,7 +103,7 @@ static char const * const JSDtagShowsLineNumbers = "JSDtagShowsLineNumbers";
 
 - (void)setHighlitColumn:(NSInteger)column
 {
-	objc_setAssociatedObject(self, JSDtagColumn, [NSNumber numberWithInteger:column], OBJC_ASSOCIATION_COPY_NONATOMIC);
+	objc_setAssociatedObject(self, JSDtagColumn, @(column), OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 
@@ -126,7 +126,7 @@ static char const * const JSDtagShowsLineNumbers = "JSDtagShowsLineNumbers";
 - (void)setShowsHighlight:(BOOL)state
 {
 	// Remember the new setting
-	objc_setAssociatedObject(self, JSDtagShowsHighlight, [NSNumber numberWithBool:state], OBJC_ASSOCIATION_COPY_NONATOMIC);
+	objc_setAssociatedObject(self, JSDtagShowsHighlight, @(state), OBJC_ASSOCIATION_COPY_NONATOMIC);
 
 	if (!state)
 	{
@@ -164,8 +164,8 @@ static char const * const JSDtagShowsLineNumbers = "JSDtagShowsLineNumbers";
 					lineCharRange = [lm characterRangeForGlyphRange:aRange actualGlyphRange:NULL];	// Whole row range
 
 					// Color them
-					[lm addTemporaryAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[NSColor secondarySelectedControlColor], NSBackgroundColorAttributeName, nil] forCharacterRange:lineCharRange];
-					[lm addTemporaryAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[NSColor selectedTextBackgroundColor], NSBackgroundColorAttributeName, nil] forCharacterRange:NSMakeRange(k, 1)];
+					[lm addTemporaryAttributes:@{NSBackgroundColorAttributeName: [NSColor secondarySelectedControlColor]} forCharacterRange:lineCharRange];
+					[lm addTemporaryAttributes:@{NSBackgroundColorAttributeName: [NSColor selectedTextBackgroundColor]} forCharacterRange:NSMakeRange(k, 1)];
 				}
 
 				i += [[[self string] substringWithRange:aRange] length];							// Advance glyph counter to EOL
@@ -252,7 +252,7 @@ static char const * const JSDtagShowsLineNumbers = "JSDtagShowsLineNumbers";
 	if (state != currentState)
 	{
 		// Remember the new setting
-		objc_setAssociatedObject(self, JSDtagWordwrapsText, [NSNumber numberWithBool:state], OBJC_ASSOCIATION_COPY_NONATOMIC);
+		objc_setAssociatedObject(self, JSDtagWordwrapsText, @(state), OBJC_ASSOCIATION_COPY_NONATOMIC);
 
 		if (!state)
 		{
@@ -305,7 +305,7 @@ static char const * const JSDtagShowsLineNumbers = "JSDtagShowsLineNumbers";
 	if (state != currentState)
 	{
 		// Remember the new setting
-		objc_setAssociatedObject(self, JSDtagShowsLineNumbers, [NSNumber numberWithBool:state], OBJC_ASSOCIATION_COPY_NONATOMIC);
+		objc_setAssociatedObject(self, JSDtagShowsLineNumbers, @(state), OBJC_ASSOCIATION_COPY_NONATOMIC);
 
 		if (!state)
 		{

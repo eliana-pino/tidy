@@ -130,14 +130,14 @@
 	NSMutableDictionary *myDict = (NSMutableDictionary *)[super fileAttributesToWriteToFile:fullDocumentPath ofType:documentTypeName saveOperation:saveOperationType];
 	// ONLY add type/creator if this is an original file -- NOT if we opened the file.
 	if (tidyOriginalFile) {
-		[myDict setObject:[NSNumber numberWithUnsignedLong:'WWS2'] forKey:NSFileHFSCreatorCode];	// set creator code.
-		[myDict setObject:[NSNumber numberWithUnsignedLong:'TEXT'] forKey:NSFileHFSTypeCode];		// set file type.
+		myDict[NSFileHFSCreatorCode] = @('WWS2');	// set creator code.
+		myDict[NSFileHFSTypeCode] = @('TEXT');		// set file type.
 	} else { // use original type/creator codes, if any.
 		OSType macType = [ [ [ NSFileManager defaultManager ] fileAttributesAtPath: fullDocumentPath traverseLink: YES ] fileHFSTypeCode];
 		OSType macCreator = [ [ [ NSFileManager defaultManager ] fileAttributesAtPath: fullDocumentPath traverseLink: YES ] fileHFSCreatorCode];
 		if ((macType != 0) && (macCreator != 0)) {
-			[myDict setObject:[NSNumber numberWithUnsignedLong:macCreator] forKey:NSFileHFSCreatorCode];
-			[myDict setObject:[NSNumber numberWithUnsignedLong:macType] forKey:NSFileHFSTypeCode];
+			myDict[NSFileHFSCreatorCode] = @(macCreator);
+			myDict[NSFileHFSTypeCode] = @(macType);
 		}
 	}
 	return myDict;
@@ -398,25 +398,25 @@
  *ÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐÐ*/
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
 {
-	NSDictionary *error = [[tidyProcess errorArray] objectAtIndex:rowIndex];	// get the current error
+	NSDictionary *error = [tidyProcess errorArray][rowIndex];	// get the current error
 
 	// list of error types -- no localized; users can localize based on this string.
-	NSArray *errorTypes = [NSArray arrayWithObjects:@"Info:", @"Warning:", @"Config:", @"Access:", @"Error:", @"Document:", @"Panic:", nil];
+	NSArray *errorTypes = @[@"Info:", @"Warning:", @"Config:", @"Access:", @"Error:", @"Document:", @"Panic:"];
 
 	// handle returning the severity of the error, localized.
 	if ([[aTableColumn identifier] isEqualToString:@"severity"])
-		return NSLocalizedString([errorTypes objectAtIndex: [[error objectForKey:@"level"] intValue] ], nil);
+		return NSLocalizedString(errorTypes[[error[@"level"] intValue]], nil);
 
 	// handle the location, localized, or "N/A" if not applicable
 	if ([[aTableColumn identifier] isEqualToString:@"where"]) {
-		if (([[error objectForKey:@"line"] intValue] == 0) || ([[error objectForKey:@"column"] intValue] == 0)) {
+		if (([error[@"line"] intValue] == 0) || ([error[@"column"] intValue] == 0)) {
 			return NSLocalizedString(@"N/A", nil);
 		} // if (N/A)
-		return [NSString stringWithFormat:@"%@ %@, %@ %@", NSLocalizedString(@"line", nil), [error objectForKey:@"line"], NSLocalizedString(@"column", nil), [error objectForKey:@"column"]];
+		return [NSString stringWithFormat:@"%@ %@, %@ %@", NSLocalizedString(@"line", nil), error[@"line"], NSLocalizedString(@"column", nil), error[@"column"]];
 	} // if where
 
 	if ([[aTableColumn identifier] isEqualToString:@"description"])
-		return [error objectForKey:@"message"];
+		return error[@"message"];
 	return @"";
 }
 
@@ -433,8 +433,8 @@
 	NSInteger errorViewRow = [errorView selectedRow];
 	if (errorViewRow >= 0)
 	{
-		NSInteger row = [[[[tidyProcess errorArray] objectAtIndex:errorViewRow] objectForKey:@"line"] intValue];
-		NSInteger col = [[[[tidyProcess errorArray] objectAtIndex:errorViewRow] objectForKey:@"column"] intValue];
+		NSInteger row = [[tidyProcess errorArray][errorViewRow][@"line"] intValue];
+		NSInteger col = [[tidyProcess errorArray][errorViewRow][@"column"] intValue];
 		[sourceView highlightLine:row Column:col];
 	} else {
 		[sourceView setShowsHighlight:NO];
