@@ -58,23 +58,23 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	When the app is initialized pass off registering of the user
-	defaults to the |PreferenceController|.
+ When the app is initialized pass off registering of the user
+ defaults to the |PreferenceController|.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-+(void)initialize
++ (void)initialize
 {
-    [PreferenceController registerUserDefaults];
+	[PreferenceController registerUserDefaults];
 }
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	dealloc
+ dealloc
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)dealloc
 {
-    [[self thePreferenceController] release];
-    [[self theBatchController] release];
-    [super dealloc];
+	[[self thePreferenceController] release];
+	[[self theBatchController] release];
+	[super dealloc];
 }
 
 
@@ -83,30 +83,30 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	Show the preferences window.
+ Show the preferences window.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (IBAction)showPreferences:(id)sender
 {
-    if (![self thePreferenceController])
+	if (![self thePreferenceController])
 	{
-        _thePreferenceController = [[PreferenceController alloc] init];
-    }
+		_thePreferenceController = [[PreferenceController alloc] init];
+	}
 
-    [[self thePreferenceController] showWindow:self];
+	[[self thePreferenceController] showWindow:self];
 }
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	Show the batch window.
+ Show the batch window.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (IBAction)showBatch:(id)sender
 {
-    if (![self theBatchController])
+	if (![self theBatchController])
 	{
-        _theBatchController = [[BatchController alloc] init];
-    }
-
-    [[self theBatchController] showWindow:self];
+		_theBatchController = [[BatchController alloc] init];
+	}
+	
+	[[self theBatchController] showWindow:self];
 }
 
 @end

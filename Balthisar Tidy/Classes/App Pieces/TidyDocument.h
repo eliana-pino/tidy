@@ -44,7 +44,7 @@
 	// items for the option controller and pane
 	IBOutlet NSView *optionPane;			// pointer to our empty optionPane.
 	OptionPaneController *optionController;	// this will control the real option pane loaded into optionPane
-	   
+
 	// internally-used instance variables.
 	JSDTidyDocument* tidyProcess;			// our tidy wrapper/processor.
 	NSInteger saveBehavior;					// the save behavior from the preferences.

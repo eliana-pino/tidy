@@ -47,7 +47,7 @@
 	@property (strong) TreeNode *fileTree;							// Holds the list of things we will batch
 
 
-	-(IBAction)startBatch:(id)sender;								// Handler for the batch button being pressed.
+	- (IBAction)startBatch:(id)sender;								// Handler for the batch button being pressed.
 
 	- (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item;
 	- (NSUInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item;

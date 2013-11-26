@@ -75,7 +75,7 @@ static char const * const JSDtagShowsLineNumbers = "JSDtagShowsLineNumbers";
 		return [item integerValue];
 
 	} else {
-		return  0;
+		return 0;
 	}
 }
 
@@ -97,7 +97,7 @@ static char const * const JSDtagShowsLineNumbers = "JSDtagShowsLineNumbers";
 		return [item integerValue];
 
 	} else {
-		return  0;
+		return 0;
 	}
 }
 
@@ -254,7 +254,7 @@ static char const * const JSDtagShowsLineNumbers = "JSDtagShowsLineNumbers";
 		// Remember the new setting
 		objc_setAssociatedObject(self, JSDtagWordwrapsText, [NSNumber numberWithBool:state], OBJC_ASSOCIATION_COPY_NONATOMIC);
 
-        if (!state)
+		if (!state)
 		{
 			NSSize layoutSize = NSMakeSize(FLT_MAX, FLT_MAX);
 
@@ -272,7 +272,7 @@ static char const * const JSDtagShowsLineNumbers = "JSDtagShowsLineNumbers";
 			[[self textContainer] setContainerSize:layoutSize];
 			[[self textContainer] setWidthTracksTextView:YES];
 		}
-    }
+	}
 }
 
 
@@ -307,7 +307,7 @@ static char const * const JSDtagShowsLineNumbers = "JSDtagShowsLineNumbers";
 		// Remember the new setting
 		objc_setAssociatedObject(self, JSDtagShowsLineNumbers, [NSNumber numberWithBool:state], OBJC_ASSOCIATION_COPY_NONATOMIC);
 
-        if (!state)
+		if (!state)
 		{
 			[[self enclosingScrollView] setHasHorizontalRuler:NO]; // wrong
 			[[self enclosingScrollView] setHasVerticalRuler:NO];
@@ -323,7 +323,7 @@ static char const * const JSDtagShowsLineNumbers = "JSDtagShowsLineNumbers";
 			[[self enclosingScrollView] setRulersVisible:YES];
 			objc_setAssociatedObject(self, JSDtagShowsLineNumbers, lineNumberView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 		}
-    }
+	}
 }
 
 

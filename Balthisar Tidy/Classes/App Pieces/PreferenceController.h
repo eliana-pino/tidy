@@ -54,9 +54,9 @@ extern NSString *JSDKeyBatchSavingPrefStyle;
 	JSDTidyDocument *tidyProcess;			// this will point to the optionPaneController's tidy process.
 
 }
-+(void)registerUserDefaults;
++ (void)registerUserDefaults;
 
--(IBAction)preferenceChanged:(id)sender;	// handler for a configuration option change.
--(IBAction)radioSavingChanged:(id)sender;	// handler for a saving preference change.
--(IBAction)radioBatchChanged:(id)sender;	// handler for a batch preference change.
+- (IBAction)preferenceChanged:(id)sender;	// handler for a configuration option change.
+- (IBAction)radioSavingChanged:(id)sender;	// handler for a saving preference change.
+- (IBAction)radioBatchChanged:(id)sender;	// handler for a batch preference change.
 @end

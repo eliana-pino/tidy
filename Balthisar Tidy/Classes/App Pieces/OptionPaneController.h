@@ -4,14 +4,14 @@
  
 	part of Balthisar Tidy
 
-    The main controller for the multi-use option pane. implemented separately for
+	The main controller for the multi-use option pane. implemented separately for
 
-        o use on a document window
-        o use on the preferences window
-        
-    This controller parses optionsInEffect.txt in the application bundle, and compares
-    the options listed there with the linked-in TidyLib to determine which options are
-    in effect and valid. We use an instance of |JSDTidyDocument| to deal with this.
+		o use on a document window
+		o use on the preferences window
+
+	This controller parses optionsInEffect.txt in the application bundle, and compares
+	the options listed there with the linked-in TidyLib to determine which options are
+	in effect and valid. We use an instance of |JSDTidyDocument| to deal with this.
 
 
 	The MIT License (MIT)
@@ -50,8 +50,8 @@
 	@property (strong) JSDTidyDocument *tidyDocument;		// Exposed so others can get settings.
 
 
--(id)init;													// Initialize the view so we can use it.
+- (id)init;													// Initialize the view so we can use it.
 
--(void)putViewIntoView:(NSView *)dstView;					// Put this controller's |View| into |dstView|.
+- (void)putViewIntoView:(NSView *)dstView;					// Put this controller's |View| into |dstView|.
 
 @end
