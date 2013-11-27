@@ -2,13 +2,8 @@
 
 	JSDTidyDocument.h
 
-	 A Cocoa wrapper for tidylib. Tries to implement all of the "good stuff" from TidyLib,
-	 including the TidyDoc object and methods to use it; options; and HTML parsing. See file
-	 "config.c" for all of Tidy's configuration options.
-
-	 It should be completely self-contained but for linking to Foundation and "tidy.h".
-
-
+	A Cocoa wrapper for tidylib.
+	
 
 	The MIT License (MIT)
 
@@ -17,8 +12,8 @@
 	Permission is hereby granted, free of charge, to any person obtaining a copy of this software
 	and associated documentation files (the "Software"), to deal in the Software without
 	restriction, including without limitation the rights to use, copy, modify, merge, publish,
-	distribute, sublicense, and/or sell	copies of the Software, and to permit persons to whom the
-	Software is	furnished to do so, subject to the following conditions:
+	distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the
+	Software is furnished to do so, subject to the following conditions:
 
 	The above copyright notice and this permission notice shall be included in
 	all copies or substantial portions of the Software.
@@ -31,20 +26,18 @@
 
  **************************************************************************************************/
 
-
 #import <Foundation/Foundation.h>
 #import "tidy.h"
 #import "tidyenum.h"
 
 
-#pragma mark -
-#pragma mark Some defines
+#pragma mark - Some defines
 
 /*	
 	In the prefs file, this prefix will prepend all TidyLib options stored there. This would only be
 	used if you're using the convenience preferences methods defined in JSDTidyDocument that work
-	with the native Cocoa preferences system. This "prefix" support exists in order to isolate the
-	TidyLib configuration names from your own pref names.
+	with the native Cocoa preferences system. This "prefix" support exists in order to act as a
+	namespace against your own pref names.
 */
 #define tidyPrefPrefix @"-tidy-"
 
@@ -60,15 +53,12 @@
 #define defaultOutputEncoding	NSUnicodeStringEncoding
 
 
-#pragma mark -
-#pragma mark class JSDTidyDocument
-
+#pragma mark - class JSDTidyDocument
 
 @interface JSDTidyDocument : NSObject {
 
 
-#pragma mark -
-#pragma mark iVars
+#pragma mark - iVars
 
 //------------------------------------------------------------------------------------------------------------
 // INSTANCE VARIABLES -- they're protected for subclassing. Use the accessor methods instead of these.
@@ -94,8 +84,7 @@
 }
 
 
-#pragma mark -
-#pragma mark Encoding Support
+#pragma mark - Encoding Support
 
 
 //------------------------------------------------------------------------------------------------------------
@@ -106,8 +95,7 @@
 + (NSArray *)allAvailableStringEncodingsNames;		// returns an array of NSString, correlated to above.
 
 
-#pragma mark -
-#pragma mark Initialization and Deallocation
+#pragma mark - Initialization and Deallocation
 
 
 //------------------------------------------------------------------------------------------------------------
@@ -120,14 +108,13 @@
 // the following convenience initializer assumes you know you're putting in a correctly-decoded NSString.
 - (id)initWithString:(NSString *)value;				// sets original & working text at initialization.
 
-// these convenience initializers will DECODE to the Unicode string using the default set for input-encoding
+// these convenience initializers will DECODE to the Unicode string using the default preference for input-encoding
 - (id)initWithFile:(NSString *)path;				// initialize with a given file.
 
-- (id)initWithData:(NSData *)data;				// initialize with the given data.
+- (id)initWithData:(NSData *)data;					// initialize with the given data.
 
 
-#pragma mark -
-#pragma mark Text
+#pragma mark - Text
 
 
 //------------------------------------------------------------------------------------------------------------
@@ -190,9 +177,9 @@
 - (bool)areEqualOriginalTidy;				// are the orginal and tidy text identical?
 
 
-#pragma mark -
-#pragma mark Options management
+#pragma mark - Options management
 
+// TODO: - maintain the options internally instead of forcing apps to create own buffer.
 
 //------------------------------------------------------------------------------------------------------------
 // OPTIONS - methods for dealing with options
@@ -227,8 +214,7 @@
 - (void)				optionCopyFromDocument:(JSDTidyDocument *)theDocument;	// sets options based on those in theDocument.
 
 
-#pragma mark -
-#pragma mark Raw access exposure
+#pragma mark - Raw access exposure
 
 //------------------------------------------------------------------------------------------------------------
 // RAW ACCESS EXPOSURE
@@ -236,8 +222,7 @@
 - (TidyDoc)tidyDocument;						// return the TidyDoc attached to this instance.
 
 
-#pragma mark -
-#pragma mark Diagnostics and Repair
+#pragma mark - Diagnostics and Repair
 
 
 //------------------------------------------------------------------------------------------------------------
@@ -261,8 +246,7 @@
 - (bool)errorFilter:(TidyDoc)tDoc Level:(TidyReportLevel)lvl Line:(uint)line Column:(uint)col Message:(ctmbstr)mssg;
 
 
-#pragma mark -
-#pragma mark Miscelleneous
+#pragma mark - Miscelleneous
 
 
 //------------------------------------------------------------------------------------------------------------
@@ -271,8 +255,7 @@
 - (NSString *)tidyReleaseDate;		// returns the TidyLib release date
 
 
-#pragma mark -
-#pragma mark Configuration List Support
+#pragma mark - Configuration List Support
 
 
 //------------------------------------------------------------------------------------------------------------
@@ -281,8 +264,7 @@
 + (NSArray *)loadConfigurationListFromResource:(NSString *)fileName ofType:(NSString *)fileType;	// get list of config options.
 
 
-#pragma mark -
-#pragma mark Mac OS X Prefs Support
+#pragma mark - Mac OS X Prefs Support
 
 
 //------------------------------------------------------------------------------------------------------------
@@ -299,8 +281,7 @@
 - (void)takeOptionValuesFromDefaults:(NSUserDefaults *)defaults;			// take config from passed-in defaults.
 
 
-#pragma mark -
-#pragma mark Document Tree Parsing (coming soon)
+#pragma mark - Document Tree Parsing (coming soon)
 
 
 @end

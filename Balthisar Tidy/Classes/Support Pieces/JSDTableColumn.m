@@ -7,9 +7,9 @@
 	FOR SOME REASON, you cannot implement this in IB -- you'll have to swap out the
 	type in |awakeFromNib| in the controller that you use. See these methods to assist:
 
-	initReplacingColumn:
-	initReplacingColumnId:
-	swapForTableColumn:
+		initReplacingColumn:
+		initReplacingColumnId:
+		swapForTableColumn:
 
 
 	The MIT License (MIT)
@@ -19,8 +19,8 @@
 	Permission is hereby granted, free of charge, to any person obtaining a copy of this software
 	and associated documentation files (the "Software"), to deal in the Software without
 	restriction, including without limitation the rights to use, copy, modify, merge, publish,
-	distribute, sublicense, and/or sell	copies of the Software, and to permit persons to whom the
-	Software is	furnished to do so, subject to the following conditions:
+	distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the
+	Software is furnished to do so, subject to the following conditions:
 
 	The above copyright notice and this permission notice shall be included in
 	all copies or substantial portions of the Software.
@@ -38,9 +38,13 @@
 
 @implementation JSDTableColumn : NSTableColumn
 
+
+#pragma mark - initializers and deallocs
+
+
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
- initReplacingColumn:
- initialize ourself and replace "aColumn" in its table.
+	initReplacingColumn:
+		initialize ourself and replace "aColumn" in its table.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (id)initReplacingColumn:(NSTableColumn *)aColumn
 {
@@ -53,44 +57,13 @@
 }
 
 
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
- dataCellForRow:
- we're going to call the delegate for a cell, if one exists.
- It will provide the cell that we need for this row.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (id)dataCellForRow:(int)row
-{
-
-	// make sure there's a tableview and a delegate and that the row isn't -1.
-	if ( ([self tableView] == nil) || ([[self tableView] delegate] == nil) || (row == -1) )
-	{
-		return [super dataCellForRow:row];
-	}
-
-	// See if the selector exists, and if not then return the standard result.
-	if ( ! [ [ [self tableView] delegate] respondsToSelector:@selector(tableColumn:customDataCellForRow:)] )
-	{
-		return [super dataCellForRow:row];
-	}
-
-	// Try getting the cell we want from the delegate routine.
-	// The my |tableView| delegate is the owner. For Balthisar Tidy it's an instance
-	// of |OptionPaneController|.
-
-	id cell = [(id)[[self tableView] delegate] tableColumn:self customDataCellForRow:row];
-	if (cell != nil)
-	{
-		return cell;
-	}
-
-	return [super dataCellForRow:row];		// nothing there, so call the inherited method.
-}
+#pragma mark - initializers and deallocs
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
- swapForTableColumn:
- convenience method that allows us to substitute ourself for
- an existing table column.
+	swapForTableColumn:
+		Convenience method that allows us to substitute ourself for
+		an existing table column.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)swapForTableColumn:(NSTableColumn *)oldTableColumn
 {
@@ -117,9 +90,45 @@
 }
 
 
+#pragma mark - Dealing with cells
+
+
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
- usefulCheckCell:
- return a useful cell type.
+	dataCellForRow:
+		Call the delegate (if it exists) for a special cell.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (id)dataCellForRow:(int)row
+{
+
+	// make sure there's a tableview and a delegate and that the row isn't -1.
+	if ( ([self tableView] == nil) || ([[self tableView] delegate] == nil) || (row == -1) )
+	{
+		return [super dataCellForRow:row];
+	}
+
+	// See if the selector exists, and if not then return the standard result.
+	if ( ! [ [ [self tableView] delegate] respondsToSelector:@selector(tableColumn:customDataCellForRow:)] )
+	{
+		return [super dataCellForRow:row];
+	}
+
+	// Try getting the cell we want from the delegate routine.
+	// The my |tableView| delegate is the owner. For Balthisar Tidy
+	// it's an instance of |OptionPaneController|.
+
+	id cell = [(id)[[self tableView] delegate] tableColumn:self customDataCellForRow:row];
+	if (cell != nil)
+	{
+		return cell;
+	}
+
+	return [super dataCellForRow:row];		// nothing there, so call the inherited method.
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	usefulCheckCell:
+		return a useful cell type.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSCell *)usefulCheckCell
 {
@@ -133,8 +142,8 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
- usefulRadioCell:
- return a useful cell type.
+	usefulRadioCell:
+		return a useful cell type.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSCell *)usefulRadioCell
 {
@@ -148,8 +157,8 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
- usefulPopUpCell:
- return a useful cell type.
+	usefulPopUpCell:
+		return a useful cell type.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSCell *)usefulPopUpCell:(NSArray *)picks
 {

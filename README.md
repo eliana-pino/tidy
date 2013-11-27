@@ -1,6 +1,6 @@
 Balthisar Tidy and JSDTidyDocument
 ==================================
-(a Cocoa adaptation of TidyLib)
+(a Cocoa wrapper for TidyLib)
 -------------------------------
 
 _©2003-2013 by James S. Derry and balthisar.com_
@@ -48,21 +48,3 @@ Known Issues
 ------------
 
 * Lots of bugs.
-
-Todo
-----
-
-- if any of the errors are REMOVED something, then don't save!
-- Redesign the main document interface with modern style.
-	- panel for preferences like iTunes, or floating off to the side so it updates
-	  with different documents
-	- webkit preview
-	- modern preferences like Mac OS System preferences
-	- combined toolbar and title bar
-	- help on first run
-- Make the batch mode work.
-- Get the configuration dynamically at startup instead of using the file.
-	- We can maintain a list of exceptions separately.
-		- things to leave out
-		- things to override with a text value
-	-Probably add a method to support this directly.

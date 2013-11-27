@@ -6,8 +6,8 @@
 
 	The main preference controller. Here we'll control the following:
 
-	o Handles the application preferences.
-	o Implements class methods to be used before instantiation.
+		o Handles the application preferences.
+		o Implements class methods to be used before instantiation.
 
 
 	The MIT License (MIT)
@@ -17,8 +17,8 @@
 	Permission is hereby granted, free of charge, to any person obtaining a copy of this software
 	and associated documentation files (the "Software"), to deal in the Software without
 	restriction, including without limitation the rights to use, copy, modify, merge, publish,
-	distribute, sublicense, and/or sell	copies of the Software, and to permit persons to whom the
-	Software is	furnished to do so, subject to the following conditions:
+	distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the
+	Software is furnished to do so, subject to the following conditions:
 
 	The above copyright notice and this permission notice shall be included in
 	all copies or substantial portions of the Software.
@@ -45,39 +45,53 @@ NSString *JSDKeyBatchSavingPrefStyle = @"BatchSavingPrefStyle";
 @implementation PreferenceController
 
 
+#pragma mark - Class Methods
+
+
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
- registerUserDefaults -- CLASS method.
- register all of the user defaults. Implemented as a CLASS
- method in order to keep this with the preferences controller,
- but the preferences controller won't have been created yet.
+	registerUserDefaults
+		register all of the user defaults. Implemented as a CLASS
+		method in order to keep this with the preferences controller,
+		but the preferences controller won't have been created yet.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 + (void)registerUserDefaults
 {
-	NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary]; // create a dictionary
-	// put all of the defaults in the dictionary
+	NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary];
+	
+	// Put all of the defaults in the dictionary
 	defaultValues[JSDKeySavingPrefStyle] = @2;
 	defaultValues[JSDKeyWarnBeforeOverwrite] = @NO;
 	defaultValues[JSDKeyBatchSavingPrefStyle] = @1;
-	[JSDTidyDocument addDefaultsToDictionary:defaultValues]; // get the defaults ultimately from the linked-in TidyLib
-	// register the defaults with the defaults system
+	
+	// Get the defaults from the linked-in TidyLib
+	[JSDTidyDocument addDefaultsToDictionary:defaultValues];
+	
+	// Register the defaults with the defaults system
 	[[NSUserDefaults standardUserDefaults] registerDefaults: defaultValues];
 }
 
 
+#pragma mark - Instance Methods
+
+
+#pragma mark - initializers and deallocs and setup
+
+
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
- init
- Our creator -- we want to load the nib "Preferences".
+	init
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (id)init
 {
 	if (self = [super initWithWindowNibName:@"Preferences"])
+	{
 		[self setWindowFrameAutosaveName:@"PrefWindow"];
+	}
 	return self;
 }
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
- dealloc
+	dealloc
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)dealloc
 {
@@ -87,14 +101,14 @@ NSString *JSDKeyBatchSavingPrefStyle = @"BatchSavingPrefStyle";
 }
 
 
-
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
- awakeFromNib
- Setup the option pane controller.
+	awakeFromNib
+		Setup an |OptionPaneController|.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void) awakeFromNib
 {
-	// create a OptionPaneController and put it in place of optionPane
+	// create an |OptionPaneController| and put it
+	// in place of the empty optionPane in the xib.
 	if (!optionController)
 	{
 		optionController = [[OptionPaneController alloc] init];
@@ -107,27 +121,32 @@ NSString *JSDKeyBatchSavingPrefStyle = @"BatchSavingPrefStyle";
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
- windowDidLoad
- Put the correct preferences on.
+	windowDidLoad
+		Use the defaults to setup the correct preferences settings.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)windowDidLoad
 {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	
 	[saving1 setState:([defaults integerForKey: JSDKeySavingPrefStyle] == 1)];
 	[saving2 setState:([defaults integerForKey: JSDKeySavingPrefStyle] == 2)];
 	[savingWarn setState:[defaults boolForKey: JSDKeyWarnBeforeOverwrite]];
 	[savingWarn setEnabled:[saving1 state]];
 	[batchSaving1 setState:([defaults integerForKey: JSDKeyBatchSavingPrefStyle] == 1)];
 	[batchSaving2 setState:([defaults integerForKey: JSDKeyBatchSavingPrefStyle] == 2)];
-	// load the default systems preferences.
+	
+	// Put the Tidy defaults into the |tidyProcess|.
 	[tidyProcess takeOptionValuesFromDefaults:defaults];
 }
 
 
+#pragma mark - Events
+
+
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
- radioSavingChanged
- One of the radio buttons for saving options has changed.
- Handle this apart, since we're not using a matrix.
+	radioSavingChanged
+		One of the radio buttons for saving options has changed.
+		Handle this apart, since we're not using a matrix.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (IBAction)radioSavingChanged:(id)sender
 {
@@ -140,9 +159,9 @@ NSString *JSDKeyBatchSavingPrefStyle = @"BatchSavingPrefStyle";
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
- radioBatchChanged
- one of the radio buttons for batch options has changed.
- Handle this apart, since we're not using a matrix.
+	radioBatchChanged
+		One of the radio buttons for batch options has changed.
+		Handle this apart, since we're not using a matrix.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (IBAction)radioBatchChanged:(id)sender
 {
@@ -154,8 +173,8 @@ NSString *JSDKeyBatchSavingPrefStyle = @"BatchSavingPrefStyle";
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
- preferenceChanged
- one of the saving/batch prefs changed. Log and notify.
+	preferenceChanged
+		one of the saving/batch prefs changed. Log and notify.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (IBAction)preferenceChanged:(id)sender
 {
@@ -173,12 +192,12 @@ NSString *JSDKeyBatchSavingPrefStyle = @"BatchSavingPrefStyle";
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
- optionChanged
- one of the preferences changed in the table view. We're
- here as a result of having been set the Action for the
- OptionPaneController. We're gonna record the preference,
- but we're not going to post a notification, 'cos new
- documents will read the preferences themselves.
+	optionChanged
+		One of the preferences changed in the table view. We're
+		here as a result of having been set the Action for the
+		OptionPaneController. We're going to record the preference,
+		but we're not going to post a notification, 'cos new
+		documents will read the preferences themselves.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (IBAction)optionChanged:(id)sender
 {

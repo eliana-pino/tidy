@@ -16,8 +16,8 @@
 	Permission is hereby granted, free of charge, to any person obtaining a copy of this software
 	and associated documentation files (the "Software"), to deal in the Software without
 	restriction, including without limitation the rights to use, copy, modify, merge, publish,
-	distribute, sublicense, and/or sell	copies of the Software, and to permit persons to whom the
-	Software is	furnished to do so, subject to the following conditions:
+	distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the
+	Software is furnished to do so, subject to the following conditions:
 
 	The above copyright notice and this permission notice shall be included in
 	all copies or substantial portions of the Software.
@@ -36,8 +36,7 @@
 #import "BatchController.h"
 
 
-#pragma mark -
-#pragma mark Non-Public iVars, Properties, and Method declarations
+#pragma mark - Non-Public iVars, Properties, and Method declarations
 
 @interface AppController ()
 
@@ -47,14 +46,12 @@
 @end
 
 
-#pragma mark -
-#pragma mark Implementation
+#pragma mark - Implementation
 
 @implementation AppController
 
 
-#pragma mark -
-#pragma mark initializers and deallocs
+#pragma mark - initializers and deallocs
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
@@ -67,8 +64,7 @@
 }
 
 
-#pragma mark -
-#pragma mark Handle showing preferences and batch windows.
+#pragma mark - Showing preferences and batch windows
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*

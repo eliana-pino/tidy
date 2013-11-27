@@ -18,8 +18,8 @@
 	Permission is hereby granted, free of charge, to any person obtaining a copy of this software
 	and associated documentation files (the "Software"), to deal in the Software without
 	restriction, including without limitation the rights to use, copy, modify, merge, publish,
-	distribute, sublicense, and/or sell	copies of the Software, and to permit persons to whom the
-	Software is	furnished to do so, subject to the following conditions:
+	distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the
+	Software is furnished to do so, subject to the following conditions:
 
 	The above copyright notice and this permission notice shall be included in
 	all copies or substantial portions of the Software.
@@ -51,16 +51,13 @@ static char const * const JSDtagWordwrapsText = "JSDtagWordwrapsText";
 static char const * const JSDtagShowsLineNumbers = "JSDtagShowsLineNumbers";
 
 
-#pragma mark -
-#pragma mark Implementation
-
+#pragma mark - Implementation
 
 
 @implementation NSTextView (JSDExtensions)
 
 
-#pragma mark -
-#pragma mark HIGHLIGHT property accessors and mutators
+#pragma mark - HIGHLIGHT property accessors and mutators
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
@@ -186,6 +183,7 @@ static char const * const JSDtagShowsLineNumbers = "JSDtagShowsLineNumbers";
 	NSInteger i = 0;							// Glyph counter
 	NSInteger j = 1; 							// Line counter
 	NSLayoutManager *lm = [self layoutManager];	// Layout manager
+	
 	if (line >= 1)
 	{
 		// The line number counting loop
@@ -221,8 +219,7 @@ static char const * const JSDtagShowsLineNumbers = "JSDtagShowsLineNumbers";
 }
 
 
-#pragma mark -
-#pragma mark WORDWRAP property accessors and mutators
+#pragma mark - WORDWRAP property accessors and mutators
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
@@ -274,8 +271,7 @@ static char const * const JSDtagShowsLineNumbers = "JSDtagShowsLineNumbers";
 }
 
 
-#pragma mark -
-#pragma mark LINE NUMBER property accessors and mutators
+#pragma mark - LINE NUMBER property accessors and mutators
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
@@ -311,7 +307,7 @@ static char const * const JSDtagShowsLineNumbers = "JSDtagShowsLineNumbers";
 			[[self enclosingScrollView] setHasVerticalRuler:NO];
 			[[self enclosingScrollView] setRulersVisible:NO];
 			[[self enclosingScrollView] setVerticalRulerView:nil];
-			objc_setAssociatedObject(self, JSDtagShowsLineNumbers, nil, OBJC_ASSOCIATION_ASSIGN);
+			objc_setAssociatedObject(self, JSDtagShowsLineNumbers, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 
 		} else {
 			NoodleLineNumberView *lineNumberView = [[[NoodleLineNumberView alloc] initWithScrollView:[self enclosingScrollView]] autorelease];
@@ -319,7 +315,7 @@ static char const * const JSDtagShowsLineNumbers = "JSDtagShowsLineNumbers";
 			[[self enclosingScrollView] setHasHorizontalRuler:NO];
 			[[self enclosingScrollView] setHasVerticalRuler:YES];
 			[[self enclosingScrollView] setRulersVisible:YES];
-			objc_setAssociatedObject(self, JSDtagShowsLineNumbers, lineNumberView, OBJC_ASSOCIATION_COPY_NONATOMIC);
+			objc_setAssociatedObject(self, JSDtagShowsLineNumbers, lineNumberView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 		}
 	}
 }
