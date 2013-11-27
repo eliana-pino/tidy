@@ -14,8 +14,7 @@ uppercase-tags
 uppercase-attributes
 bare
 clean
-doctype-mode
-#doctype
+doctype
 input-xml
 output-xml
 output-xhtml
@@ -24,7 +23,7 @@ add-xml-decl
 logical-emphasis
 drop-proprietary-attributes
 drop-font-tags
-drop-empty-para
+drop-empty-paras
 fix-bad-comments
 break-before-br
 numeric-entities
@@ -78,3 +77,18 @@ accessibility-check
 #language
 #slide-style
 #split
+anchor-as-name
+coerce-endtags
+decorate-inferred-ul
+drop-empty-elements
+gdoc
+merge-divs
+merge-emphasis
+merge-spans
+omit-optional-tags
+output-file
+preserve-entities
+punctuation-wrap
+show-info
+sort-attributes
+vertical-space

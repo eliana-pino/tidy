@@ -21,20 +21,20 @@
         <window title="Balthisar Tidy Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" animationBehavior="default" id="5" userLabel="Window">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="464" y="451" width="321" height="470"/>
+            <rect key="contentRect" x="464" y="451" width="333" height="480"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
             <value key="minSize" type="size" width="213" height="107"/>
             <view key="contentView" id="6">
-                <rect key="frame" x="0.0" y="0.0" width="321" height="470"/>
+                <rect key="frame" x="0.0" y="0.0" width="333" height="480"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <tabView controlSize="small" id="28">
-                        <rect key="frame" x="-10" y="-13" width="341" height="483"/>
+                        <rect key="frame" x="-7" y="-10" width="347" height="493"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <tabViewItems>
                             <tabViewItem label="Tidy Options" identifier="" id="7">
                                 <view key="view" id="13">
-                                    <rect key="frame" x="10" y="29" width="321" height="441"/>
+                                    <rect key="frame" x="10" y="25" width="327" height="455"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" id="42">
@@ -49,7 +49,7 @@
                                         </textField>
                                         <customView id="164">
                                             <rect key="frame" x="0.0" y="77" width="321" height="368"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </customView>
                                         <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="167">
                                             <rect key="frame" x="12" y="71" width="297" height="5"/>
@@ -63,7 +63,7 @@
                             </tabViewItem>
                             <tabViewItem label="Saving" identifier="" id="38">
                                 <view key="view" id="39">
-                                    <rect key="frame" x="10" y="25" width="321" height="445"/>
+                                    <rect key="frame" x="10" y="25" width="327" height="455"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" id="58">
@@ -119,7 +119,7 @@ first time to save a Tidy’d document.</string>
                             </tabViewItem>
                             <tabViewItem label="Batch (forthcoming)" identifier="" id="40">
                                 <view key="view" id="41">
-                                    <rect key="frame" x="10" y="25" width="321" height="445"/>
+                                    <rect key="frame" x="10" y="25" width="327" height="455"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" id="69">
@@ -161,9 +161,5 @@ first time to save a Tidy’d document.</string>
                 </subviews>
             </view>
         </window>
-        <view id="168">
-            <rect key="frame" x="0.0" y="0.0" width="293" height="1"/>
-            <autoresizingMask key="autoresizingMask"/>
-        </view>
     </objects>
 </document>
