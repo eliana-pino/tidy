@@ -86,7 +86,7 @@
 		optionsExceptions = [[NSArray arrayWithArray:[JSDTidyDocument loadConfigurationListFromResource:@"optionsTypesExceptions" ofType:@"txt"]] retain];
 
 		// Create a custom column for the NSTableView -- the table will retain and control it.
-		[[[JSDTableColumn alloc] initReplacingColumn:[_theTable tableColumnWithIdentifier:@"check"]] autorelease];
+		[[[JSDTableColumn alloc] initReplacingColumn:[_theTable tableColumnWithIdentifier:@"check"]] release];
 	}
 	return self;
 }
@@ -121,14 +121,15 @@
 		[trash removeFromSuperview];
 	}
 
-
-
 	[[_theTable enclosingScrollView] setHasHorizontalScroller:NO];
-	[_View setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
-	[dstView setAutoresizesSubviews:YES];
+
+	[_View setFrame:[dstView frame]];
+
+	//[_View setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
+
+	//[dstView setAutoresizesSubviews:YES];
 
 	[dstView addSubview:_View];
-	[_View setFrame:[dstView frame]];
 }
 
 
