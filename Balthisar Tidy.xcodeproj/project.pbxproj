@@ -11,11 +11,12 @@
 		D0107937183C738F00120B57 /* OptionPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07AF47A1836581E00913067 /* OptionPane.xib */; };
 		D0107938183C738F00120B57 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07AF47C1836581E00913067 /* Preferences.xib */; };
 		D0107939183C738F00120B57 /* TidyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07AF47E1836581E00913067 /* TidyDocument.xib */; };
-		D0120B54183CCA9B003CA182 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0120B52183CCA9B003CA182 /* InfoPlist.strings */; };
 		D0120B57183CCAB3003CA182 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0120B55183CCAB3003CA182 /* Localizable.strings */; };
 		D016A92A182FD80700712C60 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D016A929182FD80700712C60 /* Cocoa.framework */; };
 		D016A936182FD80700712C60 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D016A935182FD80700712C60 /* main.m */; };
 		D016A945182FD80700712C60 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D016A944182FD80700712C60 /* Images.xcassets */; };
+		D01AED8518476F6B001300E3 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D01AED8318476F6B001300E3 /* Credits.rtf */; };
+		D01AED891847908D001300E3 /* HTML.icns in Resources */ = {isa = PBXBuildFile; fileRef = D01AED881847908D001300E3 /* HTML.icns */; };
 		D04B0510183F158800C0F70F /* NoodleLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = D04B050F183F158800C0F70F /* NoodleLineNumberView.m */; };
 		D04B0513183F15F500C0F70F /* NoodleLineNumberMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = D04B0512183F15F500C0F70F /* NoodleLineNumberMarker.m */; };
 		D07AF495183658D300913067 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF48C183658D300913067 /* AppController.m */; };
@@ -60,7 +61,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D0120B53183CCA9B003CA182 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "balthisar tidy/Base.lproj/InfoPlist.strings"; sourceTree = SOURCE_ROOT; };
 		D0120B56183CCAB3003CA182 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "balthisar tidy/Base.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
 		D016A926182FD80700712C60 /* Balthisar Tidy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Balthisar Tidy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D016A929182FD80700712C60 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -72,6 +72,8 @@
 		D016A937182FD80700712C60 /* Balthisar Tidy-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Balthisar Tidy-Prefix.pch"; sourceTree = "<group>"; };
 		D016A944182FD80700712C60 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D016A94B182FD80700712C60 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		D01AED8418476F6B001300E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Base; path = Base.lproj/Credits.rtf; sourceTree = "<group>"; };
+		D01AED881847908D001300E3 /* HTML.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = HTML.icns; path = Images.xcassets/HTML.icns; sourceTree = "<group>"; };
 		D026169E1836F48A002ABD72 /* Balthisar Tidy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Balthisar Tidy.entitlements"; sourceTree = "<group>"; };
 		D04B050E183F158800C0F70F /* NoodleLineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoodleLineNumberView.h; path = "balthisar tidy/Classes/Support Pieces/NoodleLineNumberView.h"; sourceTree = SOURCE_ROOT; };
 		D04B050F183F158800C0F70F /* NoodleLineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoodleLineNumberView.m; path = "balthisar tidy/Classes/Support Pieces/NoodleLineNumberView.m"; sourceTree = SOURCE_ROOT; };
@@ -213,6 +215,7 @@
 				D026169F1836F927002ABD72 /* Classes */,
 				D07AF49A183658F100913067 /* Base.lproj */,
 				D016A944182FD80700712C60 /* Images.xcassets */,
+				D01AED881847908D001300E3 /* HTML.icns */,
 				D026169E1836F48A002ABD72 /* Balthisar Tidy.entitlements */,
 				D016A931182FD80700712C60 /* Balthisar Tidy-Info.plist */,
 				D016A937182FD80700712C60 /* Balthisar Tidy-Prefix.pch */,
@@ -254,7 +257,6 @@
 			isa = PBXGroup;
 			children = (
 				D0120B55183CCAB3003CA182 /* Localizable.strings */,
-				D0120B52183CCA9B003CA182 /* InfoPlist.strings */,
 				D0A4E1D2183A556300999979 /* optionsInEffect.txt */,
 				D0A4E1D4183A556300999979 /* optionsTypesExceptions.txt */,
 				D07AF4781836581E00913067 /* Batch.xib */,
@@ -262,6 +264,7 @@
 				D07AF47A1836581E00913067 /* OptionPane.xib */,
 				D07AF47C1836581E00913067 /* Preferences.xib */,
 				D07AF47E1836581E00913067 /* TidyDocument.xib */,
+				D01AED8318476F6B001300E3 /* Credits.rtf */,
 			);
 			name = Base.lproj;
 			sourceTree = "<group>";
@@ -399,6 +402,7 @@
 				ORGANIZATIONNAME = "Jim Derry";
 				TargetAttributes = {
 					D016A925182FD80700712C60 = {
+						DevelopmentTeam = 9PN2JXXG7Y;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 1;
@@ -430,6 +434,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D01AED891847908D001300E3 /* HTML.icns in Resources */,
 				D0107935183C738F00120B57 /* Batch.xib in Resources */,
 				D0107937183C738F00120B57 /* OptionPane.xib in Resources */,
 				D0107938183C738F00120B57 /* Preferences.xib in Resources */,
@@ -438,7 +443,7 @@
 				D0120B57183CCAB3003CA182 /* Localizable.strings in Resources */,
 				D0A4E1D6183A556300999979 /* optionsInEffect.txt in Resources */,
 				D0A4E1D7183A556300999979 /* optionsTypesExceptions.txt in Resources */,
-				D0120B54183CCA9B003CA182 /* InfoPlist.strings in Resources */,
+				D01AED8518476F6B001300E3 /* Credits.rtf in Resources */,
 				D0D3BEB8183C87C500692225 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -495,20 +500,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		D0120B52183CCA9B003CA182 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D0120B53183CCA9B003CA182 /* Base */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		D0120B55183CCAB3003CA182 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				D0120B56183CCAB3003CA182 /* Base */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		D01AED8318476F6B001300E3 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D01AED8418476F6B001300E3 /* Base */,
+			);
+			name = Credits.rtf;
 			sourceTree = "<group>";
 		};
 		D07AF4781836581E00913067 /* Batch.xib */ = {
@@ -645,13 +650,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy.entitlements";
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Balthisar Tidy/Balthisar Tidy-Prefix.pch";
 				INFOPLIST_FILE = "Balthisar Tidy/Balthisar Tidy-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -661,13 +668,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy.entitlements";
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Balthisar Tidy/Balthisar Tidy-Prefix.pch";
 				INFOPLIST_FILE = "Balthisar Tidy/Balthisar Tidy-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
