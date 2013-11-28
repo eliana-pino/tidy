@@ -9,7 +9,7 @@
             <connections>
                 <outlet property="batchSaving1" destination="72" id="124"/>
                 <outlet property="batchSaving2" destination="75" id="163"/>
-                <outlet property="optionPane" destination="164" id="166"/>
+                <outlet property="optionPane" destination="TsM-V1-8gn" id="PWW-ny-KQh"/>
                 <outlet property="saving1" destination="65" id="117"/>
                 <outlet property="saving2" destination="102" id="162"/>
                 <outlet property="savingWarn" destination="64" id="118"/>
@@ -21,15 +21,15 @@
         <window title="Balthisar Tidy Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" animationBehavior="default" id="5" userLabel="Window">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="464" y="451" width="333" height="480"/>
+            <rect key="contentRect" x="464" y="451" width="373" height="520"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
             <value key="minSize" type="size" width="213" height="107"/>
             <view key="contentView" id="6">
-                <rect key="frame" x="0.0" y="0.0" width="333" height="480"/>
+                <rect key="frame" x="0.0" y="0.0" width="373" height="520"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <tabView controlSize="small" id="28">
-                        <rect key="frame" x="-7" y="-10" width="347" height="493"/>
+                        <rect key="frame" x="13" y="10" width="347" height="493"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <tabViewItems>
                             <tabViewItem label="Tidy Options" identifier="" id="7">
@@ -37,6 +37,23 @@
                                     <rect key="frame" x="10" y="25" width="327" height="455"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
+                                        <customView id="164">
+                                            <rect key="frame" x="0.0" y="73" width="327" height="376"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <customView id="TsM-V1-8gn">
+                                                    <rect key="frame" x="0.0" y="0.0" width="327" height="376"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </customView>
+                                            </subviews>
+                                        </customView>
+                                        <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="167">
+                                            <rect key="frame" x="12" y="71" width="297" height="5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                            <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <font key="titleFont" metaFont="system"/>
+                                        </box>
                                         <textField verticalHuggingPriority="750" id="42">
                                             <rect key="frame" x="17" y="5" width="292" height="68"/>
                                             <autoresizingMask key="autoresizingMask"/>
@@ -47,17 +64,6 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <customView id="164">
-                                            <rect key="frame" x="0.0" y="77" width="321" height="368"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </customView>
-                                        <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="167">
-                                            <rect key="frame" x="12" y="71" width="297" height="5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                            <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            <font key="titleFont" metaFont="system"/>
-                                        </box>
                                     </subviews>
                                 </view>
                             </tabViewItem>
