@@ -39,20 +39,21 @@ extern id objc_msgSend( id self, SEL op, ...);
 #pragma mark -
 #pragma mark Tidy Callback Setup
 
-// TODO: prepare for ARC by studying how this works below (again, of course I used to know this).
+// TODO: strictly speaking, this should be outside of the @implementation
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
- tidyCallbackFilter
- In order to support TidyLib's callback function for process-
- ing errors on the fly, we need to set up a standard C-function
- to handle the callback. In the TidyDoc that we receive, we
- will have put a pointer to self, so that we can call the
- correct instance method from here.
+	tidyCallbackFilter
+		In order to support TidyLib's callback function for
+		processing errors on the fly, we need to set up this standard
+		C-function to handle the callback.
+
+		|tidyGetAppData| result will already contain a reference to
+		|self| that we set via |tidySetAppData| during processing.
+		Essentially we're calling
+		[self errorFilter:Level:Line:Column:Message]
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col, ctmbstr mssg )
 {
-	typedef Bool (*myTemp)( id, SEL, TidyDoc, TidyReportLevel, uint, uint, ctmbstr ); // to cast objc_msgSend properly.
-	bool k = (myTemp)objc_msgSend((id)tidyGetAppData( tdoc ), @selector(errorFilter:Level:Line:Column:Message:), tdoc, lvl, line, col, mssg);
-	return k;
+	return [(__bridge JSDTidyDocument*)tidyGetAppData(tdoc) errorFilter:tdoc Level:lvl Line:line Column:col Message:mssg];
 }
 
 
@@ -277,17 +278,17 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 	tidyBufInit( outBuffer );
 
 	// setup the error buffer to catch errors here instead of stdout
-	tidySetAppData( newTidy, self );					// so we can send a message from outside ourself to ourself.
+	tidySetAppData( newTidy, self );										// so we can send a message from outside ourself to ourself.
 	tidySetReportFilter( newTidy, (TidyReportFilter)&tidyCallbackFilter);	// the callback will go to this out-of-class C function.
-	[errorArray removeAllObjects];						// clear out all of the previous errors.
-	TidyBuffer *errBuffer = malloc(sizeof(TidyBuffer));				// allocate a buffer for our error text.
-	tidyBufInit( errBuffer );							// init the buffer.
-	tidySetErrorBuffer( newTidy, errBuffer );					// and let tidy know to use it.
+	[errorArray removeAllObjects];											// clear out all of the previous errors.
+	TidyBuffer *errBuffer = malloc(sizeof(TidyBuffer));						// allocate a buffer for our error text.
+	tidyBufInit( errBuffer );												// init the buffer.
+	tidySetErrorBuffer( newTidy, errBuffer );								// and let tidy know to use it.
 
 	// parse the workingText and clean, repair, and diagnose it.
-	tidyOptSetValue( newTidy, TidyCharEncoding, [@"utf8" UTF8String] );					// set all internal char-encoding to UTF8.
-	tidyOptSetValue( newTidy, TidyInCharEncoding, [@"utf8" UTF8String] );					// set all internal char-encoding to UTF8.
-	tidyOptSetValue( newTidy, TidyOutCharEncoding, [@"utf8" UTF8String] );					// set all internal char-encoding to UTF8.
+	tidyOptSetValue( newTidy, TidyCharEncoding, [@"utf8" UTF8String] );		// set all internal char-encoding to UTF8.
+	tidyOptSetValue( newTidy, TidyInCharEncoding, [@"utf8" UTF8String] );	// set all internal char-encoding to UTF8.
+	tidyOptSetValue( newTidy, TidyOutCharEncoding, [@"utf8" UTF8String] );	// set all internal char-encoding to UTF8.
 	//tidyParseBuffer(newTidy, (void*)[[workingText dataUsingEncoding:NSUTF8StringEncoding] bytes]);	// parse the original text into the TidyDoc
 	tidyParseString(newTidy, [workingText UTF8String]);							// parse the original text into the TidyDoc
 	tidyCleanAndRepair( newTidy );									// clean and repair
