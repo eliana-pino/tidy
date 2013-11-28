@@ -1,6 +1,0 @@
-/* Localized versions of Info.plist keys */
-
-CFBundleName = "Balthisar Tidy";
-CFBundleShortVersionString = "Balthisar Tidy";
-CFBundleGetInfoString = "Cocoa Portions ©2013 James S. Derry";
-NSHumanReadableCopyright = "Cocoa Portions ©2013 James S. Derry";
