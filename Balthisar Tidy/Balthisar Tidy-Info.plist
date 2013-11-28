@@ -10,17 +10,70 @@
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>html</string>
+				<string>HTML</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string></string>
+			<string>Balthisar Tidy/Images.xcassets/HTML.icns</string>
+			<key>CFBundleTypeMIMETypes</key>
+			<array>
+				<string>text/html</string>
+			</array>
 			<key>CFBundleTypeName</key>
-			<string>Tidy Document</string>
+			<string>HTML File</string>
 			<key>CFBundleTypeOSTypes</key>
 			<array>
-				<string>????</string>
+				<string>TEXT</string>
 			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>TidyDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>php</string>
+				<string>PHP</string>
+			</array>
+			<key>CFBundleTypeMIMETypes</key>
+			<array>
+				<string>text/html</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>PHP File</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>TEXT</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>TidyDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>htm</string>
+				<string>HTM</string>
+			</array>
+			<key>CFBundleTypeMIMETypes</key>
+			<array>
+				<string>text/html</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>DOS HTML File</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>TEXT</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
 			<key>NSDocumentClass</key>
 			<string>TidyDocument</string>
 		</dict>
@@ -42,13 +95,13 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>0.7.248</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.developer-tools</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2013 balthisar.com and Jim Derry. All rights reserved.</string>
+	<string>Copyright © 2013 James S. Derry. All rights reserved.</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
