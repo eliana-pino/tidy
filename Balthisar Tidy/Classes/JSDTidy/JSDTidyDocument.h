@@ -33,21 +33,25 @@
 
 #pragma mark - Some defines
 
-/*	
-	In the prefs file, this prefix will prepend all TidyLib options stored there. This would only be
-	used if you're using the convenience preferences methods defined in JSDTidyDocument that work
-	with the native Cocoa preferences system. This "prefix" support exists in order to act as a
-	namespace against your own pref names.
+/*
+	This prefix will prepend all TidyLib options stored in the prefs file. You might want to
+	use this in order to namespace your preferences if you choose to use Cocoa's native
+	preferences system. TidyLib still supports Tidy's native configuration system, of course.
 */
 #define tidyPrefPrefix @"-tidy-"
 
-// The keys for dealing with errors in errorArray, which is an array of NSDictionary objects with these keys.
+/*
+	The keys for dealing with errors in errorArray, which is an array of |NSDictionary|
+	objects with these keys.
+*/
 #define errorKeyLevel	@"level"
 #define errorKeyLine	@"line"
 #define errorKeyColumn	@"column"
 #define errorKeyMessage	@"message"
 
-// the default encoding styles that override the tidy-implemented character encodings.
+/*
+	The default encoding styles that override the tidy-implemented character encodings.
+*/
 #define defaultInputEncoding	NSUnicodeStringEncoding
 #define defaultLastEncoding		NSUnicodeStringEncoding
 #define defaultOutputEncoding	NSUnicodeStringEncoding
@@ -56,134 +60,136 @@
 #pragma mark - class JSDTidyDocument
 
 @interface JSDTidyDocument : NSObject {
-
-
-#pragma mark - iVars
-
-//------------------------------------------------------------------------------------------------------------
-// INSTANCE VARIABLES -- they're protected for subclassing. Use the accessor methods instead of these.
-//------------------------------------------------------------------------------------------------------------
-@protected
-	TidyDoc prefDoc;					// the TidyDocument instance for HOLDING PREFERENCES and nothing more.
-
-	NSString *originalText;				// buffer for the original text - Note this is an NSString instance.
-
-	NSString *workingText;				// buffer the current working text - Note this an an NSString instance.
-
-	NSString *tidyText;					// buffer for the tidy'd text - Note this is an NSString instance.
-
-	NSString *errorText;				// buffer for the error text - This is a standard NSString.
-
-	NSMutableArray *errorArray;			// buffer for the error text as an array of NSDictionary of the errors.
-
-	NSStringEncoding inputEncoding;		// the user-specified input-encoding to process everything. OVERRIDE tidy.
-
-	NSStringEncoding lastEncoding;		// the PREVIOUS user-specified input encoding. This is so we can REVERT.
-
-	NSStringEncoding outputEncoding;	// the user-specified output-encoding to process everything. OVERRIDE tidy.
 }
+
+#pragma mark - Initialization and Deallocation
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	INITIALIZATION and DESTRUCTION
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+
+- (id)init;
+
+- (void)dealloc;
+
+/*
+	The convenience initializers below assume that strings and data
+	are already processed to NSString standard. File-based intializers
+	will try to convert to NSString standard using the default tidy
+	option `input-encoding`. (NSString nominally UTF16.)
+	
+	Given original text in this initalizers, the working text will
+	be generated immediately.
+*/
+
+- (id)initWithString:(NSString *)value;
+
+- (id)initWithData:(NSData *)data;
+
+- (id)initWithFile:(NSString *)path;
 
 
 #pragma mark - Encoding Support
 
 
-//------------------------------------------------------------------------------------------------------------
-// ENCODING SUPPORT
-//------------------------------------------------------------------------------------------------------------
-+ (NSArray *)allAvailableStringEncodings;			// returns an array of NSStringEncoding.
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	ENCODING SUPPORT
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
-+ (NSArray *)allAvailableStringEncodingsNames;		// returns an array of NSString, correlated to above.
+// TODO: Consider putting these into a single key/value structure.
+// TODO: Why the these class methods? Convenience? Better to make into properties?
+// Should access these just like normal tidy options, and tidy should hide it.
+ 
++ (NSArray *)allAvailableStringEncodings;			// Returns an array of NSStringEncoding.
 
-
-#pragma mark - Initialization and Deallocation
-
-
-//------------------------------------------------------------------------------------------------------------
-// INITIALIZATION and DESTRUCTION
-//------------------------------------------------------------------------------------------------------------
-- (id)init;							// override the initializer - designated initializer
-
-- (void)dealloc;							// override the destructor.
-
-// the following convenience initializer assumes you know you're putting in a correctly-decoded NSString.
-- (id)initWithString:(NSString *)value;				// sets original & working text at initialization.
-
-// these convenience initializers will DECODE to the Unicode string using the default preference for input-encoding
-- (id)initWithFile:(NSString *)path;				// initialize with a given file.
-
-- (id)initWithData:(NSData *)data;					// initialize with the given data.
++ (NSArray *)allAvailableStringEncodingsNames;		// Returns an array of NSString, correlated to above.
 
 
 #pragma mark - Text
 
 
-//------------------------------------------------------------------------------------------------------------
-// TEXT - the important, good stuff.
-//------------------------------------------------------------------------------------------------------------
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	TEXT - the important, good stuff.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
-//---------------------------------------------
-// originalText -- this allows an optional ref-
-// erence copy of the really original text as
-// a convenience for changes. The non-string
-// set methods decode using the current en-
-// coding set in input-encoding.
-//---------------------------------------------
-- (NSString *)originalText;				// read the original text as an NSString.
+/*
+	originalText -- this allows an optional reference copy of the
+	really original text as a convenience for changes, whereas
+	workingText (elsewhere) may be modified in your application.
+	
+	The non-string set methods decode using the current encoding set
+	in `input-encoding`.
+*/
 
-- (void)setOriginalText:(NSString *)value;		// set the original & working text from an NSString.
+@property (strong) NSString *originalText;
 
-- (void)setOriginalTextWithData:(NSData *)data;		// set the original & working text from an NSData.
+- (void)setOriginalTextWithData:(NSData *)data;
 
-- (void)setOriginalTextWithFile:(NSString *)path;	// set the original & working text from a file.
+- (void)setOriginalTextWithFile:(NSString *)path;
 
-//---------------------------------------------
-// workingText -- this is the text that Tidy
-// will actually tidy up. The non-string set
-// methods decode using the current encoding
-// setting in input-encoding.
-//---------------------------------------------
-- (NSString *)workingText;				// read the working text as an NSString.
 
-- (void)setWorkingText:(NSString *)value;		// set the working text from an NSString.
+/*
+	workingText -- this is the text that Tidy will actually tidy up.
+	The non-string set methods decode using the current encoding
+	setting in `input-encoding`.
+*/
 
-- (void)setWorkingTextWithData:(NSData *)data;		// set the working text from an NSData.
+@property (strong) NSString *workingText;
 
-- (void)setWorkingTextWithFile:(NSString *)path;		// set the working text from a file.
+- (void)setWorkingTextWithData:(NSData *)data;
 
-//---------------------------------------------
-// tidyText -- this is the text that Tidy
-// generates from the workingText.
-//---------------------------------------------
-- (NSString *)tidyText;					// return the tidy'd text.
+- (void)setWorkingTextWithFile:(NSString *)path;
 
-- (NSData *)tidyTextAsData;				// return the tidy'd text in the output-encoding format.
 
-- (void)tidyTextToFile:(NSString *)path;			// write the tidy'd text to a file in the current format.
+/*
+	tidyText -- this is the text that Tidy generates from the
+	workingText. Note that these are read only (or write files).
+*/
 
-//---------------------------------------------
-// errors reported by tidy
-//---------------------------------------------
-- (NSString *)errorText;					// return the error text in traditional tidy format.
+@property (readonly, strong) NSString *tidyText;
 
-- (NSArray *)errorArray;					// return the array of tidy errors and warnings.
+@property (readonly, weak) NSData *tidyTextAsData;
 
-//---------------------------------------------
-// comparing the text.
-//---------------------------------------------
-- (bool)areEqualOriginalWorking;				// are the original and working text identical?
+- (void)tidyTextToFile:(NSString *)path;
 
-- (bool)areEqualWorkingTidy;				// are the working and tidy text identical?
 
-- (bool)areEqualOriginalTidy;				// are the orginal and tidy text identical?
+#pragma mark - Errors
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	ERRORS reported by tidy
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+
+@property (readonly, strong) NSString *errorText;			// Return the error text in traditional tidy format.
+
+// TODO: Really want this to be NSArray and the ivar NSMutableArray
+@property (readonly, strong) NSMutableArray *errorArray;	// Buffer for the error text as an array of |NSDictionary| of the errors.
+
+
+#pragma mark - Text comparisons
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	TEXT COMPARISONS
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+
+- (bool)areEqualOriginalWorking;			// Are the original and working text identical?
+
+- (bool)areEqualWorkingTidy;				// Are the working and tidy text identical?
+
+- (bool)areEqualOriginalTidy;				// Are the orginal and tidy text identical?
 
 
 #pragma mark - Options management
 
-// TODO: - maintain the options internally instead of forcing apps to create own buffer.
 
-//------------------------------------------------------------------------------------------------------------
-// OPTIONS - methods for dealing with options
-//------------------------------------------------------------------------------------------------------------
+// TODO: maintain the options internally instead of forcing apps to create own buffer.
+// TODO: Make sure I'm actually doing this. I think I have my own buffer. Logical, right?
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	OPTIONS - methods for dealing with options
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+
 + (NSArray *)			optionGetList;											// returns an NSArray of NSString for all options built into Tidy.
 
 + (int)					optionCount;											// returns the number of options built into Tidy.
@@ -216,61 +222,71 @@
 
 #pragma mark - Raw access exposure
 
-//------------------------------------------------------------------------------------------------------------
-// RAW ACCESS EXPOSURE
-//------------------------------------------------------------------------------------------------------------
-- (TidyDoc)tidyDocument;						// return the TidyDoc attached to this instance.
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	RAW ACCESS EXPOSURE
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+
+// TODO: this is the working tidydoc, not the options-only version.
+// TODO: this can be a property.
+- (TidyDoc)tidyDocument;						// Return the TidyDoc attached to this instance.
 
 
 #pragma mark - Diagnostics and Repair
 
 
-//------------------------------------------------------------------------------------------------------------
-// DIAGNOSTICS and REPAIR
-//------------------------------------------------------------------------------------------------------------
-- (int) tidyDetectedHtmlVersion;	// returns 0, 2, 3 or 4
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	DIAGNOSTICS and REPAIR
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
-- (bool)tidyDetectedXhtml;			// determines whether the document is XHTML.
+// TODO: These can all be properties.
+- (int) tidyDetectedHtmlVersion;	// Returns 0, 2, 3, 4, or 5.
 
-- (bool)tidyDetectedGenericXml;		// determines if the document is generic XML.
+- (bool)tidyDetectedXhtml;			// Determines whether the document is XHTML.
 
-- (int) tidyStatus;					// returns 0 if there are no errors, 2 for doc errors, 1 for other.
+- (bool)tidyDetectedGenericXml;		// Determines if the document is generic XML.
 
-- (uint)tidyErrorCount;				// returns number of document errors.
+- (int) tidyStatus;					// Returns 0 if there are no errors, 2 for doc errors, 1 for other.
 
-- (uint)tidyWarningCount;			// returns number of document warnings.
+- (uint)tidyErrorCount;				// Returns number of document errors.
 
-- (uint)tidyAccessWarningCount;		// returns number of document accessibility warnings.
+- (uint)tidyWarningCount;			// Returns number of document warnings.
 
-// the errorFilter is the instance method that is called from the c-callback in the implementation file. So, callback-to-c-to-this.
-- (bool)errorFilter:(TidyDoc)tDoc Level:(TidyReportLevel)lvl Line:(uint)line Column:(uint)col Message:(ctmbstr)mssg;
+- (uint)tidyAccessWarningCount;		// Returns number of document accessibility warnings.
 
 
 #pragma mark - Miscelleneous
 
 
-//------------------------------------------------------------------------------------------------------------
-// MISCELLENEOUS - misc. Tidy methods supported
-//------------------------------------------------------------------------------------------------------------
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	MISCELLENEOUS - misc. Tidy methods supported
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+
+// TODO: These can all be properties.
+
 - (NSString *)tidyReleaseDate;		// returns the TidyLib release date
 
 
 #pragma mark - Configuration List Support
 
 
-//------------------------------------------------------------------------------------------------------------
-// SUPPORTED CONFIG LIST SUPPORT
-//------------------------------------------------------------------------------------------------------------
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	SUPPORTED CONFIG LIST SUPPORT
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+
+// TODO: I hate this. This loads a list of options statically from a file. Need a better means.
+// In the mean time it should be private.
 + (NSArray *)loadConfigurationListFromResource:(NSString *)fileName ofType:(NSString *)fileType;	// get list of config options.
 
 
 #pragma mark - Mac OS X Prefs Support
 
 
-//------------------------------------------------------------------------------------------------------------
-// MAC OS PREFS SUPPORT
-//------------------------------------------------------------------------------------------------------------
-+ (void)addDefaultsToDictionary:(NSMutableDictionary *)defaultDictionary;	// sucks the defaults into a dictionary.
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	MAC OS PREFS SUPPORT
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+
+ + (void)addDefaultsToDictionary:(NSMutableDictionary *)defaultDictionary;	// sucks the defaults into a dictionary.
 
 + (void)addDefaultsToDictionary:(NSMutableDictionary *)defaultDictionary	// same as above, but with list of tidy options.
 				   fromResource:(NSString *)fileName
@@ -279,9 +295,6 @@
 - (void)writeOptionValuesWithDefaults:(NSUserDefaults *)defaults;			// write the values right into prefs.
 
 - (void)takeOptionValuesFromDefaults:(NSUserDefaults *)defaults;			// take config from passed-in defaults.
-
-
-#pragma mark - Document Tree Parsing (coming soon)
 
 
 @end
