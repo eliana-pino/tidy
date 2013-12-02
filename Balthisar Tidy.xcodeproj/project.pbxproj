@@ -20,7 +20,6 @@
 		D04B0510183F158800C0F70F /* NoodleLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = D04B050F183F158800C0F70F /* NoodleLineNumberView.m */; };
 		D04B0513183F15F500C0F70F /* NoodleLineNumberMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = D04B0512183F15F500C0F70F /* NoodleLineNumberMarker.m */; };
 		D07AF495183658D300913067 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF48C183658D300913067 /* AppController.m */; };
-		D07AF496183658D300913067 /* BatchController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF48E183658D300913067 /* BatchController.m */; };
 		D07AF497183658D300913067 /* OptionPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF490183658D300913067 /* OptionPaneController.m */; };
 		D07AF498183658D300913067 /* PreferenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF492183658D300913067 /* PreferenceController.m */; };
 		D07AF499183658D300913067 /* TidyDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF494183658D300913067 /* TidyDocument.m */; };
@@ -85,8 +84,6 @@
 		D07AF47F1836581E00913067 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TidyDocument.xib; sourceTree = "<group>"; };
 		D07AF48B183658D300913067 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		D07AF48C183658D300913067 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
-		D07AF48D183658D300913067 /* BatchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BatchController.h; sourceTree = "<group>"; };
-		D07AF48E183658D300913067 /* BatchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BatchController.m; sourceTree = "<group>"; };
 		D07AF48F183658D300913067 /* OptionPaneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionPaneController.h; sourceTree = "<group>"; };
 		D07AF490183658D300913067 /* OptionPaneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionPaneController.m; sourceTree = "<group>"; };
 		D07AF491183658D300913067 /* PreferenceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceController.h; sourceTree = "<group>"; };
@@ -246,8 +243,6 @@
 				D07AF492183658D300913067 /* PreferenceController.m */,
 				D07AF493183658D300913067 /* TidyDocument.h */,
 				D07AF494183658D300913067 /* TidyDocument.m */,
-				D07AF48D183658D300913067 /* BatchController.h */,
-				D07AF48E183658D300913067 /* BatchController.m */,
 			);
 			name = "App Pieces";
 			path = "Classes/App Pieces";
@@ -488,7 +483,6 @@
 				D0BE6EDB183DEB7A00029BF0 /* NSTextView+JSDExtensions.m in Sources */,
 				D07AF497183658D300913067 /* OptionPaneController.m in Sources */,
 				D09D8D5C1846209200AFB4FA /* access.c in Sources */,
-				D07AF496183658D300913067 /* BatchController.m in Sources */,
 				D09D8D711846209200AFB4FA /* tagask.c in Sources */,
 				D0D3BEC5183C897800692225 /* TreeNode.m in Sources */,
 				D09D8D651846209200AFB4FA /* config.c in Sources */,

@@ -33,7 +33,6 @@
 #import <Cocoa/Cocoa.h>
 #import "AppController.h"
 #import "PreferenceController.h"
-#import "BatchController.h"
 
 
 #pragma mark - Non-Public iVars, Properties, and Method declarations
@@ -41,7 +40,6 @@
 @interface AppController ()
 
 	@property (readonly, nonatomic) PreferenceController *thePreferenceController;
-	@property (readonly, nonatomic) BatchController *theBatchController;
 
 @end
 
@@ -80,18 +78,5 @@
 	[[self thePreferenceController] showWindow:self];
 }
 
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
- Show the batch window.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (IBAction)showBatch:(id)sender
-{
-	if (![self theBatchController])
-	{
-		_theBatchController = [[BatchController alloc] init];
-	}
-	
-	[[self theBatchController] showWindow:self];
-}
 
 @end

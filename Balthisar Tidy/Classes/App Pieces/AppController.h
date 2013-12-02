@@ -38,7 +38,6 @@
 @interface AppController : NSObject <NSApplicationDelegate>
 
 - (IBAction)showPreferences:(id)sender;
-- (IBAction)showBatch:(id)sender;
 
 @end
 

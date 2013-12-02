@@ -1,4 +1,4 @@
-# any line that isn't valid according to TidyLib is ignored. Hence, feel free to "comment out" items we don't want to support.
+# any line that isn't valid according to TidyLib is ignored. Hence, feel free to comment out items we don't want to support.
 # additionally, change the appearance order by rearranging them in this file. DON'T LEAVE SPACES at the ends of lines!
 wrap
 indent-spaces
@@ -14,7 +14,7 @@ uppercase-tags
 uppercase-attributes
 bare
 clean
-doctype
+#doctype
 input-xml
 output-xml
 output-xhtml
