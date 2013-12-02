@@ -67,6 +67,10 @@
 	bool yesSavedAs;						// Disable warnings and protections once a save-as has been done.
 	bool tidyOriginalFile;					// Flags whether the file was CREATED by Tidy, for writing type/creator codes.
 }
+
+@property (assign) IBOutlet NSSplitView *splitLeftRight;	// The left-right (main) split view in the Doc window.
+@property (assign) IBOutlet NSSplitView *splitTopDown;		// Top top-to-bottom split view in the Doc window.
+
 @end
 
 
@@ -497,6 +501,76 @@
 	{
 		[self errorClicked:self];
 	}
+}
+
+
+#pragma mark - Split View Handling
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	splitView:constrainMinCoordinate:ofSubviewAt:
+		We're here because we're the delegate of the split views.
+		This allows us to set the minimum constrain of the left/top
+		item in a splitview. Must coordinate max to ensure others
+		have space, too.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (CGFloat)splitView:(NSSplitView *)splitView constrainMinCoordinate:(CGFloat)proposedMinimumPosition ofSubviewAt:(NSInteger)dividerIndex
+{
+	// The main splitter
+	if (splitView == _splitLeftRight)
+	{
+		return 250.0f;
+	}
+	
+	// The text views' first splitter
+	if (dividerIndex == 0)
+	{
+		return 68.0f;
+	}
+	
+	// The text views' second splitter is first plus 68.0f;
+    return [[[splitView subviews] objectAtIndex:0] frame].size.height + 68.0f;
+}
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	splitView:constrainMaxCoordinate:ofSubviewAt:
+		We're here because we're the delegate of the split views.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (CGFloat)splitView:(NSSplitView *)splitView constrainMaxCoordinate:(CGFloat)proposedMinimumPosition ofSubviewAt:(NSInteger)dividerIndex
+{
+	// The main splitter
+	if (splitView == _splitLeftRight)
+	{
+		return [splitView frame].size.width - 150.0f;
+	}
+	
+	// The text views' first splitter
+	if (dividerIndex == 0)
+	{
+		return [[[splitView subviews] objectAtIndex:0] frame].size.height +
+				[[[splitView subviews] objectAtIndex:1] frame].size.height - 68.0f;
+	}
+	
+	
+	// The text views' second splitter
+	return [splitView frame].size.height - 68.0f;	
+}
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	splitView:shouldAdjustSizeOfSubview:
+		We're here because we're the delegate of the split views.
+		Prevent the left pane from resizing during window resize.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (BOOL)splitView:(NSSplitView *)splitView shouldAdjustSizeOfSubview:(NSView *)subview
+{
+	if (splitView == _splitLeftRight)
+	{
+		if (subview == [[_splitLeftRight subviews] objectAtIndex:0])
+		{
+			return NO;
+		}
+	}
+	return YES;
 }
 
 

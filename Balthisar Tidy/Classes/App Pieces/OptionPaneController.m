@@ -263,4 +263,29 @@
 }
 
 
+#pragma mark - Split View Handling
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	splitView:constrainMinCoordinate:ofSubviewAt:
+		We're here because we're the delegate of the split view.
+		This will impose a minimum limit on the UPPER pane of the
+		split.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (CGFloat)splitView:(NSSplitView *)splitView constrainMinCoordinate:(CGFloat)proposedMinimumPosition ofSubviewAt:(NSInteger)dividerIndex
+{
+    return 68.0f;
+}
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	splitView:constrainMaxCoordinate:ofSubviewAt:
+		We're here because we're the delegate of the split view.
+		In order to guarantee a minimum size for the LOWER pane,
+		we have to setup a dyanmic maximum size for the UPPER.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (CGFloat)splitView:(NSSplitView *)splitView constrainMaxCoordinate:(CGFloat)proposedMinimumPosition ofSubviewAt:(NSInteger)dividerIndex
+{
+	return [splitView frame].size.height - 40.0f;
+}
+
 @end
