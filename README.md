@@ -1,34 +1,30 @@
-Balthisar Tidy and JSDTidyDocument
-==================================
+﻿Balthisar Tidy (version 0.7)
+============================
 (a Cocoa wrapper for TidyLib)
--------------------------------
+-----------------------------
 
 _©2003-2013 by James S. Derry and balthisar.com_
 
-_Portions Copyright ©1998-2003 World Wide Web Consortium (Massachusetts Institute of Technology, Institut National de Recherche en Informatique et en Automatique, Keio University). All Rights Reserved._
+About
+-----
 
-Welcome
--------
+_Balthisar Tidy_ will clean and pretty-print format your HTML code.
 
-Welcome to _Balthisar Tidy_ and `JSDTidyDocument`. You’ve successfully uncovered the source code, so good luck using it. At this point you should be aware that is an almalgamation of two separate projects with very different groups working on them. `TidyLib`, in the `tidylib-src` group is a product of the fine people at <http://tidy.sourceforge.net>, and they have full responsibility for that code. The Cocoa portions are my work, and comments, suggestions, bug fixes, code contributions, and so on can be addressed to me.
+	- Eliminate superfluous crud from HTML generator applications such as word processors
+	- Fix and/or remove document errors
+	- Pretty-print (nicely format) your HTML code for maximum human legibility
+	
+Unlike the Tidy service offered by many Mac OS X text editors, _Balthisar Tidy_ gives you full control over all of Tidy’s formatting, cleanup, error-detection, and other options, and it's all available in a highly-useful, native Mac OS X application.
 
-I can’t guarantee complete or prompt support, but I’ll do what I can. Please try to understand the source code before you ask too many questions!
+System Requirements
+-------------------
 
-TidyLib Licensing
------------------
+_Balthisar Tidy_ has been release with support for Mac OS X 10.9 and newer. It may run on older versions of Mac OS X, but has not been tested.
 
-I don’t own TidyLib and TidyLib is licensed under the MIT license. In short, it means you can do what you want with the code providing you leave the original copyright notice in place. This covers everything in this distribution that’s found in the `tidylib-src` group. For full details of the MIT license, you can see <http://www.opensource.org/licenses/mit-license.php>.
+Open Source
+-----------
 
-JSDTidyDocument Licensing
--------------------------
-
-JSDTidyDocument files and class are also licensed under the MIT license. Do what you want with them in the bounds of the license, but please consider giving credit where it’s due, and bounce any positive changes back to me. This covers the contents of the `JSDTidy` files in the `JSDTidy` group. For full details of the MIT license, you can see <http://www.opensource.org/licenses/mit-license.php>.
-
-Balthisar Tidy Licensing
-------------------------
-
-_Balthisar Tidy_ as a whole is also licensed under the MIT license. For full details of the MIT license, you can see <http://www.opensource.org/licenses/mit-license.php>.
-
+_Balthisar Tidy_ and all of its source code (including third party libraries) have been released under the MIT license. 
 
 The MIT License (MIT)
 ---------------------
@@ -42,7 +38,47 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 Change Log
 ----------
-2013-11-10	Migrated to XCode 5.
+
+### Balthisar Tidy 0.7 (December 2013)
+
+	#### Visible changes
+		- Built for Mac OS X 10.9 (now minimum supported OS)
+		- Added developer signature to make Gatekeeper happy
+		- Added Retina display App icons
+		- New file icons including support for Retina displays
+		- Improved the line numbers for the HTML and Tidy'd View
+		- Added and changed information in Tidy->About
+		- Default document window is larger.
+		- Tweaked the document window layout and appearance
+		- Tweaked the preferences window
+		- Adopted the most recent version of W3C TidyLib (more options!)
+		- Cleaned up file encoding mechanism
+		
+	####Invisible changes
+		- Significant source code cleanup for legibility
+		- Some refactorization
+		- Some migrration to modern Objective-C style
+		- Patched some memory leaks
+		- Removed alldeprecated calls
+		- Started ivar to property conversion
+		- Eliminated all compiler warnings (except for TidyLib proper)
+
+
+### Balthisar Tidy 0.6 (November 2007)
+
+	- Added support for universal binary.
+	- Now requires Mac OS X 10.4 or higher.
+
+### Balthisar Tidy 0.5 (February 2003)
+
+	- Added support for a live error list in the document window.
+
+### Balthisar Tidy 0.1 (December 2002)
+
+	- Initial release of _Balthisar Tidy_.
+	- Requires Mac OS X 10.2 or higher.
+
+
 
 Known Issues
 ------------
