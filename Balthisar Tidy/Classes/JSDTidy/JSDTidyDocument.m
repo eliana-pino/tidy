@@ -36,8 +36,9 @@
 @interface JSDTidyDocument ()
 {
 @private
-	__strong NSDictionary* tidyOptionsThatCannotAcceptNULLSTR;
 	
+	// TODO: will turn this into a property, probably with some tests.
+	__strong NSDictionary* tidyOptionsThatCannotAcceptNULLSTR;
 }
 
 @property TidyDoc prefDoc;					// |TidyDocument| instance for HOLDING PREFERENCES and nothing more.
@@ -142,6 +143,7 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 													@"language"    : @NO,
 													@"css-prefix"  : @NO } retain];
 	}
+	[[self class] optionDumpDocsToConsole];
 	return self;
 }
 
@@ -649,6 +651,64 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 + (int)optionCount
 {
 	return N_TIDY_OPTIONS;	// defined in config.c of TidyLib
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	optionDocForId:
+		TidyLib's built-in definition for |idf|.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
++ (NSString *) optionDocForId:(TidyOptionId)idf;
+{
+	TidyDoc dummyDoc = tidyCreate();				// Create a dummy document (we're a CLASS method).
+	
+	NSString* tidyResultString;
+	const char* tidyResultCString = tidyOptGetDoc(dummyDoc, tidyGetOption(dummyDoc, idf));
+	
+	if (!tidyResultCString)
+	{
+		tidyResultString = @"No description provided by TidyLib.";
+	}
+	else
+	{
+		tidyResultString = [NSString stringWithUTF8String:tidyResultCString];
+	}
+	
+	tidyRelease(dummyDoc);
+	
+	return tidyResultString;
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	optionDumpDocsToConsole
+		Dump all TidyLib descriptions to error console. This is a
+		cheap way to get the descriptions for Localizable.strings.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
++ (void) optionDumpDocsToConsole
+{
+	NSArray* optionList = [[[self class] optionGetList] retain];
+	NSString* paddedOptionName;
+	NSString* filteredDescription;
+	NSAttributedString* convertingString;
+	
+	NSLog(@"%@", @"----START----");
+	
+	for (NSString* optionName in optionList)
+	{
+		paddedOptionName = [[NSString stringWithFormat:@"\"%@\"", optionName] stringByPaddingToLength:40 withString:@" " startingAtIndex:0];
+		
+		filteredDescription = [[[self class] optionDocForId:[[self class] optionIdForName:optionName]] stringByReplacingOccurrencesOfString:@"\"" withString:@"'"];
+		filteredDescription = [filteredDescription stringByReplacingOccurrencesOfString:@"<br />" withString:@"\\n"];
+		convertingString = [[[NSAttributedString alloc] initWithHTML:[filteredDescription dataUsingEncoding:NSUnicodeStringEncoding] documentAttributes:nil] autorelease];
+		filteredDescription = [convertingString string];
+		
+		NSLog(@"%@= \"%@: %@\";", paddedOptionName, optionName, filteredDescription);
+	}
+	
+	NSLog(@"%@", @"----STOP----");
+
+	[optionList release];
 }
 
 

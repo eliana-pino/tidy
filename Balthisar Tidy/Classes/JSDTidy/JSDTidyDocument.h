@@ -194,6 +194,10 @@
 
 + (int)					optionCount;											// returns the number of options built into Tidy.
 
++ (NSString *)			optionDocForId:(TidyOptionId)idf;						// returns TidyLib's description for the given ID.
+
++ (void)				optionDumpDocsToConsole;								// dumps all TidyLib descriptions to error console.
+
 + (TidyOptionId)		optionIdForName:(NSString *)name;						// returns the TidyOptionId for the given option name.
 
 + (NSString *)			optionNameForId:(TidyOptionId)idf;						// returns the name for the given TidyOptionId.
