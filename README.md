@@ -52,6 +52,7 @@ Change Log
 		- Tweaked the document window layout and appearance
 		- Tweaked the preferences window
 		- Adopted the most recent version of W3C TidyLib (more options!)
+		- Cleaned up remaining batch mode references. Will add in roadmap later.
 		- Cleaned up file encoding mechanism
 		
 	####Invisible changes
