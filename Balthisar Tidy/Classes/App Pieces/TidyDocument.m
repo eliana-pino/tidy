@@ -367,7 +367,7 @@
 {
 	[tidyProcess setWorkingText:[_sourceView string]];		// Put the |sourceView| text into the |tidyProcess|.
 	[_tidyView setString:[tidyProcess tidyText]];			// Put the tidy'd text into the |tidyView|.
-	[_errorView reloadData];									// Reload the error data.
+	[_errorView reloadData];								// Reload the error data.
 	[_errorView deselectAll:self];							// Deselect the selected row.
 
 	// Handle document dirty detection -- we're NOT dirty if the source and tidy string are

@@ -34,6 +34,11 @@
 #pragma mark - Non-Public iVars, Properties, and Method declarations
 
 @interface JSDTidyDocument ()
+{
+@private
+	__strong NSDictionary* tidyOptionsThatCannotAcceptNULLSTR;
+	
+}
 
 @property TidyDoc prefDoc;					// |TidyDocument| instance for HOLDING PREFERENCES and nothing more.
 
@@ -128,6 +133,14 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 		_inputEncoding = defaultInputEncoding;
 		_lastEncoding = defaultLastEncoding;
 		_outputEncoding = defaultOutputEncoding;
+		
+		// TODO: we'll replace this travesty with a unified, in-code
+		// exception handling process in next version. This will simply
+		// make sure we're not logging errors for this re-release.
+		tidyOptionsThatCannotAcceptNULLSTR = [@{	@"doctype"     : @NO,
+													@"slide-style" : @NO,
+													@"language"    : @NO,
+													@"css-prefix"  : @NO } retain];
 	}
 	return self;
 }
@@ -857,7 +870,7 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	setOptionValueForId:fromObject
-		Sets the value for the item
+		Sets the value for the item in the |_prefDoc|
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)setOptionValueForId:(TidyOptionId)idf fromObject:(id)value
 {
@@ -880,17 +893,45 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 		return;
 	} // if tidy coding option
 
-	// here we could be passed any object -- hope it's a string or number or bool!
+	// Here we could be passed any object, but we'll test for ones we can use.
 	if ([value isKindOfClass:[NSString class]])
-		tidyOptParseValue( _prefDoc, [[JSDTidyDocument optionNameForId:idf] UTF8String], [value cString] );
-	else
-		if ([value isKindOfClass:[NSNumber class]]) {
-			if ([JSDTidyDocument optionTypeForId:idf] == TidyBoolean)
-				tidyOptSetBool( _prefDoc, idf, [value boolValue]);
+	{
+		if ([value length] == 0)
+		{
+			// Some tidy options can't accept NULLSTR but can be reset to default NULLSTR. Some,
+			// though require a NULLSTR and reseting to default doesn't work. WTF.
+			
+			if ([tidyOptionsThatCannotAcceptNULLSTR valueForKey:[JSDTidyDocument optionNameForId:idf]])
+			{
+				tidyOptResetToDefault( _prefDoc, idf );
+			}
 			else
+			{
+				tidyOptParseValue( _prefDoc, [[JSDTidyDocument optionNameForId:idf] UTF8String], NULLSTR );
+			}
+		}
+		else
+		{
+			tidyOptParseValue( _prefDoc, [[JSDTidyDocument optionNameForId:idf] UTF8String], [value UTF8String] );
+		}
+	}
+	else
+	{
+		if ([value isKindOfClass:[NSNumber class]])
+		{
+			if ([JSDTidyDocument optionTypeForId:idf] == TidyBoolean)
+			{
+				tidyOptSetBool( _prefDoc, idf, [value boolValue]);
+			}
+			else
+			{
 				if ([JSDTidyDocument optionTypeForId:idf] == TidyInteger)
+				{
 					tidyOptSetInt( _prefDoc, idf, [value unsignedIntValue]);
-		} // if
+				}
+			}
+		}
+	}
 }
 
 
@@ -1144,9 +1185,9 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
- takeOptionValuesFromDefaults
- given a defaults instance, attempts to set all of its options
- from what's registered in the Apple defaults system.
+	takeOptionValuesFromDefaults
+		Given a defaults instance, attempts to set all of its options
+		from what's registered in the Apple defaults system.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)takeOptionValuesFromDefaults:(NSUserDefaults *)defaults
 {

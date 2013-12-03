@@ -1,5 +1,15 @@
-# any line that isn't valid according to TidyLib is ignored. Hence, feel free to comment out items we don't want to support.
-# additionally, change the appearance order by rearranging them in this file. DON'T LEAVE SPACES at the ends of lines!
+# Use the file to determine the Tidy options that are displayed in the OptionPane,
+# in case you don't want to use them all. Note that options that are missing will
+# use default Tidy configuration values.
+#
+# Note you may have to delete the existing Mac OS X prefs .plist which may have
+# a non-default value set.
+#
+# By default all Tidy options are supplied in this file for reference. The ones
+# Balthisar Tidy doesn't implement are commented out. You may choose to do same.
+#
+# Finally, they're displayed in OptionPane in the same order they appear below.
+#
 wrap
 indent-spaces
 tab-size
@@ -14,7 +24,8 @@ uppercase-tags
 uppercase-attributes
 bare
 clean
-#doctype
+doctype-mode
+doctype
 input-xml
 output-xml
 output-xhtml
@@ -57,7 +68,8 @@ ascii-chars
 join-classes
 join-styles
 escape-cdata
-ncr
+#language
+#ncr
 output-bom
 replace-color
 css-prefix
@@ -74,9 +86,6 @@ accessibility-check
 #quiet
 #keep-time
 #gnu-emacs-file
-#language
-#slide-style
-#split
 anchor-as-name
 coerce-endtags
 decorate-inferred-ul
@@ -92,3 +101,8 @@ punctuation-wrap
 show-info
 sort-attributes
 vertical-space
+#
+# Obsolete and things you shouldn't use
+#
+#slide-style	"Obsolete" in source-code.
+#split			"Obsolete" in source-code.
