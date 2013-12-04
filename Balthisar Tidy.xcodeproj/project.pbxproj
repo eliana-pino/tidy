@@ -113,7 +113,7 @@
 
 /* Begin PBXFileReference section */
 		D0120B56183CCAB3003CA182 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "balthisar tidy/Base.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
-		D013B515184F18A000F30654 /* Balthisar Tidy (signed).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Balthisar Tidy (signed).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D013B515184F18A000F30654 /* Balthisar Tidy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Balthisar Tidy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D013B516184F18A100F30654 /* Balthisar Tidy Signed-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Balthisar Tidy Signed-Info.plist"; path = "/Users/jderry/Dropbox/Development/Balthisar Tidy/Balthisar Tidy Signed-Info.plist"; sourceTree = "<absolute>"; };
 		D016A926182FD80700712C60 /* Balthisar Tidy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Balthisar Tidy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D016A929182FD80700712C60 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -245,7 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				D016A926182FD80700712C60 /* Balthisar Tidy.app */,
-				D013B515184F18A000F30654 /* Balthisar Tidy (signed).app */,
+				D013B515184F18A000F30654 /* Balthisar Tidy.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -450,7 +450,7 @@
 			);
 			name = "Balthisar Tidy (signed)";
 			productName = "Balthisar Tidy";
-			productReference = D013B515184F18A000F30654 /* Balthisar Tidy (signed).app */;
+			productReference = D013B515184F18A000F30654 /* Balthisar Tidy.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D016A925182FD80700712C60 /* Balthisar Tidy */ = {
@@ -732,7 +732,7 @@
 				GCC_PREFIX_HEADER = "Balthisar Tidy/Balthisar Tidy-Prefix.pch";
 				INFOPLIST_FILE = "Balthisar Tidy Signed-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				PRODUCT_NAME = "Balthisar Tidy (signed)";
+				PRODUCT_NAME = "Balthisar Tidy";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -749,7 +749,7 @@
 				GCC_PREFIX_HEADER = "Balthisar Tidy/Balthisar Tidy-Prefix.pch";
 				INFOPLIST_FILE = "Balthisar Tidy Signed-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				PRODUCT_NAME = "Balthisar Tidy (signed)";
+				PRODUCT_NAME = "Balthisar Tidy";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
