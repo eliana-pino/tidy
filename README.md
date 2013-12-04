@@ -41,8 +41,9 @@ Change Log
 
 ### Balthisar Tidy 0.7 (December 2013)
 
-	#### Visible changes
+#### Visible changes
 		- Built for Mac OS X 10.9 (now minimum supported OS)
+		- Added Mac OS X full-screen support
 		- Added developer signature to make Gatekeeper happy
 		- Added Retina display App icons
 		- New file icons including support for Retina displays
@@ -55,7 +56,7 @@ Change Log
 		- Cleaned up remaining batch mode references. Will add in roadmap later.
 		- Cleaned up file encoding mechanism
 		
-	####Invisible changes
+####Invisible changes
 		- Significant source code cleanup for legibility
 		- Some refactorization
 		- Some migrration to modern Objective-C style
@@ -67,21 +68,21 @@ Change Log
 
 ### Balthisar Tidy 0.6 (November 2007)
 
-	- Added support for universal binary.
-	- Now requires Mac OS X 10.4 or higher.
+		- Added support for universal binary.
+		- Now requires Mac OS X 10.4 or higher.
 
 ### Balthisar Tidy 0.5 (February 2003)
 
-	- Added support for a live error list in the document window.
+		- Added support for a live error list in the document window.
 
 ### Balthisar Tidy 0.1 (December 2002)
 
-	- Initial release of _Balthisar Tidy_.
-	- Requires Mac OS X 10.2 or higher.
+		- Initial release of _Balthisar Tidy_.
+		- Requires Mac OS X 10.2 or higher.
 
 
 
 Known Issues
 ------------
 
-* Lots of bugs.
+* File associations are still broken. Internally Balthisar Tidy is still using file type and creator codes instead of UTI.

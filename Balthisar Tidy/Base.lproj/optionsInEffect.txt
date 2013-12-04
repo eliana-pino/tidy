@@ -10,99 +10,96 @@
 #
 # Finally, they're displayed in OptionPane in the same order they appear below.
 #
-wrap
-indent-spaces
-tab-size
-input-encoding
-output-encoding
-newline
-repeated-attributes
-alt-text
-indent
-hide-endtags
-uppercase-tags
-uppercase-attributes
-bare
-clean
-doctype-mode
-doctype
-input-xml
-output-xml
-output-xhtml
-output-html
-add-xml-decl
-logical-emphasis
-drop-proprietary-attributes
-drop-font-tags
-drop-empty-paras
-fix-bad-comments
 break-before-br
-numeric-entities
-quote-marks
-quote-nbsp
-quote-ampersand
-wrap-attributes
-wrap-script-literals
-wrap-sections
+indent
+indent-attributes
+indent-spaces
+markup
+punctuation-wrap
+sort-attributes
+#split						- marked as "obsolete" in TidyLib source code.
+tab-size
+vertical-space
+wrap
 wrap-asp
+wrap-attributes
 wrap-jste
 wrap-php
-fix-backslash
-indent-attributes
-assume-xml-procins
+wrap-script-literals
+wrap-sections
+add-xml-decl
 add-xml-space
-enclose-text
+alt-text
+anchor-as-name
+assume-xml-procins
+bare
+clean
+coerce-endtags
+css-prefix
+decorate-inferred-ul
+doctype
+doctype-mode
+drop-empty-elements
+drop-empty-paras
+drop-font-tags
+drop-proprietary-attributes
 enclose-block-text
-word-2000
-tidy-mark
-gnu-emacs
-literal-attributes
-show-body-only
+enclose-text
+escape-cdata
+fix-backslash
+fix-bad-comments
 fix-uri
-lower-literals
+gdoc
 hide-comments
+#hide-endtags				- is a dupe of `omit-optional-tags`
 indent-cdata
-force-output
-show-errors
-ascii-chars
+input-xml
 join-classes
 join-styles
-escape-cdata
-#language
-#ncr
-output-bom
-replace-color
-css-prefix
-new-inline-tags
-new-blocklevel-tags
-new-empty-tags
-new-pre-tags
-accessibility-check
-#char-encoding
-#error-file
-#write-back
-#markup
-#show-warnings
-#quiet
-#keep-time
-#gnu-emacs-file
-anchor-as-name
-coerce-endtags
-decorate-inferred-ul
-drop-empty-elements
-gdoc
+literal-attributes
+logical-emphasis
+lower-literals
 merge-divs
 merge-emphasis
 merge-spans
+ncr
+new-blocklevel-tags
+new-empty-tags
+new-inline-tags
+new-pre-tags
+numeric-entities
 omit-optional-tags
-output-file
+output-html
+output-xhtml
+output-xml
 preserve-entities
-punctuation-wrap
+quote-ampersand
+quote-marks
+quote-nbsp
+repeated-attributes
+replace-color
+show-body-only
+uppercase-attributes
+uppercase-tags
+word-2000
+accessibility-check
+show-errors
 show-info
-sort-attributes
-vertical-space
-#
-# Obsolete and things you shouldn't use
-#
-#slide-style	"Obsolete" in source-code.
-#split			"Obsolete" in source-code.
+show-warnings
+#error-file					- Balthisar Tidy handles this directly.
+force-output
+#gnu-emacs					- Balthisar Tidy handles this directly.
+#gnu-emacs-file				- Balthisar Tidy handles this directly.
+#keep-time					- Balthisar Tidy handles this directly.
+#output-file				- Balthisar Tidy handles this directly.
+quiet
+#slide-style				- marked as "obsolete" in TidyLib source code.
+tidy-mark
+#write-back					- Balthisar Tidy handles this directly.
+ascii-chars
+#char-encoding				- Balthisar Tidy handles this directly.
+#language					- not currently used; Mac OS X supports localization natively.
+newline
+#output-bom					- Balthisar Tidy handles this directly.
+input-encoding
+output-encoding

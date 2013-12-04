@@ -143,7 +143,7 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 													@"language"    : @NO,
 													@"css-prefix"  : @NO } retain];
 	}
-	[[self class] optionDumpDocsToConsole];
+	//[[self class] optionDumpDocsToConsole];
 	return self;
 }
 
@@ -684,6 +684,10 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 	optionDumpDocsToConsole
 		Dump all TidyLib descriptions to error console. This is a
 		cheap way to get the descriptions for Localizable.strings.
+		This will produce a fairly nice, formatted list of strings
+		that you might use directly. Double-check quotes, etc.,
+		before building. There are probably a couple of entities
+		that are missed.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 + (void) optionDumpDocsToConsole
 {
@@ -699,8 +703,11 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 		paddedOptionName = [[NSString stringWithFormat:@"\"%@\"", optionName] stringByPaddingToLength:40 withString:@" " startingAtIndex:0];
 		
 		filteredDescription = [[[self class] optionDocForId:[[self class] optionIdForName:optionName]] stringByReplacingOccurrencesOfString:@"\"" withString:@"'"];
+
 		filteredDescription = [filteredDescription stringByReplacingOccurrencesOfString:@"<br />" withString:@"\\n"];
+		
 		convertingString = [[[NSAttributedString alloc] initWithHTML:[filteredDescription dataUsingEncoding:NSUnicodeStringEncoding] documentAttributes:nil] autorelease];
+		
 		filteredDescription = [convertingString string];
 		
 		NSLog(@"%@= \"%@: %@\";", paddedOptionName, optionName, filteredDescription);
