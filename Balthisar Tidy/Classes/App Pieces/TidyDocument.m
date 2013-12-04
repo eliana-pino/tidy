@@ -537,4 +537,30 @@
 }
 
 
+#pragma mark - tab key handling
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	textView:doCommandBySelector:
+		We're here because we're the delegate of |sourceView|.
+		Allow the tab key to back in and out of this view.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (BOOL)textView:(NSTextView *)aTextView doCommandBySelector:(SEL)aSelector
+{
+    if (aSelector == @selector(insertTab:))
+	{
+        [[aTextView window] selectNextKeyView:nil];
+        return YES;
+    }
+	
+    if (aSelector == @selector(insertBacktab:))
+	{
+        [[aTextView window] selectPreviousKeyView:nil];
+        return YES;
+    }
+	
+    return NO;
+}
+
+
 @end
