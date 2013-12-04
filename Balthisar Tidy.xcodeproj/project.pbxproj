@@ -12,6 +12,57 @@
 		D0107938183C738F00120B57 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07AF47C1836581E00913067 /* Preferences.xib */; };
 		D0107939183C738F00120B57 /* TidyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07AF47E1836581E00913067 /* TidyDocument.xib */; };
 		D0120B57183CCAB3003CA182 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0120B55183CCAB3003CA182 /* Localizable.strings */; };
+		D013B4DD184F18A000F30654 /* charsets.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D341846209200AFB4FA /* charsets.c */; };
+		D013B4DE184F18A000F30654 /* attrget.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D301846209200AFB4FA /* attrget.c */; };
+		D013B4DF184F18A000F30654 /* JSDTidyDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF49E1836593A00913067 /* JSDTidyDocument.m */; };
+		D013B4E0184F18A000F30654 /* alloc.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D2C1846209200AFB4FA /* alloc.c */; };
+		D013B4E1184F18A000F30654 /* win32tc.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D5A1846209200AFB4FA /* win32tc.c */; };
+		D013B4E2184F18A000F30654 /* TidyDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF494183658D300913067 /* TidyDocument.m */; };
+		D013B4E3184F18A000F30654 /* NoodleLineNumberMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = D04B0512183F15F500C0F70F /* NoodleLineNumberMarker.m */; };
+		D013B4E4184F18A000F30654 /* clean.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D361846209200AFB4FA /* clean.c */; };
+		D013B4E5184F18A000F30654 /* entities.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D3A1846209200AFB4FA /* entities.c */; };
+		D013B4E6184F18A000F30654 /* tmbstr.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D551846209200AFB4FA /* tmbstr.c */; };
+		D013B4E7184F18A000F30654 /* lexer.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D441846209200AFB4FA /* lexer.c */; };
+		D013B4E8184F18A000F30654 /* JSDTableColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D3BEBB183C897800692225 /* JSDTableColumn.m */; };
+		D013B4E9184F18A000F30654 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D016A935182FD80700712C60 /* main.m */; };
+		D013B4EA184F18A000F30654 /* NoodleLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = D04B050F183F158800C0F70F /* NoodleLineNumberView.m */; };
+		D013B4EB184F18A000F30654 /* attrask.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D2D1846209200AFB4FA /* attrask.c */; };
+		D013B4EC184F18A000F30654 /* istack.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D431846209200AFB4FA /* istack.c */; };
+		D013B4ED184F18A000F30654 /* iconvtc.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D411846209200AFB4FA /* iconvtc.c */; };
+		D013B4EE184F18A000F30654 /* tags.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D511846209200AFB4FA /* tags.c */; };
+		D013B4EF184F18A000F30654 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF48C183658D300913067 /* AppController.m */; };
+		D013B4F0184F18A000F30654 /* mappedio.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D471846209200AFB4FA /* mappedio.c */; };
+		D013B4F1184F18A000F30654 /* PreferenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF492183658D300913067 /* PreferenceController.m */; };
+		D013B4F2184F18A000F30654 /* attrdict.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D2E1846209200AFB4FA /* attrdict.c */; };
+		D013B4F3184F18A000F30654 /* gdoc.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D3F1846209200AFB4FA /* gdoc.c */; };
+		D013B4F4184F18A000F30654 /* attrs.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D311846209200AFB4FA /* attrs.c */; };
+		D013B4F5184F18A000F30654 /* buffio.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D331846209200AFB4FA /* buffio.c */; };
+		D013B4F6184F18A000F30654 /* pprint.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D4C1846209200AFB4FA /* pprint.c */; };
+		D013B4F7184F18A000F30654 /* fileio.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D3C1846209200AFB4FA /* fileio.c */; };
+		D013B4F8184F18A000F30654 /* localize.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D461846209200AFB4FA /* localize.c */; };
+		D013B4F9184F18A000F30654 /* parser.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D4A1846209200AFB4FA /* parser.c */; };
+		D013B4FA184F18A000F30654 /* utf8.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D571846209200AFB4FA /* utf8.c */; };
+		D013B4FB184F18A000F30654 /* NSTextView+JSDExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D0BE6EDA183DEB7A00029BF0 /* NSTextView+JSDExtensions.m */; };
+		D013B4FC184F18A000F30654 /* OptionPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF490183658D300913067 /* OptionPaneController.m */; };
+		D013B4FD184F18A000F30654 /* access.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D2A1846209200AFB4FA /* access.c */; };
+		D013B4FE184F18A000F30654 /* tagask.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D501846209200AFB4FA /* tagask.c */; };
+		D013B4FF184F18A000F30654 /* TreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D3BEC1183C897800692225 /* TreeNode.m */; };
+		D013B500184F18A000F30654 /* config.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D381846209200AFB4FA /* config.c */; };
+		D013B501184F18A000F30654 /* streamio.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D4E1846209200AFB4FA /* streamio.c */; };
+		D013B502184F18A000F30654 /* tidylib.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D541846209200AFB4FA /* tidylib.c */; };
+		D013B504184F18A000F30654 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D016A929182FD80700712C60 /* Cocoa.framework */; };
+		D013B506184F18A000F30654 /* HTML.icns in Resources */ = {isa = PBXBuildFile; fileRef = D02B30C9184EC4FF00A60556 /* HTML.icns */; };
+		D013B507184F18A000F30654 /* Batch.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07AF4781836581E00913067 /* Batch.xib */; };
+		D013B508184F18A000F30654 /* OptionPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07AF47A1836581E00913067 /* OptionPane.xib */; };
+		D013B509184F18A000F30654 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07AF47C1836581E00913067 /* Preferences.xib */; };
+		D013B50A184F18A000F30654 /* PHP.icns in Resources */ = {isa = PBXBuildFile; fileRef = D02B30CC184ED25100A60556 /* PHP.icns */; };
+		D013B50B184F18A000F30654 /* TidyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07AF47E1836581E00913067 /* TidyDocument.xib */; };
+		D013B50C184F18A000F30654 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D016A944182FD80700712C60 /* Images.xcassets */; };
+		D013B50D184F18A000F30654 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0120B55183CCAB3003CA182 /* Localizable.strings */; };
+		D013B50E184F18A000F30654 /* optionsInEffect.txt in Resources */ = {isa = PBXBuildFile; fileRef = D0A4E1D2183A556300999979 /* optionsInEffect.txt */; };
+		D013B50F184F18A000F30654 /* optionsTypesExceptions.txt in Resources */ = {isa = PBXBuildFile; fileRef = D0A4E1D4183A556300999979 /* optionsTypesExceptions.txt */; };
+		D013B510184F18A000F30654 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D01AED8318476F6B001300E3 /* Credits.rtf */; };
+		D013B511184F18A000F30654 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0D3BEB6183C87C500692225 /* MainMenu.xib */; };
 		D016A92A182FD80700712C60 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D016A929182FD80700712C60 /* Cocoa.framework */; };
 		D016A936182FD80700712C60 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D016A935182FD80700712C60 /* main.m */; };
 		D016A945182FD80700712C60 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D016A944182FD80700712C60 /* Images.xcassets */; };
@@ -62,6 +113,8 @@
 
 /* Begin PBXFileReference section */
 		D0120B56183CCAB3003CA182 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "balthisar tidy/Base.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
+		D013B515184F18A000F30654 /* Balthisar Tidy (signed).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Balthisar Tidy (signed).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D013B516184F18A100F30654 /* Balthisar Tidy Signed-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Balthisar Tidy Signed-Info.plist"; path = "/Users/jderry/Dropbox/Development/Balthisar Tidy/Balthisar Tidy Signed-Info.plist"; sourceTree = "<absolute>"; };
 		D016A926182FD80700712C60 /* Balthisar Tidy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Balthisar Tidy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D016A929182FD80700712C60 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D016A92C182FD80700712C60 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -160,6 +213,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D013B503184F18A000F30654 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D013B504184F18A000F30654 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D016A923182FD80700712C60 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -184,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				D016A926182FD80700712C60 /* Balthisar Tidy.app */,
+				D013B515184F18A000F30654 /* Balthisar Tidy (signed).app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -216,6 +278,7 @@
 				D016A935182FD80700712C60 /* main.m */,
 				D026169E1836F48A002ABD72 /* Balthisar Tidy.entitlements */,
 				D016A931182FD80700712C60 /* Balthisar Tidy-Info.plist */,
+				D013B516184F18A100F30654 /* Balthisar Tidy Signed-Info.plist */,
 				D016A937182FD80700712C60 /* Balthisar Tidy-Prefix.pch */,
 				D016A944182FD80700712C60 /* Images.xcassets */,
 				D02B30CC184ED25100A60556 /* PHP.icns */,
@@ -373,6 +436,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D013B4DB184F18A000F30654 /* Balthisar Tidy (signed) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D013B512184F18A000F30654 /* Build configuration list for PBXNativeTarget "Balthisar Tidy (signed)" */;
+			buildPhases = (
+				D013B4DC184F18A000F30654 /* Sources */,
+				D013B503184F18A000F30654 /* Frameworks */,
+				D013B505184F18A000F30654 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Balthisar Tidy (signed)";
+			productName = "Balthisar Tidy";
+			productReference = D013B515184F18A000F30654 /* Balthisar Tidy (signed).app */;
+			productType = "com.apple.product-type.application";
+		};
 		D016A925182FD80700712C60 /* Balthisar Tidy */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D016A95A182FD80700712C60 /* Build configuration list for PBXNativeTarget "Balthisar Tidy" */;
@@ -399,6 +479,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Jim Derry";
 				TargetAttributes = {
+					D013B4DB184F18A000F30654 = {
+						DevelopmentTeam = 9PN2JXXG7Y;
+					};
 					D016A925182FD80700712C60 = {
 						DevelopmentTeam = 9PN2JXXG7Y;
 						SystemCapabilities = {
@@ -423,11 +506,31 @@
 			projectRoot = "";
 			targets = (
 				D016A925182FD80700712C60 /* Balthisar Tidy */,
+				D013B4DB184F18A000F30654 /* Balthisar Tidy (signed) */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D013B505184F18A000F30654 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D013B506184F18A000F30654 /* HTML.icns in Resources */,
+				D013B507184F18A000F30654 /* Batch.xib in Resources */,
+				D013B508184F18A000F30654 /* OptionPane.xib in Resources */,
+				D013B509184F18A000F30654 /* Preferences.xib in Resources */,
+				D013B50A184F18A000F30654 /* PHP.icns in Resources */,
+				D013B50B184F18A000F30654 /* TidyDocument.xib in Resources */,
+				D013B50C184F18A000F30654 /* Images.xcassets in Resources */,
+				D013B50D184F18A000F30654 /* Localizable.strings in Resources */,
+				D013B50E184F18A000F30654 /* optionsInEffect.txt in Resources */,
+				D013B50F184F18A000F30654 /* optionsTypesExceptions.txt in Resources */,
+				D013B510184F18A000F30654 /* Credits.rtf in Resources */,
+				D013B511184F18A000F30654 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D016A924182FD80700712C60 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -450,6 +553,51 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D013B4DC184F18A000F30654 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D013B4DD184F18A000F30654 /* charsets.c in Sources */,
+				D013B4DE184F18A000F30654 /* attrget.c in Sources */,
+				D013B4DF184F18A000F30654 /* JSDTidyDocument.m in Sources */,
+				D013B4E0184F18A000F30654 /* alloc.c in Sources */,
+				D013B4E1184F18A000F30654 /* win32tc.c in Sources */,
+				D013B4E2184F18A000F30654 /* TidyDocument.m in Sources */,
+				D013B4E3184F18A000F30654 /* NoodleLineNumberMarker.m in Sources */,
+				D013B4E4184F18A000F30654 /* clean.c in Sources */,
+				D013B4E5184F18A000F30654 /* entities.c in Sources */,
+				D013B4E6184F18A000F30654 /* tmbstr.c in Sources */,
+				D013B4E7184F18A000F30654 /* lexer.c in Sources */,
+				D013B4E8184F18A000F30654 /* JSDTableColumn.m in Sources */,
+				D013B4E9184F18A000F30654 /* main.m in Sources */,
+				D013B4EA184F18A000F30654 /* NoodleLineNumberView.m in Sources */,
+				D013B4EB184F18A000F30654 /* attrask.c in Sources */,
+				D013B4EC184F18A000F30654 /* istack.c in Sources */,
+				D013B4ED184F18A000F30654 /* iconvtc.c in Sources */,
+				D013B4EE184F18A000F30654 /* tags.c in Sources */,
+				D013B4EF184F18A000F30654 /* AppController.m in Sources */,
+				D013B4F0184F18A000F30654 /* mappedio.c in Sources */,
+				D013B4F1184F18A000F30654 /* PreferenceController.m in Sources */,
+				D013B4F2184F18A000F30654 /* attrdict.c in Sources */,
+				D013B4F3184F18A000F30654 /* gdoc.c in Sources */,
+				D013B4F4184F18A000F30654 /* attrs.c in Sources */,
+				D013B4F5184F18A000F30654 /* buffio.c in Sources */,
+				D013B4F6184F18A000F30654 /* pprint.c in Sources */,
+				D013B4F7184F18A000F30654 /* fileio.c in Sources */,
+				D013B4F8184F18A000F30654 /* localize.c in Sources */,
+				D013B4F9184F18A000F30654 /* parser.c in Sources */,
+				D013B4FA184F18A000F30654 /* utf8.c in Sources */,
+				D013B4FB184F18A000F30654 /* NSTextView+JSDExtensions.m in Sources */,
+				D013B4FC184F18A000F30654 /* OptionPaneController.m in Sources */,
+				D013B4FD184F18A000F30654 /* access.c in Sources */,
+				D013B4FE184F18A000F30654 /* tagask.c in Sources */,
+				D013B4FF184F18A000F30654 /* TreeNode.m in Sources */,
+				D013B500184F18A000F30654 /* config.c in Sources */,
+				D013B501184F18A000F30654 /* streamio.c in Sources */,
+				D013B502184F18A000F30654 /* tidylib.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D016A922182FD80700712C60 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -573,6 +721,40 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		D013B513184F18A000F30654 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer: James Derry (4W42G64FPJ)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Balthisar Tidy/Balthisar Tidy-Prefix.pch";
+				INFOPLIST_FILE = "Balthisar Tidy Signed-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "Balthisar Tidy (signed)";
+				PROVISIONING_PROFILE = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D013B514184F18A000F30654 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer: James Derry (4W42G64FPJ)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Balthisar Tidy/Balthisar Tidy-Prefix.pch";
+				INFOPLIST_FILE = "Balthisar Tidy Signed-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "Balthisar Tidy (signed)";
+				PROVISIONING_PROFILE = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		D016A958182FD80700712C60 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -678,6 +860,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D013B512184F18A000F30654 /* Build configuration list for PBXNativeTarget "Balthisar Tidy (signed)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D013B513184F18A000F30654 /* Debug */,
+				D013B514184F18A000F30654 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D016A921182FD80700712C60 /* Build configuration list for PBXProject "Balthisar Tidy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
