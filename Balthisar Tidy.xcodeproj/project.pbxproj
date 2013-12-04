@@ -16,7 +16,8 @@
 		D016A936182FD80700712C60 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D016A935182FD80700712C60 /* main.m */; };
 		D016A945182FD80700712C60 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D016A944182FD80700712C60 /* Images.xcassets */; };
 		D01AED8518476F6B001300E3 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D01AED8318476F6B001300E3 /* Credits.rtf */; };
-		D01AED891847908D001300E3 /* HTML.icns in Resources */ = {isa = PBXBuildFile; fileRef = D01AED881847908D001300E3 /* HTML.icns */; };
+		D02B30CA184EC4FF00A60556 /* HTML.icns in Resources */ = {isa = PBXBuildFile; fileRef = D02B30C9184EC4FF00A60556 /* HTML.icns */; };
+		D02B30CE184ED25100A60556 /* PHP.icns in Resources */ = {isa = PBXBuildFile; fileRef = D02B30CC184ED25100A60556 /* PHP.icns */; };
 		D04B0510183F158800C0F70F /* NoodleLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = D04B050F183F158800C0F70F /* NoodleLineNumberView.m */; };
 		D04B0513183F15F500C0F70F /* NoodleLineNumberMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = D04B0512183F15F500C0F70F /* NoodleLineNumberMarker.m */; };
 		D07AF495183658D300913067 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF48C183658D300913067 /* AppController.m */; };
@@ -72,8 +73,9 @@
 		D016A944182FD80700712C60 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D016A94B182FD80700712C60 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		D01AED8418476F6B001300E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Base; path = Base.lproj/Credits.rtf; sourceTree = "<group>"; };
-		D01AED881847908D001300E3 /* HTML.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = HTML.icns; path = Images.xcassets/HTML.icns; sourceTree = "<group>"; };
 		D026169E1836F48A002ABD72 /* Balthisar Tidy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Balthisar Tidy.entitlements"; sourceTree = "<group>"; };
+		D02B30C9184EC4FF00A60556 /* HTML.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = HTML.icns; path = "balthisar tidy/Images.xcassets/HTML.icns"; sourceTree = SOURCE_ROOT; };
+		D02B30CC184ED25100A60556 /* PHP.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = PHP.icns; path = "balthisar tidy/Images.xcassets/PHP.icns"; sourceTree = SOURCE_ROOT; };
 		D04B050E183F158800C0F70F /* NoodleLineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoodleLineNumberView.h; path = "balthisar tidy/Classes/Support Pieces/NoodleLineNumberView.h"; sourceTree = SOURCE_ROOT; };
 		D04B050F183F158800C0F70F /* NoodleLineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoodleLineNumberView.m; path = "balthisar tidy/Classes/Support Pieces/NoodleLineNumberView.m"; sourceTree = SOURCE_ROOT; };
 		D04B0511183F15F500C0F70F /* NoodleLineNumberMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoodleLineNumberMarker.h; path = "balthisar tidy/Classes/Support Pieces/NoodleLineNumberMarker.h"; sourceTree = SOURCE_ROOT; };
@@ -211,12 +213,13 @@
 			children = (
 				D026169F1836F927002ABD72 /* Classes */,
 				D07AF49A183658F100913067 /* Base.lproj */,
-				D016A944182FD80700712C60 /* Images.xcassets */,
-				D01AED881847908D001300E3 /* HTML.icns */,
+				D016A935182FD80700712C60 /* main.m */,
 				D026169E1836F48A002ABD72 /* Balthisar Tidy.entitlements */,
 				D016A931182FD80700712C60 /* Balthisar Tidy-Info.plist */,
 				D016A937182FD80700712C60 /* Balthisar Tidy-Prefix.pch */,
-				D016A935182FD80700712C60 /* main.m */,
+				D016A944182FD80700712C60 /* Images.xcassets */,
+				D02B30CC184ED25100A60556 /* PHP.icns */,
+				D02B30C9184EC4FF00A60556 /* HTML.icns */,
 				D09D8D1F18461FD000AFB4FA /* tidylib-source */,
 			);
 			path = "Balthisar Tidy";
@@ -400,7 +403,7 @@
 						DevelopmentTeam = 9PN2JXXG7Y;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -429,10 +432,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D01AED891847908D001300E3 /* HTML.icns in Resources */,
+				D02B30CA184EC4FF00A60556 /* HTML.icns in Resources */,
 				D0107935183C738F00120B57 /* Batch.xib in Resources */,
 				D0107937183C738F00120B57 /* OptionPane.xib in Resources */,
 				D0107938183C738F00120B57 /* Preferences.xib in Resources */,
+				D02B30CE184ED25100A60556 /* PHP.icns in Resources */,
 				D0107939183C738F00120B57 /* TidyDocument.xib in Resources */,
 				D016A945182FD80700712C60 /* Images.xcassets in Resources */,
 				D0120B57183CCAB3003CA182 /* Localizable.strings in Resources */,
@@ -601,7 +605,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
 			name = Debug;

@@ -101,18 +101,18 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
-	dataRepresentationOfType
+	dataOfType:error
 		Called as a result of saving files. All we're going to do is
 		pass back the NSData taken from the TidyDoc
  *———————————————————————————————————————————————————————————————————*/
-- (NSData *)dataRepresentationOfType:(NSString *)aType
+- (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
 {
-	return [tidyProcess tidyTextAsData];					// Return the raw data in user-encoding to be written.
+	return [tidyProcess tidyTextAsData];						// Return the raw data in user-encoding to be written.
 }
 
 
 /*———————————————————————————————————————————————————————————————————*
-	writeToFile
+	writeToUrl:ofType:Error
 		Called as a result of saving files, and does the actual
 		writing. We're going to override it so that we can update
 		the |sourceView| automatically any time the file is saved.
@@ -120,9 +120,10 @@
 		to reflect the actual file contents, which is the tidy'd
 		view.
  *———————————————————————————————————————————————————————————————————*/
-- (BOOL)writeToFile:(NSString *)fileName ofType:(NSString *)type
+- (BOOL)writeToURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError
 {
-	bool success = [super writeToFile:fileName ofType:type];	// Inherited method does the actual saving
+	//bool success = [super writeToFile:fileName ofType:type];	// Inherited method does the actual saving
+	bool success = [super writeToURL:absoluteURL ofType:typeName error:outError];
 	if (success)
 	{
 		[tidyProcess setOriginalText:[tidyProcess tidyText]];	// Make the |tidyText| the new |originalText|.
@@ -134,7 +135,7 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
-	fileAttributesToWriteToFile:ofType:saveOperation
+	fileAttributesToWriteToURL:ofType:forSaveOperation:originalContentsURL:error:
 		Called as a result of saving files. We're going to support the
 		use of HFS+ type/creator codes, since Cocoa doesn't do this
 		automatically. We only do this on files that haven't been
@@ -143,24 +144,32 @@
 		original file associations. We COULD make this a preference
 		item such that Tidy will always add type/creator codes.
  *———————————————————————————————————————————————————————————————————*/
-- (NSDictionary *)fileAttributesToWriteToFile:(NSString *)fullDocumentPath
-									   ofType:(NSString *)documentTypeName
-								saveOperation:(NSSaveOperationType)saveOperationType
-{
-	// Get the inherited dictionary.
-	NSMutableDictionary *myDict = (NSMutableDictionary *)[super fileAttributesToWriteToFile:fullDocumentPath ofType:documentTypeName saveOperation:saveOperationType];
 
+- (NSDictionary *)fileAttributesToWriteToURL:(NSURL *)absoluteURL
+									  ofType:(NSString *)typeName
+							forSaveOperation:(NSSaveOperationType)saveOperation
+						 originalContentsURL:(NSURL *)absoluteOriginalContentsURL
+									   error:(NSError **)outError
+{
+
+	// Get the inherited dictionary.
+	NSMutableDictionary *myDict = (NSMutableDictionary *)[super fileAttributesToWriteToURL:absoluteURL
+																					ofType:typeName
+																		  forSaveOperation:saveOperation
+																		originalContentsURL:absoluteOriginalContentsURL
+																					 error:outError];
+	
 	// ONLY add type/creator if this is an original file -- NOT if we opened the file.
-	if (tidyOriginalFile) 
+	if (tidyOriginalFile)
 	{
 		myDict[NSFileHFSCreatorCode] = @('WWS2');	// set creator code.
 		myDict[NSFileHFSTypeCode] = @('TEXT');		// set file type.
-	} 
-	else 
+	}
+	else
 	{
 		// Use original type/creator codes, if any.
-		OSType macType = [ [ [ NSFileManager defaultManager ] fileAttributesAtPath: fullDocumentPath traverseLink: YES ] fileHFSTypeCode];
-		OSType macCreator = [ [ [ NSFileManager defaultManager ] fileAttributesAtPath: fullDocumentPath traverseLink: YES ] fileHFSCreatorCode];
+		OSType macType = [ [ [ NSFileManager defaultManager ] attributesOfItemAtPath:[absoluteURL path] error:nil ] fileHFSTypeCode];
+		OSType macCreator = [ [ [ NSFileManager defaultManager ] attributesOfItemAtPath:[absoluteURL path] error:nil ] fileHFSCreatorCode];
 		if ((macType != 0) && (macCreator != 0))
 		{
 			myDict[NSFileHFSCreatorCode] = @(macCreator);
@@ -169,6 +178,7 @@
 	}
 	return myDict;
 }
+
 
 
 /*———————————————————————————————————————————————————————————————————*
