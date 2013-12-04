@@ -135,53 +135,6 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
-	fileAttributesToWriteToURL:ofType:forSaveOperation:originalContentsURL:error:
-		Called as a result of saving files. We're going to support the
-		use of HFS+ type/creator codes, since Cocoa doesn't do this
-		automatically. We only do this on files that haven't been
-		opened by Tidy. That way, Tidy-created documents show the Tidy
-		icons, and documents that were merely opened retain thier
-		original file associations. We COULD make this a preference
-		item such that Tidy will always add type/creator codes.
- *———————————————————————————————————————————————————————————————————*/
-
-- (NSDictionary *)fileAttributesToWriteToURL:(NSURL *)absoluteURL
-									  ofType:(NSString *)typeName
-							forSaveOperation:(NSSaveOperationType)saveOperation
-						 originalContentsURL:(NSURL *)absoluteOriginalContentsURL
-									   error:(NSError **)outError
-{
-
-	// Get the inherited dictionary.
-	NSMutableDictionary *myDict = (NSMutableDictionary *)[super fileAttributesToWriteToURL:absoluteURL
-																					ofType:typeName
-																		  forSaveOperation:saveOperation
-																		originalContentsURL:absoluteOriginalContentsURL
-																					 error:outError];
-	
-	// ONLY add type/creator if this is an original file -- NOT if we opened the file.
-	if (tidyOriginalFile)
-	{
-		myDict[NSFileHFSCreatorCode] = @('WWS2');	// set creator code.
-		myDict[NSFileHFSTypeCode] = @('TEXT');		// set file type.
-	}
-	else
-	{
-		// Use original type/creator codes, if any.
-		OSType macType = [ [ [ NSFileManager defaultManager ] attributesOfItemAtPath:[absoluteURL path] error:nil ] fileHFSTypeCode];
-		OSType macCreator = [ [ [ NSFileManager defaultManager ] attributesOfItemAtPath:[absoluteURL path] error:nil ] fileHFSCreatorCode];
-		if ((macType != 0) && (macCreator != 0))
-		{
-			myDict[NSFileHFSCreatorCode] = @(macCreator);
-			myDict[NSFileHFSTypeCode] = @(macType);
-		}
-	}
-	return myDict;
-}
-
-
-
-/*———————————————————————————————————————————————————————————————————*
 	revertToSavedFromFile:ofType
 		Allow the default reversion to take place, and then put the
 		correct value in the editor if it took place. The inherited
