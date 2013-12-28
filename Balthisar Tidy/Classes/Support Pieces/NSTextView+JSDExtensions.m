@@ -9,6 +9,7 @@
 		o Highlight a logical line number and column in the text view.
 		o Turn word-wrapping on and off.
 		o Own and instantiate its own NoodleLineNumberView.
+			- note dependency on JanX2’s fork of Noodlekit: <https://github.com/JanX2/NoodleKit>
 
 
 	The MIT License (MIT)
@@ -37,8 +38,7 @@
 #import "NoodleLineNumberView.h"
 
 
-#pragma mark -
-#pragma mark Constants for associative references
+#pragma mark - Constants for associative references
 
 
 // Can't define new iVars, but associated references help out.
@@ -71,7 +71,9 @@ static char const * const JSDtagShowsLineNumbers = "JSDtagShowsLineNumbers";
 	{
 		return [item integerValue];
 
-	} else {
+	}
+	else
+	{
 		return 0;
 	}
 }
@@ -93,7 +95,9 @@ static char const * const JSDtagShowsLineNumbers = "JSDtagShowsLineNumbers";
 	{
 		return [item integerValue];
 
-	} else {
+	}
+	else
+	{
 		return 0;
 	}
 }
@@ -115,7 +119,9 @@ static char const * const JSDtagShowsLineNumbers = "JSDtagShowsLineNumbers";
 	{
 		return [item boolValue];
 
-	} else {
+	}
+	else
+	{
 		return NO;
 	}
 }
@@ -129,7 +135,9 @@ static char const * const JSDtagShowsLineNumbers = "JSDtagShowsLineNumbers";
 	{
 		// Remove current highlighting from entire contents
 		[[self layoutManager] removeTemporaryAttribute:NSBackgroundColorAttributeName forCharacterRange:NSMakeRange(0, [[self textStorage] length])];
-	} else {
+	}
+	else
+	{
 		// Setup the variables we need for the loop
 		NSRange aRange;								// a range for counting lines
 		NSRange lineCharRange;						// a range for counting lines
@@ -233,7 +241,9 @@ static char const * const JSDtagShowsLineNumbers = "JSDtagShowsLineNumbers";
 	{
 		return [item boolValue];
 
-	} else {
+	}
+	else
+	{
 		return YES;
 	}
 }
@@ -259,13 +269,21 @@ static char const * const JSDtagShowsLineNumbers = "JSDtagShowsLineNumbers";
 			[[self textContainer] setContainerSize:layoutSize];
 			[[self textContainer] setWidthTracksTextView:NO];
 
-		} else {
+		}
+		else
+		{
 
 			NSSize layoutSize = NSMakeSize([[self enclosingScrollView] contentSize].width , FLT_MAX);
 
 			[[self enclosingScrollView] setHasHorizontalScroller:NO];
 			[[self textContainer] setContainerSize:layoutSize];
 			[[self textContainer] setWidthTracksTextView:YES];
+		}
+
+		// Tickle the view to force ruler resisplay.
+		if ([self ShowsLineNumbers])
+		{
+			[[[self enclosingScrollView] verticalRulerView] setNeedsDisplay:YES];
 		}
 	}
 }
@@ -285,7 +303,9 @@ static char const * const JSDtagShowsLineNumbers = "JSDtagShowsLineNumbers";
 	{
 		return YES;
 
-	} else {
+	}
+	else
+	{
 		return NO;
 	}
 }
@@ -309,8 +329,15 @@ static char const * const JSDtagShowsLineNumbers = "JSDtagShowsLineNumbers";
 			[[self enclosingScrollView] setVerticalRulerView:nil];
 			objc_setAssociatedObject(self, JSDtagShowsLineNumbers, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 
-		} else {
-			NoodleLineNumberView *lineNumberView = [[[NoodleLineNumberView alloc] initWithScrollView:[self enclosingScrollView]] autorelease];
+		}
+		else
+		{
+			#if !__has_feature(objc_arc)
+				NoodleLineNumberView *lineNumberView = [[[NoodleLineNumberView alloc] initWithScrollView:[self enclosingScrollView]] autorelease];
+			#else
+				NoodleLineNumberView *lineNumberView = [[NoodleLineNumberView alloc] initWithScrollView:[self enclosingScrollView]];
+			#endif
+
 			[[self enclosingScrollView] setVerticalRulerView:lineNumberView];
 			[[self enclosingScrollView] setHasHorizontalRuler:NO];
 			[[self enclosingScrollView] setHasVerticalRuler:YES];
