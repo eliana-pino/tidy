@@ -52,6 +52,6 @@
 
 - (IBAction)errorClicked:(id)sender;		// React to an error row being clicked.
 
-- (void)retidy;								// Tidy's itself.
-
+- (void)retidy:(bool)settext
+;
 @end

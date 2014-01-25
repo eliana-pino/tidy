@@ -52,9 +52,9 @@
 /*
 	The default encoding styles that override the tidy-implemented character encodings.
 */
-#define defaultInputEncoding	NSUnicodeStringEncoding
-#define defaultLastEncoding		NSUnicodeStringEncoding
-#define defaultOutputEncoding	NSUnicodeStringEncoding
+#define defaultInputEncoding	NSUTF8StringEncoding
+#define defaultLastEncoding		NSUTF8StringEncoding
+#define defaultOutputEncoding	NSUTF8StringEncoding
 
 
 #pragma mark - class JSDTidyDocument
@@ -96,13 +96,13 @@
 	ENCODING SUPPORT
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
-// TODO: Consider putting these into a single key/value structure.
-// TODO: Why the these class methods? Convenience? Better to make into properties?
+// #TODO: Consider putting these into a single key/value structure.
+// #TODO: Why the these class methods? Convenience? Better to make into properties?
 // Should access these just like normal tidy options, and tidy should hide it.
  
-+ (NSArray *)allAvailableStringEncodings;			// Returns an array of NSStringEncoding.
-
-+ (NSArray *)allAvailableStringEncodingsNames;		// Returns an array of NSString, correlated to above.
++ (NSArray *)allAvailableEncodingLocalizedNames;		// Returns an array of NSString.
++ (NSDictionary *)allAvailableEncodingsByEncoding;		// Dictionary of encodings where key is an NSStringEncoding.
++ (NSDictionary *)allAvailableEncodingsByLocalizedName; // Dictionary of encodings where key is a string.
 
 
 #pragma mark - Text
@@ -242,6 +242,8 @@
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	DIAGNOSTICS and REPAIR
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+
+- (void)processTidy;
 
 // TODO: These can all be properties.
 - (int) tidyDetectedHtmlVersion;	// Returns 0, 2, 3, 4, or 5.

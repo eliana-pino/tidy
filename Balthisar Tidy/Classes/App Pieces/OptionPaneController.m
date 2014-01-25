@@ -183,13 +183,26 @@
 	// Handle returning the 'value' column of the option.
 	if ([[aTableColumn identifier] isEqualToString:@"check"])
 	{
-		// If we're working on Encoding, then return the INDEX in |allAvailableStringEncodings| of the value.
+		// If we're working on Encoding, then return the INDEX of the
+		// value, and not the value itself. The index will be used
+		// to set which item in the list is displayed.
+		// TODO: this is still a mess. The dictionary doesn't seem to useful.
+		// maybe need the dictionary to be sorted by name, and contain it's
+		// alphabetical index and character encoding. Or something. The problem
+		// is alphabetical position isn't really something the library proper
+		// needs to know about.
 		if ( (optId == TidyCharEncoding) || (optId == TidyInCharEncoding) || (optId == TidyOutCharEncoding) )
 		{
-			int i = [[_tidyDocument optionValueForId:optId] intValue];									// Value of option
-			NSUInteger j = [[[_tidyDocument class] allAvailableStringEncodings] indexOfObject:@(i)];	// Index of option
-			return [@(j) stringValue];								// Return Index as a string
-		} else {
+			NSInteger optionValue = [[_tidyDocument optionValueForId:optId] integerValue];
+
+			NSString *optionStringValue = [[[_tidyDocument class] allAvailableEncodingsByEncoding] objectForKey:[NSNumber numberWithUnsignedLong:optionValue]];
+
+			NSInteger optionIndex = [[[_tidyDocument class] allAvailableEncodingLocalizedNames] indexOfObject:optionStringValue];
+
+			return [@(optionIndex) stringValue]; // Return Index as a string
+		}
+		else
+		{
 			return [_tidyDocument optionValueForId:optId];
 		}
 	}
@@ -251,12 +264,25 @@
 	if ([[inColumn identifier] isEqualToString:@"check"])
 	{
 		// if we're working with encoding, we need to get the NSStringEncoding instead of the index of the item.
-		if ( (optId == TidyCharEncoding) || (optId == TidyInCharEncoding) || (optId == TidyOutCharEncoding) ) {
-			id myNumber = [[_tidyDocument class] allAvailableStringEncodings][[object unsignedLongValue]];
-			[_tidyDocument setOptionValueForId:optId fromObject:myNumber];
-		} else {
+		if ( (optId == TidyCharEncoding) || (optId == TidyInCharEncoding) || (optId == TidyOutCharEncoding) )
+		{
+			// we have the alphabetical index. Need to find the matching string, then
+			// get the actual NStringEncoding.
+			// #TODO this is still an ugly mess.
+
+			// First get the string represented by the index.
+			NSString *optionStringValue = [[_tidyDocument class] allAvailableEncodingLocalizedNames][[object unsignedLongValue]];
+
+			// The get the NSStringEncoding value (represented as a string) of that string.
+			NSString *stringEncoding = [[[_tidyDocument class] allAvailableEncodingsByLocalizedName][optionStringValue] stringValue];
+
+			[_tidyDocument setOptionValueForId:optId fromObject:stringEncoding];
+		}
+		else
+		{
 			[_tidyDocument setOptionValueForId:optId fromObject:object];
 		}
+
 		// signal the update
 		[NSApp sendAction:_action to:_target from:self];
 	}

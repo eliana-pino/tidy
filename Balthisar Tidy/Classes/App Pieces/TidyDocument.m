@@ -66,6 +66,8 @@
 	bool saveWarning;						// The warning behavior for when saveBehavior == 1;
 	bool yesSavedAs;						// Disable warnings and protections once a save-as has been done.
 	bool tidyOriginalFile;					// Flags whether the file was CREATED by Tidy, for writing type/creator codes.
+
+	NSData *documentOpenedData;	// hold the file that we opened with until the nib is alive.
 }
 
 @property (assign) IBOutlet NSSplitView *splitLeftRight;	// The left-right (main) split view in the Doc window.
@@ -94,7 +96,12 @@
  *———————————————————————————————————————————————————————————————————*/
 - (BOOL)readFromFile:(NSString *)filename ofType:(NSString *)docType
 {
-	[tidyProcess setOriginalTextWithData:[NSData dataWithContentsOfFile:filename]]; // Give our tidyProcess the data.
+	// #TODO: this is kind of stupid. We're setting the data before
+	// the nib is loaded, and therefore none of the preferences will
+	// be in effect. For example, the text won't load if it's not
+	// in the default character encoding that's hard-coded.
+documentOpenedData = [[NSData dataWithContentsOfFile:filename] retain];
+	//[tidyProcess setOriginalTextWithData:[NSData dataWithContentsOfFile:filename]]; // Give our tidyProcess the data.
 	tidyOriginalFile = NO;															// The current file was OPENED, not a Tidy original.
 	return YES;																		// Yes, it was loaded successfully.
 }
@@ -147,7 +154,7 @@
 	if (didRevert)
 	{
 		[_sourceView setString:[tidyProcess workingText]];	// Update the display, since the reversion already loaded the data.
-		[self retidy];										// Re-tidy the document.
+		[self retidy:true];									// Re-tidy the document.
 	}
 	return didRevert;										// Flag whether we reverted or not.
 }
@@ -210,6 +217,7 @@
 	{
 		tidyOriginalFile = YES;							// If yes, we'll write file/creator codes.
 		tidyProcess = [[JSDTidyDocument alloc] init];	// Use our own |tidyProcess|, NOT the controller's instance.
+		documentOpenedData = nil;
 		// register for notification
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleSavePrefChange:) name:@"JSDSavePrefChange" object:nil];
 	}
@@ -224,6 +232,7 @@
 - (void)dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];	// remove ourselves from the notification center!
+	[documentOpenedData release];
 	[tidyProcess release];			// Release the tidyProcess.
 	[_optionController release];	// Remove the optionController pane.
 	[super dealloc];				// Do the inherited dealloc.
@@ -289,11 +298,16 @@
 	saveWarning = [defaults boolForKey:JSDKeyWarnBeforeOverwrite];
 	yesSavedAs = NO;
 
+// set the document options first
+[tidyProcess optionCopyFromDocument:[_optionController tidyDocument]];
+
 	// Make the |sourceView| string the same as our loaded text.
+[tidyProcess setOriginalTextWithData:documentOpenedData];
 	[_sourceView setString:[tidyProcess workingText]];
 
 	// Force the processing to occur.
-	[self optionChanged:self];
+	//[self optionChanged:self];
+[self retidy:false];
 }
 
 
@@ -325,10 +339,20 @@
 /*———————————————————————————————————————————————————————————————————*
 	retidy
 		Perform the actual re-tidy'ing
+		if settext is true then set the working text again.
+		TODO: this is a temporary hack.
  *———————————————————————————————————————————————————————————————————*/
-- (void)retidy
+- (void)retidy:(bool)settext
 {
-	[tidyProcess setWorkingText:[_sourceView string]];		// Put the |sourceView| text into the |tidyProcess|.
+	if (settext)
+	{
+		[tidyProcess setWorkingText:[_sourceView string]];		// Put the |sourceView| text into the |tidyProcess|.
+	}
+	else
+	{
+		[tidyProcess processTidy];
+	}
+
 	[_tidyView setString:[tidyProcess tidyText]];			// Put the tidy'd text into the |tidyView|.
 	[_errorView reloadData];								// Reload the error data.
 	[_errorView deselectAll:self];							// Deselect the selected row.
@@ -360,7 +384,7 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)textDidChange:(NSNotification *)aNotification
 {
-	[self retidy];
+	[self retidy:true];
 }
 
 
@@ -371,8 +395,9 @@
  *———————————————————————————————————————————————————————————————————*/
 - (IBAction)optionChanged:(id)sender
 {
+	// copy the options from the option controller into our own process.
 	[tidyProcess optionCopyFromDocument:[_optionController tidyDocument]];
-	[self retidy];
+	[self retidy:false];
 }
 
 

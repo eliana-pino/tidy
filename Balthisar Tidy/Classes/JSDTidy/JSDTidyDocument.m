@@ -49,6 +49,8 @@
 
 @property (nonatomic, assign) NSStringEncoding outputEncoding;	// User-specified output-encoding to process everything. OVERRIDE tidy.
 
+@property (nonatomic, assign) NSData *originalData;				// The original data that the file was loaded from.
+
 
 @end
 
@@ -75,37 +77,6 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 }
 
 
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	encodingCompare (regular C-function)
-		Sort using the equivalent Mac encoding as the major key.
-		Secondary key is the actual encoding value, which works well.
-		Treat Unicode encodings as special case, and put them at top.
-		THIS ROUTINE BASED ON THE ROUTINE FROM THE TEXTEDIT EXAMPLE.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-static int encodingCompare(const void *firstPtr, const void *secondPtr)
-{
-	CFStringEncoding first = *(CFStringEncoding *)firstPtr;
-	CFStringEncoding second = *(CFStringEncoding *)secondPtr;
-	CFStringEncoding macEncodingForFirst = CFStringGetMostCompatibleMacStringEncoding(first);
-	CFStringEncoding macEncodingForSecond = CFStringGetMostCompatibleMacStringEncoding(second);
-	
-	if (first == second)
-	{
-		return 0;	// Should really never happen
-	}
-	if (macEncodingForFirst == kCFStringEncodingUnicode || macEncodingForSecond == kCFStringEncodingUnicode)
-	{
-		if (macEncodingForSecond == macEncodingForFirst)
-		{
-			return (first > second) ? 1 : -1;	// Both Unicode; compare second order
-		}
-		return (macEncodingForFirst == kCFStringEncodingUnicode) ? -1 : 1;			// First is Unicode
-	}
-	if ((macEncodingForFirst > macEncodingForSecond) || ((macEncodingForFirst == macEncodingForSecond) && (first > second))) return 1;
-	return -1;
-}
-
-
 #pragma mark - iVar Synthesis
 
 
@@ -119,12 +90,27 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 #pragma mark - INITIALIZATION and DESTRUCTION
 
 
+// #TODO: NEED to do some basic re-engineering and refactoring. Once a TidyProcess exists,
+// it should handle everything internally.
+// It shouldn't keep processing while loading a whole series of preferences changes, such as
+// when new.
+// The external user should set preferences, and then listen for a callback to receive
+// new text. It should NOT set new preferences, and then set the workingtext! It should only
+// set the working text when there is new text; not a preference change.
+// Do I need an InitWithOptions or something like that?
+
+// #TODO: changing encoding almost works. Probably losing originalData
+// because a preference change is making a new processing document
+// or something.
+
+
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	init
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (id)init
 {
 	if (self = [super init]) {
+		_originalData = nil;
 		_originalText = @"";
 		_workingText = @"";
 		_tidyText = @"";
@@ -144,6 +130,10 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 													@"css-prefix"  : @NO } retain];
 	}
 	//[[self class] optionDumpDocsToConsole];
+	//NSLog(@"%@", [[self class] allAvailableEncodingLocalizedNames]);
+	//NSLog(@"%@", [[self class] allAvailableEncodingsByEncoding]);
+	//NSLog(@"%@", [[self class] allAvailableEncodingsByLocalizedName]);
+
 	return self;
 }
 
@@ -153,6 +143,7 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)dealloc
 {
+	[_originalData release];
 	[_originalText release];
 	[_workingText release];
 	[_tidyText release];
@@ -209,103 +200,111 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	allAvailableStringEncodings
-		Returns an array of all available string encodings on the 
-		current system. The array is of |NSNumber| containing the
-		}NSStringEncoding|. We will also sort the list and only
-		include those encodings with human-readable names.
-		THIS ROUTINE BASED ON THE ROUTINE FROM THE TEXTEDIT EXAMPLE.
+	allAvailableEncodingLocalizedNames
+		Returns a sorted array of all available text encodings.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
- 
- // TODO: we shouldn't have this. We should only offer a picklist as part
- // of normal Tidy operations. We will work with ta dictionary of numbers
- // and strings as the value.
- 
-+ (NSArray *)allAvailableStringEncodings
-{
-	static NSMutableArray *allEncodings = nil;	// Only do this once
-	if (!allEncodings)
-	{
-		const CFStringEncoding *cfEncodings = CFStringGetListOfAvailableEncodings();
-		CFStringEncoding *tmp;
-		int cnt, num = 0;
-		
-		while (cfEncodings[num] != kCFStringEncodingInvalidId)
-		{
-			num++;
-		}
-
-		if (num > 0)
-		{
-			tmp = malloc(sizeof(CFStringEncoding) * num);
-
-			memcpy(tmp, cfEncodings, sizeof(CFStringEncoding) * num);	// Copy the list
-			
-			qsort(tmp, num, sizeof(CFStringEncoding), encodingCompare);	// Sort it
-			
-			allEncodings = [[NSMutableArray alloc] init];				// Now put it in an NSArray
-			
-			for (cnt = 0; cnt < num; cnt++)
-			{
-				NSStringEncoding nsEncoding = CFStringConvertEncodingToNSStringEncoding(tmp[cnt]);
-
-				if (nsEncoding && [NSString localizedNameOfStringEncoding:nsEncoding])
-				{
-					[allEncodings addObject:@(nsEncoding)];
-				}
-			}
-			free(tmp);
-		}
-	}
-	return allEncodings;
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	allAvailableStringEncodingsNames
-		Returns an array of all available string encodings on the
-		current system. The array is of |NSString| containing the 
-		human-readable names of the encoding types.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-+ (NSArray *)allAvailableStringEncodingsNames
++ (NSArray *)allAvailableEncodingLocalizedNames
 {
 	static NSMutableArray *encodingNames = nil; // Only do this once
-	
+
 	if (!encodingNames)
 	{
-		encodingNames = [[NSMutableArray alloc] init];
-		
-		NSArray *allEncodings = [[self class] allAvailableStringEncodings];				// Reference the list of encoding numbers.
-		
-		int cnt;
-		
-		NSUInteger numEncodings = [allEncodings count];									// Get number of encodings usable.
-		
-		for (cnt = 0; cnt < numEncodings; cnt++)										// Loop through the encodings present.
-		{										
-			NSStringEncoding encoding = [allEncodings[cnt] unsignedIntValue];			// Get the encoding type.
-			
-			NSString *encodingName = [NSString localizedNameOfStringEncoding:encoding];	// Get the encoding name.
-			
-			[encodingNames addObject:encodingName];										// Add to the array.
+		NSMutableArray *tempNames = [[[NSMutableArray alloc] init] autorelease];
+
+		const NSStringEncoding *encoding = [NSString availableStringEncodings];
+
+		while (*encoding)
+		{
+			[tempNames addObject:[NSString localizedNameOfStringEncoding:*encoding]];
+			encoding++;
 		}
+
+		encodingNames = (NSMutableArray*)[[tempNames sortedArrayUsingComparator:^(NSString *a, NSString *b) { return [a localizedCaseInsensitiveCompare:b]; }] retain];
 	}
 	return encodingNames;
+}
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	allAvailableEncodingsByEncoding
+		Returns a dictionary of all encodings available on the
+		system with key as NSStringEncoding type.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
++ (NSDictionary *)allAvailableEncodingsByEncoding
+{
+	__strong static NSMutableDictionary *localDictionary = nil; // Only do this once
+
+	if (!localDictionary)
+	{
+		localDictionary = [[NSMutableDictionary alloc] init];
+
+		const NSStringEncoding *encoding = [NSString availableStringEncodings];
+
+		while (*encoding)
+		{
+			[localDictionary setObject:[NSString localizedNameOfStringEncoding:*encoding] forKey:[NSNumber numberWithUnsignedLong:*encoding]];
+			encoding++;
+		}
+	}
+
+	return localDictionary;
+}
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	allAvailableEncodingsByLocalizedName
+		Returns a dictionary of all encodings available on the
+		system with key as localized name string.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
++ (NSDictionary *)allAvailableEncodingsByLocalizedName
+{
+	static NSMutableDictionary *localDictionary = nil; // Only do this once
+
+	if (!localDictionary)
+	{
+		localDictionary = [[NSMutableDictionary alloc] init];
+
+		const NSStringEncoding *encoding = [NSString availableStringEncodings];
+
+		while (*encoding)
+		{
+			[localDictionary setObject:[NSNumber numberWithUnsignedLong:*encoding] forKey:[NSString localizedNameOfStringEncoding:*encoding]];
+			encoding++;
+		}
+	}
+
+	return localDictionary;
 }
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	fixSourceCoding
-		repairs the character decoding whenever the `input-coding`
-		has changed. This is the logic of how this works here:
+		Repairs the character decoding whenever the `input-coding`
+		has changed. It should only work on "clean" documents. If
+		the user has started typing, then the document is dirty
+		and there should be no effect.
+ 
+		We will compare _originalText and _workingText. Only if
+		they are the same will be try to reset from _originalData
+		using the new encoding.
+ 
+ 
+	This is the logic of how this works here:
 		
-	- Our |NSString| is Unicode and was decoded FROM |_lastEncoding.|
+	- Our |NSString| is Unicode and was decoded FROM |_lastEncoding|
 	- Using |_lastEncoding| make the |NSString| into an |NSData|.
 	- Using |_inputEncoding| make the |NSData} into a new string.
 
 		We'll process both |_originalText| and |_workingText|.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)fixSourceCoding
+{
+	// first test _originalText and _workingText to ensure equality.
+	if (_originalData && [self areEqualOriginalWorking])
+	{
+		[self setOriginalTextWithData:_originalData];
+	}
+}
+
+- (void)fixSourceCodingPrevious
 {
 	// only go through the trouble if the encoding isn't the same!
 	if (_lastEncoding != _inputEncoding)
@@ -359,7 +358,7 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 	tidyOptSetValue( newTidy, TidyCharEncoding, [@"utf8" UTF8String] );		// Set all internal char-encoding to UTF8.
 	tidyOptSetValue( newTidy, TidyInCharEncoding, [@"utf8" UTF8String] );	// Set all internal char-encoding to UTF8.
 	tidyOptSetValue( newTidy, TidyOutCharEncoding, [@"utf8" UTF8String] );	// Set all internal char-encoding to UTF8.
-	tidyParseString(newTidy, [_workingText UTF8String]);					// Parse the original text into the TidyDoc
+	tidyParseString(newTidy, [_workingText UTF8String]);
 	tidyCleanAndRepair( newTidy );
 	tidyRunDiagnostics( newTidy );
 
@@ -438,7 +437,24 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 - (void)setOriginalTextWithData:(NSData *)data
 {
 	[_originalText release];
-	_originalText = [[NSString alloc] initWithData:data encoding:_inputEncoding];
+
+	if (data != _originalData)
+	{
+		[data retain];
+		[_originalData release];
+		_originalData = data;
+	}
+
+	NSString *testText = nil;
+	if ((testText = [[NSString alloc] initWithData:data encoding:_inputEncoding] ))
+	{
+		_originalText = testText;
+	}
+	else
+	{
+		_originalText = @"";
+	}
+
 	[_originalText retain];
 	[self setWorkingText:_originalText];
 }
@@ -451,7 +467,17 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 - (void)setOriginalTextWithFile:(NSString *)path
 {
 	[_originalText release];
-	_originalText = [[NSString alloc] initWithData:[NSData dataWithContentsOfFile:path] encoding:_inputEncoding];
+
+	NSString *testText = nil;
+	if ((testText = [[NSString alloc] initWithData:[NSData dataWithContentsOfFile:path] encoding:_inputEncoding]))
+	{
+		_originalText = testText;
+	}
+	else
+	{
+		_originalText = @"";
+	}
+
 	[_originalText retain];
 	[self setWorkingText:_originalText];
 }
@@ -487,7 +513,17 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 - (void)setWorkingTextWithData:(NSData *)data
 {
 	[_workingText release];
-	_workingText = [[NSString alloc] initWithData:data encoding:_inputEncoding];
+
+	NSString *testText = nil;
+	if ((testText = [[NSString alloc] initWithData:data encoding:_inputEncoding]))
+	{
+		_workingText = testText;
+	}
+	else
+	{
+		_workingText = @"";
+	}
+
 	[_workingText retain];
 	[self processTidy];
 }
@@ -842,7 +878,8 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 	// If we're an encoding option, return OUR OWN pick list.
 	if ([self isTidyEncodingOption:idf])
 	{
-		return [[self class] allAvailableStringEncodingsNames];
+		//#TODO old return [[self class] allAvailableStringEncodingsNames];
+		return [[self class] allAvailableEncodingLocalizedNames];
 	}
 	// Otherwise return Tidy's pick list.
 	else 
@@ -886,7 +923,10 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 		return [theArray componentsJoinedByString:@", "];
 	}
 
-	// We need to treat encoding options specially, 'cos we override Tidy's treatment of them.
+	// We need to treat encoding options specially, 'cos we
+	// override Tidy's treatment of them. We're keeping these
+	// values in our own ivars, because TidyLib won't keep
+	// them for us.
 	if ( [[self class] isTidyEncodingOption:idf])
 	{
 		if (idf == TidyCharEncoding) 
@@ -941,27 +981,30 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)setOptionValueForId:(TidyOptionId)idf fromObject:(id)value
 {
-	// we need to treat encoding options specially, 'cos we override Tidy's treatment of them.
+	// we need to treat encoding options specially,
+	// 'cos we override Tidy's treatment of them.
+	// Here we are keeping encoding values in our
+	// own iVars because TidyLib doesn't like them.
 	if ( [[self class] isTidyEncodingOption:idf])
 	{
 		if (idf == TidyCharEncoding)
 		{
 			_lastEncoding = _inputEncoding;
-			_inputEncoding = [value unsignedIntValue];
-			_outputEncoding = [value unsignedIntValue];
+			_inputEncoding = [value integerValue];
+			_outputEncoding = [value integerValue];
 			[self fixSourceCoding];
 		}
 
 		if (idf == TidyInCharEncoding)
 		{
 			_lastEncoding = _inputEncoding;
-			_inputEncoding = [value unsignedIntValue];
+			_inputEncoding = [value integerValue];
 			[self fixSourceCoding];
 		}
 
 		if (idf == TidyOutCharEncoding)
 		{
-			_outputEncoding = [value unsignedIntValue];
+			_outputEncoding = [value integerValue];
 		}
 
 		return;
@@ -1012,6 +1055,7 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
  optionResetToDefaultForId
  resets the designated ID to factory default
+ #TODO: capture the character encoding types
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)optionResetToDefaultForId:(TidyOptionId)idf
 {
@@ -1022,6 +1066,7 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
  optionResetAllToDefault
  resets all options to factory default
+ #TODO: capture the character encoding types
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)optionResetAllToDefault
 {
@@ -1036,9 +1081,9 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 - (void)optionCopyFromDocument:(JSDTidyDocument *)theDocument
 {
 	tidyOptCopyConfig( _prefDoc, [theDocument tidyDocument] );
-	_inputEncoding = theDocument->_inputEncoding;
-	_lastEncoding = theDocument->_lastEncoding;
-	_outputEncoding = theDocument->_outputEncoding;
+	_inputEncoding = [theDocument inputEncoding];
+	_lastEncoding = [theDocument lastEncoding];
+	_outputEncoding = [theDocument outputEncoding];
 }
 
 
