@@ -41,13 +41,13 @@
 	__strong NSDictionary* tidyOptionsThatCannotAcceptNULLSTR;
 }
 
-@property TidyDoc prefDoc;					// |TidyDocument| instance for HOLDING PREFERENCES and nothing more.
+@property TidyDoc prefDoc;										// |TidyDocument| instance for HOLDING PREFERENCES and nothing more.
 
-@property NSStringEncoding inputEncoding;	// User-specified input-encoding to process everything. OVERRIDE tidy.
+@property (nonatomic, assign) NSStringEncoding inputEncoding;	// User-specified input-encoding to process everything. OVERRIDE tidy.
 
-@property NSStringEncoding lastEncoding;	// PREVIOUS user-specified input encoding, so we can REVERT.
+@property (nonatomic, assign) NSStringEncoding lastEncoding;	// PREVIOUS user-specified input encoding, so we can REVERT.
 
-@property NSStringEncoding outputEncoding;	// User-specified output-encoding to process everything. OVERRIDE tidy.
+@property (nonatomic, assign) NSStringEncoding outputEncoding;	// User-specified output-encoding to process everything. OVERRIDE tidy.
 
 
 @end
@@ -778,7 +778,7 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 	// ENCODING OPTIONS -- special case, so handle first.
 	if ([self isTidyEncodingOption:idf])
 	{
-		if (idf == TidyCharEncoding) \
+		if (idf == TidyCharEncoding)
 		{
 			// Return string on the value.
 			return [NSString stringWithFormat:@"%u", defaultInputEncoding];
@@ -942,23 +942,30 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 - (void)setOptionValueForId:(TidyOptionId)idf fromObject:(id)value
 {
 	// we need to treat encoding options specially, 'cos we override Tidy's treatment of them.
-	if ( [[self class] isTidyEncodingOption:idf]) {
-		if (idf == TidyCharEncoding) {
+	if ( [[self class] isTidyEncodingOption:idf])
+	{
+		if (idf == TidyCharEncoding)
+		{
 			_lastEncoding = _inputEncoding;
 			_inputEncoding = [value unsignedIntValue];
 			_outputEncoding = [value unsignedIntValue];
 			[self fixSourceCoding];
-		} // if TidyCharEncoding;
-		if (idf == TidyInCharEncoding) {
+		}
+
+		if (idf == TidyInCharEncoding)
+		{
 			_lastEncoding = _inputEncoding;
 			_inputEncoding = [value unsignedIntValue];
 			[self fixSourceCoding];
-		} // if TidyInCharEncoding;
-		if (idf == TidyOutCharEncoding) {
+		}
+
+		if (idf == TidyOutCharEncoding)
+		{
 			_outputEncoding = [value unsignedIntValue];
-		} // if TidyOutCharEncoding;
+		}
+
 		return;
-	} // if tidy coding option
+	}
 
 	// Here we could be passed any object, but we'll test for ones we can use.
 	if ([value isKindOfClass:[NSString class]])
@@ -1023,12 +1030,15 @@ static int encodingCompare(const void *firstPtr, const void *secondPtr)
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
- optionCopyFromDocument
- copies all options from theDocument
+	optionCopyFromDocument
+		Copies all options from theDocument into our _prefDoc.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)optionCopyFromDocument:(JSDTidyDocument *)theDocument
 {
 	tidyOptCopyConfig( _prefDoc, [theDocument tidyDocument] );
+	_inputEncoding = theDocument->_inputEncoding;
+	_lastEncoding = theDocument->_lastEncoding;
+	_outputEncoding = theDocument->_outputEncoding;
 }
 
 
