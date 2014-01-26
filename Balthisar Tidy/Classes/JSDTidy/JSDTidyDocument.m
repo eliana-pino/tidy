@@ -49,7 +49,7 @@
 
 @property (nonatomic, assign) NSStringEncoding outputEncoding;	// User-specified output-encoding to process everything. OVERRIDE tidy.
 
-@property (nonatomic, assign) NSData *originalData;				// The original data that the file was loaded from.
+@property (nonatomic, strong) NSData *originalData;				// The original data that the file was loaded from.
 
 
 @end
@@ -81,6 +81,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 
 
 @synthesize originalText = _originalText;
+@synthesize originalData = _originalData;
 @synthesize workingText = _workingText;
 @synthesize tidyText = _tidyText;
 @synthesize errorText = _errorText;
@@ -102,6 +103,12 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 // #TODO: changing encoding almost works. Probably losing originalData
 // because a preference change is making a new processing document
 // or something.
+// ACTUALLY, we are retaining. Let's map out the whole chain of events. The TidyDoc should use
+// notifications or callbacks to indicate when it's time to display sourcetext or tidytext. This
+// is an engineering change. Right now the tidy text is updated, but the container doesn't know
+// that the source view needs to be reverted. This is VICTORY!
+// REMEMBER, in debugging you're getting confused because you're stepping through the methods
+// for the options controller document as well as the actual document. 
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
@@ -440,9 +447,11 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 
 	if (data != _originalData)
 	{
-		[data retain];
+		//[data retain];
 		[_originalData release];
-		_originalData = data;
+		//_originalData = data;
+		//[[[self originalData] initWithData:data] retain];
+		_originalData = [[[NSData alloc] initWithData:data] retain];
 	}
 
 	NSString *testText = nil;
@@ -1084,6 +1093,8 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	_inputEncoding = [theDocument inputEncoding];
 	_lastEncoding = [theDocument lastEncoding];
 	_outputEncoding = [theDocument outputEncoding];
+[self fixSourceCoding];
+[self processTidy];
 }
 
 
