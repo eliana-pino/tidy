@@ -100,6 +100,15 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 // set the working text when there is new text; not a preference change.
 // Do I need an InitWithOptions or something like that?
 
+// Remember this is self contained. Outside forces will set options. When someone sets
+// my options, I should fire a Notification.
+// Notifications:
+// 	originaltext changed (control it to prevent endless loops!)
+//	option changed (can send which option?)
+//	tidy text changed
+//	input-encoding changed
+// OR consider key-value observing. Learn this, as it didn't exist on Mac OS X 10.2 :p
+
 // #TODO: changing encoding almost works. Probably losing originalData
 // because a preference change is making a new processing document
 // or something.
@@ -108,9 +117,9 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 // is an engineering change. Right now the tidy text is updated, but the container doesn't know
 // that the source view needs to be reverted. This is VICTORY!
 // REMEMBER, in debugging you're getting confused because you're stepping through the methods
-// for the options controller document as well as the actual document. 
+// for the options controller document as well as the actual document.
 
-
+// #TODO: should provide an init withOptionsCopiedFrom:JSDTidyDocument.
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	init
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
@@ -410,6 +419,8 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	tidyOptCopyConfig( newTidy, _prefDoc );	// Save our uncorrupted preferences.
 	tidyRelease(_prefDoc);					// Kill the old |_prefDoc|.
 	_prefDoc = newTidy;						// Now |_prefDoc| is the just-tidy'd document.
+	
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"JSDTidyDocumentTidyTextChanged" object:self];
 }
 
 
@@ -433,6 +444,8 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	[_originalText release];
 	_originalText = value;
 	[self setWorkingText:_originalText];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"JSDTidyDocumentOriginalTextChanged" object:self];
+
 }
 
 
@@ -458,10 +471,12 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	if ((testText = [[NSString alloc] initWithData:data encoding:_inputEncoding] ))
 	{
 		_originalText = testText;
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"JSDTidyDocumentOriginalTextChanged" object:self];
 	}
 	else
 	{
 		_originalText = @"";
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"JSDTidyDocumentOriginalTextChanged" object:self];
 	}
 
 	[_originalText retain];
@@ -504,7 +519,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	setWorkingText
-		set the original & working text from an NSString.
+		set the working text from an NSString.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)setWorkingText:(NSString *)value
 {
@@ -517,7 +532,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	setWorkingTextWithData
-		Set the original & working text from an NSData.
+		Set the working text from an NSData.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)setWorkingTextWithData:(NSData *)data
 {
@@ -540,7 +555,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	setWorkingTextWithFile
-		set the original & working text from a file.
+		set the working text from a file.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)setWorkingTextWithFile:(NSString *)path
 {
@@ -1016,6 +1031,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 			_outputEncoding = [value integerValue];
 		}
 
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"JSDTidyDocumentOptionChanged" object:self];
 		return;
 	}
 
@@ -1058,6 +1074,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 			}
 		}
 	}
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"JSDTidyDocumentOptionChanged" object:self];
 }
 
 
@@ -1069,6 +1086,8 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 - (void)optionResetToDefaultForId:(TidyOptionId)idf
 {
 	tidyOptResetToDefault( _prefDoc, idf );
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"JSDTidyDocumentOptionChanged" object:self];
+
 }
 
 
@@ -1080,6 +1099,8 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 - (void)optionResetAllToDefault
 {
 	tidyOptResetAllToDefault( _prefDoc );
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"JSDTidyDocumentOptionChanged" object:self];
+
 }
 
 
@@ -1093,8 +1114,10 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	_inputEncoding = [theDocument inputEncoding];
 	_lastEncoding = [theDocument lastEncoding];
 	_outputEncoding = [theDocument outputEncoding];
+[[NSNotificationCenter defaultCenter] postNotificationName:@"JSDTidyDocumentOptionChanged" object:self];
 [self fixSourceCoding];
 [self processTidy];
+
 }
 
 
@@ -1103,8 +1126,8 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
- tidyDocument
- return the address of |_prefDoc|
+	tidyDocument
+		return the address of |_prefDoc|
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (TidyDoc)tidyDocument
 {

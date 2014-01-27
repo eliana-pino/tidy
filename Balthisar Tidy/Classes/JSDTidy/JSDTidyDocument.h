@@ -44,6 +44,7 @@
 	The keys for dealing with errors in errorArray, which is an array of |NSDictionary|
 	objects with these keys.
 */
+// #TODO - why do I need these defined as constants? And why in the header?
 #define errorKeyLevel	@"level"
 #define errorKeyLine	@"line"
 #define errorKeyColumn	@"column"
@@ -52,6 +53,7 @@
 /*
 	The default encoding styles that override the tidy-implemented character encodings.
 */
+// #TODO - should be not in the header. Should namespace the keys.
 #define defaultInputEncoding	NSUTF8StringEncoding
 #define defaultLastEncoding		NSUTF8StringEncoding
 #define defaultOutputEncoding	NSUTF8StringEncoding
@@ -99,6 +101,7 @@
 // #TODO: Consider putting these into a single key/value structure.
 // #TODO: Why the these class methods? Convenience? Better to make into properties?
 // Should access these just like normal tidy options, and tidy should hide it.
+
  
 + (NSArray *)allAvailableEncodingLocalizedNames;		// Returns an array of NSString.
 + (NSDictionary *)allAvailableEncodingsByEncoding;		// Dictionary of encodings where key is an NSStringEncoding.
@@ -185,6 +188,7 @@
 
 // TODO: maintain the options internally instead of forcing apps to create own buffer.
 // TODO: Make sure I'm actually doing this. I think I have my own buffer. Logical, right?
+// TODO: invetigate possibilities for making all of this KVC compliant.
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	OPTIONS - methods for dealing with options
@@ -232,7 +236,7 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
 // TODO: this is the working tidydoc, not the options-only version.
-// TODO: this can be a property.
+// TODO: this can be a property, and should be read-only.
 - (TidyDoc)tidyDocument;						// Return the TidyDoc attached to this instance.
 
 

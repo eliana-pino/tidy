@@ -43,7 +43,7 @@
 
 - (id)initReplacingColumn:(NSTableColumn *)aColumn;	// initializer that replaces an existing column with this one.
 
-- (id)dataCellForRow:(int)row;				// calls the delegate for each column to get the data cell.
+- (id)dataCellForRow:(int)row;							// calls the delegate for each column to get the data cell.
 - (void)swapForTableColumn:(NSTableColumn *)aColumn;	// swaps this instance of JSDTableColumn for an existing one.
 
 - (NSCell *)usefulCheckCell;

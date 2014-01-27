@@ -61,13 +61,13 @@
 
 @interface TidyDocument ()
 {
-	JSDTidyDocument* tidyProcess;			// Our tidy wrapper/processor.
+	JSDTidyDocument *tidyProcess;			// Our tidy wrapper/processor.
 	NSInteger saveBehavior;					// The save behavior from the preferences.
 	bool saveWarning;						// The warning behavior for when saveBehavior == 1;
 	bool yesSavedAs;						// Disable warnings and protections once a save-as has been done.
 	bool tidyOriginalFile;					// Flags whether the file was CREATED by Tidy, for writing type/creator codes.
 
-	NSData *documentOpenedData;	// hold the file that we opened with until the nib is alive.
+	NSData *documentOpenedData;				// Hold the file that we opened with until the nib is awake.
 }
 
 @property (assign) IBOutlet NSSplitView *splitLeftRight;	// The left-right (main) split view in the Doc window.
@@ -96,14 +96,10 @@
  *———————————————————————————————————————————————————————————————————*/
 - (BOOL)readFromFile:(NSString *)filename ofType:(NSString *)docType
 {
-	// #TODO: this is kind of stupid. We're setting the data before
-	// the nib is loaded, and therefore none of the preferences will
-	// be in effect. For example, the text won't load if it's not
-	// in the default character encoding that's hard-coded.
-documentOpenedData = [[NSData dataWithContentsOfFile:filename] retain];
-	//[tidyProcess setOriginalTextWithData:[NSData dataWithContentsOfFile:filename]]; // Give our tidyProcess the data.
+	// Save the data for use until after the Nib is awake.
+	documentOpenedData = [[NSData dataWithContentsOfFile:filename] retain];
 	tidyOriginalFile = NO;															// The current file was OPENED, not a Tidy original.
-	return YES;																		// Yes, it was loaded successfully.
+	return YES;
 }
 
 
@@ -114,7 +110,7 @@ documentOpenedData = [[NSData dataWithContentsOfFile:filename] retain];
  *———————————————————————————————————————————————————————————————————*/
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
 {
-	return [tidyProcess tidyTextAsData];						// Return the raw data in user-encoding to be written.
+	return [tidyProcess tidyTextAsData];	// Return the raw data in user-encoding to be written.
 }
 
 
@@ -129,7 +125,6 @@ documentOpenedData = [[NSData dataWithContentsOfFile:filename] retain];
  *———————————————————————————————————————————————————————————————————*/
 - (BOOL)writeToURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError
 {
-	//bool success = [super writeToFile:fileName ofType:type];	// Inherited method does the actual saving
 	bool success = [super writeToURL:absoluteURL ofType:typeName error:outError];
 	if (success)
 	{
@@ -216,10 +211,19 @@ documentOpenedData = [[NSData dataWithContentsOfFile:filename] retain];
 	if (self)
 	{
 		tidyOriginalFile = YES;							// If yes, we'll write file/creator codes.
-		tidyProcess = [[JSDTidyDocument alloc] init];	// Use our own |tidyProcess|, NOT the controller's instance.
+		tidyProcess = [[JSDTidyDocument alloc] init];	// Use our own |tidyProcess|, NOT the pref controller's instance.
 		documentOpenedData = nil;
 		// register for notification
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleSavePrefChange:) name:@"JSDSavePrefChange" object:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:self 
+												 selector:@selector(handleSavePrefChange:) 
+													 name:@"JSDSavePrefChange" object:nil];
+		
+		// #TODO - TEMPORARY HACK; listen for a "JSDTidyDocumentOriginalTextChanged" notification.
+		// #TODO - I should register a KVO instead of this. Let's push this product out, though.
+		[[NSNotificationCenter defaultCenter] addObserver:self 
+												 selector:@selector(handleTidyOrigTextChange:)
+													 name:@"JSDTidyDocumentOriginalTextChanged" object:nil];
+		
 	}
 	
 	return self;
@@ -231,10 +235,11 @@ documentOpenedData = [[NSData dataWithContentsOfFile:filename] retain];
  *———————————————————————————————————————————————————————————————————*/
 - (void)dealloc
 {
+	// #TODO: we shouldn't do the below, but remove ourself one-by-one.
 	[[NSNotificationCenter defaultCenter] removeObserver:self];	// remove ourselves from the notification center!
 	[documentOpenedData release];
 	[tidyProcess release];			// Release the tidyProcess.
-	[_optionController release];	// Remove the optionController pane.
+	[_optionController release];		// Remove the optionController pane.
 	[super dealloc];				// Do the inherited dealloc.
 }
 
@@ -254,14 +259,12 @@ documentOpenedData = [[NSData dataWithContentsOfFile:filename] retain];
 	[aView setImportsGraphics:NO];								// Don't let user import graphics.
 	[aView setWordwrapsText:NO];								// Provided by category `NSTextView+JSDExtensions`
 	[aView setShowsLineNumbers:YES];							// Provided by category `NSTextView+JSDExtensions`
-
 }
 
 
 /*———————————————————————————————————————————————————————————————————*
 	awakeFromNib
 		When we wake from the nib file, setup the option controller
-		This will receive notifications when an option changes.
  *———————————————————————————————————————————————————————————————————*/
 - (void) awakeFromNib
 {
@@ -298,16 +301,15 @@ documentOpenedData = [[NSData dataWithContentsOfFile:filename] retain];
 	saveWarning = [defaults boolForKey:JSDKeyWarnBeforeOverwrite];
 	yesSavedAs = NO;
 
-// set the document options first
-[tidyProcess optionCopyFromDocument:[_optionController tidyDocument]];
+	// set the document options first
+	[tidyProcess optionCopyFromDocument:[_optionController tidyDocument]];
 
 	// Make the |sourceView| string the same as our loaded text.
-[tidyProcess setOriginalTextWithData:documentOpenedData];
+	[tidyProcess setOriginalTextWithData:documentOpenedData];
 	[_sourceView setString:[tidyProcess workingText]];
 
 	// Force the processing to occur.
-	//[self optionChanged:self];
-[self retidy:false];
+	[self retidy:false];
 }
 
 
@@ -374,6 +376,22 @@ documentOpenedData = [[NSData dataWithContentsOfFile:filename] retain];
 
 #pragma mark - Event Handling
 
+/*———————————————————————————————————————————————————————————————————*
+	handleTidyOrigTextChange
+		The tidyProcess changed the originalText for some reason.
+		Given this temp hack, probably because the user changed
+		the encoding. Let's set the text view to the current (new)
+		original text.
+ *———————————————————————————————————————————————————————————————————*/
+- (void)handleTidyOrigTextChange:(NSNotification *)note
+{
+	//
+	if ([note object] == tidyProcess)
+	{
+		[_sourceView setString:[tidyProcess originalText]];
+		[self retidy:no];
+	}
+}
 
 /*———————————————————————————————————————————————————————————————————*
 	textDidChange:
@@ -384,7 +402,7 @@ documentOpenedData = [[NSData dataWithContentsOfFile:filename] retain];
  *———————————————————————————————————————————————————————————————————*/
 - (void)textDidChange:(NSNotification *)aNotification
 {
-	[self retidy:true];
+	[self retidy:yes];
 }
 
 

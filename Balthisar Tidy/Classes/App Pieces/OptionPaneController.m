@@ -51,9 +51,7 @@
 	@property (nonatomic) IBOutlet NSTextField *theDescription;		// Pointer to the description field.
 
 
-// <JSDTableColumnProtocol> contract
-
-- (id)tableColumn:(JSDTableColumn *)aTableColumn customDataCellForRow:(NSInteger)row;
+- (id)tableColumn:(JSDTableColumn *)aTableColumn customDataCellForRow:(NSInteger)row; // [theTable datasource] requirement.
 
 
 @end
@@ -190,16 +188,21 @@
 		// maybe need the dictionary to be sorted by name, and contain it's
 		// alphabetical index and character encoding. Or something. The problem
 		// is alphabetical position isn't really something the library proper
-		// needs to know about.
+		// needs to know about. I THINK that since 10.3 we don't have to use
+		// the index of item in the usefulPopuCell. We should be able to
+		// use the NSStringEncoding, and save ourselves all this trouble, such as NSMenuItem:setTag.
 		if ( (optId == TidyCharEncoding) || (optId == TidyInCharEncoding) || (optId == TidyOutCharEncoding) )
 		{
-			NSInteger optionValue = [[_tidyDocument optionValueForId:optId] integerValue];
+			// This is the NSCharacterEncoding value that's important to us.
+			NSInteger optionValue = [[_tidyDocument optionValueForId:optId] integerValue]; 
 
+			// This is the localized name for the previous.
 			NSString *optionStringValue = [[[_tidyDocument class] allAvailableEncodingsByEncoding] objectForKey:[NSNumber numberWithUnsignedLong:optionValue]];
 
+			// This is the index in the language array, and also the index for the pop-up list that will be used.
 			NSInteger optionIndex = [[[_tidyDocument class] allAvailableEncodingLocalizedNames] indexOfObject:optionStringValue];
 
-			return [@(optionIndex) stringValue]; // Return Index as a string
+			return [@(optionIndex) stringValue]; // Return Index as a string. The value of the popup is this index.
 		}
 		else
 		{
@@ -213,7 +216,9 @@
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	tableColumn:customDataCellForRow
 		We're here because we're the datasource of |theTable|.
-		Here we are providing the cell for use by the table.
+		Here we are providing the popup cell for use by the table.
+		Note that Balthisar Tidy *only* uses popups, or uses the
+		native in-cell editing.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (id)tableColumn:(JSDTableColumn *)aTableColumn customDataCellForRow:(NSInteger)row
 {
@@ -226,7 +231,9 @@
 
 		// Return a popup only if there IS a picklist and the item is not in the optionsExceptions array
 		if ( ([picks count] != 0) && (![optionsExceptions containsObject:optionsInEffect[row]] ) )
+		{
 			return [aTableColumn usefulPopUpCell:picks];
+		}
 	}
 
 	return nil;
@@ -245,7 +252,9 @@
 		if ([[aTableColumn dataCellForRow:rowIndex] class] != [NSTextFieldCell class])
 		{
 			return NO;
-		} else {
+		} 
+		else
+		{
 			return YES;
 		}
 	}
@@ -256,7 +265,10 @@
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	tableView:setObjectValue:forTableColumn:row
-		user changed a value -- let's record it!
+		We're here because we're the datasource of |theTable|.
+		Sets the data object for an item in the specified row and column.
+		The user change a value in |theTable| and so we will record
+		that in our own data structure (i.e., the |_tidyDocument|).
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)tableView:(NSTableView *)aTableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)inColumn row:(int)inRow
 {
@@ -268,18 +280,23 @@
 		{
 			// we have the alphabetical index. Need to find the matching string, then
 			// get the actual NStringEncoding.
-			// #TODO this is still an ugly mess.
+			// #TODO this is still an ugly mess. NOTE that since 10.3, we can assign
+			// things other than index or value. We should be able to put both the
+			// label in the localized language as well as the NSStringEncoding here.
 
 			// First get the string represented by the index.
 			NSString *optionStringValue = [[_tidyDocument class] allAvailableEncodingLocalizedNames][[object unsignedLongValue]];
 
-			// The get the NSStringEncoding value (represented as a string) of that string.
+			// Then get the NSStringEncoding value (represented as a string) of that string.
 			NSString *stringEncoding = [[[_tidyDocument class] allAvailableEncodingsByLocalizedName][optionStringValue] stringValue];
 
 			[_tidyDocument setOptionValueForId:optId fromObject:stringEncoding];
 		}
 		else
 		{
+			// #TODO - it looks like picklists for Tidy take index values from an enum, not text values.
+			// Please confirm in debugger. This means using index of the menu item is consistent with this.
+			// Also confirm what is object? Is it my tablecell?
 			[_tidyDocument setOptionValueForId:optId fromObject:object];
 		}
 

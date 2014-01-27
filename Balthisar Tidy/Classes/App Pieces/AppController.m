@@ -53,8 +53,8 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
- When the app is initialized pass off registering of the user
- defaults to the |PreferenceController|.
+	When the app is initialized pass off registering of the user
+		defaults to the |PreferenceController|.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 + (void)initialize
 {
@@ -66,7 +66,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
- Show the preferences window.
+	Show the preferences window.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (IBAction)showPreferences:(id)sender
 {
