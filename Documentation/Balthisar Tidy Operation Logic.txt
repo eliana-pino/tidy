@@ -25,7 +25,7 @@
   application-wide preferences.
 * Each instance of a `TidyDocument` will own an instance of this to manage current document
   settings.
-  
+
 `TidyDocument`
 --------------
 * Represents a Mac OS document meant for Tidy'ing.
@@ -39,7 +39,7 @@
 * Preferences are NOT locally reloaded. It's assumed that the the options have not
   changed, or if they have changed, then option change notification has already
   reset the options.
-  
+
 ###Future
 
 * We have no reason to own our own JSDTidyDocument.
@@ -57,7 +57,7 @@
   before modifying blank document.
 * If input-encoding changes, then if there's original data, AND the originalText == workingText,
   then try to re-decode from the original. Otherwise there's no effect.
-  
+
 ###Guessing Encoding
 
 * Try stringWithContentsOfFile:usedEncoding:error: or initWithContentsOfFile:usedEncoding:error: (or the URL-based equivalents).
@@ -67,3 +67,10 @@
   a locale-appropriate guess).
 * Note that once you get to MacOSRoman, you can stop checking any others, because MacOSRoman will successfully
   (if not necessarily correctly) decode any sequence of bytes you throw at it.
+
+
+###Proper Structure
+
+optionPane is just a dumb controller that *happens* to have a tidyDoc for storage convenience. Its tidyDoc
+is really the star of the show. All notifications that affect a host application should only EVER come from
+the TidyDoc. The options pane controller should only EVER manage options, and not perform any signalling.

@@ -57,7 +57,6 @@
 		D0BE6EDB183DEB7A00029BF0 /* NSTextView+JSDExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D0BE6EDA183DEB7A00029BF0 /* NSTextView+JSDExtensions.m */; };
 		D0D3BEB8183C87C500692225 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0D3BEB6183C87C500692225 /* MainMenu.xib */; };
 		D0D3BEC2183C897800692225 /* JSDTableColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D3BEBB183C897800692225 /* JSDTableColumn.m */; };
-		D0D3BEC5183C897800692225 /* TreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D3BEC1183C897800692225 /* TreeNode.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -156,8 +155,6 @@
 		D0D3BEB7183C87C500692225 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = "balthisar tidy/Base.lproj/MainMenu.xib"; sourceTree = SOURCE_ROOT; };
 		D0D3BEBA183C897800692225 /* JSDTableColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSDTableColumn.h; path = "../balthisar tidy/Classes/Support Pieces/JSDTableColumn.h"; sourceTree = "<group>"; };
 		D0D3BEBB183C897800692225 /* JSDTableColumn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSDTableColumn.m; path = "../balthisar tidy/Classes/Support Pieces/JSDTableColumn.m"; sourceTree = "<group>"; };
-		D0D3BEC0183C897800692225 /* TreeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TreeNode.h; path = "../balthisar tidy/Classes/Support Pieces/TreeNode.h"; sourceTree = "<group>"; };
-		D0D3BEC1183C897800692225 /* TreeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TreeNode.m; path = "../balthisar tidy/Classes/Support Pieces/TreeNode.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -283,8 +280,6 @@
 			children = (
 				D0D3BEBA183C897800692225 /* JSDTableColumn.h */,
 				D0D3BEBB183C897800692225 /* JSDTableColumn.m */,
-				D0D3BEC0183C897800692225 /* TreeNode.h */,
-				D0D3BEC1183C897800692225 /* TreeNode.m */,
 				D04B0511183F15F500C0F70F /* NoodleLineNumberMarker.h */,
 				D04B0512183F15F500C0F70F /* NoodleLineNumberMarker.m */,
 				D04B050E183F158800C0F70F /* NoodleLineNumberView.h */,
@@ -490,7 +485,6 @@
 				D07AF497183658D300913067 /* OptionPaneController.m in Sources */,
 				D09D8D5C1846209200AFB4FA /* access.c in Sources */,
 				D09D8D711846209200AFB4FA /* tagask.c in Sources */,
-				D0D3BEC5183C897800692225 /* TreeNode.m in Sources */,
 				D09D8D651846209200AFB4FA /* config.c in Sources */,
 				D09D8D701846209200AFB4FA /* streamio.c in Sources */,
 				D09D8D731846209200AFB4FA /* tidylib.c in Sources */,
