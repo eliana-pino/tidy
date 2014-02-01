@@ -274,8 +274,10 @@
 		_optionController = [[OptionPaneController alloc] init];
 	}
 	[_optionController putViewIntoView:_optionPane];
-	[_optionController setTarget:self];
-	[_optionController setAction:@selector(optionChanged:)];
+	
+	// We want to be notified if the controller's tidyDocument's options change.
+	[[_optionController tidyDocument] setTarget:self];
+	[[_optionController tidyDocument] setAction:@selector(optionChanged:)];
 }
 
 
@@ -410,6 +412,7 @@
 	optionChanged:
 		One of the options changed! We're here by virtue of being the
 		action of the optionController instance. Let's retidy here.
+		// TODO: let's do this via notification instead, or KVO.
  *———————————————————————————————————————————————————————————————————*/
 - (IBAction)optionChanged:(id)sender
 {
@@ -436,7 +439,9 @@
 /*———————————————————————————————————————————————————————————————————*
 	tableView:objectValueForTableColumn:row
 		We're here because we're the datasource of the table view.
-		We need to specify what to show in the row/column.
+		We need to specify what to show in the row/column. The
+		error array consists of dictionaries with entries for
+		`level`, `line`, `column`, and `message`.
  *———————————————————————————————————————————————————————————————————*/
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
 {

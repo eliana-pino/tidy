@@ -47,6 +47,7 @@
 	NSArray	*optionsExceptions;		// Array of NSString that holds the options we want to treat as STRINGS
 }
 
+	@property (nonatomic) IBOutlet NSView *View;					// Pointer to the NIB's |View|.
 	@property (nonatomic) IBOutlet NSTableView *theTable;			// Pointer to the table
 	@property (nonatomic) IBOutlet NSTextField *theDescription;		// Pointer to the description field.
 
@@ -123,10 +124,6 @@
 
 	[_View setFrame:[dstView frame]];
 
-	//[_View setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
-
-	//[dstView setAutoresizesSubviews:YES];
-
 	[dstView addSubview:_View];
 }
 
@@ -137,8 +134,9 @@
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	tableViewSelectionDidChange:
 		We arrived here by virtue of this controller class being the
-		delegate of |theTable|. Whenever the selection changes
-		update |theDescription| with the correct, new description
+		delegate of |theTable|. This is NOT a notification center
+		notification. Whenever the selection changes, update
+		|theDescription| with the correct, new description
 		from Localizable.strings.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification
@@ -182,30 +180,22 @@
 	if ([[aTableColumn identifier] isEqualToString:@"check"])
 	{
 		// If we're working on Encoding, then return the INDEX of the
-		// value, and not the value itself. The index will be used
-		// to set which item in the list is displayed.
-		// TODO: this is still a mess. The dictionary doesn't seem to useful.
-		// maybe need the dictionary to be sorted by name, and contain it's
-		// alphabetical index and character encoding. Or something. The problem
-		// is alphabetical position isn't really something the library proper
-		// needs to know about. I THINK that since 10.3 we don't have to use
-		// the index of item in the usefulPopuCell. We should be able to
-		// use the NSStringEncoding, and save ourselves all this trouble, such as NSMenuItem:setTag.
+		// value, and not the value itself (which is NSStringEncoding).
+		// The index will be used to set which item in the list is displayed.
 		if ( (optId == TidyCharEncoding) || (optId == TidyInCharEncoding) || (optId == TidyOutCharEncoding) )
 		{
-			// This is the NSCharacterEncoding value that's important to us.
-			NSInteger optionValue = [[_tidyDocument optionValueForId:optId] integerValue]; 
-
-			// This is the localized name for the previous.
-			NSString *optionStringValue = [[[_tidyDocument class] allAvailableEncodingsByEncoding] objectForKey:[NSNumber numberWithUnsignedLong:optionValue]];
-
-			// This is the index in the language array, and also the index for the pop-up list that will be used.
-			NSInteger optionIndex = [[[_tidyDocument class] allAvailableEncodingLocalizedNames] indexOfObject:optionStringValue];
-
-			return [@(optionIndex) stringValue]; // Return Index as a string. The value of the popup is this index.
+			NSLog(@"Option Value = %@", [_tidyDocument optionValueForId:optId]);
+			NSLog(@"Option Value Converted = %ld", (long)[[_tidyDocument optionValueForId:optId] integerValue]);
+			NSLog(@"%@", [[_tidyDocument class] availableEncodingDictionariesByNSStringEncoding][@([[_tidyDocument optionValueForId:optId] integerValue])][@"LocalizedIndex"]);
+			return [[_tidyDocument class] availableEncodingDictionariesByNSStringEncoding][@([[_tidyDocument optionValueForId:optId] integerValue])][@"LocalizedIndex"];
 		}
 		else
 		{
+			// All text fields are strings, and so passing a string value is
+			// appropriate. NSPopupButtonCell requires an integer index of
+			// the item to select. Tidy PickList items are represented by
+			// enums (not strings), which are compatible, and so whatever
+			// we pass to _tidyDocument will be used accordingly.
 			return [_tidyDocument optionValueForId:optId];
 		}
 	}
@@ -278,30 +268,19 @@
 		// if we're working with encoding, we need to get the NSStringEncoding instead of the index of the item.
 		if ( (optId == TidyCharEncoding) || (optId == TidyInCharEncoding) || (optId == TidyOutCharEncoding) )
 		{
-			// we have the alphabetical index. Need to find the matching string, then
-			// get the actual NStringEncoding.
-			// #TODO this is still an ugly mess. NOTE that since 10.3, we can assign
-			// things other than index or value. We should be able to put both the
-			// label in the localized language as well as the NSStringEncoding here.
-
-			// First get the string represented by the index.
-			NSString *optionStringValue = [[_tidyDocument class] allAvailableEncodingLocalizedNames][[object unsignedLongValue]];
-
-			// Then get the NSStringEncoding value (represented as a string) of that string.
-			NSString *stringEncoding = [[[_tidyDocument class] allAvailableEncodingsByLocalizedName][optionStringValue] stringValue];
-
-			[_tidyDocument setOptionValueForId:optId fromObject:stringEncoding];
+			// We have the alphabetical index, but need to find the NSStringEncoding.
+			NSLog(@"%@", [[_tidyDocument class] availableEncodingDictionariesByLocalizedIndex][@([object unsignedLongValue])][@"NSStringEncoding"]);
+			[_tidyDocument setOptionValueForId:optId
+									fromObject:[[_tidyDocument class] availableEncodingDictionariesByLocalizedIndex][@([object unsignedLongValue])][@"NSStringEncoding"]];
 		}
 		else
 		{
-			// #TODO - it looks like picklists for Tidy take index values from an enum, not text values.
-			// Please confirm in debugger. This means using index of the menu item is consistent with this.
-			// Also confirm what is object? Is it my tablecell?
+			// TidyLib picklist options use an enum for their values, not a string.
+			// We're really depending on all of TidyLib enums for picklist options
+			// to range from [0..x], and as long as this holds true it's okay to
+			// use the enum integer value.
 			[_tidyDocument setOptionValueForId:optId fromObject:object];
 		}
-
-		// signal the update
-		[NSApp sendAction:_action to:_target from:self];
 	}
 }
 

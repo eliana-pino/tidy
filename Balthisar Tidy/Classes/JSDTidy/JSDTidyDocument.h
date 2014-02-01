@@ -33,38 +33,36 @@
 
 #pragma mark - Some defines
 
+
 /*
-	This prefix will prepend all TidyLib options stored in the prefs file. You might want to
-	use this in order to namespace your preferences if you choose to use Cocoa's native
-	preferences system. TidyLib still supports Tidy's native configuration system, of course.
+	This prefix will prepend all TidyLib options stored in the prefs file. 
+	You might want to use this in order to namespace your preferences if
+	you choose to use Cocoa's native preferences system. TidyLib still
+	supports Tidy's native configuration system, of course.
 */
+
 #define tidyPrefPrefix @"-tidy-"
 
-/*
-	The keys for dealing with errors in errorArray, which is an array of |NSDictionary|
-	objects with these keys.
-*/
-// #TODO - why do I need these defined as constants? And why in the header?
-#define errorKeyLevel	@"level"
-#define errorKeyLine	@"line"
-#define errorKeyColumn	@"column"
-#define errorKeyMessage	@"message"
 
 /*
-	The default encoding styles that override the tidy-implemented character encodings.
+	The default encoding styles that override the TidyLib-implemented
+	character encodings. These are present in the header in case you
+	want to provide your own defaults.
 */
-// #TODO - should be not in the header. Should namespace the keys.
-#define defaultInputEncoding	NSUTF8StringEncoding
-#define defaultLastEncoding		NSUTF8StringEncoding
-#define defaultOutputEncoding	NSUTF8StringEncoding
+
+#define tidyDefaultInputEncoding	NSUTF8StringEncoding
+#define tidyDefaultLastEncoding		NSUTF8StringEncoding
+#define tidyDefaultOutputEncoding	NSUTF8StringEncoding
 
 
 #pragma mark - class JSDTidyDocument
+
 
 @interface JSDTidyDocument : NSObject {
 }
 
 #pragma mark - Initialization and Deallocation
+
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	INITIALIZATION and DESTRUCTION
@@ -98,14 +96,27 @@
 	ENCODING SUPPORT
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
-// #TODO: Consider putting these into a single key/value structure.
-// #TODO: Why the these class methods? Convenience? Better to make into properties?
-// Should access these just like normal tidy options, and tidy should hide it.
+/*
+	The following class methods return convenience collections that
+	might be useful in implementing a user interface for the
+	encoding support of JSDTidyDocument. The dictionaries all
+	return dictionaries with potentially useful information.
 
+	The simple array is a list of all available encoding names
+	in the localized language sorted in a localized manner.
  
-+ (NSArray *)allAvailableEncodingLocalizedNames;		// Returns an array of NSString.
-+ (NSDictionary *)allAvailableEncodingsByEncoding;		// Dictionary of encodings where key is an NSStringEncoding.
-+ (NSDictionary *)allAvailableEncodingsByLocalizedName; // Dictionary of encodings where key is a string.
+	The dictionaries are dictionaries of the same data differing
+	only by the key. The call contain `NSStringEncoding`,
+	`LocalizedIndex`, and `LocalizedName`.
+*/
+
++ (NSArray *)allAvailableEncodingLocalizedNames;
+
++ (NSDictionary *)availableEncodingDictionariesByLocalizedName;
+
++ (NSDictionary *)availableEncodingDictionariesByNSStringEncoding;
+
++ (NSDictionary *)availableEncodingDictionariesByLocalizedIndex;
 
 
 #pragma mark - Text
@@ -146,7 +157,7 @@
 
 /*
 	tidyText -- this is the text that Tidy generates from the
-	workingText. Note that these are read only (or write files).
+	workingText. Note that these are read-only.
 */
 
 @property (readonly, strong) NSString *tidyText;
@@ -165,8 +176,7 @@
 
 @property (readonly, strong) NSString *errorText;			// Return the error text in traditional tidy format.
 
-// TODO: Really want this to be NSArray and the ivar NSMutableArray
-@property (readonly, strong) NSMutableArray *errorArray;	// Buffer for the error text as an array of |NSDictionary| of the errors.
+@property (readonly, strong) NSArray *errorArray;			// Error text as an array of |NSDictionary| of the errors.
 
 
 #pragma mark - Text comparisons
@@ -176,6 +186,7 @@
 	TEXT COMPARISONS
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
+// #TODO - these can be read-only properties.
 - (bool)areEqualOriginalWorking;			// Are the original and working text identical?
 
 - (bool)areEqualWorkingTidy;				// Are the working and tidy text identical?
@@ -186,9 +197,8 @@
 #pragma mark - Options management
 
 
-// TODO: maintain the options internally instead of forcing apps to create own buffer.
-// TODO: Make sure I'm actually doing this. I think I have my own buffer. Logical, right?
 // TODO: invetigate possibilities for making all of this KVC compliant.
+// TODO: a hell of a lot of these can be properties.
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	OPTIONS - methods for dealing with options
@@ -227,6 +237,14 @@
 
 - (void)				optionCopyFromDocument:(JSDTidyDocument *)theDocument;	// sets options based on those in theDocument.
 
+
+// #TODO - Temporary to get signalling out of the OptionPaneController and into this class
+
+@property (nonatomic) SEL action;								// Specify an |action| when options change.
+
+@property (nonatomic, strong) id target;						// Specify a |target| for option changes.
+
+//- (void)				signalOptionChange;		// #TODO - temp, invokes target-action when an option changes.
 
 #pragma mark - Raw access exposure
 

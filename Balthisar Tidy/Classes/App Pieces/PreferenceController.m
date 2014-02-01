@@ -112,8 +112,6 @@ NSString *JSDKeyWarnBeforeOverwrite = @"WarnBeforeOverwrite";
 		optionController = [[OptionPaneController alloc] init];
 	}
 	[optionController putViewIntoView:optionPane];
-	[optionController setTarget:self];
-	[optionController setAction:@selector(optionChanged:)];
 	tidyProcess = [optionController tidyDocument];
 }
 
@@ -133,6 +131,10 @@ NSString *JSDKeyWarnBeforeOverwrite = @"WarnBeforeOverwrite";
 	
 	// Put the Tidy defaults into the |tidyProcess|.
 	[tidyProcess takeOptionValuesFromDefaults:defaults];
+
+	// Finally set the target and action.
+	[[optionController tidyDocument] setTarget:self];
+	[[optionController tidyDocument] setAction:@selector(optionChanged:)];
 }
 
 
@@ -169,12 +171,14 @@ NSString *JSDKeyWarnBeforeOverwrite = @"WarnBeforeOverwrite";
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"JSDSavePrefChange" object:nil];
 }
 
-
+// #TODO - some encodings aren't being written, or aren't being read
+// back properly.
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	optionChanged
 		One of the preferences changed in the table view. We're
 		here as a result of having been set the Action for the
-		OptionPaneController. We're going to record the preference,
+		OptionPaneController's tidy document instance.
+		We're going to record the preference,
 		but we're not going to post a notification, 'cos new
 		documents will read the preferences themselves.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/

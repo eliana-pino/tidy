@@ -35,8 +35,6 @@
 #import "OptionPaneController.h"
 
 @interface TidyDocument : NSDocument
-{
-}
 
 	// View outlets
 	@property (nonatomic, retain) IBOutlet NSTextView *sourceView;			// Pointer to the source HTML view.

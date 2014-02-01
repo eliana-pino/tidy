@@ -41,17 +41,12 @@
 
 @interface OptionPaneController : NSObject <JSDTableColumnProtocol>
 
-	@property (nonatomic, strong) IBOutlet NSView *View;			// Pointer to the NIB's |View|.
-
-	@property (nonatomic) SEL action;								// Specify an |action| when options change.
-
-	@property (nonatomic, strong) id target;						// Specify a |target| for option changes.
-
-	@property (nonatomic, strong) JSDTidyDocument *tidyDocument;	// Exposed so others can get settings and/or use the processor.
+	// Want to exposure the tidyDocument because it's our star attraction.
+	@property (nonatomic, strong) JSDTidyDocument *tidyDocument;
 
 
-- (id)init;													// Initialize the view so we can use it.
+- (id)init;											// Initialize the view so we can use it.
 
-- (void)putViewIntoView:(NSView *)dstView;					// Put this controller's |View| into |dstView|.
+- (void)putViewIntoView:(NSView *)dstView;			// Put this controller's |View| into |dstView|.
 
 @end
