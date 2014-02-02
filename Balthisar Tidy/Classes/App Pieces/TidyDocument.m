@@ -128,8 +128,8 @@
 	bool success = [super writeToURL:absoluteURL ofType:typeName error:outError];
 	if (success)
 	{
-		[tidyProcess setOriginalText:[tidyProcess tidyText]];	// Make the |tidyText| the new |originalText|.
-		[_sourceView setString:[tidyProcess workingText]];		// Update the |sourceView| with the newly-saved contents.
+		[tidyProcess setSourceText:[tidyProcess tidyText]];		// Make the |tidyText| the new |sourceText|.
+		[_sourceView setString:[tidyProcess sourceText]];		// Update the |sourceView| with the newly-saved contents.
 		yesSavedAs = YES;										// This flag disables the warnings, since they're meaningless now.
 	}
 	return success;
@@ -148,7 +148,7 @@
 	bool didRevert = [super revertToSavedFromFile:fileName ofType:type];
 	if (didRevert)
 	{
-		[_sourceView setString:[tidyProcess workingText]];	// Update the display, since the reversion already loaded the data.
+		[_sourceView setString:[tidyProcess sourceText]];	// Update the display, since the reversion already loaded the data.
 		[self retidy:true];									// Re-tidy the document.
 	}
 	return didRevert;										// Flag whether we reverted or not.
@@ -222,7 +222,7 @@
 		// #TODO - I should register a KVO instead of this. Let's push this product out, though.
 		[[NSNotificationCenter defaultCenter] addObserver:self 
 												 selector:@selector(handleTidyOrigTextChange:)
-													 name:@"JSDTidyDocumentOriginalTextChanged" object:nil];
+													 name:tidyNotifySourceTextChanged object:nil];
 		
 	}
 	
@@ -307,8 +307,8 @@
 	[tidyProcess optionCopyFromDocument:[_optionController tidyDocument]];
 
 	// Make the |sourceView| string the same as our loaded text.
-	[tidyProcess setOriginalTextWithData:documentOpenedData];
-	[_sourceView setString:[tidyProcess workingText]];
+	[tidyProcess setSourceTextWithData:documentOpenedData];
+	[_sourceView setString:[tidyProcess sourceText]];
 
 	// Force the processing to occur.
 	[self retidy:false];
@@ -350,7 +350,8 @@
 {
 	if (settext)
 	{
-		[tidyProcess setWorkingText:[_sourceView string]];		// Put the |sourceView| text into the |tidyProcess|.
+		[tidyProcess setSourceText:[_sourceView string]];	// Put the |sourceView| text into the |tidyProcess|.
+		//[tidyProcess processTidy];
 	}
 	else
 	{
@@ -361,11 +362,9 @@
 	[_errorView reloadData];								// Reload the error data.
 	[_errorView deselectAll:self];							// Deselect the selected row.
 
-	// Handle document dirty detection -- we're NOT dirty if the source and tidy string are
-	// the same, or there is no source view, of if the source is the same as the original.
-	if ( ( [tidyProcess areEqualOriginalTidy]) ||			// The original text and tidy text are equal OR
-		( [[tidyProcess originalText] length] == 0 ) ||		// The originalText was never there OR
-		( [tidyProcess areEqualOriginalWorking ] ))			// The workingText is the same as the original.
+	
+	// Handle document dirty detection
+	if ( ([tidyProcess isDirty]) || ([[tidyProcess sourceText] length] == 0 ) )
 	{
 		[self updateChangeCount:NSChangeCleared];
 	}
@@ -390,7 +389,7 @@
 	//
 	if ([note object] == tidyProcess)
 	{
-		[_sourceView setString:[tidyProcess originalText]];
+		[_sourceView setString:[tidyProcess sourceText]];
 		[self retidy:no];
 	}
 }

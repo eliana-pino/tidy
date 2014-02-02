@@ -60,6 +60,8 @@
 */
 
 #define tidyNotifySourceTextChanged		@"JSDTidyDocumentSourceTextChanged"
+#define tidyNotifyOptionChanged			@"JSDTidyDocumentOptionChanged"
+
 
 #pragma mark - class JSDTidyDocument
 
@@ -71,7 +73,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	INITIALIZATION and DESTRUCTION
+	INITIALIZATION and DEALLOCATION
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
 - (id)init;
@@ -101,7 +103,7 @@
 - (id)initWithFile:(NSString *)path copyOptionsFromDocument:(JSDTidyDocument *)theDocument;
 
 
-#pragma mark - Encoding Support
+#pragma mark - String Encoding Support
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
@@ -118,7 +120,7 @@
 	in the localized language sorted in a localized manner.
  
 	The dictionaries are dictionaries of the same data differing
-	only by the key. The call contain `NSStringEncoding`,
+	only by the key. They all contain `NSStringEncoding`,
 	`LocalizedIndex`, and `LocalizedName`.
 */
 
@@ -137,35 +139,6 @@
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	TEXT - the important, good stuff.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-
-/*
-	originalText -- this allows an optional reference copy of the
-	really original text as a convenience for changes, whereas
-	workingText (elsewhere) may be modified in your application.
-	
-	The non-string set methods decode using the current encoding set
-	in `input-encoding`.
-*/
-
-@property (strong) NSString *originalText;
-
-- (void)setOriginalTextWithData:(NSData *)data;
-
-- (void)setOriginalTextWithFile:(NSString *)path;
-
-
-/*
-	workingText -- this is the text that Tidy will actually tidy up.
-	The non-string set methods decode using the current encoding
-	setting in `input-encoding`.
-*/
-
-@property (strong) NSString *workingText;
-
-- (void)setWorkingTextWithData:(NSData *)data;
-
-- (void)setWorkingTextWithFile:(NSString *)path;
-
 
 /*
  sourceText -- this is the text that Tidy will actually tidy up.
@@ -191,6 +164,14 @@
 
 - (void)tidyTextToFile:(NSString *)path;
 
+/*
+	isDirty - indicates that the source text is considered "dirty",
+	meaning that the source-text has changed, or the source-text
+	is not equal to the tidy'd-text.
+*/
+
+@property (readonly) BOOL isDirty;
+
 
 #pragma mark - Errors
 
@@ -202,21 +183,6 @@
 @property (readonly, strong) NSString *errorText;			// Return the error text in traditional tidy format.
 
 @property (readonly, strong) NSArray *errorArray;			// Error text as an array of |NSDictionary| of the errors.
-
-
-#pragma mark - Text comparisons
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	TEXT COMPARISONS
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-
-// #TODO - these can be read-only properties.
-- (bool)areEqualOriginalWorking;			// Are the original and working text identical?
-
-- (bool)areEqualWorkingTidy;				// Are the working and tidy text identical?
-
-- (bool)areEqualOriginalTidy;				// Are the orginal and tidy text identical?
 
 
 #pragma mark - Options management
@@ -277,7 +243,6 @@
 	RAW ACCESS EXPOSURE
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
-// TODO: this is the working tidydoc, not the options-only version.
 // TODO: this can be a property, and should be read-only.
 - (TidyDoc)tidyDocument;						// Return the TidyDoc attached to this instance.
 
