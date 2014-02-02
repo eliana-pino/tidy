@@ -184,9 +184,6 @@
 		// The index will be used to set which item in the list is displayed.
 		if ( (optId == TidyCharEncoding) || (optId == TidyInCharEncoding) || (optId == TidyOutCharEncoding) )
 		{
-			NSLog(@"Option Value = %@", [_tidyDocument optionValueForId:optId]);
-			NSLog(@"Option Value Converted = %ld", (long)[[_tidyDocument optionValueForId:optId] integerValue]);
-			NSLog(@"%@", [[_tidyDocument class] availableEncodingDictionariesByNSStringEncoding][@([[_tidyDocument optionValueForId:optId] integerValue])][@"LocalizedIndex"]);
 			return [[_tidyDocument class] availableEncodingDictionariesByNSStringEncoding][@([[_tidyDocument optionValueForId:optId] integerValue])][@"LocalizedIndex"];
 		}
 		else
@@ -269,7 +266,6 @@
 		if ( (optId == TidyCharEncoding) || (optId == TidyInCharEncoding) || (optId == TidyOutCharEncoding) )
 		{
 			// We have the alphabetical index, but need to find the NSStringEncoding.
-			NSLog(@"%@", [[_tidyDocument class] availableEncodingDictionariesByLocalizedIndex][@([object unsignedLongValue])][@"NSStringEncoding"]);
 			[_tidyDocument setOptionValueForId:optId
 									fromObject:[[_tidyDocument class] availableEncodingDictionariesByLocalizedIndex][@([object unsignedLongValue])][@"NSStringEncoding"]];
 		}
