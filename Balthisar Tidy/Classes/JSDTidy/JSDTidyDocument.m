@@ -39,22 +39,46 @@
 	
 	__strong NSDictionary* tidyOptionsThatCannotAcceptNULLSTR;
 	
-	__strong NSMutableArray* _errorArray;						// This backing iVar must be NSMutableArray
+	__strong NSMutableArray* _errorArray;					// This backing iVar must be NSMutableArray
+	
+	__strong NSData* _originalData;							// The original data that the file was loaded from.
+
+	__strong TidyDoc _prefDoc;								// |TidyDocument| instance for holding preferences.
+	
 }
 
-@property TidyDoc prefDoc;										// |TidyDocument| instance for HOLDING PREFERENCES and nothing more.
+/*
+	We'll use these as internal properties because we want to
+    privately access them from other instances, such as when
+	copying preferences from instance to instance.
+*/
 
 @property (nonatomic, assign) NSStringEncoding inputEncoding;	// User-specified input-encoding. OVERRIDE TidyLib.
 
 @property (nonatomic, assign) NSStringEncoding outputEncoding;	// User-specified output-encoding. OVERRIDE TidyLib.
-
-@property (nonatomic, strong) NSData *originalData;				// The original data that the file was loaded from.
 
 
 @end
 
 
 @implementation JSDTidyDocument
+
+
+#pragma mark - iVar Synthesis
+
+// #TODO - re-examine the entire originaltext concept. The original purpose
+// was to have something to revert back to in case the user chose the wrong
+// encoding. However right now we're only supporting fixing encoding if the
+// document was created with a data block, because who knows what encoding
+// the data block contains? But if we start with a file or a string, we're
+// not covering that use case. Is there a way to capture in the original
+// string or file contents into the same data block?
+
+@synthesize originalText = _originalText;
+@synthesize workingText = _workingText;
+@synthesize sourceText = _sourceText;
+@synthesize tidyText = _tidyText;
+@synthesize errorText = _errorText;
 
 
 #pragma mark - Standard C Functions
@@ -76,31 +100,9 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 }
 
 
-#pragma mark - iVar Synthesis
-
-
-@synthesize originalText = _originalText;
-@synthesize originalData = _originalData;
-@synthesize workingText = _workingText;
-@synthesize tidyText = _tidyText;
-@synthesize errorText = _errorText;
-
-
 #pragma mark - INITIALIZATION and DESTRUCTION
 
 
-// #TODO - Notes
-// Remember this is self contained. Outside forces will set options. When someone sets
-// my options, I should fire a Notification.
-// Notifications:
-// 	originaltext changed (control it to prevent endless loops!)
-//	option changed (can send which option?)
-//	tidy text changed
-//	input-encoding changed
-// OR consider key-value observing.
-
-
-// #TODO: should provide an init withOptionsCopiedFrom:JSDTidyDocument.
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	init
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
@@ -146,6 +148,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	[_errorText release];
 	[_errorArray release];
 	tidyRelease(_prefDoc);
+	[tidyOptionsThatCannotAcceptNULLSTR release];
 	[super dealloc];
 }
 
@@ -158,6 +161,21 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	self = [self init];
 	if (self)
 	{
+		[self setOriginalText:value];
+	}
+	return self;
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+ initWithString:copyOptionsFromDocument
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (id)initWithString:(NSString *)value copyOptionsFromDocument:(JSDTidyDocument *)theDocument
+{
+	self = [self init];
+	if (self)
+	{
+		[self optionCopyFromDocument:theDocument];
 		[self setOriginalText:value];
 	}
 	return self;
@@ -179,6 +197,21 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+ initWithFile:copyOptionsFromDocument
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (id)initWithFile:(NSString *)path copyOptionsFromDocument:(JSDTidyDocument *)theDocument
+{
+	self = [self init];
+	if (self)
+	{
+		[self optionCopyFromDocument:theDocument];
+		[self setOriginalTextWithFile:path];
+	}
+	return self;
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	initWithData
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (id)initWithData:(NSData *)data
@@ -186,6 +219,21 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	self = [self init];
 	if (self)
 	{
+		[self setOriginalTextWithData:data];
+	}
+	return self;
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+ initWithData:copyOptionsFromDocument
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (id)initWithData:(NSData *)data copyOptionsFromDocument:(JSDTidyDocument *)theDocument
+{
+	self = [self init];
+	if (self)
+	{
+		[self optionCopyFromDocument:theDocument];
 		[self setOriginalTextWithData:data];
 	}
 	return self;
@@ -340,7 +388,6 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)fixSourceCoding
 {
-	// First test _originalText and _workingText to ensure equality.
 	if (_originalData && [self areEqualOriginalWorking])
 	{
 		[self setOriginalTextWithData:_originalData];
@@ -567,6 +614,121 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	_workingText = [[NSString alloc] initWithData:[NSData dataWithContentsOfFile:path] encoding:_inputEncoding];
 	[_workingText retain];
 	[self processTidy];
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	sourceText
+		Read the source text as an NSString.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (NSString *)sourceText
+{
+	return _sourceText;
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	setSourceText
+		Set the source text from an NSString. It's up to the client
+		application to ensure that a correct NSString is used; no
+		support for encoding or changing encoding is provided,
+		because that information is not available in a string.
+ 
+		In general TidyLib is file- and data-based, but setting
+		the source from a string may be convenient for live editors,
+		such as Balthisar Tidy, where string encoding is already
+		controlled.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)setSourceText:(NSString *)value
+{
+	[value retain];
+	[_sourceText release];
+	_sourceText = value;
+	
+	if (!_originalData)
+	{
+		/* 
+			If this is a fresh instance, then _originalData will
+			be nil, so we can store an original copy of the string
+			as NSData. Unlike with the file- and data-based
+			setters, this is a one time event since presumably
+			setting via NSString may happen repeatedly, such as
+			with text editors.
+		*/
+		
+		_originalData = [[[NSData alloc] initWithData:[_sourceText dataUsingEncoding:_outputEncoding]] retain];
+	}
+	
+	// This is temporary; we want to be the working text.
+	[self setWorkingText:_sourceText];
+	
+	
+	// This is temporary; clients should subscribe via KVO.
+	[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifySourceTextChanged object:self];
+	
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	setSourceTextWithData
+		Set the source text from an NSData using the `input-encoding`
+		setting to decode.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)setSourceTextWithData:(NSData *)data
+{
+	[_sourceText release];
+	
+	if (data != _originalData)
+	{
+		/*
+			Unlike with setting via NSString, the presumption for file-
+			and data-based setters is that this is a one-time occurrence,
+			and so |_originalData| will be overwritten. This supports
+			the use of TidyLib in a text editor so: the |_originalData|
+			is set only once; text changes set via NSString will not
+			overwrite the original data.
+		*/
+		
+		[_originalData release];
+		_originalData = [[[NSData alloc] initWithData:data] retain];
+	}
+	
+	/*
+		It's possible that the _inputEncoding (chosen by the user) is
+		incorrect. We will honor the user's choice anyway, but set
+		the source text to an empty string if NSString is unable to
+		decode the string with the user's preference.
+	*/
+	
+	NSString *testText = nil;
+	
+	if ((testText = [[NSString alloc] initWithData:data encoding:_inputEncoding] ))
+	{
+		_sourceText = testText;
+	}
+	else
+	{
+		_sourceText = @"";
+	}
+	
+	[_sourceText retain];
+
+	// This is temporary; we want to be the working text.
+	[self setWorkingText:_sourceText];
+
+	// This is temporary; clients should subscribe via KVO.
+	[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifySourceTextChanged object:self];
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	setSourceTextWithFile
+		Set the source text from a file using the `input-encoding`
+		setting to decode.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)setSourceTextWithFile:(NSString *)path
+{
+	[self setSourceTextWithData:[NSData dataWithContentsOfFile:path]];
 }
 
 

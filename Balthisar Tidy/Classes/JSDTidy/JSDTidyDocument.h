@@ -55,11 +55,17 @@
 #define tidyDefaultOutputEncoding	NSUTF8StringEncoding
 
 
+/*
+	TidyLib will post the following NSNotifications.
+*/
+
+#define tidyNotifySourceTextChanged		@"JSDTidyDocumentSourceTextChanged"
+
 #pragma mark - class JSDTidyDocument
 
 
-@interface JSDTidyDocument : NSObject {
-}
+@interface JSDTidyDocument : NSObject
+
 
 #pragma mark - Initialization and Deallocation
 
@@ -76,7 +82,7 @@
 	The convenience initializers below assume that strings and data
 	are already processed to NSString standard. File-based intializers
 	will try to convert to NSString standard using the default tidy
-	option `input-encoding`. (NSString nominally UTF16.)
+	option `input-encoding`.
 	
 	Given original text in this initalizers, the working text will
 	be generated immediately.
@@ -84,9 +90,15 @@
 
 - (id)initWithString:(NSString *)value;
 
+- (id)initWithString:(NSString *)value copyOptionsFromDocument:(JSDTidyDocument *)theDocument;
+
 - (id)initWithData:(NSData *)data;
 
+- (id)initWithData:(NSData *)data copyOptionsFromDocument:(JSDTidyDocument *)theDocument;
+
 - (id)initWithFile:(NSString *)path;
+
+- (id)initWithFile:(NSString *)path copyOptionsFromDocument:(JSDTidyDocument *)theDocument;
 
 
 #pragma mark - Encoding Support
@@ -156,11 +168,24 @@
 
 
 /*
+ sourceText -- this is the text that Tidy will actually tidy up.
+ The non-string set methods decode using the current encoding
+ setting in `input-encoding`.
+ */
+
+@property (strong, nonatomic) NSString *sourceText;
+
+- (void)setSourceTextWithData:(NSData *)data;
+
+- (void)setSourceTextWithFile:(NSString *)path;
+
+
+/*
 	tidyText -- this is the text that Tidy generates from the
 	workingText. Note that these are read-only.
 */
 
-@property (readonly, strong) NSString *tidyText;
+@property (readonly, strong, nonatomic) NSString *tidyText;
 
 @property (readonly, weak) NSData *tidyTextAsData;
 
@@ -244,7 +269,6 @@
 
 @property (nonatomic, strong) id target;						// Specify a |target| for option changes.
 
-//- (void)				signalOptionChange;		// #TODO - temp, invokes target-action when an option changes.
 
 #pragma mark - Raw access exposure
 
