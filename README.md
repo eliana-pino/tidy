@@ -27,6 +27,10 @@ _Balthisar Tidy_ has been release with support for Mac OS X 10.9 and newer. It m
 Change Log
 ----------
 
+### Balthisar Tidy 0.72 (January 2014)
+- Balthisar Tidy now properly saves in the user-chosen file encoding.
+- Balthisar Tidy now properly opens files in non-UTF formats.
+
 ### Balthisar Tidy 0.7 (December 2013)
 
 #### Visible changes
