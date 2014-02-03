@@ -94,8 +94,6 @@ NSString *JSDKeyWarnBeforeOverwrite = @"WarnBeforeOverwrite";
 - (void)dealloc
 {
 	tidyProcess = nil;
-	[optionController release];
-	[super dealloc];
 }
 
 

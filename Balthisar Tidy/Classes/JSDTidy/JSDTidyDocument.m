@@ -43,7 +43,7 @@
 	
 	__strong NSData* _originalData;							// The original data that the file was loaded from.
 
-	__strong TidyDoc _prefDoc;								// |TidyDocument| instance for holding preferences.
+	TidyDoc _prefDoc;										// |TidyDocument| instance for holding preferences.
 	
 	BOOL _sourceDidChange;									// States whether whether _sourceText has changed.
 	
@@ -115,10 +115,10 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 		// TODO: we'll replace this travesty with a unified, in-code
 		// exception handling process in next version. This will simply
 		// make sure we're not logging errors for this re-release.
-		tidyOptionsThatCannotAcceptNULLSTR = [@{	@"doctype"     : @NO,
+		tidyOptionsThatCannotAcceptNULLSTR = @{	@"doctype"     : @NO,
 													@"slide-style" : @NO,
 													@"language"    : @NO,
-													@"css-prefix"  : @NO } retain];
+													@"css-prefix"  : @NO };
 	}
 	
 	//[[self class] optionDumpDocsToConsole];
@@ -134,14 +134,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)dealloc
 {
-	[_originalData release];
-	[_sourceText release];
-	[_tidyText release];
-	[_errorText release];
-	[_errorArray release];
 	tidyRelease(_prefDoc);
-	[tidyOptionsThatCannotAcceptNULLSTR release];
-	[super dealloc];
 }
 
 
@@ -246,7 +239,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	
 	if (!encodingNames)
 	{
-		NSMutableArray *tempNames = [[[NSMutableArray alloc] init] autorelease];
+		NSMutableArray *tempNames = [[NSMutableArray alloc] init];
 		
 		const NSStringEncoding *encoding = [NSString availableStringEncodings];
 		
@@ -256,7 +249,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 			encoding++;
 		}
 		
-		encodingNames = (NSMutableArray*)[[tempNames sortedArrayUsingComparator:^(NSString *a, NSString *b) { return [a localizedCaseInsensitiveCompare:b]; }] retain];
+		encodingNames = (NSMutableArray*)[tempNames sortedArrayUsingComparator:^(NSString *a, NSString *b) { return [a localizedCaseInsensitiveCompare:b]; }];
 	}
 	return encodingNames;
 }
@@ -408,8 +401,6 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)setSourceText:(NSString *)value
 {
-	[value retain];
-	[_sourceText release];
 	_sourceText = value;
 	
 	if (!_originalData)
@@ -423,7 +414,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 			with text editors.
 		*/
 		
-		_originalData = [[[NSData alloc] initWithData:[_sourceText dataUsingEncoding:_outputEncoding]] retain];
+		_originalData = [[NSData alloc] initWithData:[_sourceText dataUsingEncoding:_outputEncoding]];
 		_sourceDidChange = NO;
 	}
 	else
@@ -449,7 +440,6 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)setSourceTextWithData:(NSData *)data
 {
-	[_sourceText release];
 	
 	if (data != _originalData)
 	{
@@ -462,8 +452,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 			overwrite the original data.
 		*/
 		
-		[_originalData release];
-		_originalData = [[[NSData alloc] initWithData:data] retain];
+		_originalData = [[NSData alloc] initWithData:data];
 	}
 	
 	/*
@@ -484,7 +473,6 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 		_sourceText = @"";
 	}
 	
-	[_sourceText retain];
 	
 	_sourceDidChange = NO;
 
@@ -684,7 +672,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 + (void) optionDumpDocsToConsole
 {
-	NSArray* optionList = [[[self class] optionGetList] retain];
+	NSArray* optionList = [[self class] optionGetList];
 	NSString* paddedOptionName;
 	NSString* filteredDescription;
 	NSAttributedString* convertingString;
@@ -706,9 +694,9 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 							   stringByReplacingOccurrencesOfString:@"<br />"
 							   withString:@"\\n"];
 		
-		convertingString = [[[NSAttributedString alloc]
+		convertingString = [[NSAttributedString alloc]
 							 initWithHTML:[filteredDescription dataUsingEncoding:NSUnicodeStringEncoding]
-							 documentAttributes:nil] autorelease];
+							 documentAttributes:nil];
 		
 		filteredDescription = [convertingString string];
 		
@@ -717,7 +705,6 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	
 	NSLog(@"%@", @"----STOP----");
 
-	[optionList release];
 }
 
 
@@ -838,7 +825,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 + (NSArray *)optionPickListForId:(TidyOptionId)idf
 {
-	NSMutableArray *theArray = [[[NSMutableArray alloc] init] autorelease];	
+	NSMutableArray *theArray = [[NSMutableArray alloc] init];	
 	
 	if ([self isTidyEncodingOption:idf])
 	{
@@ -869,7 +856,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	*/
 	if ((idf == TidyInlineTags) || (idf == TidyBlockTags) || (idf == TidyEmptyTags) || (idf == TidyPreTags)) 
 	{
-		NSMutableArray *theArray = [[[NSMutableArray alloc] init] autorelease];
+		NSMutableArray *theArray = [[NSMutableArray alloc] init];
 		
 		ctmbstr tmp;
 		
@@ -1160,7 +1147,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	
 	
 	// Setup out out-of-class C function callback.
-	tidySetAppData( newTidy, self );										// Need to send a message from outside self to self.
+	tidySetAppData( newTidy, (__bridge void *)(self) );										// Need to send a message from outside self to self.
 	tidySetReportFilter( newTidy, (TidyReportFilter)&tidyCallbackFilter);	// Callback will go to this out-of-class C function.
 	
 	
@@ -1203,9 +1190,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 
 	if ( ![tidyResult isEqualToString:_tidyText])
 	{
-		[_tidyText release];
 		[self setTidyText:tidyResult];
-		[_tidyText retain];
 		[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyTidyTextChanged object:self];
 	}
 
@@ -1223,7 +1208,6 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 		Copy the error buffer into an NSString -- the |_errorArray| is built using
 		callbacks so we don't need to do anything at all to build it right here.
 	*/
-	[_errorText release];
 	if (errBuffer->size > 0)
 	{
 		_errorText = [[NSString alloc] initWithUTF8String:(char *)errBuffer->bp];
@@ -1232,12 +1216,10 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	{
 		_errorText = @"";
 	}
-	[_errorText retain];
 
 	// Clean up our old buffers.
 	tidyBufFree(outBuffer);
 	tidyBufFree(errBuffer);
-	[tidyResult release];
 	
 	
 	/*
@@ -1345,7 +1327,6 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	
 	[_errorArray addObject:errorDict];
 	
-	[errorDict release];
 	
 	return YES; // Always return yes otherwise _errorText will be surpressed by TidyLib.
 }
@@ -1378,7 +1359,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 + (NSArray *)loadConfigurationListFromResource:(NSString *)fileName ofType:(NSString *)fileType
 {
-	NSMutableArray *optionsInEffect = [[[NSMutableArray alloc] init] autorelease];
+	NSMutableArray *optionsInEffect = [[NSMutableArray alloc] init];
 	NSString *contentPath = [[NSBundle mainBundle] pathForResource:fileName ofType:fileType];
 	
 	if (contentPath != nil)

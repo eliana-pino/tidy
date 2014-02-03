@@ -47,9 +47,9 @@
 	NSArray	*optionsExceptions;		// Array of NSString that holds the options we want to treat as STRINGS
 }
 
-	@property (nonatomic) IBOutlet NSView *View;					// Pointer to the NIB's |View|.
-	@property (nonatomic) IBOutlet NSTableView *theTable;			// Pointer to the table
-	@property (nonatomic) IBOutlet NSTextField *theDescription;		// Pointer to the description field.
+	@property (weak, nonatomic) IBOutlet NSView *View;					// Pointer to the NIB's |View|.
+	@property (weak, nonatomic) IBOutlet NSTableView *theTable;			// Pointer to the table
+	@property (weak, nonatomic) IBOutlet NSTextField *theDescription;		// Pointer to the description field.
 
 
 - (id)tableColumn:(JSDTableColumn *)aTableColumn customDataCellForRow:(NSInteger)row; // [theTable datasource] requirement.
@@ -79,13 +79,13 @@
 		_tidyDocument = [[JSDTidyDocument alloc] init];
 
 		// Get our options list
-		optionsInEffect = [[NSArray arrayWithArray:[JSDTidyDocument loadConfigurationListFromResource:@"optionsInEffect" ofType:@"txt"]] retain];
+		optionsInEffect = [NSArray arrayWithArray:[JSDTidyDocument loadConfigurationListFromResource:@"optionsInEffect" ofType:@"txt"]];
 
 		// Get our exception list (items to treat as string regardless of tidylib definition)
-		optionsExceptions = [[NSArray arrayWithArray:[JSDTidyDocument loadConfigurationListFromResource:@"optionsTypesExceptions" ofType:@"txt"]] retain];
+		optionsExceptions = [NSArray arrayWithArray:[JSDTidyDocument loadConfigurationListFromResource:@"optionsTypesExceptions" ofType:@"txt"]];
 
 		// Create a custom column for the NSTableView -- the table will retain and control it.
-		[[[JSDTableColumn alloc] initReplacingColumn:[_theTable tableColumnWithIdentifier:@"check"]] release];
+		(void)[[JSDTableColumn alloc] initReplacingColumn:[_theTable tableColumnWithIdentifier:@"check"]];
 	}
 	return self;
 }
@@ -94,13 +94,6 @@
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	dealloc
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)dealloc
-{
-	[_tidyDocument release];
-	[optionsInEffect release];
-	[optionsExceptions release];
-	[super dealloc];
-}
 
 
 #pragma mark - Setup

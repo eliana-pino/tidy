@@ -76,9 +76,7 @@
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [super dealloc]; // added by JSD
-    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];    
 }
 
 - (NSFont *)defaultFont

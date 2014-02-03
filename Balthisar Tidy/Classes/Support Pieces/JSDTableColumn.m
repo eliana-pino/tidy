@@ -141,7 +141,7 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSCell *)usefulCheckCell
 {
-	NSButtonCell *myCell = [[[NSButtonCell alloc] initTextCell: @""] autorelease];
+	NSButtonCell *myCell = [[NSButtonCell alloc] initTextCell: @""];
 	[myCell setEditable: YES];
 	[myCell setButtonType:NSSwitchButton];
 	[myCell setImagePosition:NSImageOnly];
@@ -157,7 +157,7 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSCell *)usefulRadioCell
 {
-	NSButtonCell *myCell = [[[NSButtonCell alloc] initTextCell: @""] autorelease];
+	NSButtonCell *myCell = [[NSButtonCell alloc] initTextCell: @""];
 	[myCell setEditable: YES];
 	[myCell setButtonType:NSRadioButton];
 	[myCell setImagePosition:NSImageOnly];
@@ -173,7 +173,7 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSCell *)usefulPopUpCell:(NSArray *)picks
 {
-	NSPopUpButtonCell *myCell = [[[NSPopUpButtonCell alloc] initTextCell: @"" pullsDown:NO] autorelease];
+	NSPopUpButtonCell *myCell = [[NSPopUpButtonCell alloc] initTextCell: @"" pullsDown:NO];
 	[myCell setEditable: YES];
 	[myCell setBordered:YES];
 	[myCell addItemsWithTitles:picks];

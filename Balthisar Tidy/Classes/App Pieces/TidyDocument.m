@@ -87,8 +87,8 @@
 	BOOL documentIsLoading;					// Flag to indicate that new data was loaded from disk (see notes above)
 }
 
-@property (assign) IBOutlet NSSplitView *splitLeftRight;	// The left-right (main) split view in the Doc window.
-@property (assign) IBOutlet NSSplitView *splitTopDown;		// Top top-to-bottom split view in the Doc window.
+@property (weak) IBOutlet NSSplitView *splitLeftRight;	// The left-right (main) split view in the Doc window.
+@property (weak) IBOutlet NSSplitView *splitTopDown;		// Top top-to-bottom split view in the Doc window.
 
 @end
 
@@ -115,7 +115,7 @@
 - (BOOL)readFromFile:(NSString *)filename ofType:(NSString *)docType
 {
 	// Save the data for use until after the Nib is awake.
-	documentOpenedData = [[NSData dataWithContentsOfFile:filename] retain];
+	documentOpenedData = [NSData dataWithContentsOfFile:filename];
 		
 	return YES;
 }
@@ -266,11 +266,7 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifySourceTextChanged object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyTidyTextChanged object:nil];
 	
-	[documentOpenedData release];
-	[tidyProcess release];
-	[_optionController release];
 	
-	[super dealloc];
 }
 
 
