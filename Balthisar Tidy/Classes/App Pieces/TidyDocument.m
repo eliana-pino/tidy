@@ -206,10 +206,10 @@
 	*/
 
 	// Warning will only apply if there's a current file and it's NOT been saved yet, and it's not new.
-	if ( (saveBehavior == 1) && 				// Behavior is protective AND
-		(saveWarning) &&						// We want to have a warning AND
-		(yesSavedAs == NO) && 					// We've NOT yet done a save as... AND
-		([[[self fileURL] path] length] != 0 ))	// The file name isn't zero length.
+	if ( (saveBehavior == kJSDSaveButWarn) && 				// Behavior is protective AND
+		(saveWarning) &&									// We want to have a warning AND
+		(yesSavedAs == NO) &&								// We've NOT yet done a save as... AND
+		([[[self fileURL] path] length] != 0 ))				// The file name isn't zero length.
 	{
 		NSInteger i = NSRunAlertPanel(NSLocalizedString(@"WarnSaveOverwrite", nil), NSLocalizedString(@"WarnSaveOverwriteExplain", nil),
 									  NSLocalizedString(@"continue save", nil), NSLocalizedString(@"do not save", nil) , nil);
@@ -221,7 +221,7 @@
 	}
 
 	// Save is completely disabled -- tell user to Save As…
-	if (saveBehavior == 2)
+	if (saveBehavior == kJSDSaveAsOnly)
 	{
 		NSRunAlertPanel(NSLocalizedString(@"WarnSaveDisabled", nil), NSLocalizedString(@"WarnSaveDisabledExplain", nil),
 						NSLocalizedString(@"cancel", nil), nil, nil);
