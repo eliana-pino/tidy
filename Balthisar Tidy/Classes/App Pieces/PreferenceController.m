@@ -39,14 +39,13 @@
 @implementation PreferenceController
 
 
-#pragma mark - Class Methods
+#pragma mark - CLASS METHODS
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	registerUserDefaults
-		register all of the user defaults. Implemented as a CLASS
-		method in order to keep this with the preferences controller,
-		but the preferences controller won't have been created yet.
+		Register all of the user defaults. Implemented as a CLASS
+		method in order to keep this with the preferences controller.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 + (void)registerUserDefaults
 {
@@ -54,6 +53,7 @@
 	
 	// Put all of the defaults in the dictionary
 	defaultValues[JSDKeySavingPrefStyle] = @2;
+	//defaultValues[JSDKeySavingPrefStyle] = @(kJSDSaveAsOnly);
 	defaultValues[JSDKeyWarnBeforeOverwrite] = @NO;
 	
 	// Get the defaults from the linked-in TidyLib
@@ -64,10 +64,7 @@
 }
 
 
-#pragma mark - Instance Methods
-
-
-#pragma mark - initializers and deallocs and setup
+#pragma mark - INITIALIZATION and DESTRUCTION and SETUP
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
@@ -88,22 +85,20 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)dealloc
 {
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyOptionChanged object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self
+													name:tidyNotifyOptionChanged
+												  object:nil];
 	_tidyProcess = nil;
 }
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	awakeFromNib
-		Setup an |OptionPaneController|.
+		Create an |OptionPaneController| and put it
+		in place of the empty optionPane in the xib.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void) awakeFromNib
 {
-	/*
-		Create an |OptionPaneController| and put it
-		in place of the empty optionPane in the xib.
-	*/
-	
 	if (![self optionController])
 	{
 		self.optionController = [[OptionPaneController alloc] init];
@@ -133,7 +128,7 @@
 	[[self tidyProcess] takeOptionValuesFromDefaults:defaults];
 	
 	
-	// NSNotifications from the |optionController| indicate that one or more options changed.
+	// NSNotifications from |optionController| indicate that one or more Tidy options changed.
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(handleTidyOptionChange:)
 												 name:tidyNotifyOptionChanged
@@ -161,16 +156,24 @@
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	preferenceChanged
-		one of the saving/batch prefs changed. Log and notify.
+		One of the saving prefs changed. Log and notify.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (IBAction)preferenceChanged:(id)sender
 {
-	// update the preference registry
 	[[NSUserDefaults standardUserDefaults] setInteger:0 forKey:JSDKeySavingPrefStyle];
-	if ([[self saving1] state]) [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:JSDKeySavingPrefStyle];
-	if ([[self saving2] state]) [[NSUserDefaults standardUserDefaults] setInteger:2 forKey:JSDKeySavingPrefStyle];
+	
+	if ([[self saving1] state])
+	{
+		[[NSUserDefaults standardUserDefaults] setInteger:1 forKey:JSDKeySavingPrefStyle];
+	}
+	
+	if ([[self saving2] state])
+	{
+		[[NSUserDefaults standardUserDefaults] setInteger:2 forKey:JSDKeySavingPrefStyle];
+	}
+	
 	[[NSUserDefaults standardUserDefaults] setBool:[[self savingWarn] state] forKey:JSDKeyWarnBeforeOverwrite];
-	// send the notification that a saving preference has changed.
+	
 	[[NSNotificationCenter defaultCenter] postNotificationName:JSDSavePrefChange object:nil];
 }
 

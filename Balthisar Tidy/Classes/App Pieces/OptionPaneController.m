@@ -63,7 +63,7 @@
 @implementation OptionPaneController
 
 
-#pragma mark - initializers and deallocs
+#pragma mark - INITIALIZATION and DESTRUCTION
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
@@ -86,8 +86,12 @@
 		optionsExceptions = [NSArray arrayWithArray:[JSDTidyDocument loadConfigurationListFromResource:@"optionsTypesExceptions" ofType:@"txt"]];
 
 		
-		// Create a custom column for the NSTableView -- the table will retain and control it.
-		// Cast to void because otherwise LVVM thinks we're not using the value.
+		/*
+			Create a custom column for the NSTableView -- the table will retain
+			and control it. Cast to void because otherwise LVVM thinks we're 
+			not using the value.
+		*/
+		
 		(void)[[JSDTableColumn alloc] initReplacingColumn:[_theTable tableColumnWithIdentifier:@"check"]];
 	}
 	return self;
@@ -157,7 +161,7 @@
 		We're here because we're the datasource of the |theTable|.
 		We need to specify how many items are in the table view.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (NSUInteger)numberOfRowsInTableView:(NSTableView *)aTableView
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
 	return [optionsInEffect count];
 }
@@ -168,7 +172,7 @@
 		We're here because we're the datasource of |theTable|.
 		We need to specify what to show in the row/column.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
 	// Get the id for the option at this row.
 	TidyOptionId optId = [JSDTidyDocument optionIdForName:optionsInEffect[rowIndex]];
@@ -266,7 +270,7 @@
 		The user changed a value in |theTable| and so we will record
 		that in our own data structure (i.e., the |_tidyDocument|).
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)tableView:(NSTableView *)aTableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)inColumn row:(int)inRow
+- (void)tableView:(NSTableView *)aTableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)inColumn row:(NSInteger)inRow
 {
 	TidyOptionId optId = [JSDTidyDocument optionIdForName:optionsInEffect[inRow]];
 	
