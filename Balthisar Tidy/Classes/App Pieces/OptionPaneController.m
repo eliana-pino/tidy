@@ -179,20 +179,26 @@
 	// Handle returning the 'value' column of the option.
 	if ([[aTableColumn identifier] isEqualToString:@"check"])
 	{
-		// If we're working on Encoding, then return the INDEX of the
-		// value, and not the value itself (which is NSStringEncoding).
-		// The index will be used to set which item in the list is displayed.
+		/*
+			If we're working on Encoding, then return the INDEX of the
+			value, and not the value itself (which is NSStringEncoding).
+			The index will be used to set which item in the list is displayed.
+		*/
+		
 		if ( (optId == TidyCharEncoding) || (optId == TidyInCharEncoding) || (optId == TidyOutCharEncoding) )
 		{
 			return [[_tidyDocument class] availableEncodingDictionariesByNSStringEncoding][@([[_tidyDocument optionValueForId:optId] integerValue])][@"LocalizedIndex"];
 		}
 		else
 		{
-			// All text fields are strings, and so passing a string value is
-			// appropriate. NSPopupButtonCell requires an integer index of
-			// the item to select. Tidy PickList items are represented by
-			// enums (not strings), which are compatible, and so whatever
-			// we pass to _tidyDocument will be used accordingly.
+			/*
+				All text fields are strings, and so passing a string value is
+				appropriate. NSPopupButtonCell requires an integer index of
+				the item to select. Tidy PickList items are represented by
+				enums (not strings), which are compatible, and so whatever
+				we pass to _tidyDocument will be used accordingly.
+			*/
+
 			return [_tidyDocument optionValueForId:optId];
 		}
 	}
@@ -271,10 +277,12 @@
 		}
 		else
 		{
-			// TidyLib picklist options use an enum for their values, not a string.
-			// We're really depending on all of TidyLib enums for picklist options
-			// to range from [0..x], and as long as this holds true it's okay to
-			// use the enum integer value.
+			/*
+				TidyLib picklist options use an enum for their values, not a string.
+				We're really depending on all of TidyLib enums for picklist options
+				to range from [0..x], and as long as this holds true it's okay to
+				use the enum integer value.
+			*/
 			[_tidyDocument setOptionValueForId:optId fromObject:object];
 		}
 	}
