@@ -917,7 +917,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 		// special occasion for TidyWrapLen
 		if (idf == TidyWrapLen)
 		{
-			if (tidyOptGetInt( _prefDoc, idf) == LONG_MAX)
+			if (tidyOptGetInt( _prefDoc, idf) >= INT_MAX)
 			{
 				return @"0";
 			}
