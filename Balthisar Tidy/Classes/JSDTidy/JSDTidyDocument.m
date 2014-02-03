@@ -282,11 +282,11 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 			while (*encoding)
 			{
 				NSDictionary *items = @{@"LocalizedName" : [NSString localizedNameOfStringEncoding:*encoding],
-									    @"NSStringEncoding" : [NSNumber numberWithUnsignedLong:*encoding],
+									    @"NSStringEncoding" : @(*encoding),
 									    @"LocalizedIndex" : @([[[self class] allAvailableEncodingLocalizedNames]
 															   indexOfObject:[NSString localizedNameOfStringEncoding:*encoding]])};
 				
-				[dictionary setObject:items forKey:[NSString localizedNameOfStringEncoding:*encoding]];
+				dictionary[[NSString localizedNameOfStringEncoding:*encoding]] = items;
 
 				encoding++;
 			}
@@ -316,11 +316,11 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 			while (*encoding)
 			{
 				NSDictionary *items = @{@"LocalizedName" : [NSString localizedNameOfStringEncoding:*encoding],
-									    @"NSStringEncoding" : [NSNumber numberWithUnsignedLong:*encoding],
+									    @"NSStringEncoding" : @(*encoding),
 									    @"LocalizedIndex" : @([[[self class] allAvailableEncodingLocalizedNames]
 															   indexOfObject:[NSString localizedNameOfStringEncoding:*encoding]])};
 				
-				[dictionary setObject:items forKey:[NSNumber numberWithUnsignedLong:*encoding]];
+				dictionary[@(*encoding)] = items;
 				
 				encoding++;
 			}
@@ -350,12 +350,12 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 			while (*encoding)
 			{
 				NSDictionary *items = @{@"LocalizedName" : [NSString localizedNameOfStringEncoding:*encoding],
-									    @"NSStringEncoding" : [NSNumber numberWithUnsignedLong:*encoding],
+									    @"NSStringEncoding" : @(*encoding),
 									    @"LocalizedIndex" : @([[[self class] allAvailableEncodingLocalizedNames]
 																indexOfObject:[NSString localizedNameOfStringEncoding:*encoding]])};
 				
-				[dictionary setObject:items forKey:@([[[self class] allAvailableEncodingLocalizedNames]
-													  indexOfObject:[NSString localizedNameOfStringEncoding:*encoding]])];
+				dictionary[@([[[self class] allAvailableEncodingLocalizedNames]
+													  indexOfObject:[NSString localizedNameOfStringEncoding:*encoding]])] = items;
 				
 				encoding++;
 			}
@@ -664,7 +664,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	}
 	else
 	{
-		tidyResultString = [NSString stringWithUTF8String:tidyResultCString];
+		tidyResultString = @(tidyResultCString);
 	}
 	
 	tidyRelease(dummyDoc);

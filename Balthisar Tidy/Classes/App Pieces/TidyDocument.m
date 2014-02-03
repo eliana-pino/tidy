@@ -588,7 +588,7 @@
 	}
 	
 	// The text views' second splitter is first plus 68.0f;
-    return [[[splitView subviews] objectAtIndex:0] frame].size.height + 68.0f;
+    return [[splitView subviews][0] frame].size.height + 68.0f;
 }
 
 
@@ -607,8 +607,8 @@
 	// The text views' first splitter
 	if (dividerIndex == 0)
 	{
-		return [[[splitView subviews] objectAtIndex:0] frame].size.height +
-				[[[splitView subviews] objectAtIndex:1] frame].size.height - 68.0f;
+		return [[splitView subviews][0] frame].size.height +
+				[[splitView subviews][1] frame].size.height - 68.0f;
 	}
 	
 	
@@ -626,7 +626,7 @@
 {
 	if (splitView == _splitLeftRight)
 	{
-		if (subview == [[_splitLeftRight subviews] objectAtIndex:0])
+		if (subview == [_splitLeftRight subviews][0])
 		{
 			return NO;
 		}
