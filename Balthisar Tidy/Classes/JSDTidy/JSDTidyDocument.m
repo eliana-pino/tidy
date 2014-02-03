@@ -958,7 +958,9 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	setOptionValueForId:fromObject:suppressNotification
 		Same as setOptionValueForId:fromObject with the possibility
 		to suppress the notification. Useful when making lots of
-		option changes, and used internally.
+		option changes, and used internally to prevent the
+		event chain from running all over the place when setting
+		lots of tidy options.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)setOptionValueForId:(TidyOptionId)idf fromObject:(id)value suppressNotification:(BOOL)suppress
 {
@@ -974,65 +976,66 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 		{
 			_inputEncoding = [value longLongValue];
 			_outputEncoding = [value longLongValue];
-			[self fixSourceCoding];
+			if (!suppress)
+			{
+				[self fixSourceCoding];
+			}
 		}
 		
 		if (idf == TidyInCharEncoding)
 		{
 			_inputEncoding = [value longLongValue];
-			[self fixSourceCoding];
+			{
+				[self fixSourceCoding];
+			}
 		}
 		
 		if (idf == TidyOutCharEncoding)
 		{
 			_outputEncoding = [value longLongValue];
 		}
-		
-		[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyOptionChanged object:self];
-		[NSApp sendAction:_action to:_target from:self];
-		[self processTidy];
-		
-		return;
 	}
-	
-	// Here we could be passed any object, but we'll test for ones we can use.
-	if ([value isKindOfClass:[NSString class]])
+	else
 	{
-		if ([value length] == 0)
+		// Here we could be passed any object, but we'll test for ones we can use.
+		if ([value isKindOfClass:[NSString class]])
 		{
-			/*
-			 Some tidy options can't accept NULLSTR but can be reset to default
-			 NULLSTR. Some, though require a NULLSTR and resetting to default
-			 doesn't work. WTF.
-			 */
-			
-			if ([tidyOptionsThatCannotAcceptNULLSTR valueForKey:[JSDTidyDocument optionNameForId:idf]])
+			if ([value length] == 0)
 			{
-				tidyOptResetToDefault( _prefDoc, idf );
+				/*
+				 Some tidy options can't accept NULLSTR but can be reset to default
+				 NULLSTR. Some, though require a NULLSTR and resetting to default
+				 doesn't work. WTF.
+				 */
+				
+				if ([tidyOptionsThatCannotAcceptNULLSTR valueForKey:[JSDTidyDocument optionNameForId:idf]])
+				{
+					tidyOptResetToDefault( _prefDoc, idf );
+				}
+				else
+				{
+					tidyOptParseValue( _prefDoc, [[JSDTidyDocument optionNameForId:idf] UTF8String], NULLSTR );
+				}
 			}
 			else
 			{
-				tidyOptParseValue( _prefDoc, [[JSDTidyDocument optionNameForId:idf] UTF8String], NULLSTR );
+				tidyOptParseValue( _prefDoc, [[JSDTidyDocument optionNameForId:idf] UTF8String], [value UTF8String] );
 			}
 		}
 		else
 		{
-			tidyOptParseValue( _prefDoc, [[JSDTidyDocument optionNameForId:idf] UTF8String], [value UTF8String] );
-		}
-	}
-	else
-	{
-		if ([value isKindOfClass:[NSNumber class]])
-		{
-			if ([JSDTidyDocument optionTypeForId:idf] == TidyBoolean)
+			if ([value isKindOfClass:[NSNumber class]])
 			{
-				tidyOptSetBool( _prefDoc, idf, [value boolValue]);
-			}
-			else
-			{
-				if ([JSDTidyDocument optionTypeForId:idf] == TidyInteger)
+				if ([JSDTidyDocument optionTypeForId:idf] == TidyBoolean)
 				{
-					tidyOptSetInt( _prefDoc, idf, [value unsignedIntValue]);
+					tidyOptSetBool( _prefDoc, idf, [value boolValue]);
+				}
+				else
+				{
+					if ([JSDTidyDocument optionTypeForId:idf] == TidyInteger)
+					{
+						tidyOptSetInt( _prefDoc, idf, [value unsignedIntValue]);
+					}
 				}
 			}
 		}
@@ -1041,7 +1044,6 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	if (!suppress)
 	{
 		[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyOptionChanged object:self];
-		[NSApp sendAction:_action to:_target from:self];
 		[self processTidy];
 	}
 }
@@ -1085,7 +1087,6 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	}
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyOptionChanged object:self];
-	[NSApp sendAction:_action to:_target from:self];
 	[self processTidy];
 }
 
@@ -1102,7 +1103,6 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	_outputEncoding	= tidyDefaultOutputEncoding;
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyOptionChanged object:self];
-	[NSApp sendAction:_action to:_target from:self];
 	[self processTidy];
 
 	[self fixSourceCoding];
@@ -1121,7 +1121,6 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	_outputEncoding = [theDocument outputEncoding];
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyOptionChanged object:self];
-	[NSApp sendAction:_action to:_target from:self];
 	[self processTidy];
 
 	[self fixSourceCoding];
@@ -1187,27 +1186,12 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	tidyRunDiagnostics( newTidy );
 	
 	
-	// Save the tidy'd text to an NSString
+	/*
+		Save the tidy'd text to an NSString. If the Tidy result
+		is different than the existing Tidy text, then save
+		the new result and post a notification.
+	*/
 	tidySaveBuffer( newTidy, outBuffer );	// Save it to the buffer we set up above.
-	
-/*
-	[_tidyText release];
-	if (outBuffer->size > 0)
-	{
-		// Cast the buffer to an NSData that we can use to set the NSString.
-		[self setTidyText:[[NSString alloc] initWithUTF8String:(char *)outBuffer->bp]];
-		
-		NSString *tidyResult = [[NSString alloc] initWithUTF8String:(char *)outBuffer->bp];
-		
-		//_tidyText = [[NSString alloc] initWithUTF8String:(char *)outBuffer->bp];
-	}
-	else {
-		[self setTidyText:@""];
-	}
-	[_tidyText retain];
-*/
-	
-		
 	NSString *tidyResult;
 	if (outBuffer->size > 0)
 	{
@@ -1514,11 +1498,9 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 			[self setOptionValueForId:optId fromObject:myObj suppressNotification:YES];
 		}
 	}
-	
-	[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyOptionChanged object:self];
-	[NSApp sendAction:_action to:_target from:self];
-	[self processTidy];
 
+	[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyOptionChanged object:self];
+	[self processTidy];
 }
 
 @end
