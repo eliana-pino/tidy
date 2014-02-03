@@ -140,8 +140,8 @@
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	radioSavingChanged
-		One of the radio buttons for saving options has changed.
-		Handle this apart, since we're not using a matrix.
+		We're here because we are the action for both of the nib's
+		radio buttons.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (IBAction)radioSavingChanged:(id)sender
 {
@@ -155,6 +155,10 @@
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	preferenceChanged
+		We're here because we're tha action of the check box on
+		the nib, but also are sent here after handling the radio
+		buttons as well.
+ 
 		One of the saving prefs changed. Log and notify.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (IBAction)preferenceChanged:(id)sender
@@ -180,10 +184,10 @@
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	handleTidyOptionChange
 		We're here because we registered for NSNotification.
-		One of the preferences changed in the table view.
-		We're going to record the preference,
-		but we're not going to post a notification, 'cos new
-		documents will read the preferences themselves.
+		One of the preferences changed in the option pane.
+		We're going to record the preference, but we're not
+		going to post a notification, because new documents
+		will read the preferences themselves.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)handleTidyOptionChange:(NSNotification *)note
 {
