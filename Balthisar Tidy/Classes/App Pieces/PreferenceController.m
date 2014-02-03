@@ -89,7 +89,7 @@
 - (void)dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyOptionChanged object:nil];
-	self.tidyProcess = nil;
+	_tidyProcess = nil;
 }
 
 

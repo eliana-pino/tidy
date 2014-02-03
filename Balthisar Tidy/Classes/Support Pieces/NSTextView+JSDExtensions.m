@@ -320,7 +320,7 @@ static char const * const JSDtagShowsLineNumbers = "JSDtagShowsLineNumbers";
 			[[self enclosingScrollView] setHasVerticalRuler:NO];
 			[[self enclosingScrollView] setRulersVisible:NO];
 			[[self enclosingScrollView] setVerticalRulerView:nil];
-			objc_setAssociatedObject(self, JSDtagShowsLineNumbers, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+			objc_setAssociatedObject(self, JSDtagShowsLineNumbers, nil, OBJC_ASSOCIATION_ASSIGN);
 
 		}
 		else
@@ -335,7 +335,7 @@ static char const * const JSDtagShowsLineNumbers = "JSDtagShowsLineNumbers";
 			[[self enclosingScrollView] setHasHorizontalRuler:NO];
 			[[self enclosingScrollView] setHasVerticalRuler:YES];
 			[[self enclosingScrollView] setRulersVisible:YES];
-			objc_setAssociatedObject(self, JSDtagShowsLineNumbers, lineNumberView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+			objc_setAssociatedObject(self, JSDtagShowsLineNumbers, lineNumberView, OBJC_ASSOCIATION_ASSIGN);
 		}
 	}
 }

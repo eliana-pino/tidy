@@ -37,12 +37,12 @@
 @interface TidyDocument : NSDocument
 
 	// View outlets
-	@property (nonatomic, strong) IBOutlet NSTextView *sourceView;			// Pointer to the source HTML view.
-	@property (nonatomic, strong) IBOutlet NSTextView *tidyView;			// Pointer to the tidy'd HTML view.
-	@property (nonatomic, strong) IBOutlet NSTableView *errorView;			// Pointer to where to display the error messages.
+	@property (nonatomic, assign) IBOutlet NSTextView *sourceView;			// Pointer to the source HTML view.
+	@property (nonatomic, assign) IBOutlet NSTextView *tidyView;			// Pointer to the tidy'd HTML view.
+	@property (nonatomic, weak) IBOutlet NSTableView *errorView;			// Pointer to where to display the error messages.
 
 	// Items for the option controller and pane
-	@property (nonatomic, strong) IBOutlet NSView *optionPane;				// Pointer to our empty optionPane.
+	@property (nonatomic, weak) IBOutlet NSView *optionPane;				// Pointer to our empty optionPane.
 	@property (nonatomic, strong) OptionPaneController *optionController;	// This will control the real option pane loaded into optionPane
 
 	

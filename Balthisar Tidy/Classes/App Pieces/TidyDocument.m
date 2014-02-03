@@ -87,8 +87,8 @@
 	BOOL documentIsLoading;					// Flag to indicate that new data was loaded from disk (see notes above)
 }
 
-@property (weak) IBOutlet NSSplitView *splitLeftRight;	// The left-right (main) split view in the Doc window.
-@property (weak) IBOutlet NSSplitView *splitTopDown;		// Top top-to-bottom split view in the Doc window.
+@property (nonatomic, weak) IBOutlet NSSplitView *splitLeftRight;	// The left-right (main) split view in the Doc window.
+@property (nonatomic, weak) IBOutlet NSSplitView *splitTopDown;		// Top top-to-bottom split view in the Doc window.
 
 @end
 
@@ -265,6 +265,10 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyOptionChanged object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifySourceTextChanged object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyTidyTextChanged object:nil];
+	//self.sourceView.showsLineNumbers = NO;
+	//self.tidyView.showsLineNumbers = NO;
+	_sourceView = nil;
+	_tidyView = nil;
 }
 
 

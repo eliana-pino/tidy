@@ -99,7 +99,7 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)dealloc
 {
-	self.tidyDocument = nil;
+	_tidyDocument = nil;
 	optionsInEffect = nil;
 	optionsExceptions = nil;
 }
