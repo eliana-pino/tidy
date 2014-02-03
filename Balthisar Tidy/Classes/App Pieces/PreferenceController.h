@@ -35,6 +35,13 @@
 #import <Cocoa/Cocoa.h>
 #import "OptionPaneController.h"
 
+/*
+	Instances of PreferenceController will post the following NSNotifications.
+*/
+
+#define JSDSavePrefChange	@"JSDSavePrefChange"
+
+
 extern NSString *JSDKeySavingPrefStyle;
 extern NSString *JSDKeyWarnBeforeOverwrite;
 

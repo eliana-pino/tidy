@@ -128,13 +128,17 @@ NSString *JSDKeyWarnBeforeOverwrite = @"WarnBeforeOverwrite";
 	[saving2 setState:([defaults integerForKey: JSDKeySavingPrefStyle] == 2)];
 	[savingWarn setState:[defaults boolForKey: JSDKeyWarnBeforeOverwrite]];
 	[savingWarn setEnabled:[saving1 state]];
+
 	
 	// Put the Tidy defaults into the |tidyProcess|.
 	[tidyProcess takeOptionValuesFromDefaults:defaults];
-
-	// Finally set the target and action.
-	[[optionController tidyDocument] setTarget:self];
-	[[optionController tidyDocument] setAction:@selector(optionChanged:)];
+	
+	
+	// NSNotifications from the |optionController| indicate that one or more options changed.
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(handleTidyOptionChange:)
+												 name:tidyNotifyOptionChanged
+											   object:[optionController tidyDocument]];
 }
 
 
@@ -168,21 +172,19 @@ NSString *JSDKeyWarnBeforeOverwrite = @"WarnBeforeOverwrite";
 	if ([saving2 state]) [[NSUserDefaults standardUserDefaults] setInteger:2 forKey:JSDKeySavingPrefStyle];
 	[[NSUserDefaults standardUserDefaults] setBool:[savingWarn state] forKey:JSDKeyWarnBeforeOverwrite];
 	// send the notification that a saving preference has changed.
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"JSDSavePrefChange" object:nil];
+	[[NSNotificationCenter defaultCenter] postNotificationName:JSDSavePrefChange object:nil];
 }
 
-// #TODO - some encodings aren't being written, or aren't being read
-// back properly.
+
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	optionChanged
-		One of the preferences changed in the table view. We're
-		here as a result of having been set the Action for the
-		OptionPaneController's tidy document instance.
+	handleTidyOptionChange
+		We're here because we registered for NSNotification.
+		One of the preferences changed in the table view.
 		We're going to record the preference,
 		but we're not going to post a notification, 'cos new
 		documents will read the preferences themselves.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (IBAction)optionChanged:(id)sender
+- (void)handleTidyOptionChange:(NSNotification *)note
 {
 	[tidyProcess writeOptionValuesWithDefaults:[NSUserDefaults standardUserDefaults]];
 }

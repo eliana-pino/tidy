@@ -59,9 +59,9 @@
 	TidyLib will post the following NSNotifications.
 */
 
-#define tidyNotifySourceTextChanged		@"JSDTidyDocumentSourceTextChanged"
 #define tidyNotifyOptionChanged			@"JSDTidyDocumentOptionChanged"
-
+#define tidyNotifySourceTextChanged		@"JSDTidyDocumentSourceTextChanged"
+#define tidyNotifyTidyTextChanged		@"JSDTidyDocumentTidyTextChanged"
 
 #pragma mark - class JSDTidyDocument
 
@@ -220,7 +220,11 @@
 - (NSString *)			optionValueForId:(TidyOptionId)idf;						// returns the value for the item as an NSString
 
 - (void)				setOptionValueForId:(TidyOptionId)idf					// sets the value for the given TidyOptionId.
-							fromObject:(id)value;								// Works with NSString or NSNumber only!
+								 fromObject:(id)value;							// Works with NSString or NSNumber only!
+
+- (void)				setOptionValueForId:(TidyOptionId)idf					// as above with the possibility of supressing
+								 fromObject:(id)value							// change notifications. Use with caution.
+					   suppressNotification:(BOOL)suppress;						// TODO: really, this should be private.
 
 - (void)				optionResetToDefaultForId:(TidyOptionId)id;				// resets the designated TidyOptionId to factory default
 
@@ -254,7 +258,7 @@
 	DIAGNOSTICS and REPAIR
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
-- (void)processTidy;
+- (void)processTidy;				// #TODO: this should be private now.
 
 // TODO: These can all be properties.
 - (int) tidyDetectedHtmlVersion;	// Returns 0, 2, 3, 4, or 5.

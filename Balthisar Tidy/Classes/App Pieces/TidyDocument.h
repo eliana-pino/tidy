@@ -46,10 +46,6 @@
 	@property (nonatomic, retain) OptionPaneController *optionController;	// This will control the real option pane loaded into optionPane
 
 	
-- (IBAction)optionChanged:(id)sender;		// React to a tidy'ing control being changed.
-
 - (IBAction)errorClicked:(id)sender;		// React to an error row being clicked.
 
-- (void)retidy:(bool)settext
-;
 @end

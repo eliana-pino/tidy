@@ -30,44 +30,61 @@
 
  **************************************************************************************************/
 
-/**************************************************************************************************
-	NOTES ABOUT "DIRTY FILE" DETECTION
-		We're doing a few convoluted things to allow undo in the
-		|sourceView| while not messing up the document dirty flags.
-		Essentially, whenever the |sourceView| <> |tidyView|, we're going
-		to call it dirty. Whenever we write a file, it's obviously fit to be the source file,
-		and we can then put it in the sourceView.
- **************************************************************************************************/
+#pragma mark - Notes
 
 /**************************************************************************************************
-	NOTES ABOUT TYPE/CREATOR CODES
-		Mac OS X has killed type/creator codes. Oh well. But they're still supported
-		and I continue to believe they're better than Windows-ish file extensions. We're going
-		to try to make everybody happy by doing the following:
-			o	For files that Tidy creates by the user typing into the sourceView, we'll save them
-				with the Tidy type/creator codes. We'll use WWS2 for Balthisar Tidy creator, and
-				TEXT for filetype. (I shouldn't use WWS2 'cos that's Balthisar Cascade type!!!).
-			o	For *existing* files that Tidy modifies, we'll check to see if type/creator already
-				exists, and if so, we'll re-write with the existing type/creator, otherwise we'll
-				not use any type/creator and let the OS do its own thing in Finder.
+ 
+	Event Handling and Interacting with the Tidy Processor
+ 
+		The Tidy processor is loosely couple with the document controller. Most
+		interaction with it is handled via NSNotifications.
+ 
+		If user types text we receive a |textDidChange| delegate notification, and we will set
+		new text in [tidyProcess sourceText]. The event chain will eventually handle everything
+		else.
+ 
+		If |tidyText| changes we will receive NSNotification, and put the new |tidyText|
+		into the |tidyView|, and also update |errorView|.
+  
+		If |optionController| sends an NSNotification, then we will copy the new
+		options to |tidyProcess|. The event chain will eventually handle everything else.
+ 
+		If we set |sourceText| via file or data (only happens when opening or reverting)
+		we will NOT update |sourceView|. We will wait for |tidyProcess| NSNotification that
+		the |sourceText| changed, then set the |sourceView|. HOWEVER this presents a small
+		issue to overcome:
+ 
+			- If we set |sourceView| we will get |textDidChange| notification, causing
+			  us to update [tidyProcess sourceText] again, resulting in processing the
+			  document twice, which we don't want to do.
+ 
+			- To prevent this we will set |documentIsLoading| to YES any time we we set
+			  |sourceText| from file or data. In the |textDidChange| handler we will NOT
+			  set [tidyProcess sourceText], and we will flip |documentIsLoading| back to NO.
+ 
  **************************************************************************************************/
+
 
 #import "TidyDocument.h"
 #import "PreferenceController.h"
 #import "JSDTidyDocument.h"
 #import "NSTextView+JSDExtensions.h"
 
+
 #pragma mark - Non-Public iVars, Properties, and Method declarations
+
 
 @interface TidyDocument ()
 {
-	JSDTidyDocument *tidyProcess;			// Our tidy wrapper/processor.
+	JSDTidyDocument *tidyProcess;			// Our tidy processor.
+	
 	NSInteger saveBehavior;					// The save behavior from the preferences.
-	bool saveWarning;						// The warning behavior for when saveBehavior == 1;
-	bool yesSavedAs;						// Disable warnings and protections once a save-as has been done.
-	bool tidyOriginalFile;					// Flags whether the file was CREATED by Tidy, for writing type/creator codes.
-
+	BOOL saveWarning;						// The warning behavior for when saveBehavior == 1;
+	BOOL yesSavedAs;						// Disable warnings and protections once a save-as has been done.
+	
 	NSData *documentOpenedData;				// Hold the file that we opened with until the nib is awake.
+	
+	BOOL documentIsLoading;					// Flag to indicate that new data was loaded from disk (see notes above)
 }
 
 @property (assign) IBOutlet NSSplitView *splitLeftRight;	// The left-right (main) split view in the Doc window.
@@ -77,6 +94,7 @@
 
 
 #pragma mark - Implementation
+
 
 @implementation TidyDocument
 
@@ -98,19 +116,41 @@
 {
 	// Save the data for use until after the Nib is awake.
 	documentOpenedData = [[NSData dataWithContentsOfFile:filename] retain];
-	tidyOriginalFile = NO;															// The current file was OPENED, not a Tidy original.
+		
 	return YES;
+}
+
+
+/*———————————————————————————————————————————————————————————————————*
+	revertToSavedFromFile:ofType
+		Allow the default reversion to take place, and then put the
+		correct value in the editor if it took place. The inherited
+		method does |readFromFile|, so put the documentOpenedData
+		into our |tidyProcess|.
+ *———————————————————————————————————————————————————————————————————*/
+- (BOOL)revertToSavedFromFile:(NSString *)fileName ofType:(NSString *)type
+{
+	BOOL didRevert;
+	
+	if ((didRevert = [super revertToSavedFromFile:fileName ofType:type]))
+	{
+		documentIsLoading = YES;
+		[tidyProcess setSourceTextWithData:documentOpenedData];
+	}
+	
+	return didRevert;
 }
 
 
 /*———————————————————————————————————————————————————————————————————*
 	dataOfType:error
 		Called as a result of saving files. All we're going to do is
-		pass back the NSData taken from the TidyDoc
+		pass back the NSData taken from the TidyDoc, using the
+		encoding specified by `output-encoding`.
  *———————————————————————————————————————————————————————————————————*/
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
 {
-	return [tidyProcess tidyTextAsData];	// Return the raw data in user-encoding to be written.
+	return [tidyProcess tidyTextAsData];
 }
 
 
@@ -125,50 +165,45 @@
  *———————————————————————————————————————————————————————————————————*/
 - (BOOL)writeToURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError
 {
-	bool success = [super writeToURL:absoluteURL ofType:typeName error:outError];
+	BOOL success = [super writeToURL:absoluteURL ofType:typeName error:outError];
+	
 	if (success)
 	{
-		[tidyProcess setSourceText:[tidyProcess tidyText]];		// Make the |tidyText| the new |sourceText|.
-		[_sourceView setString:[tidyProcess sourceText]];		// Update the |sourceView| with the newly-saved contents.
-		yesSavedAs = YES;										// This flag disables the warnings, since they're meaningless now.
+		/*
+			Setting |sourceView| will kick off the |textDidChange|
+			event chain, which will set [tidyProcess sourceText]
+			for us later.
+		*/
+		[_sourceView setString:[tidyProcess sourceText]];
+
+		yesSavedAs = YES;
 	}
+	
 	return success;
 }
 
 
 /*———————————————————————————————————————————————————————————————————*
-	revertToSavedFromFile:ofType
-		Allow the default reversion to take place, and then put the
-		correct value in the editor if it took place. The inherited
-		method does |readFromFile|, so our |tidyProcess| will already
-		have the reverted data.
- *———————————————————————————————————————————————————————————————————*/
-- (BOOL)revertToSavedFromFile:(NSString *)fileName ofType:(NSString *)type
-{
-	bool didRevert = [super revertToSavedFromFile:fileName ofType:type];
-	if (didRevert)
-	{
-		[_sourceView setString:[tidyProcess sourceText]];	// Update the display, since the reversion already loaded the data.
-		[self retidy:true];									// Re-tidy the document.
-	}
-	return didRevert;										// Flag whether we reverted or not.
-}
-
-
-/*———————————————————————————————————————————————————————————————————*
 	saveDocument
-		we're going to override the default save to make sure we can
-		comply with the user's preferences. We're being over-protective
-		because we want to not get blamed for screwing up the users'
-		data if Tidy doesn't process something correctly.
+		we're going to override the default save to make sure we
+		can comply with the user's preferences. We're going to be
+		over-protective because we don't want to get blamed for
+		screwing up the user's data if Tidy doesn't process 
+		something correctly.
  *———————————————————————————————————————————————————————————————————*/
 - (IBAction)saveDocument:(id)sender
 {
-	// Normal save, but with a warning and chance to back out. Here's the logic for how this works:
-	// (1) the user requested a warning before overwriting original files.
-	// (2) the |sourceView| isn't empty.
-	// (3) the file hasn't been saved already. This last is important, because if the file has
-	//		already been edited and saved, there's no longer an "original" file to protect.
+	/*
+		Normal save, but with a warning and chance to back out. Here's
+		the logic for how this works:
+			(1) the user requested a warning before overwriting 
+			    original files.
+			(2) the |sourceView| isn't empty.
+			(3) the file hasn't been saved already. This last is
+				important, because if the file has already been
+				edited and saved, there's no longer an "original" 
+				file to protect.
+	*/
 
 	// Warning will only apply if there's a current file and it's NOT been saved yet, and it's not new.
 	if ( (saveBehavior == 1) && 				// Behavior is protective AND
@@ -177,7 +212,8 @@
 		([[[self fileURL] path] length] != 0 ))	// The file name isn't zero length.
 	{
 		NSInteger i = NSRunAlertPanel(NSLocalizedString(@"WarnSaveOverwrite", nil), NSLocalizedString(@"WarnSaveOverwriteExplain", nil),
-									  NSLocalizedString(@"continue save", nil),NSLocalizedString(@"do not save", nil) , nil);
+									  NSLocalizedString(@"continue save", nil), NSLocalizedString(@"do not save", nil) , nil);
+		
 		if (i == NSAlertAlternateReturn)
 		{
 			return; // Don't continue the save operation if user chose don't save.
@@ -189,8 +225,9 @@
 	{
 		NSRunAlertPanel(NSLocalizedString(@"WarnSaveDisabled", nil), NSLocalizedString(@"WarnSaveDisabledExplain", nil),
 						NSLocalizedString(@"cancel", nil), nil, nil);
+		
 		return; // Don't continue the save operation
-	} // if
+	}
 
 	return [super saveDocument:sender];
 }
@@ -210,20 +247,9 @@
 	self = [super init];
 	if (self)
 	{
-		tidyOriginalFile = YES;							// If yes, we'll write file/creator codes.
-		tidyProcess = [[JSDTidyDocument alloc] init];	// Use our own |tidyProcess|, NOT the pref controller's instance.
+		tidyProcess = [[JSDTidyDocument alloc] init];	// Use our own |tidyProcess|.
+		
 		documentOpenedData = nil;
-		// register for notification
-		[[NSNotificationCenter defaultCenter] addObserver:self 
-												 selector:@selector(handleSavePrefChange:) 
-													 name:@"JSDSavePrefChange" object:nil];
-		
-		// #TODO - TEMPORARY HACK; listen for a "JSDTidyDocumentOriginalTextChanged" notification.
-		// #TODO - I should register a KVO instead of this. Let's push this product out, though.
-		[[NSNotificationCenter defaultCenter] addObserver:self 
-												 selector:@selector(handleTidyOrigTextChange:)
-													 name:tidyNotifySourceTextChanged object:nil];
-		
 	}
 	
 	return self;
@@ -235,18 +261,22 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)dealloc
 {
-	// #TODO: we shouldn't do the below, but remove ourself one-by-one.
-	[[NSNotificationCenter defaultCenter] removeObserver:self];	// remove ourselves from the notification center!
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:JSDSavePrefChange object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyOptionChanged object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifySourceTextChanged object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyTidyTextChanged object:nil];
+	
 	[documentOpenedData release];
-	[tidyProcess release];			// Release the tidyProcess.
-	[_optionController release];		// Remove the optionController pane.
-	[super dealloc];				// Do the inherited dealloc.
+	[tidyProcess release];
+	[_optionController release];
+	
+	[super dealloc];
 }
 
 
 /*———————————————————————————————————————————————————————————————————*
 	configureViewSettings
-		given aView, make it non-wrapping. Also set fonts.
+		Given aView, make it non-wrapping. Also set fonts.
  *———————————————————————————————————————————————————————————————————*/
 - (void)configureViewSettings:(NSTextView *)aView
 {
@@ -264,20 +294,17 @@
 
 /*———————————————————————————————————————————————————————————————————*
 	awakeFromNib
-		When we wake from the nib file, setup the option controller
+		When we wake from the nib file, setup the option controller.
  *———————————————————————————————————————————————————————————————————*/
 - (void) awakeFromNib
 {
-	// Create a OptionPaneController and put it in place of optionPane
+	// Create a OptionPaneController and put it in place of optionPane.
 	if (!_optionController)
 	{
 		_optionController = [[OptionPaneController alloc] init];
 	}
-	[_optionController putViewIntoView:_optionPane];
 	
-	// We want to be notified if the controller's tidyDocument's options change.
-	[[_optionController tidyDocument] setTarget:self];
-	[[_optionController tidyDocument] setAction:@selector(optionChanged:)];
+	[_optionController putViewIntoView:_optionPane];
 }
 
 
@@ -288,30 +315,63 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)windowControllerDidLoadNib:(NSWindowController *) aController
 {
-	[super windowControllerDidLoadNib:aController];								// Inherited method needs to be called.
+	[super windowControllerDidLoadNib:aController];
 
+	
 	[self configureViewSettings:_sourceView];
 	[self configureViewSettings:_tidyView];
 	[_sourceView setEditable:YES];
 
+	
 	// Honor the defaults system defaults.
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];			// Get the default default system
 	[[_optionController tidyDocument] takeOptionValuesFromDefaults:defaults];	// Make the optionController take the values
 
+	
 	// Saving behavior settings
 	saveBehavior = [defaults integerForKey:JSDKeySavingPrefStyle];
 	saveWarning = [defaults boolForKey:JSDKeyWarnBeforeOverwrite];
 	yesSavedAs = NO;
 
-	// set the document options first
+	
+	// Set the document options.
 	[tidyProcess optionCopyFromDocument:[_optionController tidyDocument]];
 
-	// Make the |sourceView| string the same as our loaded text.
+	
+	/*
+		Delay setting up notifications until now, because otherwise
+		all of the earlier options setup is simply going to result
+		in a huge cascade of notifications and updates.
+	*/
+	
+	// NSNotifications from the Preference Controller indicate saving preferences changed.
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(handleSavePrefChange:)
+												 name:JSDSavePrefChange
+											   object:_optionController];
+	
+	// NSNotifications from the |optionController| indicate that one or more options changed.
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(handleTidyOptionChange:)
+												 name:tidyNotifyOptionChanged
+											   object:[_optionController tidyDocument]];
+	
+	// NSNotifications from the tidyProcess indicate that sourceText changed.
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(handleTidySourceTextChange:)
+												 name:tidyNotifySourceTextChanged
+											   object:tidyProcess];
+	
+	// NSNotifications from the tidyProcess indicate that tidyText changed.
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(handleTidyTidyTextChange:)
+												 name:tidyNotifyTidyTextChanged
+											   object:tidyProcess];
+	
+	
+	// Set the tidyProcess data. The event system will set the view later.
+	documentIsLoading = YES;
 	[tidyProcess setSourceTextWithData:documentOpenedData];
-	[_sourceView setString:[tidyProcess sourceText]];
-
-	// Force the processing to occur.
-	[self retidy:false];
 }
 
 
@@ -325,7 +385,7 @@
 }
 
 
-#pragma mark - Preferences, Tidy Options, and Tidy'ing
+#pragma mark - Tidy-related Event Handling
 
 
 /*———————————————————————————————————————————————————————————————————*
@@ -341,30 +401,45 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
-	retidy
-		Perform the actual re-tidy'ing
-		if settext is true then set the working text again.
-		TODO: this is a temporary hack.
+	handleTidyOptionChange
+		One or more options changed in |optionController|. Copy
+		those options to our |tidyProcess|. The event chain will
+		eventually update everything else because this should
+		cause the tidyText to change.
  *———————————————————————————————————————————————————————————————————*/
-- (void)retidy:(bool)settext
+- (void)handleTidyOptionChange:(NSNotification *)note
 {
-	if (settext)
-	{
-		[tidyProcess setSourceText:[_sourceView string]];	// Put the |sourceView| text into the |tidyProcess|.
-		//[tidyProcess processTidy];
-	}
-	else
-	{
-		[tidyProcess processTidy];
-	}
+	[tidyProcess optionCopyFromDocument:[_optionController tidyDocument]];
+}
 
+
+/*———————————————————————————————————————————————————————————————————*
+	handleTidySourceTextChange
+		The tidyProcess changed the sourceText for some reason,
+		probably because the user changed input-encoding. Note
+		that this event is only received if Tidy itself changes
+		the sourceText, not as the result of outside setting.
+		The event chain will eventually update everything else.
+ *———————————————————————————————————————————————————————————————————*/
+- (void)handleTidySourceTextChange:(NSNotification *)note
+{
+	[_sourceView setString:[tidyProcess sourceText]];
+}
+
+
+/*———————————————————————————————————————————————————————————————————*
+	handleTidyTidyTextChange
+		|tidyText| changed, so update |tidyView| and |errorView|.
+ *———————————————————————————————————————————————————————————————————*/
+- (void)handleTidyTidyTextChange:(NSNotification *)note
+{
 	[_tidyView setString:[tidyProcess tidyText]];			// Put the tidy'd text into the |tidyView|.
 	[_errorView reloadData];								// Reload the error data.
 	[_errorView deselectAll:self];							// Deselect the selected row.
 
-	
+	// TODO: is this better off in textDidChange?
 	// Handle document dirty detection
-	if ( ([tidyProcess isDirty]) || ([[tidyProcess sourceText] length] == 0 ) )
+	if ( (![tidyProcess isDirty]) || ([[tidyProcess sourceText] length] == 0 ) )
 	{
 		[self updateChangeCount:NSChangeCleared];
 	}
@@ -375,49 +450,23 @@
 }
 
 
-#pragma mark - Event Handling
-
-/*———————————————————————————————————————————————————————————————————*
-	handleTidyOrigTextChange
-		The tidyProcess changed the originalText for some reason.
-		Given this temp hack, probably because the user changed
-		the encoding. Let's set the text view to the current (new)
-		original text.
- *———————————————————————————————————————————————————————————————————*/
-- (void)handleTidyOrigTextChange:(NSNotification *)note
-{
-	//
-	if ([note object] == tidyProcess)
-	{
-		[_sourceView setString:[tidyProcess sourceText]];
-		[self retidy:no];
-	}
-}
-
 /*———————————————————————————————————————————————————————————————————*
 	textDidChange:
-		We arrived here by virtue of this document class being the
-		delegate of |sourceView|. Whenever the text changes, let's
-		reprocess all of the text. Hopefully the user won't be
-		inclined to type everything, 'cos this is bound to be slow.
+		We arrived here by virtue of being the delegate of
+		|sourceView|. Simply update the tidyProcess sourceText,
+		and the event chain will eventually update everything
+		else.
  *———————————————————————————————————————————————————————————————————*/
 - (void)textDidChange:(NSNotification *)aNotification
 {
-	[self retidy:yes];
-}
-
-
-/*———————————————————————————————————————————————————————————————————*
-	optionChanged:
-		One of the options changed! We're here by virtue of being the
-		action of the optionController instance. Let's retidy here.
-		// TODO: let's do this via notification instead, or KVO.
- *———————————————————————————————————————————————————————————————————*/
-- (IBAction)optionChanged:(id)sender
-{
-	// copy the options from the option controller into our own process.
-	[tidyProcess optionCopyFromDocument:[_optionController tidyDocument]];
-	[self retidy:false];
+	if (!documentIsLoading)
+	{
+		[tidyProcess setSourceText:[_sourceView string]];
+	}
+	else
+	{
+		documentIsLoading = NO;
+	}
 }
 
 
@@ -446,7 +495,7 @@
 {
 	NSDictionary *error = [tidyProcess errorArray][rowIndex];	// Get the current error
 
-	// List of error types -- no localized; users can localize based on this string.
+	// List of error types -- not localized; users can localize based on this string.
 	NSArray *errorTypes = @[@"Info:", @"Warning:", @"Config:", @"Access:", @"Error:", @"Document:", @"Panic:"];
 
 	// Handle returning the severity of the error, localized.
@@ -542,6 +591,7 @@
     return [[[splitView subviews] objectAtIndex:0] frame].size.height + 68.0f;
 }
 
+
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	splitView:constrainMaxCoordinate:ofSubviewAt:
 		We're here because we're the delegate of the split views.
@@ -565,6 +615,7 @@
 	// The text views' second splitter
 	return [splitView frame].size.height - 68.0f;	
 }
+
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	splitView:shouldAdjustSizeOfSubview:
