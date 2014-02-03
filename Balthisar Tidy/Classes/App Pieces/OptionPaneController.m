@@ -97,7 +97,12 @@
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	dealloc
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-
+- (void)dealloc
+{
+	self.tidyDocument = nil;
+	optionsInEffect = nil;
+	optionsExceptions = nil;
+}
 
 #pragma mark - Setup
 
@@ -282,7 +287,6 @@
 				to range from [0..x], and as long as this holds true it's okay to
 				use the enum integer value.
 			*/
-			
 			[[self tidyDocument] setOptionValueForId:optId fromObject:object];
 		}
 	}
