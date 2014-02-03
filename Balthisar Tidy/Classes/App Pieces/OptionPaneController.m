@@ -49,7 +49,7 @@
 
 	@property (weak, nonatomic) IBOutlet NSView *View;					// Pointer to the NIB's |View|.
 	@property (weak, nonatomic) IBOutlet NSTableView *theTable;			// Pointer to the table
-	@property (weak, nonatomic) IBOutlet NSTextField *theDescription;		// Pointer to the description field.
+	@property (weak, nonatomic) IBOutlet NSTextField *theDescription;	// Pointer to the description field.
 
 
 - (id)tableColumn:(JSDTableColumn *)aTableColumn customDataCellForRow:(NSInteger)row; // [theTable datasource] requirement.
@@ -81,10 +81,13 @@
 		// Get our options list
 		optionsInEffect = [NSArray arrayWithArray:[JSDTidyDocument loadConfigurationListFromResource:@"optionsInEffect" ofType:@"txt"]];
 
+		
 		// Get our exception list (items to treat as string regardless of tidylib definition)
 		optionsExceptions = [NSArray arrayWithArray:[JSDTidyDocument loadConfigurationListFromResource:@"optionsTypesExceptions" ofType:@"txt"]];
 
+		
 		// Create a custom column for the NSTableView -- the table will retain and control it.
+		// Cast to void because otherwise LVVM thinks we're not using the value.
 		(void)[[JSDTableColumn alloc] initReplacingColumn:[_theTable tableColumnWithIdentifier:@"check"]];
 	}
 	return self;
@@ -113,9 +116,9 @@
 		[trash removeFromSuperview];
 	}
 
-	[[_theTable enclosingScrollView] setHasHorizontalScroller:NO];
+	[[[self theTable] enclosingScrollView] setHasHorizontalScroller:NO];
 
-	[_View setFrame:[dstView frame]];
+	[[self View] setFrame:[dstView frame]];
 
 	[dstView addSubview:_View];
 }
@@ -135,9 +138,11 @@
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification
 {
 	// Get the description of the selected row.
-	if ([aNotification object] == _theTable)
+	if ([aNotification object] == [self theTable])
 	{
-		[_theDescription setStringValue:NSLocalizedString(optionsInEffect[[_theTable selectedRow]], nil)];
+		[[self theDescription] setStringValue:NSLocalizedString(optionsInEffect[[[self theTable] selectedRow]], nil)];
+		
+		// #TODO: we want to set auto height. Should remove the splitter and just make it dynamic.
 	}
 }
 
@@ -180,7 +185,7 @@
 		
 		if ( (optId == TidyCharEncoding) || (optId == TidyInCharEncoding) || (optId == TidyOutCharEncoding) )
 		{
-			return [[_tidyDocument class] availableEncodingDictionariesByNSStringEncoding][@([[_tidyDocument optionValueForId:optId] integerValue])][@"LocalizedIndex"];
+			return [JSDTidyDocument availableEncodingDictionariesByNSStringEncoding][@([[[self tidyDocument] optionValueForId:optId] integerValue])][@"LocalizedIndex"];
 		}
 		else
 		{
@@ -192,7 +197,7 @@
 				we pass to _tidyDocument will be used accordingly.
 			*/
 
-			return [_tidyDocument optionValueForId:optId];
+			return [[self tidyDocument] optionValueForId:optId];
 		}
 	}
 	return @"";
@@ -253,20 +258,21 @@
 	tableView:setObjectValue:forTableColumn:row
 		We're here because we're the datasource of |theTable|.
 		Sets the data object for an item in the specified row and column.
-		The user change a value in |theTable| and so we will record
+		The user changed a value in |theTable| and so we will record
 		that in our own data structure (i.e., the |_tidyDocument|).
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)tableView:(NSTableView *)aTableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)inColumn row:(int)inRow
 {
 	TidyOptionId optId = [JSDTidyDocument optionIdForName:optionsInEffect[inRow]];
+	
 	if ([[inColumn identifier] isEqualToString:@"check"])
 	{
 		// if we're working with encoding, we need to get the NSStringEncoding instead of the index of the item.
 		if ( (optId == TidyCharEncoding) || (optId == TidyInCharEncoding) || (optId == TidyOutCharEncoding) )
 		{
 			// We have the alphabetical index, but need to find the NSStringEncoding.
-			[_tidyDocument setOptionValueForId:optId
-									fromObject:[[_tidyDocument class] availableEncodingDictionariesByLocalizedIndex][@([object unsignedLongValue])][@"NSStringEncoding"]];
+			[[self tidyDocument] setOptionValueForId:optId
+									fromObject:[JSDTidyDocument availableEncodingDictionariesByLocalizedIndex][@([object unsignedLongValue])][@"NSStringEncoding"]];
 		}
 		else
 		{
@@ -276,7 +282,8 @@
 				to range from [0..x], and as long as this holds true it's okay to
 				use the enum integer value.
 			*/
-			[_tidyDocument setOptionValueForId:optId fromObject:object];
+			
+			[[self tidyDocument] setOptionValueForId:optId fromObject:object];
 		}
 	}
 }
