@@ -63,6 +63,7 @@
 #define tidyNotifySourceTextChanged		@"JSDTidyDocumentSourceTextChanged"
 #define tidyNotifyTidyTextChanged		@"JSDTidyDocumentTidyTextChanged"
 
+
 #pragma mark - class JSDTidyDocument
 
 

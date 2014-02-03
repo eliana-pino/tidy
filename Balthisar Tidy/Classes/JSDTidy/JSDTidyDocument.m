@@ -31,7 +31,7 @@
 #import "config.h"
 
 
-#pragma mark - Non-Public iVars, Properties, and Method declarations
+#pragma mark - CATEGORY - Non-Public
 
 @interface JSDTidyDocument ()
 {
@@ -61,6 +61,9 @@
 
 
 @end
+
+
+#pragma mark - IMPLEMENTATION
 
 
 @implementation JSDTidyDocument
@@ -93,7 +96,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 }
 
 
-#pragma mark - INITIALIZATION and DESTRUCTION
+#pragma mark - Initialization and Deallocation
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*

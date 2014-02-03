@@ -35,7 +35,7 @@
 #import "PreferenceController.h"
 
 
-#pragma mark - Non-Public iVars, Properties, and Method declarations
+#pragma mark - CATEGORY - Non-Public
 
 @interface AppController ()
 
@@ -44,12 +44,13 @@
 @end
 
 
-#pragma mark - Implementation
+#pragma mark - IMPLEMENTATION
+
 
 @implementation AppController
 
 
-#pragma mark - initializers and deallocs
+#pragma mark - Initialization and Deallocation
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*

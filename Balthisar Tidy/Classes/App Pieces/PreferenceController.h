@@ -52,7 +52,7 @@
 	Instances of PreferenceController will post the following NSNotifications.
 */
 
-#define JSDSavePrefChange			@"JSDSavePrefChange"				// Indicates an app pref changed (not a tidy option).
+#define JSDSavePrefChange			@"JSDSavePrefChange"		// Indicates an app pref changed (not a tidy option).
 
 
 /*
@@ -66,27 +66,16 @@ typedef enum
 	kJSDSaveAsOnly = 2
 } JSDSaveType;
 
+
+#pragma mark - class PreferenceController
+
+
 @interface PreferenceController : NSWindowController
 
 
-#pragma mark - Properties
+#pragma mark - Public Methods
 
 
-@property (nonatomic, weak) IBOutlet NSButton *saving1;					// "Enable save" button in the nib.
-@property (nonatomic, weak) IBOutlet NSButton *saving2;					// "Disable save" button in the nib.
-@property (nonatomic, weak) IBOutlet NSButton *savingWarn;				// "Warn on save" button in the nib.
++ (void)registerUserDefaults;							// Standard means of registering Mac OS X defaults.
 
-@property (nonatomic, weak) IBOutlet NSView *optionPane;				// The empty pane in the nib that we will replace.
-
-@property (nonatomic, strong) OptionPaneController *optionController;	// The real option pane loaded into optionPane.
-
-@property (nonatomic, strong) JSDTidyDocument *tidyProcess;				// The optionController's tidy process.
-
-
-#pragma mark - Methods
-
-
-+ (void)registerUserDefaults;											// Standard means of registering Mac OS X defaults.
-
-- (IBAction)preferenceChanged:(id)sender;								// Handler for a configuration option change.
 @end

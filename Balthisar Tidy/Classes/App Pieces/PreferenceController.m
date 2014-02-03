@@ -36,10 +36,39 @@
 #import "JSDTidyDocument.h"
 
 
+#pragma mark - CATEGORY - Non-Public
+
+
+@interface PreferenceController ()
+
+
+#pragma mark - Properties
+
+@property (nonatomic, weak) IBOutlet NSButton *saving1;					// "Enable save" button in the nib.
+@property (nonatomic, weak) IBOutlet NSButton *saving2;					// "Disable save" button in the nib.
+@property (nonatomic, weak) IBOutlet NSButton *savingWarn;				// "Warn on save" button in the nib.
+
+@property (nonatomic, weak) IBOutlet NSView *optionPane;				// The empty pane in the nib that we will replace.
+
+@property (nonatomic, strong) OptionPaneController *optionController;	// The real option pane loaded into optionPane.
+
+@property (nonatomic, strong) JSDTidyDocument *tidyProcess;				// The optionController's tidy process.
+
+
+#pragma mark - Methods
+
+- (IBAction)preferenceChanged:(id)sender;								// Handler for a configuration option change.
+
+@end
+
+
+#pragma mark - IMPLEMENTATION
+
+
 @implementation PreferenceController
 
 
-#pragma mark - CLASS METHODS
+#pragma mark - Class Methods
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
@@ -63,7 +92,7 @@
 }
 
 
-#pragma mark - INITIALIZATION and DESTRUCTION and SETUP
+#pragma mark - Initialization and Deallocation and Setup
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
