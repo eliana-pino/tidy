@@ -419,6 +419,14 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 		
 		_originalData = [[NSData alloc] initWithData:[_sourceText dataUsingEncoding:_outputEncoding]];
 		_sourceDidChange = NO;
+		
+		/*
+			This is the only circumstance in which we will ever
+			fire a tidyNotifySourceTextChanged notification
+			while setting the source text as a string.
+		*/
+		
+		[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifySourceTextChanged object:self];
 	}
 	else
 	{
@@ -431,7 +439,6 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 		_sourceDidChange = YES;
 	}
 	
-	[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifySourceTextChanged object:self];
 	[self processTidy];
 }
 

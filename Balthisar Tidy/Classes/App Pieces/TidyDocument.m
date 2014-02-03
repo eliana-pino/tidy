@@ -174,7 +174,7 @@
 			event chain, which will set [tidyProcess sourceText]
 			for us later.
 		*/
-		[_sourceView setString:[tidyProcess sourceText]];
+		[_sourceView setString:[tidyProcess tidyText]];
 
 		yesSavedAs = YES;
 	}
