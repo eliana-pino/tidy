@@ -52,8 +52,7 @@
 	NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary];
 	
 	// Put all of the defaults in the dictionary
-	defaultValues[JSDKeySavingPrefStyle] = @2;
-	//defaultValues[JSDKeySavingPrefStyle] = @(kJSDSaveAsOnly);
+	defaultValues[JSDKeySavingPrefStyle] = @(kJSDSaveAsOnly);
 	defaultValues[JSDKeyWarnBeforeOverwrite] = @NO;
 	
 	// Get the defaults from the linked-in TidyLib
@@ -118,8 +117,8 @@
 {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	
-	[[self saving1] setState:([defaults integerForKey: JSDKeySavingPrefStyle] == 1)];
-	[[self saving2] setState:([defaults integerForKey: JSDKeySavingPrefStyle] == 2)];
+	[[self saving1] setState:([defaults integerForKey: JSDKeySavingPrefStyle] == kJSDSaveButWarn)];
+	[[self saving2] setState:([defaults integerForKey: JSDKeySavingPrefStyle] == kJSDSaveAsOnly)];
 	[[self savingWarn] setState:[defaults boolForKey: JSDKeyWarnBeforeOverwrite]];
 	[[self savingWarn] setEnabled:[[self saving1] state]];
 
@@ -160,16 +159,16 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (IBAction)preferenceChanged:(id)sender
 {
-	[[NSUserDefaults standardUserDefaults] setInteger:0 forKey:JSDKeySavingPrefStyle];
+	[[NSUserDefaults standardUserDefaults] setInteger:kJSDSaveNoProtection forKey:JSDKeySavingPrefStyle];
 	
 	if ([[self saving1] state])
 	{
-		[[NSUserDefaults standardUserDefaults] setInteger:1 forKey:JSDKeySavingPrefStyle];
+		[[NSUserDefaults standardUserDefaults] setInteger:kJSDSaveButWarn forKey:JSDKeySavingPrefStyle];
 	}
 	
 	if ([[self saving2] state])
 	{
-		[[NSUserDefaults standardUserDefaults] setInteger:2 forKey:JSDKeySavingPrefStyle];
+		[[NSUserDefaults standardUserDefaults] setInteger:kJSDSaveAsOnly forKey:JSDKeySavingPrefStyle];
 	}
 	
 	[[NSUserDefaults standardUserDefaults] setBool:[[self savingWarn] state] forKey:JSDKeyWarnBeforeOverwrite];

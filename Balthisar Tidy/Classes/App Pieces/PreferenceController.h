@@ -61,9 +61,9 @@
 
 typedef enum
 {
-	kJSDSaveNoProtection,
-	kJSDSaveButWarn,
-	kJSDSaveAsOnly
+	kJSDSaveNoProtection = 0,
+	kJSDSaveButWarn = 1,
+	kJSDSaveAsOnly = 2
 } JSDSaveType;
 
 @interface PreferenceController : NSWindowController
