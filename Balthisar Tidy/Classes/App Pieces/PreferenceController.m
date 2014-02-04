@@ -72,6 +72,19 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	sharedPreferences
+		Implement this class as a singleton.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
++ (id)sharedPreferences
+{
+    static PreferenceController *sharedMyPrefController = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{ sharedMyPrefController = [[self alloc] init]; });
+    return sharedMyPrefController;
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	registerUserDefaults
 		Register all of the user defaults. Implemented as a CLASS
 		method in order to keep this with the preferences controller.
@@ -206,7 +219,7 @@
 	
 	[[NSUserDefaults standardUserDefaults] setBool:[[self savingWarn] state] forKey:JSDKeyWarnBeforeOverwrite];
 	
-	[[NSNotificationCenter defaultCenter] postNotificationName:JSDSavePrefChange object:nil];
+	[[NSNotificationCenter defaultCenter] postNotificationName:JSDSavePrefChange object:self];
 }
 
 

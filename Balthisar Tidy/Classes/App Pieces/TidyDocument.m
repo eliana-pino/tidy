@@ -355,13 +355,13 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(handleSavePrefChange:)
 												 name:JSDSavePrefChange
-											   object:_optionController];
+											   object:[PreferenceController sharedPreferences]];
 	
 	// NSNotifications from the |optionController| indicate that one or more options changed.
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(handleTidyOptionChange:)
 												 name:tidyNotifyOptionChanged
-											   object:[_optionController tidyDocument]];
+											   object:[[self optionController] tidyDocument]];
 	
 	// NSNotifications from the tidyProcess indicate that sourceText changed.
 	[[NSNotificationCenter defaultCenter] addObserver:self
@@ -409,9 +409,9 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
- handleSavePrefChange
- This method receives "JSDSavePrefChange" notifications so
- we can keep abreast of the user's desired "Save" behaviours.
+	handleSavePrefChange
+		This method receives "JSDSavePrefChange" notifications so
+		we can keep abreast of the user's desired "Save" behaviours.
  *———————————————————————————————————————————————————————————————————*/
 - (void)handleSavePrefChange:(NSNotification *)note
 {

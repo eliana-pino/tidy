@@ -75,7 +75,8 @@ typedef enum
 
 #pragma mark - Public Methods
 
++ (id)sharedPreferences;					// Singleton accessor for this class.
 
-+ (void)registerUserDefaults;							// Standard means of registering Mac OS X defaults.
++ (void)registerUserDefaults;				// Standard means of registering Mac OS X defaults.
 
 @end

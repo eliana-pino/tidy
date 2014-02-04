@@ -62,12 +62,7 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (IBAction)showPreferences:(id)sender
 {
-	if (![self thePreferenceController])
-	{
-		_thePreferenceController = [[PreferenceController alloc] init];
-	}
-
-	[[self thePreferenceController] showWindow:self];
+	[[PreferenceController sharedPreferences] showWindow:self];
 }
 
 
