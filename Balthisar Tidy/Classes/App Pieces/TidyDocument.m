@@ -103,12 +103,6 @@
 @property (nonatomic, assign) BOOL documentIsLoading;					// Flag to supress certain event updates.
 
 
-#pragma mark - Methods
-
-// Target-Action
-- (IBAction)errorClicked:(id)sender;									// React to an error row being clicked.
-
-
 @end
 
 
@@ -440,17 +434,6 @@
 	[[self tidyView] setString:[[self tidyProcess] tidyText]];		// Put the tidy'd text into the |tidyView|.
 	[[self errorView] reloadData];									// Reload the error data.
 	[[self errorView] deselectAll:self];							// Deselect the selected row.
-
-	// TODO: is this better off in textDidChange?
-	// Handle document dirty detection
-	if ( (![[self tidyProcess] isDirty]) || ([[[self tidyProcess] sourceText] length] == 0 ) )
-	{
-		[self updateChangeCount:NSChangeCleared];
-	}
-	else
-	{
-		[self updateChangeCount:NSChangeDone];
-	}
 }
 
 
@@ -471,6 +454,17 @@
 	{
 		self.documentIsLoading = NO;
 	}
+	
+	// Handle document dirty detection
+	if ( (![[self tidyProcess] isDirty]) || ([[[self tidyProcess] sourceText] length] == 0 ) )
+	{
+		[self updateChangeCount:NSChangeCleared];
+	}
+	else
+	{
+		[self updateChangeCount:NSChangeDone];
+	}
+
 }
 
 
@@ -479,8 +473,8 @@
 
 /*———————————————————————————————————————————————————————————————————*
 	numberOfRowsInTableView
-		We're here because we're the datasource of the table view.
-		We need to specify how many items are in the table view.
+		We're here because we're the |datasource| of the errorView.
+		We need to specify how many items are in the table.
  *———————————————————————————————————————————————————————————————————*/
 - (NSUInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
@@ -490,7 +484,7 @@
 
 /*———————————————————————————————————————————————————————————————————*
 	tableView:objectValueForTableColumn:row
-		We're here because we're the datasource of the table view.
+		We're here because we're the |datasource| of the errorView.
 		We need to specify what to show in the row/column. The
 		error array consists of dictionaries with entries for
 		`level`, `line`, `column`, and `message`.
@@ -499,27 +493,38 @@
 {
 	NSDictionary *error = [[self tidyProcess] errorArray][rowIndex];
 
-	// List of error types -- not localized; users can localize based on this string.
-	NSArray *errorTypes = @[@"Info:", @"Warning:", @"Config:", @"Access:", @"Error:", @"Document:", @"Panic:"];
-
-	// Handle returning the severity of the error, localized.
 	if ([[aTableColumn identifier] isEqualToString:@"severity"])
 	{
+		/*
+			The severity of the error reported by TidyLib is
+			converted to a string label and localized into
+			the current language.
+		*/
+		NSArray *errorTypes = @[@"Info:", @"Warning:", @"Config:", @"Access:", @"Error:", @"Document:", @"Panic:"];
 		return NSLocalizedString(errorTypes[[error[@"level"] intValue]], nil);
 	}
 
-	// Handle the location, localized, or "N/A" if not applicable
 	if ([[aTableColumn identifier] isEqualToString:@"where"])
 	{
+		/*
+			We can also localize N/A and line and column.
+		*/
 		if (([error[@"line"] intValue] == 0) || ([error[@"column"] intValue] == 0))
 		{
 			return NSLocalizedString(@"N/A", nil);
 		}
-		return [NSString stringWithFormat:@"%@ %@, %@ %@", NSLocalizedString(@"line", nil), error[@"line"], NSLocalizedString(@"column", nil), error[@"column"]];
+		else
+		{
+			return [NSString stringWithFormat:@"%@ %@, %@ %@", NSLocalizedString(@"line", nil), error[@"line"], NSLocalizedString(@"column", nil), error[@"column"]];
+		}
 	}
 
 	if ([[aTableColumn identifier] isEqualToString:@"description"])
 	{
+		/*
+			Unfortunately we can't really localize the message without
+			duplicating a lot of TidyLib functionality.
+		*/
 		return error[@"message"];
 	}
 	
@@ -528,42 +533,27 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
-	errorClicked:
-		We arrived here by virtue of this controller class and this
-		method being the action of the table. Whenever the selection
-		changes we're going to highlight and show the related
-		column/row in the sourceView.
+	tableViewSelectionDidChange:
+		We arrived here because we're the delegate of the table.
+		Whenever the selection changes, highlight the related
+		column/row in the |sourceView|.
  *———————————————————————————————————————————————————————————————————*/
-- (IBAction)errorClicked:(id)sender
+- (void)tableViewSelectionDidChange:(NSNotification *)aNotification
 {
 	NSInteger errorViewRow = [[self errorView] selectedRow];
 	if (errorViewRow >= 0)
 	{
 		NSInteger row = [[[self tidyProcess] errorArray][errorViewRow][@"line"] intValue];
 		NSInteger col = [[[self tidyProcess] errorArray][errorViewRow][@"column"] intValue];
-		[[self sourceView] highlightLine:row Column:col];
+		
+		if (row > 0)
+		{
+			[[self sourceView] highlightLine:row Column:col];
+			return;
+		}
 	}
-	else 
-	{
-		[[self sourceView] setShowsHighlight:NO];
-	}
-}
-
-
-/*———————————————————————————————————————————————————————————————————*
-	tableViewSelectionDidChange:
-		We arrived here by virtue of this controller class being the
-		delegate of the table. Whenever the selection changes
-		we're going to highlight and show the related column/row
-		in the |sourceView|.
- *———————————————————————————————————————————————————————————————————*/
-- (void)tableViewSelectionDidChange:(NSNotification *)aNotification
-{
-	// Get the description of the selected row.
-	if ([aNotification object] == [self errorView])
-	{
-		[self errorClicked:self];
-	}
+	
+	[[self sourceView] setShowsHighlight:NO];
 }
 
 
@@ -573,11 +563,12 @@
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	splitView:constrainMinCoordinate:ofSubviewAt:
 		We're here because we're the delegate of the split views.
-		This allows us to set the minimum constrain of the left/top
+		This allows us to set the minimum constraint of the left/top
 		item in a splitview. Must coordinate max to ensure others
 		have space, too.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (CGFloat)splitView:(NSSplitView *)splitView constrainMinCoordinate:(CGFloat)proposedMinimumPosition ofSubviewAt:(NSInteger)dividerIndex
+- (CGFloat)splitView:(NSSplitView *)splitView constrainMinCoordinate:(CGFloat)proposedMinimumPosition
+														 ofSubviewAt:(NSInteger)dividerIndex
 {
 	// The main splitter
 	if (splitView == [self splitLeftRight])
@@ -600,7 +591,8 @@
 	splitView:constrainMaxCoordinate:ofSubviewAt:
 		We're here because we're the delegate of the split views.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (CGFloat)splitView:(NSSplitView *)splitView constrainMaxCoordinate:(CGFloat)proposedMinimumPosition ofSubviewAt:(NSInteger)dividerIndex
+- (CGFloat)splitView:(NSSplitView *)splitView constrainMaxCoordinate:(CGFloat)proposedMinimumPosition
+														 ofSubviewAt:(NSInteger)dividerIndex
 {
 	// The main splitter
 	if (splitView == [self splitLeftRight])
@@ -614,7 +606,6 @@
 		return [[splitView subviews][0] frame].size.height +
 				[[splitView subviews][1] frame].size.height - 68.0f;
 	}
-	
 	
 	// The text views' second splitter
 	return [splitView frame].size.height - 68.0f;	
@@ -639,7 +630,7 @@
 }
 
 
-#pragma mark - tab key handling
+#pragma mark - Tab key handling
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*

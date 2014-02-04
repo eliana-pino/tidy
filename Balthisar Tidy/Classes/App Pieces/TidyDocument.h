@@ -32,7 +32,7 @@
 #import "JSDTidyDocument.h"
 #import "OptionPaneController.h"
 
-@interface TidyDocument : NSDocument
+@interface TidyDocument : NSDocument <NSTableViewDelegate, NSSplitViewDelegate, NSTextViewDelegate>
 
 /*
 	Nothing is publically exposed.
