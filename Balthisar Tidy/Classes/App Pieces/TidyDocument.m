@@ -77,10 +77,18 @@
 
 #pragma mark - Properties
 
-// View outlets
+// View Outlets
 @property (nonatomic, assign) IBOutlet NSTextView *sourceView;
 @property (nonatomic, assign) IBOutlet NSTextView *tidyView;
 @property (nonatomic, weak) IBOutlet NSTableView *errorView;
+
+// Popover Outlets
+@property (nonatomic, weak) IBOutlet NSPopover *popover;
+@property (nonatomic, weak) IBOutlet NSButton *buttonDoNotWarnAgain;
+@property (nonatomic, weak) IBOutlet NSButton *buttonAllowChange;
+@property (nonatomic, weak) IBOutlet NSButton *buttonIgnoreSuggestion;
+@property (nonatomic, weak) IBOutlet NSTextField *textFieldExplanation;
+
 
 // Window Splitters
 @property (nonatomic, weak) IBOutlet NSSplitView *splitLeftRight;		// The left-right (main) split view in the Doc window.
@@ -97,10 +105,17 @@
 @property (nonatomic, assign) JSDSaveType saveBehavior;
 @property (nonatomic, assign) BOOL saveWarning;
 @property (nonatomic, assign) BOOL yesSavedAs;
+@property (nonatomic, assign) BOOL ignoreInputEncodingWhenOpening;
 
 // Document Control
 @property (nonatomic, strong) NSData *documentOpenedData;				// Hold file we open until nib is awake.
 @property (nonatomic, assign) BOOL documentIsLoading;					// Flag to supress certain event updates.
+
+
+#pragma mark - Methods
+
+// Popover Actions
+- (IBAction)popoverHandler:(id)sender;									// Handler for all popover actions.
 
 
 @end
@@ -332,6 +347,10 @@
 	self.yesSavedAs = NO;
 
 	
+	// Other defaults system items
+	self.ignoreInputEncodingWhenOpening = [defaults boolForKey:JSDKeyIgnoreInputEncodingWhenOpening];
+
+	
 	// Set the document options.
 	[[self tidyProcess] optionCopyFromDocument:[[self optionController] tidyDocument]];
 
@@ -367,7 +386,13 @@
 											   object:[self tidyProcess]];
 	
 	
+	if ( ([self documentOpenedData]) && (![defaults boolForKey:JSDKeyIgnoreInputEncodingWhenOpening]) )
+	{
+		[self inputEncodingSanityCheck];
+	}
+	
 	// Set the tidyProcess data. The event system will set the view later.
+	// If we're a new document, then documentOpenData nil is fine.
 	self.documentIsLoading = YES;
 	[[self tidyProcess] setSourceTextWithData:[self documentOpenedData]];
 }
@@ -468,7 +493,94 @@
 }
 
 
-#pragma mark - Support for the Error Table
+#pragma mark - Document Opening Encoding Error Support
+
+
+/*———————————————————————————————————————————————————————————————————*
+	inputEncodingSanityCheck
+		We're called from windowControllerDidLoadNib.
+		As a favor to the user, attempt some basic input-encoding
+		sanity checking.
+ *———————————————————————————————————————————————————————————————————*/
+- (void)inputEncodingSanityCheck
+{
+	if ([self documentOpenedData])
+	{
+		NSStringEncoding currentInputEncoding = [[[self tidyProcess] optionValueForId:TidyInCharEncoding] longLongValue];
+		NSUInteger dataSize = [[self documentOpenedData] length];
+		NSUInteger stringSize = [[[NSString alloc] initWithData:[self documentOpenedData] encoding:currentInputEncoding] length];
+		
+		if ( (dataSize > 0) && (stringSize < 1) )
+		{
+			/*
+				It's likely that the string wasn't decoded properly, so we will
+				prepare and present a friendly NSPopover with an explanation and
+				some options.
+			*/
+	
+			/*
+				We will try all of the following encodings until we get a hit.
+			*/
+			
+			NSArray *encodingsToTry = @[@(NSUTF8StringEncoding),
+										@([NSString defaultCStringEncoding]),
+										@(NSMacOSRomanStringEncoding)];
+			
+			NSStringEncoding suggestedInputEncoding = NSMacOSRomanStringEncoding;
+			for(NSNumber *encoding in encodingsToTry)
+			{
+				if ([[[NSString alloc] initWithData:[self documentOpenedData] encoding:[encoding longLongValue]] length] > 0)
+				{
+					suggestedInputEncoding = [encoding longLongValue];
+					break;
+				}
+			}
+						
+			NSString *docName = [[self fileURL] lastPathComponent];
+			NSString *encodingCurrent = [NSString localizedNameOfStringEncoding:currentInputEncoding];
+			NSString *encodingSuggested = [NSString localizedNameOfStringEncoding:suggestedInputEncoding];
+
+			NSString *newMessage = [NSString stringWithFormat:[[self textFieldExplanation] stringValue], docName, encodingCurrent, encodingSuggested];
+
+			[[self textFieldExplanation] setStringValue:newMessage];
+			
+			[[self buttonDoNotWarnAgain] setState:[self ignoreInputEncodingWhenOpening]];
+			NSLog(@"%ld", (long)self.buttonIgnoreSuggestion.state);
+			
+			[[self buttonAllowChange] setTag:suggestedInputEncoding]; // Cheat. We'll fetch this in the handler. Should be 64-bit.
+			
+			[[self sourceView] setEditable:NO];
+			
+			[[self popover] showRelativeToRect:[[self sourceView] bounds]
+										ofView:[self sourceView]
+								 preferredEdge:NSMaxYEdge];
+		}
+	}
+}
+
+
+/*———————————————————————————————————————————————————————————————————*
+	popoverHandler
+		Handles all possibles actions from the input-encoding
+		helper popover. The only two senders should be
+		buttonAllowChange and buttonIgnoreSuggestion.
+ *———————————————————————————————————————————————————————————————————*/
+- (IBAction)popoverHandler:(id)sender
+{
+	if (sender == [self buttonAllowChange])
+	{
+		[[[self optionController] tidyDocument] setOptionValueForId:TidyInCharEncoding fromObject:@([[self buttonAllowChange] tag])];
+		[[[self optionController] theTable] reloadData];
+	}
+	
+	[[NSUserDefaults standardUserDefaults] setBool:[[self buttonDoNotWarnAgain] state] forKey:JSDKeyIgnoreInputEncodingWhenOpening];
+	
+	[[self sourceView] setEditable:YES];
+	[[self popover] performClose:self];
+}
+
+
+#pragma mark - Error Table Handling
 
 
 /*———————————————————————————————————————————————————————————————————*
