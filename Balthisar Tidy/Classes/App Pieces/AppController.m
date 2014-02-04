@@ -35,15 +35,6 @@
 #import "PreferenceController.h"
 
 
-#pragma mark - CATEGORY - Non-Public
-
-@interface AppController ()
-
-	@property (readonly, nonatomic) PreferenceController *thePreferenceController;
-
-@end
-
-
 #pragma mark - IMPLEMENTATION
 
 

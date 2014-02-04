@@ -37,6 +37,8 @@
 
 @interface AppController : NSObject <NSApplicationDelegate>
 
+@property (readonly, nonatomic) PreferenceController *thePreferenceController;
+
 - (IBAction)showPreferences:(id)sender;
 
 @end
