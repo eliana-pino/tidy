@@ -44,6 +44,9 @@
 	// Want to expose the tidyDocument because it's our star attraction.
 	@property (nonatomic, strong) JSDTidyDocument *tidyDocument;
 
+	// We want to expose it so we can force reload data.
+	@property (weak, nonatomic) IBOutlet NSTableView *theTable;
+
 
 - (id)init;											// Initialize the view so we can use it.
 

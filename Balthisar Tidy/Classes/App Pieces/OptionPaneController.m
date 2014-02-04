@@ -49,7 +49,6 @@
 }
 
 	@property (weak, nonatomic) IBOutlet NSView *View;					// Pointer to the NIB's |View|.
-	@property (weak, nonatomic) IBOutlet NSTableView *theTable;			// Pointer to the table
 	@property (weak, nonatomic) IBOutlet NSTextField *theDescription;	// Pointer to the description field.
 
 
