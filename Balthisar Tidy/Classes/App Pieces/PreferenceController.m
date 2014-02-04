@@ -96,12 +96,13 @@
 	// Put all of the defaults in the dictionary
 	defaultValues[JSDKeySavingPrefStyle] = @(kJSDSaveAsOnly);
 	defaultValues[JSDKeyWarnBeforeOverwrite] = @NO;
+	defaultValues[JSDKeyIgnoreInputEncodingWhenOpening] = @NO;
 	
 	// Get the defaults from the linked-in TidyLib
 	[JSDTidyDocument addDefaultsToDictionary:defaultValues];
 	
 	// Register the defaults with the defaults system
-	[[NSUserDefaults standardUserDefaults] registerDefaults: defaultValues];
+	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
 }
 
 
