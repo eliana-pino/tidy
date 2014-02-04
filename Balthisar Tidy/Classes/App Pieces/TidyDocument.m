@@ -187,7 +187,7 @@
 	
 	if (success)
 	{
-		[_sourceView setString:[[self tidyProcess] tidyText]];
+		[[self sourceView] setString:[[self tidyProcess] tidyText]];
 		self.yesSavedAs = YES;
 	}
 	
@@ -206,14 +206,11 @@
 - (IBAction)saveDocument:(id)sender
 {
 	/*
-		Normal save, but with a warning and chance to back out. Here's
-		the logic for how this works:
-			(1) the user requested a warning before overwriting 
-			    original files.
+		Normal save, but with a warning and chance to back out.
+			(1) the user requested a warning before overwriting original files.
 			(2) the |sourceView| isn't empty.
-			(3) the file hasn't been saved already. This last is
-				important, because if the file has already been
-				edited and saved, there's no longer an "original" 
+			(3) the file hasn't been saved already. This last is important, because
+				if the file has already been edited and saved, there's no longer an "original"
 				file to protect.
 	*/
 
@@ -287,15 +284,15 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)configureViewSettings:(NSTextView *)aView
 {
-	[aView setFont:[NSFont fontWithName:@"Courier" size:12]];	// Set the font for the views.
-	[aView setRichText:NO];										// Don't allow rich text.
-	[aView setUsesFontPanel:NO];								// Don't allow the font panel.
-	[aView setContinuousSpellCheckingEnabled:NO];				// Turn off spell checking.
-	[aView setSelectable:YES];									// Text can be selectable.
-	[aView setEditable:NO];										// Text shouldn't be editable.
-	[aView setImportsGraphics:NO];								// Don't let user import graphics.
-	[aView setWordwrapsText:NO];								// Provided by category `NSTextView+JSDExtensions`
-	[aView setShowsLineNumbers:YES];							// Provided by category `NSTextView+JSDExtensions`
+	[aView setFont:[NSFont fontWithName:@"Courier" size:12]];
+	[aView setRichText:NO];
+	[aView setUsesFontPanel:NO];
+	[aView setContinuousSpellCheckingEnabled:NO];
+	[aView setSelectable:YES];
+	[aView setEditable:NO];
+	[aView setImportsGraphics:NO];
+	[aView setWordwrapsText:NO];					// Provided by category `NSTextView+JSDExtensions`
+	[aView setShowsLineNumbers:YES];				// Provided by category `NSTextView+JSDExtensions`
 }
 
 
@@ -306,12 +303,12 @@
 - (void) awakeFromNib
 {
 	// Create a OptionPaneController and put it in place of optionPane.
-	if (!_optionController)
+	if (![self optionController])
 	{
-		_optionController = [[OptionPaneController alloc] init];
+		self.optionController = [[OptionPaneController alloc] init];
 	}
 	
-	[_optionController putViewIntoView:_optionPane];
+	[[self optionController] putViewIntoView:[self optionPane]];
 }
 
 
@@ -325,14 +322,14 @@
 	[super windowControllerDidLoadNib:aController];
 
 	
-	[self configureViewSettings:_sourceView];
-	[self configureViewSettings:_tidyView];
-	[_sourceView setEditable:YES];
+	[self configureViewSettings:[self sourceView]];
+	[self configureViewSettings:[self tidyView]];
+	[[self sourceView] setEditable:YES];
 
 	
 	// Honor the defaults system defaults.
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];			// Get the default default system
-	[[_optionController tidyDocument] takeOptionValuesFromDefaults:defaults];	// Make the optionController take the values
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];				// Get the default default system.
+	[[[self optionController] tidyDocument] takeOptionValuesFromDefaults:defaults];	// Make the optionController take the values.
 
 	
 	// Saving behavior settings
@@ -342,7 +339,7 @@
 
 	
 	// Set the document options.
-	[[self tidyProcess] optionCopyFromDocument:[_optionController tidyDocument]];
+	[[self tidyProcess] optionCopyFromDocument:[[self optionController] tidyDocument]];
 
 	
 	/*
@@ -404,7 +401,7 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)handleTidyOptionChange:(NSNotification *)note
 {
-	[[self tidyProcess] optionCopyFromDocument:[_optionController tidyDocument]];
+	[[self tidyProcess] optionCopyFromDocument:[[self optionController] tidyDocument]];
 }
 
 
@@ -430,7 +427,7 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)handleTidySourceTextChange:(NSNotification *)note
 {
-	[_sourceView setString:[[self tidyProcess] sourceText]];
+	[[self sourceView] setString:[[self tidyProcess] sourceText]];
 }
 
 
@@ -440,9 +437,9 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)handleTidyTidyTextChange:(NSNotification *)note
 {
-	[_tidyView setString:[[self tidyProcess] tidyText]];	// Put the tidy'd text into the |tidyView|.
-	[_errorView reloadData];								// Reload the error data.
-	[_errorView deselectAll:self];							// Deselect the selected row.
+	[[self tidyView] setString:[[self tidyProcess] tidyText]];		// Put the tidy'd text into the |tidyView|.
+	[[self errorView] reloadData];									// Reload the error data.
+	[[self errorView] deselectAll:self];							// Deselect the selected row.
 
 	// TODO: is this better off in textDidChange?
 	// Handle document dirty detection
@@ -468,7 +465,7 @@
 {
 	if (![self documentIsLoading])
 	{
-		[[self tidyProcess] setSourceText:[_sourceView string]];
+		[[self tidyProcess] setSourceText:[[self sourceView] string]];
 	}
 	else
 	{
@@ -539,16 +536,16 @@
  *———————————————————————————————————————————————————————————————————*/
 - (IBAction)errorClicked:(id)sender
 {
-	NSInteger errorViewRow = [_errorView selectedRow];
+	NSInteger errorViewRow = [[self errorView] selectedRow];
 	if (errorViewRow >= 0)
 	{
 		NSInteger row = [[[self tidyProcess] errorArray][errorViewRow][@"line"] intValue];
 		NSInteger col = [[[self tidyProcess] errorArray][errorViewRow][@"column"] intValue];
-		[_sourceView highlightLine:row Column:col];
+		[[self sourceView] highlightLine:row Column:col];
 	}
 	else 
 	{
-		[_sourceView setShowsHighlight:NO];
+		[[self sourceView] setShowsHighlight:NO];
 	}
 }
 
@@ -563,7 +560,7 @@
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification
 {
 	// Get the description of the selected row.
-	if ([aNotification object] == _errorView)
+	if ([aNotification object] == [self errorView])
 	{
 		[self errorClicked:self];
 	}
@@ -583,7 +580,7 @@
 - (CGFloat)splitView:(NSSplitView *)splitView constrainMinCoordinate:(CGFloat)proposedMinimumPosition ofSubviewAt:(NSInteger)dividerIndex
 {
 	// The main splitter
-	if (splitView == _splitLeftRight)
+	if (splitView == [self splitLeftRight])
 	{
 		return 250.0f;
 	}
@@ -606,7 +603,7 @@
 - (CGFloat)splitView:(NSSplitView *)splitView constrainMaxCoordinate:(CGFloat)proposedMinimumPosition ofSubviewAt:(NSInteger)dividerIndex
 {
 	// The main splitter
-	if (splitView == _splitLeftRight)
+	if (splitView == [self splitLeftRight])
 	{
 		return [splitView frame].size.width - 150.0f;
 	}
@@ -631,9 +628,9 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (BOOL)splitView:(NSSplitView *)splitView shouldAdjustSizeOfSubview:(NSView *)subview
 {
-	if (splitView == _splitLeftRight)
+	if (splitView == [self splitLeftRight])
 	{
-		if (subview == [_splitLeftRight subviews][0])
+		if (subview == [[self splitLeftRight] subviews][0])
 		{
 			return NO;
 		}
