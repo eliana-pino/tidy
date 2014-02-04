@@ -34,5 +34,8 @@
 
 @interface TidyDocument : NSDocument
 
+/*
+	Nothing is publically exposed.
+*/
 	
 @end

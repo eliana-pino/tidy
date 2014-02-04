@@ -73,33 +73,34 @@
 
 
 @interface TidyDocument ()
-{
-	JSDTidyDocument *tidyProcess;			// Our tidy processor.
-	
-	NSInteger saveBehavior;					// The save behavior from the preferences.
-	BOOL saveWarning;						// The warning behavior for when saveBehavior == 1;
-	BOOL yesSavedAs;						// Disable warnings and protections once a save-as has been done.
-	
-	NSData *documentOpenedData;				// Hold the file that we opened with until the nib is awake.
-	
-	BOOL documentIsLoading;					// Flag to indicate that new data was loaded from disk (see notes above)
-}
 
 
 #pragma mark - Properties
 
 // View outlets
-@property (nonatomic, assign) IBOutlet NSTextView *sourceView;			// Pointer to the source HTML view.
-@property (nonatomic, assign) IBOutlet NSTextView *tidyView;			// Pointer to the tidy'd HTML view.
-@property (nonatomic, weak) IBOutlet NSTableView *errorView;			// Pointer to where to display the error messages.
+@property (nonatomic, assign) IBOutlet NSTextView *sourceView;
+@property (nonatomic, assign) IBOutlet NSTextView *tidyView;
+@property (nonatomic, weak) IBOutlet NSTableView *errorView;
 
 // Window Splitters
 @property (nonatomic, weak) IBOutlet NSSplitView *splitLeftRight;		// The left-right (main) split view in the Doc window.
 @property (nonatomic, weak) IBOutlet NSSplitView *splitTopDown;			// Top top-to-bottom split view in the Doc window.
 
 // Option Controller
-@property (nonatomic, weak) IBOutlet NSView *optionPane;				// Pointer to our empty optionPane.
-@property (nonatomic, strong) OptionPaneController *optionController;	// This will control the real option pane loaded into optionPane
+@property (nonatomic, weak) IBOutlet NSView *optionPane;				// Our empty optionPane in the nib.
+@property (nonatomic, strong) OptionPaneController *optionController;	// The real option pane we load into optionPane.
+
+// Our Tidy Processor
+@property (nonatomic, strong) JSDTidyDocument *tidyProcess;
+
+// Preferences flags
+@property (nonatomic, assign) JSDSaveType saveBehavior;
+@property (nonatomic, assign) BOOL saveWarning;
+@property (nonatomic, assign) BOOL yesSavedAs;
+
+// Document Control
+@property (nonatomic, strong) NSData *documentOpenedData;				// Hold file we open until nib is awake.
+@property (nonatomic, assign) BOOL documentIsLoading;					// Flag to supress certain event updates.
 
 
 #pragma mark - Methods
@@ -133,7 +134,7 @@
 - (BOOL)readFromURL:(NSString *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError
 {
 	// Save the data for use until after the Nib is awake.
-	documentOpenedData = [NSData dataWithContentsOfFile:absoluteURL];
+	self.documentOpenedData = [NSData dataWithContentsOfFile:absoluteURL];
 		
 	return YES;
 }
@@ -152,8 +153,8 @@
 	
 	if ((didRevert = [super revertToContentsOfURL:absoluteURL ofType:typeName error:outError]))
 	{
-		documentIsLoading = YES;
-		[tidyProcess setSourceTextWithData:documentOpenedData];
+		self.documentIsLoading = YES;
+		[[self tidyProcess] setSourceTextWithData:[self documentOpenedData]];
 	}
 	
 	return didRevert;
@@ -168,7 +169,7 @@
  *———————————————————————————————————————————————————————————————————*/
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
 {
-	return [tidyProcess tidyTextAsData];
+	return [[self tidyProcess] tidyTextAsData];
 }
 
 
@@ -177,9 +178,8 @@
 		Called as a result of saving files, and does the actual
 		writing. We're going to override it so that we can update
 		the |sourceView| automatically any time the file is saved.
-		The logic is once the file is saved the |sourceview| ought
-		to reflect the actual file contents, which is the tidy'd
-		view.
+		Setting |sourceView| will kick off the |textDidChange| event
+		chain, which will set [tidyProcess sourceText] for us later.
  *———————————————————————————————————————————————————————————————————*/
 - (BOOL)writeToURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError
 {
@@ -187,14 +187,8 @@
 	
 	if (success)
 	{
-		/*
-			Setting |sourceView| will kick off the |textDidChange|
-			event chain, which will set [tidyProcess sourceText]
-			for us later.
-		*/
-		[_sourceView setString:[tidyProcess tidyText]];
-
-		yesSavedAs = YES;
+		[_sourceView setString:[[self tidyProcess] tidyText]];
+		self.yesSavedAs = YES;
 	}
 	
 	return success;
@@ -203,7 +197,7 @@
 
 /*———————————————————————————————————————————————————————————————————*
 	saveDocument
-		we're going to override the default save to make sure we
+		We're going to override the default save to make sure we
 		can comply with the user's preferences. We're going to be
 		over-protective because we don't want to get blamed for
 		screwing up the user's data if Tidy doesn't process 
@@ -224,22 +218,22 @@
 	*/
 
 	// Warning will only apply if there's a current file and it's NOT been saved yet, and it's not new.
-	if ( (saveBehavior == kJSDSaveButWarn) && 				// Behavior is protective AND
-		(saveWarning) &&									// We want to have a warning AND
-		(yesSavedAs == NO) &&								// We've NOT yet done a save as... AND
-		([[[self fileURL] path] length] != 0 ))				// The file name isn't zero length.
+	if ( ([self saveBehavior] == kJSDSaveButWarn) && 				// Behavior is protective AND
+		 ([self saveWarning]) &&									// We want to have a warning AND
+		 (![self yesSavedAs]) &&									// We've NOT yet done a save as... AND
+		 ([[[self fileURL] path] length] > 0) )						// The file name isn't zero length.
 	{
 		NSInteger i = NSRunAlertPanel(NSLocalizedString(@"WarnSaveOverwrite", nil), NSLocalizedString(@"WarnSaveOverwriteExplain", nil),
 									  NSLocalizedString(@"continue save", nil), NSLocalizedString(@"do not save", nil) , nil);
 		
 		if (i == NSAlertAlternateReturn)
 		{
-			return; // Don't continue the save operation if user chose don't save.
+			return; // User chose don't save.
 		}
 	}
 
 	// Save is completely disabled -- tell user to Save As…
-	if (saveBehavior == kJSDSaveAsOnly)
+	if ([self saveBehavior] == kJSDSaveAsOnly)
 	{
 		NSRunAlertPanel(NSLocalizedString(@"WarnSaveDisabled", nil), NSLocalizedString(@"WarnSaveDisabledExplain", nil),
 						NSLocalizedString(@"cancel", nil), nil, nil);
@@ -262,12 +256,10 @@
  *———————————————————————————————————————————————————————————————————*/
 - (id)init
 {
-	self = [super init];
-	if (self)
+	if ((self = [super init]))
 	{
-		tidyProcess = [[JSDTidyDocument alloc] init];	// Use our own |tidyProcess|.
-		
-		documentOpenedData = nil;
+		self.tidyProcess = [[JSDTidyDocument alloc] init];
+		self.documentOpenedData = nil;
 	}
 	
 	return self;
@@ -283,10 +275,9 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyOptionChanged object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifySourceTextChanged object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyTidyTextChanged object:nil];
-	//self.sourceView.showsLineNumbers = NO;
-	//self.tidyView.showsLineNumbers = NO;
 	_sourceView = nil;
 	_tidyView = nil;
+	_optionController = nil;
 }
 
 
@@ -345,13 +336,13 @@
 
 	
 	// Saving behavior settings
-	saveBehavior = [defaults integerForKey:JSDKeySavingPrefStyle];
-	saveWarning = [defaults boolForKey:JSDKeyWarnBeforeOverwrite];
-	yesSavedAs = NO;
+	self.saveBehavior = [defaults integerForKey:JSDKeySavingPrefStyle];
+	self.saveWarning = [defaults boolForKey:JSDKeyWarnBeforeOverwrite];
+	self.yesSavedAs = NO;
 
 	
 	// Set the document options.
-	[tidyProcess optionCopyFromDocument:[_optionController tidyDocument]];
+	[[self tidyProcess] optionCopyFromDocument:[_optionController tidyDocument]];
 
 	
 	/*
@@ -376,18 +367,18 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(handleTidySourceTextChange:)
 												 name:tidyNotifySourceTextChanged
-											   object:tidyProcess];
+											   object:[self tidyProcess]];
 	
 	// NSNotifications from the tidyProcess indicate that tidyText changed.
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(handleTidyTidyTextChange:)
 												 name:tidyNotifyTidyTextChanged
-											   object:tidyProcess];
+											   object:[self tidyProcess]];
 	
 	
 	// Set the tidyProcess data. The event system will set the view later.
-	documentIsLoading = YES;
-	[tidyProcess setSourceTextWithData:documentOpenedData];
+	self.documentIsLoading = YES;
+	[[self tidyProcess] setSourceTextWithData:[self documentOpenedData]];
 }
 
 
@@ -413,7 +404,7 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)handleTidyOptionChange:(NSNotification *)note
 {
-	[tidyProcess optionCopyFromDocument:[_optionController tidyDocument]];
+	[[self tidyProcess] optionCopyFromDocument:[_optionController tidyDocument]];
 }
 
 
@@ -424,8 +415,8 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)handleSavePrefChange:(NSNotification *)note
 {
-	saveBehavior = [[NSUserDefaults standardUserDefaults] integerForKey:JSDKeySavingPrefStyle];
-	saveWarning = [[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyWarnBeforeOverwrite];
+	self.saveBehavior = [[NSUserDefaults standardUserDefaults] integerForKey:JSDKeySavingPrefStyle];
+	self.saveWarning = [[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyWarnBeforeOverwrite];
 }
 
 
@@ -439,7 +430,7 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)handleTidySourceTextChange:(NSNotification *)note
 {
-	[_sourceView setString:[tidyProcess sourceText]];
+	[_sourceView setString:[[self tidyProcess] sourceText]];
 }
 
 
@@ -449,13 +440,13 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)handleTidyTidyTextChange:(NSNotification *)note
 {
-	[_tidyView setString:[tidyProcess tidyText]];			// Put the tidy'd text into the |tidyView|.
+	[_tidyView setString:[[self tidyProcess] tidyText]];	// Put the tidy'd text into the |tidyView|.
 	[_errorView reloadData];								// Reload the error data.
 	[_errorView deselectAll:self];							// Deselect the selected row.
 
 	// TODO: is this better off in textDidChange?
 	// Handle document dirty detection
-	if ( (![tidyProcess isDirty]) || ([[tidyProcess sourceText] length] == 0 ) )
+	if ( (![[self tidyProcess] isDirty]) || ([[[self tidyProcess] sourceText] length] == 0 ) )
 	{
 		[self updateChangeCount:NSChangeCleared];
 	}
@@ -475,13 +466,13 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)textDidChange:(NSNotification *)aNotification
 {
-	if (!documentIsLoading)
+	if (![self documentIsLoading])
 	{
-		[tidyProcess setSourceText:[_sourceView string]];
+		[[self tidyProcess] setSourceText:[_sourceView string]];
 	}
 	else
 	{
-		documentIsLoading = NO;
+		self.documentIsLoading = NO;
 	}
 }
 
@@ -496,7 +487,7 @@
  *———————————————————————————————————————————————————————————————————*/
 - (NSUInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
-	return [[tidyProcess errorArray] count];
+	return [[[self tidyProcess] errorArray] count];
 }
 
 
@@ -509,7 +500,7 @@
  *———————————————————————————————————————————————————————————————————*/
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
 {
-	NSDictionary *error = [tidyProcess errorArray][rowIndex];	// Get the current error
+	NSDictionary *error = [[self tidyProcess] errorArray][rowIndex];
 
 	// List of error types -- not localized; users can localize based on this string.
 	NSArray *errorTypes = @[@"Info:", @"Warning:", @"Config:", @"Access:", @"Error:", @"Document:", @"Panic:"];
@@ -551,8 +542,8 @@
 	NSInteger errorViewRow = [_errorView selectedRow];
 	if (errorViewRow >= 0)
 	{
-		NSInteger row = [[tidyProcess errorArray][errorViewRow][@"line"] intValue];
-		NSInteger col = [[tidyProcess errorArray][errorViewRow][@"column"] intValue];
+		NSInteger row = [[[self tidyProcess] errorArray][errorViewRow][@"line"] intValue];
+		NSInteger col = [[[self tidyProcess] errorArray][errorViewRow][@"column"] intValue];
 		[_sourceView highlightLine:row Column:col];
 	}
 	else 
