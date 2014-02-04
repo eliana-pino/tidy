@@ -129,7 +129,7 @@
 
 	[[[self theTable] enclosingScrollView] setHasHorizontalScroller:NO];
 
-	[[self View] setFrame:[dstView frame]];
+	[[self View] setFrame:[dstView bounds]];
 
 	[dstView addSubview:_View];
 }
