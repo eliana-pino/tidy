@@ -4,9 +4,7 @@
 	 
 	part of Balthisar Tidy
 
-	The main document controller. Here we'll control the following:
-
-		o
+	The main document controller.
 
 
 	The MIT License (MIT)
@@ -36,16 +34,5 @@
 
 @interface TidyDocument : NSDocument
 
-	// View outlets
-	@property (nonatomic, assign) IBOutlet NSTextView *sourceView;			// Pointer to the source HTML view.
-	@property (nonatomic, assign) IBOutlet NSTextView *tidyView;			// Pointer to the tidy'd HTML view.
-	@property (nonatomic, weak) IBOutlet NSTableView *errorView;			// Pointer to where to display the error messages.
-
-	// Items for the option controller and pane
-	@property (nonatomic, weak) IBOutlet NSView *optionPane;				// Pointer to our empty optionPane.
-	@property (nonatomic, strong) OptionPaneController *optionController;	// This will control the real option pane loaded into optionPane
-
 	
-- (IBAction)errorClicked:(id)sender;		// React to an error row being clicked.
-
 @end

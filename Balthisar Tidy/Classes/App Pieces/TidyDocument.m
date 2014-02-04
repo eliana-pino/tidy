@@ -4,9 +4,7 @@
 
 	part of Balthisar Tidy
 
-	The main document controller. Here we'll control the following:
-
-		o
+	The main document controller.
 
 
 	The MIT License (MIT)
@@ -71,7 +69,7 @@
 #import "NSTextView+JSDExtensions.h"
 
 
-#pragma mark - Non-Public iVars, Properties, and Method declarations
+#pragma mark - CATEGORY - Non-Public
 
 
 @interface TidyDocument ()
@@ -87,13 +85,33 @@
 	BOOL documentIsLoading;					// Flag to indicate that new data was loaded from disk (see notes above)
 }
 
-@property (nonatomic, weak) IBOutlet NSSplitView *splitLeftRight;	// The left-right (main) split view in the Doc window.
-@property (nonatomic, weak) IBOutlet NSSplitView *splitTopDown;		// Top top-to-bottom split view in the Doc window.
+
+#pragma mark - Properties
+
+// View outlets
+@property (nonatomic, assign) IBOutlet NSTextView *sourceView;			// Pointer to the source HTML view.
+@property (nonatomic, assign) IBOutlet NSTextView *tidyView;			// Pointer to the tidy'd HTML view.
+@property (nonatomic, weak) IBOutlet NSTableView *errorView;			// Pointer to where to display the error messages.
+
+// Window Splitters
+@property (nonatomic, weak) IBOutlet NSSplitView *splitLeftRight;		// The left-right (main) split view in the Doc window.
+@property (nonatomic, weak) IBOutlet NSSplitView *splitTopDown;			// Top top-to-bottom split view in the Doc window.
+
+// Option Controller
+@property (nonatomic, weak) IBOutlet NSView *optionPane;				// Pointer to our empty optionPane.
+@property (nonatomic, strong) OptionPaneController *optionController;	// This will control the real option pane loaded into optionPane
+
+
+#pragma mark - Methods
+
+// Target-Action
+- (IBAction)errorClicked:(id)sender;									// React to an error row being clicked.
+
 
 @end
 
 
-#pragma mark - Implementation
+#pragma mark - IMPLEMENTATION
 
 
 @implementation TidyDocument
@@ -103,7 +121,7 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
-	readFromFile:
+	readFromURL:ofType:error
 		Called as part of the responder chain. We already have a
 		name and type as a result of
 			(1) the file picker, or
@@ -112,27 +130,27 @@
 		and process it when the nib awakes (since we're	likely to be
 		called here before the nib and its controls exist).
  *———————————————————————————————————————————————————————————————————*/
-- (BOOL)readFromFile:(NSString *)filename ofType:(NSString *)docType
+- (BOOL)readFromURL:(NSString *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError
 {
 	// Save the data for use until after the Nib is awake.
-	documentOpenedData = [NSData dataWithContentsOfFile:filename];
+	documentOpenedData = [NSData dataWithContentsOfFile:absoluteURL];
 		
 	return YES;
 }
 
 
 /*———————————————————————————————————————————————————————————————————*
-	revertToSavedFromFile:ofType
+	revertToContentsOfURL:ofType:error
 		Allow the default reversion to take place, and then put the
 		correct value in the editor if it took place. The inherited
 		method does |readFromFile|, so put the documentOpenedData
 		into our |tidyProcess|.
  *———————————————————————————————————————————————————————————————————*/
-- (BOOL)revertToSavedFromFile:(NSString *)fileName ofType:(NSString *)type
+- (BOOL)revertToContentsOfURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError
 {
 	BOOL didRevert;
 	
-	if ((didRevert = [super revertToSavedFromFile:fileName ofType:type]))
+	if ((didRevert = [super revertToContentsOfURL:absoluteURL ofType:typeName error:outError]))
 	{
 		documentIsLoading = YES;
 		[tidyProcess setSourceTextWithData:documentOpenedData];
@@ -233,7 +251,7 @@
 }
 
 
-#pragma mark - Initialization, Destruction, and Setup
+#pragma mark - Initialization and Deallocation and Setup
 
 
 /*———————————————————————————————————————————————————————————————————*
@@ -387,18 +405,6 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
-	handleSavePrefChange
-		This method receives "JSDSavePrefChange" notifications so
-		we can keep abreast of the user's desired "Save" behaviours.
- *———————————————————————————————————————————————————————————————————*/
-- (void)handleSavePrefChange:(NSNotification *)note
-{
-	saveBehavior = [[NSUserDefaults standardUserDefaults] integerForKey:JSDKeySavingPrefStyle];
-	saveWarning = [[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyWarnBeforeOverwrite];
-}
-
-
-/*———————————————————————————————————————————————————————————————————*
 	handleTidyOptionChange
 		One or more options changed in |optionController|. Copy
 		those options to our |tidyProcess|. The event chain will
@@ -408,6 +414,18 @@
 - (void)handleTidyOptionChange:(NSNotification *)note
 {
 	[tidyProcess optionCopyFromDocument:[_optionController tidyDocument]];
+}
+
+
+/*———————————————————————————————————————————————————————————————————*
+ handleSavePrefChange
+ This method receives "JSDSavePrefChange" notifications so
+ we can keep abreast of the user's desired "Save" behaviours.
+ *———————————————————————————————————————————————————————————————————*/
+- (void)handleSavePrefChange:(NSNotification *)note
+{
+	saveBehavior = [[NSUserDefaults standardUserDefaults] integerForKey:JSDKeySavingPrefStyle];
+	saveWarning = [[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyWarnBeforeOverwrite];
 }
 
 
