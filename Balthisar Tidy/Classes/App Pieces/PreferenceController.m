@@ -44,11 +44,18 @@
 
 #pragma mark - Properties
 
-@property (nonatomic, weak) IBOutlet NSButton *saving1;					// "Enable save" button in the nib.
-@property (nonatomic, weak) IBOutlet NSButton *saving2;					// "Disable save" button in the nib.
-@property (nonatomic, weak) IBOutlet NSButton *savingWarn;				// "Warn on save" button in the nib.
+// File Saving Pane Preferences
+@property (nonatomic, weak) IBOutlet NSButton *buttonSaving1;			// "Enable save" button in the nib.
+@property (nonatomic, weak) IBOutlet NSButton *buttonSaving2;			// "Disable save" button in the nib.
+@property (nonatomic, weak) IBOutlet NSButton *buttonSavingWarn;		// "Warn on save" button in the nib.
+@property (nonatomic, weak) IBOutlet NSTextField *savingWarnText;		// Extra text for warn on save button.
 
-@property (nonatomic, weak) IBOutlet NSView *optionPane;				// The empty pane in the nib that we will replace.
+// Miscellaneous Pane Preferences
+@property (nonatomic, weak) IBOutlet NSButton *buttonShowEncodingHelper;
+@property (nonatomic, weak) IBOutlet NSButton *buttonShowNewUserHelper;
+
+// Other Properties
+@property (nonatomic, weak) IBOutlet NSView *optionPane;				// The empty pane in the nib that we will inhabit.
 
 @property (nonatomic, strong) OptionPaneController *optionController;	// The real option pane loaded into optionPane.
 
@@ -95,8 +102,8 @@
 	
 	// Put all of the defaults in the dictionary
 	defaultValues[JSDKeySavingPrefStyle] = @(kJSDSaveAsOnly);
-	defaultValues[JSDKeyWarnBeforeOverwrite] = @NO;
 	defaultValues[JSDKeyIgnoreInputEncodingWhenOpening] = @NO;
+	defaultValues[JSDKeyFirstRunComplete] = @NO;
 	
 	// Get the defaults from the linked-in TidyLib
 	[JSDTidyDocument addDefaultsToDictionary:defaultValues];
@@ -158,15 +165,11 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)windowDidLoad
 {
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	
-	[[self saving1] setState:([defaults integerForKey: JSDKeySavingPrefStyle] == kJSDSaveButWarn)];
-	[[self saving2] setState:([defaults integerForKey: JSDKeySavingPrefStyle] == kJSDSaveAsOnly)];
-	[[self savingWarn] setState:[defaults boolForKey: JSDKeyWarnBeforeOverwrite]];
-	[[self savingWarn] setEnabled:[[self saving1] state]];
+	[self setupPreferenceStates];
 
 	
 	// Put the Tidy defaults into the |tidyProcess|.
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	[[self tidyProcess] takeOptionValuesFromDefaults:defaults];
 	
 	
@@ -178,47 +181,69 @@
 }
 
 
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	setupPreferenceStates
+		Have the preferences items reflect the correct state.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)setupPreferenceStates
+{
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	
+	// File Saving Preferences Panel
+	[[self buttonSaving1] setState:([defaults integerForKey:JSDKeySavingPrefStyle] != kJSDSaveAsOnly)];
+	[[self buttonSaving2] setState:([defaults integerForKey:JSDKeySavingPrefStyle] == kJSDSaveAsOnly)];
+	[[self buttonSavingWarn] setState:([defaults integerForKey:JSDKeySavingPrefStyle] == kJSDSaveButWarn)];
+	[[self buttonSavingWarn] setEnabled:[[self buttonSaving1] state]];
+	NSColor *newColor = [[self buttonSaving1] state] ? [NSColor controlTextColor] : [NSColor disabledControlTextColor];
+	[[self savingWarnText] setTextColor:newColor];
+
+	// Miscellaneous Preferences Panel
+	[[self buttonShowEncodingHelper] setState:![defaults boolForKey:JSDKeyIgnoreInputEncodingWhenOpening]];
+	[[self buttonShowNewUserHelper] setState:![defaults boolForKey:JSDKeyFirstRunComplete]];
+}
+
+
 #pragma mark - Events
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	radioSavingChanged
-		We're here because we are the action for both of the nib's
-		radio buttons.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (IBAction)radioSavingChanged:(id)sender
-{
-	[[self saving1] setState:NO];
-	[[self saving2] setState:NO];
-	[sender setState:YES];
-	[[self savingWarn] setEnabled:[[self saving1] state]];
-	[self preferenceChanged:nil];
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	preferenceChanged
-		We're here because we're tha action of the check box on
-		the nib, but also are sent here after handling the radio
-		buttons as well.
- 
-		One of the saving prefs changed. Log and notify.
+		We're here because we're the action for *all* of the non-
+		Tidy controls in the preferences window. Overhead is low
+		and we want to keep this to a single method.
+		Here we're only interested in recording the new preference,
+		and then we'll dispatch off to setupPreferenceStates and
+		then post the notification.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (IBAction)preferenceChanged:(id)sender
 {
-	[[NSUserDefaults standardUserDefaults] setInteger:kJSDSaveNoProtection forKey:JSDKeySavingPrefStyle];
-	
-	if ([[self saving1] state])
+	/*
+		Buttons saving1 and saving2 aren't in a matrix, and so we
+		will deal with their radio button logic directly.
+	*/
+		
+	if ( (sender == [self buttonSaving1]) || (sender == [self buttonSaving2]) || (sender == [self buttonSavingWarn]) )
 	{
-		[[NSUserDefaults standardUserDefaults] setInteger:kJSDSaveButWarn forKey:JSDKeySavingPrefStyle];
+		JSDSaveType saveType = kJSDSaveButWarn;
+		if ( sender == [self buttonSaving2] )
+		{
+			saveType = kJSDSaveAsOnly;
+		}
+		else
+		{
+			// only save1 could have just come high, or saveWarn was activated,
+			// meaning that save1 is active anyway.
+			saveType = [[self buttonSavingWarn] state] ? kJSDSaveButWarn : kJSDSaveNormal;
+		}
+		
+		[[NSUserDefaults standardUserDefaults] setInteger:saveType forKey:JSDKeySavingPrefStyle];
 	}
 	
-	if ([[self saving2] state])
-	{
-		[[NSUserDefaults standardUserDefaults] setInteger:kJSDSaveAsOnly forKey:JSDKeySavingPrefStyle];
-	}
-	
-	[[NSUserDefaults standardUserDefaults] setBool:[[self savingWarn] state] forKey:JSDKeyWarnBeforeOverwrite];
+	[[NSUserDefaults standardUserDefaults] setBool:![[self buttonShowEncodingHelper] state] forKey:JSDKeyIgnoreInputEncodingWhenOpening];
+
+	[[NSUserDefaults standardUserDefaults] setBool:![[self buttonShowNewUserHelper] state] forKey:JSDKeyFirstRunComplete];
+
+	[self setupPreferenceStates];
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:JSDSavePrefChange object:self];
 }

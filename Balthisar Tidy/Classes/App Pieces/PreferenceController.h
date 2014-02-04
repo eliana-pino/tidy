@@ -45,8 +45,8 @@
  */
 
 #define JSDKeySavingPrefStyle					@"SavingPrefStyle"
-#define JSDKeyWarnBeforeOverwrite				@"WarnBeforeOverwrite"
 #define JSDKeyIgnoreInputEncodingWhenOpening	@"IgnoreInputEncodingWhenOpeningFiles"
+#define JSDKeyFirstRunComplete					@"FirstRunComplete"
 
 /*
 	Instances of PreferenceController will post the following NSNotifications.
@@ -61,7 +61,7 @@
 
 typedef enum
 {
-	kJSDSaveNoProtection = 0,
+	kJSDSaveNormal = 0,
 	kJSDSaveButWarn = 1,
 	kJSDSaveAsOnly = 2
 } JSDSaveType;

@@ -9,9 +9,9 @@
                 <outlet property="buttonAllowChange" destination="Pcs-Iw-YN9" id="j3E-36-8li"/>
                 <outlet property="buttonDoNotWarnAgain" destination="doV-lt-6BJ" id="MM9-MD-RY9"/>
                 <outlet property="buttonIgnoreSuggestion" destination="BSz-1n-JGJ" id="9nF-G4-45V"/>
+                <outlet property="encodingPopover" destination="Ubj-f5-N5W" id="yDF-fC-hbm"/>
                 <outlet property="errorView" destination="398" id="401"/>
                 <outlet property="optionPane" destination="384" id="387"/>
-                <outlet property="popover" destination="Ubj-f5-N5W" id="8ES-4k-Ja7"/>
                 <outlet property="sourceView" destination="LIi-0a-MJV" id="aHs-1P-RdS"/>
                 <outlet property="splitLeftRight" destination="385" id="mrV-yF-kKe"/>
                 <outlet property="splitTopDown" destination="244" id="gmQ-vE-x4d"/>

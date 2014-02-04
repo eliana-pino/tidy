@@ -82,8 +82,8 @@
 @property (nonatomic, assign) IBOutlet NSTextView *tidyView;
 @property (nonatomic, weak) IBOutlet NSTableView *errorView;
 
-// Popover Outlets
-@property (nonatomic, weak) IBOutlet NSPopover *popover;
+// Encoding Helper Popover Outlets
+@property (nonatomic, weak) IBOutlet NSPopover *encodingPopover;
 @property (nonatomic, weak) IBOutlet NSButton *buttonDoNotWarnAgain;
 @property (nonatomic, weak) IBOutlet NSButton *buttonAllowChange;
 @property (nonatomic, weak) IBOutlet NSButton *buttonIgnoreSuggestion;
@@ -103,8 +103,7 @@
 
 // Preferences flags
 @property (nonatomic, assign) JSDSaveType saveBehavior;
-@property (nonatomic, assign) BOOL saveWarning;
-@property (nonatomic, assign) BOOL yesSavedAs;
+@property (nonatomic, assign) BOOL fileWantsProtection;
 @property (nonatomic, assign) BOOL ignoreInputEncodingWhenOpening;
 
 // Document Control
@@ -197,7 +196,7 @@
 	if (success)
 	{
 		[[self sourceView] setString:[[self tidyProcess] tidyText]];
-		self.yesSavedAs = YES;
+		self.fileWantsProtection = NO;
 	}
 	
 	return success;
@@ -214,20 +213,10 @@
  *———————————————————————————————————————————————————————————————————*/
 - (IBAction)saveDocument:(id)sender
 {
-	/*
-		Normal save, but with a warning and chance to back out.
-			(1) the user requested a warning before overwriting original files.
-			(2) the |sourceView| isn't empty.
-			(3) the file hasn't been saved already. This last is important, because
-				if the file has already been edited and saved, there's no longer an "original"
-				file to protect.
-	*/
-
 	// Warning will only apply if there's a current file and it's NOT been saved yet, and it's not new.
-	if ( ([self saveBehavior] == kJSDSaveButWarn) && 				// Behavior is protective AND
-		 ([self saveWarning]) &&									// We want to have a warning AND
-		 (![self yesSavedAs]) &&									// We've NOT yet done a save as... AND
-		 ([[[self fileURL] path] length] > 0) )						// The file name isn't zero length.
+	if ( ([self saveBehavior] == kJSDSaveButWarn) &&
+		 ([self fileWantsProtection]) &&
+		 ([[[self fileURL] path] length] > 0) )
 	{
 		NSInteger i = NSRunAlertPanel(NSLocalizedString(@"WarnSaveOverwrite", nil), NSLocalizedString(@"WarnSaveOverwriteExplain", nil),
 									  NSLocalizedString(@"continue save", nil), NSLocalizedString(@"do not save", nil) , nil);
@@ -239,7 +228,7 @@
 	}
 
 	// Save is completely disabled -- tell user to Save As…
-	if ([self saveBehavior] == kJSDSaveAsOnly)
+	if ( ([self fileWantsProtection]) && ([self saveBehavior] == kJSDSaveAsOnly) )
 	{
 		NSRunAlertPanel(NSLocalizedString(@"WarnSaveDisabled", nil), NSLocalizedString(@"WarnSaveDisabledExplain", nil),
 						NSLocalizedString(@"cancel", nil), nil, nil);
@@ -343,8 +332,7 @@
 	
 	// Saving behavior settings
 	self.saveBehavior = [defaults integerForKey:JSDKeySavingPrefStyle];
-	self.saveWarning = [defaults boolForKey:JSDKeyWarnBeforeOverwrite];
-	self.yesSavedAs = NO;
+	self.fileWantsProtection = !([self documentOpenedData] == nil);
 
 	
 	// Other defaults system items
@@ -432,7 +420,6 @@
 - (void)handleSavePrefChange:(NSNotification *)note
 {
 	self.saveBehavior = [[NSUserDefaults standardUserDefaults] integerForKey:JSDKeySavingPrefStyle];
-	self.saveWarning = [[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyWarnBeforeOverwrite];
 }
 
 
@@ -551,7 +538,7 @@
 			
 			[[self sourceView] setEditable:NO];
 			
-			[[self popover] showRelativeToRect:[[self sourceView] bounds]
+			[[self encodingPopover] showRelativeToRect:[[self sourceView] bounds]
 										ofView:[self sourceView]
 								 preferredEdge:NSMaxYEdge];
 		}
@@ -576,7 +563,7 @@
 	[[NSUserDefaults standardUserDefaults] setBool:[[self buttonDoNotWarnAgain] state] forKey:JSDKeyIgnoreInputEncodingWhenOpening];
 	
 	[[self sourceView] setEditable:YES];
-	[[self popover] performClose:self];
+	[[self encodingPopover] performClose:self];
 }
 
 

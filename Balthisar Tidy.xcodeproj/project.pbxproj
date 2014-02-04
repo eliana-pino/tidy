@@ -80,6 +80,7 @@
 		D04B050F183F158800C0F70F /* NoodleLineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoodleLineNumberView.m; path = "balthisar tidy/Classes/Support Pieces/NoodleLineNumberView.m"; sourceTree = SOURCE_ROOT; };
 		D04B0511183F15F500C0F70F /* NoodleLineNumberMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoodleLineNumberMarker.h; path = "balthisar tidy/Classes/Support Pieces/NoodleLineNumberMarker.h"; sourceTree = SOURCE_ROOT; };
 		D04B0512183F15F500C0F70F /* NoodleLineNumberMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoodleLineNumberMarker.m; path = "balthisar tidy/Classes/Support Pieces/NoodleLineNumberMarker.m"; sourceTree = SOURCE_ROOT; };
+		D06DC25B18A180C4001D575B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = "balthisar tidy/Base.lproj/NewPreferences.xib"; sourceTree = SOURCE_ROOT; };
 		D07AF4791836581E00913067 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Batch.xib; sourceTree = "<group>"; };
 		D07AF47B1836581E00913067 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/OptionPane.xib; sourceTree = "<group>"; };
 		D07AF47D1836581E00913067 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Preferences.xib; sourceTree = "<group>"; };
@@ -260,6 +261,7 @@
 				D0D3BEB6183C87C500692225 /* MainMenu.xib */,
 				D07AF47A1836581E00913067 /* OptionPane.xib */,
 				D07AF47C1836581E00913067 /* Preferences.xib */,
+				D06DC25A18A180C4001D575B /* NewPreferences.xib */,
 				D07AF47E1836581E00913067 /* TidyDocument.xib */,
 				D01AED8318476F6B001300E3 /* Credits.rtf */,
 			);
@@ -508,6 +510,14 @@
 				D01AED8418476F6B001300E3 /* Base */,
 			);
 			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		D06DC25A18A180C4001D575B /* NewPreferences.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D06DC25B18A180C4001D575B /* Base */,
+			);
+			name = NewPreferences.xib;
 			sourceTree = "<group>";
 		};
 		D07AF4781836581E00913067 /* Batch.xib */ = {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A2093" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B3116" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1090" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
@@ -7,10 +7,13 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PreferenceController">
             <connections>
-                <outlet property="optionPane" destination="TsM-V1-8gn" id="PWW-ny-KQh"/>
-                <outlet property="saving1" destination="65" id="117"/>
-                <outlet property="saving2" destination="102" id="162"/>
-                <outlet property="savingWarn" destination="64" id="118"/>
+                <outlet property="buttonSaving1" destination="65" id="oUN-6W-ihO"/>
+                <outlet property="buttonSaving2" destination="102" id="iV2-Rt-oaj"/>
+                <outlet property="buttonSavingWarn" destination="64" id="HaZ-3B-vJx"/>
+                <outlet property="buttonShowEncodingHelper" destination="i8J-8l-hgd" id="Wxd-8E-qUM"/>
+                <outlet property="buttonShowNewUserHelper" destination="CX9-Fd-XEn" id="PpS-eD-uUa"/>
+                <outlet property="optionPane" destination="164" id="m9K-TJ-mTQ"/>
+                <outlet property="savingWarnText" destination="Aei-3W-9wN" id="qM5-qv-VDt"/>
                 <outlet property="window" destination="5" id="104"/>
             </connections>
         </customObject>
@@ -21,42 +24,36 @@
             <rect key="contentRect" x="1218" y="478" width="373" height="520"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
             <value key="minSize" type="size" width="213" height="107"/>
-            <view key="contentView" id="6">
+            <view key="contentView" autoresizesSubviews="NO" appearanceType="aqua" id="6">
                 <rect key="frame" x="0.0" y="0.0" width="373" height="520"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <tabView controlSize="small" id="28">
+                    <tabView controlSize="small" id="28" userLabel="Tab View - (Tidy Options, File Saving, Miscellaneous)">
                         <rect key="frame" x="13" y="10" width="347" height="493"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <tabViewItems>
                             <tabViewItem label="Tidy Options" identifier="" id="7">
-                                <view key="view" id="13">
+                                <view key="view" autoresizesSubviews="NO" id="13">
                                     <rect key="frame" x="10" y="25" width="327" height="455"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <customView id="164">
-                                            <rect key="frame" x="0.0" y="73" width="327" height="376"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <subviews>
-                                                <customView id="TsM-V1-8gn">
-                                                    <rect key="frame" x="0.0" y="0.0" width="327" height="376"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                </customView>
-                                            </subviews>
+                                            <rect key="frame" x="0.0" y="61" width="327" height="386"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         </customView>
                                         <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="167">
-                                            <rect key="frame" x="12" y="71" width="297" height="5"/>
+                                            <rect key="frame" x="12" y="58" width="297" height="5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                             <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <font key="titleFont" metaFont="system"/>
                                         </box>
                                         <textField verticalHuggingPriority="750" id="42">
-                                            <rect key="frame" x="17" y="5" width="292" height="68"/>
+                                            <rect key="frame" x="17" y="5" width="292" height="47"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" id="170">
-                                                <font key="font" metaFont="system"/>
-                                                <string key="title">These preferences determine which options are automatically selected when you create a new document, open a file for processing, or initiate a batch mode.</string>
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <string key="title">These preferences determine which Tidy options are automatically set when you create a new document or open a file for processing.</string>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -64,27 +61,16 @@
                                     </subviews>
                                 </view>
                             </tabViewItem>
-                            <tabViewItem label="Saving" identifier="" id="38">
+                            <tabViewItem label="File Saving" identifier="" id="38">
                                 <view key="view" id="39">
                                     <rect key="frame" x="10" y="25" width="327" height="455"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textField verticalHuggingPriority="750" id="58">
-                                            <rect key="frame" x="17" y="5" width="292" height="68"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="This preference determines what happens when you do a normal Save of an open document." id="171">
-                                                <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
                                         <button tag="11" id="64">
-                                            <rect key="frame" x="34" y="345" width="289" height="34"/>
+                                            <rect key="frame" x="36" y="373" width="289" height="18"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" alignment="left" enabled="NO" tag="11" inset="2" id="172">
+                                            <buttonCell key="cell" type="check" title="Save normally after warning" bezelStyle="regularSquare" imagePosition="left" alignment="left" enabled="NO" tag="11" inset="2" id="172">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <string key="title">Warn before replacing original document.
-(warning only occurs for first save)</string>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
@@ -92,31 +78,122 @@
                                             </connections>
                                         </button>
                                         <button tag="1" id="65">
-                                            <rect key="frame" x="18" y="375" width="305" height="51"/>
+                                            <rect key="frame" x="18" y="432" width="305" height="18"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <buttonCell key="cell" type="radio" bezelStyle="regularSquare" imagePosition="left" alignment="left" tag="1" inset="2" id="173">
+                                            <buttonCell key="cell" type="radio" title="Save normally" bezelStyle="regularSquare" imagePosition="left" alignment="left" tag="1" inset="2" id="173">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <string key="title">Enable Saving—the original document
-will be replaced by the Tidy’d document.</string>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="radioSavingChanged:" target="-2" id="153"/>
+                                                <action selector="preferenceChanged:" target="-2" id="rLw-RF-SgS"/>
                                             </connections>
                                         </button>
                                         <button tag="2" id="102">
-                                            <rect key="frame" x="18" y="283" width="305" height="58"/>
+                                            <rect key="frame" x="18" y="314" width="305" height="18"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <buttonCell key="cell" type="radio" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" tag="2" inset="2" id="174">
+                                            <buttonCell key="cell" type="radio" title="Force Save As…" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" tag="2" inset="2" id="174">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <string key="title">Disable Save—Save As… must be used the
-first time to save a Tidy’d document.</string>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="radioSavingChanged:" target="-2" id="156"/>
+                                                <action selector="preferenceChanged:" target="-2" id="F4g-j7-dxC"/>
                                             </connections>
                                         </button>
+                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="pjd-pA-nRH">
+                                            <rect key="frame" x="29" y="397" width="294" height="28"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Standard Mac OS X behavior. If Tidy makes a mistake, some content may be permanently lost." id="fvv-93-IFb">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="Aei-3W-9wN">
+                                            <rect key="frame" x="41" y="339" width="282" height="28"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Saves normally only after a reminder that the original document will be completely replaced." id="0H5-C6-cG4">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="N8B-PM-PDM">
+                                            <rect key="frame" x="29" y="251" width="294" height="56"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="eZp-TK-AR4">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <string key="title">Will not allow you overwrite your original document. Instead a Save As… must be performed. This can protect your content in the event Tidy makes a mistake.</string>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField appearanceType="aqua" verticalHuggingPriority="750" id="GCS-26-rQP">
+                                            <rect key="frame" x="17" y="5" width="292" height="47"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" id="t6W-jQ-smr">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <string key="title">These preferences can help you protect your original documents in case Tidy does something unexpected by setting the file save behavior.</string>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </subviews>
+                                </view>
+                            </tabViewItem>
+                            <tabViewItem label="Miscellaneous" identifier="" id="nFK-VM-kko">
+                                <view key="view" id="I9B-24-LrD">
+                                    <rect key="frame" x="10" y="25" width="327" height="455"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textField appearanceType="aqua" verticalHuggingPriority="750" id="sdT-av-3pY">
+                                            <rect key="frame" x="17" y="5" width="292" height="47"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="These preferences affect some of Balthisar Tidy’s other behavior. " id="mb2-zV-5OK">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <button appearanceType="aqua" id="i8J-8l-hgd">
+                                            <rect key="frame" x="17" y="431" width="269" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Use input-encoding helper if necessary" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="CEA-MA-V3N">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="preferenceChanged:" target="-2" id="4nC-QT-jDm"/>
+                                            </connections>
+                                        </button>
+                                        <textField appearanceType="aqua" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="MUU-IJ-clH">
+                                            <rect key="frame" x="29" y="383" width="303" height="42"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="The input-encoding helper normally appears when a freshly-opened file does not appear to result in any source HTML." id="bw4-RF-oxn">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <button appearanceType="aqua" id="CX9-Fd-XEn">
+                                            <rect key="frame" x="17" y="359" width="257" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Show new user helper on next launch" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="1bF-hb-W5j">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                                <connections>
+                                                    <action selector="preferenceChanged:" target="-2" id="WoK-eO-TNq"/>
+                                                </connections>
+                                            </buttonCell>
+                                        </button>
+                                        <textField appearanceType="aqua" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="eu4-S5-ZVb">
+                                            <rect key="frame" x="29" y="325" width="303" height="28"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="When Balthisar Tidy is launched for new users, a series of helpful panels provide basic instruction." id="hJ0-79-lqm">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
                                     </subviews>
                                 </view>
                             </tabViewItem>
