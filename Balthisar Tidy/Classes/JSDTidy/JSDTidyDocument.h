@@ -51,7 +51,6 @@
 */
 
 #define tidyDefaultInputEncoding	NSUTF8StringEncoding
-#define tidyDefaultLastEncoding		NSUTF8StringEncoding
 #define tidyDefaultOutputEncoding	NSUTF8StringEncoding
 
 
