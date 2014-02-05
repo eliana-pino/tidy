@@ -186,10 +186,11 @@
                                             </buttonCell>
                                         </button>
                                         <textField appearanceType="aqua" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="eu4-S5-ZVb">
-                                            <rect key="frame" x="29" y="325" width="303" height="28"/>
+                                            <rect key="frame" x="29" y="297" width="303" height="56"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="When Balthisar Tidy is launched for new users, a series of helpful panels provide basic instruction." id="hJ0-79-lqm">
+                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="hJ0-79-lqm">
                                                 <font key="font" metaFont="smallSystem"/>
+                                                <string key="title">When Balthisar Tidy is launched for new users, a series of helpful panels provide basic instruction. Tick this option to show the helper next time you start Tidy or open a document.</string>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>

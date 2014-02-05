@@ -77,34 +77,47 @@
 
 #pragma mark - Properties
 
+
 // View Outlets
 @property (nonatomic, assign) IBOutlet NSTextView *sourceView;
 @property (nonatomic, assign) IBOutlet NSTextView *tidyView;
 @property (nonatomic, weak) IBOutlet NSTableView *errorView;
 
+
 // Encoding Helper Popover Outlets
-@property (nonatomic, weak) IBOutlet NSPopover *encodingPopover;
-@property (nonatomic, weak) IBOutlet NSButton *buttonDoNotWarnAgain;
-@property (nonatomic, weak) IBOutlet NSButton *buttonAllowChange;
-@property (nonatomic, weak) IBOutlet NSButton *buttonIgnoreSuggestion;
-@property (nonatomic, weak) IBOutlet NSTextField *textFieldExplanation;
+@property (nonatomic, weak) IBOutlet NSPopover *popoverEncoding;
+@property (nonatomic, weak) IBOutlet NSButton *buttonEncodingDoNotWarnAgain;
+@property (nonatomic, weak) IBOutlet NSButton *buttonEncodingAllowChange;
+@property (nonatomic, weak) IBOutlet NSButton *buttonEncodingIgnoreSuggestion;
+@property (nonatomic, weak) IBOutlet NSTextField *textFieldEncodingExplanation;
+
+
+// First Run Helper Popover Outlets
+@property (nonatomic, weak) IBOutlet NSPopover *popoverFirstRun;
+@property (nonatomic, weak) IBOutlet NSButton *buttonFirstRunNext;
+@property (nonatomic, weak) IBOutlet NSButton *buttonFirstRunCancel;
+@property (nonatomic, weak) IBOutlet NSTextField *textFieldFirstRunExplanation;
 
 
 // Window Splitters
 @property (nonatomic, weak) IBOutlet NSSplitView *splitLeftRight;		// The left-right (main) split view in the Doc window.
 @property (nonatomic, weak) IBOutlet NSSplitView *splitTopDown;			// Top top-to-bottom split view in the Doc window.
 
+
 // Option Controller
 @property (nonatomic, weak) IBOutlet NSView *optionPane;				// Our empty optionPane in the nib.
 @property (nonatomic, strong) OptionPaneController *optionController;	// The real option pane we load into optionPane.
 
+
 // Our Tidy Processor
 @property (nonatomic, strong) JSDTidyDocument *tidyProcess;
+
 
 // Preferences flags
 @property (nonatomic, assign) JSDSaveType saveBehavior;
 @property (nonatomic, assign) BOOL fileWantsProtection;
 @property (nonatomic, assign) BOOL ignoreInputEncodingWhenOpening;
+
 
 // Document Control
 @property (nonatomic, strong) NSData *documentOpenedData;				// Hold file we open until nib is awake.
@@ -374,6 +387,11 @@
 											   object:[self tidyProcess]];
 	
 	
+	if (![defaults boolForKey:JSDKeyFirstRunComplete])
+	{
+		[self firstRunPopoverSequence];
+	}
+
 	if ( ([self documentOpenedData]) && (![defaults boolForKey:JSDKeyIgnoreInputEncodingWhenOpening]) )
 	{
 		[self inputEncodingSanityCheck];
@@ -527,18 +545,18 @@
 			NSString *encodingCurrent = [NSString localizedNameOfStringEncoding:currentInputEncoding];
 			NSString *encodingSuggested = [NSString localizedNameOfStringEncoding:suggestedInputEncoding];
 
-			NSString *newMessage = [NSString stringWithFormat:[[self textFieldExplanation] stringValue], docName, encodingCurrent, encodingSuggested];
+			NSString *newMessage = [NSString stringWithFormat:[[self textFieldEncodingExplanation] stringValue], docName, encodingCurrent, encodingSuggested];
 
-			[[self textFieldExplanation] setStringValue:newMessage];
+			[[self textFieldEncodingExplanation] setStringValue:newMessage];
 			
-			[[self buttonDoNotWarnAgain] setState:[self ignoreInputEncodingWhenOpening]];
-			NSLog(@"%ld", (long)self.buttonIgnoreSuggestion.state);
+			[[self buttonEncodingDoNotWarnAgain] setState:[self ignoreInputEncodingWhenOpening]];
+			NSLog(@"%ld", (long)self.buttonEncodingIgnoreSuggestion.state);
 			
-			[[self buttonAllowChange] setTag:suggestedInputEncoding]; // Cheat. We'll fetch this in the handler. Should be 64-bit.
+			[[self buttonEncodingAllowChange] setTag:suggestedInputEncoding]; // Cheat. We'll fetch this in the handler. Should be 64-bit.
 			
 			[[self sourceView] setEditable:NO];
 			
-			[[self encodingPopover] showRelativeToRect:[[self sourceView] bounds]
+			[[self popoverEncoding] showRelativeToRect:[[self sourceView] bounds]
 										ofView:[self sourceView]
 								 preferredEdge:NSMaxYEdge];
 		}
@@ -554,16 +572,110 @@
  *———————————————————————————————————————————————————————————————————*/
 - (IBAction)popoverHandler:(id)sender
 {
-	if (sender == [self buttonAllowChange])
+	if (sender == [self buttonEncodingAllowChange])
 	{
-		[[[self optionController] tidyDocument] setOptionValueForId:TidyInCharEncoding fromObject:@([[self buttonAllowChange] tag])];
+		[[[self optionController] tidyDocument] setOptionValueForId:TidyInCharEncoding fromObject:@([[self buttonEncodingAllowChange] tag])];
 		[[[self optionController] theTable] reloadData];
 	}
 	
-	[[NSUserDefaults standardUserDefaults] setBool:[[self buttonDoNotWarnAgain] state] forKey:JSDKeyIgnoreInputEncodingWhenOpening];
+	[[NSUserDefaults standardUserDefaults] setBool:[[self buttonEncodingDoNotWarnAgain] state] forKey:JSDKeyIgnoreInputEncodingWhenOpening];
 	
 	[[self sourceView] setEditable:YES];
-	[[self encodingPopover] performClose:self];
+	[[self popoverEncoding] performClose:self];
+}
+
+
+#pragma mark - First-Run Support
+
+
+/*———————————————————————————————————————————————————————————————————*
+	firstRunPopoverSequence
+		Here we will kick off a short sequence of popovers that
+		provide a basic introduction to Tidy's interface.
+ *———————————————————————————————————————————————————————————————————*/
+- (void)firstRunPopoverSequence
+{
+	
+	[[self textFieldFirstRunExplanation] setStringValue:NSLocalizedString(@"popOverExplainWelcome", nil)];
+	[[self textFieldFirstRunExplanation] setTag:0];
+	[[self popoverFirstRun] showRelativeToRect:[[self sourceView] bounds]
+										ofView:[self sourceView]
+								 preferredEdge:NSMinXEdge];
+}
+
+
+/*———————————————————————————————————————————————————————————————————*
+	popoverFirstRunHandler
+		We'll run the whole first-run sequence from here, using
+		the textFieldFirstRunExplanation.tag to keep track.
+ *———————————————————————————————————————————————————————————————————*/
+- (IBAction)popoverFirstRunHandler:(id)sender
+{
+	NSInteger tag = [[self textFieldFirstRunExplanation] tag];
+	
+	if (tag == 0)
+	{
+		[[self textFieldFirstRunExplanation] setStringValue:NSLocalizedString(@"popOverExplainTidyOptions", nil)];
+		[[self textFieldFirstRunExplanation] setTag:1];
+		[[self popoverFirstRun] showRelativeToRect:[[self optionPane] bounds]
+											ofView:[self optionPane]
+									 preferredEdge:NSMinXEdge];
+	}
+
+	
+	if (tag == 1)
+	{
+		[[self textFieldFirstRunExplanation] setStringValue:NSLocalizedString(@"popOverExplainSourceView", nil)];
+		[[self textFieldFirstRunExplanation] setTag:2];
+		[[self popoverFirstRun] showRelativeToRect:[[self sourceView] bounds]
+											ofView:[self sourceView]
+									 preferredEdge:NSMinXEdge];
+	}
+
+	if (tag == 2)
+	{
+		[[self textFieldFirstRunExplanation] setStringValue:NSLocalizedString(@"popOverExplainTidyView", nil)];
+		[[self textFieldFirstRunExplanation] setTag:3];
+		[[self popoverFirstRun] showRelativeToRect:[[self tidyView] bounds]
+											ofView:[self tidyView]
+									 preferredEdge:NSMinXEdge];
+	}
+
+	if (tag == 3)
+	{
+		[[self textFieldFirstRunExplanation] setStringValue:NSLocalizedString(@"popOverExplainErrorView", nil)];
+		[[self textFieldFirstRunExplanation] setTag:4];
+		[[self popoverFirstRun] showRelativeToRect:[[self errorView] bounds]
+											ofView:[self errorView]
+									 preferredEdge:NSMinXEdge];
+	}
+
+	if (tag == 4)
+	{
+		[[self textFieldFirstRunExplanation] setStringValue:NSLocalizedString(@"popOverExplainPreferences", nil)];
+		[[self textFieldFirstRunExplanation] setTag:5];
+		[[self popoverFirstRun] showRelativeToRect:[[self optionPane] bounds]
+											ofView:[self optionPane]
+									 preferredEdge:NSMinXEdge];
+	}
+
+	if (tag == 5)
+	{
+		[[self textFieldFirstRunExplanation] setStringValue:NSLocalizedString(@"popOverExplainStart", nil)];
+		[[self buttonFirstRunNext] setTitle:NSLocalizedString(@"popOverButtonDone", nil)];
+		[[self textFieldFirstRunExplanation] setTag:6];
+		[[self popoverFirstRun] showRelativeToRect:[[self tidyView] bounds]
+											ofView:[self tidyView]
+									 preferredEdge:NSMinYEdge];
+	}
+
+	if (tag == 6)
+	{
+		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:JSDKeyFirstRunComplete];
+		[[self popoverFirstRun] performClose:self];
+
+	}
+	
 }
 
 
