@@ -124,6 +124,38 @@
 	`LocalizedIndex`, and `LocalizedName`.
 */
 
+///@name Group String Encoding Support
+
+/**
+@property allAvailableEncodingLocalizedNames
+	 
+@brief Returns encoding names.
+	 
+@description
+	 
+	Returns an array of @c NSString of all available encoding names
+	(localized) in local sorting order.
+ 
+@code
+hello_you;
+[ssamep_code];
+@endcode
+	 
+@see availableEncodingDictionariesByLocalizedName
+
+@warning Hello, dolly.
+	 
+@exception jd_exception throws this exception.
+ 
+@param (id*)hello @b hello is the parameter.
+	 
+@return NSArray of strings.
+ 
+@since version 1.0a
+ 
+@deprecated since 1.0a because it's just temporary.
+ 
+*/
 + (NSArray *)allAvailableEncodingLocalizedNames;
 
 + (NSDictionary *)availableEncodingDictionariesByLocalizedName;
@@ -260,7 +292,7 @@
 
 - (void)processTidy;				// #TODO: this should be private now.
 
-// TODO: These can all be properties.
+/// TODO: These can all be properties.
 - (int) tidyDetectedHtmlVersion;	// Returns 0, 2, 3, 4, or 5.
 
 - (bool)tidyDetectedXhtml;			// Determines whether the document is XHTML.

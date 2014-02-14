@@ -233,8 +233,6 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	allAvailableEncodingLocalizedNames
-		Returns an array of NSString of all available encoding names
-		(localized) in local alphabetical order.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 + (NSArray *)allAvailableEncodingLocalizedNames
 {
