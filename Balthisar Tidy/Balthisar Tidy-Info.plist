@@ -82,6 +82,8 @@
 	<string>Copyright © 2013 James S. Derry. All rights reserved.</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
+	<key>SUFeedURL</key>
+	<string>http://balthisar.dev/updates/tidy.xml</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>

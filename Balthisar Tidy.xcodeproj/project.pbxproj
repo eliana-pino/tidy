@@ -20,6 +20,8 @@
 		D02B30CE184ED25100A60556 /* PHP.icns in Resources */ = {isa = PBXBuildFile; fileRef = D02B30CC184ED25100A60556 /* PHP.icns */; };
 		D04B0510183F158800C0F70F /* NoodleLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = D04B050F183F158800C0F70F /* NoodleLineNumberView.m */; };
 		D04B0513183F15F500C0F70F /* NoodleLineNumberMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = D04B0512183F15F500C0F70F /* NoodleLineNumberMarker.m */; };
+		D06626CF18B09B330091CBD8 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D06626CE18B09B330091CBD8 /* Sparkle.framework */; };
+		D06626D118B09BEA0091CBD8 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D06626CE18B09B330091CBD8 /* Sparkle.framework */; };
 		D07AF495183658D300913067 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF48C183658D300913067 /* AppController.m */; };
 		D07AF497183658D300913067 /* OptionPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF490183658D300913067 /* OptionPaneController.m */; };
 		D07AF498183658D300913067 /* PreferenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF492183658D300913067 /* PreferenceController.m */; };
@@ -59,6 +61,19 @@
 		D0D3BEC2183C897800692225 /* JSDTableColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D3BEBB183C897800692225 /* JSDTableColumn.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		D06626D018B09BD00091CBD8 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D06626D118B09BEA0091CBD8 /* Sparkle.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		D0120B56183CCAB3003CA182 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "balthisar tidy/Base.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
 		D013B516184F18A100F30654 /* Balthisar Tidy Signed-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Balthisar Tidy Signed-Info.plist"; path = "/Users/jderry/Dropbox/Development/Balthisar Tidy/Balthisar Tidy Signed-Info.plist"; sourceTree = "<absolute>"; };
@@ -80,6 +95,7 @@
 		D04B050F183F158800C0F70F /* NoodleLineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoodleLineNumberView.m; path = "balthisar tidy/Classes/Support Pieces/NoodleLineNumberView.m"; sourceTree = SOURCE_ROOT; };
 		D04B0511183F15F500C0F70F /* NoodleLineNumberMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoodleLineNumberMarker.h; path = "balthisar tidy/Classes/Support Pieces/NoodleLineNumberMarker.h"; sourceTree = SOURCE_ROOT; };
 		D04B0512183F15F500C0F70F /* NoodleLineNumberMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoodleLineNumberMarker.m; path = "balthisar tidy/Classes/Support Pieces/NoodleLineNumberMarker.m"; sourceTree = SOURCE_ROOT; };
+		D06626CE18B09B330091CBD8 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = "Balthisar Tidy/Frameworks/Sparkle.framework"; sourceTree = "<group>"; };
 		D06DC25B18A180C4001D575B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = "balthisar tidy/Base.lproj/NewPreferences.xib"; sourceTree = SOURCE_ROOT; };
 		D07AF4791836581E00913067 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Batch.xib; sourceTree = "<group>"; };
 		D07AF47B1836581E00913067 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/OptionPane.xib; sourceTree = "<group>"; };
@@ -164,6 +180,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D016A92A182FD80700712C60 /* Cocoa.framework in Frameworks */,
+				D06626CF18B09B330091CBD8 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,6 +207,7 @@
 		D016A928182FD80700712C60 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D06626CE18B09B330091CBD8 /* Sparkle.framework */,
 				D016A929182FD80700712C60 /* Cocoa.framework */,
 				D016A94B182FD80700712C60 /* XCTest.framework */,
 				D016A92B182FD80700712C60 /* Other Frameworks */,
@@ -379,6 +397,8 @@
 				D016A922182FD80700712C60 /* Sources */,
 				D016A923182FD80700712C60 /* Frameworks */,
 				D016A924182FD80700712C60 /* Resources */,
+				D06626D018B09BD00091CBD8 /* CopyFiles */,
+				D0913CA018B0A61E005DB2E4 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -447,6 +467,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D0913CA018B0A61E005DB2E4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "LOCATION=\"${BUILT_PRODUCTS_DIR}\"/\"${FRAMEWORKS_FOLDER_PATH}\"\nIDENTITY=\"Developer ID\"\ncodesign --verbose --force --sign \"$IDENTITY\" \"$LOCATION/Sparkle.framework\"\n#codesign --verbose --force --sign \"$IDENTITY\" \"$LOCATION/../XPCServices/com.andymatuschak.Sparkle.SandboxService.xpc\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D016A922182FD80700712C60 /* Sources */ = {
@@ -657,8 +693,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/jderry/Dropbox/Development/Balthisar\\ Tidy",
+					"/Users/jderry/Dropbox/Development/Balthisar\\ Tidy/Balthisar\\ Tidy/Frameworks",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Balthisar Tidy/Balthisar Tidy-Prefix.pch";
 				INFOPLIST_FILE = "Balthisar Tidy/Balthisar Tidy-Info.plist";
@@ -674,8 +716,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/jderry/Dropbox/Development/Balthisar\\ Tidy",
+					"/Users/jderry/Dropbox/Development/Balthisar\\ Tidy/Balthisar\\ Tidy/Frameworks",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Balthisar Tidy/Balthisar Tidy-Prefix.pch";
 				INFOPLIST_FILE = "Balthisar Tidy/Balthisar Tidy-Info.plist";

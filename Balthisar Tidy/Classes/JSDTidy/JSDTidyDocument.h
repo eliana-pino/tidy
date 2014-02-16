@@ -147,13 +147,13 @@ hello_you;
 	 
 @exception jd_exception throws this exception.
  
-@param (id*)hello @b hello is the parameter.
+//param (id*)hello @b hello is the parameter.
 	 
 @return NSArray of strings.
  
 @since version 1.0a
  
-@deprecated since 1.0a because it's just temporary.
+//deprecated since 1.0a because it's just temporary.
  
 */
 + (NSArray *)allAvailableEncodingLocalizedNames;
