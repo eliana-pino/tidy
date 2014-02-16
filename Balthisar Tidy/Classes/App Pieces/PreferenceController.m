@@ -54,6 +54,11 @@
 @property (nonatomic, weak) IBOutlet NSButton *buttonShowEncodingHelper;
 @property (nonatomic, weak) IBOutlet NSButton *buttonShowNewUserHelper;
 
+// Software Updater Pane Preferences and Objects
+@property (nonatomic, weak) IBOutlet NSButton *buttonAllowUpdateChecks;
+@property (nonatomic, weak) IBOutlet NSButton *buttonAllowSystemProfile;
+
+
 // Other Properties
 @property (nonatomic, weak) IBOutlet NSView *optionPane;				// The empty pane in the nib that we will inhabit.
 

@@ -88,6 +88,12 @@
 - (IBAction)showPreferences:(id)sender
 {
 	[[PreferenceController sharedPreferences] showWindow:self];
+// TODO: NOT A GOOD PLACE FOR THIS. SHOULD GET IT IN THE CREATOR.
+#if NOSPARKLE == 1
+	NSTabViewItem *theTab = [[PreferenceController sharedPreferences] tabViewUpdates];
+	NSTabView *theTabView = [theTab tabView];
+	[theTabView removeTabViewItem:theTab];
+#endif
 }
 
 

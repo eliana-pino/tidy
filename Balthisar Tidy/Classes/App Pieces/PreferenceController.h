@@ -72,6 +72,7 @@ typedef enum
 
 @interface PreferenceController : NSWindowController
 
+@property (nonatomic, weak) IBOutlet NSTabViewItem *tabViewUpdates;
 
 #pragma mark - Public Methods
 
