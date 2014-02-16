@@ -54,6 +54,31 @@
 }
 
 
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	 Things to take care of when the application has launched.
+	 - Handle sparkle vs no-sparkle.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+{
+
+/**
+	The `Balthisar Tidy (no sparkle) target has NOSPARKLE=1 defined.
+	Because we're building completely without Sparkle, we have to
+	make sure there are no references to it in the MainMenu nib,
+	and set its target-action programmatically.
+ */
+#if NOSPARKLE == 1
+	[[self menuCheckForUpdates] setHidden:YES];
+#else
+	self.sparkleUpdaterObject = nil;
+	self.sparkleUpdaterObject = [[SUUpdater alloc] init];
+	[[self menuCheckForUpdates] setTarget:[self sparkleUpdaterObject]];
+	[[self menuCheckForUpdates] setAction:@selector(checkForUpdates:)];
+	[[self menuCheckForUpdates] setEnabled:YES];
+#endif
+}
+
+
 #pragma mark - Showing preferences and batch windows
 
 
