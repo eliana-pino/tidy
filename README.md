@@ -73,6 +73,23 @@ Change Log
 - Requires Mac OS X 10.2 or higher.
 
 
+Building From Source
+--------------------
+
+If you’re building from source, be aware that there are now two (2) different build targets setup:
+
+	- Balthisar Tidy
+	- Balthisar Tidy (no sparkle)
+
+_You should always make sure that you are using the `Balthisar Tidy (no sparkle)` build!_
+
+### Brief Explanation of the no sparkle target
+
+Sparkle is popular application update framework, but it requires code signing to work properly, which requires an Apple Mac OS X developer signature. Although I have a developer signature, I won’t assume that you have a developer signature, and so the `Balthisar Tidy (no sparkle)` target was added for all source builders’ convenience.
+
+Note that both targets use the same resources, plists, and produce identical product names, and have identical bundle ID's. This is by design.
+
+
 Legal Stuff
 -----------
 
