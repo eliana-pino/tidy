@@ -31,7 +31,10 @@
  **************************************************************************************************/
 
 #import <Cocoa/Cocoa.h>
+
+#if INCLUDE_SPARKLE == 1
 #import <Sparkle/Sparkle.h>
+#endif	
 
 @class PreferenceController;
 @class BatchController;
@@ -40,8 +43,10 @@
 
 
 @property (weak, nonatomic) IBOutlet NSMenuItem *menuCheckForUpdates;
-@property (strong, nonatomic) IBOutlet SUUpdater *sparkleUpdaterObject;
 
+#if INCLUDE_SPARKLE == 1
+@property (strong, nonatomic) IBOutlet SUUpdater *sparkleUpdaterObject;
+#endif
 
 - (IBAction)showPreferences:(id)sender;
 

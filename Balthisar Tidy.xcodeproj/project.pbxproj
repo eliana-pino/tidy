@@ -848,6 +848,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Balthisar Tidy/Balthisar Tidy-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"INCLUDE_SPARKLE=1",
+				);
 				INFOPLIST_FILE = "Balthisar Tidy/Balthisar Tidy-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -871,6 +875,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Balthisar Tidy/Balthisar Tidy-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = "INCLUDE_SPARKLE=1";
 				INFOPLIST_FILE = "Balthisar Tidy/Balthisar Tidy-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -896,7 +901,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Balthisar Tidy/Balthisar Tidy-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"NOSPARKLE=1",
+					"INCLUDE_SPARKLE=0",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Balthisar Tidy/Balthisar Tidy-Info.plist";
@@ -922,7 +927,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Balthisar Tidy/Balthisar Tidy-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "NOSPARKLE=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "INCLUDE_SPARKLE=0";
 				INFOPLIST_FILE = "Balthisar Tidy/Balthisar Tidy-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "Balthisar Tidy";

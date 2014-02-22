@@ -67,7 +67,7 @@
 	make sure there are no references to it in the MainMenu nib,
 	and set its target-action programmatically.
  */
-#if NOSPARKLE == 1
+#if INCLUDE_SPARKLE == 0
 	[[self menuCheckForUpdates] setHidden:YES];
 #else
 	self.sparkleUpdaterObject = nil;
@@ -89,7 +89,7 @@
 {
 	[[PreferenceController sharedPreferences] showWindow:self];
 // TODO: NOT A GOOD PLACE FOR THIS. SHOULD GET IT IN THE CREATOR.
-#if NOSPARKLE == 1
+#if INCLUDE_SPARKLE == 0
 	NSTabViewItem *theTab = [[PreferenceController sharedPreferences] tabViewUpdates];
 	NSTabView *theTabView = [theTab tabView];
 	[theTabView removeTabViewItem:theTab];
