@@ -77,6 +77,8 @@
 		D0913CD518B0AC06005DB2E4 /* optionsTypesExceptions.txt in Resources */ = {isa = PBXBuildFile; fileRef = D0A4E1D4183A556300999979 /* optionsTypesExceptions.txt */; };
 		D0913CD618B0AC06005DB2E4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D01AED8318476F6B001300E3 /* Credits.rtf */; };
 		D0913CD718B0AC06005DB2E4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0D3BEB6183C87C500692225 /* MainMenu.xib */; };
+		D092619418B6268900E9AC98 /* Balthisar Tidy.help in Resources */ = {isa = PBXBuildFile; fileRef = D092619318B6268900E9AC98 /* Balthisar Tidy.help */; };
+		D092619518B6268900E9AC98 /* Balthisar Tidy.help in Resources */ = {isa = PBXBuildFile; fileRef = D092619318B6268900E9AC98 /* Balthisar Tidy.help */; };
 		D09D8D5C1846209200AFB4FA /* access.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D2A1846209200AFB4FA /* access.c */; };
 		D09D8D5D1846209200AFB4FA /* alloc.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D2C1846209200AFB4FA /* alloc.c */; };
 		D09D8D5E1846209200AFB4FA /* attrask.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D2D1846209200AFB4FA /* attrask.c */; };
@@ -161,6 +163,7 @@
 		D07AF49D1836593900913067 /* JSDTidyDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSDTidyDocument.h; path = Classes/JSDTidy/JSDTidyDocument.h; sourceTree = "<group>"; };
 		D07AF49E1836593A00913067 /* JSDTidyDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSDTidyDocument.m; path = Classes/JSDTidy/JSDTidyDocument.m; sourceTree = "<group>"; };
 		D0913CDE18B0AC06005DB2E4 /* Balthisar Tidy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Balthisar Tidy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D092619318B6268900E9AC98 /* Balthisar Tidy.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Balthisar Tidy.help"; sourceTree = "<group>"; };
 		D09D8D261846208500AFB4FA /* buffio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = buffio.h; path = "tidylib5-src/include/buffio.h"; sourceTree = "<group>"; };
 		D09D8D271846208500AFB4FA /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = platform.h; path = "tidylib5-src/include/platform.h"; sourceTree = "<group>"; };
 		D09D8D281846208500AFB4FA /* tidy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tidy.h; path = "tidylib5-src/include/tidy.h"; sourceTree = "<group>"; };
@@ -289,6 +292,7 @@
 			children = (
 				D026169F1836F927002ABD72 /* Classes */,
 				D07AF49A183658F100913067 /* Base.lproj */,
+				D092619318B6268900E9AC98 /* Balthisar Tidy.help */,
 				D016A935182FD80700712C60 /* main.m */,
 				D026169E1836F48A002ABD72 /* Balthisar Tidy.entitlements */,
 				D016A931182FD80700712C60 /* Balthisar Tidy-Info.plist */,
@@ -534,6 +538,7 @@
 				D02B30CE184ED25100A60556 /* PHP.icns in Resources */,
 				D0107939183C738F00120B57 /* TidyDocument.xib in Resources */,
 				D016A945182FD80700712C60 /* Images.xcassets in Resources */,
+				D092619418B6268900E9AC98 /* Balthisar Tidy.help in Resources */,
 				D0120B57183CCAB3003CA182 /* Localizable.strings in Resources */,
 				D0A4E1D6183A556300999979 /* optionsInEffect.txt in Resources */,
 				D0A4E1D7183A556300999979 /* optionsTypesExceptions.txt in Resources */,
@@ -553,6 +558,7 @@
 				D0913CD018B0AC06005DB2E4 /* PHP.icns in Resources */,
 				D0913CD118B0AC06005DB2E4 /* TidyDocument.xib in Resources */,
 				D0913CD218B0AC06005DB2E4 /* Images.xcassets in Resources */,
+				D092619518B6268900E9AC98 /* Balthisar Tidy.help in Resources */,
 				D0913CD318B0AC06005DB2E4 /* Localizable.strings in Resources */,
 				D0913CD418B0AC06005DB2E4 /* optionsInEffect.txt in Resources */,
 				D0913CD518B0AC06005DB2E4 /* optionsTypesExceptions.txt in Resources */,

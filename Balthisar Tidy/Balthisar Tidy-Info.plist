@@ -86,5 +86,9 @@
 	<string>http://balthisar.dev/updates/tidy.xml</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>CFBundleHelpBookFolder</key>
+	<string>Balthisar Tidy.help</string>
+	<key>CFBundleHelpBookName</key>
+	<string>com.balthisar.tidy.help</string>
 </dict>
 </plist>
