@@ -21,9 +21,9 @@
 	<key>HPDBookAccessPath</key>
 	<string>Balthisar Tidy.html</string>
 	<key>HPDBookIconPath</key>
-	<string>shrd/app_icon_0016</string>
+	<string>shrd/app_icon_0016.png</string>
 	<key>HPDBookIndexPath</key>
-	<string></string>
+	<string>Balthisar Tidy.helpindex</string>
 	<key>HPDBookKBProduct</key>
 	<string>balthisartidy1</string>
 	<key>HPDBookKBURL</key>
