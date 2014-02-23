@@ -161,6 +161,12 @@
 	[[self optionController] putViewIntoView:[self optionPane]];
 	
 	self.tidyProcess = [[self optionController] tidyDocument];
+
+#if INCLUDE_SPARKLE == 0
+	NSTabView *theTabView = [[self tabViewUpdates] tabView];
+	[theTabView removeTabViewItem:[self tabViewUpdates]];
+#endif
+
 }
 
 
