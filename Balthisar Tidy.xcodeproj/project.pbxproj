@@ -22,7 +22,7 @@
 		D04B0510183F158800C0F70F /* NoodleLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = D04B050F183F158800C0F70F /* NoodleLineNumberView.m */; };
 		D04B0513183F15F500C0F70F /* NoodleLineNumberMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = D04B0512183F15F500C0F70F /* NoodleLineNumberMarker.m */; };
 		D06626CF18B09B330091CBD8 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D06626CE18B09B330091CBD8 /* Sparkle.framework */; };
-		D06626D118B09BEA0091CBD8 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D06626CE18B09B330091CBD8 /* Sparkle.framework */; };
+		D06626D118B09BEA0091CBD8 /* Sparkle.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = D06626CE18B09B330091CBD8 /* Sparkle.framework */; };
 		D07AF495183658D300913067 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF48C183658D300913067 /* AppController.m */; };
 		D07AF497183658D300913067 /* OptionPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF490183658D300913067 /* OptionPaneController.m */; };
 		D07AF498183658D300913067 /* PreferenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07AF492183658D300913067 /* PreferenceController.m */; };
@@ -114,14 +114,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		D06626D018B09BD00091CBD8 /* CopyFiles */ = {
+		D06626D018B09BD00091CBD8 /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D06626D118B09BEA0091CBD8 /* Sparkle.framework in CopyFiles */,
+				D06626D118B09BEA0091CBD8 /* Sparkle.framework in Copy Files */,
 			);
+			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -249,6 +250,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D006072E18B9C00400D91335 /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				D092619318B6268900E9AC98 /* Balthisar Tidy.help */,
+				D00361B718B974BB001DE1FC /* Balthisar Tidy.help */,
+			);
+			name = Help;
+			sourceTree = "<group>";
+		};
+		D006072F18B9C01300D91335 /* Image Assets */ = {
+			isa = PBXGroup;
+			children = (
+				D016A944182FD80700712C60 /* Images.xcassets */,
+				D02B30CC184ED25100A60556 /* PHP.icns */,
+				D02B30C9184EC4FF00A60556 /* HTML.icns */,
+			);
+			name = "Image Assets";
+			sourceTree = "<group>";
+		};
 		D016A91D182FD80700712C60 = {
 			isa = PBXGroup;
 			children = (
@@ -291,18 +311,15 @@
 		D016A92F182FD80700712C60 /* Balthisar Tidy */ = {
 			isa = PBXGroup;
 			children = (
-				D026169F1836F927002ABD72 /* Classes */,
-				D07AF49A183658F100913067 /* Base.lproj */,
-				D092619318B6268900E9AC98 /* Balthisar Tidy.help */,
-				D00361B718B974BB001DE1FC /* Balthisar Tidy.help */,
 				D016A935182FD80700712C60 /* main.m */,
+				D026169F1836F927002ABD72 /* Classes */,
+				D09D8D1F18461FD000AFB4FA /* tidylib-source */,
+				D07AF49A183658F100913067 /* Base.lproj */,
+				D006072E18B9C00400D91335 /* Help */,
 				D026169E1836F48A002ABD72 /* Balthisar Tidy.entitlements */,
 				D016A931182FD80700712C60 /* Balthisar Tidy-Info.plist */,
 				D016A937182FD80700712C60 /* Balthisar Tidy-Prefix.pch */,
-				D016A944182FD80700712C60 /* Images.xcassets */,
-				D02B30CC184ED25100A60556 /* PHP.icns */,
-				D02B30C9184EC4FF00A60556 /* HTML.icns */,
-				D09D8D1F18461FD000AFB4FA /* tidylib-source */,
+				D006072F18B9C01300D91335 /* Image Assets */,
 			);
 			path = "Balthisar Tidy";
 			sourceTree = SOURCE_ROOT;
@@ -461,7 +478,7 @@
 				D016A922182FD80700712C60 /* Sources */,
 				D016A923182FD80700712C60 /* Frameworks */,
 				D016A924182FD80700712C60 /* Resources */,
-				D06626D018B09BD00091CBD8 /* CopyFiles */,
+				D06626D018B09BD00091CBD8 /* Copy Files */,
 				D0913CA018B0A61E005DB2E4 /* ShellScript */,
 				D00361B518B8D643001DE1FC /* ShellScript */,
 			);
@@ -503,6 +520,13 @@
 				TargetAttributes = {
 					D016A925182FD80700712C60 = {
 						DevelopmentTeam = 9PN2JXXG7Y;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
+					};
+					D0913CA118B0AC06005DB2E4 = {
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 1;
@@ -868,7 +892,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -896,7 +919,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -922,6 +944,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy.entitlements";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -949,6 +972,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy.entitlements";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
 				COMBINE_HIDPI_IMAGES = YES;
