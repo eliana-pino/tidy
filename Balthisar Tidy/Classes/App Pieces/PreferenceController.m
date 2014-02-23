@@ -35,6 +35,10 @@
 #import "PreferenceController.h"
 #import "JSDTidyDocument.h"
 
+#if INCLUDE_SPARKLE == 1
+#import <Sparkle/Sparkle.h>
+#endif
+
 
 #pragma mark - CATEGORY - Non-Public
 
@@ -57,7 +61,7 @@
 // Software Updater Pane Preferences and Objects
 @property (nonatomic, weak) IBOutlet NSButton *buttonAllowUpdateChecks;
 @property (nonatomic, weak) IBOutlet NSButton *buttonAllowSystemProfile;
-
+@property (nonatomic, weak) IBOutlet NSPopUpButton * buttonUpdateInterval;
 
 // Other Properties
 @property (nonatomic, weak) IBOutlet NSView *optionPane;				// The empty pane in the nib that we will inhabit.
@@ -148,8 +152,9 @@
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	awakeFromNib
-		Create an |OptionPaneController| and put it
-		in place of the empty optionPane in the xib.
+		- Create an |OptionPaneController| and put it
+		  in place of the empty optionPane in the xib.
+		- Setup Sparkle vs No-Sparkle.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void) awakeFromNib
 {
@@ -165,6 +170,11 @@
 #if INCLUDE_SPARKLE == 0
 	NSTabView *theTabView = [[self tabViewUpdates] tabView];
 	[theTabView removeTabViewItem:[self tabViewUpdates]];
+#else
+	SUUpdater *sharedUpdater = [SUUpdater sharedUpdater];
+	[[self buttonAllowUpdateChecks] bind:@"value" toObject:sharedUpdater withKeyPath:@"automaticallyChecksForUpdates" options:nil];
+	[[self buttonUpdateInterval] bind:@"enabled" toObject:sharedUpdater withKeyPath:@"automaticallyChecksForUpdates" options:nil];
+	[[self buttonUpdateInterval] bind:@"selectedTag" toObject:sharedUpdater withKeyPath:@"updateCheckInterval" options:nil];
 #endif
 
 }
