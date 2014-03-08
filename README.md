@@ -35,7 +35,7 @@ Change Log
 - Added the Sparkle update engine to offer automatic updates
 - Added preferences to support Sparkle
 - Tweaked other preferences’s layouts for better usability and to support Cocoa bindings
-- Other code tweaks, changes, and simplification.
+- Other code tweaks, changes, and simplification
 
 ### Balthisar Tidy 0.72 (January 2014)
 - Balthisar Tidy now properly saves in the user-chosen file encoding.
