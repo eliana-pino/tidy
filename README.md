@@ -27,6 +27,16 @@ _Balthisar Tidy_ has been release with support for Mac OS X 10.9 and newer. It m
 Change Log
 ----------
 
+### Balthisar Tidy 1.0.1 (March 2014)
+- Introduced backward support to Mac OS X 10.8 Mountain Lion
+- Added a "first run helper" to give an overview to new users
+- Added an Apple Help Help Book to provide fairly good documentation
+- Added a file encoding helper to help users when Tidy thinks that the input-encoding is set wrong
+- Added the Sparkle update engine to offer automatic updates
+- Added preferences to support Sparkle
+- Tweaked other preferences’s layouts for better usability and to support Cocoa bindings
+- Other code tweaks, changes, and simplification.
+
 ### Balthisar Tidy 0.72 (January 2014)
 - Balthisar Tidy now properly saves in the user-chosen file encoding.
 - Balthisar Tidy now properly opens files in non-UTF formats.
