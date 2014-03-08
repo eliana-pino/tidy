@@ -48,16 +48,6 @@
 
 #pragma mark - Properties
 
-// File Saving Pane Preferences
-@property (nonatomic, weak) IBOutlet NSButton *buttonSaving1;			// "Enable save" button in the nib.
-@property (nonatomic, weak) IBOutlet NSButton *buttonSaving2;			// "Disable save" button in the nib.
-@property (nonatomic, weak) IBOutlet NSButton *buttonSavingWarn;		// "Warn on save" button in the nib.
-@property (nonatomic, weak) IBOutlet NSTextField *savingWarnText;		// Extra text for warn on save button.
-
-// Miscellaneous Pane Preferences
-@property (nonatomic, weak) IBOutlet NSButton *buttonShowEncodingHelper;
-@property (nonatomic, weak) IBOutlet NSButton *buttonShowNewUserHelper;
-
 // Software Updater Pane Preferences and Objects
 @property (nonatomic, weak) IBOutlet NSButton *buttonAllowUpdateChecks;
 @property (nonatomic, weak) IBOutlet NSButton *buttonAllowSystemProfile;
@@ -70,10 +60,6 @@
 
 @property (nonatomic, strong) JSDTidyDocument *tidyProcess;				// The optionController's tidy process.
 
-
-#pragma mark - Methods
-
-- (IBAction)preferenceChanged:(id)sender;								// Handler for a configuration option change.
 
 @end
 
@@ -187,9 +173,6 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)windowDidLoad
 {
-	[self setupPreferenceStates];
-
-	
 	// Put the Tidy defaults into the |tidyProcess|.
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	[[self tidyProcess] takeOptionValuesFromDefaults:defaults];
@@ -203,72 +186,7 @@
 }
 
 
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	setupPreferenceStates
-		Have the preferences items reflect the correct state.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)setupPreferenceStates
-{
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	
-	// File Saving Preferences Panel
-	[[self buttonSaving1] setState:([defaults integerForKey:JSDKeySavingPrefStyle] != kJSDSaveAsOnly)];
-	[[self buttonSaving2] setState:([defaults integerForKey:JSDKeySavingPrefStyle] == kJSDSaveAsOnly)];
-	[[self buttonSavingWarn] setState:([defaults integerForKey:JSDKeySavingPrefStyle] == kJSDSaveButWarn)];
-	[[self buttonSavingWarn] setEnabled:[[self buttonSaving1] state]];
-	NSColor *newColor = [[self buttonSaving1] state] ? [NSColor controlTextColor] : [NSColor disabledControlTextColor];
-	[[self savingWarnText] setTextColor:newColor];
-
-	// Miscellaneous Preferences Panel
-	[[self buttonShowEncodingHelper] setState:![defaults boolForKey:JSDKeyIgnoreInputEncodingWhenOpening]];
-	[[self buttonShowNewUserHelper] setState:![defaults boolForKey:JSDKeyFirstRunComplete]];
-}
-
-
 #pragma mark - Events
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	preferenceChanged
-		We're here because we're the action for *all* of the non-
-		Tidy controls in the preferences window. Overhead is low
-		and we want to keep this to a single method.
-		Here we're only interested in recording the new preference,
-		and then we'll dispatch off to setupPreferenceStates and
-		then post the notification.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (IBAction)preferenceChanged:(id)sender
-{
-	/*
-		Buttons saving1 and saving2 aren't in a matrix, and so we
-		will deal with their radio button logic directly.
-	*/
-		
-	if ( (sender == [self buttonSaving1]) || (sender == [self buttonSaving2]) || (sender == [self buttonSavingWarn]) )
-	{
-		JSDSaveType saveType = kJSDSaveButWarn;
-		if ( sender == [self buttonSaving2] )
-		{
-			saveType = kJSDSaveAsOnly;
-		}
-		else
-		{
-			// only save1 could have just come high, or saveWarn was activated,
-			// meaning that save1 is active anyway.
-			saveType = [[self buttonSavingWarn] state] ? kJSDSaveButWarn : kJSDSaveNormal;
-		}
-		
-		[[NSUserDefaults standardUserDefaults] setInteger:saveType forKey:JSDKeySavingPrefStyle];
-	}
-	
-	[[NSUserDefaults standardUserDefaults] setBool:![[self buttonShowEncodingHelper] state] forKey:JSDKeyIgnoreInputEncodingWhenOpening];
-
-	[[NSUserDefaults standardUserDefaults] setBool:![[self buttonShowNewUserHelper] state] forKey:JSDKeyFirstRunComplete];
-
-	[self setupPreferenceStates];
-	
-	[[NSNotificationCenter defaultCenter] postNotificationName:JSDSavePrefChange object:self];
-}
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*

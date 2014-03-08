@@ -113,8 +113,7 @@
 @property (nonatomic, strong) JSDTidyDocument *tidyProcess;
 
 
-// Preferences flags
-@property (nonatomic, assign) JSDSaveType saveBehavior;
+// Preferences-related flags
 @property (nonatomic, assign) BOOL fileWantsProtection;
 @property (nonatomic, assign) BOOL ignoreInputEncodingWhenOpening;
 
@@ -226,8 +225,10 @@
  *———————————————————————————————————————————————————————————————————*/
 - (IBAction)saveDocument:(id)sender
 {
+	JSDSaveType saveBehavior = [[NSUserDefaults standardUserDefaults] integerForKey:JSDKeySavingPrefStyle];
+
 	// Warning will only apply if there's a current file and it's NOT been saved yet, and it's not new.
-	if ( ([self saveBehavior] == kJSDSaveButWarn) &&
+	if ( (saveBehavior == kJSDSaveButWarn) &&
 		 ([self fileWantsProtection]) &&
 		 ([[[self fileURL] path] length] > 0) )
 	{
@@ -241,7 +242,7 @@
 	}
 
 	// Save is completely disabled -- tell user to Save As…
-	if ( ([self fileWantsProtection]) && ([self saveBehavior] == kJSDSaveAsOnly) )
+	if ( ([self fileWantsProtection]) && (saveBehavior == kJSDSaveAsOnly) )
 	{
 		NSRunAlertPanel(NSLocalizedString(@"WarnSaveDisabled", nil), NSLocalizedString(@"WarnSaveDisabledExplain", nil),
 						NSLocalizedString(@"cancel", nil), nil, nil);
@@ -279,7 +280,6 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)dealloc
 {
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:JSDSavePrefChange object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyOptionChanged object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifySourceTextChanged object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyTidyTextChanged object:nil];
@@ -344,7 +344,6 @@
 
 	
 	// Saving behavior settings
-	self.saveBehavior = [defaults integerForKey:JSDKeySavingPrefStyle];
 	self.fileWantsProtection = !([self documentOpenedData] == nil);
 
 	
@@ -361,13 +360,7 @@
 		all of the earlier options setup is simply going to result
 		in a huge cascade of notifications and updates.
 	*/
-	
-	// NSNotifications from the Preference Controller indicate saving preferences changed.
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(handleSavePrefChange:)
-												 name:JSDSavePrefChange
-											   object:[PreferenceController sharedPreferences]];
-	
+
 	// NSNotifications from the |optionController| indicate that one or more options changed.
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(handleTidyOptionChange:)
@@ -427,17 +420,6 @@
 - (void)handleTidyOptionChange:(NSNotification *)note
 {
 	[[self tidyProcess] optionCopyFromDocument:[[self optionController] tidyDocument]];
-}
-
-
-/*———————————————————————————————————————————————————————————————————*
-	handleSavePrefChange
-		This method receives "JSDSavePrefChange" notifications so
-		we can keep abreast of the user's desired "Save" behaviours.
- *———————————————————————————————————————————————————————————————————*/
-- (void)handleSavePrefChange:(NSNotification *)note
-{
-	self.saveBehavior = [[NSUserDefaults standardUserDefaults] integerForKey:JSDKeySavingPrefStyle];
 }
 
 

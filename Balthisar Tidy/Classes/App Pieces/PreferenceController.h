@@ -49,17 +49,10 @@
 #define JSDKeyFirstRunComplete					@"FirstRunComplete"
 
 /*
-	Instances of PreferenceController will post the following NSNotifications.
-*/
-
-#define JSDSavePrefChange			@"JSDSavePrefChange"		// Indicates an app pref changed (not a tidy option).
-
-
-/*
 	The values for the save type behaviours related to app preferences
 */
 
-typedef enum
+typedef enum : NSInteger
 {
 	kJSDSaveNormal = 0,
 	kJSDSaveButWarn = 1,

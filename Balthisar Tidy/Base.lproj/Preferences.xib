@@ -9,11 +9,6 @@
             <connections>
                 <outlet property="buttonAllowSystemProfile" destination="pCG-9l-lM2" id="e0a-m5-AG6"/>
                 <outlet property="buttonAllowUpdateChecks" destination="i8G-ur-VJc" id="PN2-Qc-vVD"/>
-                <outlet property="buttonSaving1" destination="65" id="oUN-6W-ihO"/>
-                <outlet property="buttonSaving2" destination="102" id="iV2-Rt-oaj"/>
-                <outlet property="buttonSavingWarn" destination="64" id="HaZ-3B-vJx"/>
-                <outlet property="buttonShowEncodingHelper" destination="i8J-8l-hgd" id="Wxd-8E-qUM"/>
-                <outlet property="buttonShowNewUserHelper" destination="CX9-Fd-XEn" id="PpS-eD-uUa"/>
                 <outlet property="buttonUpdateInterval" destination="rm0-pu-QQ0" id="7Ay-DQ-lyU"/>
                 <outlet property="optionPane" destination="164" id="m9K-TJ-mTQ"/>
                 <outlet property="savingWarnText" destination="Aei-3W-9wN" id="qM5-qv-VDt"/>
@@ -70,41 +65,8 @@
                                     <rect key="frame" x="10" y="25" width="374" height="455"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <button tag="11" id="64">
-                                            <rect key="frame" x="36" y="373" width="289" height="18"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <buttonCell key="cell" type="check" title="Save normally after warning" bezelStyle="regularSquare" imagePosition="left" alignment="left" enabled="NO" tag="11" inset="2" id="172">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="preferenceChanged:" target="-2" id="141"/>
-                                            </connections>
-                                        </button>
-                                        <button tag="1" id="65">
-                                            <rect key="frame" x="18" y="432" width="305" height="18"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <buttonCell key="cell" type="radio" title="Save normally" bezelStyle="regularSquare" imagePosition="left" alignment="left" tag="1" inset="2" id="173">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="preferenceChanged:" target="-2" id="rLw-RF-SgS"/>
-                                            </connections>
-                                        </button>
-                                        <button tag="2" id="102">
-                                            <rect key="frame" x="18" y="314" width="305" height="18"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <buttonCell key="cell" type="radio" title="Force Save As…" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" tag="2" inset="2" id="174">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="preferenceChanged:" target="-2" id="F4g-j7-dxC"/>
-                                            </connections>
-                                        </button>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="pjd-pA-nRH">
-                                            <rect key="frame" x="29" y="397" width="330" height="28"/>
+                                            <rect key="frame" x="38" y="396" width="330" height="28"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Standard Mac OS X behavior. If Tidy makes a mistake, some content may be permanently lost." id="fvv-93-IFb">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -113,7 +75,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="Aei-3W-9wN">
-                                            <rect key="frame" x="41" y="339" width="318" height="28"/>
+                                            <rect key="frame" x="38" y="329" width="330" height="28"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Saves normally only after a reminder that the original document will be completely replaced." id="0H5-C6-cG4">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -122,7 +84,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="N8B-PM-PDM">
-                                            <rect key="frame" x="29" y="251" width="325" height="56"/>
+                                            <rect key="frame" x="38" y="232" width="330" height="56"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="eZp-TK-AR4">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -141,6 +103,63 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
+                                        <textField appearanceType="aqua" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="MhR-Jk-V7k">
+                                            <rect key="frame" x="38" y="426" width="93" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Save Normally" id="Bob-li-a7P">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField appearanceType="aqua" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="vme-eB-bBS">
+                                            <rect key="frame" x="38" y="359" width="121" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Save after warning" id="hyK-54-bRQ">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField appearanceType="aqua" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="pgx-21-Sy4">
+                                            <rect key="frame" x="38" y="290" width="103" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Force Save As…" id="Bmh-nF-M3v">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <matrix appearanceType="aqua" verticalHuggingPriority="750" allowsEmptySelection="NO" autorecalculatesCellSize="YES" id="Vqz-d2-Q8A">
+                                            <rect key="frame" x="17" y="285" width="349" height="164"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            <size key="cellSize" width="349" height="28"/>
+                                            <size key="intercellSpacing" width="4" height="40"/>
+                                            <buttonCell key="prototype" type="radio" title="Radio" imagePosition="left" alignment="left" inset="2" id="ASg-2r-ph7">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <cells>
+                                                <column>
+                                                    <buttonCell type="radio" imagePosition="left" alignment="left" state="on" inset="2" id="FDu-8A-kdv">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <buttonCell type="radio" imagePosition="left" alignment="left" tag="1" inset="2" id="4zU-RN-l4M">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <buttonCell type="radio" imagePosition="left" alignment="left" tag="2" inset="2" id="BwB-kX-0yg">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                </column>
+                                            </cells>
+                                            <connections>
+                                                <binding destination="he1-mJ-CQo" name="selectedTag" keyPath="values.SavingPrefStyle" id="NUe-9a-Hyx"/>
+                                            </connections>
+                                        </matrix>
                                     </subviews>
                                 </view>
                             </tabViewItem>
@@ -166,7 +185,11 @@
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="preferenceChanged:" target="-2" id="4nC-QT-jDm"/>
+                                                <binding destination="he1-mJ-CQo" name="value" keyPath="values.IgnoreInputEncodingWhenOpeningFiles" id="uQZ-2G-sPi">
+                                                    <dictionary key="options">
+                                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                    </dictionary>
+                                                </binding>
                                             </connections>
                                         </button>
                                         <textField appearanceType="aqua" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="MUU-IJ-clH">
@@ -184,10 +207,14 @@
                                             <buttonCell key="cell" type="check" title="Show new user helper on next launch" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="1bF-hb-W5j">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
-                                                <connections>
-                                                    <action selector="preferenceChanged:" target="-2" id="WoK-eO-TNq"/>
-                                                </connections>
                                             </buttonCell>
+                                            <connections>
+                                                <binding destination="he1-mJ-CQo" name="value" keyPath="values.FirstRunComplete" id="9z0-5P-m7o">
+                                                    <dictionary key="options">
+                                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
                                         </button>
                                         <textField appearanceType="aqua" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="eu4-S5-ZVb">
                                             <rect key="frame" x="29" y="297" width="330" height="56"/>
