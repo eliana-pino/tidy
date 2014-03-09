@@ -32,23 +32,22 @@
 
 #import <Cocoa/Cocoa.h>
 
-#if INCLUDE_SPARKLE == 1
-#import <Sparkle/Sparkle.h>
-#endif	
 
 @class PreferenceController;
-@class BatchController;
+
+/** 
+	Main application controller and delegate.
+	- Handles showing the preferences
+	- Sets up initial conditions
+ */
 
 @interface AppController : NSObject <NSApplicationDelegate>
 
-
-@property (weak, nonatomic) IBOutlet NSMenuItem *menuCheckForUpdates;
-
-#if INCLUDE_SPARKLE == 1
-@property (strong, nonatomic) IBOutlet SUUpdater *sparkleUpdaterObject;
-#endif
-
+/**
+	Will respond to the user wanting to show application preferences.
+ */
 - (IBAction)showPreferences:(id)sender;
+
 
 @end
 

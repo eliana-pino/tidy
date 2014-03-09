@@ -34,6 +34,26 @@
 #import "AppController.h"
 #import "PreferenceController.h"
 
+#if INCLUDE_SPARKLE == 1
+#import <Sparkle/Sparkle.h>
+#endif
+
+
+#pragma mark - CATEGORY - Non-Public
+
+/**
+	The interface describes properties we'd describe as non-public.
+ */
+@interface AppController ()
+
+/**
+	If we're a non-Sparkle build then a reference to the check-for-updates
+	menu item is required in order to hide it.
+ */
+@property (weak, nonatomic) IBOutlet NSMenuItem *menuCheckForUpdates;
+
+@end
+
 
 #pragma mark - IMPLEMENTATION
 
@@ -45,24 +65,14 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	When the app is initialized pass off registering of the user
-		defaults to the |PreferenceController|.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-+ (void)initialize
-{
-	[PreferenceController registerUserDefaults];
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	 Things to take care of when the application has launched.
 	 - Handle sparkle vs no-sparkle.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-
+	[PreferenceController registerUserDefaults];
 /**
-	The `Balthisar Tidy (no sparkle) target has NOSPARKLE=1 defined.
+	The `Balthisar Tidy (no sparkle)` target has NOSPARKLE=1 defined.
 	Because we're building completely without Sparkle, we have to
 	make sure there are no references to it in the MainMenu nib,
 	and set its target-action programmatically.
@@ -70,9 +80,7 @@
 #if INCLUDE_SPARKLE == 0
 	[[self menuCheckForUpdates] setHidden:YES];
 #else
-	self.sparkleUpdaterObject = nil;
-	self.sparkleUpdaterObject = [[SUUpdater alloc] init];
-	[[self menuCheckForUpdates] setTarget:[self sparkleUpdaterObject]];
+	[[self menuCheckForUpdates] setTarget:[SUUpdater sharedUpdater]];
 	[[self menuCheckForUpdates] setAction:@selector(checkForUpdates:)];
 	[[self menuCheckForUpdates] setEnabled:YES];
 #endif
