@@ -94,6 +94,8 @@
 		*/
 		
 		(void)[[JSDTableColumn alloc] initReplacingColumn:[_theTable tableColumnWithIdentifier:@"check"]];
+		
+		[[self theTable] setRowHeight:20.0f];
 	}
 	return self;
 }
