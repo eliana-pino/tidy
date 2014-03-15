@@ -37,9 +37,8 @@
 
 #import <Cocoa/Cocoa.h>
 #import "JSDTidyModel.h"
-#import "JSDTableColumn.h"
 
-@interface OptionPaneController : NSObject <JSDTableColumnProtocol, NSTableViewDataSource>
+@interface OptionPaneController : NSObject <NSTableViewDataSource>
 
 	// Want to expose the tidyDocument because it's our star attraction.
 	@property (nonatomic, strong) JSDTidyModel *tidyDocument;

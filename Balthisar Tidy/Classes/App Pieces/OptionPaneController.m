@@ -36,7 +36,6 @@
  **************************************************************************************************/
 
 #import "OptionPaneController.h"
-#import "JSDTableColumn.h"
 
 
 #pragma mark - CATEGORY - Non-Public
@@ -50,9 +49,6 @@
 
 	@property (weak, nonatomic) IBOutlet NSView *View;					// Pointer to the NIB's |View|.
 	@property (weak, nonatomic) IBOutlet NSTextField *theDescription;	// Pointer to the description field.
-
-
-- (id)tableColumn:(JSDTableColumn *)aTableColumn customDataCellForRow:(NSInteger)row; // [theTable datasource] requirement.
 
 
 @end
@@ -86,15 +82,8 @@
 		// Get our exception list (items to treat as string regardless of tidylib definition)
 		optionsExceptions = [NSArray arrayWithArray:[JSDTidyModel loadConfigurationListFromResource:@"optionsTypesExceptions" ofType:@"txt"]];
 
-		
-		/*
-			Create a custom column for the NSTableView -- the table will retain
-			and control it. Cast to void because otherwise LVVM thinks we're 
-			not using the value.
-		*/
-		
-		(void)[[JSDTableColumn alloc] initReplacingColumn:[_theTable tableColumnWithIdentifier:@"check"]];
-		
+
+		// Clean up the table's row-height.
 		[[self theTable] setRowHeight:20.0f];
 	}
 	return self;
@@ -154,8 +143,6 @@
 	if ([aNotification object] == [self theTable])
 	{
 		[[self theDescription] setStringValue:NSLocalizedString(optionsInEffect[[[self theTable] selectedRow]], nil)];
-		
-		// #TODO: we want to set auto height. Should remove the splitter and just make it dynamic.
 	}
 }
 
@@ -218,25 +205,29 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	tableColumn:customDataCellForRow
-		We're here because we're the datasource of |theTable|.
+	tableView:dataCellForTableColumn:row:
+		We're here because we're the delegate of |theTable|.
 		Here we are providing the popup cell for use by the table.
-		Note that Balthisar Tidy *only* uses popups, or uses the
-		native in-cell editing.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (id)tableColumn:(JSDTableColumn *)aTableColumn customDataCellForRow:(NSInteger)row
+- (NSCell *)tableView:(NSTableView *)tableView dataCellForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
 	// Get the id for the option at this row
 	TidyOptionId optId = [JSDTidyModel optionIdForName:optionsInEffect[row]];
 
-	if ([[aTableColumn identifier] isEqualToString:@"check"])
+	if ([[tableColumn identifier] isEqualToString:@"check"])
 	{
 		NSArray *picks = [JSDTidyModel optionPickListForId:optId];
 
 		// Return a popup only if there IS a picklist and the item is not in the optionsExceptions array
 		if ( ([picks count] != 0) && (![optionsExceptions containsObject:optionsInEffect[row]] ) )
 		{
-			return [aTableColumn usefulPopUpCell:picks];
+			NSPopUpButtonCell *myCell = [[NSPopUpButtonCell alloc] initTextCell: @"" pullsDown:NO];
+			[myCell setEditable: YES];
+			[myCell setBordered:YES];
+			[myCell addItemsWithTitles:picks];
+			[myCell setControlSize:NSSmallControlSize];
+			[myCell setFont:[NSFont menuFontOfSize:10]];
+			return myCell;
 		}
 	}
 
