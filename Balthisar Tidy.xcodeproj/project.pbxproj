@@ -38,7 +38,6 @@
 		D0913CAB18B0AC06005DB2E4 /* entities.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D3A1846209200AFB4FA /* entities.c */; };
 		D0913CAC18B0AC06005DB2E4 /* tmbstr.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D551846209200AFB4FA /* tmbstr.c */; };
 		D0913CAD18B0AC06005DB2E4 /* lexer.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D441846209200AFB4FA /* lexer.c */; };
-		D0913CAE18B0AC06005DB2E4 /* JSDTableColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D3BEBB183C897800692225 /* JSDTableColumn.m */; };
 		D0913CAF18B0AC06005DB2E4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D016A935182FD80700712C60 /* main.m */; };
 		D0913CB018B0AC06005DB2E4 /* NoodleLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = D04B050F183F158800C0F70F /* NoodleLineNumberView.m */; };
 		D0913CB118B0AC06005DB2E4 /* attrask.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D2D1846209200AFB4FA /* attrask.c */; };
@@ -109,7 +108,6 @@
 		D0A4E1D7183A556300999979 /* optionsTypesExceptions.txt in Resources */ = {isa = PBXBuildFile; fileRef = D0A4E1D4183A556300999979 /* optionsTypesExceptions.txt */; };
 		D0BE6EDB183DEB7A00029BF0 /* NSTextView+JSDExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D0BE6EDA183DEB7A00029BF0 /* NSTextView+JSDExtensions.m */; };
 		D0D3BEB8183C87C500692225 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0D3BEB6183C87C500692225 /* MainMenu.xib */; };
-		D0D3BEC2183C897800692225 /* JSDTableColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D3BEBB183C897800692225 /* JSDTableColumn.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -224,8 +222,6 @@
 		D0BE6ED9183DEB7A00029BF0 /* NSTextView+JSDExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSTextView+JSDExtensions.h"; path = "balthisar tidy/Classes/Support Pieces/NSTextView+JSDExtensions.h"; sourceTree = SOURCE_ROOT; };
 		D0BE6EDA183DEB7A00029BF0 /* NSTextView+JSDExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSTextView+JSDExtensions.m"; path = "balthisar tidy/Classes/Support Pieces/NSTextView+JSDExtensions.m"; sourceTree = SOURCE_ROOT; };
 		D0D3BEB7183C87C500692225 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = "balthisar tidy/Base.lproj/MainMenu.xib"; sourceTree = SOURCE_ROOT; };
-		D0D3BEBA183C897800692225 /* JSDTableColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSDTableColumn.h; path = "../balthisar tidy/Classes/Support Pieces/JSDTableColumn.h"; sourceTree = "<group>"; };
-		D0D3BEBB183C897800692225 /* JSDTableColumn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSDTableColumn.m; path = "../balthisar tidy/Classes/Support Pieces/JSDTableColumn.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -378,8 +374,6 @@
 		D07AF49C1836592300913067 /* Support Pieces */ = {
 			isa = PBXGroup;
 			children = (
-				D0D3BEBA183C897800692225 /* JSDTableColumn.h */,
-				D0D3BEBB183C897800692225 /* JSDTableColumn.m */,
 				D04B0511183F15F500C0F70F /* NoodleLineNumberMarker.h */,
 				D04B0512183F15F500C0F70F /* NoodleLineNumberMarker.m */,
 				D04B050E183F158800C0F70F /* NoodleLineNumberView.h */,
@@ -627,7 +621,6 @@
 				D09D8D661846209200AFB4FA /* entities.c in Sources */,
 				D09D8D741846209200AFB4FA /* tmbstr.c in Sources */,
 				D09D8D6B1846209200AFB4FA /* lexer.c in Sources */,
-				D0D3BEC2183C897800692225 /* JSDTableColumn.m in Sources */,
 				D016A936182FD80700712C60 /* main.m in Sources */,
 				D04B0510183F158800C0F70F /* NoodleLineNumberView.m in Sources */,
 				D09D8D5E1846209200AFB4FA /* attrask.c in Sources */,
@@ -670,7 +663,6 @@
 				D0913CAB18B0AC06005DB2E4 /* entities.c in Sources */,
 				D0913CAC18B0AC06005DB2E4 /* tmbstr.c in Sources */,
 				D0913CAD18B0AC06005DB2E4 /* lexer.c in Sources */,
-				D0913CAE18B0AC06005DB2E4 /* JSDTableColumn.m in Sources */,
 				D0913CAF18B0AC06005DB2E4 /* main.m in Sources */,
 				D0913CB018B0AC06005DB2E4 /* NoodleLineNumberView.m in Sources */,
 				D0913CB118B0AC06005DB2E4 /* attrask.c in Sources */,
