@@ -1,20 +1,24 @@
-/**************************************************************************************************
+/* ************************************************************************************************
 
 	JSDTableColumn.h
 
-	implement |dataCellForRow| so that we can use different cells in any row of a table.
+	Tidy uses NSButtonCells instead of text for some table cells, and the JSDTableColumn class
+ 	and protocol to implement `dataCellForRow` so that we can use different cells in any row
+	of a table.
 
 	FOR SOME REASON, you cannot implement this in IB -- you'll have to swap out the
 	type in |awakeFromNib| in the controller that you use. See these methods to assist:
 
-		initReplacingColumn:
-		initReplacingColumnId:
-		swapForTableColumn:
+	- initReplacingColumn:
+	- initReplacingColumnId:
+	- swapForTableColumn:
+ 
+	@todo Make sure the above is still true; it was originally Project Builder's IB, after all.
 
 
 	The MIT License (MIT)
 
-	Copyright (c) 2001 to 2013 James S. Derry <http://www.balthisar.com>
+	Copyright (c) 2001 to 2014 James S. Derry <http://www.balthisar.com>
 
 	Permission is hereby granted, free of charge, to any person obtaining a copy of this software
 	and associated documentation files (the "Software"), to deal in the Software without
@@ -38,18 +42,22 @@
 
 #pragma mark - JSDTableColumn Class
 
-
+/**
+	Tidy uses NSButtonCells instead of text for some table cells, and the JSDTableColumn class
+	and protocol to implement `dataCellForRow` so that we can use different cells in any row
+	of a table.
+ */
 @interface JSDTableColumn : NSTableColumn
 
-- (id)initReplacingColumn:(NSTableColumn *)aColumn;		// Initializer that replaces an existing column with this one.
+- (id)initReplacingColumn:(NSTableColumn *)aColumn;		///< Initializer that replaces an existing column with this one.
 
-- (id)dataCellForRow:(int)row;							// Calls the delegate for each column to get the data cell.
+- (id)dataCellForRow:(int)row;							///< Calls the delegate for each column to get the data cell.
 
-- (void)swapForTableColumn:(NSTableColumn *)aColumn;	// Swaps this instance of JSDTableColumn for an existing one.
+- (void)swapForTableColumn:(NSTableColumn *)aColumn;	///< Swaps this instance of JSDTableColumn for an existing one.
 
-- (NSCell *)usefulCheckCell;							// Returns an instance of a NSButtonCell as a check box.
-- (NSCell *)usefulRadioCell;							// Returns an instance of a NSButtonCell as a radio button.
-- (NSCell *)usefulPopUpCell:(NSArray *)picks;			// Returns an instance of a NSPopupButtonCell as a pop-up list.
+- (NSCell *)usefulCheckCell;							///< Returns an instance of a NSButtonCell as a check box.
+- (NSCell *)usefulRadioCell;							///< Returns an instance of a NSButtonCell as a radio button.
+- (NSCell *)usefulPopUpCell:(NSArray *)picks;			///< Returns an instance of a NSPopupButtonCell as a pop-up list.
 
 @end
 
@@ -57,6 +65,9 @@
 #pragma mark - JSDTableColumn Protocol
 
 
+/**
+	`JSDTableColumnProtocol` formalizes the expected contract.
+ */
 @protocol JSDTableColumnProtocol <NSObject>
 
 @required

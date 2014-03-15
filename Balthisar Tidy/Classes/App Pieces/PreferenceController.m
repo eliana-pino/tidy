@@ -33,7 +33,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "PreferenceController.h"
-#import "JSDTidyDocument.h"
+#import "JSDTidyModel.h"
 
 #if INCLUDE_SPARKLE == 1
 #import <Sparkle/Sparkle.h>
@@ -58,7 +58,7 @@
 
 @property (nonatomic, strong) OptionPaneController *optionController;	// The real option pane loaded into optionPane.
 
-@property (nonatomic, strong) JSDTidyDocument *tidyProcess;				// The optionController's tidy process.
+@property (nonatomic, strong) JSDTidyModel *tidyProcess;				// The optionController's tidy process.
 
 
 @end
@@ -101,7 +101,7 @@
 	defaultValues[JSDKeyFirstRunComplete] = @NO;
 	
 	// Get the defaults from the linked-in TidyLib
-	[JSDTidyDocument addDefaultsToDictionary:defaultValues];
+	[JSDTidyModel addDefaultsToDictionary:defaultValues];
 	
 	// Register the defaults with the defaults system
 	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];

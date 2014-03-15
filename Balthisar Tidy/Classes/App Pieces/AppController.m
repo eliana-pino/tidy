@@ -2,16 +2,13 @@
 
 	AppController.m
 
-	part of Balthisar Tidy
-
-	This main application controller ties together the |PreferenceController| and
-	the |BatchController|. The |DocumentController| is implemented automatically and no
-	special works needs to be done.
+	This main application controller handles the preferences and most of the Sparkle vs.
+	non-sparkle builds.
 
 
 	The MIT License (MIT)
 
-	Copyright (c) 2001 to 2013 James S. Derry <http://www.balthisar.com>
+	Copyright (c) 2001 to 2014 James S. Derry <http://www.balthisar.com>
 
 	Permission is hereby granted, free of charge, to any person obtaining a copy of this software
 	and associated documentation files (the "Software"), to deal in the Software without
@@ -41,15 +38,9 @@
 
 #pragma mark - CATEGORY - Non-Public
 
-/**
-	The interface describes properties we'd describe as non-public.
- */
+
 @interface AppController ()
 
-/**
-	If we're a non-Sparkle build then a reference to the check-for-updates
-	menu item is required in order to hide it.
- */
 @property (weak, nonatomic) IBOutlet NSMenuItem *menuCheckForUpdates;
 
 @end
@@ -71,7 +62,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
 	[PreferenceController registerUserDefaults];
-/**
+/*
 	The `Balthisar Tidy (no sparkle)` target has NOSPARKLE=1 defined.
 	Because we're building completely without Sparkle, we have to
 	make sure there are no references to it in the MainMenu nib,

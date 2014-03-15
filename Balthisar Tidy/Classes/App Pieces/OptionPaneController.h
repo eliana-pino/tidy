@@ -11,7 +11,7 @@
 
 	This controller parses optionsInEffect.txt in the application bundle, and compares
 	the options listed there with the linked-in TidyLib to determine which options are
-	in effect and valid. We use an instance of |JSDTidyDocument| to deal with this.
+	in effect and valid. We use an instance of |JSDTidyModel| to deal with this.
 
 
 	The MIT License (MIT)
@@ -36,13 +36,13 @@
  **************************************************************************************************/
 
 #import <Cocoa/Cocoa.h>
-#import "JSDTidyDocument.h"
+#import "JSDTidyModel.h"
 #import "JSDTableColumn.h"
 
 @interface OptionPaneController : NSObject <JSDTableColumnProtocol, NSTableViewDataSource>
 
 	// Want to expose the tidyDocument because it's our star attraction.
-	@property (nonatomic, strong) JSDTidyDocument *tidyDocument;
+	@property (nonatomic, strong) JSDTidyModel *tidyDocument;
 
 	// We want to expose it so we can force reload data.
 	@property (weak, nonatomic) IBOutlet NSTableView *theTable;

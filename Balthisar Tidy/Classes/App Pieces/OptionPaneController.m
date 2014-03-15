@@ -11,7 +11,7 @@
 
 	This controller parses optionsInEffect.txt in the application bundle, and compares
 	the options listed there with the linked-in TidyLib to determine which options are
-	in effect and valid. We use an instance of |JSDTidyDocument| to deal with this.
+	in effect and valid. We use an instance of |JSDTidyModel| to deal with this.
 
 
 	The MIT License (MIT)
@@ -77,14 +77,14 @@
 	{
 		[[NSBundle mainBundle] loadNibNamed:@"OptionPane" owner:self topLevelObjects:nil];
 
-		_tidyDocument = [[JSDTidyDocument alloc] init];
+		_tidyDocument = [[JSDTidyModel alloc] init];
 
 		// Get our options list
-		optionsInEffect = [NSArray arrayWithArray:[JSDTidyDocument loadConfigurationListFromResource:@"optionsInEffect" ofType:@"txt"]];
+		optionsInEffect = [NSArray arrayWithArray:[JSDTidyModel loadConfigurationListFromResource:@"optionsInEffect" ofType:@"txt"]];
 
 		
 		// Get our exception list (items to treat as string regardless of tidylib definition)
-		optionsExceptions = [NSArray arrayWithArray:[JSDTidyDocument loadConfigurationListFromResource:@"optionsTypesExceptions" ofType:@"txt"]];
+		optionsExceptions = [NSArray arrayWithArray:[JSDTidyModel loadConfigurationListFromResource:@"optionsTypesExceptions" ofType:@"txt"]];
 
 		
 		/*
@@ -179,7 +179,7 @@
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
 	// Get the id for the option at this row.
-	TidyOptionId optId = [JSDTidyDocument optionIdForName:optionsInEffect[rowIndex]];
+	TidyOptionId optId = [JSDTidyModel optionIdForName:optionsInEffect[rowIndex]];
 
 	// Handle returning the 'name' of the option.
 	if ([[aTableColumn identifier] isEqualToString:@"name"])
@@ -198,7 +198,7 @@
 		
 		if ( (optId == TidyCharEncoding) || (optId == TidyInCharEncoding) || (optId == TidyOutCharEncoding) )
 		{
-			return [JSDTidyDocument availableEncodingDictionariesByNSStringEncoding][@([[[self tidyDocument] optionValueForId:optId] integerValue])][@"LocalizedIndex"];
+			return [JSDTidyModel availableEncodingDictionariesByNSStringEncoding][@([[[self tidyDocument] optionValueForId:optId] integerValue])][@"LocalizedIndex"];
 		}
 		else
 		{
@@ -227,11 +227,11 @@
 - (id)tableColumn:(JSDTableColumn *)aTableColumn customDataCellForRow:(NSInteger)row
 {
 	// Get the id for the option at this row
-	TidyOptionId optId = [JSDTidyDocument optionIdForName:optionsInEffect[row]];
+	TidyOptionId optId = [JSDTidyModel optionIdForName:optionsInEffect[row]];
 
 	if ([[aTableColumn identifier] isEqualToString:@"check"])
 	{
-		NSArray *picks = [JSDTidyDocument optionPickListForId:optId];
+		NSArray *picks = [JSDTidyModel optionPickListForId:optId];
 
 		// Return a popup only if there IS a picklist and the item is not in the optionsExceptions array
 		if ( ([picks count] != 0) && (![optionsExceptions containsObject:optionsInEffect[row]] ) )
@@ -276,7 +276,7 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)tableView:(NSTableView *)aTableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)inColumn row:(NSInteger)inRow
 {
-	TidyOptionId optId = [JSDTidyDocument optionIdForName:optionsInEffect[inRow]];
+	TidyOptionId optId = [JSDTidyModel optionIdForName:optionsInEffect[inRow]];
 	
 	if ([[inColumn identifier] isEqualToString:@"check"])
 	{
@@ -285,7 +285,7 @@
 		{
 			// We have the alphabetical index, but need to find the NSStringEncoding.
 			[[self tidyDocument] setOptionValueForId:optId
-									fromObject:[JSDTidyDocument availableEncodingDictionariesByLocalizedIndex][@([object unsignedLongValue])][@"NSStringEncoding"]];
+									fromObject:[JSDTidyModel availableEncodingDictionariesByLocalizedIndex][@([object unsignedLongValue])][@"NSStringEncoding"]];
 		}
 		else
 		{

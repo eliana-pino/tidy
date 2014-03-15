@@ -1,20 +1,24 @@
 /**************************************************************************************************
 
-	JSDTableColumn.m
+	JSDTableColumn.h
 
-	implement |dataCellForRow| so that we can use different cells in any row of a table.
+	Tidy uses NSButtonCells instead of text for some table cells. This file contains the class
+	and protocol to implement `dataCellForRow` so that we can use different cells in any row
+	of a table.
 
 	FOR SOME REASON, you cannot implement this in IB -- you'll have to swap out the
 	type in |awakeFromNib| in the controller that you use. See these methods to assist:
 
-		initReplacingColumn:
-		initReplacingColumnId:
-		swapForTableColumn:
+	- initReplacingColumn:
+	- initReplacingColumnId:
+	- swapForTableColumn:
+ 
+	@todo Make sure the above is still true; it was originally Project Builder's IB, after all.
 
 
 	The MIT License (MIT)
 
-	Copyright (c) 2001 to 2013 James S. Derry <http://www.balthisar.com>
+	Copyright (c) 2001 to 2014 James S. Derry <http://www.balthisar.com>
 
 	Permission is hereby granted, free of charge, to any person obtaining a copy of this software
 	and associated documentation files (the "Software"), to deal in the Software without

@@ -65,7 +65,7 @@
 
 #import "TidyDocument.h"
 #import "PreferenceController.h"
-#import "JSDTidyDocument.h"
+#import "JSDTidyModel.h"
 #import "NSTextView+JSDExtensions.h"
 
 
@@ -110,7 +110,7 @@
 
 
 // Our Tidy Processor
-@property (nonatomic, strong) JSDTidyDocument *tidyProcess;
+@property (nonatomic, strong) JSDTidyModel *tidyProcess;
 
 
 // Preferences-related flags
@@ -267,7 +267,7 @@
 {
 	if ((self = [super init]))
 	{
-		self.tidyProcess = [[JSDTidyDocument alloc] init];
+		self.tidyProcess = [[JSDTidyModel alloc] init];
 		self.documentOpenedData = nil;
 	}
 	

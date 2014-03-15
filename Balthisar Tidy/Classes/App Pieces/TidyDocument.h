@@ -29,7 +29,7 @@
  **************************************************************************************************/
 
 #import <Cocoa/Cocoa.h>
-#import "JSDTidyDocument.h"
+#import "JSDTidyModel.h"
 #import "OptionPaneController.h"
 
 @interface TidyDocument : NSDocument <NSTableViewDelegate, NSSplitViewDelegate, NSTextViewDelegate>
