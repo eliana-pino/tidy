@@ -85,7 +85,7 @@ $(document).ready(function(){initNavTree('NSTextView_09JSDExtensions_8h_source.h
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">    The MIT License (MIT)</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">    Copyright (c) 2001 to 2013 James S. Derry &lt;http://www.balthisar.com&gt;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">    Copyright (c) 2001 to 2014 James S. Derry &lt;http://www.balthisar.com&gt;</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">    Permission is hereby granted, free of charge, to any person obtaining a copy of this software</span></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">    and associated documentation files (the &quot;Software&quot;), to deal in the Software without</span></div>
@@ -106,32 +106,37 @@ $(document).ready(function(){initNavTree('NSTextView_09JSDExtensions_8h_source.h
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#import &lt;Cocoa/Cocoa.h&gt;</span></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="categoryNSTextView_07JSDExtensions_08.html">   38</a></span>&#160;<span class="keyword">@interface </span><a class="code" href="categoryNSTextView_07JSDExtensions_08.html">NSTextView (JSDExtensions)</a></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">@property</span> (nonatomic) NSInteger highlitLine;                <span class="comment">// Highlight this row number (0 for none).</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">@property</span> (nonatomic) NSInteger highlitColumn;              <span class="comment">// Highlight this column of the row (0 for none).</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">@property</span> (nonatomic) BOOL showsHighlight;                  <span class="comment">// Sets/Indicates the current highlight state.</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">@property</span> (nonatomic) BOOL wordwrapsText;                   <span class="comment">// Sets/Indicates the current wordwrap state.</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">@property</span> (nonatomic) BOOL showsLineNumbers;                <span class="comment">// Sets/Indicates whether or not line numbers appear.</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="categoryNSTextView_07JSDExtensions_08.html">   41</a></span>&#160;<span class="keyword">@interface </span><a class="code" href="categoryNSTextView_07JSDExtensions_08.html">NSTextView (JSDExtensions)</a></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="categoryNSTextView_07JSDExtensions_08.html#a9d06e37521c3a6b313a88443ae3f2601">   43</a></span>&#160;    <span class="keyword">@property</span> (nonatomic) NSInteger <a class="code" href="categoryNSTextView_07JSDExtensions_08.html#a9d06e37521c3a6b313a88443ae3f2601">highlitLine</a>;                </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    </div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="categoryNSTextView_07JSDExtensions_08.html#a08ffbdc03c91d3399666eae50e731640">   45</a></span>&#160;    <span class="keyword">@property</span> (nonatomic) NSInteger <a class="code" href="categoryNSTextView_07JSDExtensions_08.html#a08ffbdc03c91d3399666eae50e731640">highlitColumn</a>;              </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    </div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="categoryNSTextView_07JSDExtensions_08.html#aa865e5a76ca1585208126f4a732324bd">   47</a></span>&#160;    <span class="keyword">@property</span> (nonatomic) BOOL <a class="code" href="categoryNSTextView_07JSDExtensions_08.html#aa865e5a76ca1585208126f4a732324bd">showsHighlight</a>;                  </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="categoryNSTextView_07JSDExtensions_08.html#a4e889fd7cc8bc2516f9839ee579b373a">   49</a></span>&#160;    <span class="keyword">@property</span> (nonatomic) BOOL <a class="code" href="categoryNSTextView_07JSDExtensions_08.html#a4e889fd7cc8bc2516f9839ee579b373a">wordwrapsText</a>;                   </div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;- (void)scrollLineToVisible:(NSInteger)line;                    <span class="comment">// Ensures that a logical line is visible in the view.</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="categoryNSTextView_07JSDExtensions_08.html#a182c04f3d9a74a0b0d9c075549153a99">   51</a></span>&#160;    <span class="keyword">@property</span> (nonatomic) BOOL <a class="code" href="categoryNSTextView_07JSDExtensions_08.html#a182c04f3d9a74a0b0d9c075549153a99">showsLineNumbers</a>;                </div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;- (void)highlightLine:(NSInteger)line Column:(NSInteger)column; <span class="comment">// As above, including scrolling into view.</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">@end</span></div>
-<div class="ttc" id="categoryNSTextView_07JSDExtensions_08_html"><div class="ttname"><a href="categoryNSTextView_07JSDExtensions_08.html">NSTextView(JSDExtensions)</a></div><div class="ttdef"><b>Definition:</b> NSTextView+JSDExtensions.h:38</div></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;- (void)scrollLineToVisible:(NSInteger)line;                    </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;- (void)highlightLine:(NSInteger)line Column:(NSInteger)column; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keyword">@end</span></div>
+<div class="ttc" id="categoryNSTextView_07JSDExtensions_08_html"><div class="ttname"><a href="categoryNSTextView_07JSDExtensions_08.html">NSTextView(JSDExtensions)</a></div><div class="ttdoc">NSTextView+JSDExtensions as some nice extensions to NSTextView. </div><div class="ttdef"><b>Definition:</b> NSTextView+JSDExtensions.h:41</div></div>
+<div class="ttc" id="categoryNSTextView_07JSDExtensions_08_html_aa865e5a76ca1585208126f4a732324bd"><div class="ttname"><a href="categoryNSTextView_07JSDExtensions_08.html#aa865e5a76ca1585208126f4a732324bd">NSTextView(JSDExtensions)::showsHighlight</a></div><div class="ttdeci">BOOL showsHighlight</div><div class="ttdoc">Sets/Indicates the current highlight state. </div><div class="ttdef"><b>Definition:</b> NSTextView+JSDExtensions.h:47</div></div>
+<div class="ttc" id="categoryNSTextView_07JSDExtensions_08_html_a182c04f3d9a74a0b0d9c075549153a99"><div class="ttname"><a href="categoryNSTextView_07JSDExtensions_08.html#a182c04f3d9a74a0b0d9c075549153a99">NSTextView(JSDExtensions)::showsLineNumbers</a></div><div class="ttdeci">BOOL showsLineNumbers</div><div class="ttdoc">Sets/Indicates whether or not line numbers appear. </div><div class="ttdef"><b>Definition:</b> NSTextView+JSDExtensions.h:51</div></div>
+<div class="ttc" id="categoryNSTextView_07JSDExtensions_08_html_a08ffbdc03c91d3399666eae50e731640"><div class="ttname"><a href="categoryNSTextView_07JSDExtensions_08.html#a08ffbdc03c91d3399666eae50e731640">NSTextView(JSDExtensions)::highlitColumn</a></div><div class="ttdeci">NSInteger highlitColumn</div><div class="ttdoc">Highlight this column of the row (0 for none). </div><div class="ttdef"><b>Definition:</b> NSTextView+JSDExtensions.h:45</div></div>
+<div class="ttc" id="categoryNSTextView_07JSDExtensions_08_html_a4e889fd7cc8bc2516f9839ee579b373a"><div class="ttname"><a href="categoryNSTextView_07JSDExtensions_08.html#a4e889fd7cc8bc2516f9839ee579b373a">NSTextView(JSDExtensions)::wordwrapsText</a></div><div class="ttdeci">BOOL wordwrapsText</div><div class="ttdoc">Sets/Indicates the current wordwrap state. </div><div class="ttdef"><b>Definition:</b> NSTextView+JSDExtensions.h:49</div></div>
+<div class="ttc" id="categoryNSTextView_07JSDExtensions_08_html_a9d06e37521c3a6b313a88443ae3f2601"><div class="ttname"><a href="categoryNSTextView_07JSDExtensions_08.html#a9d06e37521c3a6b313a88443ae3f2601">NSTextView(JSDExtensions)::highlitLine</a></div><div class="ttdeci">NSInteger highlitLine</div><div class="ttdoc">Highlight this row number (0 for none). </div><div class="ttdef"><b>Definition:</b> NSTextView+JSDExtensions.h:43</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_589a424fa5a124d70804d0ae91dd07f5.html">Balthisar Tidy</a></li><li class="navelem"><a class="el" href="dir_302644532aeaf91a5112dd309c93795c.html">Classes</a></li><li class="navelem"><a class="el" href="dir_6b36550af820a49bfd80e2f5ebd12e96.html">Support Pieces</a></li><li class="navelem"><b>NSTextView+JSDExtensions.h</b></li>
-    <li class="footer">Generated on Sat Mar 15 2014 16:07:03 for Balthisar Tidy by
+    <li class="footer">Generated on Sat Mar 15 2014 16:56:04 for Balthisar Tidy by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

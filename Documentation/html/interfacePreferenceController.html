@@ -70,12 +70,16 @@ $(document).ready(function(){initNavTree('interfacePreferenceController.html',''
 <div class="header">
   <div class="summary">
 <a href="#pub-static-methods">Class Methods</a> &#124;
-<a href="#properties">Properties</a> &#124;
 <a href="classPreferenceController-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">PreferenceController Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>The <a class="el" href="interfacePreferenceController.html" title="The PreferenceController handles the preferences window and its interaction with the defaults system ...">PreferenceController</a> handles the preferences window and its interaction with the defaults system and the <a class="el" href="interfaceOptionPaneController.html" title="The main controller for the Tidy Options pane. ">OptionPaneController</a>.  
+ <a href="interfacePreferenceController.html#details">More...</a></p>
+
+<p><code>#import &lt;<a class="el" href="PreferenceController_8h_source.html">PreferenceController.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for PreferenceController:</div>
 <div class="dyncontent">
@@ -87,19 +91,50 @@ Inheritance diagram for PreferenceController:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Class Methods</h2></td></tr>
-<tr class="memitem:a7d8a72faa6bba1ce800cc6843d2e48d9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7d8a72faa6bba1ce800cc6843d2e48d9"></a>
-(id)&#160;</td><td class="memItemRight" valign="bottom">+ <b>sharedPreferences</b></td></tr>
+<tr class="memitem:a7d8a72faa6bba1ce800cc6843d2e48d9"><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interfacePreferenceController.html#a7d8a72faa6bba1ce800cc6843d2e48d9">sharedPreferences</a></td></tr>
+<tr class="memdesc:a7d8a72faa6bba1ce800cc6843d2e48d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Singleton accessor for this class.  <a href="#a7d8a72faa6bba1ce800cc6843d2e48d9">More...</a><br/></td></tr>
 <tr class="separator:a7d8a72faa6bba1ce800cc6843d2e48d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92d9f8a324bbcde4b6b050520d4b10bb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a92d9f8a324bbcde4b6b050520d4b10bb"></a>
-(void)&#160;</td><td class="memItemRight" valign="bottom">+ <b>registerUserDefaults</b></td></tr>
+<tr class="memitem:a92d9f8a324bbcde4b6b050520d4b10bb"><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interfacePreferenceController.html#a92d9f8a324bbcde4b6b050520d4b10bb">registerUserDefaults</a></td></tr>
+<tr class="memdesc:a92d9f8a324bbcde4b6b050520d4b10bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers all of Balthisar Tidy's defaults with Mac OS X' defaults system.  <a href="#a92d9f8a324bbcde4b6b050520d4b10bb">More...</a><br/></td></tr>
 <tr class="separator:a92d9f8a324bbcde4b6b050520d4b10bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
-Properties</h2></td></tr>
-<tr class="memitem:a73ea71937978dcd93e3ca8aae44eb7e8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a73ea71937978dcd93e3ca8aae44eb7e8"></a>
-IBOutlet NSTabViewItem *&#160;</td><td class="memItemRight" valign="bottom"><b>tabViewUpdates</b></td></tr>
-<tr class="separator:a73ea71937978dcd93e3ca8aae44eb7e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The <a class="el" href="interfacePreferenceController.html" title="The PreferenceController handles the preferences window and its interaction with the defaults system ...">PreferenceController</a> handles the preferences window and its interaction with the defaults system and the <a class="el" href="interfaceOptionPaneController.html" title="The main controller for the Tidy Options pane. ">OptionPaneController</a>. </p>
+</div><h2 class="groupheader">Method Documentation</h2>
+<a class="anchor" id="a92d9f8a324bbcde4b6b050520d4b10bb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">+ (void) registerUserDefaults </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Registers all of Balthisar Tidy's defaults with Mac OS X' defaults system. </p>
+
+</div>
+</div>
+<a class="anchor" id="a7d8a72faa6bba1ce800cc6843d2e48d9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">+ (id) sharedPreferences </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Singleton accessor for this class. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="PreferenceController_8h_source.html">PreferenceController.h</a></li>
 <li>PreferenceController.m</li>
@@ -110,7 +145,7 @@ IBOutlet NSTabViewItem *&#160;</td><td class="memItemRight" valign="bottom"><b>t
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="interfacePreferenceController.html">PreferenceController</a></li>
-    <li class="footer">Generated on Sat Mar 15 2014 16:07:03 for Balthisar Tidy by
+    <li class="footer">Generated on Sat Mar 15 2014 16:56:04 for Balthisar Tidy by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

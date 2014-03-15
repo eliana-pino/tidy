@@ -2,8 +2,6 @@
 
 	TidyDocument.h
 	 
-	part of Balthisar Tidy
-
 	The main document controller.
 
 
@@ -32,6 +30,10 @@
 #import "JSDTidyModel.h"
 #import "OptionPaneController.h"
 
+/**
+	TidyDocument manages the user interaction between the document
+	window and the JSDTidyModel processor.
+ */
 @interface TidyDocument : NSDocument <NSTableViewDelegate, NSSplitViewDelegate, NSTextViewDelegate>
 
 /*

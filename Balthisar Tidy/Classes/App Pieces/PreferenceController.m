@@ -2,12 +2,10 @@
 
 	PreferenceController.m
 
-	part of Balthisar Tidy
-
 	The main preference controller. Here we'll control the following:
 
-		o Handles the application preferences.
-		o Implements class methods to be used before instantiation.
+	- Handles the application preferences.
+	- Implements class methods to be used before instantiation.
 
 
 	The MIT License (MIT)
@@ -47,6 +45,8 @@
 
 
 #pragma mark - Properties
+
+@property (nonatomic, weak) IBOutlet NSTabViewItem *tabViewUpdates;
 
 // Software Updater Pane Preferences and Objects
 @property (nonatomic, weak) IBOutlet NSButton *buttonAllowUpdateChecks;

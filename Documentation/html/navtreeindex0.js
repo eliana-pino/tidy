@@ -70,7 +70,6 @@ var NAVTREEINDEX0 =
 "interfaceOptionPaneController.html#ac5cc2b1e6d82649b82436016700438ff":[2,0,4,3],
 "interfaceOptionPaneController.html#ac7a1ba3c868927ebf7ca368a8fb2085b":[2,0,4,1],
 "interfacePreferenceController.html":[2,0,5],
-"interfacePreferenceController.html#a73ea71937978dcd93e3ca8aae44eb7e8":[2,0,5,0],
 "interfaceTidyDocument.html":[2,0,6],
 "md__Users_jderry_Dropbox_Development_Balthisar_Tidy_Balthisar_Tidy_Classes_JSDTidy_JSDTidyModel.html":[0],
 "pages.html":[],

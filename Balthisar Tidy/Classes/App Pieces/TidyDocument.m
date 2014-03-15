@@ -2,8 +2,6 @@
 
 	TidyDocument.m
 
-	part of Balthisar Tidy
-
 	The main document controller.
 
 

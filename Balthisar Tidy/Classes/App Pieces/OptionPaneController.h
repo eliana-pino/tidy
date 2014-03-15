@@ -42,23 +42,34 @@
 @interface OptionPaneController : NSObject <NSTableViewDataSource>
 
 /**
-	@brief Expose the tidyDocument because it contains the
+	Expose the tidyDocument because it contains the
 	data that we'll be interested in later.
+
 	@todo refactor interface to this controller's model.
+	Right now we're accessing this directly from the
+	outside, and we really should have this controller
+	host a key-value pair model, probably from the 
+	user preferences system.
  */
 @property (nonatomic, strong) JSDTidyModel *tidyDocument;
 
 /**
-	@brief External exposure because we need to force reload the
+	External exposure because we need to force reload the
 	data sometimes.
-	refactor interface to this controller's model. It
-	@todo should update itself when the data changes. This is a
-	hack right now.
+	
+	@todo refactor interface to this controller's model.
+	Right now we're accessing this directly from the
+	outside, and we really should have this controller
+	host a key-value pair model, probably from the
+	user preferences system. Right now this hackey way
+	is only used in one spot, and it's bad design.
  */
 @property (weak, nonatomic) IBOutlet NSTableView *theTable;
 
 
-/// Initialize the view so we can use it.
+/**
+	Initialize the view so we can use it.
+ */
 - (id)init;
 
 /**

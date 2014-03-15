@@ -5,6 +5,6 @@ var annotated =
     [ "JSDTidyModel", "interfaceJSDTidyModel.html", "interfaceJSDTidyModel" ],
     [ "NSTextView(JSDExtensions)", "categoryNSTextView_07JSDExtensions_08.html", "categoryNSTextView_07JSDExtensions_08" ],
     [ "OptionPaneController", "interfaceOptionPaneController.html", "interfaceOptionPaneController" ],
-    [ "PreferenceController", "interfacePreferenceController.html", "interfacePreferenceController" ],
+    [ "PreferenceController", "interfacePreferenceController.html", null ],
     [ "TidyDocument", "interfaceTidyDocument.html", null ]
 ];

@@ -65,7 +65,9 @@
 
 #pragma mark - class JSDTidyModel
 
-
+/**
+	JSDTidyModel is a nice, Mac OS X wrapper for TidyLib.
+ */
 @interface JSDTidyModel : NSObject
 
 
@@ -76,9 +78,9 @@
 	INITIALIZATION and DEALLOCATION
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
-- (id)init;
+- (id)init;			///< Standard init.
 
-- (void)dealloc;
+- (void)dealloc;	///< Standard dealloc.
 
 /*
 	The convenience initializers below assume that strings and data
@@ -90,16 +92,22 @@
 	be generated immediately.
 */
 
+/// InitWithString:
 - (id)initWithString:(NSString *)value;
 
+/// InitWithString:copyOptionsFromDocument:
 - (id)initWithString:(NSString *)value copyOptionsFromDocument:(JSDTidyModel *)theDocument;
 
+/// InitWithData:
 - (id)initWithData:(NSData *)data;
 
+/// InitWithData:copyOptionsFromDocument:
 - (id)initWithData:(NSData *)data copyOptionsFromDocument:(JSDTidyModel *)theDocument;
 
+/// InitWithFile
 - (id)initWithFile:(NSString *)path;
 
+/// InitWithFile:copyOptionsFromDocument:
 - (id)initWithFile:(NSString *)path copyOptionsFromDocument:(JSDTidyModel *)theDocument;
 
 
@@ -124,38 +132,6 @@
 	`LocalizedIndex`, and `LocalizedName`.
 */
 
-///@name Group String Encoding Support
-
-/**
-@property allAvailableEncodingLocalizedNames
-	 
-@brief Returns encoding names.
-	 
-@description
-	 
-	Returns an array of @c NSString of all available encoding names
-	(localized) in local sorting order.
- 
-@code
-hello_you;
-[ssamep_code];
-@endcode
-	 
-@see availableEncodingDictionariesByLocalizedName
-
-@warning Hello, dolly.
-	 
-@exception jd_exception throws this exception.
- 
-//param (id*)hello @b hello is the parameter.
-	 
-@return NSArray of strings.
- 
-@since version 1.0a
- 
-//deprecated since 1.0a because it's just temporary.
- 
-*/
 + (NSArray *)allAvailableEncodingLocalizedNames;
 
 + (NSDictionary *)availableEncodingDictionariesByLocalizedName;

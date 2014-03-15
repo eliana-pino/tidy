@@ -66,16 +66,16 @@ $(document).ready(function(){initNavTree('todo.html','');});
 <div class="contents">
 <div class="textblock"><dl class="reflist">
 <dt><a class="anchor" id="_todo000002"></a>Member <a class="el" href="interfaceOptionPaneController.html#aaf5ab4ce52b238b1015f6b2d1182c63b">OptionPaneController::theTable</a>  </dt>
-<dd>should update itself when the data changes. This is a hack right now.  </dd>
+<dd>refactor interface to this controller's model. Right now we're accessing this directly from the outside, and we really should have this controller host a key-value pair model, probably from the user preferences system. Right now this hackey way is only used in one spot, and it's bad design.  </dd>
 <dt><a class="anchor" id="_todo000001"></a>Member <a class="el" href="interfaceOptionPaneController.html#ac5cc2b1e6d82649b82436016700438ff">OptionPaneController::tidyDocument</a>  </dt>
-<dd>refactor interface to this controller's model. </dd>
+<dd>refactor interface to this controller's model. Right now we're accessing this directly from the outside, and we really should have this controller host a key-value pair model, probably from the user preferences system. </dd>
 </dl>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sat Mar 15 2014 16:07:03 for Balthisar Tidy by
+    <li class="footer">Generated on Sat Mar 15 2014 16:56:04 for Balthisar Tidy by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>
