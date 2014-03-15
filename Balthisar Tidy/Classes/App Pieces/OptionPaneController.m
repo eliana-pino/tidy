@@ -2,16 +2,14 @@
 
 	OptionPaneController.m
 
-	part of Balthisar Tidy
+	The main controller for the Tidy Options pane. Used separately by
 
-	The main controller for the multi-use option pane. implemented separately for
+	- document windows
+	- the preferences window
 
-		o use on a document window
-		o use on the preferences window
-
-	This controller parses optionsInEffect.txt in the application bundle, and compares
+	This controller parses `optionsInEffect.txt` in the application bundle, and compares
 	the options listed there with the linked-in TidyLib to determine which options are
-	in effect and valid. We use an instance of |JSDTidyModel| to deal with this.
+	in effect and valid. We use an instance of `JSDTidyModel` to deal with this.
 
 
 	The MIT License (MIT)

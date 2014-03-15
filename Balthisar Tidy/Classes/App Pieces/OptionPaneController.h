@@ -1,17 +1,15 @@
 /**************************************************************************************************
 
 	OptionPaneController.h
- 
-	part of Balthisar Tidy
 
-	The main controller for the multi-use option pane. implemented separately for
+	The main controller for the Tidy Options pane. Used separately by
 
-		o use on a document window
-		o use on the preferences window
+	- document windows
+	- the preferences window
 
-	This controller parses optionsInEffect.txt in the application bundle, and compares
+	This controller parses `optionsInEffect.txt` in the application bundle, and compares
 	the options listed there with the linked-in TidyLib to determine which options are
-	in effect and valid. We use an instance of |JSDTidyModel| to deal with this.
+	in effect and valid. We use an instance of `JSDTidyModel` to deal with this.
 
 
 	The MIT License (MIT)
@@ -38,17 +36,34 @@
 #import <Cocoa/Cocoa.h>
 #import "JSDTidyModel.h"
 
+/**
+	The main controller for the Tidy Options pane.
+ */
 @interface OptionPaneController : NSObject <NSTableViewDataSource>
 
-	// Want to expose the tidyDocument because it's our star attraction.
-	@property (nonatomic, strong) JSDTidyModel *tidyDocument;
+/**
+	@brief Expose the tidyDocument because it contains the
+	data that we'll be interested in later.
+	@todo refactor interface to this controller's model.
+ */
+@property (nonatomic, strong) JSDTidyModel *tidyDocument;
 
-	// We want to expose it so we can force reload data.
-	@property (weak, nonatomic) IBOutlet NSTableView *theTable;
+/**
+	@brief External exposure because we need to force reload the
+	data sometimes.
+	refactor interface to this controller's model. It
+	@todo should update itself when the data changes. This is a
+	hack right now.
+ */
+@property (weak, nonatomic) IBOutlet NSTableView *theTable;
 
 
-- (id)init;											// Initialize the view so we can use it.
+/// Initialize the view so we can use it.
+- (id)init;
 
-- (void)putViewIntoView:(NSView *)dstView;			// Put this controller's |View| into |dstView|.
+/**
+	Put this controller's `View` into `dstView`.
+ */
+- (void)putViewIntoView:(NSView *)dstView;
 
 @end

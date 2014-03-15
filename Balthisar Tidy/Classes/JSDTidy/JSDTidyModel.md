@@ -3,9 +3,9 @@
 (a Cocoa wrapper for TidyLib)
 -------------------------------
 
-_©2003-2013 by James S. Derry and balthisar.com_
+©2003-2014 by James S. Derry and balthisar.com
 
-_Portions Copyright ©1998-2003 World Wide Web Consortium (Massachusetts Institute of Technology, Institut National de Recherche en Informatique et en Automatique, Keio University). All Rights Reserved._
+Portions Copyright ©1998-2003 World Wide Web Consortium (Massachusetts Institute of Technology, Institut National de Recherche en Informatique et en Automatique, Keio University). All Rights Reserved.
 
 
 Introduction
@@ -24,7 +24,7 @@ Upgrading TidyLib
 ------------------
 
 As much as possible I've tried to use only public interfaces into TidyLib. Therefore you should be able to get the latest version of TidyLib and successfully compile it against JSDTidyModel.
-        
+
 Options and Data Types
 ----------------------
 
