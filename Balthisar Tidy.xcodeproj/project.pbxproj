@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D00361B818B974BB001DE1FC /* Balthisar Tidy.help in Resources */ = {isa = PBXBuildFile; fileRef = D00361B718B974BB001DE1FC /* Balthisar Tidy.help */; };
+		D004DDAC18D7244000205AB3 /* JSDTidyOption.m in Sources */ = {isa = PBXBuildFile; fileRef = D0FC555B18D5D72D004D174A /* JSDTidyOption.m */; };
+		D004DDAD18D7244000205AB3 /* JSDTidyOption.m in Sources */ = {isa = PBXBuildFile; fileRef = D0FC555B18D5D72D004D174A /* JSDTidyOption.m */; };
 		D0107937183C738F00120B57 /* OptionPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07AF47A1836581E00913067 /* OptionPane.xib */; };
 		D0107938183C738F00120B57 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07AF47C1836581E00913067 /* Preferences.xib */; };
 		D0107939183C738F00120B57 /* TidyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07AF47E1836581E00913067 /* TidyDocument.xib */; };
@@ -79,6 +81,9 @@
 		D0913CD618B0AC06005DB2E4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D01AED8318476F6B001300E3 /* Credits.rtf */; };
 		D0913CD718B0AC06005DB2E4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0D3BEB6183C87C500692225 /* MainMenu.xib */; };
 		D092619418B6268900E9AC98 /* Balthisar Tidy.help in Resources */ = {isa = PBXBuildFile; fileRef = D092619318B6268900E9AC98 /* Balthisar Tidy.help */; };
+		D094ACC018D726C500B48B01 /* JSDTidyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D08A7C8F18D3F81500341DCB /* JSDTidyModel.m */; };
+		D094ACC318D74C4F00B48B01 /* JSDTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = D094ACC218D74C4F00B48B01 /* JSDTextField.m */; };
+		D094ACC418D74C5400B48B01 /* JSDTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = D094ACC218D74C4F00B48B01 /* JSDTextField.m */; };
 		D09D8D5C1846209200AFB4FA /* access.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D2A1846209200AFB4FA /* access.c */; };
 		D09D8D5D1846209200AFB4FA /* alloc.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D2C1846209200AFB4FA /* alloc.c */; };
 		D09D8D5E1846209200AFB4FA /* attrask.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D2D1846209200AFB4FA /* attrask.c */; };
@@ -164,6 +169,8 @@
 		D08A7C9918D443D900341DCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D0913CDE18B0AC06005DB2E4 /* Balthisar Tidy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Balthisar Tidy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D092619318B6268900E9AC98 /* Balthisar Tidy.help */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Balthisar Tidy.help"; path = "TargetSpecific/Balthisar Tidy/Balthisar Tidy.help"; sourceTree = "<group>"; };
+		D094ACC118D74C4F00B48B01 /* JSDTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSDTextField.h; path = "balthisar tidy/Classes/Support Pieces/JSDTextField.h"; sourceTree = SOURCE_ROOT; };
+		D094ACC218D74C4F00B48B01 /* JSDTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSDTextField.m; path = "balthisar tidy/Classes/Support Pieces/JSDTextField.m"; sourceTree = SOURCE_ROOT; };
 		D09D8D261846208500AFB4FA /* buffio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = buffio.h; path = "tidylib5-src/include/buffio.h"; sourceTree = "<group>"; };
 		D09D8D271846208500AFB4FA /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = platform.h; path = "tidylib5-src/include/platform.h"; sourceTree = "<group>"; };
 		D09D8D281846208500AFB4FA /* tidy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tidy.h; path = "tidylib5-src/include/tidy.h"; sourceTree = "<group>"; };
@@ -221,6 +228,8 @@
 		D0BE6ED9183DEB7A00029BF0 /* NSTextView+JSDExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSTextView+JSDExtensions.h"; path = "balthisar tidy/Classes/Support Pieces/NSTextView+JSDExtensions.h"; sourceTree = SOURCE_ROOT; };
 		D0BE6EDA183DEB7A00029BF0 /* NSTextView+JSDExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSTextView+JSDExtensions.m"; path = "balthisar tidy/Classes/Support Pieces/NSTextView+JSDExtensions.m"; sourceTree = SOURCE_ROOT; };
 		D0D3BEB7183C87C500692225 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = "balthisar tidy/Base.lproj/MainMenu.xib"; sourceTree = SOURCE_ROOT; };
+		D0FC555A18D5D72D004D174A /* JSDTidyOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSDTidyOption.h; path = "balthisar tidy/Classes/JSDTidy/JSDTidyOption.h"; sourceTree = SOURCE_ROOT; };
+		D0FC555B18D5D72D004D174A /* JSDTidyOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSDTidyOption.m; path = "balthisar tidy/Classes/JSDTidy/JSDTidyOption.m"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -364,6 +373,8 @@
 			children = (
 				D08A7C8E18D3F81500341DCB /* JSDTidyModel.h */,
 				D08A7C8F18D3F81500341DCB /* JSDTidyModel.m */,
+				D0FC555A18D5D72D004D174A /* JSDTidyOption.h */,
+				D0FC555B18D5D72D004D174A /* JSDTidyOption.m */,
 			);
 			name = JSDTidy;
 			sourceTree = "<group>";
@@ -371,6 +382,8 @@
 		D07AF49C1836592300913067 /* Support Pieces */ = {
 			isa = PBXGroup;
 			children = (
+				D094ACC118D74C4F00B48B01 /* JSDTextField.h */,
+				D094ACC218D74C4F00B48B01 /* JSDTextField.m */,
 				D04B0511183F15F500C0F70F /* NoodleLineNumberMarker.h */,
 				D04B0512183F15F500C0F70F /* NoodleLineNumberMarker.m */,
 				D04B050E183F158800C0F70F /* NoodleLineNumberView.h */,
@@ -633,6 +646,7 @@
 				D09D8D6A1846209200AFB4FA /* istack.c in Sources */,
 				D09D8D691846209200AFB4FA /* iconvtc.c in Sources */,
 				D09D8D721846209200AFB4FA /* tags.c in Sources */,
+				D004DDAC18D7244000205AB3 /* JSDTidyOption.m in Sources */,
 				D07AF495183658D300913067 /* AppController.m in Sources */,
 				D09D8D6D1846209200AFB4FA /* mappedio.c in Sources */,
 				D07AF498183658D300913067 /* PreferenceController.m in Sources */,
@@ -648,6 +662,7 @@
 				D0BE6EDB183DEB7A00029BF0 /* NSTextView+JSDExtensions.m in Sources */,
 				D07AF497183658D300913067 /* OptionPaneController.m in Sources */,
 				D09D8D5C1846209200AFB4FA /* access.c in Sources */,
+				D094ACC318D74C4F00B48B01 /* JSDTextField.m in Sources */,
 				D09D8D711846209200AFB4FA /* tagask.c in Sources */,
 				D09D8D651846209200AFB4FA /* config.c in Sources */,
 				D09D8D701846209200AFB4FA /* streamio.c in Sources */,
@@ -673,6 +688,7 @@
 				D0913CB018B0AC06005DB2E4 /* NoodleLineNumberView.m in Sources */,
 				D0913CB118B0AC06005DB2E4 /* attrask.c in Sources */,
 				D0913CB218B0AC06005DB2E4 /* istack.c in Sources */,
+				D004DDAD18D7244000205AB3 /* JSDTidyOption.m in Sources */,
 				D0913CB318B0AC06005DB2E4 /* iconvtc.c in Sources */,
 				D0913CB418B0AC06005DB2E4 /* tags.c in Sources */,
 				D0913CB518B0AC06005DB2E4 /* AppController.m in Sources */,
@@ -690,6 +706,8 @@
 				D0913CC118B0AC06005DB2E4 /* NSTextView+JSDExtensions.m in Sources */,
 				D0913CC218B0AC06005DB2E4 /* OptionPaneController.m in Sources */,
 				D0913CC318B0AC06005DB2E4 /* access.c in Sources */,
+				D094ACC018D726C500B48B01 /* JSDTidyModel.m in Sources */,
+				D094ACC418D74C5400B48B01 /* JSDTextField.m in Sources */,
 				D0913CC418B0AC06005DB2E4 /* tagask.c in Sources */,
 				D0913CC518B0AC06005DB2E4 /* config.c in Sources */,
 				D0913CC618B0AC06005DB2E4 /* streamio.c in Sources */,
