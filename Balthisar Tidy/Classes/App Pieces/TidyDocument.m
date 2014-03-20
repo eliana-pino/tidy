@@ -350,7 +350,7 @@
 
 	
 	// Set the document options.
-	[[self tidyProcess] optionCopyFromDocument:[[self optionController] tidyDocument]];
+	[[self tidyProcess] optionsCopyFromModel:[[self optionController] tidyDocument]];
 
 	
 	/*
@@ -417,7 +417,7 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)handleTidyOptionChange:(NSNotification *)note
 {
-	[[self tidyProcess] optionCopyFromDocument:[[self optionController] tidyDocument]];
+	[[self tidyProcess] optionsCopyFromModel:[[self optionController] tidyDocument]];
 }
 
 

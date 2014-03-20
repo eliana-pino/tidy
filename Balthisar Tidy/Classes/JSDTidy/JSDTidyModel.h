@@ -106,7 +106,7 @@
 */
 - (id)initWithString:(NSString *)value;
 
-- (id)initWithString:(NSString *)value copyOptionsFromDocument:(JSDTidyModel *)theDocument;	///< @copydoc initWithString:
+- (id)initWithString:(NSString *)value copyOptionsFromModel:(JSDTidyModel *)theModel;		///< @copydoc initWithString:
 
 - (id)initWithData:(NSData *)data;															///< @copydoc initWithString:
 
@@ -251,10 +251,6 @@
 
 - (void)				optionResetToDefaultForId:(TidyOptionId)id;				///< resets the designated TidyOptionId to factory default
 
-- (void)				optionResetAllToDefault;								///< resets all options to factory default
-
-- (void)				optionCopyFromDocument:(JSDTidyModel *)theDocument;		///< sets options based on those in theDocument.
-
 
 // #TODO - Temporary to get signalling out of the OptionPaneController and into this class
 
@@ -277,18 +273,10 @@
 + (NSArray *)			optionsBuiltInOptionList;							///< returns an NSArray of NSString for all options built into Tidy.
 
 
+- (void)				optionsCopyFromModel:(JSDTidyModel *)theModel;		///< sets options based on those in theDocument.
 
+- (void)				optionsResetAllToBuiltInDefaults;					///< resets all options to factory default
 
-
-#pragma mark - Raw access exposure
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	RAW ACCESS EXPOSURE
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-
-// TODO: this can be a property, and should be read-only.
-- (TidyDoc)tidyDocument;						///< Return the TidyDoc attached to this instance.
 
 
 #pragma mark - Diagnostics and Repair
