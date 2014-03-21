@@ -35,6 +35,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "JSDTidyModel.h"
+#import "JSDTidyOption.h"
 
 /**
 	The main controller for the Tidy Options pane.

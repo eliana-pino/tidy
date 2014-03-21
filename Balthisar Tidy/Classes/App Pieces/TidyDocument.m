@@ -491,7 +491,7 @@
 {
 	if ([self documentOpenedData])
 	{
-		NSStringEncoding currentInputEncoding = [[[self tidyProcess] optionValueForId:TidyInCharEncoding] longLongValue];
+		NSStringEncoding currentInputEncoding = [[self tidyProcess] inputEncoding];
 		NSUInteger dataSize = [[self documentOpenedData] length];
 		NSUInteger stringSize = [[[NSString alloc] initWithData:[self documentOpenedData] encoding:currentInputEncoding] length];
 		
@@ -554,7 +554,9 @@
 {
 	if (sender == [self buttonEncodingAllowChange])
 	{
-		[[[self optionController] tidyDocument] setOptionValueForId:TidyInCharEncoding fromObject:@([[self buttonEncodingAllowChange] tag])];
+		[[[[self optionController] tidyDocument] tidyOptions][@"input-encoding"] setValue:@([[self buttonEncodingAllowChange] tag])
+																			   forKeyPath:@"optionValue"];
+
 		[[[self optionController] theTable] reloadData];
 	}
 	

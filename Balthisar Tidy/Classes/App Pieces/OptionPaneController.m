@@ -163,9 +163,6 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
-	// Get the id for the option at this row.
-	TidyOptionId optId = [JSDTidyModel optionIdForName:optionsInEffect[rowIndex]];
-
 	// Handle returning the 'name' of the option.
 	if ([[aTableColumn identifier] isEqualToString:@"name"])
 	{
@@ -181,9 +178,11 @@
 			The index will be used to set which item in the list is displayed.
 		*/
 		
-		if ( (optId == TidyCharEncoding) || (optId == TidyInCharEncoding) || (optId == TidyOutCharEncoding) )
+		if ( [[[self tidyDocument] tidyOptions][optionsInEffect[rowIndex]] optionIsEncodingOption] )
 		{
-			return [JSDTidyModel availableEncodingDictionariesByNSStringEncoding][@([[[self tidyDocument] optionValueForId:optId] integerValue])][@"LocalizedIndex"];
+			NSInteger index = [[[self tidyDocument] tidyOptions][optionsInEffect[rowIndex]] integerValue] ;
+			
+			return [JSDTidyModel availableEncodingDictionariesByNSStringEncoding][@(index)][@"LocalizedIndex"];
 		}
 		else
 		{
@@ -195,7 +194,7 @@
 				we pass to _tidyDocument will be used accordingly.
 			*/
 
-			return [[self tidyDocument] optionValueForId:optId];
+			return [[[self tidyDocument] tidyOptions][optionsInEffect[rowIndex]] valueForKey:@"optionValue"];
 		}
 	}
 	return @"";
@@ -209,12 +208,9 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSCell *)tableView:(NSTableView *)tableView dataCellForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
-	// Get the id for the option at this row
-	TidyOptionId optId = [JSDTidyModel optionIdForName:optionsInEffect[row]];
-
 	if ([[tableColumn identifier] isEqualToString:@"check"])
 	{
-		NSArray *picks = [JSDTidyModel optionPickListForId:optId];
+		NSArray *picks = [[[self tidyDocument] tidyOptions][optionsInEffect[row]] possibleOptionValues];
 
 		// Return a popup only if there IS a picklist and the item is not in the optionsExceptions array
 		if ( ([picks count] != 0) && (![optionsExceptions containsObject:optionsInEffect[row]] ) )
@@ -265,16 +261,16 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)tableView:(NSTableView *)aTableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)inColumn row:(NSInteger)inRow
 {
-	TidyOptionId optId = [JSDTidyModel optionIdForName:optionsInEffect[inRow]];
-	
 	if ([[inColumn identifier] isEqualToString:@"check"])
 	{
+		JSDTidyOption *option = [[self tidyDocument] tidyOptions][optionsInEffect[inRow]];
+		NSString *value = [object stringValue];
+		
 		// if we're working with encoding, we need to get the NSStringEncoding instead of the index of the item.
-		if ( (optId == TidyCharEncoding) || (optId == TidyInCharEncoding) || (optId == TidyOutCharEncoding) )
+		if ( option.optionIsEncodingOption )
 		{
 			// We have the alphabetical index, but need to find the NSStringEncoding.
-			[[self tidyDocument] setOptionValueForId:optId
-									fromObject:[JSDTidyModel availableEncodingDictionariesByLocalizedIndex][@([object unsignedLongValue])][@"NSStringEncoding"]];
+			option.optionValue = [JSDTidyModel availableEncodingDictionariesByLocalizedIndex][value][@"NSStringEncoding"];
 		}
 		else
 		{
@@ -284,7 +280,7 @@
 				to range from [0..x], and as long as this holds true it's okay to
 				use the enum integer value.
 			*/
-			[[self tidyDocument] setOptionValueForId:optId fromObject:object];
+			option.optionValue = value;
 		}
 	}
 }

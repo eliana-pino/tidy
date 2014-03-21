@@ -43,7 +43,7 @@
  */
 @interface JSDTidyOption : NSObject
 
-@property (nonatomic, assign, readonly) JSDTidyModel *sharedTidyModel;					///<  Model to which this option belongs.
+@property (nonatomic, assign, readonly) JSDTidyModel *sharedTidyModel;					///< Model to which this option belongs.
 
 @property (nonatomic, strong) NSString *optionValue;									///< Current value of this option.
 
@@ -61,24 +61,27 @@
 
 @property (nonatomic, strong, readonly) NSString *localizedHumanReadableCategory;		///< Localized name of the option category.
 
-@property (nonatomic, assign, readonly) TidyOptionId tidyOptionId;						///< Tidy's internal TidyOptionId for this option.
+@property (nonatomic, assign, readonly) TidyOptionId optionId;							///< Tidy's internal TidyOptionId for this option.
+
+@property (nonatomic, assign, readonly) TidyOptionType optionType;						///< Actual type that TidyLib expects.
 
 @property (nonatomic, strong, readonly) NSString *builtInDefaultValue;					///< Tidy's built-in default value for this option.
 
 @property (nonatomic, strong, readonly) NSString *builtInDescription;					///< Tidy's built-in description for this option.
 
-@property (nonatomic, strong, readonly) NSString *builtInCategory;						///< Tidy's built-in category for this option.
+@property (nonatomic, assign, readonly) TidyConfigCategory builtInCategory;				///< Tidy's built-in category for this option.
 
-@property (nonatomic, assign, readonly) BOOL optionIsSuppressed;						///< Indicates whether or not this option is unused by JSDTidyModel.
+@property (nonatomic, assign) BOOL optionIsSuppressed;									///< Indicates whether or not this option is unused by JSDTidyModel.
 
 @property (nonatomic, assign, readonly) BOOL optionIsEncodingOption;					///< Indicates whether or not this option is an encoding option.
 
-@property (nonatomic, assign, readonly) BOOL optionIsOverridden;						///< Indicates whether or not this option has special handling.
+@property (nonatomic, assign, readonly) BOOL optionCanAcceptNULLSTR;					///< Indicates whether or not this option can accept NULLSTR.
 
 
 - (id)initSharingModel:(JSDTidyModel *)sharedTidyModel;
 - (id)initWithName:(NSString *)name sharingModel:(JSDTidyModel *)sharedTidyModel;
 - (id)initWithName:(NSString *)name optionValue:(NSString *)value sharingModel:(JSDTidyModel *)sharedTidyModel;
 
+- (BOOL)applyOptionToTidyDoc:(TidyDoc)destinationTidyDoc;
 
 @end

@@ -69,7 +69,7 @@
 	{
 		_sharedTidyModel = sharedTidyModel;
 		_name = name;
-		if (TidyUnknownOption == self.tidyOptionId)
+		if (TidyUnknownOption == self.optionId)
 		{
 			_name = @"undefined";
 		}
@@ -87,7 +87,7 @@
 	{
 		_sharedTidyModel = sharedTidyModel;
 		_name = name;
-		if (TidyUnknownOption == self.tidyOptionId)
+		if (TidyUnknownOption == self.optionId)
 		{
 			_name = @"undefined";
 		}
@@ -104,10 +104,11 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	SET setOptionValue
-	@todo Decide whether this setter is necessary; maybe it's better
-	to capture these special circumstances in the model instead of
-	in this class.
+	> setOptionValue
+		Sets the optionValue, and intercepts special circumstances.
+		Note that you must always ensure the encoding option values
+		always contain the NSStringEncoding value, and not the
+		localized name.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)setOptionValue:(NSString *)optionValue
 {
@@ -115,35 +116,38 @@
 		We need to treat encoding options specially, because we
 		override Tidy's treatment of them.
 	 */
-	if ( self.optionIsEncodingOption)
+	if (!self.optionIsReadOnly)
 	{
-		if (self.tidyOptionId == TidyCharEncoding)
+		if ( self.optionIsEncodingOption)
 		{
-			[self.sharedTidyModel.tidyOptions setValue:optionValue forKeyPath:@"input-encoding.optionValue"];
-			[self.sharedTidyModel.tidyOptions setValue:optionValue forKeyPath:@"output-encoding.optionValue"];
+			if (self.optionId == TidyCharEncoding)
+			{
+				[self.sharedTidyModel setValue:optionValue forKeyPath:@"tidyOptions.input-encoding.optionValue"];
+				[self.sharedTidyModel setValue:optionValue forKeyPath:@"tidyOptions.output-encoding.optionValue"];
+			}
+			
+			if (self.optionId == TidyInCharEncoding)
+			{
+				_optionValue = optionValue;
+				// Reserved in case we want special action here
+			}
+			
+			if (self.optionId == TidyOutCharEncoding)
+			{
+				_optionValue = optionValue;
+				// Reserved in case we want special action here
+			}
 		}
-		
-		if (self.tidyOptionId == TidyInCharEncoding)
+		else
 		{
 			_optionValue = optionValue;
-			/// @todo reserved in case we want special action here
-		}
-		
-		if (self.tidyOptionId == TidyOutCharEncoding)
-		{
-			_optionValue = optionValue;
-			/// @todo reserved in case we want special action here
 		}
 	}
-	else
-	{
-		_optionValue = optionValue;
-	}
-	
+	/// @todo FLAG NOTIFICATION AND CALLBACK TO sharedTidyModel HERE.
 }
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	GET optionValue
+	< optionValue
 		If the current value is nil, then ensure we return the
 		built-in default value instead.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
@@ -162,20 +166,33 @@
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	defaultOptionValue
+		Returns the default option value from the Cocoa preferences
+		system. We're doing a little bit of cheating by counting
+		on the use of the constant defined in the JSDTidyModel
+		class.
+ 
+		If no Cocoa preference is available, then the built-in
+		value will be returned instead.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSString*)defaultOptionValue
 {
-	/** 
-		@todo Need to develop preferences storage strategy. I would
-	    like to move to a single key with nested values instead
-		of all of the keys mixed throughout the preferences file.
-	 */
-	return @""; ///< @todo temporary
+	NSString *cocoaDefault = [[[NSUserDefaults standardUserDefaults] objectForKey:jsdTidyTidyOptionsKey] stringForKey:self.name];
+	
+	if (cocoaDefault)
+	{
+		return cocoaDefault;
+	}
+	else
+	{
+		return self.builtInDefaultValue;
+	}
 }
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	possibleOptionValues
+		Returns an array of strings consisting of the possible
+		option values for this TidyOption.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSArray*)possibleOptionValues
 {
@@ -187,7 +204,7 @@
 	}
 	else
 	{
-		TidyOption tidyOptionInstance = [self createTidyOptionInstance:self.tidyOptionId];
+		TidyOption tidyOptionInstance = [self createTidyOptionInstance:self.optionId];
 		
 		TidyIterator i = tidyOptGetPickList( tidyOptionInstance );
 
@@ -206,7 +223,7 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (BOOL)optionIsReadOnly
 {
-	return tidyOptIsReadOnly( [self createTidyOptionInstance:self.tidyOptionId] );
+	return tidyOptIsReadOnly( [self createTidyOptionInstance:self.optionId] );
 }
 
 
@@ -216,7 +233,6 @@
 - (NSString*)localizedHumanReadableName
 {
 	return NSLocalizedString( ([NSString stringWithFormat:@"tag-%@", self.name]), nil);
-	/// @todo change the localizable.strings so the keys are correct!
 }
 
 
@@ -227,7 +243,6 @@
 {
 	// parentheses around brackets required lest preprocessor get confused.
 	return NSLocalizedString( ([NSString stringWithFormat:@"description-%@", self.name]), nil);
-	/// @todo change the localizable.strings so the keys are correct!
 }
 
 
@@ -236,18 +251,17 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSString*)localizedHumanReadableCategory
 {
-	//NSString *temp = tidyOptGetCategory( [self createTidyOptionInstance:self.tidyOptionId] );
-	/// @todo as TidyLib uses an enum. Need to find the string source, if any.
-	return @""; ///< @todo temporary
+	TidyConfigCategory temp = tidyOptGetCategory( [self createTidyOptionInstance:self.optionId] );
+	return NSLocalizedString( ([NSString stringWithFormat:@"category-%u", temp]), nil);
 }
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	 tidyOptionId
+	 optionId
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (TidyOptionId)tidyOptionId
+- (TidyOptionId)optionId
 {
-	TidyOptionId optID = tidyOptGetIdForName( [_name UTF8String] );
+	TidyOptionId optID = tidyOptGetIdForName( [[self name] UTF8String] );
 	
 	if (optID < N_TIDY_OPTIONS)
 	{
@@ -259,6 +273,15 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	 optionType
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (TidyOptionType)optionType
+{
+	return tidyOptGetType( [self createTidyOptionInstance:self.optionId] );
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	builtInDefaultValue
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSString*)builtInDefaultValue
@@ -266,23 +289,23 @@
 	// ENCODING OPTIONS -- special case, so handle first.
 	if (self.optionIsEncodingOption)
 	{
-		if (self.tidyOptionId == TidyCharEncoding)
+		if (self.optionId == TidyCharEncoding)
 		{
 			return [NSString stringWithFormat:@"%u", tidyDefaultInputEncoding];
 		}
 		
-		if (self.tidyOptionId == TidyInCharEncoding)
+		if (self.optionId == TidyInCharEncoding)
 		{
 			return [NSString stringWithFormat:@"%u", tidyDefaultInputEncoding];
 		}
 		
-		if (self.tidyOptionId == TidyOutCharEncoding)
+		if (self.optionId == TidyOutCharEncoding)
 		{
 			return [NSString stringWithFormat:@"%u", tidyDefaultOutputEncoding];
 		}
 	}
 	
-	TidyOption tidyOptionInstance = [self createTidyOptionInstance:self.tidyOptionId];
+	TidyOption tidyOptionInstance = [self createTidyOptionInstance:self.optionId];
 
 	TidyOptionType optType = tidyOptGetType( tidyOptionInstance );
 	
@@ -316,7 +339,7 @@
 	TidyDoc dummyDoc = tidyCreate();
 	
 	NSString *tidyResultString;
-	const char *tidyResultCString = tidyOptGetDoc(dummyDoc, tidyGetOption(dummyDoc, self.tidyOptionId));
+	const char *tidyResultCString = tidyOptGetDoc(dummyDoc, tidyGetOption(dummyDoc, self.optionId));
 	
 	if (!tidyResultCString)
 	{
@@ -336,20 +359,24 @@
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	builtInCategory
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (NSString*)builtInCategory
+- (TidyConfigCategory)builtInCategory
 {
-	/// @todo as TidyLib uses an enum. Need to find the string source, if any.
-	
-	return @""; ///< @todo temporary
+	return tidyOptGetCategory( [self createTidyOptionInstance:self.optionId] );
 }
+
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	optionIsSuppressed
+		The implementing application may want to suppress certain
+		built-in TidyLib options. Setting this to true will hide
+		instances of this option from most operations.
+ 
+		This method isn't needed, but it's here in order to be
+		documented.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (BOOL)optionIsSuppressed
 {
-	
-	return no; ///< @todo temporary
+	return _optionIsSuppressed;
 }
 
 
@@ -358,19 +385,80 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (BOOL)optionIsEncodingOption
 {
-	return ((self.tidyOptionId == TidyCharEncoding) ||
-			(self.tidyOptionId == TidyInCharEncoding) ||
-			(self.tidyOptionId == TidyOutCharEncoding));
+	return ((self.optionId == TidyCharEncoding) ||
+			(self.optionId == TidyInCharEncoding) ||
+			(self.optionId == TidyOutCharEncoding));
 }
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	optionIsOverridden
+	optionCanAcceptNULLSTR
+		Some TidyLib options can have a NULLSTR value, but they can't
+		accept a NULLSTR assignment. This convenience property flags
+		the condition.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (BOOL)optionIsOverridden
+- (BOOL)optionCanAcceptNULLSTR
 {
+	return ([[NSSet setWithObjects:@"doctype", @"slide-style", @"language", @"css-prefix", nil] member:self.name]) == nil;
+}
 
-	return no; ///< @todo temporary
+
+#pragma mark - Public Methods
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	applyOptionToTidyDoc
+		Given a TidyDoc instance, apply our setting to the TidyDoc.
+	
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (BOOL)applyOptionToTidyDoc:(TidyDoc)destinationTidyDoc
+{
+	if ( self.optionIsEncodingOption )
+	{
+		/* 
+			Force TidyLib to use UTF8 internally. Mac OS X will handle
+		   file encoding and file input-output.
+		 */
+		return tidyOptSetValue(destinationTidyDoc, self.optionId, [@"utf8" UTF8String]);
+	}
+	
+	if (!self.optionIsSuppressed)
+	{
+		if ( self.optionType == TidyString)
+		{
+			if ([self.optionValue length] == 0)
+			{
+				/*
+				 Some tidy options can't accept NULLSTR but can be reset to default
+				 NULLSTR. Some, though require a NULLSTR and resetting to default
+				 doesn't work. WTF.
+				 */
+				if (!self.optionCanAcceptNULLSTR)
+				{
+					return tidyOptResetToDefault( destinationTidyDoc, self.optionId );
+				}
+				else
+				{
+					return tidyOptSetValue(destinationTidyDoc, self.optionId, NULLSTR);
+				}
+			}
+			else
+			{
+				return tidyOptSetValue( destinationTidyDoc, self.optionId, [self.optionValue UTF8String] );
+			}
+		}
+		
+		if ( [self optionType] == TidyInteger)
+		{
+			return tidyOptSetInt( destinationTidyDoc, self.optionId, [self.optionValue integerValue] );
+		}
+		
+		if ( [self optionType] == TidyBoolean)
+		{
+			return tidyOptSetBool( destinationTidyDoc, self.optionId, [self.optionValue boolValue] );
+		}
+	}
+	return YES;
 }
 
 
