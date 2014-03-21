@@ -61,8 +61,8 @@
 
 
 @synthesize sourceText = _sourceText;
-@synthesize tidyText = _tidyText;
-@synthesize errorText = _errorText;
+@synthesize tidyText   = _tidyText;
+@synthesize errorText  = _errorText;
 
 
 #pragma mark - Standard C Functions
@@ -92,14 +92,16 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (id)init
 {
-	if (self = [super init]) {
-		_tidyOptions = [[NSMutableDictionary alloc] init];
-		_originalData = nil;
-		_sourceText = @"";
-		_tidyText = @"";
-		_errorText = @"";
-		_errorArray = [[NSMutableArray alloc] init];
+	if (self = [super init])
+	{
+		_tidyOptions     = [[NSMutableDictionary alloc] init];
+		_originalData    = nil;
+		_sourceText      = @"";
+		_tidyText        = @"";
+		_errorText       = @"";
+		_errorArray      = [[NSMutableArray alloc] init];
 		_sourceDidChange = NO;
+		
 		[self optionsPopulateTidyOptions];
 	}
 		
@@ -113,10 +115,12 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 - (id)initWithString:(NSString *)value
 {
 	self = [self init];
+	
 	if (self)
 	{
 		[self setSourceText:value];
 	}
+	
 	return self;
 }
 
@@ -127,11 +131,13 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 - (id)initWithString:(NSString *)value copyOptionsFromModel:(JSDTidyModel *)theModel
 {
 	self = [self init];
+	
 	if (self)
 	{
 		[self optionsCopyFromModel:theModel];
 		[self setSourceText:value];
 	}
+	
 	return self;
 }
 
@@ -142,10 +148,12 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 - (id)initWithData:(NSData *)data
 {
 	self = [self init];
+	
 	if (self)
 	{
 		[self setSourceTextWithData:data];
 	}
+	
 	return self;
 }
 
@@ -156,11 +164,13 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 - (id)initWithData:(NSData *)data copyOptionsFromModel:(JSDTidyModel *)theModel
 {
 	self = [self init];
+	
 	if (self)
 	{
 		[self optionsCopyFromModel:theModel];
 		[self setSourceTextWithData:data];
 	}
+	
 	return self;
 }
 
@@ -171,10 +181,12 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 - (id)initWithFile:(NSString *)path
 {
 	self = [self init];
+	
 	if (self)
 	{
 		[self setSourceTextWithFile:path];
 	}
+	
 	return self;
 }
 
@@ -185,11 +197,13 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 - (id)initWithFile:(NSString *)path copyOptionsFromModel:(JSDTidyModel *)theModel
 {
 	self = [self init];
+	
 	if (self)
 	{
 		[self optionsCopyFromModel:theModel];
 		[self setSourceTextWithFile:path];
 	}
+	
 	return self;
 }
 
@@ -218,6 +232,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 		
 		encodingNames = (NSMutableArray*)[tempNames sortedArrayUsingComparator:^(NSString *a, NSString *b) { return [a localizedCaseInsensitiveCompare:b]; }];
 	}
+	
 	return encodingNames;
 }
 
@@ -232,26 +247,23 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	
 	if (!dictionary)
 	{
+		dictionary = [[NSMutableDictionary alloc] init];
 		
-		if (!dictionary)
+		const NSStringEncoding *encoding = [NSString availableStringEncodings];
+		
+		while (*encoding)
 		{
-			dictionary = [[NSMutableDictionary alloc] init];
+			NSDictionary *items = @{@"LocalizedName"    : [NSString localizedNameOfStringEncoding:*encoding],
+									@"NSStringEncoding" : @(*encoding),
+									@"LocalizedIndex"   : @([[[self class] allAvailableEncodingLocalizedNames]
+															 indexOfObject:[NSString localizedNameOfStringEncoding:*encoding]])};
 			
-			const NSStringEncoding *encoding = [NSString availableStringEncodings];
-			
-			while (*encoding)
-			{
-				NSDictionary *items = @{@"LocalizedName" : [NSString localizedNameOfStringEncoding:*encoding],
-									    @"NSStringEncoding" : @(*encoding),
-									    @"LocalizedIndex" : @([[[self class] allAvailableEncodingLocalizedNames]
-															   indexOfObject:[NSString localizedNameOfStringEncoding:*encoding]])};
-				
-				dictionary[[NSString localizedNameOfStringEncoding:*encoding]] = items;
+			dictionary[[NSString localizedNameOfStringEncoding:*encoding]] = items;
 
-				encoding++;
-			}
+			encoding++;
 		}
 	}
+	
 	return dictionary;
 }
 
@@ -266,26 +278,23 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	
 	if (!dictionary)
 	{
+		dictionary = [[NSMutableDictionary alloc] init];
 		
-		if (!dictionary)
+		const NSStringEncoding *encoding = [NSString availableStringEncodings];
+		
+		while (*encoding)
 		{
-			dictionary = [[NSMutableDictionary alloc] init];
+			NSDictionary *items = @{@"LocalizedName"    : [NSString localizedNameOfStringEncoding:*encoding],
+									@"NSStringEncoding" : @(*encoding),
+									@"LocalizedIndex"   : @([[[self class] allAvailableEncodingLocalizedNames]
+															 indexOfObject:[NSString localizedNameOfStringEncoding:*encoding]])};
 			
-			const NSStringEncoding *encoding = [NSString availableStringEncodings];
+			dictionary[@(*encoding)] = items;
 			
-			while (*encoding)
-			{
-				NSDictionary *items = @{@"LocalizedName" : [NSString localizedNameOfStringEncoding:*encoding],
-									    @"NSStringEncoding" : @(*encoding),
-									    @"LocalizedIndex" : @([[[self class] allAvailableEncodingLocalizedNames]
-															   indexOfObject:[NSString localizedNameOfStringEncoding:*encoding]])};
-				
-				dictionary[@(*encoding)] = items;
-				
-				encoding++;
-			}
+			encoding++;
 		}
 	}
+	
 	return dictionary;
 }
 
@@ -300,27 +309,24 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	
 	if (!dictionary)
 	{
+		dictionary = [[NSMutableDictionary alloc] init];
 		
-		if (!dictionary)
+		const NSStringEncoding *encoding = [NSString availableStringEncodings];
+		
+		while (*encoding)
 		{
-			dictionary = [[NSMutableDictionary alloc] init];
+			NSDictionary *items = @{@"LocalizedName"    : [NSString localizedNameOfStringEncoding:*encoding],
+									@"NSStringEncoding" : @(*encoding),
+									@"LocalizedIndex"   : @([[[self class] allAvailableEncodingLocalizedNames]
+															 indexOfObject:[NSString localizedNameOfStringEncoding:*encoding]])};
 			
-			const NSStringEncoding *encoding = [NSString availableStringEncodings];
+			dictionary[@([[[self class] allAvailableEncodingLocalizedNames]
+						  indexOfObject:[NSString localizedNameOfStringEncoding:*encoding]])] = items;
 			
-			while (*encoding)
-			{
-				NSDictionary *items = @{@"LocalizedName" : [NSString localizedNameOfStringEncoding:*encoding],
-									    @"NSStringEncoding" : @(*encoding),
-									    @"LocalizedIndex" : @([[[self class] allAvailableEncodingLocalizedNames]
-																indexOfObject:[NSString localizedNameOfStringEncoding:*encoding]])};
-				
-				dictionary[@([[[self class] allAvailableEncodingLocalizedNames]
-													  indexOfObject:[NSString localizedNameOfStringEncoding:*encoding]])] = items;
-				
-				encoding++;
-			}
+			encoding++;
 		}
 	}
+	
 	return dictionary;
 }
 
@@ -332,6 +338,16 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 - (NSStringEncoding)inputEncoding
 {
 	return [[self.tidyOptions[@"input-encoding"] valueForKey:@"optionValue"] integerValue];
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	outputEncoding
+		Shortuct to expose the output-encoding value.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (NSStringEncoding)outputEncoding
+{
+	return [[self.tidyOptions[@"output-encoding"] valueForKey:@"optionValue"] integerValue];
 }
 
 
@@ -374,9 +390,9 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	{
 		JSDTidyOption *srcOption = self.tidyOptions[key];
 		
-		NSString *srcString = srcOption.optionValue;
+		NSString *srcString      = srcOption.optionValue;
 		
-		outputDict[key] = srcString;
+		outputDict[key]          = srcString;
 	}
 
 	return outputDict;
@@ -422,10 +438,8 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 			setting via NSString may happen repeatedly, such as
 			with text editors.
 		*/
-		
-		NSStringEncoding output = [[self.tidyOptions[@"output-encoding"] valueForKeyPath:@"optionValue"] integerValue];
-		
-		_originalData = [[NSData alloc] initWithData:[_sourceText dataUsingEncoding:output]];
+				
+		_originalData = [[NSData alloc] initWithData:[_sourceText dataUsingEncoding:self.outputEncoding]];
 		
 		_sourceDidChange = NO;
 		
@@ -482,10 +496,8 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	*/
 	
 	NSString *testText = nil;
-	NSStringEncoding input = [[self.tidyOptions[@"input-encoding"] valueForKeyPath:@"optionValue"] integerValue];
-
 	
-	if ((testText = [[NSString alloc] initWithData:data encoding:input] ))
+	if ((testText = [[NSString alloc] initWithData:data encoding:self.inputEncoding] ))
 	{
 		_sourceText = testText;
 	}
@@ -526,6 +538,8 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	setTidyText
 		Setter for the tidyText property.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+
+/// @todo why would I want to set TidyText?
 - (void)setTidyText:(NSString *)tidyText
 {
 	_tidyText = tidyText;
@@ -538,9 +552,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSData *)tidyTextAsData
 {
-	NSStringEncoding output = [[self.tidyOptions[@"output-encoding"] valueForKeyPath:@"optionValue"] integerValue];
-
-	return [[self tidyText] dataUsingEncoding:output];
+	return [[self tidyText] dataUsingEncoding:self.outputEncoding];
 }
 
 
@@ -550,9 +562,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)tidyTextToFile:(NSString *)path
 {
-	NSStringEncoding output = [[self.tidyOptions[@"output-encoding"] valueForKeyPath:@"optionValue"] integerValue];
-
-	[[[self tidyText] dataUsingEncoding:output] writeToFile:path atomically:YES];
+	[[[self tidyText] dataUsingEncoding:self.outputEncoding] writeToFile:path atomically:YES];
 }
 
 
@@ -665,11 +675,11 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	
 	if (!theArray)
 	{
-		theArray = [[NSMutableArray alloc] init];					// Create an array.
+		theArray         = [[NSMutableArray alloc] init];			// Create an array.
 		
 		TidyDoc dummyDoc = tidyCreate();							// Create a dummy document (we're a CLASS method).
 		
-		TidyIterator i = tidyGetOptionList( dummyDoc );				// Set up an iterator.
+		TidyIterator i   = tidyGetOptionList( dummyDoc );			// Set up an iterator.
 		
 		while ( i )
 		{
@@ -679,6 +689,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 		}
 		tidyRelease(dummyDoc);										// Release the dummy document.
 	}
+	
 	return theArray;												// Return the array of results.
 }
 
@@ -694,6 +705,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	_tidyOptions = [[theModel tidyOptions] copy];
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyOptionChanged object:self];
+	
 	[self processTidy];
 	
 	[self fixSourceCoding];
@@ -713,8 +725,8 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 		[self.tidyOptions[key] setString:newValue forKey:@"optionValue"];
 	}
 	
-	
 	[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyOptionChanged object:self];
+	
 	[self processTidy];
 	
 	[self fixSourceCoding];
@@ -742,8 +754,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 			[self.tidyOptions setValue:newOption forKey:newOption.name];
 			//[self.tidyOptions setValue:newOption forKey:[[NSNumber numberWithUnsignedInteger:newOption.tidyOptionId] stringValue]];
 		}
-		newOption = nil;
-		}
+	}
 }
 
 
@@ -763,7 +774,6 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 			[self.tidyOptions setValue:newOption forKey:newOption.name];
 			//[self.tidyOptions setValue:newOption forKey:[[NSNumber numberWithUnsignedInteger:newOption.tidyOptionId] stringValue]];
 		}
-		newOption = nil;
 	}
 }
 
@@ -813,7 +823,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 
 	
 	// Parse the |_sourceText| and clean, repair, and diagnose it.
-	tidyParseString(newTidy, [_sourceText UTF8String]);
+	tidyParseString( newTidy, [_sourceText UTF8String] );
 	tidyCleanAndRepair( newTidy );
 	tidyRunDiagnostics( newTidy );
 	
@@ -821,7 +831,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	// Save the tidy'd text to an NSString. If the Tidy result
 	// is different than the existing Tidy text, then save
 	// the new result and post a notification.
-	tidySaveBuffer( newTidy, outBuffer );		// Save it to the buffer we set up above.
+	tidySaveBuffer( newTidy, outBuffer );
 
 	NSString *tidyResult;
 	
@@ -891,9 +901,9 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 {
 	NSMutableDictionary *errorDict = [[NSMutableDictionary alloc] init];
 	
-	errorDict[@"level"] = @((int)lvl);	// lvl is a c enum
-	errorDict[@"line"] = @(line);
-	errorDict[@"column"] = @(col);
+	errorDict[@"level"]   = @((int)lvl);	// lvl is a c enum
+	errorDict[@"line"]    = @(line);
+	errorDict[@"column"]  = @(col);
 	errorDict[@"message"] = @(mssg);
 	
 	[_errorArray addObject:errorDict];
@@ -929,10 +939,11 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 + (NSArray *)loadConfigurationListFromResource:(NSString *)fileName ofType:(NSString *)fileType
 {
-	NSMutableArray *optionsInEffect = [[NSMutableArray alloc] init];
+	NSMutableArray *desiredOptions = [[NSMutableArray alloc] init];
+	
 	NSString *contentPath = [[NSBundle mainBundle] pathForResource:fileName ofType:fileType];
 	
-	if (contentPath != nil)
+	if (contentPath)
 	{
 		NSString *tmpStr;
 		NSEnumerator *enumerator = [[[NSString stringWithContentsOfFile:contentPath
@@ -942,13 +953,13 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 		
 		while (tmpStr = [enumerator nextObject])
 		{
-			if ((tidyOptGetIdForName( [tmpStr UTF8String] ) != TidyUnknownOption) && (![optionsInEffect containsObject:tmpStr]))
+			if ((tidyOptGetIdForName( [tmpStr UTF8String] ) != TidyUnknownOption) && (![desiredOptions containsObject:tmpStr]))
 			{
-				[optionsInEffect addObject:tmpStr];
+				[desiredOptions addObject:tmpStr];
 			}
 		}
 	}
-	return optionsInEffect;
+	return desiredOptions;
 }
 
 
@@ -981,7 +992,8 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 		Same as |addDefaultsToDictionary|, except uses a resource
 		file list of options instead of ALL TidyLib options.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-+ (void)addDefaultsToDictionary:(NSMutableDictionary *)defaultDictionary fromResource:(NSString *)fileName ofType:(NSString *)fileType
++ (void)addDefaultsToDictionary:(NSMutableDictionary *)defaultDictionary
+				   fromResource:(NSString *)fileName ofType:(NSString *)fileType
 {
 	[[self class] addDefaultsToDictionary:defaultDictionary fromArray:[JSDTidyModel loadConfigurationListFromResource:fileName ofType:fileType]];
 }
@@ -1001,6 +1013,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	{
 		optionsDict[optionName] = [[[JSDTidyOption alloc] initWithName:optionName sharingModel:nil] builtInDefaultValue];
 	}
+	
 	defaultDictionary[jsdTidyTidyOptionsKey] = optionsDict;
 }
 
@@ -1016,8 +1029,9 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	
 	for (NSString *key in [self.tidyOptions allKeys])
 	{
-		optionsDict[key] = [[self.tidyOptions objectForKey:key] optionValue];
+		optionsDict[key] = [(self.tidyOptions)[key] optionValue];
 	}
+	
 	[defaults setObject:optionsDict forKey:jsdTidyTidyOptionsKey];
 }
 

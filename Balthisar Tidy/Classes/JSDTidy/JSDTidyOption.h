@@ -45,7 +45,7 @@
 
 @property (nonatomic, assign, readonly) JSDTidyModel *sharedTidyModel;					///< Model to which this option belongs.
 
-@property (nonatomic, strong) NSString *optionValue;									///< Current value of this option.
+@property (nonatomic, strong)           NSString *optionValue;							///< Current value of this option.
 
 @property (nonatomic, strong, readonly) NSString *name;									///< Built-in option name.
 
@@ -71,7 +71,7 @@
 
 @property (nonatomic, assign, readonly) TidyConfigCategory builtInCategory;				///< Tidy's built-in category for this option.
 
-@property (nonatomic, assign) BOOL optionIsSuppressed;									///< Indicates whether or not this option is unused by JSDTidyModel.
+@property (nonatomic, assign)           BOOL optionIsSuppressed;						///< Indicates whether or not this option is unused by JSDTidyModel.
 
 @property (nonatomic, assign, readonly) BOOL optionIsEncodingOption;					///< Indicates whether or not this option is an encoding option.
 
@@ -79,8 +79,11 @@
 
 
 - (id)initSharingModel:(JSDTidyModel *)sharedTidyModel;
+
 - (id)initWithName:(NSString *)name sharingModel:(JSDTidyModel *)sharedTidyModel;
+
 - (id)initWithName:(NSString *)name optionValue:(NSString *)value sharingModel:(JSDTidyModel *)sharedTidyModel;
+
 
 - (BOOL)applyOptionToTidyDoc:(TidyDoc)destinationTidyDoc;
 

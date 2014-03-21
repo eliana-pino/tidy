@@ -54,7 +54,7 @@
 	if (self = [super init])
 	{
 		_sharedTidyModel = sharedTidyModel;
-		_name = @"undefined";
+		_name            = @"undefined";
 	}
 	return self;
 }
@@ -63,12 +63,14 @@
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	initWithName:sharingModel
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (id)initWithName:(NSString *)name sharingModel:(JSDTidyModel *)sharedTidyModel
+- (id)initWithName:(NSString *)name
+	  sharingModel:(JSDTidyModel *)sharedTidyModel
 {
 	if (self = [super init])
 	{
 		_sharedTidyModel = sharedTidyModel;
-		_name = name;
+		_name            = name;
+		
 		if (TidyUnknownOption == self.optionId)
 		{
 			_name = @"undefined";
@@ -81,12 +83,15 @@
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	initWithName:optionValue:sharingModel
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (id)initWithName:(NSString *)name optionValue:(NSString *)value sharingModel:(JSDTidyModel *)sharedTidyModel
+- (id)initWithName:(NSString *)name
+	   optionValue:(NSString *)value
+	  sharingModel:(JSDTidyModel *)sharedTidyModel
 {
 	if (self = [super init])
 	{
 		_sharedTidyModel = sharedTidyModel;
-		_name = name;
+		_name            = name;
+		
 		if (TidyUnknownOption == self.optionId)
 		{
 			_name = @"undefined";
@@ -112,10 +117,8 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)setOptionValue:(NSString *)optionValue
 {
-	/*
-		We need to treat encoding options specially, because we
-		override Tidy's treatment of them.
-	 */
+	// We need to treat encoding options specially, because we
+	// override Tidy's treatment of them.
 	if (!self.optionIsReadOnly)
 	{
 		if ( self.optionIsEncodingOption)
@@ -123,6 +126,7 @@
 			if (self.optionId == TidyCharEncoding)
 			{
 				[self.sharedTidyModel setValue:optionValue forKeyPath:@"tidyOptions.input-encoding.optionValue"];
+				
 				[self.sharedTidyModel setValue:optionValue forKeyPath:@"tidyOptions.output-encoding.optionValue"];
 			}
 			
@@ -198,7 +202,7 @@
 {
 	NSMutableArray *theArray = [[NSMutableArray alloc] init];
 	
-	if ( self.optionIsEncodingOption )
+	if (self.optionIsEncodingOption)
 	{
 		return [JSDTidyModel allAvailableEncodingLocalizedNames];
 	}
@@ -223,7 +227,7 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (BOOL)optionIsReadOnly
 {
-	return tidyOptIsReadOnly( [self createTidyOptionInstance:self.optionId] );
+	return tidyOptIsReadOnly([self createTidyOptionInstance:self.optionId]);
 }
 
 
@@ -232,7 +236,7 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSString*)localizedHumanReadableName
 {
-	return NSLocalizedString( ([NSString stringWithFormat:@"tag-%@", self.name]), nil);
+	return NSLocalizedString(([NSString stringWithFormat:@"tag-%@", self.name]), nil);
 }
 
 
@@ -242,7 +246,7 @@
 - (NSString*)localizedHumanReadableDescription
 {
 	// parentheses around brackets required lest preprocessor get confused.
-	return NSLocalizedString( ([NSString stringWithFormat:@"description-%@", self.name]), nil);
+	return NSLocalizedString(([NSString stringWithFormat:@"description-%@", self.name]), nil);
 }
 
 
@@ -252,7 +256,7 @@
 - (NSString*)localizedHumanReadableCategory
 {
 	TidyConfigCategory temp = tidyOptGetCategory( [self createTidyOptionInstance:self.optionId] );
-	return NSLocalizedString( ([NSString stringWithFormat:@"category-%u", temp]), nil);
+	return NSLocalizedString(([NSString stringWithFormat:@"category-%u", temp]), nil);
 }
 
 
@@ -305,9 +309,11 @@
 		}
 	}
 	
+	
 	TidyOption tidyOptionInstance = [self createTidyOptionInstance:self.optionId];
 
-	TidyOptionType optType = tidyOptGetType( tidyOptionInstance );
+	TidyOptionType optType        = tidyOptGetType( tidyOptionInstance );
+	
 	
 	if (optType == TidyString)
 	{
@@ -317,13 +323,11 @@
 	
 	if (optType == TidyBoolean)
 	{
-		// Return string of the bool.
 		return [NSString stringWithFormat:@"%u", tidyOptGetDefaultBool( tidyOptionInstance )];
 	}
 	
 	if (optType == TidyInteger)
 	{
-		// Return string of the integer.
 		return [NSString stringWithFormat:@"%lu", tidyOptGetDefaultInt( tidyOptionInstance )];
 	}
 	
@@ -336,10 +340,12 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSString*)builtInDescription
 {
-	TidyDoc dummyDoc = tidyCreate();
-	
 	NSString *tidyResultString;
+
+	TidyDoc dummyDoc              = tidyCreate();
+	
 	const char *tidyResultCString = tidyOptGetDoc(dummyDoc, tidyGetOption(dummyDoc, self.optionId));
+	
 	
 	if (!tidyResultCString)
 	{
@@ -371,13 +377,8 @@
 		built-in TidyLib options. Setting this to true will hide
 		instances of this option from most operations.
  
-		This method isn't needed, but it's here in order to be
-		documented.
+		This method is implemented automatically by compiler.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (BOOL)optionIsSuppressed
-{
-	return _optionIsSuppressed;
-}
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
@@ -413,26 +414,22 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (BOOL)applyOptionToTidyDoc:(TidyDoc)destinationTidyDoc
 {
-	if ( self.optionIsEncodingOption )
+	if (self.optionIsEncodingOption)
 	{
-		/* 
-			Force TidyLib to use UTF8 internally. Mac OS X will handle
-		   file encoding and file input-output.
-		 */
+		// Force TidyLib to use UTF8 internally. Mac OS X will handle
+		// file encoding and file input-output.
 		return tidyOptSetValue(destinationTidyDoc, self.optionId, [@"utf8" UTF8String]);
 	}
 	
-	if (!self.optionIsSuppressed)
+	if ((!self.optionIsSuppressed) && (!self.optionIsReadOnly))
 	{
 		if ( self.optionType == TidyString)
 		{
 			if ([self.optionValue length] == 0)
 			{
-				/*
-				 Some tidy options can't accept NULLSTR but can be reset to default
-				 NULLSTR. Some, though require a NULLSTR and resetting to default
-				 doesn't work. WTF.
-				 */
+				 // Some tidy options can't accept NULLSTR but can be reset to default
+				 // NULLSTR. Some, though require a NULLSTR and resetting to default
+				 // doesn't work. WTF?
 				if (!self.optionCanAcceptNULLSTR)
 				{
 					return tidyOptResetToDefault( destinationTidyDoc, self.optionId );
@@ -473,13 +470,14 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (TidyOption)createTidyOptionInstance:(TidyOptionId)idf
 {
-	TidyDoc dummyDoc = tidyCreate();					// Create a dummy document.
-	TidyOption result = tidyGetOption( dummyDoc, idf);	// Get an instance of an option.
-	tidyRelease(dummyDoc);								// Release the document.
-	return result;										// Return the instance of the option.
+	TidyDoc dummyDoc  = tidyCreate();
+	
+	TidyOption result = tidyGetOption( dummyDoc, idf);
+	
+	tidyRelease(dummyDoc);
+	
+	return result;
 }
-
-
 
 
 @end

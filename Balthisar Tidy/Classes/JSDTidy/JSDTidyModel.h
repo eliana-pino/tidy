@@ -134,7 +134,9 @@
 + (NSDictionary *)availableEncodingDictionariesByLocalizedIndex;	///< @copydoc allAvailableEncodingLocalizedNames
 
 
-@property (readonly, nonatomic) NSStringEncoding inputEncoding;				///< Convenience shortcut for reading current input-encoding
+@property (readonly, nonatomic) NSStringEncoding inputEncoding;		///< Convenience shortcut for reading current input-encoding
+
+@property (readonly, nonatomic) NSStringEncoding outputEncoding;	///< Convenience shortcut for reading current output-encoding
 
 
 #pragma mark - TidyOptions
