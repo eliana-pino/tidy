@@ -108,6 +108,7 @@
 		D09D8D761846209200AFB4FA /* win32tc.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D5A1846209200AFB4FA /* win32tc.c */; };
 		D0BE6EDB183DEB7A00029BF0 /* NSTextView+JSDExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D0BE6EDA183DEB7A00029BF0 /* NSTextView+JSDExtensions.m */; };
 		D0D3BEB8183C87C500692225 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0D3BEB6183C87C500692225 /* MainMenu.xib */; };
+		D0F21CBC18DD88B000C6FA01 /* JSDTidyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D08A7C8F18D3F81500341DCB /* JSDTidyModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -672,6 +673,7 @@
 				D0913CAF18B0AC06005DB2E4 /* main.m in Sources */,
 				D0913CB018B0AC06005DB2E4 /* NoodleLineNumberView.m in Sources */,
 				D0913CB118B0AC06005DB2E4 /* attrask.c in Sources */,
+				D0F21CBC18DD88B000C6FA01 /* JSDTidyModel.m in Sources */,
 				D0913CB218B0AC06005DB2E4 /* istack.c in Sources */,
 				D0913CB318B0AC06005DB2E4 /* iconvtc.c in Sources */,
 				D0913CB418B0AC06005DB2E4 /* tags.c in Sources */,
