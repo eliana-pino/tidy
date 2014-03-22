@@ -206,7 +206,7 @@
 		if ( optionRef.optionIsEncodingOption )
 		{
 			// We have the alphabetical index, but need to find the NSStringEncoding.
-			optionRef.optionValue = [JSDTidyModel availableEncodingDictionariesByLocalizedIndex][value][@"NSStringEncoding"];
+			optionRef.optionValue = [JSDTidyModel availableEncodingDictionariesByLocalizedIndex][@([value integerValue])][@"NSStringEncoding"];
 		}
 		else
 		{

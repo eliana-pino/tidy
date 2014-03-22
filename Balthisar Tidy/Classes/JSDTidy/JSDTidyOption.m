@@ -147,7 +147,7 @@
 			_optionValue = optionValue;
 		}
 	}
-	/// @todo FLAG NOTIFICATION AND CALLBACK TO sharedTidyModel HERE.
+	[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyOptionChanged object:self.sharedTidyModel];
 }
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
