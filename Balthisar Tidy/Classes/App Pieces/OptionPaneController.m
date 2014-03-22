@@ -206,7 +206,11 @@
 		if ( optionRef.optionIsEncodingOption )
 		{
 			// We have the alphabetical index, but need to find the NSStringEncoding.
-			optionRef.optionValue = [JSDTidyModel availableEncodingDictionariesByLocalizedIndex][@([value integerValue])][@"NSStringEncoding"];
+			NSString *tmp = [JSDTidyModel availableEncodingDictionariesByLocalizedIndex][@([value integerValue])][@"NSStringEncoding"];
+			
+			// For some reason Objective-C wants to convert this to __NSCFNumber.
+			// It probably has something to do with properties. This keeps it as string.
+			optionRef.optionValue = [NSString stringWithFormat:@"%@", tmp];
 		}
 		else
 		{

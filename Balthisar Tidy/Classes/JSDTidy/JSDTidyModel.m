@@ -1049,7 +1049,8 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	
 	for (NSString *key in [self.tidyOptions allKeys])
 	{
-		optionsDict[key] = [(self.tidyOptions)[key] optionValue];
+		JSDTidyOption *optionRef = self.tidyOptions[key];
+		optionsDict[key] = optionRef.optionValue;
 	}
 	
 	[defaults setObject:optionsDict forKey:jsdTidyTidyOptionsKey];

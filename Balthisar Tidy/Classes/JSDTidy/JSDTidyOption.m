@@ -117,9 +117,7 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)setOptionValue:(NSString *)optionValue
 {
-	// We need to treat encoding options specially, because we
-	// override Tidy's treatment of them.
-	if (!self.optionIsReadOnly)
+	if ((!self.optionIsReadOnly) && (!self.optionIsSuppressed))
 	{
 		if ( self.optionIsEncodingOption)
 		{
