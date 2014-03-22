@@ -71,7 +71,7 @@
 		_sharedTidyModel = sharedTidyModel;
 		_name            = name;
 		
-		if (TidyUnknownOption == self.optionId)
+		if ((TidyUnknownOption == self.optionId) || ( N_TIDY_OPTIONS == self.optionId))
 		{
 			_name = @"undefined";
 		}
@@ -200,6 +200,16 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSArray*)possibleOptionValues
 {
+	/*
+		Check for items that should NOT return their built-in
+	    list of possible option values.
+	 */
+	if ([[NSSet setWithObjects:@"doctype", nil] member:self.name])
+	{
+		return [[NSArray alloc] initWithObjects:nil];
+	}
+	
+	
 	NSMutableArray *theArray = [[NSMutableArray alloc] init];
 	
 	if (self.optionIsEncodingOption)

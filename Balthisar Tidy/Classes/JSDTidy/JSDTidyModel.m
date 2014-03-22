@@ -390,9 +390,10 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	{
 		JSDTidyOption *srcOption   = self.tidyOptions[key];
 		
-		NSString *srcString = srcOption.optionValue;
-		
-		outputDict[key]            = srcString;
+		if (!srcOption.optionIsSuppressed)
+		{
+			outputDict[key] = srcOption.optionValue;
+		}
 	}
 
 	return outputDict;
@@ -958,13 +959,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 		
 		while (tmpStr = [enumerator nextObject])
 		{
-			TidyOptionId myOption = tidyOptGetIdForName( [tmpStr UTF8String] );
-			NSLog(@"%s", [tmpStr UTF8String]);
-			NSLog(@"%u", myOption);
-			NSLog(@"%u", TidyUnknownOption);
-			
-			
-			if ((tidyOptGetIdForName( [tmpStr UTF8String] ) != TidyUnknownOption) && (![desiredOptions containsObject:tmpStr]))
+			if ((tidyOptGetIdForName( [tmpStr UTF8String] ) != N_TIDY_OPTIONS) && (![desiredOptions containsObject:tmpStr]))
 			{
 				[desiredOptions addObject:tmpStr];
 			}

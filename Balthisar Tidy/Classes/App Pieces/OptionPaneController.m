@@ -40,13 +40,9 @@
 
 
 @interface OptionPaneController ()
-{
-	NSArray	*optionsExceptions;		// Array of NSString that holds the options we want to treat as STRINGS
-}
 
-	@property (weak, nonatomic) IBOutlet NSView *View;					// Pointer to the NIB's |View|.
-	@property (weak, nonatomic) IBOutlet NSTextField *theDescription;	// Pointer to the description field.
-
+@property (weak, nonatomic) IBOutlet NSView *View;					// Pointer to the NIB's |View|.
+@property (weak, nonatomic) IBOutlet NSTextField *theDescription;	// Pointer to the description field.
 
 @end
 
@@ -72,9 +68,6 @@
 
 		_tidyDocument = [[JSDTidyModel alloc] init];
 
-		// Get our exception list (items to treat as string regardless of tidylib definition)
-		optionsExceptions = [NSArray arrayWithArray:[JSDTidyModel loadConfigurationListFromResource:@"optionsTypesExceptions" ofType:@"txt"]];
-
 
 		// Clean up the table's row-height.
 		[[self theTable] setRowHeight:20.0f];
@@ -89,11 +82,32 @@
 - (void)dealloc
 {
 	_tidyDocument = nil;
-	optionsExceptions = nil;
 }
 
 
 #pragma mark - Setup
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	putViewIntoView:
+		Whoever calls me will put my `View` into THIER `dstView`.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)putViewIntoView:(NSView *)dstView
+{
+	for (NSView *trash in [dstView subviews])
+	{
+		[trash removeFromSuperview];
+	}
+	
+	[[[self theTable] enclosingScrollView] setHasHorizontalScroller:NO];
+
+	[[self View] setFrame:[dstView bounds]];
+
+	[dstView addSubview:_View];
+}
+
+
+#pragma mark - Options Related
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
@@ -106,52 +120,12 @@
 }
 
 
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	putViewIntoView:
-		Whoever calls me will put my |View| into THIER |dstView|.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)putViewIntoView:(NSView *)dstView
-{
-	NSEnumerator *enumerator = [[dstView subviews] objectEnumerator];
-	NSView *trash;
-
-	while (trash = [enumerator nextObject])
-	{
-		[trash removeFromSuperview];
-	}
-
-	[[[self theTable] enclosingScrollView] setHasHorizontalScroller:NO];
-
-	[[self View] setFrame:[dstView bounds]];
-
-	[dstView addSubview:_View];
-}
-
-
-#pragma mark - Table Handling
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	tableViewSelectionDidChange:
-		We arrived here by virtue of this controller class being the
-		delegate of |theTable|. This is NOT a notification center
-		notification. Whenever the selection changes, update
-		|theDescription| with the correct, new description
-		from Localizable.strings.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)tableViewSelectionDidChange:(NSNotification *)aNotification
-{
-	// Get the description of the selected row.
-	if ([aNotification object] == [self theTable])
-	{
-		[[self theDescription] setStringValue:NSLocalizedString(self.optionsInEffect[[[self theTable] selectedRow]], nil)];
-	}
-}
+#pragma mark - Table Handling - Datasource Methods
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	numberOfRowsInTableView
-		We're here because we're the datasource of the |theTable|.
+		We're here because we're the datasource of the `theTable`.
 		We need to specify how many items are in the table view.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
@@ -162,7 +136,7 @@
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	tableView:objectValueForTableColumn:row
-		We're here because we're the datasource of |theTable|.
+		We're here because we're the datasource of `theTable`.
 		We need to specify what to show in the row/column.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
@@ -176,17 +150,17 @@
 	// Handle returning the 'value' column of the option.
 	if ([[aTableColumn identifier] isEqualToString:@"check"])
 	{
-		/*
-			If we're working on Encoding, then return the INDEX of the
-			value, and not the value itself (which is NSStringEncoding).
-			The index will be used to set which item in the list is displayed.
-		*/
-		
-		if ( [[[self tidyDocument] tidyOptions][self.optionsInEffect[rowIndex]] optionIsEncodingOption] )
+		JSDTidyOption *optionRef = [[self tidyDocument] tidyOptions][self.optionsInEffect[rowIndex]];
+				
+		if ( optionRef.optionIsEncodingOption )
 		{
-			NSInteger index = [[[self tidyDocument] tidyOptions][self.optionsInEffect[rowIndex]] integerValue] ;
+			/*
+				If we're working on Encoding, then return the INDEX of the
+				value, and not the value itself (which is NSStringEncoding).
+				The index will be used to set which item in the list is displayed.
+			 */
 			
-			return [JSDTidyModel availableEncodingDictionariesByNSStringEncoding][@(index)][@"LocalizedIndex"];
+			return [JSDTidyModel availableEncodingDictionariesByNSStringEncoding][@([optionRef.optionValue integerValue])][@"LocalizedIndex"];
 		}
 		else
 		{
@@ -197,8 +171,7 @@
 				enums (not strings), which are compatible, and so whatever
 				we pass to _tidyDocument will be used accordingly.
 			*/
-
-			return [[[self tidyDocument] tidyOptions][self.optionsInEffect[rowIndex]] valueForKey:@"optionValue"];
+			return optionRef.optionValue;
 		}
 	}
 	return @"";
@@ -206,18 +179,88 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	tableView:setObjectValue:forTableColumn:row
+		We're here because we're the datasource of `theTable`.
+		Sets the data object for an item in the specified row and column.
+		The user changed a value in `theTable` and so we will record
+		that in our own data structure.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)tableView:(NSTableView *)aTableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)inColumn row:(NSInteger)inRow
+{
+	if ([[inColumn identifier] isEqualToString:@"check"])
+	{
+		JSDTidyOption *optionRef = [[self tidyDocument] tidyOptions][self.optionsInEffect[inRow]];
+		
+		NSString *value;
+		
+		if ([object isKindOfClass:[NSString class]])
+		{
+			value = [NSString stringWithString:object];
+		}
+		else
+		{
+			value = [object stringValue];
+		}
+		
+		// if we're working with encoding, we need to get the NSStringEncoding instead of the index of the item.
+		if ( optionRef.optionIsEncodingOption )
+		{
+			// We have the alphabetical index, but need to find the NSStringEncoding.
+			optionRef.optionValue = [JSDTidyModel availableEncodingDictionariesByLocalizedIndex][value][@"NSStringEncoding"];
+		}
+		else
+		{
+			/*
+				TidyLib picklist options use an enum for their values, not a string.
+				We're really depending on all of TidyLib enums for picklist options
+				to range from [0..x], and as long as this holds true it's okay to
+				use the enum integer value.
+			*/
+			optionRef.optionValue = value;
+		}
+	}
+}
+
+
+#pragma mark - Table Handling - Delegate Methods
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	tableViewSelectionDidChange:
+		We're here because we're the delegate of the `theTable`.
+		delegate of `theTable`. This is NOT a notification center
+		notification. Whenever the selection changes, update
+		`theDescription` with the correct, new description
+		from Localizable.strings.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)tableViewSelectionDidChange:(NSNotification *)aNotification
+{
+	if ([aNotification object] == [self theTable])
+	{
+		NSString *selectedOptionName = self.optionsInEffect[[[self theTable] selectedRow]];
+		
+		JSDTidyOption *optionRef = [[self tidyDocument] tidyOptions][selectedOptionName];
+		
+		[[self theDescription] setStringValue:optionRef.localizedHumanReadableDescription];
+	}
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	tableView:dataCellForTableColumn:row:
-		We're here because we're the delegate of |theTable|.
+		We're here because we're the delegate of `theTable`.
 		Here we are providing the popup cell for use by the table.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSCell *)tableView:(NSTableView *)tableView dataCellForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
 	if ([[tableColumn identifier] isEqualToString:@"check"])
 	{
-		NSArray *picks = [[[self tidyDocument] tidyOptions][self.optionsInEffect[row]] possibleOptionValues];
+		JSDTidyOption *optionRef = [[self tidyDocument] tidyOptions][self.optionsInEffect[row]];
+		
+		NSArray *picks = optionRef.possibleOptionValues;
 
-		// Return a popup only if there IS a picklist and the item is not in the optionsExceptions array
-		if ( ([picks count] != 0) && (![optionsExceptions containsObject:self.optionsInEffect[row]] ) )
+		// Return a popup only if there's a picklist.
+		if ([picks count] != 0)
 		{
 			NSPopUpButtonCell *myCell = [[NSPopUpButtonCell alloc] initTextCell: @"" pullsDown:NO];
 			[myCell setEditable: YES];
@@ -235,58 +278,17 @@
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	tableView:shouldEditTableColumn:row
-		We're here because we're the delegate of |theTable|.
+		We're here because we're the delegate of `theTable`.
 		We need to disable for text editing cells with widgets.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (BOOL)tableView:(NSTableView *)aTableView shouldEditTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
 {
 	if ([[aTableColumn identifier] isEqualToString:@"check"])
 	{
-		if ([[aTableColumn dataCellForRow:rowIndex] class] != [NSTextFieldCell class])
-		{
-			return NO;
-		} 
-		else
-		{
-			return YES;
-		}
+		return ([[aTableColumn dataCellForRow:rowIndex] class] == [NSTextFieldCell class]);
 	}
-
+	
 	return NO;
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	tableView:setObjectValue:forTableColumn:row
-		We're here because we're the datasource of |theTable|.
-		Sets the data object for an item in the specified row and column.
-		The user changed a value in |theTable| and so we will record
-		that in our own data structure (i.e., the |_tidyDocument|).
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)tableView:(NSTableView *)aTableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)inColumn row:(NSInteger)inRow
-{
-	if ([[inColumn identifier] isEqualToString:@"check"])
-	{
-		JSDTidyOption *option = [[self tidyDocument] tidyOptions][self.optionsInEffect[inRow]];
-		NSString *value = [object stringValue];
-		
-		// if we're working with encoding, we need to get the NSStringEncoding instead of the index of the item.
-		if ( option.optionIsEncodingOption )
-		{
-			// We have the alphabetical index, but need to find the NSStringEncoding.
-			option.optionValue = [JSDTidyModel availableEncodingDictionariesByLocalizedIndex][value][@"NSStringEncoding"];
-		}
-		else
-		{
-			/*
-				TidyLib picklist options use an enum for their values, not a string.
-				We're really depending on all of TidyLib enums for picklist options
-				to range from [0..x], and as long as this holds true it's okay to
-				use the enum integer value.
-			*/
-			option.optionValue = value;
-		}
-	}
 }
 
 

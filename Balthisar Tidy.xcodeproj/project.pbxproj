@@ -31,8 +31,6 @@
 		D08A7C9018D3F81500341DCB /* JSDTidyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D08A7C8F18D3F81500341DCB /* JSDTidyModel.m */; };
 		D08A7C9418D442FF00341DCB /* optionsInEffect.txt in Resources */ = {isa = PBXBuildFile; fileRef = D08A7C9218D442FF00341DCB /* optionsInEffect.txt */; };
 		D08A7C9518D442FF00341DCB /* optionsInEffect.txt in Resources */ = {isa = PBXBuildFile; fileRef = D08A7C9218D442FF00341DCB /* optionsInEffect.txt */; };
-		D08A7C9618D442FF00341DCB /* optionsTypesExceptions.txt in Resources */ = {isa = PBXBuildFile; fileRef = D08A7C9318D442FF00341DCB /* optionsTypesExceptions.txt */; };
-		D08A7C9718D442FF00341DCB /* optionsTypesExceptions.txt in Resources */ = {isa = PBXBuildFile; fileRef = D08A7C9318D442FF00341DCB /* optionsTypesExceptions.txt */; };
 		D08A7C9A18D443D900341DCB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D08A7C9818D443D900341DCB /* InfoPlist.strings */; };
 		D08A7C9B18D443D900341DCB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D08A7C9818D443D900341DCB /* InfoPlist.strings */; };
 		D0913CA318B0AC06005DB2E4 /* charsets.c in Sources */ = {isa = PBXBuildFile; fileRef = D09D8D341846209200AFB4FA /* charsets.c */; };
@@ -165,7 +163,6 @@
 		D08A7C8E18D3F81500341DCB /* JSDTidyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSDTidyModel.h; path = Classes/JSDTidy/JSDTidyModel.h; sourceTree = "<group>"; };
 		D08A7C8F18D3F81500341DCB /* JSDTidyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSDTidyModel.m; path = Classes/JSDTidy/JSDTidyModel.m; sourceTree = "<group>"; };
 		D08A7C9218D442FF00341DCB /* optionsInEffect.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = optionsInEffect.txt; path = Resources/optionsInEffect.txt; sourceTree = "<group>"; };
-		D08A7C9318D442FF00341DCB /* optionsTypesExceptions.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = optionsTypesExceptions.txt; path = Resources/optionsTypesExceptions.txt; sourceTree = "<group>"; };
 		D08A7C9918D443D900341DCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D0913CDE18B0AC06005DB2E4 /* Balthisar Tidy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Balthisar Tidy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D092619318B6268900E9AC98 /* Balthisar Tidy.help */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Balthisar Tidy.help"; path = "TargetSpecific/Balthisar Tidy/Balthisar Tidy.help"; sourceTree = "<group>"; };
@@ -398,7 +395,6 @@
 			isa = PBXGroup;
 			children = (
 				D08A7C9218D442FF00341DCB /* optionsInEffect.txt */,
-				D08A7C9318D442FF00341DCB /* optionsTypesExceptions.txt */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -582,7 +578,6 @@
 				D0120B57183CCAB3003CA182 /* Localizable.strings in Resources */,
 				D01AED8518476F6B001300E3 /* Credits.rtf in Resources */,
 				D0D3BEB8183C87C500692225 /* MainMenu.xib in Resources */,
-				D08A7C9618D442FF00341DCB /* optionsTypesExceptions.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,7 +597,6 @@
 				D0913CD318B0AC06005DB2E4 /* Localizable.strings in Resources */,
 				D0913CD618B0AC06005DB2E4 /* Credits.rtf in Resources */,
 				D0913CD718B0AC06005DB2E4 /* MainMenu.xib in Resources */,
-				D08A7C9718D442FF00341DCB /* optionsTypesExceptions.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
