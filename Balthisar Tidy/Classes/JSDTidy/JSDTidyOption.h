@@ -82,7 +82,7 @@
 
 - (id)initWithName:(NSString *)name sharingModel:(JSDTidyModel *)sharedTidyModel;
 
-- (id)initWithName:(NSString *)name optionValue:(NSString *)value sharingModel:(JSDTidyModel *)sharedTidyModel;
+- (id)initWithName:(NSString *)name optionValue:(NSMutableString *)value sharingModel:(JSDTidyModel *)sharedTidyModel;
 
 
 - (BOOL)applyOptionToTidyDoc:(TidyDoc)destinationTidyDoc;

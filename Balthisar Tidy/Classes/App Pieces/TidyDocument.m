@@ -79,7 +79,7 @@
 // View Outlets
 @property (nonatomic, assign) IBOutlet NSTextView *sourceView;
 @property (nonatomic, assign) IBOutlet NSTextView *tidyView;
-@property (nonatomic, weak) IBOutlet NSTableView *errorView;
+@property (nonatomic, weak)   IBOutlet NSTableView *errorView;
 
 
 // Encoding Helper Popover Outlets
@@ -103,7 +103,7 @@
 
 
 // Option Controller
-@property (nonatomic, weak) IBOutlet NSView *optionPane;				// Our empty optionPane in the nib.
+@property (nonatomic, weak)   IBOutlet NSView *optionPane;				// Our empty optionPane in the nib.
 @property (nonatomic, strong) OptionPaneController *optionController;	// The real option pane we load into optionPane.
 
 
@@ -172,6 +172,7 @@
 	if ((didRevert = [super revertToContentsOfURL:absoluteURL ofType:typeName error:outError]))
 	{
 		self.documentIsLoading = YES;
+		
 		[[self tidyProcess] setSourceTextWithData:[self documentOpenedData]];
 	}
 	
@@ -206,6 +207,7 @@
 	if (success)
 	{
 		[[self sourceView] setString:[[self tidyProcess] tidyText]];
+		
 		self.fileWantsProtection = NO;
 	}
 	
@@ -257,9 +259,6 @@
 
 /*———————————————————————————————————————————————————————————————————*
 	init
-		Our creator -- create the |tidyProcess| and the |processString|.
-		Also be registered to receive preference notifications for the
-		file-saving preferences.
  *———————————————————————————————————————————————————————————————————*/
 - (id)init
 {
@@ -281,8 +280,9 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyOptionChanged object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifySourceTextChanged object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyTidyTextChanged object:nil];
-	_sourceView = nil;
-	_tidyView = nil;
+	
+	_sourceView       = nil;
+	_tidyView         = nil;
 	_optionController = nil;
 }
 

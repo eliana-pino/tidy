@@ -104,7 +104,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 		
 		[self optionsPopulateTidyOptions];
 	}
-		
+			
 	return self;
 }
 
@@ -388,11 +388,11 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	
 	for (NSString *key in self.tidyOptions)
 	{
-		JSDTidyOption *srcOption = self.tidyOptions[key];
+		JSDTidyOption *srcOption   = self.tidyOptions[key];
 		
-		NSString *srcString      = srcOption.optionValue;
+		NSString *srcString = srcOption.optionValue;
 		
-		outputDict[key]          = srcString;
+		outputDict[key]            = srcString;
 	}
 
 	return outputDict;
@@ -698,11 +698,36 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	optionsCopyFromModel
-		Copies all options from theDocument into our _prefDoc.
+		Copies all options from theDocument into our tidyOptions.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)optionsCopyFromModel:(JSDTidyModel *)theModel
 {
 	_tidyOptions = [[theModel tidyOptions] copy];
+	
+	[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyOptionChanged object:self];
+	
+	[self processTidy];
+	
+	[self fixSourceCoding];
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	optionsCopyFromDictionary
+		Copies all options from theDictionary into our tidyOptions.
+		Key is the option name and the value is the value.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)optionsCopyFromDictionary:(NSDictionary *)theDictionary
+{
+	NSString *localVal;
+	
+	for (NSString *key in [self.tidyOptions allKeys])
+	{
+		if ((localVal = [theDictionary valueForKey:key]))
+		{
+			[self.tidyOptions[key] setValue:localVal forKey:key];
+		}
+	}
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyOptionChanged object:self];
 	
@@ -746,26 +771,6 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	NSArray *optionsList = [[self class] optionsBuiltInOptionList];
 		
 	for (NSString *tmpStr in optionsList)
-	{
-		JSDTidyOption *newOption = [[JSDTidyOption alloc] initWithName:tmpStr sharingModel:self];
-		
-		if (!(TidyUnknownOption == [newOption optionId]))
-		{
-			[self.tidyOptions setValue:newOption forKey:newOption.name];
-			//[self.tidyOptions setValue:newOption forKey:[[NSNumber numberWithUnsignedInteger:newOption.tidyOptionId] stringValue]];
-		}
-	}
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	optionsPopulateTidyOptionsFromResource:ofType
-	@todo CHANGE THIS. We ALWAYS populate all tidy options. Use
-	this version to flag tidy options that are suppressed.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)optionsPopulateTidyOptionsFromResource:(NSString *)fileName ofType:(NSString *)fileType
-{
-	for (NSString *tmpStr in [JSDTidyModel loadConfigurationListFromResource:fileName ofType:fileType])
 	{
 		JSDTidyOption *newOption = [[JSDTidyOption alloc] initWithName:tmpStr sharingModel:self];
 		
@@ -953,6 +958,12 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 		
 		while (tmpStr = [enumerator nextObject])
 		{
+			TidyOptionId myOption = tidyOptGetIdForName( [tmpStr UTF8String] );
+			NSLog(@"%s", [tmpStr UTF8String]);
+			NSLog(@"%u", myOption);
+			NSLog(@"%u", TidyUnknownOption);
+			
+			
 			if ((tidyOptGetIdForName( [tmpStr UTF8String] ) != TidyUnknownOption) && (![desiredOptions containsObject:tmpStr]))
 			{
 				[desiredOptions addObject:tmpStr];
@@ -960,6 +971,20 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 		}
 	}
 	return desiredOptions;
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	suppressTidyOptionsFromArray:
+		Given a list of TidyOptions, mark all items not present in
+		the list as suppressed.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void) suppressTidyOptionsFromArray:(NSArray *)suppressionList
+{
+	for (NSString *key in [self.tidyOptions allKeys])
+	{
+		[self.tidyOptions[key] setValue:@([suppressionList indexOfObject:key] == NSNotFound) forKey:@"optionIsSuppressed"];
+	}
 }
 
 
@@ -1048,7 +1073,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	{
 		NSString *myString = [[defaults objectForKey:jsdTidyTidyOptionsKey] stringForKey:optionName];
 
-		[self.tidyOptions[optionName] setOptionValue:myString];
+		[self.tidyOptions[optionName] setOptionValue:[myString copy]];
 	}
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyOptionChanged object:self];

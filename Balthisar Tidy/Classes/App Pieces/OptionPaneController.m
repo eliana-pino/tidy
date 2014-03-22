@@ -41,7 +41,6 @@
 
 @interface OptionPaneController ()
 {
-	NSArray *optionsInEffect;		// Array of NSString that holds the options we really want to use.
 	NSArray	*optionsExceptions;		// Array of NSString that holds the options we want to treat as STRINGS
 }
 
@@ -73,10 +72,6 @@
 
 		_tidyDocument = [[JSDTidyModel alloc] init];
 
-		// Get our options list
-		optionsInEffect = [NSArray arrayWithArray:[JSDTidyModel loadConfigurationListFromResource:@"optionsInEffect" ofType:@"txt"]];
-
-		
 		// Get our exception list (items to treat as string regardless of tidylib definition)
 		optionsExceptions = [NSArray arrayWithArray:[JSDTidyModel loadConfigurationListFromResource:@"optionsTypesExceptions" ofType:@"txt"]];
 
@@ -94,12 +89,21 @@
 - (void)dealloc
 {
 	_tidyDocument = nil;
-	optionsInEffect = nil;
 	optionsExceptions = nil;
 }
 
 
 #pragma mark - Setup
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	> optionsInEffect
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)setOptionsInEffect:(NSArray *)optionsInEffect
+{
+	_optionsInEffect = optionsInEffect;
+	[self.tidyDocument suppressTidyOptionsFromArray:self.optionsInEffect];
+}
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
@@ -140,7 +144,7 @@
 	// Get the description of the selected row.
 	if ([aNotification object] == [self theTable])
 	{
-		[[self theDescription] setStringValue:NSLocalizedString(optionsInEffect[[[self theTable] selectedRow]], nil)];
+		[[self theDescription] setStringValue:NSLocalizedString(self.optionsInEffect[[[self theTable] selectedRow]], nil)];
 	}
 }
 
@@ -152,7 +156,7 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
-	return [optionsInEffect count];
+	return [self.optionsInEffect count];
 }
 
 
@@ -166,7 +170,7 @@
 	// Handle returning the 'name' of the option.
 	if ([[aTableColumn identifier] isEqualToString:@"name"])
 	{
-		return optionsInEffect[rowIndex];
+		return self.optionsInEffect[rowIndex];
 	}
 
 	// Handle returning the 'value' column of the option.
@@ -178,9 +182,9 @@
 			The index will be used to set which item in the list is displayed.
 		*/
 		
-		if ( [[[self tidyDocument] tidyOptions][optionsInEffect[rowIndex]] optionIsEncodingOption] )
+		if ( [[[self tidyDocument] tidyOptions][self.optionsInEffect[rowIndex]] optionIsEncodingOption] )
 		{
-			NSInteger index = [[[self tidyDocument] tidyOptions][optionsInEffect[rowIndex]] integerValue] ;
+			NSInteger index = [[[self tidyDocument] tidyOptions][self.optionsInEffect[rowIndex]] integerValue] ;
 			
 			return [JSDTidyModel availableEncodingDictionariesByNSStringEncoding][@(index)][@"LocalizedIndex"];
 		}
@@ -194,7 +198,7 @@
 				we pass to _tidyDocument will be used accordingly.
 			*/
 
-			return [[[self tidyDocument] tidyOptions][optionsInEffect[rowIndex]] valueForKey:@"optionValue"];
+			return [[[self tidyDocument] tidyOptions][self.optionsInEffect[rowIndex]] valueForKey:@"optionValue"];
 		}
 	}
 	return @"";
@@ -210,10 +214,10 @@
 {
 	if ([[tableColumn identifier] isEqualToString:@"check"])
 	{
-		NSArray *picks = [[[self tidyDocument] tidyOptions][optionsInEffect[row]] possibleOptionValues];
+		NSArray *picks = [[[self tidyDocument] tidyOptions][self.optionsInEffect[row]] possibleOptionValues];
 
 		// Return a popup only if there IS a picklist and the item is not in the optionsExceptions array
-		if ( ([picks count] != 0) && (![optionsExceptions containsObject:optionsInEffect[row]] ) )
+		if ( ([picks count] != 0) && (![optionsExceptions containsObject:self.optionsInEffect[row]] ) )
 		{
 			NSPopUpButtonCell *myCell = [[NSPopUpButtonCell alloc] initTextCell: @"" pullsDown:NO];
 			[myCell setEditable: YES];
@@ -263,7 +267,7 @@
 {
 	if ([[inColumn identifier] isEqualToString:@"check"])
 	{
-		JSDTidyOption *option = [[self tidyDocument] tidyOptions][optionsInEffect[inRow]];
+		JSDTidyOption *option = [[self tidyDocument] tidyOptions][self.optionsInEffect[inRow]];
 		NSString *value = [object stringValue];
 		
 		// if we're working with encoding, we need to get the NSStringEncoding instead of the index of the item.

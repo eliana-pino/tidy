@@ -215,16 +215,18 @@
 	OPTIONS - methods for dealing with options
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
-+ (void)		optionsBuiltInDumpDocsToConsole;					///< dumps all TidyLib descriptions to error console.
++ (void)		optionsBuiltInDumpDocsToConsole;							///< dumps all TidyLib descriptions to error console.
 
-+ (int)			optionsBuiltInOptionCount;							///< returns the number of options built into Tidy.
++ (int)			optionsBuiltInOptionCount;									///< returns the number of options built into Tidy.
 
-+ (NSArray *)	optionsBuiltInOptionList;							///< returns an NSArray of NSString for all options built into Tidy.
++ (NSArray *)	optionsBuiltInOptionList;									///< returns an NSArray of NSString for all options built into Tidy.
 
 
-- (void)		optionsCopyFromModel:(JSDTidyModel *)theModel;		///< sets options based on those in theDocument.
+- (void)		optionsCopyFromModel:(JSDTidyModel *)theModel;				///< sets options based on those in theDocument.
 
-- (void)		optionsResetAllToBuiltInDefaults;					///< resets all options to factory default
+- (void)		optionsCopyFromDictionary:(NSDictionary *)theDictionary;	///< sets options from values in a dictionary.
+
+- (void)		optionsResetAllToBuiltInDefaults;							///< resets all options to factory default
 
 
 
@@ -270,6 +272,8 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
 + (NSArray *)loadConfigurationListFromResource:(NSString *)fileName ofType:(NSString *)fileType;	///< get list of config options.
+
+- (void) suppressTidyOptionsFromArray:(NSArray *)suppressionList;									///< use a list to suppress options en masse.
 
 
 #pragma mark - Mac OS X Prefs Support
