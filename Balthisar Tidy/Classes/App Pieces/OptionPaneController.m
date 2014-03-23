@@ -162,6 +162,11 @@
 			
 			return [JSDTidyModel availableEncodingDictionariesByNSStringEncoding][@([optionRef.optionValue integerValue])][@"LocalizedIndex"];
 		}
+		else if ( [optionRef.name isEqualToString:@"doctype"] )
+		{
+			// If we're working with doctype we need the index value, not the string value.
+			return @([optionRef.possibleOptionValues indexOfObject:optionRef.optionValue]);
+		}
 		else
 		{
 			/*
@@ -212,6 +217,11 @@
 			// It probably has something to do with properties. This keeps it as string.
 			optionRef.optionValue = [NSString stringWithFormat:@"%@", tmp];
 		}
+		// if we're working with doctype we need the string value, not the index value.
+		else if ( [optionRef.name isEqualToString:@"doctype"] )
+		{
+			optionRef.optionValue = optionRef.possibleOptionValues[[value integerValue]];
+		}
 		else
 		{
 			/*
@@ -245,7 +255,9 @@
 		
 		JSDTidyOption *optionRef = [[self tidyDocument] tidyOptions][selectedOptionName];
 		
-		[[self theDescription] setStringValue:optionRef.localizedHumanReadableDescription];
+		[[self theDescription] setAttributedStringValue:optionRef.localizedHumanReadableDescription];
+		
+		//[[self theDescription] setStringValue:optionRef.localizedHumanReadableDescription];
 	}
 }
 

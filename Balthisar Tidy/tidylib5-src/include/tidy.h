@@ -852,7 +852,7 @@ TIDY_EXPORT uint TIDY_CALL tidyNodeColumn( TidyNode tnod );
 
 /** @defgroup NodeIsElementName Deprecated node interrogation per TagId
 **
-** @deprecated The functions tidyNodeIs{ElementName} are deprecated and 
+** @deprecated The functions tidyNodeIs{ElementName} are deprecated and
 ** should be replaced by tidyNodeGetId.
 ** @{
 */
@@ -954,7 +954,7 @@ TIDY_EXPORT Bool TIDY_CALL tidyAttrIsProp( TidyAttr tattr );
 
 /** @defgroup AttrIsAttributeName Deprecated attribute interrogation per AttrId
 **
-** @deprecated The functions  tidyAttrIs{AttributeName} are deprecated and 
+** @deprecated The functions  tidyAttrIs{AttributeName} are deprecated and
 ** should be replaced by tidyAttrGetId.
 ** @{
 */
@@ -1019,7 +1019,7 @@ TIDY_EXPORT TidyAttr TIDY_CALL tidyAttrGetById( TidyNode tnod, TidyAttrId attId 
 
 /** @defgroup AttrGetAttributeName Deprecated attribute retrieval per AttrId
 **
-** @deprecated The functions tidyAttrGet{AttributeName} are deprecated and 
+** @deprecated The functions tidyAttrGet{AttributeName} are deprecated and
 ** should be replaced by tidyAttrGetById.
 ** For instance, tidyAttrGetID( TidyNode tnod ) can be replaced by 
 ** tidyAttrGetById( TidyNode tnod, TidyAttr_ID ). This avoids a potential

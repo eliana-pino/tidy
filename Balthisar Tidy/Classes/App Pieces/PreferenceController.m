@@ -124,6 +124,8 @@
 	{
 		[self setWindowFrameAutosaveName:@"PrefWindow"];
 		_optionsInEffect = [JSDTidyModel loadConfigurationListFromResource:@"optionsInEffect" ofType:@"txt"];
+		//// TEMP
+		_optionsInEffect = [_optionsInEffect sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
 	}
 	
 	return self;

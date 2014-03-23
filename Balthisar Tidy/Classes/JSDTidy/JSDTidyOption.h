@@ -57,7 +57,7 @@
 
 @property (nonatomic, strong, readonly) NSString *localizedHumanReadableName;			///< Localized, humanized name of the option.
 
-@property (nonatomic, strong, readonly) NSString *localizedHumanReadableDescription;	///< Localized description of the option.
+@property (nonatomic, strong, readonly) NSAttributedString *localizedHumanReadableDescription;	///< Localized description of the option.
 
 @property (nonatomic, strong, readonly) NSString *localizedHumanReadableCategory;		///< Localized name of the option category.
 

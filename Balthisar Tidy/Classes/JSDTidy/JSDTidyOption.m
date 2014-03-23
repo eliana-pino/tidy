@@ -202,11 +202,11 @@
 		Check for items that should NOT return their built-in
 	    list of possible option values.
 	 */
-	if ([[NSSet setWithObjects:@"doctype", nil] member:self.name])
+/*	if ([[NSSet setWithObjects:@"doctype", nil] member:self.name])
 	{
 		return [[NSArray alloc] initWithObjects:nil];
 	}
-	
+*/	
 	
 	NSMutableArray *theArray = [[NSMutableArray alloc] init];
 	
@@ -223,6 +223,12 @@
 		while ( i )
 		{
 			[theArray addObject:@(tidyOptGetNextPick(tidyOptionInstance, &i))];
+		}
+		
+		// Special treatment for `doctype`
+		if (([self.name isEqual: @"doctype"]) && ([theArray count] > 0))
+		{
+			[theArray removeLastObject];
 		}
 	}
 	
@@ -251,10 +257,37 @@
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	localizedHumanReadableDescription
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (NSString*)localizedHumanReadableDescription
+- (NSAttributedString*)localizedHumanReadableDescription
 {
 	// parentheses around brackets required lest preprocessor get confused.
-	return NSLocalizedString(([NSString stringWithFormat:@"description-%@", self.name]), nil);
+	NSString *rawString = NSLocalizedString(([NSString stringWithFormat:@"description-%@", self.name]), nil);
+	
+	NSAttributedString *outString;
+	
+	/*
+		RTF can be a little complex due to legacy string encoding issues.
+		When JSDTidy is internationalized, RTF might not play nicely with
+		non-Mac character encodings. Prefixing the .plist strings with an
+		asterisk will cause the automatic conversion to and from RTF,
+		otherwise the strings will be treated normally (this maintains
+		string compatability with `NSLocalizedString`).
+	 */
+	if ([rawString hasPrefix:@"*"])
+	{
+		// Make into RTF string.
+		rawString = [[@"{\\rtf1\\mac\\deff0{\\fonttbl{\\f0 Consolas;}{\\f1 Lucida Grande;}}\\f1\\fs22\\qj\\sa100" stringByAppendingString:[rawString substringFromIndex:1]] stringByAppendingString:@"}"];
+
+		NSData *rawData = [rawString dataUsingEncoding:NSMacOSRomanStringEncoding];
+
+		outString = [[NSAttributedString alloc] initWithRTF:rawData documentAttributes:nil];
+	}
+	else
+	{
+		// Use the string as-is.
+		outString = [[NSAttributedString alloc] initWithString:rawString];
+	}
+	
+	return outString;
 }
 
 
