@@ -317,6 +317,7 @@
 		self.optionController = [[OptionPaneController alloc] init];
 	}
 	
+	self.optionController.optionsInEffect = [[PreferenceController sharedPreferences] optionsInEffect];
 	[[self optionController] putViewIntoView:[self optionPane]];
 }
 
