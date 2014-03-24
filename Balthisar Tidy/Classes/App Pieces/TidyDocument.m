@@ -32,7 +32,7 @@
  
 	Event Handling and Interacting with the Tidy Processor
  
-		The Tidy processor is loosely couple with the document controller. Most
+		The Tidy processor is loosely coupled with the document controller. Most
 		interaction with it is handled via NSNotifications.
  
 		If user types text we receive a |textDidChange| delegate notification, and we will set
