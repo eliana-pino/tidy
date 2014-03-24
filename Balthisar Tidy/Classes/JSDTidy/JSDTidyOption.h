@@ -47,6 +47,8 @@
 
 @property (nonatomic, strong)           NSString *optionValue;							///< Current value of this option.
 
+@property (nonatomic, strong)			NSString *optionUIValue;						///< Current value of this option used by UI's.
+
 @property (nonatomic, strong, readonly) NSString *name;									///< Built-in option name.
 
 @property (nonatomic, strong, readonly) NSString *defaultOptionValue;					///< Default value of this option (from user options).

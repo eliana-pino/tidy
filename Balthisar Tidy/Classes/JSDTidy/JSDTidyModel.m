@@ -759,6 +759,31 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 }
 
 
+#pragma mark - Options Management - Property Accessors
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	> optionsInEffect
+		If set, only options in the array will normally be used.
+		Options not in the array won't have values set or read,
+		and will maintain their default values. If set to nil,
+		then all built-in options will be used.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)setOptionsInEffect:(NSArray *)options
+{
+	_optionsInEffect = options;
+	for (NSString *key in [self.tidyOptions allKeys])
+	{
+		if (_optionsInEffect)
+		{
+			[self.tidyOptions[key] setValue:@([_optionsInEffect indexOfObject:key] == NSNotFound) forKey:@"optionIsSuppressed"];
+		}
+		else
+		{
+			[self.tidyOptions[key] setValue:@(NO) forKey:@"optionIsSuppressed"];
+		}
+	}
+}
+
+
 #pragma mark - Options Management - Private Methods
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
@@ -827,6 +852,12 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	tidyOptSetValue( newTidy, TidyInCharEncoding, [@"utf8" UTF8String] );
 	tidyOptSetValue( newTidy, TidyOutCharEncoding, [@"utf8" UTF8String] );
 
+	
+	// Prefer to use an empty sourceText instead of a nil sourceText
+	if ( _sourceText == nil)
+	{
+		_sourceText = @" ";
+	}
 	
 	// Parse the |_sourceText| and clean, repair, and diagnose it.
 	tidyParseString( newTidy, [_sourceText UTF8String] );
@@ -966,20 +997,6 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 		}
 	}
 	return desiredOptions;
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	suppressTidyOptionsFromArray:
-		Given a list of TidyOptions, mark all items not present in
-		the list as suppressed.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void) suppressTidyOptionsFromArray:(NSArray *)suppressionList
-{
-	for (NSString *key in [self.tidyOptions allKeys])
-	{
-		[self.tidyOptions[key] setValue:@([suppressionList indexOfObject:key] == NSNotFound) forKey:@"optionIsSuppressed"];
-	}
 }
 
 

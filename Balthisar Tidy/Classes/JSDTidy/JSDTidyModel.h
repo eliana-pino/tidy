@@ -182,9 +182,9 @@
 
 @property (readonly, strong, nonatomic) NSString *tidyText;
 
-@property (readonly, weak) NSData *tidyTextAsData;	///< @copydoc tidyText
+@property (readonly, weak, nonatomic) NSData *tidyTextAsData;	///< @copydoc tidyText
 
-- (void)tidyTextToFile:(NSString *)path;			///< @copydoc tidyText
+- (void)tidyTextToFile:(NSString *)path;						///< @copydoc tidyText
 
 
 /**
@@ -193,7 +193,7 @@
 	is not equal to the tidy'd-text.
 */
 
-@property (readonly) BOOL isDirty;
+@property (readonly, nonatomic) BOOL isDirty;
 
 
 #pragma mark - Errors
@@ -203,9 +203,9 @@
 	ERRORS reported by tidy
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
-@property (readonly, strong) NSString *errorText;			///< Return the error text in traditional tidy format.
+@property (readonly, strong, nonatomic) NSString *errorText;			///< Return the error text in traditional tidy format.
 
-@property (readonly, strong) NSArray  *errorArray;			///< Error text as an array of |NSDictionary| of the errors.
+@property (readonly, strong, nonatomic) NSArray  *errorArray;			///< Error text as an array of |NSDictionary| of the errors.
 
 
 #pragma mark - Options management
@@ -228,6 +228,7 @@
 
 - (void)		optionsResetAllToBuiltInDefaults;							///< resets all options to factory default
 
+@property (nonatomic) NSArray* optionsInEffect;								///< default is all option; otherwise is list of options.
 
 
 #pragma mark - Diagnostics and Repair
@@ -237,19 +238,19 @@
 	DIAGNOSTICS and REPAIR
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
-@property (readonly) int tidyDetectedHtmlVersion;	///< Returns 0, 2, 3, 4, or 5.
+@property (readonly, nonatomic) int tidyDetectedHtmlVersion;	///< Returns 0, 2, 3, 4, or 5.
 
-@property (readonly) bool tidyDetectedXhtml;		///< Indicates whether the document is XHTML.
+@property (readonly, nonatomic) bool tidyDetectedXhtml;			///< Indicates whether the document is XHTML.
 
-@property (readonly) bool tidyDetectedGenericXml;	///< Indicates if the document is generic XML.
+@property (readonly, nonatomic) bool tidyDetectedGenericXml;	///< Indicates if the document is generic XML.
 
-@property (readonly) int tidyStatus;				///< Returns 0 if there are no errors, 2 for doc errors, 1 for other.
+@property (readonly, nonatomic) int tidyStatus;					///< Returns 0 if there are no errors, 2 for doc errors, 1 for other.
 
-@property (readonly) uint tidyErrorCount;			///< Returns number of document errors.
+@property (readonly, nonatomic) uint tidyErrorCount;			///< Returns number of document errors.
 
-@property (readonly) uint tidyWarningCount;			///< Returns number of document warnings.
+@property (readonly, nonatomic) uint tidyWarningCount;			///< Returns number of document warnings.
 
-@property (readonly) uint tidyAccessWarningCount;	///< Returns number of document accessibility warnings.
+@property (readonly, nonatomic) uint tidyAccessWarningCount;	///< Returns number of document accessibility warnings.
 
 
 #pragma mark - Miscelleneous
@@ -261,7 +262,7 @@
 
 // TODO: These can all be properties.
 
-@property (readonly) NSString *tidyReleaseDate;		///< returns the TidyLib release date
+@property (readonly, nonatomic) NSString *tidyReleaseDate;		///< returns the TidyLib release date
 
 
 #pragma mark - Configuration List Support
@@ -272,8 +273,6 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
 + (NSArray *)loadConfigurationListFromResource:(NSString *)fileName ofType:(NSString *)fileType;	///< get list of config options.
-
-- (void) suppressTidyOptionsFromArray:(NSArray *)suppressionList;									///< use a list to suppress options en masse.
 
 
 #pragma mark - Mac OS X Prefs Support

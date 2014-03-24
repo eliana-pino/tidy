@@ -144,8 +144,9 @@
 		{
 			_optionValue = optionValue;
 		}
+		
+		[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyOptionChanged object:self.sharedTidyModel];
 	}
-	[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyOptionChanged object:self.sharedTidyModel];
 }
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
@@ -165,6 +166,69 @@
 	}
 }
 
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	> setOptionUIValue
+		Sets option values using values from the user-interface
+		instead of setting the TidyLib TidyOption values directly.
+		Most TidyOptions have the same UI value and native value,
+		but `doctype` and the encoding options require some
+		special treatment. 
+ 
+		If you're building a UI for TidyLib, then you can set the
+		UI value directly, and the correct optionValue will be set.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)setOptionUIValue:(NSString *)optionValue
+{
+	if ((!self.optionIsReadOnly) && (!self.optionIsSuppressed))
+	{
+		if ( self.optionIsEncodingOption)
+		{
+			// We have the alphabetical index, but need to find the NSStringEncoding.
+			// The real optionValue will be the NSString encoding.
+			NSString *tmp = [JSDTidyModel availableEncodingDictionariesByLocalizedIndex][@([optionValue integerValue])][@"NSStringEncoding"];
+			
+			// For some reason Objective-C wants to convert this to __NSCFNumber.
+			// It probably has something to do with properties. This keeps it as string.
+			[self setValue:[NSString stringWithFormat:@"%@", tmp] forKey:@"optionValue"];
+		}
+		else if ( [self.name isEqualToString:@"doctype"] )
+		{
+			// We have the index value from the menu, but we require a string value
+			// for this option. The real optionValue will be the string value.
+			[self setValue:self.possibleOptionValues[[optionValue integerValue]] forKey:@"optionValue"];
+		}
+		else
+		{
+			// Everything else is okay.
+			[self setValue:optionValue forKey:@"optionValue"];
+		}
+	}
+}
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	< optionUIValue
+		Gets option values suitable for use in user-interfaces.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (NSString*)optionUIValue
+{
+	if ( self.optionIsEncodingOption )
+	{
+		// Our value is an NSStringEncoding, but we want to return
+		// the menu index in the current locale.
+		return [JSDTidyModel availableEncodingDictionariesByNSStringEncoding][@([self.optionValue integerValue])][@"LocalizedIndex"];
+	}
+	else if ( [self.name isEqualToString:@"doctype"] )
+	{
+		// If we're working with doctype we need the index value, not the string value.
+		return [NSString stringWithFormat:@"%lu", [self.possibleOptionValues indexOfObject:self.optionValue]];
+	}
+	else
+	{
+		// Everything else is okay.
+		return self.optionValue;
+	}
+}
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	defaultOptionValue

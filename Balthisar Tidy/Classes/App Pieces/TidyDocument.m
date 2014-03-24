@@ -300,6 +300,8 @@
 	[aView setSelectable:YES];
 	[aView setEditable:NO];
 	[aView setImportsGraphics:NO];
+	[aView setAutomaticQuoteSubstitutionEnabled:NO];
+	[aView setAutomaticTextReplacementEnabled:NO];
 	[aView setWordwrapsText:NO];					// Provided by category `NSTextView+JSDExtensions`
 	[aView setShowsLineNumbers:YES];				// Provided by category `NSTextView+JSDExtensions`
 }
@@ -337,22 +339,45 @@
 	[[self sourceView] setEditable:YES];
 
 	
-	// Honor the defaults system defaults.
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];				// Get the default default system.
-	[[[self optionController] tidyDocument] takeOptionValuesFromDefaults:defaults];	// Make the optionController take the values.
+	/*
+		Honor the defaults system defaults.
+	 */
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	
+	
+	/*
+		Make the optionController take the default values. This actually
+		causes the empty document to go through processTidy one time.
+	 */
+	[[[self optionController] tidyDocument] takeOptionValuesFromDefaults:defaults];
 
 	
-	// Saving behavior settings
+	/* 
+		Saving behavior settings 
+	 */
 	self.fileWantsProtection = !([self documentOpenedData] == nil);
 
 	
-	// Other defaults system items
+	/* 
+		Other defaults system items 
+	 */
 	self.ignoreInputEncodingWhenOpening = [defaults boolForKey:JSDKeyIgnoreInputEncodingWhenOpening];
 
 	
-	// Set the document options.
+	/*
+		Set the document options. This causes the empty document to go
+		through processTidy a second time.
+	 */
 	[[self tidyProcess] optionsCopyFromModel:[[self optionController] tidyDocument]];
 
+	
+	/*
+		Since this is startup, seed the tidyText view with this
+		initial value for a blank document. If we're opening a
+		document the event system will replace it forthwith.
+	 */
+	[[self tidyView] setString:[[self tidyProcess] tidyText]];
+	
 	
 	/*
 		Delay setting up notifications until now, because otherwise
@@ -378,7 +403,9 @@
 												 name:tidyNotifyTidyTextChanged
 											   object:[self tidyProcess]];
 	
-	
+	/*
+		Run through the new user helper if appropriate
+	 */
 	if (![defaults boolForKey:JSDKeyFirstRunComplete])
 	{
 		[self firstRunPopoverSequence];
@@ -389,9 +416,11 @@
 		[self inputEncodingSanityCheck];
 	}
 	
-	// Set the tidyProcess data. The event system will set the view later.
-	// If we're a new document, then documentOpenData nil is fine.
-	self.documentIsLoading = YES;
+	/*
+		Set the tidyProcess data. The event system will set the view later.
+		If we're a new document, then documentOpenData nil is fine.
+	 */
+	self.documentIsLoading = !(self.documentOpenedData == nil);
 	[[self tidyProcess] setSourceTextWithData:[self documentOpenedData]];
 }
 
@@ -442,9 +471,9 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)handleTidyTidyTextChange:(NSNotification *)note
 {
-	[[self tidyView] setString:[[self tidyProcess] tidyText]];		// Put the tidy'd text into the |tidyView|.
-	[[self errorView] reloadData];									// Reload the error data.
-	[[self errorView] deselectAll:self];							// Deselect the selected row.
+	[[self tidyView] setString:[[self tidyProcess] tidyText]];
+	[[self errorView] reloadData];
+	[[self errorView] deselectAll:self];							
 }
 
 

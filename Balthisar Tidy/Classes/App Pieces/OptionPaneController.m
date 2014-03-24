@@ -116,7 +116,7 @@
 - (void)setOptionsInEffect:(NSArray *)optionsInEffect
 {
 	_optionsInEffect = optionsInEffect;
-	[self.tidyDocument suppressTidyOptionsFromArray:self.optionsInEffect];
+	self.tidyDocument.optionsInEffect = optionsInEffect;
 }
 
 
@@ -151,34 +151,10 @@
 	if ([[aTableColumn identifier] isEqualToString:@"check"])
 	{
 		JSDTidyOption *optionRef = [[self tidyDocument] tidyOptions][self.optionsInEffect[rowIndex]];
-				
-		if ( optionRef.optionIsEncodingOption )
-		{
-			/*
-				If we're working on Encoding, then return the INDEX of the
-				value, and not the value itself (which is NSStringEncoding).
-				The index will be used to set which item in the list is displayed.
-			 */
-			
-			return [JSDTidyModel availableEncodingDictionariesByNSStringEncoding][@([optionRef.optionValue integerValue])][@"LocalizedIndex"];
-		}
-		else if ( [optionRef.name isEqualToString:@"doctype"] )
-		{
-			// If we're working with doctype we need the index value, not the string value.
-			return @([optionRef.possibleOptionValues indexOfObject:optionRef.optionValue]);
-		}
-		else
-		{
-			/*
-				All text fields are strings, and so passing a string value is
-				appropriate. NSPopupButtonCell requires an integer index of
-				the item to select. Tidy PickList items are represented by
-				enums (not strings), which are compatible, and so whatever
-				we pass to _tidyDocument will be used accordingly.
-			*/
-			return optionRef.optionValue;
-		}
+		
+		return optionRef.optionUIValue;
 	}
+	
 	return @"";
 }
 
@@ -195,42 +171,14 @@
 	if ([[inColumn identifier] isEqualToString:@"check"])
 	{
 		JSDTidyOption *optionRef = [[self tidyDocument] tidyOptions][self.optionsInEffect[inRow]];
-		
-		NSString *value;
-		
+				
 		if ([object isKindOfClass:[NSString class]])
 		{
-			value = [NSString stringWithString:object];
+			optionRef.optionUIValue = [NSString stringWithString:object];
 		}
 		else
 		{
-			value = [object stringValue];
-		}
-		
-		// if we're working with encoding, we need to get the NSStringEncoding instead of the index of the item.
-		if ( optionRef.optionIsEncodingOption )
-		{
-			// We have the alphabetical index, but need to find the NSStringEncoding.
-			NSString *tmp = [JSDTidyModel availableEncodingDictionariesByLocalizedIndex][@([value integerValue])][@"NSStringEncoding"];
-			
-			// For some reason Objective-C wants to convert this to __NSCFNumber.
-			// It probably has something to do with properties. This keeps it as string.
-			optionRef.optionValue = [NSString stringWithFormat:@"%@", tmp];
-		}
-		// if we're working with doctype we need the string value, not the index value.
-		else if ( [optionRef.name isEqualToString:@"doctype"] )
-		{
-			optionRef.optionValue = optionRef.possibleOptionValues[[value integerValue]];
-		}
-		else
-		{
-			/*
-				TidyLib picklist options use an enum for their values, not a string.
-				We're really depending on all of TidyLib enums for picklist options
-				to range from [0..x], and as long as this holds true it's okay to
-				use the enum integer value.
-			*/
-			optionRef.optionValue = value;
+			optionRef.optionUIValue = [object stringValue];
 		}
 	}
 }
