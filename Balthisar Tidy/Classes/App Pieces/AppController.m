@@ -56,12 +56,22 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	When the app is initialized pass off registering of the user
+	defaults to the `PreferenceController`. This must occur before
+	any documents open.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
++ (void)initialize
+{
+	[PreferenceController registerUserDefaults];
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	 Things to take care of when the application has launched.
 	 - Handle sparkle vs no-sparkle.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-	[PreferenceController registerUserDefaults];
 /*
 	The `Balthisar Tidy (no sparkle)` target has NOSPARKLE=1 defined.
 	Because we're building completely without Sparkle, we have to

@@ -38,7 +38,7 @@ coerce-endtags
 css-prefix
 decorate-inferred-ul
 doctype
-doctype-mode
+#doctype-mode               - readonly; should use doctype.
 drop-empty-elements
 drop-empty-paras
 drop-font-tags
@@ -84,15 +84,15 @@ uppercase-tags
 word-2000
 accessibility-check
 #show-errors				- Not applicable for our error method.
-show-info
-show-warnings
+#show-info                  - Not applicable for our error method.
+#show-warnings              - Not applicable for our error method.
 #error-file					- Balthisar Tidy handles this directly.
 force-output
 #gnu-emacs					- Balthisar Tidy handles this directly.
 #gnu-emacs-file				- Balthisar Tidy handles this directly.
 #keep-time					- Balthisar Tidy handles this directly.
 #output-file				- Balthisar Tidy handles this directly.
-quiet
+#quiet                      - Not applicable for our error method.
 #slide-style				- marked as "obsolete" in TidyLib source code.
 tidy-mark
 #write-back					- Balthisar Tidy handles this directly.

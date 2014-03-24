@@ -7,10 +7,6 @@
 	- document windows
 	- the preferences window
 
-	This controller parses `optionsInEffect.txt` in the application bundle, and compares
-	the options listed there with the linked-in TidyLib to determine which options are
-	in effect and valid. We use an instance of `JSDTidyModel` to deal with this.
-
 
 	The MIT License (MIT)
 
@@ -35,11 +31,20 @@
 
 #import <Cocoa/Cocoa.h>
 #import "JSDTidyModel.h"
+#import "JSDTidyOption.h"
 
 /**
 	The main controller for the Tidy Options pane.
  */
 @interface OptionPaneController : NSObject <NSTableViewDataSource>
+
+
+/**
+	This instance will only concern itself with TidyOtions
+	that are listed in this array.
+ */
+@property (nonatomic, strong) NSArray *optionsInEffect;
+
 
 /**
 	Expose the tidyDocument because it contains the
@@ -51,7 +56,9 @@
 	host a key-value pair model, probably from the 
 	user preferences system.
  */
+
 @property (nonatomic, strong) JSDTidyModel *tidyDocument;
+
 
 /**
 	External exposure because we need to force reload the
