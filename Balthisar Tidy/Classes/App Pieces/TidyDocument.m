@@ -111,14 +111,21 @@
 @property (nonatomic, strong) JSDTidyModel *tidyProcess;
 
 
-// Preferences-related flags
-@property (nonatomic, assign) BOOL fileWantsProtection;
-@property (nonatomic, assign) BOOL ignoreInputEncodingWhenOpening;
-
-
 // Document Control
 @property (nonatomic, strong) NSData *documentOpenedData;				// Hold file we open until nib is awake.
 @property (nonatomic, assign) BOOL documentIsLoading;					// Flag to supress certain event updates.
+@property (nonatomic, assign) BOOL fileWantsProtection;
+
+
+// Defaults References -- first letter cap is my convention.
+@property (nonatomic, assign, readonly) BOOL      KeyAllowMacOSTextSubstitutions;	// #JSDKeyAllowMacOSTextSubstitutions
+@property (nonatomic, assign, readonly) BOOL      KeyHideLineNumbers;				// #JSDKeyHideLineNumbers
+@property (nonatomic, assign, readonly) NSInteger KeySavingPrefStyle;				// #JSDKeySavingPrefStyle
+
+@property (nonatomic, assign) BOOL KeyFirstRunComplete;							// #JSDKeyFirstRunComplete
+@property (nonatomic, assign) BOOL KeyFirstRunIsPaused;							// #JSDKeyFirstRunIsPaused
+@property (nonatomic, assign) BOOL KeyDescriptionDisclosureIsClosed;			// #JSDKeyDescriptionDisclosureIsClosed
+@property (nonatomic, assign) BOOL KeyIgnoreInputEncodingWhenOpening;			// #JSDKeyIgnoreInputEncodingWhenOpening
 
 
 #pragma mark - Methods
@@ -173,7 +180,7 @@
 	{
 		self.documentIsLoading = YES;
 		
-		[[self tidyProcess] setSourceTextWithData:[self documentOpenedData]];
+		[self.tidyProcess setSourceTextWithData:[self documentOpenedData]];
 	}
 	
 	return didRevert;
@@ -188,7 +195,7 @@
  *———————————————————————————————————————————————————————————————————*/
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
 {
-	return [[self tidyProcess] tidyTextAsData];
+	return self.tidyProcess.tidyTextAsData;
 }
 
 
@@ -206,7 +213,10 @@
 	
 	if (success)
 	{
-		[[self sourceView] setString:[[self tidyProcess] tidyText]];
+		self.sourceView.string = self.tidyProcess.tidyText;
+		
+		// force the event cycle so errors can be updated.
+		self.tidyProcess.sourceText = self.sourceView.string;
 		
 		self.fileWantsProtection = NO;
 	}
@@ -225,15 +235,16 @@
  *———————————————————————————————————————————————————————————————————*/
 - (IBAction)saveDocument:(id)sender
 {
-	JSDSaveType saveBehavior = [[NSUserDefaults standardUserDefaults] integerForKey:JSDKeySavingPrefStyle];
-
 	// Warning will only apply if there's a current file and it's NOT been saved yet, and it's not new.
-	if ( (saveBehavior == kJSDSaveButWarn) &&
-		 ([self fileWantsProtection]) &&
-		 ([[[self fileURL] path] length] > 0) )
+	if ( (self.KeySavingPrefStyle == kJSDSaveButWarn) &&
+		 (self.fileWantsProtection) &&
+		 (self.fileURL.path.length > 0) )
 	{
-		NSInteger i = NSRunAlertPanel(NSLocalizedString(@"WarnSaveOverwrite", nil), NSLocalizedString(@"WarnSaveOverwriteExplain", nil),
-									  NSLocalizedString(@"continue save", nil), NSLocalizedString(@"do not save", nil) , nil);
+		NSInteger i = NSRunAlertPanel(NSLocalizedString(@"WarnSaveOverwrite", nil),
+									  NSLocalizedString(@"WarnSaveOverwriteExplain", nil),
+									  NSLocalizedString(@"continue save", nil),
+									  NSLocalizedString(@"do not save", nil),
+									  nil);
 		
 		if (i == NSAlertAlternateReturn)
 		{
@@ -242,10 +253,13 @@
 	}
 
 	// Save is completely disabled -- tell user to Save As…
-	if ( ([self fileWantsProtection]) && (saveBehavior == kJSDSaveAsOnly) )
+	if ( (self.fileWantsProtection) && (self.KeySavingPrefStyle == kJSDSaveAsOnly) )
 	{
-		NSRunAlertPanel(NSLocalizedString(@"WarnSaveDisabled", nil), NSLocalizedString(@"WarnSaveDisabledExplain", nil),
-						NSLocalizedString(@"cancel", nil), nil, nil);
+		NSRunAlertPanel(NSLocalizedString(@"WarnSaveDisabled", nil),
+						NSLocalizedString(@"WarnSaveDisabledExplain", nil),
+						NSLocalizedString(@"cancel", nil),
+						nil,
+						nil);
 		
 		return; // Don't continue the save operation
 	}
@@ -280,10 +294,12 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyOptionChanged object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifySourceTextChanged object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyTidyTextChanged object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyTidyErrorsChanged object:nil];
 	
 	_sourceView       = nil;
 	_tidyView         = nil;
 	_optionController = nil;
+	_tidyProcess	  = nil;
 }
 
 
@@ -293,7 +309,7 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)configureViewSettings:(NSTextView *)aView
 {
-	[aView setFont:[NSFont fontWithName:@"Courier" size:12]];
+	[aView setFont:[NSFont fontWithName:@"Menlo" size:11]];
 	[aView setRichText:NO];
 	[aView setUsesFontPanel:NO];
 	[aView setContinuousSpellCheckingEnabled:NO];
@@ -301,9 +317,12 @@
 	[aView setEditable:NO];
 	[aView setImportsGraphics:NO];
 	[aView setAutomaticQuoteSubstitutionEnabled:NO];
-	[aView setAutomaticTextReplacementEnabled:NO];
-	[aView setWordwrapsText:NO];					// Provided by category `NSTextView+JSDExtensions`
-	[aView setShowsLineNumbers:YES];				// Provided by category `NSTextView+JSDExtensions`
+	
+	[aView setAutomaticTextReplacementEnabled:self.KeyAllowMacOSTextSubstitutions];
+	[aView setAutomaticDashSubstitutionEnabled:self.KeyAllowMacOSTextSubstitutions];
+		
+	[aView setShowsLineNumbers:!self.KeyHideLineNumbers];	// Provided by category `NSTextView+JSDExtensions`
+	[aView setWordwrapsText:NO];							// Provided by category `NSTextView+JSDExtensions`
 }
 
 
@@ -320,23 +339,22 @@
 	}
 	
 	self.optionController.optionsInEffect = [[PreferenceController sharedPreferences] optionsInEffect];
-	[[self optionController] putViewIntoView:[self optionPane]];
+	[[self optionController] putViewIntoView:self.optionPane];
 }
 
 
 /*———————————————————————————————————————————————————————————————————*
 	windowControllerDidLoadNib:
-		The nib is loaded. If there's a string in processString, it
-		will appear in the |sourceView|.
+		The nib is loaded.
  *———————————————————————————————————————————————————————————————————*/
 - (void)windowControllerDidLoadNib:(NSWindowController *) aController
 {
 	[super windowControllerDidLoadNib:aController];
 
 	
-	[self configureViewSettings:[self sourceView]];
-	[self configureViewSettings:[self tidyView]];
-	[[self sourceView] setEditable:YES];
+	[self configureViewSettings:self.sourceView];
+	[self configureViewSettings:self.tidyView];
+	self.sourceView.editable = YES;
 
 	
 	/*
@@ -349,26 +367,20 @@
 		Make the optionController take the default values. This actually
 		causes the empty document to go through processTidy one time.
 	 */
-	[[[self optionController] tidyDocument] takeOptionValuesFromDefaults:defaults];
+	[self.optionController.tidyDocument takeOptionValuesFromDefaults:defaults];
 
 	
 	/* 
 		Saving behavior settings 
 	 */
-	self.fileWantsProtection = !([self documentOpenedData] == nil);
-
-	
-	/* 
-		Other defaults system items 
-	 */
-	self.ignoreInputEncodingWhenOpening = [defaults boolForKey:JSDKeyIgnoreInputEncodingWhenOpening];
+	self.fileWantsProtection = !(self.documentOpenedData == nil);
 
 	
 	/*
 		Set the document options. This causes the empty document to go
 		through processTidy a second time.
 	 */
-	[[self tidyProcess] optionsCopyFromModel:[[self optionController] tidyDocument]];
+	[self.tidyProcess optionsCopyFromModel:self.optionController.tidyDocument];
 
 	
 	/*
@@ -376,8 +388,8 @@
 		initial value for a blank document. If we're opening a
 		document the event system will replace it forthwith.
 	 */
-	[[self tidyView] setString:[[self tidyProcess] tidyText]];
-	
+	//[[self tidyView] setString:[[self tidyProcess] tidyText]];
+	self.tidyView.string = self.tidyProcess.tidyText;
 	
 	/*
 		Delay setting up notifications until now, because otherwise
@@ -402,16 +414,23 @@
 											 selector:@selector(handleTidyTidyTextChange:)
 												 name:tidyNotifyTidyTextChanged
 											   object:[self tidyProcess]];
+
+	// NSNotifications from the tidyProcess indicate that errorTable changed.
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(handleTidyTidyErrorChange:)
+												 name:tidyNotifyTidyErrorsChanged
+											   object:[self tidyProcess]];
+
 	
 	/*
 		Run through the new user helper if appropriate
 	 */
-	if (![defaults boolForKey:JSDKeyFirstRunComplete])
+	if (!self.KeyFirstRunComplete)
 	{
 		[self firstRunPopoverSequence];
 	}
 
-	if ( ([self documentOpenedData]) && (![defaults boolForKey:JSDKeyIgnoreInputEncodingWhenOpening]) )
+	if ( ([self documentOpenedData]) && (! self.KeyIgnoreInputEncodingWhenOpening) )
 	{
 		[self inputEncodingSanityCheck];
 	}
@@ -447,7 +466,7 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)handleTidyOptionChange:(NSNotification *)note
 {
-	[[self tidyProcess] optionsCopyFromModel:[[self optionController] tidyDocument]];
+	[[self tidyProcess] optionsCopyFromModel:self.optionController.tidyDocument];
 }
 
 
@@ -461,7 +480,7 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)handleTidySourceTextChange:(NSNotification *)note
 {
-	[[self sourceView] setString:[[self tidyProcess] sourceText]];
+	self.sourceView.string = self.tidyProcess.sourceText;
 }
 
 
@@ -471,9 +490,18 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)handleTidyTidyTextChange:(NSNotification *)note
 {
-	[[self tidyView] setString:[[self tidyProcess] tidyText]];
-	[[self errorView] reloadData];
-	[[self errorView] deselectAll:self];							
+	self.tidyView.string = self.tidyProcess.tidyText;
+}
+
+
+/*———————————————————————————————————————————————————————————————————*
+	handleTidyTidyTextChange
+		|tidyText| changed, so update |tidyView| and |errorView|.
+ *———————————————————————————————————————————————————————————————————*/
+- (void)handleTidyTidyErrorChange:(NSNotification *)note
+{
+	[self.errorView reloadData];
+	[self.errorView deselectAll:self];
 }
 
 
@@ -486,9 +514,9 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)textDidChange:(NSNotification *)aNotification
 {
-	if (![self documentIsLoading])
+	if (!self.documentIsLoading)
 	{
-		[[self tidyProcess] setSourceText:[[self sourceView] string]];
+		self.tidyProcess.sourceText = self.sourceView.string;
 	}
 	else
 	{
@@ -496,7 +524,7 @@
 	}
 	
 	// Handle document dirty detection
-	if ( (![[self tidyProcess] isDirty]) || ([[[self tidyProcess] sourceText] length] == 0 ) )
+	if ( (!self.tidyProcess.isDirty) || (self.tidyProcess.sourceText.length == 0) )
 	{
 		[self updateChangeCount:NSChangeCleared];
 	}
@@ -519,11 +547,11 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)inputEncodingSanityCheck
 {
-	if ([self documentOpenedData])
+	if (self.documentOpenedData)
 	{
-		NSStringEncoding currentInputEncoding = [[self tidyProcess] inputEncoding];
-		NSUInteger dataSize = [[self documentOpenedData] length];
-		NSUInteger stringSize = [[[NSString alloc] initWithData:[self documentOpenedData] encoding:currentInputEncoding] length];
+		NSStringEncoding currentInputEncoding = self.tidyProcess.inputEncoding;
+		NSUInteger dataSize = self.documentOpenedData.length;
+		NSUInteger stringSize = [[[NSString alloc] initWithData:self.documentOpenedData encoding:currentInputEncoding] length];
 		
 		if ( (dataSize > 0) && (stringSize < 1) )
 		{
@@ -542,33 +570,32 @@
 										@(NSMacOSRomanStringEncoding)];
 			
 			NSStringEncoding suggestedInputEncoding = NSMacOSRomanStringEncoding;
-			for(NSNumber *encoding in encodingsToTry)
+			for (NSNumber *encoding in encodingsToTry)
 			{
-				if ([[[NSString alloc] initWithData:[self documentOpenedData] encoding:[encoding longLongValue]] length] > 0)
+				if ([[[NSString alloc] initWithData:self.documentOpenedData encoding:encoding.longLongValue] length] > 0)
 				{
-					suggestedInputEncoding = [encoding longLongValue];
+					suggestedInputEncoding = encoding.longLongValue;
 					break;
 				}
 			}
 						
-			NSString *docName = [[self fileURL] lastPathComponent];
+			NSString *docName = self.fileURL.lastPathComponent;
 			NSString *encodingCurrent = [NSString localizedNameOfStringEncoding:currentInputEncoding];
 			NSString *encodingSuggested = [NSString localizedNameOfStringEncoding:suggestedInputEncoding];
 
-			NSString *newMessage = [NSString stringWithFormat:[[self textFieldEncodingExplanation] stringValue], docName, encodingCurrent, encodingSuggested];
+			NSString *newMessage = [NSString stringWithFormat:self.textFieldEncodingExplanation.stringValue, docName, encodingCurrent, encodingSuggested];
 
-			[[self textFieldEncodingExplanation] setStringValue:newMessage];
+			self.textFieldEncodingExplanation.stringValue = newMessage;
 			
-			[[self buttonEncodingDoNotWarnAgain] setState:[self ignoreInputEncodingWhenOpening]];
-			NSLog(@"%ld", (long)self.buttonEncodingIgnoreSuggestion.state);
+			self.buttonEncodingDoNotWarnAgain.state = self.KeyIgnoreInputEncodingWhenOpening;
 			
-			[[self buttonEncodingAllowChange] setTag:suggestedInputEncoding]; // Cheat. We'll fetch this in the handler. Should be 64-bit.
+			self.buttonEncodingAllowChange.tag = suggestedInputEncoding;	// Cheat. We'l fetch this later in the handler. Should be 64-bit.
 			
-			[[self sourceView] setEditable:NO];
+			self.sourceView.editable = NO;
 			
-			[[self popoverEncoding] showRelativeToRect:[[self sourceView] bounds]
-										ofView:[self sourceView]
-								 preferredEdge:NSMaxYEdge];
+			[self.popoverEncoding showRelativeToRect:self.sourceView.bounds
+											  ofView:self.sourceView
+									   preferredEdge:NSMaxYEdge];
 		}
 	}
 }
@@ -582,18 +609,17 @@
  *———————————————————————————————————————————————————————————————————*/
 - (IBAction)popoverHandler:(id)sender
 {
-	if (sender == [self buttonEncodingAllowChange])
+	if (sender == self.buttonEncodingAllowChange)
 	{
-		[[[[self optionController] tidyDocument] tidyOptions][@"input-encoding"] setValue:@([[self buttonEncodingAllowChange] tag])
-																			   forKeyPath:@"optionValue"];
+		self.optionController.tidyDocument[@"input-encoding"] = @(self.buttonEncodingAllowChange.tag);
 
-		[[[self optionController] theTable] reloadData];
+		[self.optionController.theTable reloadData];
 	}
 	
-	[[NSUserDefaults standardUserDefaults] setBool:[[self buttonEncodingDoNotWarnAgain] state] forKey:JSDKeyIgnoreInputEncodingWhenOpening];
+	[[NSUserDefaults standardUserDefaults] setBool:self.buttonEncodingDoNotWarnAgain.state forKey:JSDKeyIgnoreInputEncodingWhenOpening];
 	
-	[[self sourceView] setEditable:YES];
-	[[self popoverEncoding] performClose:self];
+	self.sourceView.editable = YES;
+	[self.popoverEncoding performClose:self];
 }
 
 
@@ -608,11 +634,12 @@
 - (void)firstRunPopoverSequence
 {
 	
-	[[self textFieldFirstRunExplanation] setStringValue:NSLocalizedString(@"popOverExplainWelcome", nil)];
-	[[self textFieldFirstRunExplanation] setTag:0];
-	[[self popoverFirstRun] showRelativeToRect:[[self sourceView] bounds]
-										ofView:[self sourceView]
-								 preferredEdge:NSMinXEdge];
+	self.textFieldFirstRunExplanation.stringValue = NSLocalizedString(@"popOverExplainWelcome", nil);
+	self.textFieldFirstRunExplanation.tag = 0;
+	
+	[self.popoverFirstRun showRelativeToRect:self.sourceView.bounds
+									  ofView:self.sourceView
+							   preferredEdge:NSMinXEdge];
 }
 
 
@@ -623,68 +650,68 @@
  *———————————————————————————————————————————————————————————————————*/
 - (IBAction)popoverFirstRunHandler:(id)sender
 {
-	NSInteger tag = [[self textFieldFirstRunExplanation] tag];
+	NSInteger tag = self.textFieldFirstRunExplanation.tag;
 	
 	if (tag == 0)
 	{
-		[[self textFieldFirstRunExplanation] setStringValue:NSLocalizedString(@"popOverExplainTidyOptions", nil)];
-		[[self textFieldFirstRunExplanation] setTag:1];
-		[[self popoverFirstRun] showRelativeToRect:[[self optionPane] bounds]
-											ofView:[self optionPane]
+		self.textFieldFirstRunExplanation.stringValue = NSLocalizedString(@"popOverExplainTidyOptions", nil);
+		self.textFieldFirstRunExplanation.tag = 1;
+		[self.popoverFirstRun showRelativeToRect:self.optionPane.bounds
+											ofView:self.optionPane
 									 preferredEdge:NSMinXEdge];
 	}
 
 	
 	if (tag == 1)
 	{
-		[[self textFieldFirstRunExplanation] setStringValue:NSLocalizedString(@"popOverExplainSourceView", nil)];
-		[[self textFieldFirstRunExplanation] setTag:2];
-		[[self popoverFirstRun] showRelativeToRect:[[self sourceView] bounds]
-											ofView:[self sourceView]
+		self.textFieldFirstRunExplanation.stringValue = NSLocalizedString(@"popOverExplainSourceView", nil);
+		self.textFieldFirstRunExplanation.tag = 2;
+		[self.popoverFirstRun showRelativeToRect:self.sourceView.bounds
+											ofView:self.sourceView
 									 preferredEdge:NSMinXEdge];
 	}
 
 	if (tag == 2)
 	{
-		[[self textFieldFirstRunExplanation] setStringValue:NSLocalizedString(@"popOverExplainTidyView", nil)];
-		[[self textFieldFirstRunExplanation] setTag:3];
-		[[self popoverFirstRun] showRelativeToRect:[[self tidyView] bounds]
-											ofView:[self tidyView]
+		self.textFieldFirstRunExplanation.stringValue = NSLocalizedString(@"popOverExplainTidyView", nil);
+		self.textFieldFirstRunExplanation.tag = 3;
+		[self.popoverFirstRun showRelativeToRect:self.tidyView.bounds
+											ofView:self.tidyView
 									 preferredEdge:NSMinXEdge];
 	}
 
 	if (tag == 3)
 	{
-		[[self textFieldFirstRunExplanation] setStringValue:NSLocalizedString(@"popOverExplainErrorView", nil)];
-		[[self textFieldFirstRunExplanation] setTag:4];
-		[[self popoverFirstRun] showRelativeToRect:[[self errorView] bounds]
-											ofView:[self errorView]
+		self.textFieldFirstRunExplanation.stringValue = NSLocalizedString(@"popOverExplainErrorView", nil);
+		self.textFieldFirstRunExplanation.tag = 4;
+		[self.popoverFirstRun showRelativeToRect:self.errorView.bounds
+											ofView:self.errorView
 									 preferredEdge:NSMinXEdge];
 	}
 
 	if (tag == 4)
 	{
-		[[self textFieldFirstRunExplanation] setStringValue:NSLocalizedString(@"popOverExplainPreferences", nil)];
-		[[self textFieldFirstRunExplanation] setTag:5];
-		[[self popoverFirstRun] showRelativeToRect:[[self optionPane] bounds]
-											ofView:[self optionPane]
+		self.textFieldFirstRunExplanation.stringValue = NSLocalizedString(@"popOverExplainPreferences", nil);
+		self.textFieldFirstRunExplanation.tag = 5;
+		[self.popoverFirstRun showRelativeToRect:self.optionPane.bounds
+											ofView:self.optionPane
 									 preferredEdge:NSMinXEdge];
 	}
 
 	if (tag == 5)
 	{
-		[[self textFieldFirstRunExplanation] setStringValue:NSLocalizedString(@"popOverExplainStart", nil)];
-		[[self buttonFirstRunNext] setTitle:NSLocalizedString(@"popOverButtonDone", nil)];
-		[[self textFieldFirstRunExplanation] setTag:6];
-		[[self popoverFirstRun] showRelativeToRect:[[self tidyView] bounds]
-											ofView:[self tidyView]
+		self.textFieldFirstRunExplanation.stringValue = NSLocalizedString(@"popOverExplainStart", nil);
+		self.buttonFirstRunNext.title = NSLocalizedString(@"popOverButtonDone", nil);
+		self.textFieldFirstRunExplanation.tag = 6;
+		[self.popoverFirstRun showRelativeToRect:self.tidyView.bounds
+											ofView:self.tidyView
 									 preferredEdge:NSMinYEdge];
 	}
 
 	if (tag == 6)
 	{
-		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:JSDKeyFirstRunComplete];
-		[[self popoverFirstRun] performClose:self];
+		self.KeyFirstRunComplete = YES;
+		[self.popoverFirstRun performClose:self];
 
 	}
 	
@@ -701,7 +728,7 @@
  *———————————————————————————————————————————————————————————————————*/
 - (NSUInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
-	return [[[self tidyProcess] errorArray] count];
+	return self.tidyProcess.errorArray.count;
 }
 
 
@@ -714,41 +741,44 @@
  *———————————————————————————————————————————————————————————————————*/
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
 {
-	NSDictionary *error = [[self tidyProcess] errorArray][rowIndex];
-
-	if ([[aTableColumn identifier] isEqualToString:@"severity"])
+	if (rowIndex < self.tidyProcess.errorArray.count )
 	{
-		/*
-			The severity of the error reported by TidyLib is
-			converted to a string label and localized into
-			the current language.
-		*/
-		NSArray *errorTypes = @[@"Info:", @"Warning:", @"Config:", @"Access:", @"Error:", @"Document:", @"Panic:"];
-		return NSLocalizedString(errorTypes[[error[@"level"] intValue]], nil);
-	}
+		NSDictionary *error = [[self tidyProcess] errorArray][rowIndex];
 
-	if ([[aTableColumn identifier] isEqualToString:@"where"])
-	{
-		/*
-			We can also localize N/A and line and column.
-		*/
-		if (([error[@"line"] intValue] == 0) || ([error[@"column"] intValue] == 0))
+		if ([aTableColumn.identifier isEqualToString:@"severity"])
 		{
-			return NSLocalizedString(@"N/A", nil);
+			/*
+				The severity of the error reported by TidyLib is
+				converted to a string label and localized into
+				the current language.
+			*/
+			NSArray *errorTypes = @[@"Info:", @"Warning:", @"Config:", @"Access:", @"Error:", @"Document:", @"Panic:"];
+			return NSLocalizedString(errorTypes[[error[@"level"] intValue]], nil);
 		}
-		else
-		{
-			return [NSString stringWithFormat:@"%@ %@, %@ %@", NSLocalizedString(@"line", nil), error[@"line"], NSLocalizedString(@"column", nil), error[@"column"]];
-		}
-	}
 
-	if ([[aTableColumn identifier] isEqualToString:@"description"])
-	{
-		/*
-			Unfortunately we can't really localize the message without
-			duplicating a lot of TidyLib functionality.
-		*/
-		return error[@"message"];
+		if ([aTableColumn.identifier isEqualToString:@"where"])
+		{
+			/*
+				We can also localize N/A and line and column.
+			*/
+			if (([error[@"line"] intValue] == 0) || ([error[@"column"] intValue] == 0))
+			{
+				return NSLocalizedString(@"N/A", nil);
+			}
+			else
+			{
+				return [NSString stringWithFormat:@"%@ %@, %@ %@", NSLocalizedString(@"line", nil), error[@"line"], NSLocalizedString(@"column", nil), error[@"column"]];
+			}
+		}
+
+		if ([aTableColumn.identifier isEqualToString:@"description"])
+		{
+			/*
+				Unfortunately we can't really localize the message without
+				duplicating a lot of TidyLib functionality.
+			*/
+			return error[@"message"];
+		}
 	}
 	
 	return @"";
@@ -763,24 +793,91 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification
 {
-	NSInteger errorViewRow = [[self errorView] selectedRow];
-	if (errorViewRow >= 0)
+	NSInteger errorViewRow = self.errorView.selectedRow;
+	
+	if ((errorViewRow >= 0) && (errorViewRow < self.tidyProcess.errorArray.count))
 	{
-		NSInteger row = [[[self tidyProcess] errorArray][errorViewRow][@"line"] intValue];
-		NSInteger col = [[[self tidyProcess] errorArray][errorViewRow][@"column"] intValue];
+		NSInteger row = [self.tidyProcess.errorArray[errorViewRow][@"line"] intValue];
+		NSInteger col = [self.tidyProcess.errorArray[errorViewRow][@"column"] intValue];
 		
 		if (row > 0)
 		{
-			[[self sourceView] highlightLine:row Column:col];
+			[self.sourceView highlightLine:row Column:col];
 			return;
 		}
 	}
-	
-	[[self sourceView] setShowsHighlight:NO];
+	self.sourceView.showsHighlight = NO;
 }
 
 
-#pragma mark - Split View Handling
+#pragma mark - Mac Defaults System Convenience
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	Convenience properties for the User Defaults that this
+	document class uses.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (BOOL)KeyAllowMacOSTextSubstitutions
+{
+	return [[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyAllowMacOSTextSubstitutions];
+}
+
+
+- (BOOL)KeyHideLineNumbers
+{
+	return [[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyHideLineNumbers];
+}
+
+
+- (NSInteger)KeySavingPrefStyle
+{
+	return [[NSUserDefaults standardUserDefaults] integerForKey:JSDKeySavingPrefStyle];
+}
+
+
+- (BOOL)KeyFirstRunComplete
+{
+
+	return [[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyFirstRunComplete];
+}
+- (void)setKeyFirstRunComplete:(BOOL)value
+{
+	[[NSUserDefaults standardUserDefaults] setBool:value forKey:JSDKeyFirstRunComplete];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+
+- (BOOL)KeyFirstRunIsPaused
+{
+	return [[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyFirstRunIsPaused];
+}
+- (void)setKeyFirstRunIsPaused:(BOOL)value
+{
+	[[NSUserDefaults standardUserDefaults] setBool:value forKey:JSDKeyFirstRunIsPaused];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+
+- (BOOL)KeyDescriptionDisclosureIsClosed
+{
+	return [[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyDescriptionDisclosureIsClosed];
+}
+- (void)setKeyDescriptionDisclosureIsClosed:(BOOL)value
+{
+	[[NSUserDefaults standardUserDefaults] setBool:value forKey:JSDKeyDescriptionDisclosureIsClosed];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+
+- (BOOL)KeyIgnoreInputEncodingWhenOpening
+{
+	return [[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyIgnoreInputEncodingWhenOpening];
+}
+- (void)setKeyIgnoreInputEncodingWhenOpening:(BOOL)value
+{
+	[[NSUserDefaults standardUserDefaults] setBool:value forKey:JSDKeyIgnoreInputEncodingWhenOpening];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+}
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
@@ -794,7 +891,7 @@
 														 ofSubviewAt:(NSInteger)dividerIndex
 {
 	// The main splitter
-	if (splitView == [self splitLeftRight])
+	if (splitView == self.splitLeftRight)
 	{
 		return 250.0f;
 	}
@@ -806,7 +903,7 @@
 	}
 	
 	// The text views' second splitter is first plus 68.0f;
-    return [[splitView subviews][0] frame].size.height + 68.0f;
+    return [splitView.subviews[0] frame].size.height + 68.0f;
 }
 
 
@@ -818,16 +915,15 @@
 														 ofSubviewAt:(NSInteger)dividerIndex
 {
 	// The main splitter
-	if (splitView == [self splitLeftRight])
+	if (splitView == self.splitLeftRight)
 	{
-		return [splitView frame].size.width - 150.0f;
+		return splitView.frame.size.width - 150.0f;
 	}
 	
 	// The text views' first splitter
 	if (dividerIndex == 0)
 	{
-		return [[splitView subviews][0] frame].size.height +
-				[[splitView subviews][1] frame].size.height - 68.0f;
+		return [splitView.subviews[0] frame].size.height + [splitView.subviews[1] frame].size.height - 68.0f;
 	}
 	
 	// The text views' second splitter
@@ -842,9 +938,9 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (BOOL)splitView:(NSSplitView *)splitView shouldAdjustSizeOfSubview:(NSView *)subview
 {
-	if (splitView == [self splitLeftRight])
+	if (splitView == self.splitLeftRight)
 	{
-		if (subview == [[self splitLeftRight] subviews][0])
+		if (subview == [self.splitLeftRight subviews][0])
 		{
 			return NO;
 		}
@@ -865,13 +961,13 @@
 {
     if (aSelector == @selector(insertTab:))
 	{
-        [[aTextView window] selectNextKeyView:nil];
+        [aTextView.window selectNextKeyView:nil];
         return YES;
     }
 	
     if (aSelector == @selector(insertBacktab:))
 	{
-        [[aTextView window] selectPreviousKeyView:nil];
+        [aTextView.window selectPreviousKeyView:nil];
         return YES;
     }
 	

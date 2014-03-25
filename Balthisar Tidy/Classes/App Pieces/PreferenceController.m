@@ -100,15 +100,25 @@
 	NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary];
 	
 	// Put all of the defaults in the dictionary
-	defaultValues[JSDKeySavingPrefStyle]                = @(kJSDSaveAsOnly);
-	defaultValues[JSDKeyIgnoreInputEncodingWhenOpening] = @NO;
-	defaultValues[JSDKeyFirstRunComplete]               = @NO;
+	[defaultValues setObject:@(kJSDSaveAsOnly) forKey:JSDKeySavingPrefStyle];
+	[defaultValues setObject:@NO forKey:JSDKeyIgnoreInputEncodingWhenOpening];
+	[defaultValues setObject:@NO forKey:JSDKeyFirstRunComplete];
+	[defaultValues setObject:@NO forKey:JSDKeyFirstRunIsPaused];
+	[defaultValues setObject:@YES forKey:JSDKeyOptionsOrderIsAlphabetical];
+	[defaultValues setObject:@NO forKey:JSDKeyAllowMacOSTextSubstitutions];
+	[defaultValues setObject:@NO forKey:JSDKeyHideLineNumbers];
+	[defaultValues setObject:@YES forKey:JSDKeyOptionsShowHumanReadableNames];
+	[defaultValues setObject:@NO forKey:JSDKeyDescriptionDisclosureIsClosed];
+	[defaultValues setObject:@NO forKey:JSDKeyOptionsBooleanUseCheckBoxes];
 	
+
 	// Get the defaults from the linked-in TidyLib
+	// and register them with the defaults system.
+	
 	[JSDTidyModel addDefaultsToDictionary:defaultValues];
 	
-	// Register the defaults with the defaults system
 	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
+	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 
@@ -123,11 +133,15 @@
 	if (self = [super initWithWindowNibName:@"Preferences"])
 	{
 		[self setWindowFrameAutosaveName:@"PrefWindow"];
-		_optionsInEffect = [JSDTidyModel loadConfigurationListFromResource:@"optionsInEffect" ofType:@"txt"];
-		//// TEMP
-		_optionsInEffect = [_optionsInEffect sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
 	}
 	
+	_optionsInEffect = [JSDTidyModel loadConfigurationListFromResource:@"optionsInEffect" ofType:@"txt"];
+
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyOptionsOrderIsAlphabetical])
+	{
+		_optionsInEffect = [_optionsInEffect sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+	}
+
 	return self;
 }
 
@@ -155,8 +169,9 @@
 	if (![self optionController])
 	{
 		self.optionController = [[OptionPaneController alloc] init];
-		self.optionController.optionsInEffect = self.optionsInEffect;
 	}
+			
+	self.optionController.optionsInEffect = self.optionsInEffect;
 	
 	[[self optionController] putViewIntoView:[self optionPane]];
 	

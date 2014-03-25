@@ -242,7 +242,7 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSString*)defaultOptionValue
 {
-	NSString *cocoaDefault = [[[NSUserDefaults standardUserDefaults] objectForKey:jsdTidyTidyOptionsKey] stringForKey:self.name];
+	NSString *cocoaDefault = [[[NSUserDefaults standardUserDefaults] objectForKey:JSDKeyTidyTidyOptionsKey] stringForKey:self.name];
 	
 	if (cocoaDefault)
 	{

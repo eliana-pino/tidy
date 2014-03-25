@@ -30,6 +30,7 @@
  **************************************************************************************************/
 
 #import <Cocoa/Cocoa.h>
+#import "PreferenceController.h"
 #import "JSDTidyModel.h"
 #import "JSDTidyOption.h"
 

@@ -42,7 +42,7 @@
 	system.
  */
 
-#define jsdTidyTidyOptionsKey @"JSDTidyTidyOptions"
+#define JSDKeyTidyTidyOptionsKey @"JSDTidyTidyOptions"
 
 /*
 	The default encoding styles that override the TidyLib-implemented
@@ -61,6 +61,7 @@
 #define tidyNotifyOptionChanged			@"JSDTidyDocumentOptionChanged"
 #define tidyNotifySourceTextChanged		@"JSDTidyDocumentSourceTextChanged"
 #define tidyNotifyTidyTextChanged		@"JSDTidyDocumentTidyTextChanged"
+#define tidyNotifyTidyErrorsChanged		@"JSDTidyDocumentTidyErrorsChanged"
 
 
 #pragma mark - class JSDTidyModel
@@ -153,7 +154,14 @@
  */
 @property (strong, readonly, nonatomic) NSDictionary *tidyOptions;
 
-@property (readonly, nonatomic) NSDictionary *tidyOptionValues;
+
+/** Support for KVC */
+- (id)objectForKeyedSubscript:(id <NSCopying>)key;
+
+
+/** Support for KVC */
+- (void)setObject:(id)obj forKeyedSubscript:(id <NSCopying>)key;
+
 
 #pragma mark - Text
 

@@ -376,27 +376,49 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
 
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	tidyOptionValues
-		Shortcut to access the optionValues directly.
-		Note that you can't set optionValues with this shortuct.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (NSDictionary *)tidyOptionValues
-{
-	
-	NSMutableDictionary *outputDict = [[NSMutableDictionary alloc] init];
-	
-	for (NSString *key in self.tidyOptions)
-	{
-		JSDTidyOption *srcOption   = self.tidyOptions[key];
-		
-		if (!srcOption.optionIsSuppressed)
-		{
-			outputDict[key] = srcOption.optionValue;
-		}
-	}
+#pragma mark - Key-Value Access
 
-	return outputDict;
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	objectForKeyedSubscript:
+		We will use this as a convenience accessor to the values
+		in tidyOptions. As such they can be read using
+		`jsdmodelInstance[@"encoding"], for example.
+ 
+		Additionally we will conveniently provide this easy access
+		to other properties as shown in the code.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (id)objectForKeyedSubscript:(id <NSCopying>)key
+{
+	if ([[NSSet setWithObjects:@"sourceText", @"tidyText", @"errorArray", nil] member:key])
+	{
+		return [self valueForKey:[NSString stringWithFormat:@"%@", key]];
+	}
+	else
+	{
+		// Hopefully it's a tidyOption.
+		return [[self.tidyOptions objectForKey:key] valueForKey:@"optionValue"];
+	}
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	setObject:ForKeyedSubscript:
+		We will use this as a convenience accessor to the values
+		in tidyOptions. As such they can be set using
+		`jsdmodelInstance[@"wrap"] = @(32), for example.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)setObject:(id)obj forKeyedSubscript:(id <NSCopying>)key
+{
+	if ([[NSSet setWithObjects:@"sourceText", @"tidyText", @"errorArray", nil] member:key])
+	{
+		// Handle the items above.
+		[self setValue:obj forKey:[NSString stringWithFormat:@"%@", key]];
+	}
+	else
+	{
+		// Hopefully it's a tidyOption.
+		[[self.tidyOptions objectForKey:key] setValue:obj forKey:@"optionValue"];
+	}
 }
 
 
@@ -852,13 +874,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	tidyOptSetValue( newTidy, TidyInCharEncoding, [@"utf8" UTF8String] );
 	tidyOptSetValue( newTidy, TidyOutCharEncoding, [@"utf8" UTF8String] );
 
-	
-	// Prefer to use an empty sourceText instead of a nil sourceText
-	if ( _sourceText == nil)
-	{
-		_sourceText = @" ";
-	}
-	
+		
 	// Parse the |_sourceText| and clean, repair, and diagnose it.
 	tidyParseString( newTidy, [_sourceText UTF8String] );
 	tidyCleanAndRepair( newTidy );
@@ -868,6 +884,10 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	// Save the tidy'd text to an NSString. If the Tidy result
 	// is different than the existing Tidy text, then save
 	// the new result and post a notification.
+	// In any case post an error update notification so
+	// that apps have a chance to update their error tables.
+	// This covers a case where the source text may change but
+	// the TidyText stays identical anyway.
 	tidySaveBuffer( newTidy, outBuffer );
 
 	NSString *tidyResult;
@@ -886,6 +906,8 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 		[self setTidyText:tidyResult];
 		[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyTidyTextChanged object:self];
 	}
+
+	[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyTidyErrorsChanged object:self];
 
 	
 	// Give the Tidy general info at the end of the
@@ -936,7 +958,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (bool)errorFilter:(TidyDoc)tDoc Level:(TidyReportLevel)lvl Line:(uint)line Column:(uint)col Message:(ctmbstr)mssg
 {
-	NSMutableDictionary *errorDict = [[NSMutableDictionary alloc] init];
+	__strong NSMutableDictionary *errorDict = [[NSMutableDictionary alloc] init];
 	
 	errorDict[@"level"]   = @((int)lvl);	// lvl is a c enum
 	errorDict[@"line"]    = @(line);
@@ -1051,7 +1073,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 		optionsDict[optionName] = [[[JSDTidyOption alloc] initWithName:optionName sharingModel:nil] builtInDefaultValue];
 	}
 	
-	defaultDictionary[jsdTidyTidyOptionsKey] = optionsDict;
+	defaultDictionary[JSDKeyTidyTidyOptionsKey] = optionsDict;
 }
 
 
@@ -1070,7 +1092,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 		optionsDict[key] = optionRef.optionValue;
 	}
 	
-	[defaults setObject:optionsDict forKey:jsdTidyTidyOptionsKey];
+	[defaults setObject:optionsDict forKey:JSDKeyTidyTidyOptionsKey];
 }
 
 
@@ -1084,7 +1106,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 {
 	for (NSString *optionName in [[self class] optionsBuiltInOptionList])
 	{
-		NSString *myString = [[defaults objectForKey:jsdTidyTidyOptionsKey] stringForKey:optionName];
+		NSString *myString = [[defaults objectForKey:JSDKeyTidyTidyOptionsKey] stringForKey:optionName];
 
 		[self.tidyOptions[optionName] setOptionValue:[myString copy]];
 	}

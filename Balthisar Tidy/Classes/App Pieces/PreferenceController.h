@@ -48,6 +48,26 @@
 #define JSDKeySavingPrefStyle					@"SavingPrefStyle"
 #define JSDKeyIgnoreInputEncodingWhenOpening	@"IgnoreInputEncodingWhenOpeningFiles"
 #define JSDKeyFirstRunComplete					@"FirstRunComplete"
+#define JSDKeyFirstRunIsPaused					@"FirstRunIsPaused"
+#define JSDKeyDescriptionDisclosureIsClosed		@"DescriptionDisclosureIsClosed"
+#define JSDKeyOptionsOrderIsAlphabetical		@"OptionsOrderIsAlphabetical"
+#define JSDKeyOptionsShowHumanReadableNames		@"OptionsShowHumanReadableNames"
+#define JSDKeyOptionsBooleanUseCheckBoxes		@"OptionsBooleanUseCheckBoxes"
+#define JSDKeyAllowMacOSTextSubstitutions		@"AllowMacOSTextSubstitutions"
+#define JSDKeyHideLineNumbers					@"HideLineNumbers"
+
+/*
+	Note that builds that include Sparkle have Sparkle-related
+	preferences keys that are implemented automatically by
+	Sparkle. Nothing is defined for them.
+ */
+
+/* 
+	Note
+		#define JSDKeyTidyTidyOptionsKey @"JSDTidyTidyOptions"
+	Is defined in JSDTidyModel.h where it appropriately belongs.
+ */
+
 
 /*
 	The values for the save type behaviours related to app preferences

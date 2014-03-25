@@ -141,17 +141,25 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
+	JSDTidyOption *optionRef = [[self tidyDocument] tidyOptions][self.optionsInEffect[rowIndex]];
+
 	// Handle returning the 'name' of the option.
 	if ([[aTableColumn identifier] isEqualToString:@"name"])
 	{
-		return self.optionsInEffect[rowIndex];
+		BOOL test = [[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyOptionsShowHumanReadableNames];
+		if ( test )
+		{
+			return optionRef.localizedHumanReadableName;
+		}
+		else
+		{
+			return self.optionsInEffect[rowIndex];
+		}
 	}
 
 	// Handle returning the 'value' column of the option.
 	if ([[aTableColumn identifier] isEqualToString:@"check"])
 	{
-		JSDTidyOption *optionRef = [[self tidyDocument] tidyOptions][self.optionsInEffect[rowIndex]];
-		
 		return optionRef.optionUIValue;
 	}
 	
