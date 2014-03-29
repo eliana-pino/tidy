@@ -847,17 +847,6 @@
 }
 
 
-- (BOOL)KeyFirstRunIsPaused
-{
-	return [[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyFirstRunIsPaused];
-}
-- (void)setKeyFirstRunIsPaused:(BOOL)value
-{
-	[[NSUserDefaults standardUserDefaults] setBool:value forKey:JSDKeyFirstRunIsPaused];
-	[[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-
 - (BOOL)KeyDescriptionDisclosureIsClosed
 {
 	return [[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyDescriptionDisclosureIsClosed];

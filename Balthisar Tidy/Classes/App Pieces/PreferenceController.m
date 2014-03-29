@@ -103,8 +103,7 @@
 	[defaultValues setObject:@(kJSDSaveAsOnly) forKey:JSDKeySavingPrefStyle];
 	[defaultValues setObject:@NO forKey:JSDKeyIgnoreInputEncodingWhenOpening];
 	[defaultValues setObject:@NO forKey:JSDKeyFirstRunComplete];
-	[defaultValues setObject:@NO forKey:JSDKeyFirstRunIsPaused];
-	[defaultValues setObject:@YES forKey:JSDKeyOptionsOrderIsAlphabetical];
+	[defaultValues setObject:@YES forKey:JSDKeyOptionsAreGrouped];
 	[defaultValues setObject:@NO forKey:JSDKeyAllowMacOSTextSubstitutions];
 	[defaultValues setObject:@NO forKey:JSDKeyHideLineNumbers];
 	[defaultValues setObject:@YES forKey:JSDKeyOptionsShowHumanReadableNames];
@@ -137,7 +136,7 @@
 	
 	_optionsInEffect = [JSDTidyModel loadConfigurationListFromResource:@"optionsInEffect" ofType:@"txt"];
 
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyOptionsOrderIsAlphabetical])
+	if (![[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyOptionsAreGrouped])
 	{
 		_optionsInEffect = [_optionsInEffect sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
 	}
