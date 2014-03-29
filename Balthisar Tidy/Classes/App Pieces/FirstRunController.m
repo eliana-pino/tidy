@@ -227,7 +227,7 @@
 	if ([rawString hasPrefix:@"*"])
 	{
 		// Make into RTF string.
-		rawString = [[@"{\\rtf1\\mac\\deff0{\\fonttbl{\\f0 Consolas;}{\\f1 Lucida Grande;}}\\f1\\fs25\\qj\\sa100" stringByAppendingString:[rawString substringFromIndex:1]] stringByAppendingString:@"}"];
+		rawString = [[@"{\\rtf1\\mac\\deff0{\\fonttbl{\\f0 Consolas;}{\\f1 Lucida Grande;}}\\f1\\fs23\\sa100" stringByAppendingString:[rawString substringFromIndex:1]] stringByAppendingString:@"}"];
 
 		NSData *rawData = [rawString dataUsingEncoding:NSMacOSRomanStringEncoding];
 

@@ -639,6 +639,11 @@
 				 @"ofView": self.optionPane,
 				 @"preferredEdge": @(NSMinXEdge) },
 
+			  @{ @"message": NSLocalizedString(@"popOverExplainSplitters", nil),
+				 @"showRelativeToRect": NSStringFromRect(self.optionPane.bounds),
+				 @"ofView": self.optionPane,
+				 @"preferredEdge": @(NSMaxXEdge) },
+
 			  @{ @"message": NSLocalizedString(@"popOverExplainStart", nil),
 				 @"showRelativeToRect": NSStringFromRect(self.tidyView.bounds),
 				 @"ofView": self.tidyView,
