@@ -58,11 +58,11 @@
 	TidyLib will post the following NSNotifications.
 */
 
-#define tidyNotifyOptionChanged			@"JSDTidyDocumentOptionChanged"
-#define tidyNotifySourceTextChanged		@"JSDTidyDocumentSourceTextChanged"
-#define tidyNotifyTidyTextChanged		@"JSDTidyDocumentTidyTextChanged"
-#define tidyNotifyTidyErrorsChanged		@"JSDTidyDocumentTidyErrorsChanged"
-
+#define tidyNotifyOptionChanged					@"JSDTidyDocumentOptionChanged"
+#define tidyNotifySourceTextChanged				@"JSDTidyDocumentSourceTextChanged"
+#define tidyNotifyTidyTextChanged				@"JSDTidyDocumentTidyTextChanged"
+#define tidyNotifyTidyErrorsChanged				@"JSDTidyDocumentTidyErrorsChanged"
+#define tidyNotifyPossibleInputEncodingProblem	@"JSDTidyNotifyPossibleInputEncodingProblem"
 
 #pragma mark - class JSDTidyModel
 
@@ -155,11 +155,11 @@
 @property (strong, readonly, nonatomic) NSDictionary *tidyOptions;
 
 
-/** Support for KVC */
+/** Support for KVC access to the TidyOptions and main properties. */
 - (id)objectForKeyedSubscript:(id <NSCopying>)key;
 
 
-/** Support for KVC */
+/** Support for KVC access to the TidyOptions and main properties. */
 - (void)setObject:(id)obj forKeyedSubscript:(id <NSCopying>)key;
 
 

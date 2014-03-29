@@ -99,17 +99,28 @@
 {
 	NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary];
 	
-	// Put all of the defaults in the dictionary
-	[defaultValues setObject:@(kJSDSaveAsOnly) forKey:JSDKeySavingPrefStyle];
-	[defaultValues setObject:@NO forKey:JSDKeyIgnoreInputEncodingWhenOpening];
+	/* Put all of the defaults in the new dictionary */
+
+	/* Application preferences */
 	[defaultValues setObject:@NO forKey:JSDKeyFirstRunComplete];
-	[defaultValues setObject:@YES forKey:JSDKeyOptionsAreGrouped];
+	[defaultValues setObject:@NO forKey:JSDKeyIgnoreInputEncodingWhenOpening];
+	[defaultValues setObject:@(kJSDSaveAsOnly) forKey:JSDKeySavingPrefStyle];
+
+	/* Preferences that apply to all open documents */
 	[defaultValues setObject:@NO forKey:JSDKeyAllowMacOSTextSubstitutions];
-	[defaultValues setObject:@NO forKey:JSDKeyHideLineNumbers];
-	[defaultValues setObject:@YES forKey:JSDKeyOptionsShowHumanReadableNames];
-	[defaultValues setObject:@NO forKey:JSDKeyDescriptionDisclosureIsClosed];
+	[defaultValues setObject:@YES forKey:JSDKeyOptionsAreGrouped];
 	[defaultValues setObject:@NO forKey:JSDKeyOptionsBooleanUseCheckBoxes];
-	
+	[defaultValues setObject:@YES forKey:JSDKeyOptionsShowHumanReadableNames];
+
+	/* Preferences for new or opening documents */
+	[defaultValues setObject:@YES forKey:JSDKeyShowLikeFrontDocument];
+	[defaultValues setObject:@YES forKey:JSDKeyShowNewDocumentDescription];
+	[defaultValues setObject:@YES forKey:JSDKeyShowNewDocumentLineNumbers];
+	[defaultValues setObject:@YES forKey:JSDKeyShowNewDocumentMessages];
+	[defaultValues setObject:@YES forKey:JSDKeyShowNewDocumentTidyOptions];
+	[defaultValues setObject:@YES forKey:JSDKeyShowNewDocumentSideBySide];
+	[defaultValues setObject:@YES forKey:JSDKeyShowNewDocumentSyncInOut];
+
 
 	// Get the defaults from the linked-in TidyLib
 	// and register them with the defaults system.
@@ -132,13 +143,12 @@
 	if (self = [super initWithWindowNibName:@"Preferences"])
 	{
 		[self setWindowFrameAutosaveName:@"PrefWindow"];
-	}
-	
-	_optionsInEffect = [JSDTidyModel loadConfigurationListFromResource:@"optionsInEffect" ofType:@"txt"];
+		_optionsInEffect = [JSDTidyModel loadConfigurationListFromResource:@"optionsInEffect" ofType:@"txt"];
 
-	if (![[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyOptionsAreGrouped])
-	{
-		_optionsInEffect = [_optionsInEffect sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+		if (![[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyOptionsAreGrouped])
+		{
+			_optionsInEffect = [_optionsInEffect sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+		}
 	}
 
 	return self;
@@ -205,6 +215,44 @@
 											 selector:@selector(handleTidyOptionChange:)
 												 name:tidyNotifyOptionChanged
 											   object:[[self optionController] tidyDocument]];
+}
+
+
+#pragma mark - Preferences Access Support via KVC
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	objectForKeyedSubscript:
+		We will use this as a convenience accessor to the values
+		for the application-wide preferences. Example:
+	NSString *myVal = [PreferenceController sharedPreferences][mykey]
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (id)objectForKeyedSubscript:(id <NSCopying, NSObject>)key
+{
+	// Note: no checking for valid keys is performed. Always
+	// use the constants so the compiler will flag mistakes.
+	if ( [key isKindOfClass:[NSString class]])
+	{
+		return [[NSUserDefaults standardUserDefaults] objectForKey:(NSString*)key];
+	}
+	return nil;
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	setObject:ForKeyedSubscript:
+		We will use this as a convenience accessor to the values
+		for the application-wide preferences. Example:
+	NSString *myVal = [PreferenceController sharedPreferences][mykey]
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)setObject:(id)obj forKeyedSubscript:(id <NSCopying, NSObject>)key
+{
+	// Note: no checking for valid keys is performed. Always
+	// use the constants so the compiler will flag mistakes.
+	if ( [key isKindOfClass:[NSString class]])
+	{
+		[[NSUserDefaults standardUserDefaults] setObject:obj forKey:(NSString*)key];
+	}
 }
 
 

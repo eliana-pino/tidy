@@ -114,18 +114,10 @@
 // Document Control
 @property (nonatomic, strong) NSData *documentOpenedData;				// Hold file we open until nib is awake.
 @property (nonatomic, assign) BOOL documentIsLoading;					// Flag to supress certain event updates.
-@property (nonatomic, assign) BOOL fileWantsProtection;
+@property (nonatomic, assign) BOOL fileWantsProtection;					// Indicates if we need special type of save.
 
-
-// Defaults References -- first letter cap is my convention.
-@property (nonatomic, assign, readonly) BOOL      KeyAllowMacOSTextSubstitutions;	// #JSDKeyAllowMacOSTextSubstitutions
-@property (nonatomic, assign, readonly) BOOL      KeyHideLineNumbers;				// #JSDKeyHideLineNumbers
-@property (nonatomic, assign, readonly) NSInteger KeySavingPrefStyle;				// #JSDKeySavingPrefStyle
-
-@property (nonatomic, assign) BOOL KeyFirstRunComplete;							// #JSDKeyFirstRunComplete
-@property (nonatomic, assign) BOOL KeyFirstRunIsPaused;							// #JSDKeyFirstRunIsPaused
-@property (nonatomic, assign) BOOL KeyDescriptionDisclosureIsClosed;			// #JSDKeyDescriptionDisclosureIsClosed
-@property (nonatomic, assign) BOOL KeyIgnoreInputEncodingWhenOpening;			// #JSDKeyIgnoreInputEncodingWhenOpening
+// Local reference to our shared preferences controller.
+@property (nonatomic, assign) PreferenceController *prefs;
 
 
 #pragma mark - Methods
@@ -236,7 +228,7 @@
 - (IBAction)saveDocument:(id)sender
 {
 	// Warning will only apply if there's a current file and it's NOT been saved yet, and it's not new.
-	if ( (self.KeySavingPrefStyle == kJSDSaveButWarn) &&
+	if ( ([self.prefs[JSDKeySavingPrefStyle] longValue] == kJSDSaveButWarn) &&
 		 (self.fileWantsProtection) &&
 		 (self.fileURL.path.length > 0) )
 	{
@@ -253,7 +245,8 @@
 	}
 
 	// Save is completely disabled -- tell user to Save As…
-	if ( (self.fileWantsProtection) && (self.KeySavingPrefStyle == kJSDSaveAsOnly) )
+	if ( ([self.prefs[JSDKeySavingPrefStyle] longValue] == kJSDSaveAsOnly) &&
+		(self.fileWantsProtection) )
 	{
 		NSRunAlertPanel(NSLocalizedString(@"WarnSaveDisabled", nil),
 						NSLocalizedString(@"WarnSaveDisabledExplain", nil),
@@ -280,6 +273,7 @@
 	{
 		self.tidyProcess = [[JSDTidyModel alloc] init];
 		self.documentOpenedData = nil;
+		self.prefs = [PreferenceController sharedPreferences];
 	}
 	
 	return self;
@@ -318,11 +312,12 @@
 	[aView setImportsGraphics:NO];
 	[aView setAutomaticQuoteSubstitutionEnabled:NO];
 	
-	[aView setAutomaticTextReplacementEnabled:self.KeyAllowMacOSTextSubstitutions];
-	[aView setAutomaticDashSubstitutionEnabled:self.KeyAllowMacOSTextSubstitutions];
-		
-	[aView setShowsLineNumbers:!self.KeyHideLineNumbers];	// Provided by category `NSTextView+JSDExtensions`
-	[aView setWordwrapsText:NO];							// Provided by category `NSTextView+JSDExtensions`
+	[aView setAutomaticTextReplacementEnabled:[self.prefs[JSDKeyAllowMacOSTextSubstitutions] boolValue]];
+	[aView setAutomaticDashSubstitutionEnabled:[self.prefs[JSDKeyAllowMacOSTextSubstitutions] boolValue]];
+
+	// Provided by Category `NSTextView+JSDExtensions`
+	[aView setShowsLineNumbers:[self.prefs[JSDKeyShowNewDocumentLineNumbers] boolValue]];
+	[aView setWordwrapsText:NO];
 }
 
 
@@ -425,12 +420,12 @@
 	/*
 		Run through the new user helper if appropriate
 	 */
-	if (!self.KeyFirstRunComplete)
+	if (![self.prefs[JSDKeyFirstRunComplete] boolValue])
 	{
 		[self firstRunPopoverSequence];
 	}
 
-	if ( ([self documentOpenedData]) && (! self.KeyIgnoreInputEncodingWhenOpening) )
+	if ( ([self documentOpenedData]) && (! [self.prefs[JSDKeyIgnoreInputEncodingWhenOpening] boolValue]) )
 	{
 		[self inputEncodingSanityCheck];
 	}
@@ -587,7 +582,7 @@
 
 			self.textFieldEncodingExplanation.stringValue = newMessage;
 			
-			self.buttonEncodingDoNotWarnAgain.state = self.KeyIgnoreInputEncodingWhenOpening;
+			self.buttonEncodingDoNotWarnAgain.state = [self.prefs[JSDKeyIgnoreInputEncodingWhenOpening] boolValue];
 			
 			self.buttonEncodingAllowChange.tag = suggestedInputEncoding;	// Cheat. We'l fetch this later in the handler. Should be 64-bit.
 			
@@ -710,9 +705,8 @@
 
 	if (tag == 6)
 	{
-		self.KeyFirstRunComplete = YES;
+		self.prefs[JSDKeyFirstRunComplete] = @YES;
 		[self.popoverFirstRun performClose:self];
-
 	}
 	
 }
@@ -811,62 +805,6 @@
 
 
 #pragma mark - Mac Defaults System Convenience
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	Convenience properties for the User Defaults that this
-	document class uses.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (BOOL)KeyAllowMacOSTextSubstitutions
-{
-	return [[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyAllowMacOSTextSubstitutions];
-}
-
-
-- (BOOL)KeyHideLineNumbers
-{
-	return [[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyHideLineNumbers];
-}
-
-
-- (NSInteger)KeySavingPrefStyle
-{
-	return [[NSUserDefaults standardUserDefaults] integerForKey:JSDKeySavingPrefStyle];
-}
-
-
-- (BOOL)KeyFirstRunComplete
-{
-
-	return [[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyFirstRunComplete];
-}
-- (void)setKeyFirstRunComplete:(BOOL)value
-{
-	[[NSUserDefaults standardUserDefaults] setBool:value forKey:JSDKeyFirstRunComplete];
-	[[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-
-- (BOOL)KeyDescriptionDisclosureIsClosed
-{
-	return [[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyDescriptionDisclosureIsClosed];
-}
-- (void)setKeyDescriptionDisclosureIsClosed:(BOOL)value
-{
-	[[NSUserDefaults standardUserDefaults] setBool:value forKey:JSDKeyDescriptionDisclosureIsClosed];
-	[[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-
-- (BOOL)KeyIgnoreInputEncodingWhenOpening
-{
-	return [[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyIgnoreInputEncodingWhenOpening];
-}
-- (void)setKeyIgnoreInputEncodingWhenOpening:(BOOL)value
-{
-	[[NSUserDefaults standardUserDefaults] setBool:value forKey:JSDKeyIgnoreInputEncodingWhenOpening];
-	[[NSUserDefaults standardUserDefaults] synchronize];
-}
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
