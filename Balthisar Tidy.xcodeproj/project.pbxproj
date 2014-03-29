@@ -111,6 +111,10 @@
 		D0D9ED7C18E66810008A55D5 /* utf8.c in Sources */ = {isa = PBXBuildFile; fileRef = D0D9EB1518E6680F008A55D5 /* utf8.c */; };
 		D0D9ED7D18E66810008A55D5 /* win32tc.c in Sources */ = {isa = PBXBuildFile; fileRef = D0D9EB1818E6680F008A55D5 /* win32tc.c */; };
 		D0D9ED7E18E66810008A55D5 /* win32tc.c in Sources */ = {isa = PBXBuildFile; fileRef = D0D9EB1818E6680F008A55D5 /* win32tc.c */; };
+		D0D9F19B18E68D1E008A55D5 /* FirstRunHelper.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0D9F19918E68D1E008A55D5 /* FirstRunHelper.xib */; };
+		D0D9F19C18E68D1E008A55D5 /* FirstRunHelper.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0D9F19918E68D1E008A55D5 /* FirstRunHelper.xib */; };
+		D0D9F19F18E68DC6008A55D5 /* FirstRunController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9F19E18E68DC6008A55D5 /* FirstRunController.m */; };
+		D0D9F1A018E68DC6008A55D5 /* FirstRunController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9F19E18E68DC6008A55D5 /* FirstRunController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -227,6 +231,9 @@
 		D0D9EB1718E6680F008A55D5 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
 		D0D9EB1818E6680F008A55D5 /* win32tc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = win32tc.c; sourceTree = "<group>"; };
 		D0D9EB1918E6680F008A55D5 /* win32tc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = win32tc.h; sourceTree = "<group>"; };
+		D0D9F19A18E68D1E008A55D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = "Balthisar Tidy/Base.lproj/FirstRunHelper.xib"; sourceTree = SOURCE_ROOT; };
+		D0D9F19D18E68DC6008A55D5 /* FirstRunController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstRunController.h; sourceTree = "<group>"; };
+		D0D9F19E18E68DC6008A55D5 /* FirstRunController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstRunController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -327,13 +334,14 @@
 		D07AF49A183658F100913067 /* Base.lproj */ = {
 			isa = PBXGroup;
 			children = (
-				D0120B55183CCAB3003CA182 /* Localizable.strings */,
+				D0D9F19918E68D1E008A55D5 /* FirstRunHelper.xib */,
 				D0D3BEB6183C87C500692225 /* MainMenu.xib */,
 				D07AF47A1836581E00913067 /* OptionPane.xib */,
 				D07AF47C1836581E00913067 /* Preferences.xib */,
 				D07AF47E1836581E00913067 /* TidyDocument.xib */,
 				D01AED8318476F6B001300E3 /* Credits.rtf */,
 				D08A7C9818D443D900341DCB /* InfoPlist.strings */,
+				D0120B55183CCAB3003CA182 /* Localizable.strings */,
 			);
 			name = Base.lproj;
 			sourceTree = "<group>";
@@ -366,6 +374,8 @@
 				D0D9EAC418E6680F008A55D5 /* OptionPaneController.m */,
 				D0D9EAC518E6680F008A55D5 /* PreferenceController.h */,
 				D0D9EAC618E6680F008A55D5 /* PreferenceController.m */,
+				D0D9F19D18E68DC6008A55D5 /* FirstRunController.h */,
+				D0D9F19E18E68DC6008A55D5 /* FirstRunController.m */,
 				D0D9EAC718E6680F008A55D5 /* TidyDocument.h */,
 				D0D9EAC818E6680F008A55D5 /* TidyDocument.m */,
 			);
@@ -573,6 +583,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0D9F19B18E68D1E008A55D5 /* FirstRunHelper.xib in Resources */,
 				D08A7C9418D442FF00341DCB /* optionsInEffect.txt in Resources */,
 				D02B30CA184EC4FF00A60556 /* HTML.icns in Resources */,
 				D0107937183C738F00120B57 /* OptionPane.xib in Resources */,
@@ -592,6 +603,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0D9F19C18E68D1E008A55D5 /* FirstRunHelper.xib in Resources */,
 				D08A7C9518D442FF00341DCB /* optionsInEffect.txt in Resources */,
 				D0913CCC18B0AC06005DB2E4 /* HTML.icns in Resources */,
 				D0913CCE18B0AC06005DB2E4 /* OptionPane.xib in Resources */,
@@ -638,6 +650,7 @@
 				D0D9ED5318E66810008A55D5 /* attrs.c in Sources */,
 				D0D9ED3118E66810008A55D5 /* TidyDocument.m in Sources */,
 				D0D9ED5718E66810008A55D5 /* charsets.c in Sources */,
+				D0D9F19F18E68DC6008A55D5 /* FirstRunController.m in Sources */,
 				D0D9ED7318E66810008A55D5 /* tagask.c in Sources */,
 				D0D9ED6118E66810008A55D5 /* gdoc.c in Sources */,
 				D0D9ED6B18E66810008A55D5 /* mappedio.c in Sources */,
@@ -683,6 +696,7 @@
 				D0D9ED5418E66810008A55D5 /* attrs.c in Sources */,
 				D0D9ED3218E66810008A55D5 /* TidyDocument.m in Sources */,
 				D0D9ED5818E66810008A55D5 /* charsets.c in Sources */,
+				D0D9F1A018E68DC6008A55D5 /* FirstRunController.m in Sources */,
 				D0D9ED7418E66810008A55D5 /* tagask.c in Sources */,
 				D0D9ED6218E66810008A55D5 /* gdoc.c in Sources */,
 				D0D9ED6C18E66810008A55D5 /* mappedio.c in Sources */,
@@ -773,6 +787,15 @@
 				D0D3BEB7183C87C500692225 /* Base */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		D0D9F19918E68D1E008A55D5 /* FirstRunHelper.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0D9F19A18E68D1E008A55D5 /* Base */,
+			);
+			name = FirstRunHelper.xib;
+			path = "Classes/App Pieces";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

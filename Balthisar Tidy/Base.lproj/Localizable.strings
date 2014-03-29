@@ -34,8 +34,17 @@
 "category-4"	= "Miscellaneous Options";
 
 
-/* First-run helper. */
-"popOverExplainWelcome"					= "Welcome to Balthisar Tidy!\n\nThis introduction is very quick and will only appear this one time. In just a few short steps, you will know how to use Balthisr Tidy.\n\nPress Next to get started.";
+/* FirstRunController */
+"firstRun-stepXofY"		= "Step %u of %u";
+"firstRun-buttonBegin"	= "Begin";
+"firstRun-buttonDone"	= "Done";
+"firstRun-buttonNext"	= "Next";
+
+/*
+	First-run helper.
+	See the TidyOption descriptions for an explanation of the RTF vs non-RTF text.
+ */
+"popOverExplainWelcome"					= "*Welcome to {\\b Balthisar Tidy!}\\par This introduction is very quick and will only appear this one time. In just a few short steps, you will know how to use Balthisr Tidy.\\par Press {\\f0 Begin} to get started.";
 
 "popOverExplainTidyOptions"				= "All of Tidy’s power lies in the vast array of options that you can set.\n\nThese settings affect how Tidy pretty-prints as well as what types of errors to correct (and how to correct them).";
 
@@ -48,8 +57,6 @@
 "popOverExplainPreferences"				= "All of these Tidy options can have default values set in Preferences. This will avoid your having to set them over and over again every time you open a new document.\n\nAdditionally Preferences offers some file-protection features and other goodies. Have a look!";
 
 "popOverExplainStart"					= "Thanks for your patience. This brief tutorial is complete. After you press “Done” you will be able to use Balthisar Tidy.\n\nTo see this introduction again, tick “Show new user helper on next launch” in Preferences and then restart Balthisar Tidy or open a document.";
-
-"popOverButtonDone"						= "Done";
 
 
 /* Human-readable tag names. */

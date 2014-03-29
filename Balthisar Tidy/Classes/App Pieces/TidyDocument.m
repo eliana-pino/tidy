@@ -65,6 +65,7 @@
 #import "PreferenceController.h"
 #import "JSDTidyModel.h"
 #import "NSTextView+JSDExtensions.h"
+#import "FirstRunController.h"
 
 
 #pragma mark - CATEGORY - Non-Public
@@ -90,13 +91,6 @@
 @property (nonatomic, weak) IBOutlet NSTextField *textFieldEncodingExplanation;
 
 
-// First Run Helper Popover Outlets
-@property (nonatomic, weak) IBOutlet NSPopover *popoverFirstRun;
-@property (nonatomic, weak) IBOutlet NSButton *buttonFirstRunNext;
-@property (nonatomic, weak) IBOutlet NSButton *buttonFirstRunCancel;
-@property (nonatomic, weak) IBOutlet NSTextField *textFieldFirstRunExplanation;
-
-
 // Window Splitters
 @property (nonatomic, weak) IBOutlet NSSplitView *splitLeftRight;		// The left-right (main) split view in the Doc window.
 @property (nonatomic, weak) IBOutlet NSSplitView *splitTopDown;			// Top top-to-bottom split view in the Doc window.
@@ -106,6 +100,9 @@
 @property (nonatomic, weak)   IBOutlet NSView *optionPane;				// Our empty optionPane in the nib.
 @property (nonatomic, strong) OptionPaneController *optionController;	// The real option pane we load into optionPane.
 
+
+// First Run Controller
+@property (nonatomic, strong) FirstRunController *firstRun;				// A first run controller.
 
 // Our Tidy Processor
 @property (nonatomic, strong) JSDTidyModel *tidyProcess;
@@ -295,6 +292,7 @@
 	_tidyView         = nil;
 	_optionController = nil;
 	_tidyProcess	  = nil;
+	_firstRun         = nil;
 }
 
 
@@ -429,7 +427,16 @@
 	 */
 	if (![self.prefs[JSDKeyFirstRunComplete] boolValue])
 	{
-		[self firstRunPopoverSequence];
+		if (!self.firstRun)
+		{
+			self.firstRun = [[FirstRunController alloc] initWithSteps:[self makeFirstRunSteps]];
+			self.firstRun.preferencesKeyName = JSDKeyFirstRunComplete;
+		}
+
+		if (self.firstRun)
+		{
+			[self.firstRun beginFirstRunSequence];
+		}
 	}
 
 	/*
@@ -596,93 +603,47 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
-	firstRunPopoverSequence
-		Here we will kick off a short sequence of popovers that
-		provide a basic introduction to Tidy's interface.
+	makeFirstRunSteps (private)
+		Build the array that we need for the first-run helper.
  *———————————————————————————————————————————————————————————————————*/
-- (void)firstRunPopoverSequence
+- (NSArray*)makeFirstRunSteps
 {
-	
-	self.textFieldFirstRunExplanation.stringValue = NSLocalizedString(@"popOverExplainWelcome", nil);
-	self.textFieldFirstRunExplanation.tag = 0;
-	
-	[self.popoverFirstRun showRelativeToRect:self.sourceView.bounds
-									  ofView:self.sourceView
-							   preferredEdge:NSMinXEdge];
-}
+	return	@[
+			  @{ @"message": NSLocalizedString(@"popOverExplainWelcome", nil),
+				 @"showRelativeToRect": NSStringFromRect(self.sourceView.bounds),
+				 @"ofView": self.sourceView,
+				 @"preferredEdge": @(NSMinXEdge) },
 
+			  @{ @"message": NSLocalizedString(@"popOverExplainTidyOptions", nil),
+				 @"showRelativeToRect": NSStringFromRect(self.optionPane.bounds),
+				 @"ofView": self.optionPane,
+				 @"preferredEdge": @(NSMinXEdge) },
 
-/*———————————————————————————————————————————————————————————————————*
-	popoverFirstRunHandler
-		We'll run the whole first-run sequence from here, using
-		the textFieldFirstRunExplanation.tag to keep track.
- *———————————————————————————————————————————————————————————————————*/
-- (IBAction)popoverFirstRunHandler:(id)sender
-{
-	NSInteger tag = self.textFieldFirstRunExplanation.tag;
-	
-	if (tag == 0)
-	{
-		self.textFieldFirstRunExplanation.stringValue = NSLocalizedString(@"popOverExplainTidyOptions", nil);
-		self.textFieldFirstRunExplanation.tag = 1;
-		[self.popoverFirstRun showRelativeToRect:self.optionPane.bounds
-											ofView:self.optionPane
-									 preferredEdge:NSMinXEdge];
-	}
+			  @{ @"message": NSLocalizedString(@"popOverExplainSourceView", nil),
+				 @"showRelativeToRect": NSStringFromRect(self.sourceView.bounds),
+				 @"ofView": self.sourceView,
+				 @"preferredEdge": @(NSMinXEdge) },
 
-	
-	if (tag == 1)
-	{
-		self.textFieldFirstRunExplanation.stringValue = NSLocalizedString(@"popOverExplainSourceView", nil);
-		self.textFieldFirstRunExplanation.tag = 2;
-		[self.popoverFirstRun showRelativeToRect:self.sourceView.bounds
-											ofView:self.sourceView
-									 preferredEdge:NSMinXEdge];
-	}
+			  @{ @"message": NSLocalizedString(@"popOverExplainTidyView", nil),
+				 @"showRelativeToRect": NSStringFromRect(self.tidyView.bounds),
+				 @"ofView": self.tidyView,
+				 @"preferredEdge": @(NSMinXEdge) },
 
-	if (tag == 2)
-	{
-		self.textFieldFirstRunExplanation.stringValue = NSLocalizedString(@"popOverExplainTidyView", nil);
-		self.textFieldFirstRunExplanation.tag = 3;
-		[self.popoverFirstRun showRelativeToRect:self.tidyView.bounds
-											ofView:self.tidyView
-									 preferredEdge:NSMinXEdge];
-	}
+			  @{ @"message": NSLocalizedString(@"popOverExplainErrorView", nil),
+				 @"showRelativeToRect": NSStringFromRect(self.errorView.bounds),
+				 @"ofView": self.errorView,
+				 @"preferredEdge": @(NSMinXEdge) },
 
-	if (tag == 3)
-	{
-		self.textFieldFirstRunExplanation.stringValue = NSLocalizedString(@"popOverExplainErrorView", nil);
-		self.textFieldFirstRunExplanation.tag = 4;
-		[self.popoverFirstRun showRelativeToRect:self.errorView.bounds
-											ofView:self.errorView
-									 preferredEdge:NSMinXEdge];
-	}
+			  @{ @"message": NSLocalizedString(@"popOverExplainPreferences", nil),
+				 @"showRelativeToRect": NSStringFromRect(self.optionPane.bounds),
+				 @"ofView": self.optionPane,
+				 @"preferredEdge": @(NSMinXEdge) },
 
-	if (tag == 4)
-	{
-		self.textFieldFirstRunExplanation.stringValue = NSLocalizedString(@"popOverExplainPreferences", nil);
-		self.textFieldFirstRunExplanation.tag = 5;
-		[self.popoverFirstRun showRelativeToRect:self.optionPane.bounds
-											ofView:self.optionPane
-									 preferredEdge:NSMinXEdge];
-	}
-
-	if (tag == 5)
-	{
-		self.textFieldFirstRunExplanation.stringValue = NSLocalizedString(@"popOverExplainStart", nil);
-		self.buttonFirstRunNext.title = NSLocalizedString(@"popOverButtonDone", nil);
-		self.textFieldFirstRunExplanation.tag = 6;
-		[self.popoverFirstRun showRelativeToRect:self.tidyView.bounds
-											ofView:self.tidyView
-									 preferredEdge:NSMinYEdge];
-	}
-
-	if (tag == 6)
-	{
-		self.prefs[JSDKeyFirstRunComplete] = @YES;
-		[self.popoverFirstRun performClose:self];
-	}
-	
+			  @{ @"message": NSLocalizedString(@"popOverExplainStart", nil),
+				 @"showRelativeToRect": NSStringFromRect(self.tidyView.bounds),
+				 @"ofView": self.tidyView,
+				 @"preferredEdge": @(NSMinYEdge) },
+			  ];
 }
 
 
