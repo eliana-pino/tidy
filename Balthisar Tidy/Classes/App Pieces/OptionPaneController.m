@@ -212,8 +212,6 @@
 		JSDTidyOption *optionRef = [[self tidyDocument] tidyOptions][selectedOptionName];
 		
 		[[self theDescription] setAttributedStringValue:optionRef.localizedHumanReadableDescription];
-		
-		//[[self theDescription] setStringValue:optionRef.localizedHumanReadableDescription];
 	}
 }
 
@@ -253,13 +251,42 @@
 		We're here because we're the delegate of `theTable`.
 		We need to disable for text editing cells with widgets.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (BOOL)tableView:(NSTableView *)aTableView shouldEditTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+- (BOOL)tableView:(NSTableView *)aTableView shouldEditTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
 	if ([[aTableColumn identifier] isEqualToString:@"check"])
 	{
 		return ([[aTableColumn dataCellForRow:rowIndex] class] == [NSTextFieldCell class]);
 	}
 	
+	return NO;
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	tableViewKeyWasPressed
+		Respond to table view keypresses.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (BOOL)tableViewKeyWasPressed:(NSTableView *)aTableView row:(NSInteger)rowIndex keyCode:(NSInteger)keyCode;
+{
+
+	if ((rowIndex >= 0) && (( keyCode == 123) || (keyCode == 124)))
+	{
+		NSString *selectedOptionName = self.optionsInEffect[[[self theTable] selectedRow]];
+
+		JSDTidyOption *optionRef = [[self tidyDocument] tidyOptions][selectedOptionName];
+
+		if (keyCode == 123)
+		{
+			[optionRef optionUIValueDecrement];
+		}
+		else
+		{
+			[optionRef optionUIValueIncrement];
+		}
+		
+		return YES;
+	}
+
 	return NO;
 }
 

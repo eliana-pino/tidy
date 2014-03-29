@@ -115,6 +115,8 @@
 		D0D9F19C18E68D1E008A55D5 /* FirstRunHelper.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0D9F19918E68D1E008A55D5 /* FirstRunHelper.xib */; };
 		D0D9F19F18E68DC6008A55D5 /* FirstRunController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9F19E18E68DC6008A55D5 /* FirstRunController.m */; };
 		D0D9F1A018E68DC6008A55D5 /* FirstRunController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9F19E18E68DC6008A55D5 /* FirstRunController.m */; };
+		D0D9F1A318E6BF8D008A55D5 /* JSDTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9F1A218E6BF8D008A55D5 /* JSDTableView.m */; };
+		D0D9F1A418E6BF8D008A55D5 /* JSDTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9F1A218E6BF8D008A55D5 /* JSDTableView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -234,6 +236,8 @@
 		D0D9F19A18E68D1E008A55D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = "Balthisar Tidy/Base.lproj/FirstRunHelper.xib"; sourceTree = SOURCE_ROOT; };
 		D0D9F19D18E68DC6008A55D5 /* FirstRunController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstRunController.h; sourceTree = "<group>"; };
 		D0D9F19E18E68DC6008A55D5 /* FirstRunController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstRunController.m; sourceTree = "<group>"; };
+		D0D9F1A118E6BF8D008A55D5 /* JSDTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSDTableView.h; sourceTree = "<group>"; };
+		D0D9F1A218E6BF8D008A55D5 /* JSDTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSDTableView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -396,6 +400,8 @@
 		D0D9EACF18E6680F008A55D5 /* Support Pieces */ = {
 			isa = PBXGroup;
 			children = (
+				D0D9F1A118E6BF8D008A55D5 /* JSDTableView.h */,
+				D0D9F1A218E6BF8D008A55D5 /* JSDTableView.m */,
 				D0D9EAD018E6680F008A55D5 /* JSDTextField.h */,
 				D0D9EAD118E6680F008A55D5 /* JSDTextField.m */,
 				D0D9EAD218E6680F008A55D5 /* NoodleLineNumberMarker.h */,
@@ -679,6 +685,7 @@
 				D0D9ED7B18E66810008A55D5 /* utf8.c in Sources */,
 				D0D9ED5118E66810008A55D5 /* attrget.c in Sources */,
 				D0D9ED3B18E66810008A55D5 /* NoodleLineNumberMarker.m in Sources */,
+				D0D9F1A318E6BF8D008A55D5 /* JSDTableView.m in Sources */,
 				D0D9ED7D18E66810008A55D5 /* win32tc.c in Sources */,
 				D0D9ED4B18E66810008A55D5 /* alloc.c in Sources */,
 			);
@@ -725,6 +732,7 @@
 				D0D9ED7C18E66810008A55D5 /* utf8.c in Sources */,
 				D0D9ED5218E66810008A55D5 /* attrget.c in Sources */,
 				D0D9ED3C18E66810008A55D5 /* NoodleLineNumberMarker.m in Sources */,
+				D0D9F1A418E6BF8D008A55D5 /* JSDTableView.m in Sources */,
 				D0D9ED7E18E66810008A55D5 /* win32tc.c in Sources */,
 				D0D9ED4C18E66810008A55D5 /* alloc.c in Sources */,
 			);

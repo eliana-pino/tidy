@@ -33,11 +33,12 @@
 #import "PreferenceController.h"
 #import "JSDTidyModel.h"
 #import "JSDTidyOption.h"
+#import "JSDTableView.h"
 
 /**
 	The main controller for the Tidy Options pane.
  */
-@interface OptionPaneController : NSObject <NSTableViewDataSource>
+@interface OptionPaneController : NSObject <NSTableViewDataSource, JSDTableViewDelegate>
 
 
 /**

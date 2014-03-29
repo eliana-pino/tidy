@@ -515,7 +515,6 @@
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	applyOptionToTidyDoc
 		Given a TidyDoc instance, apply our setting to the TidyDoc.
-	
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (BOOL)applyOptionToTidyDoc:(TidyDoc)destinationTidyDoc
 {
@@ -550,18 +549,100 @@
 			}
 		}
 		
-		if ( [self optionType] == TidyInteger)
+		if ( self.optionType == TidyInteger)
 		{
 			return tidyOptSetInt( destinationTidyDoc, self.optionId, [self.optionValue integerValue] );
 		}
 		
-		if ( [self optionType] == TidyBoolean)
+		if ( self.optionType == TidyBoolean)
 		{
 			return tidyOptSetBool( destinationTidyDoc, self.optionId, [self.optionValue boolValue] );
 		}
 	}
 	return YES;
 }
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	optionUIValueIncrement
+		Increments the current option value to the next option value
+		in UI order. There's either a picklist, or there's not.
+		If there's a picklist, then we cycle through the picklist
+		values. If there's not a picklist, then if it's TidyInteger
+		we will allow changes and not allow values less than 0.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)optionUIValueIncrement
+{
+	[self optionUIValueAdjust:+1];
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	optionUIValueDecrement
+		Increments the current option value to the next option value
+		in UI order. There's either a picklist, or there's not.
+		If there's a picklist, then we cycle through the picklist
+		values. If there's not a picklist, then if it's TidyInteger
+		we will allow changes and not allow values less than 0.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)optionUIValueDecrement
+{
+	[self optionUIValueAdjust:-1];
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	optionUIValueAdjust: (private)
+		Increments the current option value to the next option value
+		in UI order. There's either a picklist, or there's not.
+		If there's a picklist, then we cycle through the picklist
+		values. If there's not a picklist, then if it's TidyInteger
+		we will allow changes and not allow values less than 0.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)optionUIValueAdjust:(NSInteger)byAmount
+{
+	NSInteger lastIndex = self.possibleOptionValues.count - 1;
+	NSInteger newPick;
+
+	if (lastIndex > 0)
+	{
+		// There *is* a picklist, so advance it.
+
+		newPick = [self.optionUIValue integerValue] + byAmount;
+
+		if (newPick > lastIndex)
+		{
+			newPick = 0;
+		}
+
+		if (newPick < 0)
+		{
+			newPick = lastIndex;
+		}
+
+		self.optionUIValue = [NSString stringWithFormat:@"%ld", (long)newPick];
+	}
+	else
+	{
+		// There is no picklist, but if it's an integer, then increment its value.
+		if (self.optionType == TidyInteger)
+		{
+			newPick = [self.optionValue integerValue] + byAmount;
+
+			if (newPick < 0)
+			{
+				newPick = SHRT_MAX;
+			}
+
+			if (newPick > SHRT_MAX)
+			{
+				newPick = 0;
+			}
+
+			self.optionValue = [NSString stringWithFormat:@"%ld", newPick];
+		}
+	}
+}
+
 
 
 #pragma mark - Private

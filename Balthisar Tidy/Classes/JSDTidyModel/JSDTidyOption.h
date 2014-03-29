@@ -89,4 +89,11 @@
 
 - (BOOL)applyOptionToTidyDoc:(TidyDoc)destinationTidyDoc;
 
+
+- (void)optionUIValueIncrement;															///< Possibly useful for UI's, increments to next possible option value.
+
+- (void)optionUIValueDecrement;															///< Possibly useful for UI's, decrements to next possible option value.
+
+
+
 @end
