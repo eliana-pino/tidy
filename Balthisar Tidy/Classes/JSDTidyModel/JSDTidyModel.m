@@ -352,6 +352,48 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	checkSourceCoding (private)
+		Checks the passed-in data to perform a sanity check versus
+		the current input-encoding. Returns suggested encoding,
+		and if the current input-encoding is okay, returns that.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (NSStringEncoding)checkSourceCoding:(NSData*)data
+{
+	if ( data )
+	{
+		NSUInteger dataSize   = data.length;
+		NSUInteger stringSize = [[[NSString alloc] initWithData:data encoding:self.inputEncoding] length];
+
+		if ( (dataSize > 0) && (stringSize < 1) )
+		{
+			/*
+			 It's likely that the string wasn't decoded properly, so we will
+			 prepare and present a friendly NSPopover with an explanation and
+			 some options.
+			 */
+
+			/*
+			 We will try all of the following encodings until we get a hit.
+			 */
+
+			NSArray *encodingsToTry = @[@(NSUTF8StringEncoding),
+										@([NSString defaultCStringEncoding]),
+										@(NSMacOSRomanStringEncoding)];
+
+			for (NSNumber *encoding in encodingsToTry)
+			{
+				if ([[[NSString alloc] initWithData:data encoding:encoding.longLongValue] length] > 0)
+				{
+					return encoding.longLongValue;
+				}
+			}
+		}
+	}
+
+	return self.inputEncoding;
+}
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	fixSourceCoding (private)
 		Repairs the character encoding whenever the `input-encoding`
 		has changed. If the source never changed and we have original
@@ -533,6 +575,14 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 
 	[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifySourceTextChanged object:self];
 	[self processTidy];
+
+	/* Sanity check the input-encoding */
+	NSStringEncoding suggestedEncoding = [self checkSourceCoding:data];
+	if (suggestedEncoding != self.inputEncoding)
+	{
+		NSDictionary *userData = [NSDictionary dictionaryWithObject:@(suggestedEncoding) forKey:@"suggestedEncoding"];
+		[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyPossibleInputEncodingProblem object:self userInfo:userData];
+	}
 }
 
 

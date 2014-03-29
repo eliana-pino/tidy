@@ -289,7 +289,8 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifySourceTextChanged object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyTidyTextChanged object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyTidyErrorsChanged object:nil];
-	
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyPossibleInputEncodingProblem object:nil];
+
 	_sourceView       = nil;
 	_tidyView         = nil;
 	_optionController = nil;
@@ -416,6 +417,12 @@
 												 name:tidyNotifyTidyErrorsChanged
 											   object:[self tidyProcess]];
 
+	// NSNotifications from the tidyProcess indicate that the input-encoding might be wrong.
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(handleTidyInputEncodingProblem:)
+												 name:tidyNotifyPossibleInputEncodingProblem
+											   object:[self tidyProcess]];
+
 	
 	/*
 		Run through the new user helper if appropriate
@@ -425,11 +432,6 @@
 		[self firstRunPopoverSequence];
 	}
 
-	if ( ([self documentOpenedData]) && (! [self.prefs[JSDKeyIgnoreInputEncodingWhenOpening] boolValue]) )
-	{
-		[self inputEncodingSanityCheck];
-	}
-	
 	/*
 		Set the tidyProcess data. The event system will set the view later.
 		If we're a new document, then documentOpenData nil is fine.
@@ -501,6 +503,40 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
+	handleTidyInputEncodingProblem
+		The input-encoding might have been wrong for the file
+		that tidy is trying to process.
+ *———————————————————————————————————————————————————————————————————*/
+- (void)handleTidyInputEncodingProblem:(NSNotification*)note
+{
+	if (![self.prefs[JSDKeyIgnoreInputEncodingWhenOpening] boolValue])
+	{
+		NSStringEncoding suggestedEncoding  = [[[note userInfo] objectForKey:@"suggestedEncoding"] longValue];
+		NSString         *encodingSuggested = [NSString localizedNameOfStringEncoding:suggestedEncoding];
+
+		NSStringEncoding currentInputEncoding = self.tidyProcess.inputEncoding;
+		NSString         *encodingCurrent     = [NSString localizedNameOfStringEncoding:currentInputEncoding];
+
+		NSString *docName = self.fileURL.lastPathComponent;
+
+		NSString *newMessage = [NSString stringWithFormat:self.textFieldEncodingExplanation.stringValue, docName, encodingCurrent, encodingSuggested];
+
+		self.textFieldEncodingExplanation.stringValue = newMessage;
+
+		self.buttonEncodingDoNotWarnAgain.state = [self.prefs[JSDKeyIgnoreInputEncodingWhenOpening] boolValue];
+
+		self.buttonEncodingAllowChange.tag = suggestedEncoding;	// Cheat. We'l fetch this later in the handler. Should be 64-bit.
+
+		self.sourceView.editable = NO;
+
+		[self.popoverEncoding showRelativeToRect:self.sourceView.bounds
+										  ofView:self.sourceView
+								   preferredEdge:NSMaxYEdge];
+		}
+}
+
+
+/*———————————————————————————————————————————————————————————————————*
 	textDidChange:
 		We arrived here by virtue of being the delegate of
 		|sourceView|. Simply update the tidyProcess sourceText,
@@ -532,68 +568,6 @@
 
 
 #pragma mark - Document Opening Encoding Error Support
-
-
-/*———————————————————————————————————————————————————————————————————*
-	inputEncodingSanityCheck
-		We're called from windowControllerDidLoadNib.
-		As a favor to the user, attempt some basic input-encoding
-		sanity checking.
- *———————————————————————————————————————————————————————————————————*/
-- (void)inputEncodingSanityCheck
-{
-	if (self.documentOpenedData)
-	{
-		NSStringEncoding currentInputEncoding = self.tidyProcess.inputEncoding;
-		NSUInteger dataSize = self.documentOpenedData.length;
-		NSUInteger stringSize = [[[NSString alloc] initWithData:self.documentOpenedData encoding:currentInputEncoding] length];
-		
-		if ( (dataSize > 0) && (stringSize < 1) )
-		{
-			/*
-				It's likely that the string wasn't decoded properly, so we will
-				prepare and present a friendly NSPopover with an explanation and
-				some options.
-			*/
-	
-			/*
-				We will try all of the following encodings until we get a hit.
-			*/
-			
-			NSArray *encodingsToTry = @[@(NSUTF8StringEncoding),
-										@([NSString defaultCStringEncoding]),
-										@(NSMacOSRomanStringEncoding)];
-			
-			NSStringEncoding suggestedInputEncoding = NSMacOSRomanStringEncoding;
-			for (NSNumber *encoding in encodingsToTry)
-			{
-				if ([[[NSString alloc] initWithData:self.documentOpenedData encoding:encoding.longLongValue] length] > 0)
-				{
-					suggestedInputEncoding = encoding.longLongValue;
-					break;
-				}
-			}
-						
-			NSString *docName = self.fileURL.lastPathComponent;
-			NSString *encodingCurrent = [NSString localizedNameOfStringEncoding:currentInputEncoding];
-			NSString *encodingSuggested = [NSString localizedNameOfStringEncoding:suggestedInputEncoding];
-
-			NSString *newMessage = [NSString stringWithFormat:self.textFieldEncodingExplanation.stringValue, docName, encodingCurrent, encodingSuggested];
-
-			self.textFieldEncodingExplanation.stringValue = newMessage;
-			
-			self.buttonEncodingDoNotWarnAgain.state = [self.prefs[JSDKeyIgnoreInputEncodingWhenOpening] boolValue];
-			
-			self.buttonEncodingAllowChange.tag = suggestedInputEncoding;	// Cheat. We'l fetch this later in the handler. Should be 64-bit.
-			
-			self.sourceView.editable = NO;
-			
-			[self.popoverEncoding showRelativeToRect:self.sourceView.bounds
-											  ofView:self.sourceView
-									   preferredEdge:NSMaxYEdge];
-		}
-	}
-}
 
 
 /*———————————————————————————————————————————————————————————————————*
@@ -804,7 +778,7 @@
 }
 
 
-#pragma mark - Mac Defaults System Convenience
+#pragma mark - Split View handling
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
