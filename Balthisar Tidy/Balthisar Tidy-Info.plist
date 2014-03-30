@@ -9,51 +9,81 @@
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>html</string>
-				<string>htm</string>
-			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>HTML</string>
-			<key>CFBundleTypeMIMETypes</key>
-			<array>
-				<string>text/html</string>
-			</array>
 			<key>CFBundleTypeName</key>
 			<string>HTML FIle</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>html</string>
+				<string>HTML</string>
+				<string>htm</string>
+				<string>HTM</string>
+			</array>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.html</string>
 			</array>
-			<key>LSTypeIsPackage</key>
-			<integer>0</integer>
 			<key>NSDocumentClass</key>
 			<string>TidyDocument</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>php</string>
-			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>PHP</string>
-			<key>CFBundleTypeMIMETypes</key>
-			<array>
-				<string>text/html</string>
-			</array>
 			<key>CFBundleTypeName</key>
 			<string>PHP File</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>php</string>
+				<string>PHP</string>
+			</array>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.php-script</string>
 			</array>
-			<key>LSTypeIsPackage</key>
-			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>TidyDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeIconFile</key>
+			<string>XML</string>
+			<key>CFBundleTypeName</key>
+			<string>XML File</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>xhtml</string>
+				<string>XHTML</string>
+				<string>xml</string>
+				<string>XML</string>
+			</array>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.xml</string>
+			</array>
+			<key>NSDocumentClass</key>
+			<string>TidyDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeIconFile</key>
+			<string>Tidy</string>
+			<key>CFBundleTypeName</key>
+			<string>Anything</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>****</string>
+			</array>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>*</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>TidyDocument</string>
 		</dict>

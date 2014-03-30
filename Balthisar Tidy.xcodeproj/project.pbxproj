@@ -117,6 +117,10 @@
 		D0D9F1A018E68DC6008A55D5 /* FirstRunController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9F19E18E68DC6008A55D5 /* FirstRunController.m */; };
 		D0D9F1A318E6BF8D008A55D5 /* JSDTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9F1A218E6BF8D008A55D5 /* JSDTableView.m */; };
 		D0D9F1A418E6BF8D008A55D5 /* JSDTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9F1A218E6BF8D008A55D5 /* JSDTableView.m */; };
+		D0D9F1A618E833DD008A55D5 /* XML.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0D9F1A518E833DD008A55D5 /* XML.icns */; };
+		D0D9F1A718E833DD008A55D5 /* XML.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0D9F1A518E833DD008A55D5 /* XML.icns */; };
+		D0D9F1A918E834AA008A55D5 /* Tidy.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0D9F1A818E834AA008A55D5 /* Tidy.icns */; };
+		D0D9F1AA18E834AA008A55D5 /* Tidy.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0D9F1A818E834AA008A55D5 /* Tidy.icns */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -238,6 +242,8 @@
 		D0D9F19E18E68DC6008A55D5 /* FirstRunController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstRunController.m; sourceTree = "<group>"; };
 		D0D9F1A118E6BF8D008A55D5 /* JSDTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSDTableView.h; sourceTree = "<group>"; };
 		D0D9F1A218E6BF8D008A55D5 /* JSDTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSDTableView.m; sourceTree = "<group>"; };
+		D0D9F1A518E833DD008A55D5 /* XML.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = XML.icns; path = Images.xcassets/XML.icns; sourceTree = "<group>"; };
+		D0D9F1A818E834AA008A55D5 /* Tidy.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Tidy.icns; path = Images.xcassets/Tidy.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,6 +282,8 @@
 				D016A944182FD80700712C60 /* Images.xcassets */,
 				D02B30CC184ED25100A60556 /* PHP.icns */,
 				D02B30C9184EC4FF00A60556 /* HTML.icns */,
+				D0D9F1A818E834AA008A55D5 /* Tidy.icns */,
+				D0D9F1A518E833DD008A55D5 /* XML.icns */,
 			);
 			name = "Image Assets";
 			sourceTree = "<group>";
@@ -593,6 +601,7 @@
 				D08A7C9418D442FF00341DCB /* optionsInEffect.txt in Resources */,
 				D02B30CA184EC4FF00A60556 /* HTML.icns in Resources */,
 				D0107937183C738F00120B57 /* OptionPane.xib in Resources */,
+				D0D9F1A618E833DD008A55D5 /* XML.icns in Resources */,
 				D08A7C9A18D443D900341DCB /* InfoPlist.strings in Resources */,
 				D0107938183C738F00120B57 /* Preferences.xib in Resources */,
 				D02B30CE184ED25100A60556 /* PHP.icns in Resources */,
@@ -600,6 +609,7 @@
 				D016A945182FD80700712C60 /* Images.xcassets in Resources */,
 				D092619418B6268900E9AC98 /* Balthisar Tidy.help in Resources */,
 				D0120B57183CCAB3003CA182 /* Localizable.strings in Resources */,
+				D0D9F1A918E834AA008A55D5 /* Tidy.icns in Resources */,
 				D01AED8518476F6B001300E3 /* Credits.rtf in Resources */,
 				D0D3BEB8183C87C500692225 /* MainMenu.xib in Resources */,
 			);
@@ -613,6 +623,7 @@
 				D08A7C9518D442FF00341DCB /* optionsInEffect.txt in Resources */,
 				D0913CCC18B0AC06005DB2E4 /* HTML.icns in Resources */,
 				D0913CCE18B0AC06005DB2E4 /* OptionPane.xib in Resources */,
+				D0D9F1A718E833DD008A55D5 /* XML.icns in Resources */,
 				D08A7C9B18D443D900341DCB /* InfoPlist.strings in Resources */,
 				D0913CCF18B0AC06005DB2E4 /* Preferences.xib in Resources */,
 				D0913CD018B0AC06005DB2E4 /* PHP.icns in Resources */,
@@ -620,6 +631,7 @@
 				D0913CD218B0AC06005DB2E4 /* Images.xcassets in Resources */,
 				D00361B818B974BB001DE1FC /* Balthisar Tidy.help in Resources */,
 				D0913CD318B0AC06005DB2E4 /* Localizable.strings in Resources */,
+				D0D9F1AA18E834AA008A55D5 /* Tidy.icns in Resources */,
 				D0913CD618B0AC06005DB2E4 /* Credits.rtf in Resources */,
 				D0913CD718B0AC06005DB2E4 /* MainMenu.xib in Resources */,
 			);
