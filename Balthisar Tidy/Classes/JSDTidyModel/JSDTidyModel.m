@@ -526,7 +526,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 		_sourceDidChange = YES;
 	}
 	
-	[self processTidy];
+	[self processTidyInThread];
 }
 
 
@@ -573,7 +573,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	_sourceDidChange = NO;
 
 	[self notifyTidyModelSourceTextChanged];
-	[self processTidy];
+	[self processTidyInThread];
 
 	/* Sanity check the input-encoding */
 	NSStringEncoding suggestedEncoding = [self checkSourceCoding:data];
@@ -778,7 +778,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 
 	[self notifyTidyModelOptionChanged:nil];
 
-	[self processTidy];
+	[self processTidyInThread];
 	
 	[self fixSourceCoding];
 }
@@ -803,7 +803,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 
 	[self notifyTidyModelOptionChanged:nil];
 
-	[self processTidy];
+	[self processTidyInThread];
 	
 	[self fixSourceCoding];
 }
@@ -824,7 +824,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	
 	[self notifyTidyModelOptionChanged:nil];
 
-	[self processTidy];
+	[self processTidyInThread];
 	
 	[self fixSourceCoding];
 }
@@ -880,6 +880,20 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 
 
 #pragma mark - Diagnostics and Repair
+
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	 processTidyInThread (private)
+		 Performs tidy'ing and sets _tidyText and _errorText
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)processTidyInThread
+{
+	dispatch_queue_t myQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+	dispatch_async(myQueue, ^{
+		[self processTidy];
+	});
+}
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
@@ -1244,7 +1258,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyOptionChanged object:self];
 	
-	[self processTidy];
+	[self processTidyInThread];
 }
 
 @end
