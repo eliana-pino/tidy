@@ -31,6 +31,8 @@
 #import "tidyenum.h"
 
 @class JSDTidyOption;
+@class JSDTidyModel;
+
 
 #pragma mark - Some defines
 
@@ -63,6 +65,33 @@
 #define tidyNotifyTidyTextChanged				@"JSDTidyDocumentTidyTextChanged"
 #define tidyNotifyTidyErrorsChanged				@"JSDTidyDocumentTidyErrorsChanged"
 #define tidyNotifyPossibleInputEncodingProblem	@"JSDTidyNotifyPossibleInputEncodingProblem"
+
+
+#pragma mark - protocol JSDTidyModelDelegate
+
+/**
+ Tidy supports GUI
+ */
+@protocol JSDTidyModelDelegate <NSObject>
+
+@optional
+
+- (void)tidyModelOptionChanged:(JSDTidyModel *)tidyModel option:(JSDTidyOption *)tidyOption;
+
+- (void)tidyModelSourceTextChanged:(JSDTidyModel *)tidyModel text:(NSString *)text;
+
+- (void)tidyModelTidyTextChanged:(JSDTidyModel *)tidyModel text:(NSString *)text;
+
+- (void)tidyModelTidyMessagesChanged:(JSDTidyModel *)tidyModel messages:(NSArray *)messages;
+
+- (void)tidyModelDetectedInputEncodingIssue:(JSDTidyModel *)tidyModel
+							currentEncoding:(NSStringEncoding)currentEncoding
+						  suggestedEncoding:(NSStringEncoding)suggestedEncoding;
+
+@end
+
+
+
 
 #pragma mark - class JSDTidyModel
 
@@ -104,6 +133,12 @@
 - (id)initWithFile:(NSString *)path;														///< @copydoc initWithString:
 
 - (id)initWithFile:(NSString *)path copyOptionsFromModel:(JSDTidyModel *)theModel;			///< @copydoc initWithString:
+
+
+#pragma mark - Delegate Support
+
+
+@property (nonatomic, weak) id <JSDTidyModelDelegate> delegate;											///< delegate for implementors.
 
 
 #pragma mark - String Encoding Support
@@ -309,3 +344,6 @@
 
 
 @end
+
+
+
