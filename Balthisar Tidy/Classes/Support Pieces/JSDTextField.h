@@ -35,4 +35,6 @@
 
 @interface JSDTextField : NSTextField
 
+@property (nonatomic, strong) NSString *hoverStringValue;
+
 @end

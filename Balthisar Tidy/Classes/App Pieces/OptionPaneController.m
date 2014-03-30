@@ -34,7 +34,7 @@
  **************************************************************************************************/
 
 #import "OptionPaneController.h"
-
+#import "JSDTextField.h"
 
 #pragma mark - CATEGORY - Non-Public
 
@@ -42,7 +42,14 @@
 @interface OptionPaneController ()
 
 @property (weak, nonatomic) IBOutlet NSView *View;					// Pointer to the NIB's |View|.
+
+@property (weak) IBOutlet JSDTextField *theHidingLabel;				// Pointer to the label that hides the description.
+
 @property (weak, nonatomic) IBOutlet NSTextField *theDescription;	// Pointer to the description field.
+
+@property (assign, nonatomic) BOOL theDescriptionIsHidden;					// Indicates whether or not theDescription is hidden.
+@property (strong, nonatomic) NSLayoutConstraint *theDescriptionConstraint;	// The layout constraint we will apply to theDescription.
+
 
 - (IBAction)labelHideClicked:(NSTextField *)sender;
 
@@ -69,10 +76,6 @@
 		[[NSBundle mainBundle] loadNibNamed:@"OptionPane" owner:self topLevelObjects:nil];
 
 		_tidyDocument = [[JSDTidyModel alloc] init];
-
-
-		// Clean up the table's row-height.
-		[[self theTable] setRowHeight:20.0f];
 	}
 	return self;
 }
@@ -86,6 +89,27 @@
 	_tidyDocument = nil;
 }
 
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	awakeFromNib
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void) awakeFromNib
+{
+	// Clean up the table's row-height.
+	[self.theTable setRowHeight:20.0f];
+
+	// Setup some changing labels.
+	self.theHidingLabel.stringValue = @"";
+	self.theHidingLabel.hoverStringValue = NSLocalizedString(@"description-Hide", nil);
+	self.theDescriptionIsHidden = NO;
+	self.theDescriptionConstraint = [NSLayoutConstraint constraintWithItem:self.theDescription
+																 attribute:NSLayoutAttributeHeight
+																 relatedBy:NSLayoutRelationEqual
+																	toItem:nil
+																 attribute:NSLayoutAttributeNotAnAttribute
+																multiplier:1.0
+																  constant:0.0];
+}
 
 #pragma mark - Setup
 
@@ -301,10 +325,25 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (IBAction)labelHideClicked:(NSTextField *)sender
 {
-	NSLog(@"%@", @"The label was clicked");
-	self.theDescription.hidden = !self.theDescription.isHidden;
-	[self.View setNeedsDisplay:YES];
-	[[self.View superview] setNeedsDisplay:YES];
+	if (self.theDescriptionIsHidden)
+	{
+		[self.theDescription removeConstraint:self.theDescriptionConstraint];
+		self.theDescriptionIsHidden = NO;
+		self.theHidingLabel.hoverStringValue = NSLocalizedString(@"description-Hide", nil);
+	}
+	else
+	{
+		[self.theDescription addConstraint:self.theDescriptionConstraint];
+		self.theDescriptionIsHidden = YES;
+		self.theHidingLabel.hoverStringValue = NSLocalizedString(@"description-Show", nil);
+	}
+
+	self.theHidingLabel.stringValue = @"";
+
+	//[self.theDescription drawRect:self.theDescription.bounds];
+
+	//[self.View setNeedsDisplay:YES];
+	//[self.View.superview setNeedsDisplay:YES];
 }
 
 

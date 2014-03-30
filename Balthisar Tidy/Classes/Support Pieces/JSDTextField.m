@@ -32,6 +32,13 @@
 
 #import "JSDTextField.h"
 
+@interface JSDTextField ()
+
+@property (nonatomic, strong) NSString *holdingText;
+@property (nonatomic, strong) NSTrackingArea *trackingArea;
+
+@end
+
 @implementation JSDTextField
 
 
@@ -109,9 +116,57 @@
 	{
 		[self sendAction:self.action to:self.target];
 	}
-	
-
 }
 
 
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	 mouseEntered:
+		Update string values.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)mouseEntered:(NSEvent *)theEvent
+{
+	// Only do this if there is a hoverStringValue.
+	if (self.hoverStringValue)
+	{
+		self.holdingText = self.stringValue;
+		self.stringValue = self.hoverStringValue;
+	}
+}
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	 mouseExited:
+		Update string values.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)mouseExited:(NSEvent *)theEvent
+{
+	// Only do this if there is a hoverStringValue.
+	if (self.hoverStringValue)
+	{
+		self.stringValue = self.holdingText;
+	}
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	 updateTrackingAreas
+		Required for mouseEntered and mouseExited to work.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+-(void)updateTrackingAreas
+{
+	// Only do this if there is a hoverStringValue.
+	if (self.hoverStringValue)
+	{
+
+		if(self.trackingArea != nil)
+		{
+			[self removeTrackingArea:self.trackingArea];
+		}
+
+		self.trackingArea = [ [NSTrackingArea alloc] initWithRect:[self bounds]
+													 options:(NSTrackingMouseEnteredAndExited | NSTrackingActiveInActiveApp | NSTrackingInVisibleRect)
+													   owner:self
+													userInfo:nil];
+		[self addTrackingArea:self.trackingArea];
+	}
+}
 @end
