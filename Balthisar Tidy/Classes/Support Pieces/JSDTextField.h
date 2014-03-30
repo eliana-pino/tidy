@@ -2,8 +2,12 @@
  
  JSDTextField.h
  
- Simple NSTextField subclass that fixes the intrinsicContentSize when using auto layout and
- multiline, wrapping labels.
+ Simple NSTextField subclass that
+ 
+ - fixes the intrinsicContentSize when using auto layout and multiline, wrapping labels.
+ - can be clicked like a button
+ - can show alternate text when hovered
+ - can show alternate color when hovered
  
  
  The MIT License (MIT)

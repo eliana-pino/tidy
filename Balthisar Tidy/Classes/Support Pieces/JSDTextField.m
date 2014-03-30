@@ -2,8 +2,10 @@
  
  JSDTextField.m
  
- Simple NSTextField subclass that fixes the intrinsicContentSize when using auto layout and
- multiline, wrapping labels.
+ - fixes the intrinsicContentSize when using auto layout and multiline, wrapping labels.
+ - can be clicked like a button
+ - can show alternate text when hovered
+ - can show alternate color when hovered
  
  
  The MIT License (MIT)
@@ -33,6 +35,10 @@
 @implementation JSDTextField
 
 
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	 drawRect:
+		 Forces redraw using the new instrinsicContentSize.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)drawRect:(NSRect)dirtyRect
 {
 	[self invalidateIntrinsicContentSize];
@@ -40,21 +46,71 @@
 }
 
 
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	 intrinsicContentSize
+		Properly calculates the intrinsicContentSize taking into
+		consideration the actual size the text will occupy.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 -(NSSize)intrinsicContentSize
 {
     if ( ![self.cell wraps] )
 	{
         return [super intrinsicContentSize];
     }
-	
-    NSRect  frame = [self frame];
-    CGFloat width = frame.size.width;
-	
-    frame.size.height = CGFLOAT_MAX;
-	
-    CGFloat height = [self.cell cellSizeForBounds: frame].height;
-	
+
+	NSRect frame;
+	CGFloat width;
+	CGFloat height;
+
+	if (!self.isHiddenOrHasHiddenAncestor)
+	{
+		frame = [self frame];
+		width = frame.size.width;
+
+		frame.size.height = CGFLOAT_MAX;
+
+		height = [self.cell cellSizeForBounds: frame].height;
+	}
+	else
+	{
+		width = 0;
+		height = 0;
+	}
+
     return NSMakeSize(width, height);
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	 mouseDown:
+		We will toggle the label text and highlight it while the
+		mouse is down AND we're still over the label.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)mouseDown:(NSEvent *)theEvent
+{
+	//NSLog(@"%@",@"Mouse was down");
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	 mouseUp:
+		Determine if this event qualifies as a click, and if so
+		fire off the action.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)mouseUp:(NSEvent *)theEvent
+{
+	// Convert theEvent window coordinates to TextField coordinates.
+	NSPoint localPoint = [self convertPoint:theEvent.locationInWindow fromView:nil];
+
+	// Ensure that mouseUp occurred within the TextField.
+	BOOL eventIsClick = CGRectContainsPoint(self.bounds, localPoint);
+
+	if (eventIsClick)
+	{
+		[self sendAction:self.action to:self.target];
+	}
+	
+
 }
 
 

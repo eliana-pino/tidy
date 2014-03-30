@@ -76,14 +76,17 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jr5-JD-RhE" customClass="JSDTextField">
-                    <rect key="frame" x="20" y="8" width="277" height="14"/>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="G6E-9A-8zS" customClass="JSDTextField">
+                    <rect key="frame" x="18" y="21" width="279" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="small" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Multiline Label" allowsEditingTextAttributes="YES" id="U7d-9e-q4J">
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Hide" id="0U0-db-AwC">
                         <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
+                    <connections>
+                        <action selector="labelHideClicked:" target="-2" id="njT-V5-ma4"/>
+                    </connections>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tgk-KV-d9d">
                     <rect key="frame" x="20" y="21" width="75" height="14"/>
@@ -94,12 +97,12 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="G6E-9A-8zS">
-                    <rect key="frame" x="222" y="21" width="75" height="14"/>
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jr5-JD-RhE" customClass="JSDTextField">
+                    <rect key="frame" x="20" y="8" width="277" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Hide" id="0U0-db-AwC">
+                    <textFieldCell key="cell" controlSize="small" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Multiline Label" allowsEditingTextAttributes="YES" id="U7d-9e-q4J">
                         <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
@@ -111,10 +114,10 @@
                 <constraint firstItem="Jr5-JD-RhE" firstAttribute="top" secondItem="Ecw-EI-FCd" secondAttribute="bottom" constant="15" id="Gst-Sx-YEq"/>
                 <constraint firstItem="Ecw-EI-FCd" firstAttribute="top" secondItem="21" secondAttribute="top" id="JHY-5J-e5C"/>
                 <constraint firstAttribute="trailing" secondItem="Ecw-EI-FCd" secondAttribute="trailing" id="U89-KN-CXW"/>
-                <constraint firstItem="tgk-KV-d9d" firstAttribute="width" secondItem="G6E-9A-8zS" secondAttribute="width" id="bi9-Zz-uad"/>
                 <constraint firstAttribute="trailing" secondItem="G6E-9A-8zS" secondAttribute="trailing" constant="20" id="gGq-GF-74d"/>
                 <constraint firstAttribute="bottom" secondItem="Jr5-JD-RhE" secondAttribute="bottom" constant="8" id="iwK-1A-rDP"/>
                 <constraint firstItem="tgk-KV-d9d" firstAttribute="leading" secondItem="21" secondAttribute="leading" constant="22" id="la1-l4-AYc"/>
+                <constraint firstItem="G6E-9A-8zS" firstAttribute="leading" secondItem="21" secondAttribute="leading" constant="20" id="oOo-vv-z9j"/>
                 <constraint firstAttribute="trailing" secondItem="Jr5-JD-RhE" secondAttribute="trailing" constant="20" id="q14-vM-qo4"/>
                 <constraint firstItem="G6E-9A-8zS" firstAttribute="top" secondItem="Ecw-EI-FCd" secondAttribute="bottom" constant="2" id="sLL-Nc-XF6"/>
             </constraints>

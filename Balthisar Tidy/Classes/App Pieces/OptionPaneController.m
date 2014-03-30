@@ -44,6 +44,8 @@
 @property (weak, nonatomic) IBOutlet NSView *View;					// Pointer to the NIB's |View|.
 @property (weak, nonatomic) IBOutlet NSTextField *theDescription;	// Pointer to the description field.
 
+- (IBAction)labelHideClicked:(NSTextField *)sender;
+
 @end
 
 
@@ -288,6 +290,21 @@
 	}
 
 	return NO;
+}
+
+
+#pragma mark - Description Field Handling
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	labelHideClicked
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (IBAction)labelHideClicked:(NSTextField *)sender
+{
+	NSLog(@"%@", @"The label was clicked");
+	self.theDescription.hidden = !self.theDescription.isHidden;
+	[self.View setNeedsDisplay:YES];
+	[[self.View superview] setNeedsDisplay:YES];
 }
 
 
