@@ -339,11 +339,6 @@
 	}
 
 	self.theHidingLabel.stringValue = @"";
-
-	//[self.theDescription drawRect:self.theDescription.bounds];
-
-	//[self.View setNeedsDisplay:YES];
-	//[self.View.superview setNeedsDisplay:YES];
 }
 
 
