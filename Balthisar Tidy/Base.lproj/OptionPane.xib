@@ -18,24 +18,15 @@
             <rect key="frame" x="0.0" y="0.0" width="315" height="389"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hKP-97-HiF">
-                    <rect key="frame" x="20" y="372" width="297" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Tidy Options" id="jeK-Ud-ALp">
-                        <font key="font" metaFont="titleBar"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
                 <scrollView horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ecw-EI-FCd">
-                    <rect key="frame" x="20" y="30" width="295" height="341"/>
+                    <rect key="frame" x="20" y="37" width="295" height="352"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <clipView key="contentView" id="aOZ-nq-ZoB">
-                        <rect key="frame" x="1" y="1" width="278" height="324"/>
+                        <rect key="frame" x="1" y="1" width="278" height="335"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" id="rLn-af-rHD" customClass="JSDTableView">
-                                <rect key="frame" x="0.0" y="0.0" width="278" height="324"/>
+                                <rect key="frame" x="0.0" y="0.0" width="278" height="335"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -77,11 +68,11 @@
                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </clipView>
                     <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="OTQ-8E-5FT">
-                        <rect key="frame" x="1" y="325" width="278" height="15"/>
+                        <rect key="frame" x="1" y="336" width="278" height="15"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="BSn-op-B8v">
-                        <rect key="frame" x="279" y="1" width="15" height="324"/>
+                        <rect key="frame" x="279" y="1" width="15" height="335"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
@@ -94,18 +85,38 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tgk-KV-d9d">
+                    <rect key="frame" x="20" y="21" width="75" height="14"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="DESCRIPTION" id="cEO-K1-mCk">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="G6E-9A-8zS">
+                    <rect key="frame" x="222" y="21" width="75" height="14"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Hide" id="0U0-db-AwC">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
             <constraints>
+                <constraint firstItem="tgk-KV-d9d" firstAttribute="top" secondItem="Ecw-EI-FCd" secondAttribute="bottom" constant="2" id="AAI-8v-lyY"/>
                 <constraint firstItem="Ecw-EI-FCd" firstAttribute="leading" secondItem="21" secondAttribute="leading" constant="20" id="AWL-k6-dWm"/>
                 <constraint firstItem="Jr5-JD-RhE" firstAttribute="leading" secondItem="21" secondAttribute="leading" constant="22" id="C3v-kD-4y0"/>
-                <constraint firstItem="hKP-97-HiF" firstAttribute="leading" secondItem="21" secondAttribute="leading" constant="22" id="FZ4-HU-VP8"/>
-                <constraint firstItem="Jr5-JD-RhE" firstAttribute="top" secondItem="Ecw-EI-FCd" secondAttribute="bottom" constant="8" id="GzP-Rk-QnP"/>
-                <constraint firstAttribute="trailing" secondItem="hKP-97-HiF" secondAttribute="trailing" id="RDa-Td-sR2"/>
+                <constraint firstItem="Jr5-JD-RhE" firstAttribute="top" secondItem="Ecw-EI-FCd" secondAttribute="bottom" constant="15" id="Gst-Sx-YEq"/>
+                <constraint firstItem="Ecw-EI-FCd" firstAttribute="top" secondItem="21" secondAttribute="top" id="JHY-5J-e5C"/>
                 <constraint firstAttribute="trailing" secondItem="Ecw-EI-FCd" secondAttribute="trailing" id="U89-KN-CXW"/>
-                <constraint firstItem="hKP-97-HiF" firstAttribute="top" secondItem="21" secondAttribute="top" id="UVM-QD-J4a"/>
+                <constraint firstItem="tgk-KV-d9d" firstAttribute="width" secondItem="G6E-9A-8zS" secondAttribute="width" id="bi9-Zz-uad"/>
+                <constraint firstAttribute="trailing" secondItem="G6E-9A-8zS" secondAttribute="trailing" constant="20" id="gGq-GF-74d"/>
                 <constraint firstAttribute="bottom" secondItem="Jr5-JD-RhE" secondAttribute="bottom" constant="8" id="iwK-1A-rDP"/>
+                <constraint firstItem="tgk-KV-d9d" firstAttribute="leading" secondItem="21" secondAttribute="leading" constant="22" id="la1-l4-AYc"/>
                 <constraint firstAttribute="trailing" secondItem="Jr5-JD-RhE" secondAttribute="trailing" constant="20" id="q14-vM-qo4"/>
-                <constraint firstItem="Ecw-EI-FCd" firstAttribute="top" secondItem="hKP-97-HiF" secondAttribute="bottom" constant="1" id="zpE-RN-tZd"/>
+                <constraint firstItem="G6E-9A-8zS" firstAttribute="top" secondItem="Ecw-EI-FCd" secondAttribute="bottom" constant="2" id="sLL-Nc-XF6"/>
             </constraints>
         </customView>
     </objects>
