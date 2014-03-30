@@ -47,7 +47,6 @@
 	BOOL _sourceDidChange;									// States whether whether _sourceText has changed.
 }
 
-
 @end
 
 
@@ -513,8 +512,8 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 			fire a tidyNotifySourceTextChanged notification
 			while setting the source text as a string.
 		*/
-		
-		[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifySourceTextChanged object:self];
+
+		[self notifyTidyModelSourceTextChanged];
 	}
 	else
 	{
@@ -573,15 +572,15 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	
 	_sourceDidChange = NO;
 
-	[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifySourceTextChanged object:self];
+	[self notifyTidyModelSourceTextChanged];
 	[self processTidy];
 
 	/* Sanity check the input-encoding */
 	NSStringEncoding suggestedEncoding = [self checkSourceCoding:data];
+
 	if (suggestedEncoding != self.inputEncoding)
 	{
-		NSDictionary *userData = [NSDictionary dictionaryWithObject:@(suggestedEncoding) forKey:@"suggestedEncoding"];
-		[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyPossibleInputEncodingProblem object:self userInfo:userData];
+		[self notifyTidyModelDetectedInputEncodingIssue:suggestedEncoding];
 	}
 }
 
@@ -776,9 +775,9 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 - (void)optionsCopyFromModel:(JSDTidyModel *)theModel
 {
 	_tidyOptions = [[theModel tidyOptions] copy];
-	
-	[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyOptionChanged object:self];
-	
+
+	[self notifyTidyModelOptionChanged:nil];
+
 	[self processTidy];
 	
 	[self fixSourceCoding];
@@ -801,9 +800,9 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 			[self.tidyOptions[key] setValue:localVal forKey:key];
 		}
 	}
-	
-	[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyOptionChanged object:self];
-	
+
+	[self notifyTidyModelOptionChanged:nil];
+
 	[self processTidy];
 	
 	[self fixSourceCoding];
@@ -823,8 +822,8 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 		[self.tidyOptions[key] setString:newValue forKey:@"optionValue"];
 	}
 	
-	[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyOptionChanged object:self];
-	
+	[self notifyTidyModelOptionChanged:nil];
+
 	[self processTidy];
 	
 	[self fixSourceCoding];
@@ -875,7 +874,6 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 		if (!(TidyUnknownOption == [newOption optionId]))
 		{
 			[self.tidyOptions setValue:newOption forKey:newOption.name];
-			//[self.tidyOptions setValue:newOption forKey:[[NSNumber numberWithUnsignedInteger:newOption.tidyOptionId] stringValue]];
 		}
 	}
 }
@@ -954,10 +952,10 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	if ( ![tidyResult isEqualToString:_tidyText])
 	{
 		[self setTidyText:tidyResult];
-		[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyTidyTextChanged object:self];
+		[self notifyTidyModelTidyTextChanged];
 	}
 
-	[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyTidyErrorsChanged object:self];
+	[self notifyTidyModelMessagesChanged];
 
 	
 	// Give the Tidy general info at the end of the
@@ -1032,6 +1030,89 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 {
 	return @(tidyReleaseDate());
 }
+
+
+#pragma mark - Notification and Delegation Support (Private)
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	 notifyTidyModelOptionChanged: (private)
+		 Fires notification and performs delegation.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)notifyTidyModelOptionChanged:(JSDTidyOption *)tidyOption
+{
+	[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyOptionChanged object:self];
+
+	if ([[self delegate] respondsToSelector:@selector(tidyModelOptionChanged:option:)])
+	{
+		[[self delegate] tidyModelOptionChanged:self option:tidyOption];
+	}
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	 notifyTidyModelSourceTextChanged (private)
+		 Fires notification and performs delegation.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)notifyTidyModelSourceTextChanged
+{
+	[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifySourceTextChanged object:self];
+
+	if ([[self delegate] respondsToSelector:@selector(tidyModelSourceTextChanged:text:)])
+	{
+		[[self delegate] tidyModelSourceTextChanged:self text:self.sourceText];
+	}
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	 notifyTidyModelTidyTextChanged (private)
+		 Fires notification and performs delegation.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)notifyTidyModelTidyTextChanged
+{
+	[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyTidyTextChanged object:self];
+
+	if ([[self delegate] respondsToSelector:@selector(tidyModelTidyTextChanged:text:)])
+	{
+		[[self delegate] tidyModelTidyTextChanged:self text:self.tidyText];
+	}
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	 notifyTidyModelMessagesChanged (private)
+		 Fires notification and performs delegation.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)notifyTidyModelMessagesChanged
+{
+	[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyTidyErrorsChanged object:self];
+
+	if ([[self delegate] respondsToSelector:@selector(tidyModelTidyMessagesChanged:messages:)])
+	{
+		[[self delegate] tidyModelTidyMessagesChanged:self messages:self.errorArray];
+	}
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	 notifyTidyModelDetectedInputEncodingIssue (private)
+		 Fires notification and performs delegation.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)notifyTidyModelDetectedInputEncodingIssue:(NSStringEncoding)suggestedEncoding;
+{
+	NSDictionary *userData = @{@"currentEncoding"   : @(self.inputEncoding),
+							   @"suggestedEncoding" : @(suggestedEncoding)};
+
+	[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyPossibleInputEncodingProblem object:self userInfo:userData];
+
+	if ([[self delegate] respondsToSelector:@selector(tidyModelDetectedInputEncodingIssue:currentEncoding:suggestedEncoding:)])
+	{
+		[[self delegate] tidyModelDetectedInputEncodingIssue:self currentEncoding:self.inputEncoding suggestedEncoding:suggestedEncoding];
+	}
+}
+
+
 
 
 #pragma mark - Configuration List Support

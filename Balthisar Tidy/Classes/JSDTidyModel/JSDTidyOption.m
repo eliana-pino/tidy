@@ -30,6 +30,7 @@
 #import "buffio.h"
 #import "config.h"
 
+@class JSDTidyModel;
 
 #pragma mark - IMPLEMENTATION
 
@@ -144,8 +145,14 @@
 		{
 			_optionValue = optionValue;
 		}
+
 		
 		[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyOptionChanged object:self.sharedTidyModel];
+
+		if ([self.sharedTidyModel.delegate respondsToSelector:@selector(tidyModelOptionChanged:option:)])
+		{
+			[self.sharedTidyModel.delegate tidyModelOptionChanged:self.sharedTidyModel option:self];
+		}
 	}
 }
 
