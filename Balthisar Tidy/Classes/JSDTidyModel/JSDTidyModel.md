@@ -30,13 +30,6 @@ Options and Data Types
 
 In Tidy parlance, options are called the “configuration.” JSDTidyModel implements all of these as based on NSString, including values that are represented as numbers and booleans. This makes implementation as transparent as possible and avoids type mismatches, and makes especially easy the ability to process tidy options arbitrarily, i.e., without knowing which options are compiled in.
 
-Options and Auto-Fixing
------------------------
-
-After a TidyDocument in TidyLib has processed itself (that is, the document has been Tidy’d), it “fixes” the configuration settings, and doesn’t leave tham at the desired setting. For example, if you set `text-indent` to `5`, and set `indent` to `no`, TidyLib will automatically reset `text-indent` to `0` after Tidy’ing the document.
-
-This behavior isn't a very pretty sight from user interface perspective. Therefore when managing Tidying preferences with an instance of JSDTidyModel, it’s recommend that this instance be used exclusively for managing preferences and that it never actually Tidy anything. This will ensure that the configuration values don’t seem to randomly change for your user. You can then use optionCopyFromDocument to get the configuration options from your configuration instance into the instance that will actually do the Tidy’ing.
-
 Character Encoding
 ------------------
 

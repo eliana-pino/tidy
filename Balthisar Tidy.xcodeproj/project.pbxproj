@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D00361B818B974BB001DE1FC /* Balthisar Tidy.help in Resources */ = {isa = PBXBuildFile; fileRef = D00361B718B974BB001DE1FC /* Balthisar Tidy.help */; };
 		D0107937183C738F00120B57 /* OptionPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07AF47A1836581E00913067 /* OptionPane.xib */; };
 		D0107938183C738F00120B57 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07AF47C1836581E00913067 /* Preferences.xib */; };
 		D0107939183C738F00120B57 /* TidyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07AF47E1836581E00913067 /* TidyDocument.xib */; };
@@ -35,7 +34,8 @@
 		D0913CD318B0AC06005DB2E4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0120B55183CCAB3003CA182 /* Localizable.strings */; };
 		D0913CD618B0AC06005DB2E4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D01AED8318476F6B001300E3 /* Credits.rtf */; };
 		D0913CD718B0AC06005DB2E4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0D3BEB6183C87C500692225 /* MainMenu.xib */; };
-		D092619418B6268900E9AC98 /* Balthisar Tidy.help in Resources */ = {isa = PBXBuildFile; fileRef = D092619318B6268900E9AC98 /* Balthisar Tidy.help */; };
+		D0CCEE2918E9967B0052E56C /* Balthisar Tidy.help in Resources */ = {isa = PBXBuildFile; fileRef = D0CCEE2818E9967B0052E56C /* Balthisar Tidy.help */; };
+		D0CCEE2A18E9967B0052E56C /* Balthisar Tidy.help in Resources */ = {isa = PBXBuildFile; fileRef = D0CCEE2818E9967B0052E56C /* Balthisar Tidy.help */; };
 		D0D3BEB8183C87C500692225 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0D3BEB6183C87C500692225 /* MainMenu.xib */; };
 		D0D9ED2B18E66810008A55D5 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9EAC218E6680F008A55D5 /* AppController.m */; };
 		D0D9ED2C18E66810008A55D5 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9EAC218E6680F008A55D5 /* AppController.m */; };
@@ -138,7 +138,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		D00361B718B974BB001DE1FC /* Balthisar Tidy.help */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Balthisar Tidy.help"; path = "TargetSpecific/Balthisar Tidy (No Sparkle)/Balthisar Tidy.help"; sourceTree = "<group>"; };
 		D0120B56183CCAB3003CA182 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "balthisar tidy/Base.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
 		D016A926182FD80700712C60 /* Balthisar Tidy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Balthisar Tidy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D016A929182FD80700712C60 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -161,7 +160,7 @@
 		D08A7C9218D442FF00341DCB /* optionsInEffect.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = optionsInEffect.txt; path = Resources/optionsInEffect.txt; sourceTree = "<group>"; };
 		D08A7C9918D443D900341DCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D0913CDE18B0AC06005DB2E4 /* Balthisar Tidy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Balthisar Tidy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D092619318B6268900E9AC98 /* Balthisar Tidy.help */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Balthisar Tidy.help"; path = "TargetSpecific/Balthisar Tidy/Balthisar Tidy.help"; sourceTree = "<group>"; };
+		D0CCEE2818E9967B0052E56C /* Balthisar Tidy.help */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Balthisar Tidy.help"; path = "Resources/Balthisar Tidy.help"; sourceTree = "<group>"; };
 		D0D3BEB7183C87C500692225 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = "balthisar tidy/Base.lproj/MainMenu.xib"; sourceTree = SOURCE_ROOT; };
 		D0D9EAC118E6680F008A55D5 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		D0D9EAC218E6680F008A55D5 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
@@ -267,15 +266,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D006072E18B9C00400D91335 /* Help */ = {
-			isa = PBXGroup;
-			children = (
-				D092619318B6268900E9AC98 /* Balthisar Tidy.help */,
-				D00361B718B974BB001DE1FC /* Balthisar Tidy.help */,
-			);
-			name = Help;
-			sourceTree = "<group>";
-		};
 		D006072F18B9C01300D91335 /* Image Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -334,7 +324,6 @@
 				D0D9EABF18E6680F008A55D5 /* Classes */,
 				D08A7C9118D442AD00341DCB /* Resources */,
 				D07AF49A183658F100913067 /* Base.lproj */,
-				D006072E18B9C00400D91335 /* Help */,
 				D026169E1836F48A002ABD72 /* Balthisar Tidy.entitlements */,
 				D016A931182FD80700712C60 /* Balthisar Tidy-Info.plist */,
 				D016A937182FD80700712C60 /* Balthisar Tidy-Prefix.pch */,
@@ -361,6 +350,7 @@
 		D08A7C9118D442AD00341DCB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D0CCEE2818E9967B0052E56C /* Balthisar Tidy.help */,
 				D08A7C9218D442FF00341DCB /* optionsInEffect.txt */,
 			);
 			name = Resources;
@@ -536,6 +526,7 @@
 				D0913CA218B0AC06005DB2E4 /* Sources */,
 				D0913CC818B0AC06005DB2E4 /* Frameworks */,
 				D0913CCB18B0AC06005DB2E4 /* Resources */,
+				D0CCEE2B18E9971B0052E56C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -602,12 +593,12 @@
 				D02B30CA184EC4FF00A60556 /* HTML.icns in Resources */,
 				D0107937183C738F00120B57 /* OptionPane.xib in Resources */,
 				D0D9F1A618E833DD008A55D5 /* XML.icns in Resources */,
+				D0CCEE2918E9967B0052E56C /* Balthisar Tidy.help in Resources */,
 				D08A7C9A18D443D900341DCB /* InfoPlist.strings in Resources */,
 				D0107938183C738F00120B57 /* Preferences.xib in Resources */,
 				D02B30CE184ED25100A60556 /* PHP.icns in Resources */,
 				D0107939183C738F00120B57 /* TidyDocument.xib in Resources */,
 				D016A945182FD80700712C60 /* Images.xcassets in Resources */,
-				D092619418B6268900E9AC98 /* Balthisar Tidy.help in Resources */,
 				D0120B57183CCAB3003CA182 /* Localizable.strings in Resources */,
 				D0D9F1A918E834AA008A55D5 /* Tidy.icns in Resources */,
 				D01AED8518476F6B001300E3 /* Credits.rtf in Resources */,
@@ -624,12 +615,12 @@
 				D0913CCC18B0AC06005DB2E4 /* HTML.icns in Resources */,
 				D0913CCE18B0AC06005DB2E4 /* OptionPane.xib in Resources */,
 				D0D9F1A718E833DD008A55D5 /* XML.icns in Resources */,
+				D0CCEE2A18E9967B0052E56C /* Balthisar Tidy.help in Resources */,
 				D08A7C9B18D443D900341DCB /* InfoPlist.strings in Resources */,
 				D0913CCF18B0AC06005DB2E4 /* Preferences.xib in Resources */,
 				D0913CD018B0AC06005DB2E4 /* PHP.icns in Resources */,
 				D0913CD118B0AC06005DB2E4 /* TidyDocument.xib in Resources */,
 				D0913CD218B0AC06005DB2E4 /* Images.xcassets in Resources */,
-				D00361B818B974BB001DE1FC /* Balthisar Tidy.help in Resources */,
 				D0913CD318B0AC06005DB2E4 /* Localizable.strings in Resources */,
 				D0D9F1AA18E834AA008A55D5 /* Tidy.icns in Resources */,
 				D0913CD618B0AC06005DB2E4 /* Credits.rtf in Resources */,
@@ -652,6 +643,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "LOCATION=\"${BUILT_PRODUCTS_DIR}\"/\"${FRAMEWORKS_FOLDER_PATH}\"\nIDENTITY=\"Developer ID\"\ncodesign --verbose --force --sign \"$IDENTITY\" \"$LOCATION/Sparkle.framework\"\n#codesign --verbose --force --sign \"$IDENTITY\" \"$LOCATION/../XPCServices/com.andymatuschak.Sparkle.SandboxService.xpc\"\n\n";
+		};
+		D0CCEE2B18E9971B0052E56C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This will modify helpbook in order to use the no-sparkle resources\n# instead of the default resources. This works okay for one, single\n# localization, but a better solution for multiple localizations\n# might be in order.\n\nLOCATION=\"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Balthisar Tidy.help/Contents/Resources/Base.lproj\"\n\n#ONLY DO THIS IF NOT ALREADY DONE:\nif [ ! -f \"$LOCATION/ns-complete.flag\" ]; then\nmv \"$LOCATION/pages/preferences.html\" \"$LOCATION/pages/preferences-hs.html\"\nmv \"$LOCATION/pages/reference.html\" \"$LOCATION/pages/reference-hs.html\"\n\nmv \"$LOCATION/pages/preferences-ns.html\" \"$LOCATION/pages/preferences.html\"\nmv \"$LOCATION/pages/reference-ns.html\" \"$LOCATION/pages/reference.html\"\n\nmv \"$LOCATION/img/prefs-misc.png\" \"$LOCATION/img/prefs-misc-hs.png\"\nmv \"$LOCATION/img/prefs-saving.png\" \"$LOCATION/img/prefs-saving-hs.png\"\nmv \"$LOCATION/img/prefs-tidy.png\" \"$LOCATION/img/prefs-tidy-hs.png\"\nmv \"$LOCATION/img/prefs-updates.png\" \"$LOCATION/img/prefs-updates-hs.png\"\n\nmv \"$LOCATION/img/prefs-misc-ns.png\" \"$LOCATION/img/prefs-misc.png\"\nmv \"$LOCATION/img/prefs-saving-ns.png\" \"$LOCATION/img/prefs-saving.png\"\nmv \"$LOCATION/img/prefs-tidy-ns.png\" \"$LOCATION/img/prefs-tidy.png\"\n\ntouch \"$LOCATION/ns-complete.flag\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -917,6 +921,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				INFOPLIST_FILE = "Balthisar Tidy/Balthisar Tidy-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
@@ -976,6 +981,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				INFOPLIST_FILE = "Balthisar Tidy/Balthisar Tidy-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "Balthisar Tidy";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -1003,6 +1009,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				INFOPLIST_FILE = "Balthisar Tidy/Balthisar Tidy-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "Balthisar Tidy";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
