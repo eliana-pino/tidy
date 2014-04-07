@@ -13,10 +13,7 @@
 		D0120B57183CCAB3003CA182 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0120B55183CCAB3003CA182 /* Localizable.strings */; };
 		D016A92A182FD80700712C60 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D016A929182FD80700712C60 /* Cocoa.framework */; };
 		D016A936182FD80700712C60 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D016A935182FD80700712C60 /* main.m */; };
-		D016A945182FD80700712C60 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D016A944182FD80700712C60 /* Images.xcassets */; };
 		D01AED8518476F6B001300E3 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D01AED8318476F6B001300E3 /* Credits.rtf */; };
-		D02B30CA184EC4FF00A60556 /* HTML.icns in Resources */ = {isa = PBXBuildFile; fileRef = D02B30C9184EC4FF00A60556 /* HTML.icns */; };
-		D02B30CE184ED25100A60556 /* PHP.icns in Resources */ = {isa = PBXBuildFile; fileRef = D02B30CC184ED25100A60556 /* PHP.icns */; };
 		D06626CF18B09B330091CBD8 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D06626CE18B09B330091CBD8 /* Sparkle.framework */; };
 		D06626D118B09BEA0091CBD8 /* Sparkle.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = D06626CE18B09B330091CBD8 /* Sparkle.framework */; };
 		D08A7C9418D442FF00341DCB /* optionsInEffect.txt in Resources */ = {isa = PBXBuildFile; fileRef = D08A7C9218D442FF00341DCB /* optionsInEffect.txt */; };
@@ -25,15 +22,22 @@
 		D08A7C9B18D443D900341DCB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D08A7C9818D443D900341DCB /* InfoPlist.strings */; };
 		D0913CAF18B0AC06005DB2E4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D016A935182FD80700712C60 /* main.m */; };
 		D0913CC918B0AC06005DB2E4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D016A929182FD80700712C60 /* Cocoa.framework */; };
-		D0913CCC18B0AC06005DB2E4 /* HTML.icns in Resources */ = {isa = PBXBuildFile; fileRef = D02B30C9184EC4FF00A60556 /* HTML.icns */; };
 		D0913CCE18B0AC06005DB2E4 /* OptionPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07AF47A1836581E00913067 /* OptionPane.xib */; };
 		D0913CCF18B0AC06005DB2E4 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07AF47C1836581E00913067 /* Preferences.xib */; };
-		D0913CD018B0AC06005DB2E4 /* PHP.icns in Resources */ = {isa = PBXBuildFile; fileRef = D02B30CC184ED25100A60556 /* PHP.icns */; };
 		D0913CD118B0AC06005DB2E4 /* TidyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07AF47E1836581E00913067 /* TidyDocument.xib */; };
-		D0913CD218B0AC06005DB2E4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D016A944182FD80700712C60 /* Images.xcassets */; };
 		D0913CD318B0AC06005DB2E4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0120B55183CCAB3003CA182 /* Localizable.strings */; };
 		D0913CD618B0AC06005DB2E4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D01AED8318476F6B001300E3 /* Credits.rtf */; };
 		D0913CD718B0AC06005DB2E4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0D3BEB6183C87C500692225 /* MainMenu.xib */; };
+		D0A4FB7018F25C1C003597A5 /* Application.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0A4FB6B18F25C1C003597A5 /* Application.icns */; };
+		D0A4FB7118F25C1C003597A5 /* Application.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0A4FB6B18F25C1C003597A5 /* Application.icns */; };
+		D0A4FB7218F25C1C003597A5 /* HTML.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0A4FB6C18F25C1C003597A5 /* HTML.icns */; };
+		D0A4FB7318F25C1C003597A5 /* HTML.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0A4FB6C18F25C1C003597A5 /* HTML.icns */; };
+		D0A4FB7418F25C1C003597A5 /* PHP.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0A4FB6D18F25C1C003597A5 /* PHP.icns */; };
+		D0A4FB7518F25C1C003597A5 /* PHP.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0A4FB6D18F25C1C003597A5 /* PHP.icns */; };
+		D0A4FB7618F25C1C003597A5 /* Tidy.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0A4FB6E18F25C1C003597A5 /* Tidy.icns */; };
+		D0A4FB7718F25C1C003597A5 /* Tidy.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0A4FB6E18F25C1C003597A5 /* Tidy.icns */; };
+		D0A4FB7818F25C1C003597A5 /* XML.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0A4FB6F18F25C1C003597A5 /* XML.icns */; };
+		D0A4FB7918F25C1C003597A5 /* XML.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0A4FB6F18F25C1C003597A5 /* XML.icns */; };
 		D0CCEE2918E9967B0052E56C /* Balthisar Tidy.help in Resources */ = {isa = PBXBuildFile; fileRef = D0CCEE2818E9967B0052E56C /* Balthisar Tidy.help */; };
 		D0CCEE2A18E9967B0052E56C /* Balthisar Tidy.help in Resources */ = {isa = PBXBuildFile; fileRef = D0CCEE2818E9967B0052E56C /* Balthisar Tidy.help */; };
 		D0D3BEB8183C87C500692225 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0D3BEB6183C87C500692225 /* MainMenu.xib */; };
@@ -117,10 +121,6 @@
 		D0D9F1A018E68DC6008A55D5 /* FirstRunController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9F19E18E68DC6008A55D5 /* FirstRunController.m */; };
 		D0D9F1A318E6BF8D008A55D5 /* JSDTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9F1A218E6BF8D008A55D5 /* JSDTableView.m */; };
 		D0D9F1A418E6BF8D008A55D5 /* JSDTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9F1A218E6BF8D008A55D5 /* JSDTableView.m */; };
-		D0D9F1A618E833DD008A55D5 /* XML.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0D9F1A518E833DD008A55D5 /* XML.icns */; };
-		D0D9F1A718E833DD008A55D5 /* XML.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0D9F1A518E833DD008A55D5 /* XML.icns */; };
-		D0D9F1A918E834AA008A55D5 /* Tidy.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0D9F1A818E834AA008A55D5 /* Tidy.icns */; };
-		D0D9F1AA18E834AA008A55D5 /* Tidy.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0D9F1A818E834AA008A55D5 /* Tidy.icns */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -147,12 +147,9 @@
 		D016A931182FD80700712C60 /* Balthisar Tidy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Balthisar Tidy-Info.plist"; sourceTree = "<group>"; };
 		D016A935182FD80700712C60 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D016A937182FD80700712C60 /* Balthisar Tidy-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Balthisar Tidy-Prefix.pch"; sourceTree = "<group>"; };
-		D016A944182FD80700712C60 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D016A94B182FD80700712C60 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		D01AED8418476F6B001300E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Base; path = Base.lproj/Credits.rtf; sourceTree = "<group>"; };
 		D026169E1836F48A002ABD72 /* Balthisar Tidy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Balthisar Tidy.entitlements"; sourceTree = "<group>"; };
-		D02B30C9184EC4FF00A60556 /* HTML.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = HTML.icns; path = "balthisar tidy/Images.xcassets/HTML.icns"; sourceTree = SOURCE_ROOT; };
-		D02B30CC184ED25100A60556 /* PHP.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = PHP.icns; path = "balthisar tidy/Images.xcassets/PHP.icns"; sourceTree = SOURCE_ROOT; };
 		D06626CE18B09B330091CBD8 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = "Balthisar Tidy/Frameworks/Sparkle.framework"; sourceTree = "<group>"; };
 		D07AF47B1836581E00913067 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/OptionPane.xib; sourceTree = "<group>"; };
 		D07AF47D1836581E00913067 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Preferences.xib; sourceTree = "<group>"; };
@@ -160,6 +157,11 @@
 		D08A7C9218D442FF00341DCB /* optionsInEffect.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = optionsInEffect.txt; path = Resources/optionsInEffect.txt; sourceTree = "<group>"; };
 		D08A7C9918D443D900341DCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D0913CDE18B0AC06005DB2E4 /* Balthisar Tidy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Balthisar Tidy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0A4FB6B18F25C1C003597A5 /* Application.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Application.icns; path = "balthisar tidy/Icons.xcassets/Application.icns"; sourceTree = SOURCE_ROOT; };
+		D0A4FB6C18F25C1C003597A5 /* HTML.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = HTML.icns; path = "balthisar tidy/Icons.xcassets/HTML.icns"; sourceTree = SOURCE_ROOT; };
+		D0A4FB6D18F25C1C003597A5 /* PHP.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = PHP.icns; path = "balthisar tidy/Icons.xcassets/PHP.icns"; sourceTree = SOURCE_ROOT; };
+		D0A4FB6E18F25C1C003597A5 /* Tidy.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Tidy.icns; path = "balthisar tidy/Icons.xcassets/Tidy.icns"; sourceTree = SOURCE_ROOT; };
+		D0A4FB6F18F25C1C003597A5 /* XML.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = XML.icns; path = "balthisar tidy/Icons.xcassets/XML.icns"; sourceTree = SOURCE_ROOT; };
 		D0CCEE2818E9967B0052E56C /* Balthisar Tidy.help */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Balthisar Tidy.help"; path = "Resources/Balthisar Tidy.help"; sourceTree = "<group>"; };
 		D0D3BEB7183C87C500692225 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = "balthisar tidy/Base.lproj/MainMenu.xib"; sourceTree = SOURCE_ROOT; };
 		D0D9EAC118E6680F008A55D5 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
@@ -241,8 +243,6 @@
 		D0D9F19E18E68DC6008A55D5 /* FirstRunController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstRunController.m; sourceTree = "<group>"; };
 		D0D9F1A118E6BF8D008A55D5 /* JSDTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSDTableView.h; sourceTree = "<group>"; };
 		D0D9F1A218E6BF8D008A55D5 /* JSDTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSDTableView.m; sourceTree = "<group>"; };
-		D0D9F1A518E833DD008A55D5 /* XML.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = XML.icns; path = Images.xcassets/XML.icns; sourceTree = "<group>"; };
-		D0D9F1A818E834AA008A55D5 /* Tidy.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Tidy.icns; path = Images.xcassets/Tidy.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,16 +266,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D006072F18B9C01300D91335 /* Image Assets */ = {
+		D006072F18B9C01300D91335 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
-				D016A944182FD80700712C60 /* Images.xcassets */,
-				D02B30CC184ED25100A60556 /* PHP.icns */,
-				D02B30C9184EC4FF00A60556 /* HTML.icns */,
-				D0D9F1A818E834AA008A55D5 /* Tidy.icns */,
-				D0D9F1A518E833DD008A55D5 /* XML.icns */,
+				D0A4FB6B18F25C1C003597A5 /* Application.icns */,
+				D0A4FB6C18F25C1C003597A5 /* HTML.icns */,
+				D0A4FB6D18F25C1C003597A5 /* PHP.icns */,
+				D0A4FB6E18F25C1C003597A5 /* Tidy.icns */,
+				D0A4FB6F18F25C1C003597A5 /* XML.icns */,
 			);
-			name = "Image Assets";
+			name = Icons;
 			sourceTree = "<group>";
 		};
 		D016A91D182FD80700712C60 = {
@@ -327,7 +327,7 @@
 				D026169E1836F48A002ABD72 /* Balthisar Tidy.entitlements */,
 				D016A931182FD80700712C60 /* Balthisar Tidy-Info.plist */,
 				D016A937182FD80700712C60 /* Balthisar Tidy-Prefix.pch */,
-				D006072F18B9C01300D91335 /* Image Assets */,
+				D006072F18B9C01300D91335 /* Icons */,
 			);
 			path = "Balthisar Tidy";
 			sourceTree = SOURCE_ROOT;
@@ -590,17 +590,17 @@
 			files = (
 				D0D9F19B18E68D1E008A55D5 /* FirstRunHelper.xib in Resources */,
 				D08A7C9418D442FF00341DCB /* optionsInEffect.txt in Resources */,
-				D02B30CA184EC4FF00A60556 /* HTML.icns in Resources */,
 				D0107937183C738F00120B57 /* OptionPane.xib in Resources */,
-				D0D9F1A618E833DD008A55D5 /* XML.icns in Resources */,
 				D0CCEE2918E9967B0052E56C /* Balthisar Tidy.help in Resources */,
 				D08A7C9A18D443D900341DCB /* InfoPlist.strings in Resources */,
+				D0A4FB7418F25C1C003597A5 /* PHP.icns in Resources */,
+				D0A4FB7818F25C1C003597A5 /* XML.icns in Resources */,
+				D0A4FB7018F25C1C003597A5 /* Application.icns in Resources */,
 				D0107938183C738F00120B57 /* Preferences.xib in Resources */,
-				D02B30CE184ED25100A60556 /* PHP.icns in Resources */,
 				D0107939183C738F00120B57 /* TidyDocument.xib in Resources */,
-				D016A945182FD80700712C60 /* Images.xcassets in Resources */,
 				D0120B57183CCAB3003CA182 /* Localizable.strings in Resources */,
-				D0D9F1A918E834AA008A55D5 /* Tidy.icns in Resources */,
+				D0A4FB7618F25C1C003597A5 /* Tidy.icns in Resources */,
+				D0A4FB7218F25C1C003597A5 /* HTML.icns in Resources */,
 				D01AED8518476F6B001300E3 /* Credits.rtf in Resources */,
 				D0D3BEB8183C87C500692225 /* MainMenu.xib in Resources */,
 			);
@@ -612,17 +612,17 @@
 			files = (
 				D0D9F19C18E68D1E008A55D5 /* FirstRunHelper.xib in Resources */,
 				D08A7C9518D442FF00341DCB /* optionsInEffect.txt in Resources */,
-				D0913CCC18B0AC06005DB2E4 /* HTML.icns in Resources */,
 				D0913CCE18B0AC06005DB2E4 /* OptionPane.xib in Resources */,
-				D0D9F1A718E833DD008A55D5 /* XML.icns in Resources */,
 				D0CCEE2A18E9967B0052E56C /* Balthisar Tidy.help in Resources */,
 				D08A7C9B18D443D900341DCB /* InfoPlist.strings in Resources */,
+				D0A4FB7518F25C1C003597A5 /* PHP.icns in Resources */,
+				D0A4FB7918F25C1C003597A5 /* XML.icns in Resources */,
+				D0A4FB7118F25C1C003597A5 /* Application.icns in Resources */,
 				D0913CCF18B0AC06005DB2E4 /* Preferences.xib in Resources */,
-				D0913CD018B0AC06005DB2E4 /* PHP.icns in Resources */,
 				D0913CD118B0AC06005DB2E4 /* TidyDocument.xib in Resources */,
-				D0913CD218B0AC06005DB2E4 /* Images.xcassets in Resources */,
 				D0913CD318B0AC06005DB2E4 /* Localizable.strings in Resources */,
-				D0D9F1AA18E834AA008A55D5 /* Tidy.icns in Resources */,
+				D0A4FB7718F25C1C003597A5 /* Tidy.icns in Resources */,
+				D0A4FB7318F25C1C003597A5 /* HTML.icns in Resources */,
 				D0913CD618B0AC06005DB2E4 /* Credits.rtf in Resources */,
 				D0913CD718B0AC06005DB2E4 /* MainMenu.xib in Resources */,
 			);
