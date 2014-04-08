@@ -189,20 +189,32 @@
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="Window" id="19">
-                    <menu key="submenu" title="Window" systemMenu="window" id="24">
+                <menuItem title="View" id="19">
+                    <menu key="submenu" title="View" systemMenu="window" id="24">
                         <items>
-                            <menuItem title="Minimize" keyEquivalent="m" id="23">
+                            <menuItem title="Enter Full Screen" keyEquivalent="f" id="9ZQ-x1-vOC">
+                                <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                 <connections>
-                                    <action selector="performMiniaturize:" target="-1" id="37"/>
+                                    <action selector="toggleFullScreen:" target="-1" id="zpg-M3-Jbw"/>
                                 </connections>
                             </menuItem>
-                            <menuItem isSeparatorItem="YES" id="92">
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="Window" id="0Rv-Gg-wpB">
+                    <menu key="submenu" title="Window" systemMenu="window" id="dh1-6L-uRd">
+                        <items>
+                            <menuItem title="Minimize" keyEquivalent="m" id="WeQ-ez-czJ">
+                                <connections>
+                                    <action selector="performMiniaturize:" target="-1" id="ax8-Z9-vtr"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="zkz-U8-t8M">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Bring All to Front" id="5">
+                            <menuItem title="Bring All to Front" id="aVF-GO-dPr">
                                 <connections>
-                                    <action selector="arrangeInFront:" target="-1" id="39"/>
+                                    <action selector="arrangeInFront:" target="-1" id="8DX-ue-Hei"/>
                                 </connections>
                             </menuItem>
                         </items>
