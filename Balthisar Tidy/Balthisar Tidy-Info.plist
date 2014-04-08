@@ -126,5 +126,9 @@
 	<true/>
 	<key>SUFeedURL</key>
 	<string>http://www.balthisar.com/softwareupdates/updatecheck/tidy</string>
+	<key>OSAScriptingDefinition</key>
+	<string>TidyScripting.sdef</string>
+	<key>NSAppleScriptEnabled</key>
+	<true/>
 </dict>
 </plist>
