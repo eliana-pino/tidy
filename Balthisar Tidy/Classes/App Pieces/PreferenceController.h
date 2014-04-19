@@ -111,6 +111,18 @@ typedef enum : NSInteger
  */
 @property (readonly, nonatomic, strong) NSArray *optionsInEffect;
 
+/**
+	Contains the count of preferences panes that are available. Offered
+	mostly for AppleScript support, and that is mainly offered so that
+	I can take screenshots without having to use UI scripting.
+ */
+@property (readonly, assign) NSInteger countOfTabViews;
+
+/**
+	 Sets/Reads the current pane index, 0-based.
+ */
+@property (assign) NSInteger indexOfCurrentTabView;
+
 
 #pragma mark - Class Methods
 

@@ -258,6 +258,31 @@
 }
 
 
+#pragma mark - Printing Support
+
+
+/*———————————————————————————————————————————————————————————————————*
+	printDocumentWithSettings:error:
+ *———————————————————————————————————————————————————————————————————*/
+- (NSPrintOperation *)printOperationWithSettings:(NSDictionary *)printSettings error:(NSError **)outError
+{
+	//NSTextView *virginView = [[NSTextView alloc] init];
+
+	NSTextView *virginView = [[NSTextView alloc] initWithFrame:NSMakeRect(0, 0, 468, 648)];
+
+	 virginView.string = _sourceView.string;
+
+	[self.printInfo setHorizontalPagination: NSFitPagination];
+    [self.printInfo setVerticalPagination: NSAutoPagination];
+    [self.printInfo setVerticallyCentered:NO];
+    [self.printInfo setLeftMargin:36];
+    [self.printInfo setRightMargin:36];
+    [self.printInfo setTopMargin:36];
+    [self.printInfo setBottomMargin:36];
+	return [NSPrintOperation printOperationWithView:_tidyView printInfo:self.printInfo];
+}
+
+
 #pragma mark - Initialization and Deallocation and Setup
 
 

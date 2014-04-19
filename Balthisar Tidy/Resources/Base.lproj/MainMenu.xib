@@ -118,6 +118,19 @@
                                     <action selector="revertDocumentToSaved:" target="-1" id="198"/>
                                 </connections>
                             </menuItem>
+                            <menuItem isSeparatorItem="YES" id="TdD-PP-sEX">
+                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                            </menuItem>
+                            <menuItem title="Page Setup…" keyEquivalent="P" id="uYj-ay-zAd">
+                                <connections>
+                                    <action selector="runPageLayout:" target="-1" id="yRl-ya-4ae"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Print…" keyEquivalent="p" id="dNK-wM-hdp">
+                                <connections>
+                                    <action selector="printDocument:" target="-1" id="IgS-BE-7Au"/>
+                                </connections>
+                            </menuItem>
                         </items>
                     </menu>
                 </menuItem>
@@ -241,5 +254,6 @@
             </connections>
         </customObject>
         <customObject id="ZRX-oT-aUk"/>
+        <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="PSU-Hb-JBe"/>
     </objects>
 </document>

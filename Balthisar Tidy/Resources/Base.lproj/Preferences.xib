@@ -12,6 +12,7 @@
                 <outlet property="buttonUpdateInterval" destination="rm0-pu-QQ0" id="7Ay-DQ-lyU"/>
                 <outlet property="optionPane" destination="164" id="m9K-TJ-mTQ"/>
                 <outlet property="savingWarnText" destination="Aei-3W-9wN" id="qM5-qv-VDt"/>
+                <outlet property="tabView" destination="28" id="yrr-EL-FZ3"/>
                 <outlet property="tabViewUpdates" destination="kn5-8D-QW6" id="EN9-hg-Mv6"/>
                 <outlet property="window" destination="5" id="104"/>
             </connections>
@@ -33,7 +34,7 @@
                         <tabViewItems>
                             <tabViewItem label="Tidy Options" identifier="" id="7">
                                 <view key="view" autoresizesSubviews="NO" id="13">
-                                    <rect key="frame" x="10" y="25" width="374" height="455"/>
+                                    <rect key="frame" x="10" y="29" width="374" height="451"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <customView id="164">

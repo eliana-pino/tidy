@@ -58,6 +58,7 @@
 @property (nonatomic, weak) IBOutlet NSPopUpButton * buttonUpdateInterval;
 
 // Other Properties
+@property (nonatomic, weak) IBOutlet NSTabView *tabView;				// The tab view.
 @property (nonatomic, weak) IBOutlet NSView *optionPane;				// The empty pane in the nib that we will inhabit.
 @property (nonatomic, strong) OptionPaneController *optionController;	// The real option pane loaded into optionPane.
 
@@ -105,6 +106,7 @@
 	[defaultValues setObject:@NO forKey:JSDKeyFirstRunComplete];
 	[defaultValues setObject:@NO forKey:JSDKeyIgnoreInputEncodingWhenOpening];
 	[defaultValues setObject:@(kJSDSaveAsOnly) forKey:JSDKeySavingPrefStyle];
+	[defaultValues setObject:@YES forKey:@"NSPrintHeaderAndFooter"];
 
 	/* Preferences that apply to all open documents */
 	[defaultValues setObject:@NO forKey:JSDKeyAllowMacOSTextSubstitutions];
@@ -252,6 +254,36 @@
 	if ( [key isKindOfClass:[NSString class]])
 	{
 		[[NSUserDefaults standardUserDefaults] setObject:obj forKey:(NSString*)key];
+	}
+}
+
+
+#pragma mark - AppleScript properties support
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	countOfTabViews
+		Returns the number of tab views in the tab view.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (NSInteger) countOfTabViews
+{
+	return [[self.tabView tabViewItems] count];
+}
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	indexOfCurrentTabView
+		Sets/Gets the index of the current tab view.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (NSInteger) indexOfCurrentTabView
+{
+	return [self.tabView indexOfTabViewItem:[self.tabView selectedTabViewItem]];
+}
+
+- (void) setIndexOfCurrentTabView:(NSInteger)indexOfCurrentTabView
+{
+	if (indexOfCurrentTabView < [[self.tabView tabViewItems] count] - 1)
+	{
+		[self.tabView selectTabViewItemAtIndex:indexOfCurrentTabView];
 	}
 }
 

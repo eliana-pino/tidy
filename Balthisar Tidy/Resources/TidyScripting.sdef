@@ -13,8 +13,6 @@
 
 -->
 
-
-	<!-- Include only portions of the standard suite -->
 <dictionary title="Balthisar Tidy Terminology" xmlns:xi="http://www.w3.org/2003/XInclude">
 
 	<!-- use XInclude to include the standard suite -->
@@ -22,43 +20,44 @@
 
 
 	<!-- Scripting suite for Balthisar Tidy -->
-	<suite name="Balthisar Tidy Scripting Suite" code="JDts"
-		description="Balthisar Tidy application specific scripting facilities.">
+	<suite name="Balthisar Tidy Scripting Suite" code="JDts" description="Balthisar Tidy application specific scripting facilities.">
 
-
-		<!-- any additions to the application class are done here.  note that
-		 we have specified that we inherit all of the properties from the standard
-		 application class definition, and we use the same four character code from
-		 that definition (see the application class definition above).  -->
-		<class name="application" code="capp"
-			description="The Balthisar Tidy application class." inherits="application">
+		<!-- Additions to the application class are done here.  We have 
+		     specified that we inherit all of the properties from the standard
+		     application class definition, and we use the same four character
+		     code from that definition. -->
+		<class name="application" code="capp" description="The Balthisar Tidy application class." inherits="application">
 
 			<!-- the name of the Cocoa class where we have provided the
 			 various accessor methods for our application class.  -->
 			<cocoa class="NSApplication"/>
 
-			<!-- a single read-only property -->
-			<property name="ready" code="Srdy" type="boolean" access="r" description="This is a temporary placeholder."/>
+			<property name="preferencesWindowIsVisible" code="JDpv" description="Indicates and controls whether the preferences window is open." type="boolean" access="rw">
+				<cocoa key="preferencesWindowIsVisible"/>
+			</property>
+
+			<property name="indexOfVisiblePrefsWindowPanel" code="JDpn" description="Indicates and controls which preferences panel is shown." type="integer" access="rw">
+				<cocoa key="indexOfVisiblePrefsWindowPanel"/>
+			</property>
+			
+			<property name="countOfPrefsWindowPanels" code="JDpc" description="Indicates the number of preferences panels." type="integer" access="r">
+				<cocoa key="countOfPrefsWindowPanels"/>
+			</property>
+
+		</class>
+
+
+		<class name="document" code="docu" description="A Balthisar Tidy document." inherits="document">
+			<cocoa class="TidyDocument"/>
+		</class>
+
+
+		<class name="preferences" code="pref" description="The Balthisar Tidy preferences class.">
+
+			<cocoa class="PreferenceController"/>
 
 		</class>
 
 	</suite>
-
-
-	<!-- Developer scripting suite for Balthisar Tidy -->
-	<suite name="Balthisar Tidy Developer Scripting Suite" code="JDtd"
-		description="Balthisar Tidy scripting suite for development purposes.">
-
-		<command name="screenshotdocument" code="JDts1234" description="Take a screen shot of a document window.">
-			<parameter name="in" code="kfil" type="file" optional="yes" description="The file in which to save the document.">
-				<cocoa key="File"/>
-			</parameter>
-			<parameter name="as" code="fltp" type="saveable file format" optional="yes" description="The file format to use.">
-				<cocoa key="FileType"/>
-			</parameter>
-		</command>
-
-	</suite>
-
 
 </dictionary>
