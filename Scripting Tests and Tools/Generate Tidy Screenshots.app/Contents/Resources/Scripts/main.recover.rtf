@@ -5,7 +5,12 @@
 \deftab480
 \pard\pardeftab480\slleading20\pardirnatural
 
-\f0\fs26 \cf2 --	Balthisar Tidy Screenshot Generation Suite\cf3 \
+\f0\fs26 \cf2 --	Balthisar Tidy Screenshot Generation Utility\cf3 \
+\pard\pardeftab480\slleading20\pardirnatural
+\cf2 --\cf3 \
+\cf2 --	This script uses Balthisar Tidy's AppleScript library and also\cf3 \
+\cf2 --	Mac OS X UI Scripting capabilities in order to quickly and efficiently\cf3 \
+\cf2 --	generate screenshots for the website, App Store, and help file.\cf3 \
 \cf2 --\cf3 \
 \cf2 --	Created by: Jim Derry\cf3 \
 \cf2 --	Created on: 04/12/14 13:41:11\cf3 \
@@ -23,12 +28,10 @@
 \b0  
 \b \cf4 run
 \b0 \cf3 \
+	\
+	\cf2 ------------------------\cf3 \
 	\cf2 -- configure these\cf3 \
-	
-\b set
-\b0  \cf5 theApp\cf3  
-\b to
-\b0  "Balthisar Tidy"\
+	\cf2 ------------------------\cf3 \
 	
 \b set
 \b0  \cf5 theBasePath\cf3  
@@ -42,58 +45,160 @@
 \i0 \cf3 ))\
 	
 \b set
-\b0  \cf5 theDocFileName\cf3  
-\b to
-\b0  \cf5 theBasePath\cf3  & "document window.png"\
-	
-\b set
-\b0  \cf5 thePrefsFilePrefix\cf3  
-\b to
-\b0  \cf5 theBasePath\cf3  & "tidy-prefs-0"\
-	
-\b set
-\b0  \cf5 thePrefsFileSuffixNoSparkle\cf3  
-\b to
-\b0  "-nosparkle"\
-	
-\b set
 \b0  \cf5 imageoptions\cf3  
 \b to
 \b0  \{\cf5 omitshadow\cf3 :
 \i \cf6 true
 \i0 \cf3 , \cf5 imagetype\cf3 :"png"\}\
-	\cf2 -- end user configuration\cf3 \
+	\
+	
+\b set
+\b0  \cf5 theMainWindowFilename\cf3  
+\b to
+\b0  "tidy-main-window.png"\
+	
+\b set
+\b0  \cf5 thePrefsWindowFilename\cf3  
+\b to
+\b0  "tidy-prefs-0"\
+	
+\b set
+\b0  \cf5 thePrefsFilenameSuffixNoSparkle\cf3  
+\b to
+\b0  "-ns"\
+	\
+	\
+	\
+	\cf2 ------------------------\cf3 \
+	\cf2 -- Get Saving Path\cf3 \
+	\cf2 ------------------------\cf3 \
+	
+\b try
+\b0 \
+		
+\b set
+\b0  \cf5 theBasePath\cf3  
+\b to
+\b0  (\cf6 POSIX path\cf3  
+\b of
+\b0  (
+\b \cf7 choose folder
+\b0 \cf3 ))\
+	
+\b end
+\b0  
+\b try
+\b0 \
+	\
 	\
 	\cf2 -----------------------------\cf3 \
 	\cf2 -- Document Window\cf3 \
-	\cf2 -----------------------------\cf3 \
-	
-\b set
-\b0  \cf5 thePath\cf3  
-\b to
-\b0  \cf5 theDocFileName\cf3 \
-	\
+	\cf2 -----------------------------	\cf3 \
 	
 \b set
 \b0  \cf5 the_window_id\cf3  
 \b to
-\b0  \cf5 set_application_window_size\cf3 (\cf5 theApp\cf3 , 1280, 800)\
-	\
-	\cf5 take_screenshot_window\cf3 (\cf5 the_window_id\cf3 , \cf5 thePath\cf3 , \cf5 imageoptions\cf3 )\
-	\
-	\cf2 -----------------------------\cf3 \
-	\cf2 -- Preferences\cf3 \
-	\cf2 -----------------------------\cf3 \
-	\cf5 do_menu\cf3 (\cf5 theApp\cf3 , 2, "Preferences\'85")\
-	
-\b \cf4 delay
-\b0 \cf3  3\
+\b0  \cf5 set_document_window_size\cf3 (1280, 800)\
 	\
 	
 \b tell
 \b0  
 \i \cf4 application
-\i0 \cf3  \cf5 theApp\cf3 \
+\i0 \cf3  "System Events"\
+		
+\b tell
+\b0  
+\i \cf4 process
+\i0 \cf3  "Balthisar Tidy"\
+			
+\b tell
+\b0  
+\i \cf4 window
+\i0 \cf3  
+\i \cf6 named
+\i0 \cf3  "Sample Dirty Document.html"\
+				
+\b tell
+\b0  
+\i \cf4 table
+\i0 \cf3  1 
+\b of
+\b0  
+\i \cf4 scroll area
+\i0 \cf3  1 
+\b of
+\b0  
+\i \cf4 group
+\i0 \cf3  3 
+\b of
+\b0  
+\i \cf4 splitter group
+\i0 \cf3  1 
+\b of
+\b0  
+\i \cf4 splitter group
+\i0 \cf3  1\
+					
+\b set
+\b0  \cf6 focused\cf3  
+\b to
+\b0  
+\i \cf6 true
+\i0 \cf3 \
+					
+\b tell
+\b0  
+\i \cf4 row
+\i0 \cf3  1 
+\b to
+\b0  
+\b set
+\b0  \cf6 selected\cf3  
+\b to
+\b0  
+\i \cf6 true
+\i0 \cf3 \
+				
+\b end
+\b0  
+\b tell
+\b0 \
+			
+\b end
+\b0  
+\b tell
+\b0 \
+		
+\b end
+\b0  
+\b tell
+\b0 \
+	
+\b end
+\b0  
+\b tell
+\b0 \
+	\
+	\cf5 take_screenshot_window\cf3 (\cf5 the_window_id\cf3 , (\cf5 theBasePath\cf3  & \cf5 theMainWindowFilename\cf3 ), \cf5 imageoptions\cf3 )\
+	\
+	\
+	\cf2 -----------------------------\cf3 \
+	\cf2 -- Preferences\cf3 \
+	\cf2 -----------------------------\cf3 \
+	
+\b tell
+\b0  
+\i \cf4 application
+\i0 \cf3  "Balthisar Tidy"\
+		\
+		
+\b set
+\b0  \cf6 preferencesWindowIsVisible\cf3  
+\b to
+\b0  
+\i \cf6 yes
+\i0 \cf3 \
+		\
 		
 \b set
 \b0  \cf5 the_window_id\cf3  
@@ -105,37 +210,8 @@
 \i0 \cf3  
 \i \cf6 named
 \i0 \cf3  "Balthisar Tidy Preferences")\
-	
-\b end
-\b0  
-\b tell
-\b0 \
-	\
-	
-\b tell
-\b0  
-\i \cf4 application
-\i0 \cf3  "System Events"\
+		\
 		
-\b tell
-\b0  
-\i \cf4 process
-\i0 \cf3  \cf5 theApp\cf3 \
-			
-\b tell
-\b0  
-\i \cf4 window
-\i0 \cf3  
-\i \cf6 named
-\i0 \cf3  "Balthisar Tidy Preferences"\
-				\
-				
-\b tell
-\b0  
-\i \cf4 tab group
-\i0 \cf3  1\
-					\
-					
 \b repeat
 \b0  
 \b with
@@ -143,102 +219,66 @@
 \b from
 \b0  1 
 \b to
-\b0  
-\b \cf4 count
-\b0 \cf3  (
-\i \cf4 radio buttons
-\i0 \cf3 )\
-						\
-						
+\b0  \cf6 countOfPrefsWindowPanels\cf3 \
+			\
+			
 \b set
-\b0  \cf5 thePath\cf3  
+\b0  \cf6 indexOfVisiblePrefsWindowPanel\cf3  
 \b to
-\b0  (\cf5 thePrefsFilePrefix\cf3  & (\cf5 i\cf3  
-\b as
-\b0  
-\i \cf4 text
-\i0 \cf3 ))\
-						\
-						
+\b0  \cf5 i\cf3 \
+			\
+			
+\b set
+\b0  \cf5 theFileName\cf3  
+\b to
+\b0  \cf5 theBasePath\cf3  & \cf5 thePrefsWindowFilename\cf3  & \cf5 i\cf3 \
+			\
+			
 \b if
-\b0  ((
-\b \cf4 count
-\b0 \cf3  
-\b of
-\b0  
-\i \cf4 radio buttons
-\i0 \cf3 ) = 3) 
+\b0  (\cf6 countOfPrefsWindowPanels\cf3  < 4) 
 \b then
 \b0 \
-							
+				
 \b set
-\b0  \cf5 thePath\cf3  
+\b0  \cf5 theFileName\cf3  
 \b to
-\b0  \cf5 thePath\cf3  & \cf5 thePrefsFileSuffixNoSparkle\cf3 \
-						
+\b0  \cf5 theFileName\cf3  & \cf5 thePrefsFilenameSuffixNoSparkle\cf3 \
+			
 \b end
 \b0  
 \b if
 \b0 \
-						\
-						
+			\
+			
 \b set
-\b0  \cf5 thePath\cf3  
+\b0  \cf5 theFileName\cf3  
 \b to
-\b0  \cf5 thePath\cf3  & "." & (\cf5 imagetype\cf3  
+\b0  \cf5 theFileName\cf3  & "." & (\cf5 imagetype\cf3  
 \b of
 \b0  \cf5 imageoptions\cf3 )\
-						\
-						
-\b tell
-\b0  
-\i \cf4 radio button
-\i0 \cf3  \cf5 i\cf3  
-\b to
-\b0  
-\b \cf4 click
-\b0 \cf3 \
-						\
-						
+			\
+			
 \b tell
 \b0  
 \b me
 \b0  
 \b to
-\b0  \cf5 take_screenshot_window\cf3 (\cf5 the_window_id\cf3 , \cf5 thePath\cf3 , \cf5 imageoptions\cf3 )\
-						
-\b \cf4 delay
-\b0 \cf3  1\
-						\
-					
+\b0  \cf5 take_screenshot_window\cf3 (\cf5 the_window_id\cf3 , \cf5 theFileName\cf3 , \cf5 imageoptions\cf3 )\
+			\
+		
 \b end
 \b0  
 \b repeat
 \b0 \
-					\
-					\
-					\cf2 --set myButtons to (radio buttons)\cf3 \
-					\cf2 --repeat with myButton in myButtons\cf3 \
-					\cf2 --	tell myButton to click\cf3 \
-					\cf2 --	set thePath to ((POSIX path of (path to desktop)) & thePrefsFilePrefix)\cf3 \
-					\cf2 --	\cf3 \
-					\cf2 --	delay 1\cf3 \
-					\cf2 --end repeat\cf3 \
-				
-\b end
-\b0  
-\b tell
-\b0 \
-			
-\b end
-\b0  
-\b tell
-\b0 \
+		\
 		
-\b end
+\b set
+\b0  \cf6 preferencesWindowIsVisible\cf3  
+\b to
 \b0  
-\b tell
-\b0 \
+\i \cf6 no
+\i0 \cf3 \
+		\
 	
 \b end
 \b0  
@@ -253,18 +293,31 @@
 \
 \
 \cf2 ----------------------------------------------------------------\cf3 \
-\cf2 --	set_application_window_size\cf3 \
+\cf2 --	set_document_window_size\cf3 \
 \cf2 --		Sets an app's document window to the specified\cf3 \
 \cf2 --		width and height\cf3 \
 \cf2 -- @returns windowId as text\cf3 \
 \cf2 ----------------------------------------------------------------\cf3 \
 
 \b on
-\b0  \cf5 set_application_window_size\cf3 (\cf5 theApp\cf3 , \cf5 winWidth\cf3 , \cf5 winHeight\cf3 )\
+\b0  \cf5 set_document_window_size\cf3 (\cf5 winWidth\cf3 , \cf5 winHeight\cf3 )\
+	\
+	\cf2 ---------------------------------------------------------\cf3 \
+	\cf2 -- Declare locals so we can see them in debugger.\cf3 \
+	\cf2 ---------------------------------------------------------\cf3 \
 	
 \b local
 \b0  \cf5 screenWidth\cf3 , \cf5 screenHeight\cf3 , \cf5 yAxis\cf3 , \cf5 xAxis\cf3 \
+	
+\b local
+\b0  \cf5 scriptPath\cf3 , \cf5 theSampleFile\cf3 \
+	
+\b local
+\b0  \cf5 theOpenDocument\cf3 \
 	\
+	\cf2 ---------------------------------------------------------\cf3 \
+	\cf2 -- Windows and screen size math\cf3 \
+	\cf2 ---------------------------------------------------------\cf3 \
 	
 \b set
 \b0  \cf5 screenWidth\cf3  
@@ -302,17 +355,60 @@
 \i \cf4 integer
 \i0 \cf3 \
 	\
+	\cf2 ---------------------------------------------------------\cf3 \
+	\cf2 -- Find out where our testing document is\cf3 \
+	\cf2 ---------------------------------------------------------\cf3 \
 	
 \b tell
 \b0  
 \i \cf4 application
-\i0 \cf3  \cf5 theApp\cf3 \
+\i0 \cf3  "Finder"\
 		
-\b \cf4 activate
-\b0 \cf3 \
+\b set
+\b0  \cf5 scriptPath\cf3  
+\b to
+\b0  (
+\i \cf4 container
+\i0 \cf3  
+\b of
+\b0  
+\i \cf4 file
+\i0 \cf3  (
+\b \cf7 path to
+\b0 \cf3  
+\b me
+\b0 )) 
+\b as
+\b0  
+\i \cf4 string
+\i0 \cf3 \
 		
-\b \cf4 reopen
-\b0 \cf3 \
+\b set
+\b0  \cf5 theSampleFile\cf3  
+\b to
+\b0  (\cf5 scriptPath\cf3  & "Sample Dirty Document.html") 
+\b as
+\b0  
+\i \cf4 string
+\i0 \cf3 \
+	
+\b end
+\b0  
+\b tell
+\b0 \
+	\
+	
+\b tell
+\b0  
+\i \cf4 application
+\i0 \cf3  "Balthisar Tidy"\
+		
+\b set
+\b0  \cf5 theOpenDocument\cf3  
+\b to
+\b0  (
+\b \cf4 open
+\b0 \cf3  \cf5 theSampleFile\cf3 )\
 		
 \b set
 \b0  
@@ -340,9 +436,10 @@
 \b0  
 \b tell
 \b0 \
+	\
 
 \b end
-\b0  \cf5 set_application_window_size\cf3 \
+\b0  \cf5 set_document_window_size\cf3 \
 \
 \
 \cf2 ----------------------------------------------------------------\cf3 \
@@ -355,10 +452,17 @@
 
 \b on
 \b0  \cf5 take_screenshot_window\cf3 (\cf5 the_window_id\cf3 , \cf5 a_file_path\cf3 , \cf5 options\cf3 )\
+	\
+	\cf2 ---------------------------------------------------------\cf3 \
+	\cf2 -- Declare locals so we can see them in debugger.\cf3 \
+	\cf2 ---------------------------------------------------------\cf3 \
 	
 \b local
 \b0  \cf5 shell_command\cf3 \
 	\
+	\cf2 ---------------------------------------------------------\cf3 \
+	\cf2 -- Build the string we will pass to bash\cf3 \
+	\cf2 ---------------------------------------------------------\cf3 \
 	
 \b set
 \b0  \cf5 shell_command\cf3  
@@ -401,6 +505,29 @@
 \b of
 \b0  \cf5 a_file_path\cf3 )\
 	\
+	\cf2 ---------------------------------------------------------\cf3 \
+	\cf2 -- Pop it to the front and execute the command.\cf3 \
+	\cf2 ---------------------------------------------------------\cf3 \
+	
+\b tell
+\b0  
+\i \cf4 application
+\i0 \cf3  "System Events" 
+\b to
+\b0  
+\b set
+\b0  \cf6 frontmost\cf3  
+\b of
+\b0  
+\i \cf4 process
+\i0 \cf3  "Balthisar Tidy" 
+\b to
+\b0  
+\i \cf6 true
+\i0 \cf3 \
+	
+\b \cf4 delay
+\b0 \cf3  1\
 	
 \b \cf7 do shell script
 \b0 \cf3  \cf5 shell_command\cf3 \
@@ -440,107 +567,4 @@
 \b end
 \b0  \cf5 screen_bounds\cf3 \
 \
-\
-\cf2 ----------------------------------------------------------------\cf3 \
-\cf2 --	do_menu\cf3 \
-\cf2 --		Convenience to activate menu items via GUI Scripting\cf3 \
-\cf2 ----------------------------------------------------------------\cf3 \
-
-\b on
-\b0  \cf5 do_menu\cf3 (\cf5 app_name\cf3 , \cf5 menu_name\cf3 , \cf5 menu_item\cf3 )\
-	
-\b try
-\b0 \
-		\cf2 -- bring the target application to the front\cf3 \
-		
-\b tell
-\b0  
-\i \cf4 application
-\i0 \cf3  \cf5 app_name\cf3 \
-			
-\b \cf4 activate
-\b0 \cf3 \
-		
-\b end
-\b0  
-\b tell
-\b0 \
-		
-\b tell
-\b0  
-\i \cf4 application
-\i0 \cf3  "System Events"\
-			
-\b tell
-\b0  
-\i \cf4 process
-\i0 \cf3  \cf5 app_name\cf3 \
-				
-\b tell
-\b0  
-\i \cf4 menu bar
-\i0 \cf3  1\
-					
-\b tell
-\b0  
-\i \cf4 menu bar item
-\i0 \cf3  \cf5 menu_name\cf3 \
-						
-\b tell
-\b0  
-\i \cf4 menu
-\i0 \cf3  1\
-							
-\b \cf4 click
-\b0 \cf3  
-\i \cf4 menu item
-\i0 \cf3  \cf5 menu_item\cf3 \
-						
-\b end
-\b0  
-\b tell
-\b0 \
-					
-\b end
-\b0  
-\b tell
-\b0 \
-				
-\b end
-\b0  
-\b tell
-\b0 \
-			
-\b end
-\b0  
-\b tell
-\b0 \
-		
-\b end
-\b0  
-\b tell
-\b0 \
-		
-\b return
-\b0  
-\i \cf6 true
-\i0 \cf3 \
-	
-\b on
-\b0  
-\b error
-\b0  \cf5 error_message\cf3 \
-		
-\b return
-\b0  
-\i \cf6 false
-\i0 \cf3 \
-	
-\b end
-\b0  
-\b try
-\b0 \
-
-\b end
-\b0  \cf5 do_menu\cf3 \
 }

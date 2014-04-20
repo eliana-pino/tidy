@@ -32,18 +32,6 @@
 			 various accessor methods for our application class.  -->
 			<cocoa class="NSApplication"/>
 
-			<property name="preferencesWindowIsVisible" code="JDpv" description="Indicates and controls whether the preferences window is open." type="boolean" access="rw">
-				<cocoa key="preferencesWindowIsVisible"/>
-			</property>
-
-			<property name="indexOfVisiblePrefsWindowPanel" code="JDpn" description="Indicates and controls which preferences panel is shown." type="integer" access="rw">
-				<cocoa key="indexOfVisiblePrefsWindowPanel"/>
-			</property>
-			
-			<property name="countOfPrefsWindowPanels" code="JDpc" description="Indicates the number of preferences panels." type="integer" access="r">
-				<cocoa key="countOfPrefsWindowPanels"/>
-			</property>
-
 		</class>
 
 
@@ -55,6 +43,35 @@
 		<class name="preferences" code="pref" description="The Balthisar Tidy preferences class.">
 
 			<cocoa class="PreferenceController"/>
+
+		</class>
+
+	</suite>
+
+	<!-- Developer scripting suite for Balthisar Tidy -->
+	<suite name="Developer Scripting Suite for Balthisar Tidy" code="JDtd" description="Developer Scripting Suite for Balthisar Tidy.">
+
+		<!-- Additions to the application class are done here.  We have
+		 specified that we inherit all of the properties from the standard
+		 application class definition, and we use the same four character
+		 code from that definition. -->
+		<class name="application" code="capp" description="The Balthisar Tidy application class." inherits="application">
+
+			<!-- the name of the Cocoa class where we have provided the
+			 various accessor methods for our application class.  -->
+			<cocoa class="NSApplication"/>
+
+			<property name="preferencesWindowIsVisible" code="JDpv" description="Indicates and controls whether the preferences window is open." type="boolean" access="rw">
+				<cocoa key="preferencesWindowIsVisible"/>
+			</property>
+
+			<property name="indexOfVisiblePrefsWindowPanel" code="JDpn" description="Indicates and controls which preferences panel is shown." type="integer" access="rw">
+				<cocoa key="indexOfVisiblePrefsWindowPanel"/>
+			</property>
+
+			<property name="countOfPrefsWindowPanels" code="JDpc" description="Indicates the number of preferences panels." type="integer" access="r">
+				<cocoa key="countOfPrefsWindowPanels"/>
+			</property>
 
 		</class>
 

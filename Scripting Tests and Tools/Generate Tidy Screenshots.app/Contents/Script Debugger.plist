@@ -20,7 +20,7 @@
 		<real>0.80000001192092896</real>
 		<key>viewControllers</key>
 		<dict>
-			<key>9A2477AB-E12C-473E-B54F-D839EB11D25A-12393-000061B4230B2584</key>
+			<key>2D4C45F1-0D07-4A8D-BAAA-675FC72924A7-313-000004899CF52A0B</key>
 			<dict>
 				<key>debuggerViewState</key>
 				<dict>
@@ -47,69 +47,42 @@
 						<dict>
 							<key>3</key>
 							<array>
-								<integer>311</integer>
-								<integer>394</integer>
-								<integer>159</integer>
+								<integer>294</integer>
+								<integer>374</integer>
+								<integer>149</integer>
 							</array>
 							<key>5</key>
 							<array>
-								<integer>240</integer>
-								<integer>100</integer>
-								<integer>306</integer>
-								<integer>80</integer>
-								<integer>122</integer>
+								<integer>274</integer>
+								<integer>115</integer>
+								<integer>350</integer>
+								<integer>90</integer>
+								<integer>140</integer>
 							</array>
 						</dict>
 					</dict>
 					<key>resultState</key>
 					<dict>
-						<key>aepState</key>
-						<dict>
-							<key>text</key>
-							<dict>
-								<key>LNSSelection</key>
-								<array>
-									<dict>
-										<key>length</key>
-										<integer>0</integer>
-										<key>location</key>
-										<integer>15</integer>
-									</dict>
-								</array>
-								<key>LNSTextViewShowInvisibles</key>
-								<integer>0</integer>
-								<key>LNSTextViewShowSpaces</key>
-								<integer>0</integer>
-								<key>LNSTextViewShowTabStops</key>
-								<integer>0</integer>
-								<key>LNSTextViewWrapLines</key>
-								<integer>1</integer>
-								<key>LNSVisibleRect</key>
-								<string>{{0, 0}, {508, 209}}</string>
-							</dict>
-						</dict>
 						<key>explorerState</key>
 						<dict>
 							<key>dividerPos</key>
-							<real>318.33334350585938</real>
+							<real>333.33334350585938</real>
 							<key>scope2.changedItems</key>
-							<integer>1</integer>
+							<true/>
 							<key>scope2.emptyElements</key>
-							<integer>0</integer>
+							<false/>
 							<key>scope2.filledElements</key>
-							<integer>1</integer>
+							<true/>
 							<key>scope2.props</key>
-							<integer>1</integer>
+							<true/>
 							<key>scope2.unchangedItems</key>
-							<integer>1</integer>
+							<true/>
 							<key>showScopeBar</key>
-							<integer>1</integer>
+							<true/>
 						</dict>
-						<key>fileSpecState</key>
-						<dict/>
 						<key>modes</key>
 						<array>
-							<string>mode.source</string>
+							<string>mode.best</string>
 						</array>
 						<key>positions2</key>
 						<dict>
@@ -118,31 +91,6 @@
 						</dict>
 						<key>prettyPrint</key>
 						<false/>
-						<key>sourceState</key>
-						<dict>
-							<key>text</key>
-							<dict>
-								<key>LNSSelection</key>
-								<array>
-									<dict>
-										<key>length</key>
-										<integer>0</integer>
-										<key>location</key>
-										<integer>2</integer>
-									</dict>
-								</array>
-								<key>LNSTextViewShowInvisibles</key>
-								<integer>0</integer>
-								<key>LNSTextViewShowSpaces</key>
-								<integer>0</integer>
-								<key>LNSTextViewShowTabStops</key>
-								<integer>0</integer>
-								<key>LNSTextViewWrapLines</key>
-								<integer>1</integer>
-								<key>LNSVisibleRect</key>
-								<string>{{0, 0}, {508, 209}}</string>
-							</dict>
-						</dict>
 						<key>textState</key>
 						<dict>
 							<key>text</key>
@@ -153,28 +101,28 @@
 										<key>length</key>
 										<integer>0</integer>
 										<key>location</key>
-										<integer>5</integer>
+										<integer>14</integer>
 									</dict>
 								</array>
 								<key>LNSTextViewShowInvisibles</key>
-								<integer>0</integer>
+								<false/>
 								<key>LNSTextViewShowSpaces</key>
-								<integer>0</integer>
+								<false/>
 								<key>LNSTextViewShowTabStops</key>
-								<integer>0</integer>
+								<false/>
 								<key>LNSTextViewWrapLines</key>
-								<integer>1</integer>
+								<true/>
 								<key>LNSVisibleRect</key>
-								<string>{{0, 0}, {508, 209}}</string>
+								<string>{{0, 0}, {424, 196}}</string>
 							</dict>
 						</dict>
 					</dict>
 					<key>stackVisible</key>
-					<false/>
+					<true/>
 					<key>variablesState</key>
 					<dict>
 						<key>dividerPos</key>
-						<real>199.79296875</real>
+						<real>150</real>
 						<key>scope2.changedItems</key>
 						<true/>
 						<key>scope2.emptyElements</key>
@@ -190,7 +138,7 @@
 					</dict>
 				</dict>
 				<key>eventLogHeight</key>
-				<real>171</real>
+				<real>209</real>
 				<key>eventLogViewState</key>
 				<dict>
 					<key>format</key>
@@ -202,10 +150,7 @@
 							<string>mode.best</string>
 						</array>
 						<key>positions2</key>
-						<dict>
-							<key>positions</key>
-							<dict/>
-						</dict>
+						<dict/>
 						<key>prettyPrint</key>
 						<false/>
 					</dict>
@@ -261,7 +206,7 @@
 					</dict>
 				</dict>
 				<key>mainSplitPosition</key>
-				<real>524</real>
+				<real>678</real>
 				<key>modeIdentifier</key>
 				<string>tab.debug</string>
 				<key>resourcesViewState</key>
@@ -301,26 +246,26 @@
 								<key>length</key>
 								<integer>0</integer>
 								<key>location</key>
-								<integer>45</integer>
+								<integer>1715</integer>
 							</dict>
 						</array>
 						<key>LNSTextViewShowInvisibles</key>
 						<false/>
 						<key>LNSTextViewShowSpaces</key>
-						<true/>
+						<false/>
 						<key>LNSTextViewShowTabStops</key>
 						<false/>
 						<key>LNSTextViewWrapLines</key>
 						<false/>
 						<key>LNSVisibleRect</key>
-						<string>{{0, 2}, {1214, 693}}</string>
+						<string>{{0, 863}, {939, 776}}</string>
 						<key>ShowLineNumbers</key>
-						<true/>
-						<key>showCodeCoverage</key>
 						<false/>
+						<key>showCodeCoverage</key>
+						<true/>
 					</dict>
 					<key>instanceID</key>
-					<string>FCB28F6A-3C28-4FEF-B5A0-4345E633B840-12393-0000981F9CD4451E</string>
+					<string>21308FAD-BD84-4CE1-9F8C-FA6C7BEE21B5-313-0000049DC329F689</string>
 					<key>resultBarVisible</key>
 					<false/>
 				</dict>
@@ -338,9 +283,9 @@
 				<key>tabsHidden</key>
 				<false/>
 				<key>windowControllerID</key>
-				<string>9A2477AB-E12C-473E-B54F-D839EB11D25A-12393-000061B4230B2584</string>
+				<string>2D4C45F1-0D07-4A8D-BAAA-675FC72924A7-313-000004899CF52A0B</string>
 				<key>windowFrame</key>
-				<string>43 376 1786 965 0 0 2560 1418 </string>
+				<string>55 263 1659 1086 0 0 2560 1418 </string>
 			</dict>
 		</dict>
 		<key>windowControllers</key>
@@ -349,13 +294,13 @@
 				<key>controllerClass</key>
 				<string>ScriptWindowController</string>
 				<key>controllerID</key>
-				<string>9A2477AB-E12C-473E-B54F-D839EB11D25A-12393-000061B4230B2584</string>
+				<string>2D4C45F1-0D07-4A8D-BAAA-675FC72924A7-313-000004899CF52A0B</string>
 				<key>controllerState</key>
 				<dict>
 					<key>miniaturized</key>
 					<false/>
 					<key>windowFrame</key>
-					<string>43 376 1786 965 0 0 2560 1418 </string>
+					<string>55 263 1659 1086 0 0 2560 1418 </string>
 				</dict>
 			</dict>
 		</array>

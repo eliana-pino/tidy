@@ -272,7 +272,8 @@
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	indexOfCurrentTabView
-		Sets/Gets the index of the current tab view.
+		Sets/Gets the index of the current tab view. We use and
+		expect standard zero-based indices here.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSInteger) indexOfCurrentTabView
 {
@@ -281,7 +282,7 @@
 
 - (void) setIndexOfCurrentTabView:(NSInteger)indexOfCurrentTabView
 {
-	if (indexOfCurrentTabView < [[self.tabView tabViewItems] count] - 1)
+	if (indexOfCurrentTabView <= [[self.tabView tabViewItems] count] - 1)
 	{
 		[self.tabView selectTabViewItemAtIndex:indexOfCurrentTabView];
 	}
