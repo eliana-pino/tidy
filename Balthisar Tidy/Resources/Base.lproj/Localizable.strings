@@ -198,7 +198,7 @@
 
 "description-alt-text"                    = "*This option specifies the default {\\f0 alt=} text Tidy uses for {\\f0 <img>} attributes.\\par Use with care, as this feature suppresses further accessibility warnings.";
 
-"description-anchor-as-name"              = "*This option controls the deletion or addition of the name attribute in elements where it can serve as anchor.\\par If set to {\\f0\\b yes}, a name attribute, if not already existing, is added along an existing id attribute if the DTD allows it.\\par If set to {\\f0\b no}, any existing name attribute is removed if an id attribute exists or has been added.";
+"description-anchor-as-name"              = "*This option controls the deletion or addition of the name attribute in elements where it can serve as anchor.\\par If set to {\\f0\\b yes}, a name attribute, if not already existing, is added along an existing id attribute if the DTD allows it.\\par If set to {\\f0\\b no}, any existing name attribute is removed if an id attribute exists or has been added.";
 
 "description-ascii-chars"                 = "*Can be used to modify behavior the {\\f0 clean} option when set to {\\f0\\b yes}.\\par If set to {\\f0\\b yes} when using {\\f0 clean}, {\\f0 &emdash;}, {\\f0 &rdquo;}, and other named character entities are downgraded to their closest ASCII equivalents.";
 
