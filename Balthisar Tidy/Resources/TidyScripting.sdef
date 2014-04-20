@@ -37,6 +37,11 @@
 
 		<class name="document" code="docu" description="A Balthisar Tidy document." inherits="document">
 			<cocoa class="TidyDocument"/>
+
+			<property name="sourceText" code="Tsrc" type="text" access="rw" description="The source text before tidying."/>
+
+			<property name="tidyText" code="Ttdy" type="text" access="r" description="The Tidy’d text."/>
+
 		</class>
 
 

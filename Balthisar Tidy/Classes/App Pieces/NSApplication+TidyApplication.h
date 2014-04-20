@@ -35,12 +35,12 @@
 @interface NSApplication (TidyApplication)
 
 /** Handles AppleScript's preferencesWindowIsVisible property */
-@property (assign) BOOL preferencesWindowIsVisible;
+@property (nonatomic, assign) BOOL preferencesWindowIsVisible;
 
 /** Handles AppleScript's countOfPrefsWindowPanels property */
-@property (readonly, assign) NSInteger countOfPrefsWindowPanels;
+@property (nonatomic, readonly, assign) NSInteger countOfPrefsWindowPanels;
 
 /** Handles AppleScript's indexOfVisiblePrefsWindowPanel property */
-@property (assign) NSInteger indexOfVisiblePrefsWindowPanel;
+@property (nonatomic, assign) NSInteger indexOfVisiblePrefsWindowPanel;
 
 @end

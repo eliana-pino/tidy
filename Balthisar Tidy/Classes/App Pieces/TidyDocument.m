@@ -283,6 +283,31 @@
 }
 
 
+#pragma mark - AppleScript Support
+
+
+/*———————————————————————————————————————————————————————————————————*
+	sourceText
+ *———————————————————————————————————————————————————————————————————*/
+- (NSString *)sourceText
+{
+	return self.sourceView.string;
+}
+
+- (void)setSourceText:(NSString *)sourceText
+{
+	self.sourceView.string = sourceText;
+	[self textDidChange:nil];
+}
+
+/*———————————————————————————————————————————————————————————————————*
+	tidyText
+ *———————————————————————————————————————————————————————————————————*/
+- (NSString *)tidyText
+{
+	return self.tidyView.string;
+}
+
 #pragma mark - Initialization and Deallocation and Setup
 
 

@@ -36,8 +36,14 @@
  */
 @interface TidyDocument : NSDocument <NSTableViewDelegate, NSSplitViewDelegate, NSTextViewDelegate>
 
-/*
-	Nothing is publically exposed.
+/**
+	Source Text, mostly for AppleScript KVC support.
 */
-	
+@property (nonatomic, assign) NSString *sourceText;
+
+/**
+	Tidy'd Text, mostly for AppleScript KVC support.
+ */
+@property (nonatomic, assign, readonly) NSString *tidyText;
+
 @end
