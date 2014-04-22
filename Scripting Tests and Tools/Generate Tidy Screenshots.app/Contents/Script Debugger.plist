@@ -68,17 +68,17 @@
 							<key>dividerPos</key>
 							<real>333.33334350585938</real>
 							<key>scope2.changedItems</key>
-							<true/>
+							<integer>1</integer>
 							<key>scope2.emptyElements</key>
-							<false/>
+							<integer>0</integer>
 							<key>scope2.filledElements</key>
-							<true/>
+							<integer>1</integer>
 							<key>scope2.props</key>
-							<true/>
+							<integer>1</integer>
 							<key>scope2.unchangedItems</key>
-							<true/>
+							<integer>1</integer>
 							<key>showScopeBar</key>
-							<true/>
+							<integer>1</integer>
 						</dict>
 						<key>modes</key>
 						<array>
@@ -101,19 +101,19 @@
 										<key>length</key>
 										<integer>0</integer>
 										<key>location</key>
-										<integer>14</integer>
+										<integer>3</integer>
 									</dict>
 								</array>
 								<key>LNSTextViewShowInvisibles</key>
-								<false/>
+								<integer>0</integer>
 								<key>LNSTextViewShowSpaces</key>
-								<false/>
+								<integer>0</integer>
 								<key>LNSTextViewShowTabStops</key>
-								<false/>
+								<integer>0</integer>
 								<key>LNSTextViewWrapLines</key>
-								<true/>
+								<integer>1</integer>
 								<key>LNSVisibleRect</key>
-								<string>{{0, 0}, {424, 196}}</string>
+								<string>{{0, 0}, {662, 249}}</string>
 							</dict>
 						</dict>
 					</dict>
@@ -138,7 +138,7 @@
 					</dict>
 				</dict>
 				<key>eventLogHeight</key>
-				<real>209</real>
+				<real>201</real>
 				<key>eventLogViewState</key>
 				<dict>
 					<key>format</key>
@@ -150,7 +150,10 @@
 							<string>mode.best</string>
 						</array>
 						<key>positions2</key>
-						<dict/>
+						<dict>
+							<key>positions</key>
+							<dict/>
+						</dict>
 						<key>prettyPrint</key>
 						<false/>
 					</dict>
@@ -246,7 +249,7 @@
 								<key>length</key>
 								<integer>0</integer>
 								<key>location</key>
-								<integer>1715</integer>
+								<integer>1087</integer>
 							</dict>
 						</array>
 						<key>LNSTextViewShowInvisibles</key>
@@ -258,7 +261,7 @@
 						<key>LNSTextViewWrapLines</key>
 						<false/>
 						<key>LNSVisibleRect</key>
-						<string>{{0, 863}, {939, 776}}</string>
+						<string>{{0, 716}, {939, 784}}</string>
 						<key>ShowLineNumbers</key>
 						<false/>
 						<key>showCodeCoverage</key>
@@ -285,7 +288,7 @@
 				<key>windowControllerID</key>
 				<string>2D4C45F1-0D07-4A8D-BAAA-675FC72924A7-313-000004899CF52A0B</string>
 				<key>windowFrame</key>
-				<string>55 263 1659 1086 0 0 2560 1418 </string>
+				<string>576 226 1659 1086 0 0 2560 1418 </string>
 			</dict>
 		</dict>
 		<key>windowControllers</key>
@@ -300,7 +303,7 @@
 					<key>miniaturized</key>
 					<false/>
 					<key>windowFrame</key>
-					<string>55 263 1659 1086 0 0 2560 1418 </string>
+					<string>576 226 1659 1086 0 0 2560 1418 </string>
 				</dict>
 			</dict>
 		</array>
