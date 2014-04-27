@@ -1045,7 +1045,11 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		errors so here we capture them one-by-one as Tidy tidy's.
 		In this way we build our own structured list.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (bool)errorFilter:(TidyDoc)tDoc Level:(TidyReportLevel)lvl Line:(uint)line Column:(uint)col Message:(ctmbstr)mssg
+- (bool)errorFilter:(TidyDoc)tDoc
+			  Level:(TidyReportLevel)lvl
+			   Line:(uint)line
+			 Column:(uint)col
+			Message:(ctmbstr)mssg
 {
 	__strong NSMutableDictionary *errorDict = [[NSMutableDictionary alloc] init];
 	
@@ -1079,7 +1083,12 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		applying the args. This new string won't be found in the
 		.strings file, so it will be used as is.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (bool)errorFilterWithLocalization:(TidyDoc)tDoc Level:(TidyReportLevel)lvl Line:(uint)line Column:(uint)col Message:(ctmbstr)mssg Arguments:(va_list)args
+- (bool)errorFilterWithLocalization:(TidyDoc)tDoc
+							  Level:(TidyReportLevel)lvl
+							   Line:(uint)line
+							 Column:(uint)col
+							Message:(ctmbstr)mssg
+						  Arguments:(va_list)args
 {
 	__strong NSMutableDictionary *errorDict = [[NSMutableDictionary alloc] init];
 
