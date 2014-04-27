@@ -45,7 +45,6 @@
 	change this if your application uses Cocoa's native preferences
 	system.
  */
-
 #define JSDKeyTidyTidyOptionsKey @"JSDTidyTidyOptions"
 
 /*

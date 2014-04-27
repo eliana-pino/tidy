@@ -68,6 +68,11 @@
 #define JSDKeyShowNewDocumentSideBySide			@"ShowNewDocumentSideBySide"
 #define JSDKeyShowNewDocumentSyncInOut			@"ShoeNewDocumentSyncInOut"
 
+/* Key under which to store TidyOptions */
+#ifdef JSDKeyTidyTidyOptionsKey
+	#undef JSDKeyTidyTidyOptionsKey
+	#define JSDKeyTidyTidyOptionsKey @"JSDTidyTidyOptions"
+#endif
 
 /*
 	Note that builds that include Sparkle have Sparkle-related
