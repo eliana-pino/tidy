@@ -95,6 +95,9 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void) awakeFromNib
 {
+	// Setup the background color
+	[self.theTable setBackgroundColor:[NSColor clearColor]];
+
 	// Clean up the table's row-height.
 	[self.theTable setRowHeight:20.0f];
 

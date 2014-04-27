@@ -125,6 +125,12 @@
 		D0D9F1A018E68DC6008A55D5 /* FirstRunController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9F19E18E68DC6008A55D5 /* FirstRunController.m */; };
 		D0D9F1A318E6BF8D008A55D5 /* JSDTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9F1A218E6BF8D008A55D5 /* JSDTableView.m */; };
 		D0D9F1A418E6BF8D008A55D5 /* JSDTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9F1A218E6BF8D008A55D5 /* JSDTableView.m */; };
+		D0E6AE18190C9FAC00B49779 /* HideDescriptionTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE16190C9FAC00B49779 /* HideDescriptionTemplate.pdf */; };
+		D0E6AE19190C9FAC00B49779 /* HideDescriptionTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE16190C9FAC00B49779 /* HideDescriptionTemplate.pdf */; };
+		D0E6AE1A190C9FAC00B49779 /* ShowDescriptionTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE17190C9FAC00B49779 /* ShowDescriptionTemplate.pdf */; };
+		D0E6AE1B190C9FAC00B49779 /* ShowDescriptionTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE17190C9FAC00B49779 /* ShowDescriptionTemplate.pdf */; };
+		D0E6AE20190CB34500B49779 /* PaneBottomShadow.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE1F190CB34500B49779 /* PaneBottomShadow.tiff */; };
+		D0E6AE21190CB34500B49779 /* PaneBottomShadow.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE1F190CB34500B49779 /* PaneBottomShadow.tiff */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -250,6 +256,9 @@
 		D0D9F19E18E68DC6008A55D5 /* FirstRunController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstRunController.m; sourceTree = "<group>"; };
 		D0D9F1A118E6BF8D008A55D5 /* JSDTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSDTableView.h; sourceTree = "<group>"; };
 		D0D9F1A218E6BF8D008A55D5 /* JSDTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSDTableView.m; sourceTree = "<group>"; };
+		D0E6AE16190C9FAC00B49779 /* HideDescriptionTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = HideDescriptionTemplate.pdf; sourceTree = "<group>"; };
+		D0E6AE17190C9FAC00B49779 /* ShowDescriptionTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ShowDescriptionTemplate.pdf; sourceTree = "<group>"; };
+		D0E6AE1F190CB34500B49779 /* PaneBottomShadow.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = PaneBottomShadow.tiff; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -355,6 +364,9 @@
 		D08A7C9118D442AD00341DCB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D0E6AE1F190CB34500B49779 /* PaneBottomShadow.tiff */,
+				D0E6AE16190C9FAC00B49779 /* HideDescriptionTemplate.pdf */,
+				D0E6AE17190C9FAC00B49779 /* ShowDescriptionTemplate.pdf */,
 				D036E21718F3D81E0009A9D4 /* TidyScripting.sdef */,
 				D0CCEE2818E9967B0052E56C /* Balthisar Tidy.help */,
 				D08A7C9218D442FF00341DCB /* optionsInEffect.txt */,
@@ -599,12 +611,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				D036E1F418F3D25E0009A9D4 /* Preferences.xib in Resources */,
+				D0E6AE18190C9FAC00B49779 /* HideDescriptionTemplate.pdf in Resources */,
 				D08A7C9418D442FF00341DCB /* optionsInEffect.txt in Resources */,
 				D036E1EA18F3D25E0009A9D4 /* FirstRunHelper.xib in Resources */,
 				D036E1EE18F3D25E0009A9D4 /* Localizable.strings in Resources */,
 				D0CCEE2918E9967B0052E56C /* Balthisar Tidy.help in Resources */,
 				D036E21118F3D2F20009A9D4 /* PHP.icns in Resources */,
 				D036E21518F3D2F20009A9D4 /* XML.icns in Resources */,
+				D0E6AE20190CB34500B49779 /* PaneBottomShadow.tiff in Resources */,
+				D0E6AE1A190C9FAC00B49779 /* ShowDescriptionTemplate.pdf in Resources */,
 				D036E20D18F3D2F20009A9D4 /* Application.icns in Resources */,
 				D036E1F218F3D25E0009A9D4 /* OptionPane.xib in Resources */,
 				D036E1E818F3D25E0009A9D4 /* Credits.rtf in Resources */,
@@ -622,12 +637,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				D036E1F518F3D25E0009A9D4 /* Preferences.xib in Resources */,
+				D0E6AE19190C9FAC00B49779 /* HideDescriptionTemplate.pdf in Resources */,
 				D08A7C9518D442FF00341DCB /* optionsInEffect.txt in Resources */,
 				D036E1EB18F3D25E0009A9D4 /* FirstRunHelper.xib in Resources */,
 				D036E1EF18F3D25E0009A9D4 /* Localizable.strings in Resources */,
 				D0CCEE2A18E9967B0052E56C /* Balthisar Tidy.help in Resources */,
 				D036E21218F3D2F20009A9D4 /* PHP.icns in Resources */,
 				D036E21618F3D2F20009A9D4 /* XML.icns in Resources */,
+				D0E6AE21190CB34500B49779 /* PaneBottomShadow.tiff in Resources */,
+				D0E6AE1B190C9FAC00B49779 /* ShowDescriptionTemplate.pdf in Resources */,
 				D036E20E18F3D2F20009A9D4 /* Application.icns in Resources */,
 				D036E1F318F3D25E0009A9D4 /* OptionPane.xib in Resources */,
 				D036E1E918F3D25E0009A9D4 /* Credits.rtf in Resources */,
