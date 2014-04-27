@@ -315,3 +315,274 @@
 "description-wrap-sections"               = "*This option specifies if Tidy should line wrap text contained within {\\f0<![ … ]>} section tags.";
 
 "description-write-back"                  = "---This option specifies if Tidy should write back the Tidy’d markup to the same file it read from. You are advised to keep copies of important files before tidying them, as on rare occasions the result may not be what you expect.";
+
+
+/* Messages that are returned in the errorArray.  */
+
+/*
+ * WARNINGS AND ERRORS
+ */
+
+/* ReportEncodingWarning */
+"specified input encoding (%s) does not match actual input encoding (%s)"	= "specified input encoding (%s) does not match actual input encoding (%s)";
+
+/* ReportEncodingError */
+"%s invalid character code %s"												= "%s invalid character code %s";
+"%s invalid UTF-8 bytes (char. code %s)"									= "%s invalid UTF-8 bytes (char. code %s)";
+"%s invalid UTF-16 surrogate pair (char. code %s)"							= "%s invalid UTF-16 surrogate pair (char. code %s)";
+"%s invalid numeric character reference %s"									= "%s invalid numeric character reference %s";
+
+/* ReportEntityError */
+"entity \"%s\" doesn't end in ';'"											= "entity \"%s\" doesn't end in ';'";
+"numeric character reference \"%s\" doesn't end in ';'"						= "numeric character reference \"%s\" doesn't end in ';'";
+"unescaped & which should be written as &amp;"								= "unescaped & which should be written as &amp;";
+"unescaped & or unknown entity \"%s\""										= "unescaped & or unknown entity \"%s\"";
+"named entity &apos; only defined in XML/XHTML"								= "named entity &apos; only defined in XML/XHTML";
+
+/* ReportAttrError */
+
+/* attribute name */
+"%s inserting \"%s\" attribute"												= "%s inserting \"%s\" attribute";
+"%s attribute \"%s\" lacks value"											= "%s attribute \"%s\" lacks value";
+"%s unknown attribute \"%s\""												= "%s unknown attribute \"%s\"";
+"%s proprietary attribute \"%s\""											= "%s proprietary attribute \"%s\"";
+"%s joining values of repeated attribute \"%s\""							= "%s joining values of repeated attribute \"%s\"";
+"%s has XML attribute \"%s\""												= "%s has XML attribute \"%s\"";
+
+/* attribute value */
+"%s ID \"%s\" uses XML ID syntax"											= "%s ID \"%s\" uses XML ID syntax";
+"%s attribute value \"%s\" must be lower case for XHTML"					= "%s attribute value \"%s\" must be lower case for XHTML";
+"%s proprietary attribute value \"%s\""										= "%s proprietary attribute value \"%s\"";
+"%s anchor \"%s\" already defined"											= "%s anchor \"%s\" already defined";
+
+/* attribute name, attribute value */
+"%s attribute \"%s\" has invalid value \"%s\""								= "%s attribute \"%s\" has invalid value \"%s\"";
+"%s attribute \"%s\" had invalid value \"%s\" and has been replaced"		= "%s attribute \"%s\" had invalid value \"%s\" and has been replaced";
+"%s attribute name \"%s\" (value=\"%s\") is invalid"						= "%s attribute name \"%s\" (value=\"%s\") is invalid";
+
+/* attribute value, attribute name */
+"%s dropping value \"%s\" for repeated attribute \"%s\""					= "%s dropping value \"%s\" for repeated attribute \"%s\"";
+
+/* no arguments */
+"%s cannot copy name attribute to id"										= "%s cannot copy name attribute to id";
+"%s missing '>' for end of tag"												= "%s missing '>' for end of tag";
+"%s unexpected or duplicate quote mark"										= "%s unexpected or duplicate quote mark";
+"%s attribute with missing trailing quote mark"								= "%s attribute with missing trailing quote mark";
+"%s end of file while parsing attributes"									= "%s end of file while parsing attributes";
+"%s id and name attribute value mismatch"									= "%s id and name attribute value mismatch";
+"%s URI reference contains backslash. Typo?"								= "%s URI reference contains backslash. Typo?";
+"%s converting backslash in URI to slash"									= "%s converting backslash in URI to slash";
+"%s improperly escaped URI reference"										= "%s improperly escaped URI reference";
+"%s escaping malformed URI reference"										= "%s escaping malformed URI reference";
+"%s discarding newline in URI reference"									= "%s discarding newline in URI reference";
+"%s discarding whitespace in URI reference"									= "%s discarding whitespace in URI reference";
+"%s unexpected '=', expected attribute name"								= "%s unexpected '=', expected attribute name";
+"%s should use client-side image map"										= "%s should use client-side image map";
+
+/* ReportMissingAttr */
+"%s lacks \"%s\" attribute"													= "%s lacks \"%s\" attribute";
+
+/* ReportWarning */
+"nested emphasis %s"														= "nested emphasis %s";
+"nested q elements, possible typo."											= "nested q elements, possible typo.";
+"replacing obsolete element %s by %s"										= "replacing obsolete element %s by %s";
+
+/* ReportNotice */
+"trimming empty %s"															= "trimming empty %s";
+"replacing %s by %s"														= "replacing %s by %s";
+
+/* ReportError */
+"<%s> is probably intended as </%s>"										= "<%s> is probably intended as </%s>";
+"replacing unexpected %s by %s"												= "replacing unexpected %s by %s";
+"missing </%s>"																= "missing </%s>";
+"missing </%s> before %s"													= "missing </%s> before %s";
+"discarding unexpected %s"													= "discarding unexpected %s";
+"replacing unexpected %s by </%s>"											= "replacing unexpected %s by </%s>";
+"%s isn't allowed in <%s> elements"											= "%s isn't allowed in <%s> elements";
+"missing <%s>"																= "missing <%s>";
+"unexpected </%s>"															= "unexpected </%s>";
+"too many %s elements"														= "too many %s elements";
+"using <br> in place of %s"													= "using <br> in place of %s";
+"inserting implicit <%s>"													= "inserting implicit <%s>";
+"%s can't be nested"														= "%s can't be nested";
+"%s is not approved by W3C"													= "%s is not approved by W3C";
+"%s shouldn't be nested"													= "%s shouldn't be nested";
+"%s not inside 'noframes' element"											= "%s not inside 'noframes' element";
+"unexpected end of file %s"													= "unexpected end of file %s";
+"%s element not empty or not closed"										= "%s element not empty or not closed";
+"unexpected </%s> in <%s>"													= "unexpected </%s> in <%s>";
+"too many %s elements in <%s>"												= "too many %s elements in <%s>";
+"unescaped %s in pre content"												= "unescaped %s in pre content";
+
+/* no arguments */
+"<!DOCTYPE> isn't allowed after elements"									= "<!DOCTYPE> isn't allowed after elements";
+"inserting missing 'title' element"											= "inserting missing 'title' element";
+"HTML DOCTYPE doesn't match content"										= "HTML DOCTYPE doesn't match content";
+"missing <!DOCTYPE> declaration"											= "missing <!DOCTYPE> declaration";
+"content occurs after end of body"											= "content occurs after end of body";
+"adjacent hyphens within comment"											= "adjacent hyphens within comment";
+"expecting -- or >"															= "expecting -- or >";
+"'<' + '/' + letter not allowed here"										= "'<' + '/' + letter not allowed here";
+"HTML namespace doesn't match content"										= "HTML namespace doesn't match content";
+"removing whitespace preceding XML Declaration"			 					= "removing whitespace preceding XML Declaration";
+"discarding malformed <!DOCTYPE>"											= "discarding malformed <!DOCTYPE>";
+"XML comments can't contain --"												= "XML comments can't contain --";
+"SYSTEM, PUBLIC, W3C, DTD, EN must be upper case"							= "SYSTEM, PUBLIC, W3C, DTD, EN must be upper case";
+"Output encoding does not work with standard output"						= "Output encoding does not work with standard output";
+
+/* ReportFatal */
+"missing quote mark for attribute value"									= "missing quote mark for attribute value";
+"repeated FRAMESET element"													= "repeated FRAMESET element";
+"%s is not recognized!"														= "%s is not recognized!";
+
+/* */
+"<%s> previously mentioned"													= "<%s> previously mentioned";
+
+
+/*
+ * ACCESSABILITY
+ */
+
+"[1.1.1.1]: <img> missing 'alt' text."											= "[1.1.1.1]: <img> missing 'alt' text.";
+"[1.1.1.2]: suspicious 'alt' text (filename)."									= "[1.1.1.2]: suspicious 'alt' text (filename).";
+"[1.1.1.3]: suspicious 'alt' text (file size)."									= "[1.1.1.3]: suspicious 'alt' text (file size).";
+"[1.1.1.4]: suspicious 'alt' text (placeholder)."								= "[1.1.1.4]: suspicious 'alt' text (placeholder).";
+"[1.1.1.10]: suspicious 'alt' text (too long)."									= "[1.1.1.10]: suspicious 'alt' text (too long).";
+"[1.1.2.1]: <img> missing 'longdesc' and d-link."								= "[1.1.2.1]: <img> missing 'longdesc' and d-link.";
+"[1.1.2.2]: <img> missing d-link."												= "[1.1.2.2]: <img> missing d-link.";
+"[1.1.2.3]: <img> missing 'longdesc'."											= "[1.1.2.3]: <img> missing 'longdesc'.";
+"[1.1.3.1]: <img> (button) missing 'alt' text."									= "[1.1.3.1]: <img> (button) missing 'alt' text.";
+"[1.1.4.1]: <applet> missing alternate content."								= "[1.1.4.1]: <applet> missing alternate content.";
+"[1.1.5.1]: <object> missing alternate content."								= "[1.1.5.1]: <object> missing alternate content.";
+"[1.1.6.1]: audio missing text transcript (wav)."								= "[1.1.6.1]: audio missing text transcript (wav).";
+"[1.1.6.2]: audio missing text transcript (au)."								= "[1.1.6.2]: audio missing text transcript (au).";
+"[1.1.6.3]: audio missing text transcript (aiff)."								= "[1.1.6.3]: audio missing text transcript (aiff).";
+"[1.1.6.4]: audio missing text transcript (snd)."								= "[1.1.6.4]: audio missing text transcript (snd).";
+"[1.1.6.5]: audio missing text transcript (ra)."								= "[1.1.6.5]: audio missing text transcript (ra).";
+"[1.1.6.6]: audio missing text transcript (rm)."								= "[1.1.6.6]: audio missing text transcript (rm).";
+"[1.1.8.1]: <frame> may require 'longdesc'."									= "[1.1.8.1]: <frame> may require 'longdesc'.";
+"[1.1.9.1]: <area> missing 'alt' text."											= "[1.1.9.1]: <area> missing 'alt' text.";
+"[1.1.10.1]: <script> missing <noscript> section."								= "[1.1.10.1]: <script> missing <noscript> section.";
+"[1.1.12.1]: ascii art requires description."									= "[1.1.12.1]: ascii art requires description.";
+"[1.2.1.1]: image map (server-side) requires text links."						= "[1.2.1.1]: image map (server-side) requires text links.";
+"[1.4.1.1]: multimedia requires synchronized text equivalents."					= "[1.4.1.1]: multimedia requires synchronized text equivalents.";
+"[1.5.1.1]: image map (client-side) missing text links."						= "[1.5.1.1]: image map (client-side) missing text links.";
+"[2.1.1.1]: ensure information not conveyed through color alone (image)."		= "[2.1.1.1]: ensure information not conveyed through color alone (image).";
+"[2.1.1.2]: ensure information not conveyed through color alone (applet)."		= "[2.1.1.2]: ensure information not conveyed through color alone (applet).";
+"[2.1.1.3]: ensure information not conveyed through color alone (object)."		= "[2.1.1.3]: ensure information not conveyed through color alone (object).";
+"[2.1.1.4]: ensure information not conveyed through color alone (script)."		= "[2.1.1.4]: ensure information not conveyed through color alone (script).";
+"[2.1.1.5]: ensure information not conveyed through color alone (input)."		= "[2.1.1.5]: ensure information not conveyed through color alone (input).";
+"[2.2.1.1]: poor color contrast (text)."										= "[2.2.1.1]: poor color contrast (text).";
+"[2.2.1.2]: poor color contrast (link)."										= "[2.2.1.2]: poor color contrast (link).";
+"[2.2.1.3]: poor color contrast (active link)."									= "[2.2.1.3]: poor color contrast (active link).";
+"[2.2.1.4]: poor color contrast (visited link)."								= "[2.2.1.4]: poor color contrast (visited link).";
+"[3.2.1.1]: <doctype> missing."													= "[3.2.1.1]: <doctype> missing.";
+"[3.3.1.1]: use style sheets to control presentation."							= "[3.3.1.1]: use style sheets to control presentation.";
+"[3.5.1.1]: headers improperly nested."											= "[3.5.1.1]: headers improperly nested.";
+"[3.5.2.1]: potential header (bold)."											= "[3.5.2.1]: potential header (bold).";
+"[3.5.2.2]: potential header (italics)."										= "[3.5.2.2]: potential header (italics).";
+"[3.5.2.3]: potential header (underline)."										= "[3.5.2.3]: potential header (underline).";
+"[3.5.3.1]: header used to format text."										= "[3.5.3.1]: header used to format text.";
+"[3.6.1.1]: list usage invalid <ul>."											= "[3.6.1.1]: list usage invalid <ul>.";
+"[3.6.1.2]: list usage invalid <ol>."											= "[3.6.1.2]: list usage invalid <ol>.";
+"[3.6.1.4]: list usage invalid <li>."											= "[3.6.1.4]: list usage invalid <li>.";
+"[4.1.1.1]: indicate changes in language."										= "[4.1.1.1]: indicate changes in language.";
+"[4.3.1.1]: language not identified."											= "[4.3.1.1]: language not identified.";
+"[4.3.1.2]: language attribute invalid."										= "[4.3.1.2]: language attribute invalid.";
+"[5.1.2.1]: data <table> missing row/column headers (all)."						= "[5.1.2.1]: data <table> missing row/column headers (all).";
+"[5.1.2.2]: data <table> missing row/column headers (1 col)."					= "[5.1.2.2]: data <table> missing row/column headers (1 col).";
+"[5.1.2.3]: data <table> missing row/column headers (1 row)."					= "[5.1.2.3]: data <table> missing row/column headers (1 row).";
+"[5.2.1.1]: data <table> may require markup (column headers)."					= "[5.2.1.1]: data <table> may require markup (column headers).";
+"[5.2.1.2]: data <table> may require markup (row headers)."						= "[5.2.1.2]: data <table> may require markup (row headers).";
+"[5.3.1.1]: verify layout tables linearize properly."							= "[5.3.1.1]: verify layout tables linearize properly.";
+"[5.4.1.1]: invalid markup used in layout <table>."								= "[5.4.1.1]: invalid markup used in layout <table>.";
+"[5.5.1.1]: <table> missing summary."											= "[5.5.1.1]: <table> missing summary.";
+"[5.5.1.2]: <table> summary invalid (null)."									= "[5.5.1.2]: <table> summary invalid (null).";
+"[5.5.1.3]: <table> summary invalid (spaces)."									= "[5.5.1.3]: <table> summary invalid (spaces).";
+"[5.5.1.6]: <table> summary invalid (placeholder text)."						= "[5.5.1.6]: <table> summary invalid (placeholder text).";
+"[5.5.2.1]: <table> missing <caption>."											= "[5.5.2.1]: <table> missing <caption>.";
+"[5.6.1.1]: <table> may require header abbreviations."							= "[5.6.1.1]: <table> may require header abbreviations.";
+"[5.6.1.2]: <table> header abbreviations invalid (null)."						= "[5.6.1.2]: <table> header abbreviations invalid (null).";
+"[5.6.1.3]: <table> header abbreviations invalid (spaces)."						= "[5.6.1.3]: <table> header abbreviations invalid (spaces).";
+"[6.1.1.1]: style sheets require testing (link)."								= "[6.1.1.1]: style sheets require testing (link).";
+"[6.1.1.2]: style sheets require testing (style element)."						= "[6.1.1.2]: style sheets require testing (style element).";
+"[6.1.1.3]: style sheets require testing (style attribute)."					= "[6.1.1.3]: style sheets require testing (style attribute).";
+"[6.2.1.1]: <frame> source invalid."											= "[6.2.1.1]: <frame> source invalid.";
+"[6.2.2.1]: text equivalents require updating (applet)."						= "[6.2.2.1]: text equivalents require updating (applet).";
+"[6.2.2.2]: text equivalents require updating (script)."						= "[6.2.2.2]: text equivalents require updating (script).";
+"[6.2.2.3]: text equivalents require updating (object)."						= "[6.2.2.3]: text equivalents require updating (object).";
+"[6.3.1.1]: programmatic objects require testing (script)."						= "[6.3.1.1]: programmatic objects require testing (script).";
+"[6.3.1.2]: programmatic objects require testing (object)."						= "[6.3.1.2]: programmatic objects require testing (object).";
+"[6.3.1.3]: programmatic objects require testing (embed)."						= "[6.3.1.3]: programmatic objects require testing (embed).";
+"[6.3.1.4]: programmatic objects require testing (applet)."						= "[6.3.1.4]: programmatic objects require testing (applet).";
+"[6.5.1.1]: <frameset> missing <noframes> section."								= "[6.5.1.1]: <frameset> missing <noframes> section.";
+"[6.5.1.2]: <noframes> section invalid (no value)."								= "[6.5.1.2]: <noframes> section invalid (no value).";
+"[6.5.1.3]: <noframes> section invalid (content)."								= "[6.5.1.3]: <noframes> section invalid (content).";
+"[6.5.1.4]: <noframes> section invalid (link)."									= "[6.5.1.4]: <noframes> section invalid (link).";
+"[7.1.1.1]: remove flicker (script)."											= "[7.1.1.1]: remove flicker (script).";
+"[7.1.1.2]: remove flicker (object)."											= "[7.1.1.2]: remove flicker (object).";
+"[7.1.1.3]: remove flicker (embed)."											= "[7.1.1.3]: remove flicker (embed).";
+"[7.1.1.4]: remove flicker (applet)."											= "[7.1.1.4]: remove flicker (applet).";
+"[7.1.1.5]: remove flicker (animated gif)."										= "[7.1.1.5]: remove flicker (animated gif).";
+"[7.2.1.1]: remove blink/marquee."												= "[7.2.1.1]: remove blink/marquee.";
+"[7.4.1.1]: remove auto-refresh."												= "[7.4.1.1]: remove auto-refresh.";
+"[7.5.1.1]: remove auto-redirect."												= "[7.5.1.1]: remove auto-redirect.";
+"[8.1.1.1]: ensure programmatic objects are accessible (script)."				= "[8.1.1.1]: ensure programmatic objects are accessible (script).";
+"[8.1.1.2]: ensure programmatic objects are accessible (object)."				= "[8.1.1.2]: ensure programmatic objects are accessible (object).";
+"[8.1.1.3]: ensure programmatic objects are accessible (applet)."				= "[8.1.1.3]: ensure programmatic objects are accessible (applet).";
+"[8.1.1.4]: ensure programmatic objects are accessible (embed)."				= "[8.1.1.4]: ensure programmatic objects are accessible (embed).";
+"[9.1.1.1]: image map (server-side) requires conversion."						= "[9.1.1.1]: image map (server-side) requires conversion.";
+"[9.3.1.1]: <script> not keyboard accessible (onMouseDown)."					= "[9.3.1.1]: <script> not keyboard accessible (onMouseDown).";
+"[9.3.1.2]: <script> not keyboard accessible (onMouseUp)."						= "[9.3.1.2]: <script> not keyboard accessible (onMouseUp).";
+"[9.3.1.3]: <script> not keyboard accessible (onClick)."						= "[9.3.1.3]: <script> not keyboard accessible (onClick).";
+"[9.3.1.4]: <script> not keyboard accessible (onMouseOver)."					= "[9.3.1.4]: <script> not keyboard accessible (onMouseOver).";
+"[9.3.1.5]: <script> not keyboard accessible (onMouseOut)."						= "[9.3.1.5]: <script> not keyboard accessible (onMouseOut).";
+"[9.3.1.6]: <script> not keyboard accessible (onMouseMove)."					= "[9.3.1.6]: <script> not keyboard accessible (onMouseMove).";
+"[10.1.1.1]: new windows require warning (_new)."								= "[10.1.1.1]: new windows require warning (_new).";
+"[10.1.1.2]: new windows require warning (_blank)."								= "[10.1.1.2]: new windows require warning (_blank).";
+"[10.4.1.1]: form control requires default text."								= "[10.4.1.1]: form control requires default text.";
+"[10.4.1.2]: form control default text invalid (null)."							= "[10.4.1.2]: form control default text invalid (null).";
+"[10.4.1.3]: form control default text invalid (spaces)."						= "[10.4.1.3]: form control default text invalid (spaces).";
+"[11.2.1.1]: replace deprecated html <applet>."									= "[11.2.1.1]: replace deprecated html <applet>.";
+"[11.2.1.2]: replace deprecated html <basefont>."								= "[11.2.1.2]: replace deprecated html <basefont>.";
+"[11.2.1.3]: replace deprecated html <center>."									= "[11.2.1.3]: replace deprecated html <center>.";
+"[11.2.1.4]: replace deprecated html <dir>."									= "[11.2.1.4]: replace deprecated html <dir>.";
+"[11.2.1.5]: replace deprecated html <font>."									= "[11.2.1.5]: replace deprecated html <font>.";
+"[11.2.1.6]: replace deprecated html <isindex>."								= "[11.2.1.6]: replace deprecated html <isindex>.";
+"[11.2.1.7]: replace deprecated html <menu>."									= "[11.2.1.7]: replace deprecated html <menu>.";
+"[11.2.1.8]: replace deprecated html <s>."										= "[11.2.1.8]: replace deprecated html <s>.";
+"[11.2.1.9]: replace deprecated html <strike>."									= "[11.2.1.9]: replace deprecated html <strike>.";
+"[11.2.1.10]: replace deprecated html <u>."										= "[11.2.1.10]: replace deprecated html <u>.";
+"[12.1.1.1]: <frame> missing title."											= "[12.1.1.1]: <frame> missing title.";
+"[12.1.1.2]: <frame> title invalid (null)."										= "[12.1.1.2]: <frame> title invalid (null).";
+"[12.1.1.3]: <frame> title invalid (spaces)."									= "[12.1.1.3]: <frame> title invalid (spaces).";
+"[12.4.1.1]: associate labels explicitly with form controls."					= "[12.4.1.1]: associate labels explicitly with form controls.";
+"[12.4.1.2]: associate labels explicitly with form controls (for)."				= "[12.4.1.2]: associate labels explicitly with form controls (for).";
+"[12.4.1.3]: associate labels explicitly with form controls (id)."				= "[12.4.1.3]: associate labels explicitly with form controls (id).";
+"[13.1.1.1]: link text not meaningful."											= "[13.1.1.1]: link text not meaningful.";
+"[13.1.1.2]: link text missing."												= "[13.1.1.2]: link text missing.";
+"[13.1.1.3]: link text too long."												= "[13.1.1.3]: link text too long.";
+"[13.1.1.4]: link text not meaningful (click here)."							= "[13.1.1.4]: link text not meaningful (click here).";
+"[13.2.1.1]: Metadata missing."													= "[13.2.1.1]: Metadata missing.";
+"[13.2.1.3]: Metadata missing (redirect/auto-refresh)."							= "[13.2.1.3]: Metadata missing (redirect/auto-refresh).";
+"[13.10.1.1]: skip over ascii art."												= "[13.10.1.1]: skip over ascii art.";
+
+
+/*
+ * OTHER / MISC
+ */
+
+"unknown option: %s"							= "unknown option: %s";
+"missing or malformed argument for option: %s"	= "missing or malformed argument for option: %s";
+"Doctype given is \"%s\""						= "Doctype given is \"%s\"";
+"HTML Proprietary"								= "HTML Proprietary";
+"Document content looks like %s"				= "Document content looks like %s";
+"No system identifier in emitted doctype"		= "No system identifier in emitted doctype";
+
+
+
+
+
+
+
+
