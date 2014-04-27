@@ -131,6 +131,8 @@
 		D0E6AE1B190C9FAC00B49779 /* ShowDescriptionTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE17190C9FAC00B49779 /* ShowDescriptionTemplate.pdf */; };
 		D0E6AE20190CB34500B49779 /* PaneBottomShadow.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE1F190CB34500B49779 /* PaneBottomShadow.tiff */; };
 		D0E6AE21190CB34500B49779 /* PaneBottomShadow.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE1F190CB34500B49779 /* PaneBottomShadow.tiff */; };
+		D0E6AE24190CDAA200B49779 /* JSDTidyModel.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE22190CDAA200B49779 /* JSDTidyModel.strings */; };
+		D0E6AE25190CDAA200B49779 /* JSDTidyModel.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE22190CDAA200B49779 /* JSDTidyModel.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -259,6 +261,7 @@
 		D0E6AE16190C9FAC00B49779 /* HideDescriptionTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = HideDescriptionTemplate.pdf; sourceTree = "<group>"; };
 		D0E6AE17190C9FAC00B49779 /* ShowDescriptionTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ShowDescriptionTemplate.pdf; sourceTree = "<group>"; };
 		D0E6AE1F190CB34500B49779 /* PaneBottomShadow.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = PaneBottomShadow.tiff; sourceTree = "<group>"; };
+		D0E6AE23190CDAA200B49779 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/JSDTidyModel.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -357,6 +360,7 @@
 				D036E1D818F3D25E0009A9D4 /* Credits.rtf */,
 				D036E1DC18F3D25E0009A9D4 /* InfoPlist.strings */,
 				D036E1DE18F3D25E0009A9D4 /* Localizable.strings */,
+				D0E6AE22190CDAA200B49779 /* JSDTidyModel.strings */,
 			);
 			name = Base.lproj;
 			sourceTree = "<group>";
@@ -614,6 +618,7 @@
 				D0E6AE18190C9FAC00B49779 /* HideDescriptionTemplate.pdf in Resources */,
 				D08A7C9418D442FF00341DCB /* optionsInEffect.txt in Resources */,
 				D036E1EA18F3D25E0009A9D4 /* FirstRunHelper.xib in Resources */,
+				D0E6AE24190CDAA200B49779 /* JSDTidyModel.strings in Resources */,
 				D036E1EE18F3D25E0009A9D4 /* Localizable.strings in Resources */,
 				D0CCEE2918E9967B0052E56C /* Balthisar Tidy.help in Resources */,
 				D036E21118F3D2F20009A9D4 /* PHP.icns in Resources */,
@@ -640,6 +645,7 @@
 				D0E6AE19190C9FAC00B49779 /* HideDescriptionTemplate.pdf in Resources */,
 				D08A7C9518D442FF00341DCB /* optionsInEffect.txt in Resources */,
 				D036E1EB18F3D25E0009A9D4 /* FirstRunHelper.xib in Resources */,
+				D0E6AE25190CDAA200B49779 /* JSDTidyModel.strings in Resources */,
 				D036E1EF18F3D25E0009A9D4 /* Localizable.strings in Resources */,
 				D0CCEE2A18E9967B0052E56C /* Balthisar Tidy.help in Resources */,
 				D036E21218F3D2F20009A9D4 /* PHP.icns in Resources */,
@@ -851,6 +857,14 @@
 				D036E1E718F3D25E0009A9D4 /* Base */,
 			);
 			name = TidyDocument.xib;
+			sourceTree = "<group>";
+		};
+		D0E6AE22190CDAA200B49779 /* JSDTidyModel.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0E6AE23190CDAA200B49779 /* Base */,
+			);
+			name = JSDTidyModel.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

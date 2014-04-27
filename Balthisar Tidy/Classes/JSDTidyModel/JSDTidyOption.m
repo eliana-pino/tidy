@@ -319,7 +319,7 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSString*)localizedHumanReadableName
 {
-	return NSLocalizedString(([NSString stringWithFormat:@"tag-%@", self.name]), nil);
+	return NSLocalizedStringFromTable(([NSString stringWithFormat:@"tag-%@", self.name]), @"JSDTidyModel" ,nil);
 }
 
 
@@ -329,7 +329,7 @@
 - (NSAttributedString*)localizedHumanReadableDescription
 {
 	// parentheses around brackets required lest preprocessor get confused.
-	NSString *rawString = NSLocalizedString(([NSString stringWithFormat:@"description-%@", self.name]), nil);
+	NSString *rawString = NSLocalizedStringFromTable(([NSString stringWithFormat:@"description-%@", self.name]), @"JSDTidyModel", nil);
 	
 	NSAttributedString *outString;
 	
@@ -366,7 +366,7 @@
 - (NSString*)localizedHumanReadableCategory
 {
 	TidyConfigCategory temp = tidyOptGetCategory( [self createTidyOptionInstance:self.optionId] );
-	return NSLocalizedString(([NSString stringWithFormat:@"category-%u", temp]), nil);
+	return NSLocalizedStringFromTable(([NSString stringWithFormat:@"category-%u", temp]), @"JSDTidyModel", nil);
 }
 
 
