@@ -75,9 +75,16 @@
 		Essentially we're calling
 		[self errorFilter:Level:Line:Column:Message]
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+/* Compatability with original TidyLib -- doesn't allow localization of messages. */
 BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col, ctmbstr mssg )
 {
 	return [(__bridge JSDTidyModel*)tidyGetAppData(tdoc) errorFilter:tdoc Level:lvl Line:line Column:col Message:mssg];
+}
+
+/* Requires my modifications to TidyLib, allowing localization of the messages. */
+BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col, ctmbstr mssg, va_list args )
+{
+	return [(__bridge JSDTidyModel*)tidyGetAppData(tdoc) errorFilterWithLocalization:tdoc Level:lvl Line:line Column:col Message:mssg Arguments:args];
 }
 
 
@@ -766,6 +773,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 
 #pragma mark - Options Management - Instance Methods
 
+
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	optionsCopyFromModel
 		Copies all options from theDocument into our tidyOptions.
@@ -829,6 +837,8 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 
 
 #pragma mark - Options Management - Property Accessors
+
+
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	> optionsInEffect
 		If set, only options in the array will normally be used.
@@ -854,6 +864,7 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 
 
 #pragma mark - Options Management - Private Methods
+
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	optionsPopulateTidyOptions (private)
@@ -913,11 +924,29 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	TidyBuffer *outBuffer = malloc(sizeof(TidyBuffer));
 	tidyBufInit( outBuffer );
 	
-	
-	// Setup out out-of-class C function callback.
+
+	/*
+		Setup for using and out-of-class C function as a callback
+		from TidyLib in order to collect cleanup and diagnostic
+		information. The C function is defined near the top of
+		this file.
+	 */
+
 	tidySetAppData( newTidy, (__bridge void *)(self) );						// Need to send a message from outside self to self.
-	tidySetReportFilter( newTidy, (TidyReportFilter)&tidyCallbackFilter);	// Callback will go to this out-of-class C function.
-	
+
+	/* 
+		This version maintains compatability with NATIVE TidyLib.
+		I'll maintain this in source code just in case forks want
+		to stick to original TidyLib distributions.
+	 */
+	//tidySetReportFilter( newTidy, (TidyReportFilter)&tidyCallbackFilter);
+
+	/*
+		This version uses my modification to TidyLib allowing for
+		localization of the error strings. 
+	 */
+	tidySetReportFilter2( newTidy, (TidyReportFilter2)&tidyCallbackFilter2);
+
 	
 	// Setup the error buffer to catch errors here instead of stdout
 	TidyBuffer *errBuffer = malloc(sizeof(TidyBuffer));						// Allocate a buffer for our error text.
@@ -1027,6 +1056,42 @@ BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	
 	[_errorArray addObject:errorDict];
 	
+	return YES; // Always return yes otherwise _errorText will be surpressed by TidyLib.
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	errorFilterWithLocalization:Level:Line:Column:Message:Arguments
+		This is the REAL TidyError filter, and is called by the
+		standard C |tidyCallBackFilter2| function implemented at the
+		top of this file.
+
+		TidyLib doesn't maintain a structured list of all of its
+		errors so here we capture them one-by-one as Tidy tidy's.
+		In this way we build our own structured list.
+ 
+		We're localizing the string a couple of times, because the
+		message might arrive in the Message parameter, or it might
+		arrive as one of the args. For example, A lot of messages
+		are simply %s, and once the args are applied we want to
+		localize this single string. In other cases, e.g.,
+		"replacing %s by %s" we want to localize that message before
+		applying the args. This new string won't be found in the
+		.strings file, so it will be used as is.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (bool)errorFilterWithLocalization:(TidyDoc)tDoc Level:(TidyReportLevel)lvl Line:(uint)line Column:(uint)col Message:(ctmbstr)mssg Arguments:(va_list)args
+{
+	__strong NSMutableDictionary *errorDict = [[NSMutableDictionary alloc] init];
+
+	NSString *formatString = NSLocalizedString(@(mssg), nil);
+
+	errorDict[@"level"]   = @((int)lvl);	// lvl is a c enum
+	errorDict[@"line"]    = @(line);
+	errorDict[@"column"]  = @(col);
+	errorDict[@"message"] = NSLocalizedString([[NSString alloc] initWithFormat:formatString arguments:args], nil);
+
+	[_errorArray addObject:errorDict];
+
 	return YES; // Always return yes otherwise _errorText will be surpressed by TidyLib.
 }
 
