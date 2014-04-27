@@ -473,16 +473,7 @@
 	 */
 	if (![self.prefs[JSDKeyFirstRunComplete] boolValue])
 	{
-		if (!self.firstRun)
-		{
-			self.firstRun = [[FirstRunController alloc] initWithSteps:[self makeFirstRunSteps]];
-			self.firstRun.preferencesKeyName = JSDKeyFirstRunComplete;
-		}
-
-		if (self.firstRun)
-		{
-			[self.firstRun beginFirstRunSequence];
-		}
+		[self kickOffFirstRunSequence:nil];
 	}
 
 	/*
@@ -647,6 +638,26 @@
 
 #pragma mark - First-Run Support
 
+
+/*———————————————————————————————————————————————————————————————————*
+	kickOffFirstRunSequence
+		Kicks off the first run sequence. Exposed so we can handle
+		requests as the first responder.
+ *———————————————————————————————————————————————————————————————————*/
+- (IBAction)kickOffFirstRunSequence:(id)sender;
+{
+	self.firstRun = nil;
+	if (!self.firstRun)
+	{
+		self.firstRun = [[FirstRunController alloc] initWithSteps:[self makeFirstRunSteps]];
+		self.firstRun.preferencesKeyName = JSDKeyFirstRunComplete;
+	}
+
+	if (self.firstRun)
+	{
+		[self.firstRun beginFirstRunSequence];
+	}
+}
 
 /*———————————————————————————————————————————————————————————————————*
 	makeFirstRunSteps (private)

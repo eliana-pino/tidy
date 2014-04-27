@@ -49,4 +49,10 @@
  */
 @property (nonatomic, assign, readonly) NSString *tidyText;
 
+
+/**
+	Allow a menu item to trigger this.
+ */
+- (IBAction)kickOffFirstRunSequence:(id)sender;
+
 @end

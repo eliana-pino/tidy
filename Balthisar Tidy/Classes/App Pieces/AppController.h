@@ -43,6 +43,12 @@
 @interface AppController : NSObject <NSApplicationDelegate>
 
 /**
+	Allows binding to this property. Simply indicates if
+	more than zero documents are currently open.
+ */
+@property (readonly, nonatomic) BOOL atLeastOneDocumentIsOpen;
+
+/**
 	Responds to the user's wanting to show application preferences.
  */
 - (IBAction)showPreferences:(id)sender;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
@@ -237,9 +237,17 @@
                 <menuItem title="Help" id="103">
                     <menu key="submenu" title="Help" id="106">
                         <items>
-                            <menuItem title="Balthisar Tidy Help" keyEquivalent="?" id="111">
+                            <menuItem title="Balthisar Tidy Help" id="111">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="showHelp:" target="-1" id="122"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Show the New User Helper…" id="jyw-56-ssy">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="kickOffFirstRunSequence:" target="-1" id="7Bd-x5-Ogh"/>
+                                    <binding destination="236" name="enabled" keyPath="self.atLeastOneDocumentIsOpen" id="nxH-PH-2Lz"/>
                                 </connections>
                             </menuItem>
                         </items>
@@ -255,5 +263,6 @@
         </customObject>
         <customObject id="ZRX-oT-aUk"/>
         <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="PSU-Hb-JBe"/>
+        <userDefaultsController representsSharedInstance="YES" id="4tQ-eN-yZa"/>
     </objects>
 </document>

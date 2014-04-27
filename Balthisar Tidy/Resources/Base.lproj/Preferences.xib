@@ -179,9 +179,9 @@
                                             </textFieldCell>
                                         </textField>
                                         <button appearanceType="aqua" id="i8J-8l-hgd">
-                                            <rect key="frame" x="17" y="431" width="269" height="18"/>
+                                            <rect key="frame" x="17" y="431" width="294" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="check" title="Use input-encoding helper if necessary" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="CEA-MA-V3N">
+                                            <buttonCell key="cell" type="check" title="Use the input-encoding Helper if necessary" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="CEA-MA-V3N">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
@@ -203,9 +203,9 @@
                                             </textFieldCell>
                                         </textField>
                                         <button appearanceType="aqua" id="CX9-Fd-XEn">
-                                            <rect key="frame" x="17" y="359" width="257" height="18"/>
+                                            <rect key="frame" x="17" y="359" width="286" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="check" title="Show new user helper on next launch" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="1bF-hb-W5j">
+                                            <buttonCell key="cell" type="check" title="Show the New User Helper on next launch" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="1bF-hb-W5j">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>

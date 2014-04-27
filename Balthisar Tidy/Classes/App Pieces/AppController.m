@@ -94,4 +94,12 @@
 }
 
 
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	Indicates that at least one document is open.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (BOOL) atLeastOneDocumentIsOpen
+{
+	return [[[NSDocumentController sharedDocumentController] documents] count] > 0;
+}
+
 @end
