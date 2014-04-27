@@ -41,11 +41,6 @@
 "firstRun-buttonNext"	= "Next";
 
 
-/* Hovering texts for the Description show/hide button */
-"description-Hide"		= "Hide";
-"description-Show"		= "Show";
-
-
 /*
 	First-run helper.
 	See the TidyOption descriptions for an explanation of the RTF vs non-RTF text.

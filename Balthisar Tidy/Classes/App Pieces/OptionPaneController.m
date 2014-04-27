@@ -47,11 +47,10 @@
 
 @property (weak, nonatomic) IBOutlet NSTextField *theDescription;	// Pointer to the description field.
 
-@property (assign, nonatomic) BOOL theDescriptionIsHidden;					// Indicates whether or not theDescription is hidden.
 @property (strong, nonatomic) NSLayoutConstraint *theDescriptionConstraint;	// The layout constraint we will apply to theDescription.
 
 
-- (IBAction)labelHideClicked:(NSTextField *)sender;
+- (IBAction)toggleDescription:(NSButton *)sender;
 
 @end
 
@@ -104,7 +103,6 @@
 	// Setup some changing labels.
 	self.theHidingLabel.stringValue = @"";
 	self.theHidingLabel.hoverStringValue = NSLocalizedString(@"description-Hide", nil);
-	self.theDescriptionIsHidden = NO;
 	self.theDescriptionConstraint = [NSLayoutConstraint constraintWithItem:self.theDescription
 																 attribute:NSLayoutAttributeHeight
 																 relatedBy:NSLayoutRelationEqual
@@ -113,6 +111,7 @@
 																multiplier:1.0
 																  constant:0.0];
 }
+
 
 #pragma mark - Setup
 
@@ -324,24 +323,18 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	labelHideClicked
+	toggleDescription
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (IBAction)labelHideClicked:(NSTextField *)sender
+- (IBAction)toggleDescription:(NSButton *)sender
 {
-	if (self.theDescriptionIsHidden)
+	if (sender.state)
 	{
-		[self.theDescription removeConstraint:self.theDescriptionConstraint];
-		self.theDescriptionIsHidden = NO;
-		self.theHidingLabel.hoverStringValue = NSLocalizedString(@"description-Hide", nil);
+		[self.theDescription addConstraint:self.theDescriptionConstraint];
 	}
 	else
 	{
-		[self.theDescription addConstraint:self.theDescriptionConstraint];
-		self.theDescriptionIsHidden = YES;
-		self.theHidingLabel.hoverStringValue = NSLocalizedString(@"description-Show", nil);
+		[self.theDescription removeConstraint:self.theDescriptionConstraint];
 	}
-
-	self.theHidingLabel.stringValue = @"";
 }
 
 

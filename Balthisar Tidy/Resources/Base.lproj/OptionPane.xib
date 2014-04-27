@@ -93,10 +93,13 @@
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="XaC-w5-Lwz">
                     <rect key="frame" x="0.0" y="7" width="32" height="15"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="HideDescriptionTemplate" imagePosition="overlaps" alignment="center" alternateImage="ShowDescriptionTemplate" controlSize="small" state="on" imageScaling="proportionallyDown" inset="2" id="HBo-48-vTa">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="HideDescriptionTemplate" imagePosition="overlaps" alignment="center" alternateImage="ShowDescriptionTemplate" controlSize="small" imageScaling="proportionallyDown" inset="2" id="HBo-48-vTa">
+                        <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="toggleDescription:" target="-2" id="707-01-ImV"/>
+                    </connections>
                 </button>
                 <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="ASB-I3-wPl">
                     <rect key="frame" x="31" y="5" width="38" height="19"/>
