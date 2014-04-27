@@ -1083,12 +1083,14 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 {
 	__strong NSMutableDictionary *errorDict = [[NSMutableDictionary alloc] init];
 
-	NSString *formatString = NSLocalizedString(@(mssg), nil);
+	NSString *formatString = NSLocalizedStringFromTable(@(mssg), @"JSDTidyModel", nil);
+	NSString *intermediateString = [[NSString alloc] initWithFormat:formatString arguments:args];
+	NSString *messageString = NSLocalizedStringFromTable(intermediateString, @"JSDTidyModel", nil);
 
 	errorDict[@"level"]   = @((int)lvl);	// lvl is a c enum
 	errorDict[@"line"]    = @(line);
 	errorDict[@"column"]  = @(col);
-	errorDict[@"message"] = NSLocalizedString([[NSString alloc] initWithFormat:formatString arguments:args], nil);
+	errorDict[@"message"] = messageString;
 
 	[_errorArray addObject:errorDict];
 
