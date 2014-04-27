@@ -117,14 +117,20 @@
                 <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="ASB-I3-wPl">
                     <rect key="frame" x="31" y="5" width="38" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <popUpButtonCell key="cell" type="smallSquare" bezelStyle="smallSquare" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="qnG-dD-b9P" id="7sI-Yc-GHL">
+                    <popUpButtonCell key="cell" type="smallSquare" bezelStyle="smallSquare" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" pullsDown="YES" id="7sI-Yc-GHL">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="smallSystem"/>
                         <menu key="menu" title="OtherViews" id="R7n-xJ-CI7">
                             <items>
                                 <menuItem state="on" image="NSActionTemplate" hidden="YES" id="qnG-dD-b9P"/>
-                                <menuItem title="Item 2" id="Jxi-vi-hoO"/>
-                                <menuItem title="Item 3" id="vad-9M-vZT"/>
+                                <menuItem title="Reset options to factory defaults…" id="Jxi-vi-hoO"/>
+                                <menuItem title="Reset options to defaults in Preferences" id="yeA-oT-7p5"/>
+                                <menuItem title="Save these option settings to Preferences…" id="vad-9M-vZT"/>
+                                <menuItem isSeparatorItem="YES" id="srj-Ib-rQy"/>
+                                <menuItem title="Show friendly option names" id="Nsq-X3-5F7"/>
+                                <menuItem title="Show options in groups" id="3pF-Gd-AlJ"/>
+                                <menuItem isSeparatorItem="YES" id="6cm-3G-Q97"/>
+                                <menuItem title="Save a Unix config file with these options…" id="0HY-2M-G1v"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
