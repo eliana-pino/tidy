@@ -408,6 +408,7 @@
 		causes the empty document to go through processTidy one time.
 	 */
 	[self.optionController.tidyDocument takeOptionValuesFromDefaults:defaults];
+	[self.optionController.theTable reloadData];
 
 	
 	/* 
@@ -428,7 +429,6 @@
 		initial value for a blank document. If we're opening a
 		document the event system will replace it forthwith.
 	 */
-	//[[self tidyView] setString:[[self tidyProcess] tidyText]];
 	self.tidyView.string = self.tidyProcess.tidyText;
 	
 	/*
