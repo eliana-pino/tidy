@@ -27,13 +27,7 @@
 
  **************************************************************************************************/
 
-#import <Cocoa/Cocoa.h>
 #import "AppController.h"
-#import "PreferenceController.h"
-
-#if INCLUDE_SPARKLE == 1
-#import <Sparkle/Sparkle.h>
-#endif
 
 
 #pragma mark - CATEGORY - Non-Public

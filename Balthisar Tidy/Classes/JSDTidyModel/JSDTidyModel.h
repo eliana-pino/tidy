@@ -29,6 +29,8 @@
 #import <Foundation/Foundation.h>
 #import "tidy.h"
 #import "tidyenum.h"
+#import "buffio.h"
+#import "config.h"
 
 @class JSDTidyOption;
 @class JSDTidyModel;

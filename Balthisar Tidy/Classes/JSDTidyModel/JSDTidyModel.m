@@ -28,8 +28,6 @@
 
 #import "JSDTidyModel.h"
 #import "JSDTidyOption.h"
-#import "buffio.h"
-#import "config.h"
 
 
 #pragma mark - CATEGORY - Non-Public

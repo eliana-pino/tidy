@@ -29,6 +29,9 @@
 #import <Cocoa/Cocoa.h>
 #import "JSDTidyModel.h"
 #import "OptionPaneController.h"
+#import "PreferenceController.h"
+#import "NSTextView+JSDExtensions.h"
+#import "FirstRunController.h"
 
 /**
 	TidyDocument manages the user interaction between the document

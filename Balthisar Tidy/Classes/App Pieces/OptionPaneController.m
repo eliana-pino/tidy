@@ -34,7 +34,7 @@
  **************************************************************************************************/
 
 #import "OptionPaneController.h"
-#import "JSDTextField.h"
+
 
 #pragma mark - CATEGORY - Non-Public
 
@@ -42,8 +42,6 @@
 @interface OptionPaneController ()
 
 @property (weak, nonatomic) IBOutlet NSView *View;					// Pointer to the NIB's |View|.
-
-@property (weak) IBOutlet JSDTextField *theHidingLabel;				// Pointer to the label that hides the description.
 
 @property (weak, nonatomic) IBOutlet NSTextField *theDescription;	// Pointer to the description field.
 
@@ -101,8 +99,6 @@
 	[self.theTable setRowHeight:20.0f];
 
 	// Setup some changing labels.
-	self.theHidingLabel.stringValue = @"";
-	self.theHidingLabel.hoverStringValue = NSLocalizedString(@"description-Hide", nil);
 	self.theDescriptionConstraint = [NSLayoutConstraint constraintWithItem:self.theDescription
 																 attribute:NSLayoutAttributeHeight
 																 relatedBy:NSLayoutRelationEqual

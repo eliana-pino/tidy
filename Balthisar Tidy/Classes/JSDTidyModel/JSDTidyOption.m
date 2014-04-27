@@ -27,10 +27,8 @@
  **************************************************************************************************/
 
 #import "JSDTidyOption.h"
-#import "buffio.h"
-#import "config.h"
+#import "JSDTidyModel.h"
 
-@class JSDTidyModel;
 
 #pragma mark - IMPLEMENTATION
 

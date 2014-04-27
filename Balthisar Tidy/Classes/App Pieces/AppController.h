@@ -28,9 +28,11 @@
  **************************************************************************************************/
 
 #import <Cocoa/Cocoa.h>
+#import "PreferenceController.h"
 
-
-@class PreferenceController;
+#if INCLUDE_SPARKLE == 1
+#import <Sparkle/Sparkle.h>
+#endif
 
 /**
 	Main application controller and delegate.

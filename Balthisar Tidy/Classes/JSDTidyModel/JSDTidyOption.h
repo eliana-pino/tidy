@@ -27,9 +27,10 @@
  **************************************************************************************************/
 
 #import <Foundation/Foundation.h>
-#import "JSDTidyModel.h"
+#import "buffio.h"
+#import "config.h"
 
-//@class JSDTidyModel;
+@class JSDTidyModel;
 
 /**
 	Instances of JSDTidyOption belong to a sharedTidyModel, but are largely self aware

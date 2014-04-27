@@ -36,6 +36,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "OptionPaneController.h"
+#import "JSDTidyModel.h"
 
 
 #pragma mark - Some defines

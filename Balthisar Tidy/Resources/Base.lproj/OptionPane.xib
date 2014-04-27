@@ -110,6 +110,7 @@
                         <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
+                    <accessibility description="Toggle the visibility of the Tidy option description."/>
                     <connections>
                         <action selector="toggleDescription:" target="-2" id="707-01-ImV"/>
                     </connections>

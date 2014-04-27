@@ -62,10 +62,6 @@
 
 
 #import "TidyDocument.h"
-#import "PreferenceController.h"
-#import "JSDTidyModel.h"
-#import "NSTextView+JSDExtensions.h"
-#import "FirstRunController.h"
 
 
 #pragma mark - CATEGORY - Non-Public

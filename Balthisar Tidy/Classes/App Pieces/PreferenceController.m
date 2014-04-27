@@ -33,9 +33,8 @@
 
  **************************************************************************************************/
 
-#import <Cocoa/Cocoa.h>
 #import "PreferenceController.h"
-#import "JSDTidyModel.h"
+
 
 #if INCLUDE_SPARKLE == 1
 #import <Sparkle/Sparkle.h>
