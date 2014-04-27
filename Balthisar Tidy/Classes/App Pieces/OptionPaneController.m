@@ -323,14 +323,21 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (IBAction)toggleDescription:(NSButton *)sender
 {
-	if (sender.state)
-	{
-		[self.theDescription addConstraint:self.theDescriptionConstraint];
-	}
-	else
-	{
-		[self.theDescription removeConstraint:self.theDescriptionConstraint];
-	}
+	[_View layoutSubtreeIfNeeded];
+	[NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+		[context setAllowsImplicitAnimation: YES];
+		// This little function makes a nice acceleration curved based on the height.
+		context.duration = pow(1 / self.theDescription.intrinsicContentSize.height,1/3) / 5;
+		if (sender.state)
+		{
+			[self.theDescription addConstraint:self.theDescriptionConstraint];
+		}
+		else
+		{
+			[self.theDescription removeConstraint:self.theDescriptionConstraint];
+		}
+		[_View layoutSubtreeIfNeeded];
+	} completionHandler:^{}];
 }
 
 
