@@ -41,14 +41,33 @@
 
 @interface OptionPaneController ()
 
-@property (weak, nonatomic) IBOutlet NSView *View;					// Pointer to the NIB's |View|.
-
-@property (weak, nonatomic) IBOutlet NSTextField *theDescription;	// Pointer to the description field.
-
-@property (strong, nonatomic) NSLayoutConstraint *theDescriptionConstraint;	// The layout constraint we will apply to theDescription.
+/* Major interface item outlets */
+@property (nonatomic, weak) IBOutlet NSView *View;							// Pointer to the NIB's |View|.
+@property (nonatomic, weak) IBOutlet NSTextField *theDescription;			// Pointer to the description field.
 
 
+/* Miscellaneous properties */
+@property (nonatomic, strong) NSLayoutConstraint *theDescriptionConstraint;	// The layout constraint we will apply to theDescription.
+@property (nonatomic, assign) BOOL isInPreferencesView;
+
+
+/* Gradient button outlets */
+@property (nonatomic, weak) IBOutlet NSMenuItem *menuItemResetOptionsToFactoryDefaults;
+@property (nonatomic, weak) IBOutlet NSMenuItem *menuItemResetOptionsToPreferences;
+@property (nonatomic, weak) IBOutlet NSMenuItem *menuItemSaveOptionsToPreferemces;
+@property (nonatomic, weak) IBOutlet NSMenuItem *menuItemShowFriendlyOptionNames;
+@property (nonatomic, weak) IBOutlet NSMenuItem *menuItemShowOptionsInGroups;
+@property (nonatomic, weak) IBOutlet NSMenuItem *menuItemSaveOptionsToUnixConfigFile;
+
+
+/* Gradient button actions */
 - (IBAction)toggleDescription:(NSButton *)sender;
+- (IBAction)handleResetOptionsToFactoryDefaults:(id)sender;
+- (IBAction)handleResetOptionsToPreferences:(id)sender;
+- (IBAction)handleSaveOptionsToPreferemces:(id)sender;
+- (IBAction)handleShowFriendlyOptionNames:(id)sender;
+- (IBAction)handleShowOptionsInGroups:(id)sender;
+- (IBAction)handleSaveOptionsToUnixConfigFile:(id)sender;
 
 @end
 
@@ -63,11 +82,12 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	init - designated initializer
+	initInternal - designated initializer (private)
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (id)init
+- (id)initInternal
 {
 	self = [super init];
+
 	if (self)
 	{
 		[[NSBundle mainBundle] loadNibNamed:@"OptionPane" owner:self topLevelObjects:nil];
@@ -75,6 +95,26 @@
 		_tidyDocument = [[JSDTidyModel alloc] init];
 	}
 	return self;
+
+}
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	init - designated initializer
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (id)init
+{
+	self.isInPreferencesView = NO;
+	return [self initInternal];
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	initInPreferencesView
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (id)initInPreferencesView
+{
+	self.isInPreferencesView = YES;
+	return [self initInternal];
 }
 
 
@@ -106,6 +146,17 @@
 																 attribute:NSLayoutAttributeNotAnAttribute
 																multiplier:1.0
 																  constant:0.0];
+
+	// Setup the isInPreferencesView characteristics
+	if (self.isInPreferencesView)
+	{
+		[[self menuItemResetOptionsToPreferences] setHidden:YES];
+		[[self menuItemSaveOptionsToPreferemces] setHidden:YES];
+	}
+	else
+	{
+		[[self menuItemResetOptionsToFactoryDefaults] setHidden:YES];
+	}
 }
 
 
@@ -141,6 +192,63 @@
 {
 	_optionsInEffect = optionsInEffect;
 	self.tidyDocument.optionsInEffect = optionsInEffect;
+}
+
+
+#pragma mark - Action Menu Events
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	handleResetOptionsToFactoryDefaults
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)handleResetOptionsToFactoryDefaults:(id)sender
+{
+
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	handleResetOptionsToPreferences
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)handleResetOptionsToPreferences:(id)sender
+{
+
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	handleSaveOptionsToPreferemces
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)handleSaveOptionsToPreferemces:(id)sender
+{
+
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	handleShowFriendlyOptionNames
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)handleShowFriendlyOptionNames:(id)sender
+{
+
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	handleShowOptionsInGroups
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)handleShowOptionsInGroups:(id)sender
+{
+
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	handleSaveOptionsToUnixConfigFile
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)handleSaveOptionsToUnixConfigFile:(id)sender
+{
+
 }
 
 
