@@ -118,6 +118,13 @@ typedef enum : NSInteger
 @property (readonly, nonatomic, strong) NSArray *optionsInEffect;
 
 /**
+	Exposes the tidy document. It really shouldn't be used
+	for much, but we will use it to set options externally.
+  */
+@property (readonly, nonatomic, assign) JSDTidyModel *tidyPreferencesDocument;
+
+
+/**
 	Contains the count of preferences panes that are available. Offered
 	mostly for AppleScript support, and that is mainly offered so that
 	I can take screenshots without having to use UI scripting.

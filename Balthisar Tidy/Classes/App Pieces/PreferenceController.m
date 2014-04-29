@@ -257,6 +257,18 @@
 }
 
 
+#pragma mark - Document Exposure
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	tidyPreferencesDocument
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (JSDTidyModel*) tidyPreferencesDocument
+{
+	return self.optionController.tidyDocument;
+}
+
+
 #pragma mark - AppleScript properties support
 
 
