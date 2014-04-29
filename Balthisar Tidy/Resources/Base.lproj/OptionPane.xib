@@ -10,7 +10,7 @@
                 <outlet property="View" destination="21" id="EGf-h1-qXt"/>
                 <outlet property="menuItemResetOptionsToFactoryDefaults" destination="Jxi-vi-hoO" id="dMR-u1-9Uy"/>
                 <outlet property="menuItemResetOptionsToPreferences" destination="yeA-oT-7p5" id="qXD-jX-Dwv"/>
-                <outlet property="menuItemSaveOptionsToPreferemces" destination="vad-9M-vZT" id="Tqb-i1-YF8"/>
+                <outlet property="menuItemSaveOptionsToPreferences" destination="vad-9M-vZT" id="FmQ-DK-7td"/>
                 <outlet property="menuItemSaveOptionsToUnixConfigFile" destination="0HY-2M-G1v" id="ZzG-jo-DgE"/>
                 <outlet property="menuItemShowFriendlyOptionNames" destination="Nsq-X3-5F7" id="F3b-mm-6Gr"/>
                 <outlet property="menuItemShowOptionsInGroups" destination="3pF-Gd-AlJ" id="TQC-4Z-1f5"/>
@@ -158,7 +158,7 @@
                                 </menuItem>
                                 <menuItem title="Save these option settings to Preferences…" id="vad-9M-vZT">
                                     <connections>
-                                        <action selector="handleSaveOptionsToPreferemces:" target="-2" id="ijw-rk-6ct"/>
+                                        <action selector="handleSaveOptionsToPreferences:" target="-2" id="q48-Sg-CPF"/>
                                     </connections>
                                 </menuItem>
                                 <menuItem isSeparatorItem="YES" id="srj-Ib-rQy"/>

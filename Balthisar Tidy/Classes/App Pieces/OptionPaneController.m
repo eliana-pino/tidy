@@ -54,7 +54,7 @@
 /* Gradient button outlets */
 @property (nonatomic, weak) IBOutlet NSMenuItem *menuItemResetOptionsToFactoryDefaults;
 @property (nonatomic, weak) IBOutlet NSMenuItem *menuItemResetOptionsToPreferences;
-@property (nonatomic, weak) IBOutlet NSMenuItem *menuItemSaveOptionsToPreferemces;
+@property (nonatomic, weak) IBOutlet NSMenuItem *menuItemSaveOptionsToPreferences;
 @property (nonatomic, weak) IBOutlet NSMenuItem *menuItemShowFriendlyOptionNames;
 @property (nonatomic, weak) IBOutlet NSMenuItem *menuItemShowOptionsInGroups;
 @property (nonatomic, weak) IBOutlet NSMenuItem *menuItemSaveOptionsToUnixConfigFile;
@@ -64,7 +64,7 @@
 - (IBAction)toggleDescription:(NSButton *)sender;
 - (IBAction)handleResetOptionsToFactoryDefaults:(id)sender;
 - (IBAction)handleResetOptionsToPreferences:(id)sender;
-- (IBAction)handleSaveOptionsToPreferemces:(id)sender;
+- (IBAction)handleSaveOptionsToPreferences:(id)sender;
 - (IBAction)handleShowFriendlyOptionNames:(id)sender;
 - (IBAction)handleShowOptionsInGroups:(id)sender;
 - (IBAction)handleSaveOptionsToUnixConfigFile:(id)sender;
@@ -151,7 +151,7 @@
 	if (self.isInPreferencesView)
 	{
 		[[self menuItemResetOptionsToPreferences] setHidden:YES];
-		[[self menuItemSaveOptionsToPreferemces] setHidden:YES];
+		[[self menuItemSaveOptionsToPreferences] setHidden:YES];
 	}
 	else
 	{
@@ -214,22 +214,28 @@
 	[JSDTidyModel addDefaultsToDictionary:tidyFactoryDefaults fromArray:self.tidyDocument.optionsInEffect];
 
 	[self.tidyDocument optionsCopyFromDictionary:tidyFactoryDefaults[JSDKeyTidyTidyOptionsKey]];
+
+	[self.theTable reloadData];
 }
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	handleResetOptionsToPreferences
+		- tell the tidyDocument to use the stored defaults.
+		- notification system should handle the rest.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)handleResetOptionsToPreferences:(id)sender
 {
+	[self.tidyDocument takeOptionValuesFromDefaults:[NSUserDefaults standardUserDefaults]];
 
+	[self.theTable reloadData];
 }
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	handleSaveOptionsToPreferemces
+	handleSaveOptionsToPreferences
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)handleSaveOptionsToPreferemces:(id)sender
+- (void)handleSaveOptionsToPreferences:(id)sender
 {
 
 }
