@@ -51,4 +51,4 @@
 
 "popOverExplainSplitters"				= "*Splitters exist between all of the panes so you can control the size of the panes that you want to focus on or ignore.";
 
-"popOverExplainStart"					= "*Thanks for your patience. This brief tutorial is complete. After you press {\\f0 Done} you will be able to use Balthisar Tidy.\\par To see this introduction again, tick “Show new user helper on next launch” in Preferences and then restart Balthisar Tidy or open a document.";
+"popOverExplainStart"					= "*Thanks for your patience. This brief tutorial is complete. After you press {\\f0 Done} you will be able to use Balthisar Tidy.\\par To see this introduction again, choose “Show the New User Helper…” in the Help menu.";
