@@ -178,7 +178,7 @@
 {
 	if (![self optionController])
 	{
-		self.optionController = [[OptionPaneController alloc] init];
+		self.optionController = [[OptionPaneController alloc] initInPreferencesView];
 	}
 			
 	self.optionController.optionsInEffect = self.optionsInEffect;
