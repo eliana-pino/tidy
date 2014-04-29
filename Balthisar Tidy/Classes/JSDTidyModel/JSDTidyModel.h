@@ -186,7 +186,7 @@
 /**
 	The `tidyOptions` structure is a dictionary of keys=>tidyOption,
 	where the key is the built-in TidyOption name, and tidyOption is
-	and instance of tidyOption for that key.
+	an instance of tidyOption for that key.
  */
 @property (strong, readonly, nonatomic) NSDictionary *tidyOptions;
 
