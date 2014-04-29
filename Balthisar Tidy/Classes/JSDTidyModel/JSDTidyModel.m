@@ -1330,8 +1330,8 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 		[self.tidyOptions[optionName] setOptionValue:[myString copy]];
 	}
-	
-	[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyOptionChanged object:self];
+
+	[self notifyTidyModelOptionChanged:nil];
 	
 	[self processTidyInThread];
 }
