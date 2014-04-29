@@ -200,10 +200,20 @@
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	handleResetOptionsToFactoryDefaults
+		- get factory default values for all optionsInEffect
+		- set the tidyDocument to those.
+		- notification system will handle the rest:
+			- the tidyDocument will send a notification that the
+			  implementor (the PreferenceController) is responsible
+			  for detecting.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)handleResetOptionsToFactoryDefaults:(id)sender
 {
+	NSMutableDictionary *tidyFactoryDefaults = [[NSMutableDictionary alloc] init];
 
+	[JSDTidyModel addDefaultsToDictionary:tidyFactoryDefaults fromArray:self.tidyDocument.optionsInEffect];
+
+	[self.tidyDocument optionsCopyFromDictionary:tidyFactoryDefaults[JSDKeyTidyTidyOptionsKey]];
 }
 
 
