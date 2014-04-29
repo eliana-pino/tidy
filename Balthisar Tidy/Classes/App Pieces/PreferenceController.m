@@ -302,10 +302,6 @@
 - (void)handleTidyOptionChange:(NSNotification *)note
 {
 	[[[self optionController] tidyDocument] writeOptionValuesWithDefaults:[NSUserDefaults standardUserDefaults]];
-
-	// invalidate the table data in case one or more options changed
-	// as a result of something besides user interaction.
-	[self.optionController.theTable reloadData];
 }
 
 @end
