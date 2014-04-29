@@ -8,6 +8,12 @@
         <customObject id="-2" userLabel="File's Owner" customClass="OptionPaneController">
             <connections>
                 <outlet property="View" destination="21" id="EGf-h1-qXt"/>
+                <outlet property="menuItemResetOptionsToFactoryDefaults" destination="Jxi-vi-hoO" id="dMR-u1-9Uy"/>
+                <outlet property="menuItemResetOptionsToPreferences" destination="yeA-oT-7p5" id="qXD-jX-Dwv"/>
+                <outlet property="menuItemSaveOptionsToPreferemces" destination="vad-9M-vZT" id="Tqb-i1-YF8"/>
+                <outlet property="menuItemSaveOptionsToUnixConfigFile" destination="0HY-2M-G1v" id="ZzG-jo-DgE"/>
+                <outlet property="menuItemShowFriendlyOptionNames" destination="Nsq-X3-5F7" id="F3b-mm-6Gr"/>
+                <outlet property="menuItemShowOptionsInGroups" destination="3pF-Gd-AlJ" id="TQC-4Z-1f5"/>
                 <outlet property="theDescription" destination="Jr5-JD-RhE" id="E4I-qT-f9L"/>
                 <outlet property="theTable" destination="rLn-af-rHD" id="ZCz-4k-phA"/>
             </connections>
@@ -140,14 +146,38 @@
                         <menu key="menu" title="OtherViews" id="R7n-xJ-CI7">
                             <items>
                                 <menuItem state="on" image="NSActionTemplate" hidden="YES" id="qnG-dD-b9P"/>
-                                <menuItem title="Reset options to factory defaults…" id="Jxi-vi-hoO"/>
-                                <menuItem title="Reset options to defaults in Preferences" id="yeA-oT-7p5"/>
-                                <menuItem title="Save these option settings to Preferences…" id="vad-9M-vZT"/>
+                                <menuItem title="Reset options to factory defaults…" id="Jxi-vi-hoO">
+                                    <connections>
+                                        <action selector="handleResetOptionsToFactoryDefaults:" target="-2" id="Gtn-m8-4wc"/>
+                                    </connections>
+                                </menuItem>
+                                <menuItem title="Reset options to defaults in Preferences" id="yeA-oT-7p5">
+                                    <connections>
+                                        <action selector="handleResetOptionsToPreferences:" target="-2" id="faU-e8-tOF"/>
+                                    </connections>
+                                </menuItem>
+                                <menuItem title="Save these option settings to Preferences…" id="vad-9M-vZT">
+                                    <connections>
+                                        <action selector="handleSaveOptionsToPreferemces:" target="-2" id="ijw-rk-6ct"/>
+                                    </connections>
+                                </menuItem>
                                 <menuItem isSeparatorItem="YES" id="srj-Ib-rQy"/>
-                                <menuItem title="Show friendly option names" id="Nsq-X3-5F7"/>
-                                <menuItem title="Show options in groups" id="3pF-Gd-AlJ"/>
+                                <menuItem title="Show friendly option names" id="Nsq-X3-5F7">
+                                    <connections>
+                                        <action selector="handleShowFriendlyOptionNames:" target="-2" id="DHs-fv-kMh"/>
+                                    </connections>
+                                </menuItem>
+                                <menuItem title="Show options in groups" id="3pF-Gd-AlJ">
+                                    <connections>
+                                        <action selector="handleShowOptionsInGroups:" target="-2" id="Iuw-ha-96B"/>
+                                    </connections>
+                                </menuItem>
                                 <menuItem isSeparatorItem="YES" id="6cm-3G-Q97"/>
-                                <menuItem title="Save a Unix config file with these options…" id="0HY-2M-G1v"/>
+                                <menuItem title="Save a Unix config file with these options…" id="0HY-2M-G1v">
+                                    <connections>
+                                        <action selector="handleSaveOptionsToUnixConfigFile:" target="-2" id="QTh-n6-WMY"/>
+                                    </connections>
+                                </menuItem>
                             </items>
                         </menu>
                     </popUpButtonCell>
