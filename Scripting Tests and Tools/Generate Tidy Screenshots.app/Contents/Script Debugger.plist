@@ -20,7 +20,7 @@
 		<real>0.80000001192092896</real>
 		<key>viewControllers</key>
 		<dict>
-			<key>2D4C45F1-0D07-4A8D-BAAA-675FC72924A7-313-000004899CF52A0B</key>
+			<key>B2991092-9B70-413B-AA5F-78B41D88BB6D-27078-00004B78D33D8AE6</key>
 			<dict>
 				<key>debuggerViewState</key>
 				<dict>
@@ -45,77 +45,26 @@
 					<dict>
 						<key>positions</key>
 						<dict>
-							<key>3</key>
-							<array>
-								<integer>294</integer>
-								<integer>374</integer>
-								<integer>149</integer>
-							</array>
 							<key>5</key>
 							<array>
-								<integer>274</integer>
-								<integer>115</integer>
-								<integer>350</integer>
-								<integer>90</integer>
-								<integer>140</integer>
+								<integer>240</integer>
+								<integer>101</integer>
+								<integer>305</integer>
+								<integer>80</integer>
+								<integer>122</integer>
 							</array>
 						</dict>
 					</dict>
 					<key>resultState</key>
 					<dict>
-						<key>explorerState</key>
-						<dict>
-							<key>dividerPos</key>
-							<real>333.33334350585938</real>
-							<key>scope2.changedItems</key>
-							<integer>1</integer>
-							<key>scope2.emptyElements</key>
-							<integer>0</integer>
-							<key>scope2.filledElements</key>
-							<integer>1</integer>
-							<key>scope2.props</key>
-							<integer>1</integer>
-							<key>scope2.unchangedItems</key>
-							<integer>1</integer>
-							<key>showScopeBar</key>
-							<integer>1</integer>
-						</dict>
 						<key>modes</key>
 						<array>
 							<string>mode.best</string>
 						</array>
 						<key>positions2</key>
-						<dict>
-							<key>positions</key>
-							<dict/>
-						</dict>
+						<dict/>
 						<key>prettyPrint</key>
 						<false/>
-						<key>textState</key>
-						<dict>
-							<key>text</key>
-							<dict>
-								<key>LNSSelection</key>
-								<array>
-									<dict>
-										<key>length</key>
-										<integer>0</integer>
-										<key>location</key>
-										<integer>3</integer>
-									</dict>
-								</array>
-								<key>LNSTextViewShowInvisibles</key>
-								<integer>0</integer>
-								<key>LNSTextViewShowSpaces</key>
-								<integer>0</integer>
-								<key>LNSTextViewShowTabStops</key>
-								<integer>0</integer>
-								<key>LNSTextViewWrapLines</key>
-								<integer>1</integer>
-								<key>LNSVisibleRect</key>
-								<string>{{0, 0}, {662, 249}}</string>
-							</dict>
-						</dict>
 					</dict>
 					<key>stackVisible</key>
 					<true/>
@@ -138,32 +87,7 @@
 					</dict>
 				</dict>
 				<key>eventLogHeight</key>
-				<real>201</real>
-				<key>eventLogViewState</key>
-				<dict>
-					<key>format</key>
-					<string>EventLogScopeBar_Source</string>
-					<key>resultState</key>
-					<dict>
-						<key>modes</key>
-						<array>
-							<string>mode.best</string>
-						</array>
-						<key>positions2</key>
-						<dict>
-							<key>positions</key>
-							<dict/>
-						</dict>
-						<key>prettyPrint</key>
-						<false/>
-					</dict>
-					<key>resultViewerWidth</key>
-					<real>410</real>
-					<key>scopeVisible</key>
-					<true/>
-					<key>showResultViewer</key>
-					<false/>
-				</dict>
+				<real>174</real>
 				<key>inspectorsViewState</key>
 				<dict>
 					<key>applications</key>
@@ -181,9 +105,9 @@
 						<dict>
 							<key>3</key>
 							<array>
-								<integer>312</integer>
-								<integer>285</integer>
-								<integer>282</integer>
+								<integer>311</integer>
+								<integer>283</integer>
+								<integer>281</integer>
 							</array>
 						</dict>
 					</dict>
@@ -209,7 +133,7 @@
 					</dict>
 				</dict>
 				<key>mainSplitPosition</key>
-				<real>678</real>
+				<real>440</real>
 				<key>modeIdentifier</key>
 				<string>tab.debug</string>
 				<key>resourcesViewState</key>
@@ -220,8 +144,8 @@
 						<dict>
 							<key>2</key>
 							<array>
-								<integer>425</integer>
-								<integer>441</integer>
+								<integer>298</integer>
+								<integer>309</integer>
 							</array>
 							<key>3</key>
 							<array>
@@ -249,7 +173,7 @@
 								<key>length</key>
 								<integer>0</integer>
 								<key>location</key>
-								<integer>1087</integer>
+								<integer>5524</integer>
 							</dict>
 						</array>
 						<key>LNSTextViewShowInvisibles</key>
@@ -261,34 +185,34 @@
 						<key>LNSTextViewWrapLines</key>
 						<false/>
 						<key>LNSVisibleRect</key>
-						<string>{{0, 716}, {939, 784}}</string>
+						<string>{{0, 2156}, {707, 872}}</string>
 						<key>ShowLineNumbers</key>
 						<false/>
 						<key>showCodeCoverage</key>
 						<true/>
 					</dict>
 					<key>instanceID</key>
-					<string>21308FAD-BD84-4CE1-9F8C-FA6C7BEE21B5-313-0000049DC329F689</string>
+					<string>E499A6A4-F9CC-41BC-BCE9-A7FE29418E70-27078-00004B7C80B72707</string>
 					<key>resultBarVisible</key>
 					<false/>
 				</dict>
 				<key>showEventLog</key>
-				<true/>
+				<false/>
 				<key>tabHeights</key>
 				<dict>
 					<key>tab.bps</key>
 					<real>433</real>
 					<key>tab.debug</key>
-					<real>439</real>
+					<real>433</real>
 					<key>tab.rsrcs</key>
 					<real>433</real>
 				</dict>
 				<key>tabsHidden</key>
 				<false/>
 				<key>windowControllerID</key>
-				<string>2D4C45F1-0D07-4A8D-BAAA-675FC72924A7-313-000004899CF52A0B</string>
+				<string>B2991092-9B70-413B-AA5F-78B41D88BB6D-27078-00004B78D33D8AE6</string>
 				<key>windowFrame</key>
-				<string>576 226 1659 1086 0 0 2560 1418 </string>
+				<string>45 438 1189 965 0 0 2560 1418 </string>
 			</dict>
 		</dict>
 		<key>windowControllers</key>
@@ -297,13 +221,13 @@
 				<key>controllerClass</key>
 				<string>ScriptWindowController</string>
 				<key>controllerID</key>
-				<string>2D4C45F1-0D07-4A8D-BAAA-675FC72924A7-313-000004899CF52A0B</string>
+				<string>B2991092-9B70-413B-AA5F-78B41D88BB6D-27078-00004B78D33D8AE6</string>
 				<key>controllerState</key>
 				<dict>
 					<key>miniaturized</key>
 					<false/>
 					<key>windowFrame</key>
-					<string>576 226 1659 1086 0 0 2560 1418 </string>
+					<string>45 438 1189 965 0 0 2560 1418 </string>
 				</dict>
 			</dict>
 		</array>
