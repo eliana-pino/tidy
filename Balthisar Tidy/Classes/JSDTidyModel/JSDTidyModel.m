@@ -803,7 +803,8 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	{
 		if ((localVal = [theDictionary valueForKey:key]))
 		{
-			[self.tidyOptions[key] setValue:localVal forKey:key];
+			JSDTidyOption *optionRef = self.tidyOptions[key];
+			optionRef.optionValue = localVal;
 		}
 	}
 
@@ -1298,7 +1299,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	writeOptionValuesWithDefaults
-		Iterates through all of the current `tidyOptions` and writes
+		Iterates through all of the current `tidyOptions` and
 		registers their values to the defaults system.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)writeOptionValuesWithDefaults:(NSUserDefaults *)defaults
