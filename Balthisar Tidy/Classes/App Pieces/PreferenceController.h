@@ -80,12 +80,6 @@
 	Sparkle. Nothing is defined for them.
  */
 
-/* 
-	Note
-		#define JSDKeyTidyTidyOptionsKey @"JSDTidyTidyOptions"
-	Is defined in JSDTidyModel.h where it appropriately belongs.
- */
-
 
 /*
 	The values for the save type behaviours related to app preferences

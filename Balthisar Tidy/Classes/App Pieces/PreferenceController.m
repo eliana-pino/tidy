@@ -164,26 +164,29 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self
 													name:tidyNotifyOptionChanged
 												  object:nil];
+
+	[[NSNotificationCenter defaultCenter] removeObserver:self
+													name:@"appNotifyStandardUserDefaultsChanged"
+												  object:nil];
 }
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	awakeFromNib
-		- Create an `OptionPaneController` and put it
 		  in place of the empty optionPane in the xib.
 		- Setup Sparkle vs No-Sparkle.
 		- Give the OptionPaneController its optionsInEffect
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void) awakeFromNib
 {
-	if (![self optionController])
+	if (!self.optionController)
 	{
 		self.optionController = [[OptionPaneController alloc] initInPreferencesView];
 	}
 			
 	self.optionController.optionsInEffect = self.optionsInEffect;
 	
-	[[self optionController] putViewIntoView:[self optionPane]];
+	[self.optionController putViewIntoView:self.optionPane];
 	
 
 #if INCLUDE_SPARKLE == 0
@@ -216,6 +219,12 @@
 											 selector:@selector(handleTidyOptionChange:)
 												 name:tidyNotifyOptionChanged
 											   object:[[self optionController] tidyDocument]];
+
+	// NSNotification indicates that NSUSerDefaultsChanged.
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(handleStandardUserDefaultsChange:)
+												 name:@"appNotifyStandardUserDefaultsChanged"
+											   object:nil];
 }
 
 
@@ -314,6 +323,34 @@
 - (void)handleTidyOptionChange:(NSNotification *)note
 {
 	[[[self optionController] tidyDocument] writeOptionValuesWithDefaults:[NSUserDefaults standardUserDefaults]];
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	handleStandardUserDefaultsChange
+		We get this notification if the standard user defaults have
+		changed. We have to reload the option controller's tidy
+		document with the defaults. Once that happens we'll start
+		an event loop of notifications, so prevent that.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)handleStandardUserDefaultsChange:(NSNotification *)note
+{
+	// Temporarily turn off this notification so we don't cause
+	// an event loop of notifications.
+	[[NSNotificationCenter defaultCenter] removeObserver:self
+													name:tidyNotifyOptionChanged
+												  object:nil];
+
+	// reload the tidy document
+	[[self.optionController tidyDocument] takeOptionValuesFromDefaults:[NSUserDefaults standardUserDefaults]];
+
+	// Now it's safe to turn it back on.
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(handleTidyOptionChange:)
+												 name:tidyNotifyOptionChanged
+											   object:[[self optionController] tidyDocument]];
+
+	[self.optionController.theTable reloadData];
 }
 
 @end

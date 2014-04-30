@@ -234,10 +234,15 @@
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	handleSaveOptionsToPreferences
+		- the Preferences window might not exist yet, so all we
+		  can really do is write out the preferences, and try
+		  sending a notification.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)handleSaveOptionsToPreferences:(id)sender
 {
+	[self.tidyDocument writeOptionValuesWithDefaults:[NSUserDefaults standardUserDefaults]];
 
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"appNotifyStandardUserDefaultsChanged" object:self];
 }
 
 
