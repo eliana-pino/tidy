@@ -103,17 +103,12 @@
 
 	/* Application preferences */
 	[defaultValues setObject:@YES forKey:@"NSPrintHeaderAndFooter"];
-
 	[defaultValues setObject:@NO forKey:JSDKeyFirstRunComplete];
-
 	[defaultValues setObject:@NO forKey:JSDKeyIgnoreInputEncodingWhenOpening];
-
 	[defaultValues setObject:@(kJSDSaveAsOnly) forKey:JSDKeySavingPrefStyle];
-
 	[defaultValues setObject:@YES forKey:JSDKeyOptionsShowHumanReadableNames];
-
+	[defaultValues setObject:@"line" forKey:JSDKeyMessagesTableInitialSortKey];
 	[defaultValues setObject:@YES forKey:JSDKeyOptionsAreGrouped];
-
 
 
 	/* TODO: Preferences that apply to all open documents */

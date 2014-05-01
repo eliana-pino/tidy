@@ -113,7 +113,7 @@
 @property (nonatomic, assign) PreferenceController *prefs;
 
 // Local, mutable copy of our tidyDocument's error array.
-@property (nonatomic, copy) NSMutableArray *messagesArray;
+@property (nonatomic, strong) NSMutableArray *messagesArray;
 
 
 #pragma mark - Methods
@@ -371,7 +371,8 @@
 
 /*———————————————————————————————————————————————————————————————————*
 	awakeFromNib
-		When we wake from the nib file, setup the option controller.
+		When we wake from the nib file, setup the option controller
+		and initial messesages table sorting.
  *———————————————————————————————————————————————————————————————————*/
 - (void) awakeFromNib
 {
@@ -383,6 +384,10 @@
 	
 	self.optionController.optionsInEffect = [[PreferenceController sharedPreferences] optionsInEffect];
 	[[self optionController] putViewIntoView:self.optionPane];
+
+
+	NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyMessagesTableInitialSortKey] ascending:YES];
+	[self.errorView setSortDescriptors:[NSArray arrayWithObject:descriptor]];
 }
 
 
@@ -545,7 +550,7 @@
 - (void)handleTidyTidyErrorChange:(NSNotification *)note
 {
 	self.messagesArray = nil;
-	self.messagesArray = [NSMutableArray arrayWithArray:self.tidyProcess.errorArray];
+	self.messagesArray = [self.tidyProcess.errorArray mutableCopy];
 	[self.errorView reloadData];
 	[self.errorView deselectAll:self];
 }

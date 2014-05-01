@@ -51,12 +51,13 @@
 #define JSDKeyFirstRunComplete					@"FirstRunComplete"
 #define JSDKeyIgnoreInputEncodingWhenOpening	@"IgnoreInputEncodingWhenOpeningFiles"
 #define JSDKeySavingPrefStyle					@"SavingPrefStyle"
+#define JSDKeyOptionsShowHumanReadableNames		@"OptionsShowHumanReadableNames"
+#define JSDKeyMessagesTableInitialSortKey		@"MessagesTableInitialSortKey"
+#define JSDKeyOptionsAreGrouped					@"OptionsAreGrouped"
 
 /* Preferences that apply to all open documents */
 #define JSDKeyAllowMacOSTextSubstitutions		@"AllowMacOSTextSubstitutions"
-#define JSDKeyOptionsAreGrouped					@"OptionsAreGrouped"
 #define JSDKeyOptionsBooleanUseCheckBoxes		@"OptionsBooleanUseCheckBoxes"
-#define JSDKeyOptionsShowHumanReadableNames		@"OptionsShowHumanReadableNames"
 
 /* Preferences for new or opening documents */
 #define JSDKeyShowLikeFrontDocument				@"ShowLikeFrontDocument"
