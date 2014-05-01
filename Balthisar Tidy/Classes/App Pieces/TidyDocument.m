@@ -112,6 +112,9 @@
 // Local reference to our shared preferences controller.
 @property (nonatomic, assign) PreferenceController *prefs;
 
+// Local, mutable copy of our tidyDocument's error array.
+@property (nonatomic, copy) NSMutableArray *messagesArray;
+
 
 #pragma mark - Methods
 
@@ -541,6 +544,8 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)handleTidyTidyErrorChange:(NSNotification *)note
 {
+	self.messagesArray = nil;
+	self.messagesArray = [NSMutableArray arrayWithArray:self.tidyProcess.errorArray];
 	[self.errorView reloadData];
 	[self.errorView deselectAll:self];
 }
@@ -719,7 +724,7 @@
  *———————————————————————————————————————————————————————————————————*/
 - (NSUInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
-	return self.tidyProcess.errorArray.count;
+	return self.messagesArray.count;
 }
 
 
@@ -734,10 +739,10 @@
    viewForTableColumn:(NSTableColumn *)tableColumn
 				  row:(NSInteger)row
 {
-	if (row < self.tidyProcess.errorArray.count )
+	if (row < self.messagesArray.count )
 	{
 		NSTableCellView* tableCellView = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
-		NSDictionary *error = [[self tidyProcess] errorArray][row];
+		NSDictionary *error = self.messagesArray[row];
 
 		if ([tableColumn.identifier isEqualToString:@"severity"])
 		{
@@ -784,56 +789,17 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
-	tableView:objectValueForTableColumn:row
+	tableView:sortDescriptorsDidChange
 		We're here because we're the |datasource| of the errorView.
 		We need to specify what to show in the row/column. The
 		error array consists of dictionaries with entries for
 		`level`, `line`, `column`, and `message`.
  *———————————————————————————————————————————————————————————————————*/
-//- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
-//{
-//	if (rowIndex < self.tidyProcess.errorArray.count )
-//	{
-//		NSDictionary *error = [[self tidyProcess] errorArray][rowIndex];
-//
-//		if ([aTableColumn.identifier isEqualToString:@"severity"])
-//		{
-//			/*
-//				The severity of the error reported by TidyLib is
-//				converted to a string label and localized into
-//				the current language.
-//			*/
-//			NSArray *errorTypes = @[@"Info:", @"Warning:", @"Config:", @"Access:", @"Error:", @"Document:", @"Panic:"];
-//			return NSLocalizedString(errorTypes[[error[@"level"] intValue]], nil);
-//		}
-//
-//		if ([aTableColumn.identifier isEqualToString:@"where"])
-//		{
-//			/*
-//				We can also localize N/A and line and column.
-//			*/
-//			if (([error[@"line"] intValue] == 0) || ([error[@"column"] intValue] == 0))
-//			{
-//				return NSLocalizedString(@"N/A", nil);
-//			}
-//			else
-//			{
-//				return [NSString stringWithFormat:@"%@ %@, %@ %@", NSLocalizedString(@"line", nil), error[@"line"], NSLocalizedString(@"column", nil), error[@"column"]];
-//			}
-//		}
-//
-//		if ([aTableColumn.identifier isEqualToString:@"description"])
-//		{
-//			/*
-//				Unfortunately we can't really localize the message without
-//				duplicating a lot of TidyLib functionality.
-//			*/
-//			return error[@"message"];
-//		}
-//	}
-//	
-//	return @"";
-//}
+- (void)tableView:(NSTableView *)tableView sortDescriptorsDidChange:(NSArray *)oldDescriptors
+{
+	[self.messagesArray sortUsingDescriptors:tableView.sortDescriptors];
+	[tableView reloadData];
+}
 
 
 /*———————————————————————————————————————————————————————————————————*
@@ -846,10 +812,10 @@
 {
 	NSInteger errorViewRow = self.errorView.selectedRow;
 	
-	if ((errorViewRow >= 0) && (errorViewRow < self.tidyProcess.errorArray.count))
+	if ((errorViewRow >= 0) && (errorViewRow < self.messagesArray.count))
 	{
-		NSInteger row = [self.tidyProcess.errorArray[errorViewRow][@"line"] intValue];
-		NSInteger col = [self.tidyProcess.errorArray[errorViewRow][@"column"] intValue];
+		NSInteger row = [self.messagesArray[errorViewRow][@"line"] intValue];
+		NSInteger col = [self.messagesArray[errorViewRow][@"column"] intValue];
 		
 		if (row > 0)
 		{
