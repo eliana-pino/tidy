@@ -43,7 +43,7 @@
 "tag-indent-attributes"                     = "indent-attributes";
 "tag-indent-cdata"                          = "indent-cdata";
 "tag-indent-spaces"                         = "indent-spaces";
-"tag-indent"                                = "friendly-indent";
+"tag-indent"                                = "indent";
 "tag-input-encoding"                        = "input-encoding";
 "tag-input-xml"                             = "input-xml";
 "tag-join-classes"                          = "join-classes";

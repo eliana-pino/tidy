@@ -724,61 +724,121 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
+	tableView:viewForTableColumn:row
+		We're here because we're the |datasource| of the errorView.
+		We need to specify what to show in the row/column. The
+		error array consists of dictionaries with entries for
+		`level`, `line`, `column`, and `message`.
+ *———————————————————————————————————————————————————————————————————*/
+- (NSView *)tableView:(NSTableView *)tableView
+   viewForTableColumn:(NSTableColumn *)tableColumn
+				  row:(NSInteger)row
+{
+	if (row < self.tidyProcess.errorArray.count )
+	{
+		NSTableCellView* tableCellView = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
+		NSDictionary *error = [[self tidyProcess] errorArray][row];
+
+		if ([tableColumn.identifier isEqualToString:@"severity"])
+		{
+			/*
+				The severity of the error reported by TidyLib is
+				converted to a string label and localized into
+				the current language.
+			 */
+			NSArray *errorTypes = @[@"messagesInfo", @"messagesWarning", @"messagesConfig", @"messagesAccess", @"messagesError", @"messagesDocument", @"messagesPanic"];
+			tableCellView.imageView.image = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:errorTypes[[error[@"level"] intValue]] ofType:@"icns"]];
+			tableCellView.textField.stringValue = NSLocalizedString(errorTypes[[error[@"level"] intValue]], nil);
+			return tableCellView;
+		}
+
+		if ([tableColumn.identifier isEqualToString:@"where"])
+		{
+			/*
+			 We can also localize N/A and line and column.
+			 */
+			if (([error[@"line"] intValue] == 0) || ([error[@"column"] intValue] == 0))
+			{
+				tableCellView.textField.stringValue = NSLocalizedString(@"N/A", nil);
+			}
+			else
+			{
+				tableCellView.textField.stringValue = [NSString stringWithFormat:@"%@ %@, %@ %@", NSLocalizedString(@"line", nil), error[@"line"], NSLocalizedString(@"column", nil), error[@"column"]];
+			}
+
+			return tableCellView;
+		}
+
+		if ([tableColumn.identifier isEqualToString:@"description"])
+		{
+			/*
+				The message should already be localized by JSDTidyModel
+			 */
+			tableCellView.textField.stringValue = error[@"message"];
+			return tableCellView;
+		}
+	}
+
+	return nil;
+}
+
+
+/*———————————————————————————————————————————————————————————————————*
 	tableView:objectValueForTableColumn:row
 		We're here because we're the |datasource| of the errorView.
 		We need to specify what to show in the row/column. The
 		error array consists of dictionaries with entries for
 		`level`, `line`, `column`, and `message`.
  *———————————————————————————————————————————————————————————————————*/
-- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
-{
-	if (rowIndex < self.tidyProcess.errorArray.count )
-	{
-		NSDictionary *error = [[self tidyProcess] errorArray][rowIndex];
-
-		if ([aTableColumn.identifier isEqualToString:@"severity"])
-		{
-			/*
-				The severity of the error reported by TidyLib is
-				converted to a string label and localized into
-				the current language.
-			*/
-			NSArray *errorTypes = @[@"Info:", @"Warning:", @"Config:", @"Access:", @"Error:", @"Document:", @"Panic:"];
-			return NSLocalizedString(errorTypes[[error[@"level"] intValue]], nil);
-		}
-
-		if ([aTableColumn.identifier isEqualToString:@"where"])
-		{
-			/*
-				We can also localize N/A and line and column.
-			*/
-			if (([error[@"line"] intValue] == 0) || ([error[@"column"] intValue] == 0))
-			{
-				return NSLocalizedString(@"N/A", nil);
-			}
-			else
-			{
-				return [NSString stringWithFormat:@"%@ %@, %@ %@", NSLocalizedString(@"line", nil), error[@"line"], NSLocalizedString(@"column", nil), error[@"column"]];
-			}
-		}
-
-		if ([aTableColumn.identifier isEqualToString:@"description"])
-		{
-			/*
-				Unfortunately we can't really localize the message without
-				duplicating a lot of TidyLib functionality.
-			*/
-			return error[@"message"];
-		}
-	}
-	
-	return @"";
-}
+//- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+//{
+//	if (rowIndex < self.tidyProcess.errorArray.count )
+//	{
+//		NSDictionary *error = [[self tidyProcess] errorArray][rowIndex];
+//
+//		if ([aTableColumn.identifier isEqualToString:@"severity"])
+//		{
+//			/*
+//				The severity of the error reported by TidyLib is
+//				converted to a string label and localized into
+//				the current language.
+//			*/
+//			NSArray *errorTypes = @[@"Info:", @"Warning:", @"Config:", @"Access:", @"Error:", @"Document:", @"Panic:"];
+//			return NSLocalizedString(errorTypes[[error[@"level"] intValue]], nil);
+//		}
+//
+//		if ([aTableColumn.identifier isEqualToString:@"where"])
+//		{
+//			/*
+//				We can also localize N/A and line and column.
+//			*/
+//			if (([error[@"line"] intValue] == 0) || ([error[@"column"] intValue] == 0))
+//			{
+//				return NSLocalizedString(@"N/A", nil);
+//			}
+//			else
+//			{
+//				return [NSString stringWithFormat:@"%@ %@, %@ %@", NSLocalizedString(@"line", nil), error[@"line"], NSLocalizedString(@"column", nil), error[@"column"]];
+//			}
+//		}
+//
+//		if ([aTableColumn.identifier isEqualToString:@"description"])
+//		{
+//			/*
+//				Unfortunately we can't really localize the message without
+//				duplicating a lot of TidyLib functionality.
+//			*/
+//			return error[@"message"];
+//		}
+//	}
+//	
+//	return @"";
+//}
 
 
 /*———————————————————————————————————————————————————————————————————*
 	tableViewSelectionDidChange:
-		We arrived here because we're the delegate of the table.
+		We arrived here because we're the |delegate| of the table.
 		Whenever the selection changes, highlight the related
 		column/row in the |sourceView|.
  *———————————————————————————————————————————————————————————————————*/

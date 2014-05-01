@@ -12,13 +12,13 @@
 
 /* Tidy Error Table */
 
-"Info:"			= "Information";
-"Warning:"		= "Warning";
-"Config:"		= "Configuration";
-"Access:"		= "Access";
-"Error:"		= "Error";
-"Document:"		= "Document";
-"Panic:"		= "PANIC!";
+"messagesInfo"			= "Information";
+"messagesWarning"		= "Warning";
+"messagesConfig"		= "Configuration";
+"messagesAccess"		= "Access";
+"messagesError"			= "Error";
+"messagesDocument"		= "Document";
+"messagesPanic"			= "PANIC!";
 
 "N/A"			= " ";
 

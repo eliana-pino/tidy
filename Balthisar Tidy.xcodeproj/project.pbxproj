@@ -133,6 +133,13 @@
 		D0E6AE21190CB34500B49779 /* PaneBottomShadow.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE1F190CB34500B49779 /* PaneBottomShadow.tiff */; };
 		D0E6AE24190CDAA200B49779 /* JSDTidyModel.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE22190CDAA200B49779 /* JSDTidyModel.strings */; };
 		D0E6AE25190CDAA200B49779 /* JSDTidyModel.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE22190CDAA200B49779 /* JSDTidyModel.strings */; };
+		D0E6AE6A1911E4DC00B49779 /* messagesAccess.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE691911E4DC00B49779 /* messagesAccess.icns */; };
+		D0E6AE711911E88000B49779 /* messagesConfig.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE6B1911E88000B49779 /* messagesConfig.icns */; };
+		D0E6AE721911E88000B49779 /* messagesDocument.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE6C1911E88000B49779 /* messagesDocument.icns */; };
+		D0E6AE731911E88000B49779 /* messagesError.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE6D1911E88000B49779 /* messagesError.icns */; };
+		D0E6AE741911E88000B49779 /* messagesInfo.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE6E1911E88000B49779 /* messagesInfo.icns */; };
+		D0E6AE751911E88000B49779 /* messagesPanic.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE6F1911E88000B49779 /* messagesPanic.icns */; };
+		D0E6AE761911E88000B49779 /* messagesWarning.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE701911E88000B49779 /* messagesWarning.icns */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -262,6 +269,13 @@
 		D0E6AE17190C9FAC00B49779 /* ShowDescriptionTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ShowDescriptionTemplate.pdf; sourceTree = "<group>"; };
 		D0E6AE1F190CB34500B49779 /* PaneBottomShadow.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = PaneBottomShadow.tiff; sourceTree = "<group>"; };
 		D0E6AE23190CDAA200B49779 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/JSDTidyModel.strings; sourceTree = "<group>"; };
+		D0E6AE691911E4DC00B49779 /* messagesAccess.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = messagesAccess.icns; sourceTree = "<group>"; };
+		D0E6AE6B1911E88000B49779 /* messagesConfig.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = messagesConfig.icns; sourceTree = "<group>"; };
+		D0E6AE6C1911E88000B49779 /* messagesDocument.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = messagesDocument.icns; sourceTree = "<group>"; };
+		D0E6AE6D1911E88000B49779 /* messagesError.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = messagesError.icns; sourceTree = "<group>"; };
+		D0E6AE6E1911E88000B49779 /* messagesInfo.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = messagesInfo.icns; sourceTree = "<group>"; };
+		D0E6AE6F1911E88000B49779 /* messagesPanic.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = messagesPanic.icns; sourceTree = "<group>"; };
+		D0E6AE701911E88000B49779 /* messagesWarning.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = messagesWarning.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -368,6 +382,13 @@
 		D08A7C9118D442AD00341DCB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D0E6AE6B1911E88000B49779 /* messagesConfig.icns */,
+				D0E6AE6C1911E88000B49779 /* messagesDocument.icns */,
+				D0E6AE6D1911E88000B49779 /* messagesError.icns */,
+				D0E6AE6E1911E88000B49779 /* messagesInfo.icns */,
+				D0E6AE6F1911E88000B49779 /* messagesPanic.icns */,
+				D0E6AE701911E88000B49779 /* messagesWarning.icns */,
+				D0E6AE691911E4DC00B49779 /* messagesAccess.icns */,
 				D0E6AE1F190CB34500B49779 /* PaneBottomShadow.tiff */,
 				D0E6AE16190C9FAC00B49779 /* HideDescriptionTemplate.pdf */,
 				D0E6AE17190C9FAC00B49779 /* ShowDescriptionTemplate.pdf */,
@@ -616,24 +637,31 @@
 			files = (
 				D036E1F418F3D25E0009A9D4 /* Preferences.xib in Resources */,
 				D0E6AE18190C9FAC00B49779 /* HideDescriptionTemplate.pdf in Resources */,
+				D0E6AE6A1911E4DC00B49779 /* messagesAccess.icns in Resources */,
 				D08A7C9418D442FF00341DCB /* optionsInEffect.txt in Resources */,
 				D036E1EA18F3D25E0009A9D4 /* FirstRunHelper.xib in Resources */,
 				D0E6AE24190CDAA200B49779 /* JSDTidyModel.strings in Resources */,
+				D0E6AE751911E88000B49779 /* messagesPanic.icns in Resources */,
 				D036E1EE18F3D25E0009A9D4 /* Localizable.strings in Resources */,
+				D0E6AE721911E88000B49779 /* messagesDocument.icns in Resources */,
 				D0CCEE2918E9967B0052E56C /* Balthisar Tidy.help in Resources */,
 				D036E21118F3D2F20009A9D4 /* PHP.icns in Resources */,
 				D036E21518F3D2F20009A9D4 /* XML.icns in Resources */,
+				D0E6AE741911E88000B49779 /* messagesInfo.icns in Resources */,
 				D0E6AE20190CB34500B49779 /* PaneBottomShadow.tiff in Resources */,
 				D0E6AE1A190C9FAC00B49779 /* ShowDescriptionTemplate.pdf in Resources */,
 				D036E20D18F3D2F20009A9D4 /* Application.icns in Resources */,
 				D036E1F218F3D25E0009A9D4 /* OptionPane.xib in Resources */,
+				D0E6AE731911E88000B49779 /* messagesError.icns in Resources */,
 				D036E1E818F3D25E0009A9D4 /* Credits.rtf in Resources */,
 				D036E1F618F3D25E0009A9D4 /* TidyDocument.xib in Resources */,
+				D0E6AE711911E88000B49779 /* messagesConfig.icns in Resources */,
 				D036E21318F3D2F20009A9D4 /* Tidy.icns in Resources */,
 				D036E20F18F3D2F20009A9D4 /* HTML.icns in Resources */,
 				D036E1EC18F3D25E0009A9D4 /* InfoPlist.strings in Resources */,
 				D036E1F018F3D25E0009A9D4 /* MainMenu.xib in Resources */,
 				D036E21818F3D81E0009A9D4 /* TidyScripting.sdef in Resources */,
+				D0E6AE761911E88000B49779 /* messagesWarning.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
