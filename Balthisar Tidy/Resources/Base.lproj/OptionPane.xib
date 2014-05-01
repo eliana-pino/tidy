@@ -165,11 +165,22 @@
                                 <menuItem title="Show friendly option names" id="Nsq-X3-5F7">
                                     <connections>
                                         <action selector="handleShowFriendlyOptionNames:" target="-2" id="DHs-fv-kMh"/>
+                                        <binding destination="-2" name="value" keyPath="self.isShowingFriendlyTidyOptionNames" id="daD-Yk-aSZ">
+                                            <dictionary key="options">
+                                                <bool key="NSConditionallySetsEnabled" value="NO"/>
+                                            </dictionary>
+                                        </binding>
                                     </connections>
                                 </menuItem>
                                 <menuItem title="Show options in groups" id="3pF-Gd-AlJ">
                                     <connections>
                                         <action selector="handleShowOptionsInGroups:" target="-2" id="Iuw-ha-96B"/>
+                                        <binding destination="-2" name="value" keyPath="self.isShowingOptionsInGroups" id="2MT-RX-QSr">
+                                            <dictionary key="options">
+                                                <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                                                <bool key="NSConditionallySetsEnabled" value="NO"/>
+                                            </dictionary>
+                                        </binding>
                                     </connections>
                                 </menuItem>
                                 <menuItem isSeparatorItem="YES" id="6cm-3G-Q97"/>
@@ -198,6 +209,7 @@
                 <constraint firstItem="Jr5-JD-RhE" firstAttribute="leading" secondItem="21" secondAttribute="leading" constant="10" id="wJy-fU-BVW"/>
             </constraints>
         </customView>
+        <userDefaultsController representsSharedInstance="YES" id="rmR-wm-lSd"/>
     </objects>
     <resources>
         <image name="HideDescriptionTemplate" width="11" height="10"/>

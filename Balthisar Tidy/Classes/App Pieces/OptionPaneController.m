@@ -49,6 +49,8 @@
 /* Miscellaneous properties */
 @property (nonatomic, strong) NSLayoutConstraint *theDescriptionConstraint;	// The layout constraint we will apply to theDescription.
 @property (nonatomic, assign) BOOL isInPreferencesView;
+@property (nonatomic, assign) BOOL isShowingFriendlyTidyOptionNames;
+@property (nonatomic, assign) BOOL isShowingOptionsInGroups;
 
 
 /* Gradient button outlets */
@@ -157,6 +159,11 @@
 	{
 		[[self menuItemResetOptionsToFactoryDefaults] setHidden:YES];
 	}
+
+	// Other options
+	self.isShowingFriendlyTidyOptionNames = [[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyOptionsShowHumanReadableNames];
+
+	self.isShowingOptionsInGroups = [[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyOptionsAreGrouped];
 }
 
 
@@ -192,6 +199,11 @@
 {
 	_optionsInEffect = optionsInEffect;
 	self.tidyDocument.optionsInEffect = optionsInEffect;
+
+	if (self.isShowingOptionsInGroups)
+	{
+		_optionsInEffect = [_optionsInEffect sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+	}
 }
 
 
@@ -251,7 +263,7 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)handleShowFriendlyOptionNames:(id)sender
 {
-
+	[self.theTable reloadData];
 }
 
 
@@ -260,7 +272,7 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)handleShowOptionsInGroups:(id)sender
 {
-
+	[self.theTable reloadData];
 }
 
 
@@ -299,8 +311,7 @@
 	// Handle returning the 'name' of the option.
 	if ([[aTableColumn identifier] isEqualToString:@"name"])
 	{
-		BOOL test = [[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyOptionsShowHumanReadableNames];
-		if ( test )
+		if ( self.isShowingFriendlyTidyOptionNames )
 		{
 			return optionRef.localizedHumanReadableName;
 		}

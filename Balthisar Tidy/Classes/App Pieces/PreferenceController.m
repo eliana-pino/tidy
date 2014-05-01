@@ -102,18 +102,25 @@
 	/* Put all of the defaults in the new dictionary */
 
 	/* Application preferences */
-	[defaultValues setObject:@NO forKey:JSDKeyFirstRunComplete];
-	[defaultValues setObject:@NO forKey:JSDKeyIgnoreInputEncodingWhenOpening];
-	[defaultValues setObject:@(kJSDSaveAsOnly) forKey:JSDKeySavingPrefStyle];
 	[defaultValues setObject:@YES forKey:@"NSPrintHeaderAndFooter"];
 
-	/* Preferences that apply to all open documents */
-	[defaultValues setObject:@NO forKey:JSDKeyAllowMacOSTextSubstitutions];
-	[defaultValues setObject:@YES forKey:JSDKeyOptionsAreGrouped];
-	[defaultValues setObject:@NO forKey:JSDKeyOptionsBooleanUseCheckBoxes];
+	[defaultValues setObject:@NO forKey:JSDKeyFirstRunComplete];
+
+	[defaultValues setObject:@NO forKey:JSDKeyIgnoreInputEncodingWhenOpening];
+
+	[defaultValues setObject:@(kJSDSaveAsOnly) forKey:JSDKeySavingPrefStyle];
+
 	[defaultValues setObject:@YES forKey:JSDKeyOptionsShowHumanReadableNames];
 
-	/* Preferences for new or opening documents */
+	[defaultValues setObject:@YES forKey:JSDKeyOptionsAreGrouped];
+
+
+
+	/* TODO: Preferences that apply to all open documents */
+	[defaultValues setObject:@NO forKey:JSDKeyAllowMacOSTextSubstitutions];
+	[defaultValues setObject:@NO forKey:JSDKeyOptionsBooleanUseCheckBoxes];
+
+	/* TODO: Preferences for new or opening documents */
 	[defaultValues setObject:@YES forKey:JSDKeyShowLikeFrontDocument];
 	[defaultValues setObject:@YES forKey:JSDKeyShowNewDocumentDescription];
 	[defaultValues setObject:@YES forKey:JSDKeyShowNewDocumentLineNumbers];
@@ -145,11 +152,6 @@
 	{
 		[self setWindowFrameAutosaveName:@"PrefWindow"];
 		_optionsInEffect = [JSDTidyModel loadConfigurationListFromResource:@"optionsInEffect" ofType:@"txt"];
-
-		if (![[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyOptionsAreGrouped])
-		{
-			_optionsInEffect = [_optionsInEffect sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-		}
 	}
 
 	return self;
