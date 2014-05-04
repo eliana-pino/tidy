@@ -330,6 +330,7 @@
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="359"/>
+                <outlet property="initialFirstResponder" destination="LIi-0a-MJV" id="1WL-G7-g7L"/>
             </connections>
         </window>
         <viewController id="wRn-sd-Y4p" userLabel="Popover View Controller">

@@ -377,6 +377,10 @@
 		Retrieves the data object for an item in the specified row 
 		and column. The user changed a value in `theTable` and so we
 		will record that in our own data structure.
+ 
+		NOTE: this is actually deprecated in view-based tables,
+		but it's convenient given our data model. Thus it's
+		being called (as a datasource) from the CellView.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)tableView:(NSTableView *)aTableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)inColumn row:(NSInteger)inRow
 {
@@ -439,22 +443,6 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	tableView:shouldEditTableColumn:row
-		We're here because we're the delegate of `theTable`.
-		We need to disable for text editing cells with widgets.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-//- (BOOL)tableView:(NSTableView *)aTableView shouldEditTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
-//{
-//	if ([[aTableColumn identifier] isEqualToString:@"check"])
-//	{
-//		return ([[aTableColumn dataCellForRow:rowIndex] class] == [NSTextFieldCell class]);
-//	}
-//	
-//	return NO;
-//}
-//
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	tableView:shouldSelectRow:
 		We're here because we're the delegate of the `theTable`.
 		We need to specify if it's okay to select the row.
@@ -487,7 +475,10 @@
 		{
 			[optionRef optionUIValueIncrement];
 		}
-		
+
+		[[aTableView viewAtColumn:[aTableView columnWithIdentifier:@"check"]
+							  row:rowIndex makeIfNecessary:NO] setObjectValue:optionRef.optionUIValue];
+
 		return YES;
 	}
 
@@ -517,7 +508,12 @@
 			[self.theDescription removeConstraint:self.theDescriptionConstraint];
 		}
 		[_View layoutSubtreeIfNeeded];
-	} completionHandler:^{}];
+	} completionHandler:^{
+		[[self theTable] scrollRowToVisible:self.theTable.selectedRow];
+	}];
+
+
+
 }
 
 

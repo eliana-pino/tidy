@@ -52,6 +52,8 @@
 		else
 		{
 			[self setNeedsDisplay:YES];
+
+			//[self reloadData];
 		}
 	}
 	else

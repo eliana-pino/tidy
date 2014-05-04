@@ -109,6 +109,36 @@
 	}
 }
 
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	 keyDown
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)keyDown:(NSEvent *)theEvent
+{
+	NSLog(@"%@",@"Key down!");
+//	if ([[self delegate] respondsToSelector:@selector(tableView:keyWasPressed:row:)])
+//	{
+//		BOOL handled = [(id<JSDTableViewDelegate>)[self delegate] tableView:self keyWasPressed:theEvent.keyCode row:self.selectedRow];
+//
+//		if (!handled)
+//		{
+//			[super keyDown:theEvent];
+//		}
+//		else
+//		{
+//			[self setNeedsDisplay:YES];
+//
+//			//[self reloadData];
+//		}
+//	}
+//	else
+//	{
+//		[super keyDown:theEvent];
+//	}
+
+}
+
+
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	mouseEntered:
 		Show the NSStepper control (if there is one).
