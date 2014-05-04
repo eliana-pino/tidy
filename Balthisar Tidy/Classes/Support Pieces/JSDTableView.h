@@ -36,7 +36,7 @@
 @optional
 
 /** Returns YES if the key was handled. */
-- (BOOL)tableViewKeyWasPressed:(NSTableView *)aTableView row:(NSInteger)rowIndex keyCode:(NSInteger)keyCode;
+- (BOOL)tableView:(NSTableView *)aTableView keyWasPressed:(NSInteger)keyCode row:(NSInteger)rowIndex;
 
 @end
 

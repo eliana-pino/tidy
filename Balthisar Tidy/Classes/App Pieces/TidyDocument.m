@@ -848,7 +848,7 @@
 	// The main splitter
 	if (splitView == self.splitLeftRight)
 	{
-		return 250.0f;
+		return 300.0f;
 	}
 	
 	// The text views' first splitter

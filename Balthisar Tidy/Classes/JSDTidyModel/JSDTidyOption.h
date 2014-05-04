@@ -68,6 +68,8 @@
 
 @property (nonatomic, assign, readonly) TidyOptionType optionType;						///< Actual type that TidyLib expects.
 
+@property (nonatomic, assign, readonly) Class optionUIType;								///< Suggested UI type for setting options. 
+
 @property (nonatomic, strong, readonly) NSString *builtInDefaultValue;					///< Tidy's built-in default value for this option.
 
 @property (nonatomic, strong, readonly) NSString *builtInDescription;					///< Tidy's built-in description for this option.

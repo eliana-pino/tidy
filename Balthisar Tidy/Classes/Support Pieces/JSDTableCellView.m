@@ -71,6 +71,45 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	setObjectValue
+		We override this method in order to signal a notfication
+		that an object value has changed. We do this because the
+		NIB is bound to this class and we have to tell whomever
+		is implementing us that data is changed. What we'll do it
+		look for tableView:setObjectValue:forTableColumn:row
+		and use that.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)setObjectValue:(id)objectValue
+{
+	[super setObjectValue:objectValue];
+
+	// Find out which table we belong to.
+    NSView *searchView = self.superview;
+    while ( (![searchView isKindOfClass:[NSTableView class]]) && (searchView != nil) )
+	{
+        if (searchView.superview)
+		{
+            searchView = searchView.superview;
+        }
+	}
+
+	// We've found our owning table.
+	if (searchView)
+	{
+		NSTableView *tableView = (NSTableView*)searchView;
+
+		if ([tableView.dataSource respondsToSelector:@selector(tableView:setObjectValue:forTableColumn:row:)])
+		{
+			NSInteger row = [tableView rowForView:self];
+			NSInteger columnNumber = [tableView columnForView:self];
+			NSTableColumn *column = [tableView tableColumns][columnNumber];
+
+			[(id<NSTableViewDataSource>)[tableView dataSource] tableView:tableView setObjectValue:objectValue forTableColumn:column row:row];
+		}
+	}
+}
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	mouseEntered:
 		Show the NSStepper control (if there is one).
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/

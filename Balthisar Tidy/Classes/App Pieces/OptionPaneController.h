@@ -34,6 +34,7 @@
 #import "JSDTidyModel.h"
 #import "JSDTidyOption.h"
 #import "JSDTableView.h"
+#import "JSDTableCellView.h"
 
 /**
 	The main controller for the Tidy Options pane.

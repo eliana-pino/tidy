@@ -396,6 +396,35 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	 optionUIType
+		Suggests an object class to use for setting Tidy options.
+
+		TidyLib option types can be TidyString, TidyInteger, or
+		TidyBoolean. JSDTidyOption will return one of three classes
+		suitable for using in a UI:
+ 
+		- NSPopupButton if the type has a non-empty pick list.
+		- NSStepper, if the type is TidyInteger.
+		- NSTextField, if none of the two work.
+
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (Class) optionUIType
+{
+	if ( self.possibleOptionValues.count > 0 )
+	{
+		return [NSPopUpButton class];
+	}
+
+	if  ( self.optionType == TidyInteger )
+	{
+		return [NSStepper class];
+	}
+
+	return [NSTextField class];
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	builtInDefaultValue
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSString*)builtInDefaultValue

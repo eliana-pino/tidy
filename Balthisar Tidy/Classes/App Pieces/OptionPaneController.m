@@ -285,58 +285,98 @@
 }
 
 
-#pragma mark - Table Handling - Datasource Methods
+#pragma mark - Table Handling - Datasource and Delegate Methods
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	numberOfRowsInTableView
-		We're here because we're the datasource of the `theTable`.
-		We need to specify how many items are in the table view.
+	tableView:viewForTableColumn:row:
+		We're here because we're the delegate of `theTable`.
+		We need to deliver a view to show in the table.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
+- (NSView *)tableView:(NSTableView *)tableView
+   viewForTableColumn:(NSTableColumn *)tableColumn
+				  row:(NSInteger)row
 {
-	return [self.optionsInEffect count];
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	tableView:objectValueForTableColumn:row
-		We're here because we're the datasource of `theTable`.
-		We need to specify what to show in the row/column.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
-{
-	JSDTidyOption *optionRef = [[self tidyDocument] tidyOptions][self.optionsInEffect[rowIndex]];
-
-	// Handle returning the 'name' of the option.
-	if ([[aTableColumn identifier] isEqualToString:@"name"])
+	// Setup the view if it's a header.
+	if ( tableColumn == nil)
 	{
+		NSTextField *theView = [tableView makeViewWithIdentifier:@"header" owner:self];
+		if (theView == nil)
+		{
+			theView = [[NSTextField alloc] initWithFrame:NSZeroRect];
+		}
+		[theView setEditable:NO];
+		theView.stringValue = self.optionsInEffect[row];
+		return theView;
+	}
+
+
+	JSDTidyOption *optionRef = [[self tidyDocument] tidyOptions][self.optionsInEffect[row]];
+
+
+	// Setup the view if it's a one of the Tidy Option Names.
+	if ([tableColumn.identifier isEqualToString:@"name"])
+	{
+		NSTableCellView *theView = [tableView makeViewWithIdentifier:@"optionName" owner:self];
+
+		[theView.textField setEditable:NO];
+
 		if ( self.isShowingFriendlyTidyOptionNames )
 		{
-			return optionRef.localizedHumanReadableName;
+			theView.objectValue = optionRef.localizedHumanReadableName;
 		}
 		else
 		{
-			return self.optionsInEffect[rowIndex];
+			theView.objectValue = self.optionsInEffect[row];
 		}
+
+		return theView;
 	}
 
-	// Handle returning the 'value' column of the option.
-	if ([[aTableColumn identifier] isEqualToString:@"check"])
+
+	// Setup the view if it's one of the option values.
+	if ( [tableColumn.identifier isEqualToString:@"check"])
 	{
-		return optionRef.optionUIValue;
+		JSDTableCellView *theView;
+
+		// Pure Text View
+		if ( optionRef.optionUIType == [NSTextField class] )
+		{
+			theView = [tableView makeViewWithIdentifier:@"optionString" owner:self];
+		}
+
+		// NSPopupMenu View
+		if ( optionRef.optionUIType == [NSPopUpButton class] )
+		{
+			theView = [tableView makeViewWithIdentifier:@"optionPopup" owner:self];
+			[[theView popupButtonControl] addItemsWithTitles:optionRef.possibleOptionValues];
+		}
+
+		// NSStepper View
+		if ( optionRef.optionUIType == [NSStepper class] )
+		{
+			theView = [tableView makeViewWithIdentifier:@"optionStepper" owner:self];
+		}
+
+		[theView.textField setEditable:YES];
+
+		theView.objectValue = optionRef.optionUIValue;
+
+		return theView;
+
 	}
-	
-	return @"";
+
+	return nil;
+
 }
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	tableView:setObjectValue:forTableColumn:row
 		We're here because we're the datasource of `theTable`.
-		Sets the data object for an item in the specified row and column.
-		The user changed a value in `theTable` and so we will record
-		that in our own data structure.
+		Retrieves the data object for an item in the specified row 
+		and column. The user changed a value in `theTable` and so we
+		will record that in our own data structure.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)tableView:(NSTableView *)aTableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)inColumn row:(NSInteger)inRow
 {
@@ -356,16 +396,12 @@
 }
 
 
-#pragma mark - Table Handling - Delegate Methods
-
-
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	tableViewSelectionDidChange:
 		We're here because we're the delegate of the `theTable`.
-		delegate of `theTable`. This is NOT a notification center
-		notification. Whenever the selection changes, update
-		`theDescription` with the correct, new description
-		from Localizable.strings.
+		This is NOT a notification center notification. Whenever 
+		the selection changes, update `theDescription` with the 
+		correct, new description from Localizable.strings.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification
 {
@@ -381,32 +417,24 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	tableView:dataCellForTableColumn:row:
-		We're here because we're the delegate of `theTable`.
-		Here we are providing the popup cell for use by the table.
+	numberOfRowsInTableView:
+		We're here because we're the datasource of the `theTable`.
+		We need to specify how many items are in the table view.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (NSCell *)tableView:(NSTableView *)tableView dataCellForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
-	if ([[tableColumn identifier] isEqualToString:@"check"])
-	{
-		JSDTidyOption *optionRef = [[self tidyDocument] tidyOptions][self.optionsInEffect[row]];
-		
-		NSArray *picks = optionRef.possibleOptionValues;
+	return [self.optionsInEffect count];
+}
 
-		// Return a popup only if there's a picklist.
-		if ([picks count] != 0)
-		{
-			NSPopUpButtonCell *myCell = [[NSPopUpButtonCell alloc] initTextCell: @"" pullsDown:NO];
-			[myCell setEditable: YES];
-			[myCell setBordered:YES];
-			[myCell addItemsWithTitles:picks];
-			[myCell setControlSize:NSSmallControlSize];
-			[myCell setFont:[NSFont menuFontOfSize:10]];
-			return myCell;
-		}
-	}
 
-	return nil;
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	tableView:isGroupRow:
+		We're here because we're the delegate of the `theTable`.
+		We need to specify if the row is a group row or not.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+-(BOOL)tableView:(NSTableView *)tableView isGroupRow:(NSInteger)row
+{
+	return NO;
 }
 
 
@@ -415,22 +443,34 @@
 		We're here because we're the delegate of `theTable`.
 		We need to disable for text editing cells with widgets.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (BOOL)tableView:(NSTableView *)aTableView shouldEditTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
+//- (BOOL)tableView:(NSTableView *)aTableView shouldEditTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
+//{
+//	if ([[aTableColumn identifier] isEqualToString:@"check"])
+//	{
+//		return ([[aTableColumn dataCellForRow:rowIndex] class] == [NSTextFieldCell class]);
+//	}
+//	
+//	return NO;
+//}
+//
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	tableView:shouldSelectRow:
+		We're here because we're the delegate of the `theTable`.
+		We need to specify if it's okay to select the row.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (BOOL)tableView:(NSTableView *)aTableView shouldSelectRow:(NSInteger)rowIndex
 {
-	if ([[aTableColumn identifier] isEqualToString:@"check"])
-	{
-		return ([[aTableColumn dataCellForRow:rowIndex] class] == [NSTextFieldCell class]);
-	}
-	
-	return NO;
+	return YES;
+
 }
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	tableViewKeyWasPressed
+	tableView:keyWasPressed:row:
 		Respond to table view keypresses.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (BOOL)tableViewKeyWasPressed:(NSTableView *)aTableView row:(NSInteger)rowIndex keyCode:(NSInteger)keyCode;
+- (BOOL)tableView:(NSTableView *)aTableView keyWasPressed:(NSInteger)keyCode row:(NSInteger)rowIndex
 {
 
 	if ((rowIndex >= 0) && (( keyCode == 123) || (keyCode == 124)))

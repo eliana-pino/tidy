@@ -41,9 +41,9 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)keyDown:(NSEvent *)theEvent
 {
-	if ([[self delegate] respondsToSelector:@selector(tableViewKeyWasPressed:row:keyCode:)])
+	if ([[self delegate] respondsToSelector:@selector(tableView:keyWasPressed:row:)])
 	{
-		BOOL handled = [(id<JSDTableViewDelegate>)[self delegate] tableViewKeyWasPressed:self row:self.selectedRow keyCode:theEvent.keyCode];
+		BOOL handled = [(id<JSDTableViewDelegate>)[self delegate] tableView:self keyWasPressed:theEvent.keyCode row:self.selectedRow];
 
 		if (!handled)
 		{

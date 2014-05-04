@@ -38,6 +38,7 @@
 
 #import <Cocoa/Cocoa.h>
 
+
 /**
 	Implements special behavior for a couple of different cell types by adding
 	a couple of properties and some behaviours for those properties. Remember
@@ -51,6 +52,5 @@
 
 /** If the view has a popup button, this outlet provides access to it. */
 @property (nonatomic, weak) IBOutlet NSPopUpButton *popupButtonControl;
-
 
 @end
