@@ -37,7 +37,7 @@
 	handle most aspects of their operation on their own. They also provide good exposure
 	to implementing user interfaces.
  
-	The priniciple purpose is to hold and store options, and return information about options.
+	The principle purpose is to hold and store options, and return information about options.
 	There is some interactivity among options (e.g., where we override character encodings),
 	but this is always mediated back through to the `sharedTidyModel`. Setting an instance of
 	an option does not cause tidying per se; this is all managed by the JSDTidyModel.
