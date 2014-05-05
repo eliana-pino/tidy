@@ -41,13 +41,16 @@
 
 @interface OptionPaneController ()
 
-/* Major interface item outlets */
-@property (nonatomic, weak) IBOutlet NSView *View;							// Pointer to the NIB's |View|.
-@property (nonatomic, weak) IBOutlet NSTextField *theDescription;			// Pointer to the description field.
+/* The NIB's root-level view */
+@property (nonatomic, weak) IBOutlet NSView *View;
 
 
-/* Miscellaneous properties */
-@property (nonatomic, strong) NSLayoutConstraint *theDescriptionConstraint;	// The layout constraint we will apply to theDescription.
+/* Properties for managing the option description */
+@property (nonatomic, weak) IBOutlet NSTextField *theDescription;
+@property (nonatomic, strong) NSLayoutConstraint *theDescriptionConstraint;
+
+
+/* Behavior and display properties */
 @property (nonatomic, assign) BOOL isInPreferencesView;
 @property (nonatomic, assign) BOOL isShowingFriendlyTidyOptionNames;
 @property (nonatomic, assign) BOOL isShowingOptionsInGroups;
@@ -135,10 +138,10 @@
 - (void) awakeFromNib
 {
 	// Setup the background color
-	[self.theTable setBackgroundColor:[NSColor clearColor]];
+	//[self.theTable setBackgroundColor:[NSColor clearColor]];
 
 	// Clean up the table's row-height.
-	[self.theTable setRowHeight:20.0f];
+	//[self.theTable setRowHeight:20.0f];
 
 	// Setup some changing labels.
 	self.theDescriptionConstraint = [NSLayoutConstraint constraintWithItem:self.theDescription
@@ -152,12 +155,12 @@
 	// Setup the isInPreferencesView characteristics
 	if (self.isInPreferencesView)
 	{
-		[[self menuItemResetOptionsToPreferences] setHidden:YES];
-		[[self menuItemSaveOptionsToPreferences] setHidden:YES];
+		[self.menuItemResetOptionsToPreferences setHidden:YES];
+		[self.menuItemSaveOptionsToPreferences setHidden:YES];
 	}
 	else
 	{
-		[[self menuItemResetOptionsToFactoryDefaults] setHidden:YES];
+		[self.menuItemResetOptionsToFactoryDefaults setHidden:YES];
 	}
 
 	// Other options
@@ -180,10 +183,10 @@
 	{
 		[trash removeFromSuperview];
 	}
-	
-	[[[self theTable] enclosingScrollView] setHasHorizontalScroller:NO];
 
-	[[self View] setFrame:[dstView bounds]];
+	[self.theTable.enclosingScrollView setHasHorizontalScroller:NO];
+
+	[self.View setFrame:[dstView bounds]];
 
 	[dstView addSubview:_View];
 }
@@ -199,6 +202,56 @@
 {
 	_optionsInEffect = optionsInEffect;
 	self.tidyDocument.optionsInEffect = optionsInEffect;
+
+	// @todo: this is what we have to change in order to use a different
+	// data structure to provide our table.
+	// We will keep _optionsInEffect, as it's our base list of options.
+	// In fact, we can keep it alphabetized for easy use later. But
+	// we also need to create a separate, equal _optionsInEffect list
+	// that includes headers and some means of identifying headers.
+	//
+	// Now, really, have four display options:
+	// native, alphabetical
+	// native, grouped (with localized headings)
+	// friendly, alphabetical
+	// friendly, grouped (all localized).
+	//
+	// In the end we simply want to provide the table an array of strings. If the
+	// string starts with "#!HEADER" then we will treat it as a header.
+	// Once we've set self.tidyDocument.optionsInEffect, we have an array .tidyOptions
+	// of all of the information we need. To make the actual array for use in the
+	// list, we can do:
+	//
+	// native, alphabetical:
+	// for each array element that's not suppressed, add the .name to a new list.
+	// sort the new list.
+	//
+	// native, grouped (with localized headings):
+	// build a list of unique .localizedHumanReadableCategory for non-suppressed items.
+	// sort this list.
+	// for each item, build a list of .name
+	// sort this list.
+	// add the header (with !#HEADER) to a new list, followed by the .name list items.
+	//
+	// friendly, alphabetical:
+	// build a list of unique .localizedHumanReadableCategory for non-suppressed items.
+	// sort this list.
+	// for each item, build a list of .localizedHumanReadableName
+	// sort this list.
+	// add the header (with !#HEADER) to a new list, followed by the .name list items.
+	//
+	// friendly, grouped (all localized).:
+	// for each array element that's not suppressed, add the .localizedHumanReadableName to a new list.
+	// sort the new list.
+	// In FACT, this should be a feature of JSDTidyModel!
+	// Then I can BIND the tableview to this instead of binding to the cellviewcontroller.
+	// ...AND I think I can still populate the lists the same way I do now!
+	// But same problem... unless I'm bound to the properties directly, no feedback back to tidylib.
+	// Do I need to expose these from tidylib directly?????????? How??????? There MUST be a way
+	// using NSArrayController or NSDictionaryController to "re-represent" items, right? But if so,
+	// then how do I handle headings? Do I start to use NSOutlineView?
+	
+	
 
 	if (self.isShowingOptionsInGroups)
 	{
@@ -298,7 +351,7 @@
 				  row:(NSInteger)row
 {
 	// Setup the view if it's a header.
-	if ( tableColumn == nil)
+	if (tableColumn == nil)
 	{
 		NSTextField *theView = [tableView makeViewWithIdentifier:@"header" owner:self];
 		if (theView == nil)
@@ -311,23 +364,23 @@
 	}
 
 
-	JSDTidyOption *optionRef = [[self tidyDocument] tidyOptions][self.optionsInEffect[row]];
+	JSDTidyOption *optionRef = [self.tidyDocument tidyOptions][self.optionsInEffect[row]];
 
 
 	// Setup the view if it's a one of the Tidy Option Names.
 	if ([tableColumn.identifier isEqualToString:@"name"])
 	{
-		NSTableCellView *theView = [tableView makeViewWithIdentifier:@"optionName" owner:self];
+		NSTableCellView *theView = [tableView makeViewWithIdentifier:@"optionName" owner:nil];
 
 		[theView.textField setEditable:NO];
 
-		if ( self.isShowingFriendlyTidyOptionNames )
+		if (self.isShowingFriendlyTidyOptionNames)
 		{
 			theView.objectValue = optionRef.localizedHumanReadableName;
 		}
 		else
 		{
-			theView.objectValue = self.optionsInEffect[row];
+			theView.objectValue = optionRef.name;
 		}
 
 		return theView;
@@ -342,25 +395,24 @@
 		// Pure Text View
 		if ( optionRef.optionUIType == [NSTextField class] )
 		{
-			theView = [tableView makeViewWithIdentifier:@"optionString" owner:self];
+			theView = [tableView makeViewWithIdentifier:@"optionString" owner:nil];
 		}
 
 		// NSPopupMenu View
-		if ( optionRef.optionUIType == [NSPopUpButton class] )
+		if (optionRef.optionUIType == [NSPopUpButton class])
 		{
-			theView = [tableView makeViewWithIdentifier:@"optionPopup" owner:self];
-			[[theView popupButtonControl] addItemsWithTitles:optionRef.possibleOptionValues];
+			theView = [tableView makeViewWithIdentifier:@"optionPopup" owner:nil];
+			theView.popupButtonArray = [NSArray arrayWithArray:optionRef.possibleOptionValues];
 		}
 
 		// NSStepper View
-		if ( optionRef.optionUIType == [NSStepper class] )
+		if (optionRef.optionUIType == [NSStepper class])
 		{
-			theView = [tableView makeViewWithIdentifier:@"optionStepper" owner:self];
+			theView = [tableView makeViewWithIdentifier:@"optionStepper" owner:nil];
 		}
 
-		[theView.textField setEditable:YES];
-
 		theView.objectValue = optionRef.optionUIValue;
+		[theView.textField setEditable:YES];
 
 		return theView;
 
@@ -386,7 +438,7 @@
 {
 	if ([[inColumn identifier] isEqualToString:@"check"])
 	{
-		JSDTidyOption *optionRef = [[self tidyDocument] tidyOptions][self.optionsInEffect[inRow]];
+		JSDTidyOption *optionRef = [self.tidyDocument tidyOptions][self.optionsInEffect[inRow]];
 				
 		if ([object isKindOfClass:[NSString class]])
 		{
@@ -409,9 +461,9 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification
 {
-	if ([aNotification object] == [self theTable])
+	if ([aNotification object] == self.theTable)
 	{
-		NSString *selectedOptionName = self.optionsInEffect[[[self theTable] selectedRow]];
+		NSString *selectedOptionName = self.optionsInEffect[[self.theTable selectedRow]];
 		
 		JSDTidyOption *optionRef = [[self tidyDocument] tidyOptions][selectedOptionName];
 		

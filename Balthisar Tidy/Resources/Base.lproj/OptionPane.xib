@@ -36,7 +36,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" selectionHighlightStyle="sourceList" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" autosaveName="" rowHeight="20" viewBased="YES" floatsGroupRows="NO" id="rLn-af-rHD" customClass="JSDTableView">
-                                        <rect key="frame" x="0.0" y="0.0" width="306" height="337"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="337"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <size key="intercellSpacing" width="3" height="2"/>
                                         <color key="backgroundColor" name="controlLightHighlightColor" catalog="System" colorSpace="catalog"/>
@@ -87,7 +87,7 @@
                                                     </tableCellView>
                                                 </prototypeCellViews>
                                             </tableColumn>
-                                            <tableColumn identifier="check" width="150" minWidth="100" maxWidth="10000" id="TFd-eQ-dws">
+                                            <tableColumn identifier="check" width="144" minWidth="100" maxWidth="10000" id="TFd-eQ-dws">
                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                     <font key="font" metaFont="smallSystem"/>
                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -101,11 +101,11 @@
                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 <prototypeCellViews>
                                                     <tableCellView identifier="optionString" id="Xxa-40-G4e" customClass="JSDTableCellView">
-                                                        <rect key="frame" x="154" y="1" width="150" height="20"/>
+                                                        <rect key="frame" x="154" y="1" width="144" height="20"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Wv5-Uh-AKN">
-                                                                <rect key="frame" x="12" y="2" width="138" height="17"/>
+                                                                <rect key="frame" x="12" y="2" width="132" height="17"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="ASw-zL-5Ib">
                                                                     <font key="font" metaFont="system"/>
@@ -127,19 +127,25 @@
                                                         </connections>
                                                     </tableCellView>
                                                     <tableCellView identifier="optionPopup" id="IF5-46-iW9" customClass="JSDTableCellView">
-                                                        <rect key="frame" x="154" y="23" width="150" height="20"/>
+                                                        <rect key="frame" x="154" y="23" width="144" height="20"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
-                                                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VM5-hM-S8Q">
+                                                            <popUpButton verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VM5-hM-S8Q">
                                                                 <rect key="frame" x="7" y="1" width="143" height="19"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <popUpButtonCell key="cell" type="roundRect" bezelStyle="roundedRect" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" inset="2" id="7L2-Yq-tAG">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                    <font key="font" metaFont="titleBar" size="12"/>
+                                                                    <font key="font" metaFont="cellTitle"/>
                                                                     <menu key="menu" title="OtherViews" id="Uvz-bY-gu8"/>
                                                                 </popUpButtonCell>
                                                                 <connections>
-                                                                    <binding destination="IF5-46-iW9" name="selectedIndex" keyPath="objectValue" id="KgZ-Yx-ic5"/>
+                                                                    <binding destination="IF5-46-iW9" name="contentValues" keyPath="popupButtonArray" id="MFN-ES-xqd"/>
+                                                                    <binding destination="IF5-46-iW9" name="selectedIndex" keyPath="objectValue" previousBinding="MFN-ES-xqd" id="x4v-MK-klf">
+                                                                        <dictionary key="options">
+                                                                            <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                                                                            <bool key="NSConditionallySetsEnabled" value="NO"/>
+                                                                        </dictionary>
+                                                                    </binding>
                                                                 </connections>
                                                             </popUpButton>
                                                         </subviews>
@@ -153,22 +159,28 @@
                                                         </connections>
                                                     </tableCellView>
                                                     <tableCellView identifier="optionStepper" id="Jlo-Y8-J8Y" customClass="JSDTableCellView">
-                                                        <rect key="frame" x="154" y="45" width="150" height="20"/>
+                                                        <rect key="frame" x="154" y="45" width="144" height="20"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
-                                                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="R7C-t3-XO3">
+                                                            <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R7C-t3-XO3">
                                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="20"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <subviews>
                                                                     <stepper hidden="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Yd-o5-KgU">
                                                                         <rect key="frame" x="-2" y="3" width="13" height="15"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                                        <stepperCell key="cell" controlSize="mini" continuous="YES" alignment="left" maxValue="100" id="5vQ-KU-8dK"/>
+                                                                        <stepperCell key="cell" controlSize="mini" continuous="YES" alignment="left" maxValue="1000" id="5vQ-KU-8dK"/>
                                                                         <connections>
-                                                                            <binding destination="Jlo-Y8-J8Y" name="value" keyPath="objectValue" id="7q3-YU-hYt"/>
+                                                                            <binding destination="Jlo-Y8-J8Y" name="value" keyPath="objectValue" id="z3g-g4-RU4">
+                                                                                <dictionary key="options">
+                                                                                    <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                                                                                    <bool key="NSConditionallySetsEnabled" value="NO"/>
+                                                                                    <string key="NSValueTransformerName">JSDIntegerValueTransformer</string>
+                                                                                </dictionary>
+                                                                            </binding>
                                                                         </connections>
                                                                     </stepper>
-                                                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EBb-5Y-S25">
+                                                                    <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EBb-5Y-S25">
                                                                         <rect key="frame" x="12" y="2" width="140" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" alignment="left" id="ksV-rd-lUs">
