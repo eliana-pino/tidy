@@ -130,8 +130,8 @@
                                                         <rect key="frame" x="154" y="23" width="144" height="20"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
-                                                            <popUpButton verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VM5-hM-S8Q">
-                                                                <rect key="frame" x="7" y="1" width="143" height="19"/>
+                                                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VM5-hM-S8Q">
+                                                                <rect key="frame" x="7" y="1" width="137" height="19"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <popUpButtonCell key="cell" type="roundRect" bezelStyle="roundedRect" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" inset="2" id="7L2-Yq-tAG">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -162,8 +162,8 @@
                                                         <rect key="frame" x="154" y="45" width="144" height="20"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
-                                                            <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R7C-t3-XO3">
-                                                                <rect key="frame" x="0.0" y="0.0" width="150" height="20"/>
+                                                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="R7C-t3-XO3">
+                                                                <rect key="frame" x="0.0" y="0.0" width="144" height="20"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <subviews>
                                                                     <stepper hidden="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Yd-o5-KgU">
@@ -180,8 +180,8 @@
                                                                             </binding>
                                                                         </connections>
                                                                     </stepper>
-                                                                    <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EBb-5Y-S25">
-                                                                        <rect key="frame" x="12" y="2" width="140" height="17"/>
+                                                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EBb-5Y-S25">
+                                                                        <rect key="frame" x="12" y="2" width="134" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" alignment="left" id="ksV-rd-lUs">
                                                                             <font key="font" metaFont="system"/>
