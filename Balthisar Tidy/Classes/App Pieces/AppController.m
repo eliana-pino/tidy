@@ -28,6 +28,7 @@
  **************************************************************************************************/
 
 #import "AppController.h"
+#import "JSDIntegerValueTransformer.h"
 
 
 #pragma mark - CATEGORY - Non-Public
@@ -57,6 +58,10 @@
 + (void)initialize
 {
 	[PreferenceController registerUserDefaults];
+
+	//Initialize the value transformers used throughout the application bindings
+	NSValueTransformer *transformer = [[JSDIntegerValueTransformer alloc] init];
+    [NSValueTransformer setValueTransformer:transformer forName:@"JSDIntegerValueTransformer"];
 }
 
 
