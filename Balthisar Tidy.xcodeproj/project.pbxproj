@@ -43,6 +43,8 @@
 		D04D5F9A1902459500F77901 /* NSApplication+TidyApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = D04D5F981902459500F77901 /* NSApplication+TidyApplication.m */; };
 		D06626CF18B09B330091CBD8 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D06626CE18B09B330091CBD8 /* Sparkle.framework */; };
 		D06626D118B09BEA0091CBD8 /* Sparkle.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = D06626CE18B09B330091CBD8 /* Sparkle.framework */; };
+		D081CBDB1917C1510041B2C5 /* JSDIntegerValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D081CBDA1917C1510041B2C5 /* JSDIntegerValueTransformer.m */; };
+		D081CBDC1917C1510041B2C5 /* JSDIntegerValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D081CBDA1917C1510041B2C5 /* JSDIntegerValueTransformer.m */; };
 		D08A7C9418D442FF00341DCB /* optionsInEffect.txt in Resources */ = {isa = PBXBuildFile; fileRef = D08A7C9218D442FF00341DCB /* optionsInEffect.txt */; };
 		D08A7C9518D442FF00341DCB /* optionsInEffect.txt in Resources */ = {isa = PBXBuildFile; fileRef = D08A7C9218D442FF00341DCB /* optionsInEffect.txt */; };
 		D0913CAF18B0AC06005DB2E4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D016A935182FD80700712C60 /* main.m */; };
@@ -188,6 +190,8 @@
 		D04D5F971902459500F77901 /* NSApplication+TidyApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSApplication+TidyApplication.h"; sourceTree = "<group>"; };
 		D04D5F981902459500F77901 /* NSApplication+TidyApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSApplication+TidyApplication.m"; sourceTree = "<group>"; };
 		D06626CE18B09B330091CBD8 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = "Balthisar Tidy/Frameworks/Sparkle.framework"; sourceTree = "<group>"; };
+		D081CBD91917C1510041B2C5 /* JSDIntegerValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSDIntegerValueTransformer.h; sourceTree = "<group>"; };
+		D081CBDA1917C1510041B2C5 /* JSDIntegerValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSDIntegerValueTransformer.m; sourceTree = "<group>"; };
 		D08A7C9218D442FF00341DCB /* optionsInEffect.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = optionsInEffect.txt; sourceTree = "<group>"; };
 		D0913CDE18B0AC06005DB2E4 /* Balthisar Tidy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Balthisar Tidy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0CCEE2818E9967B0052E56C /* Balthisar Tidy.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Balthisar Tidy.help"; sourceTree = "<group>"; };
@@ -455,6 +459,8 @@
 				D047C72E1915FBF100B70A94 /* JSDTableCellView.m */,
 				D0D9EAD018E6680F008A55D5 /* JSDTextField.h */,
 				D0D9EAD118E6680F008A55D5 /* JSDTextField.m */,
+				D081CBD91917C1510041B2C5 /* JSDIntegerValueTransformer.h */,
+				D081CBDA1917C1510041B2C5 /* JSDIntegerValueTransformer.m */,
 				D0D9EAD218E6680F008A55D5 /* NoodleLineNumberMarker.h */,
 				D0D9EAD318E6680F008A55D5 /* NoodleLineNumberMarker.m */,
 				D0D9EAD418E6680F008A55D5 /* NoodleLineNumberView.h */,
@@ -748,6 +754,7 @@
 				D0D9ED6B18E66810008A55D5 /* mappedio.c in Sources */,
 				D0D9ED7918E66810008A55D5 /* tmbstr.c in Sources */,
 				D047C72F1915FBF100B70A94 /* JSDTableCellView.m in Sources */,
+				D081CBDB1917C1510041B2C5 /* JSDIntegerValueTransformer.m in Sources */,
 				D0D9ED4D18E66810008A55D5 /* attrask.c in Sources */,
 				D0D9ED6F18E66810008A55D5 /* pprint.c in Sources */,
 				D0D9ED3318E66810008A55D5 /* JSDTidyModel.m in Sources */,
@@ -797,6 +804,7 @@
 				D0D9ED6C18E66810008A55D5 /* mappedio.c in Sources */,
 				D0D9ED7A18E66810008A55D5 /* tmbstr.c in Sources */,
 				D047C7301915FBF100B70A94 /* JSDTableCellView.m in Sources */,
+				D081CBDC1917C1510041B2C5 /* JSDIntegerValueTransformer.m in Sources */,
 				D0D9ED4E18E66810008A55D5 /* attrask.c in Sources */,
 				D0D9ED7018E66810008A55D5 /* pprint.c in Sources */,
 				D0D9ED3418E66810008A55D5 /* JSDTidyModel.m in Sources */,
