@@ -53,4 +53,7 @@
 /** If the view has a popup button, this outlet provides access to it. */
 @property (nonatomic, weak) IBOutlet NSPopUpButton *popupButtonControl;
 
+/** Populate this array in order to show options in the popup menus. */
+@property (nonatomic, strong) NSArray *popupButtonArray;
+
 @end
