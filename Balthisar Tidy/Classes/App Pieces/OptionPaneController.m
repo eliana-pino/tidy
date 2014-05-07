@@ -54,6 +54,8 @@
 @property (nonatomic, assign) BOOL isInPreferencesView;
 @property (nonatomic, assign) BOOL isShowingFriendlyTidyOptionNames;
 @property (nonatomic, assign) BOOL isShowingOptionsInGroups;
+@property (nonatomic, assign) BOOL isShowingAlternatingRowColors;
+@property (nonatomic, assign) BOOL isShowingHoverEffect;
 
 
 /* Gradient button outlets */
@@ -129,6 +131,8 @@
 - (void)dealloc
 {
 	_tidyDocument = nil;
+	[[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:JSDKeyOptionsAlternateRowColors];
+	[[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:JSDKeyOptionsUseHoverEffect];
 }
 
 
@@ -167,6 +171,27 @@
 	self.isShowingFriendlyTidyOptionNames = [[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyOptionsShowHumanReadableNames];
 
 	self.isShowingOptionsInGroups = [[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyOptionsAreGrouped];
+
+	self.isShowingAlternatingRowColors = [[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyOptionsAlternateRowColors];
+
+	self.isShowingHoverEffect = [[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyOptionsUseHoverEffect];
+
+
+	// KVO
+
+    [[NSUserDefaults standardUserDefaults] addObserver:self
+											forKeyPath:JSDKeyOptionsAlternateRowColors
+											   options:(NSKeyValueObservingOptionNew)
+											   context:NULL];
+
+	[self.theTable setUsesAlternatingRowBackgroundColors:self.isShowingAlternatingRowColors];
+
+
+	[[NSUserDefaults standardUserDefaults] addObserver:self
+											forKeyPath:JSDKeyOptionsUseHoverEffect
+											   options:(NSKeyValueObservingOptionNew)
+											   context:NULL];
+
 }
 
 
@@ -189,6 +214,32 @@
 	[self.View setFrame:[dstView bounds]];
 
 	[dstView addSubview:_View];
+}
+
+
+#pragma mark - KVO
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	observeValueForKeyPath:ofObject:change:context
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+	if ([keyPath isEqual:JSDKeyOptionsAlternateRowColors])
+	{
+		NSNumber *newNumber = [change objectForKey:NSKeyValueChangeNewKey];
+		self.theTable.usesAlternatingRowBackgroundColors = [newNumber boolValue];
+		return;
+    }
+
+	if ([keyPath isEqual:JSDKeyOptionsUseHoverEffect])
+	{
+		NSNumber *newNumber = [change objectForKey:NSKeyValueChangeNewKey];
+		self.isShowingHoverEffect = [newNumber boolValue];
+		self.theTable.needsDisplay = YES;
+		return;
+    }
+
 }
 
 
@@ -253,7 +304,7 @@
 	
 	
 
-	if (self.isShowingOptionsInGroups)
+	if (!self.isShowingOptionsInGroups)
 	{
 		_optionsInEffect = [_optionsInEffect sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
 	}
@@ -412,6 +463,15 @@
 		}
 
 		theView.objectValue = optionRef.optionUIValue;
+
+
+		[[NSUserDefaults standardUserDefaults] addObserver:theView
+												forKeyPath:JSDKeyOptionsUseHoverEffect
+												   options:(NSKeyValueObservingOptionNew)
+												   context:NULL];
+
+		theView.usesHoverEffect = self.isShowingHoverEffect;
+
 		[theView.textField setEditable:YES];
 
 		return theView;

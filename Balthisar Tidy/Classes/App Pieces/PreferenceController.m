@@ -109,6 +109,8 @@
 	[defaultValues setObject:@NO forKey:JSDKeyOptionsShowHumanReadableNames];
 	[defaultValues setObject:@"line" forKey:JSDKeyMessagesTableInitialSortKey];
 	[defaultValues setObject:@YES forKey:JSDKeyOptionsAreGrouped];
+	[defaultValues setObject:@YES forKey:JSDKeyOptionsAlternateRowColors];
+	[defaultValues setObject:@YES forKey:JSDKeyOptionsUseHoverEffect];
 
 
 	/* TODO: Preferences that apply to all open documents */

@@ -139,13 +139,13 @@
                                                                     <menu key="menu" title="OtherViews" id="Uvz-bY-gu8"/>
                                                                 </popUpButtonCell>
                                                                 <connections>
-                                                                    <binding destination="IF5-46-iW9" name="contentValues" keyPath="popupButtonArray" id="MFN-ES-xqd"/>
                                                                     <binding destination="IF5-46-iW9" name="selectedIndex" keyPath="objectValue" previousBinding="MFN-ES-xqd" id="x4v-MK-klf">
                                                                         <dictionary key="options">
                                                                             <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
                                                                             <bool key="NSConditionallySetsEnabled" value="NO"/>
                                                                         </dictionary>
                                                                     </binding>
+                                                                    <binding destination="IF5-46-iW9" name="contentValues" keyPath="popupButtonArray" id="MFN-ES-xqd"/>
                                                                 </connections>
                                                             </popUpButton>
                                                         </subviews>
@@ -306,7 +306,7 @@
                                         </binding>
                                     </connections>
                                 </menuItem>
-                                <menuItem title="Show options in groups" id="3pF-Gd-AlJ">
+                                <menuItem title="Show options in groups" hidden="YES" enabled="NO" id="3pF-Gd-AlJ">
                                     <connections>
                                         <action selector="handleShowOptionsInGroups:" target="-2" id="Iuw-ha-96B"/>
                                         <binding destination="-2" name="value" keyPath="self.isShowingOptionsInGroups" id="2MT-RX-QSr">
@@ -317,8 +317,8 @@
                                         </binding>
                                     </connections>
                                 </menuItem>
-                                <menuItem isSeparatorItem="YES" id="6cm-3G-Q97"/>
-                                <menuItem title="Save a Unix config file with these options…" id="0HY-2M-G1v">
+                                <menuItem isSeparatorItem="YES" hidden="YES" enabled="YES" id="6cm-3G-Q97"/>
+                                <menuItem title="Save a Unix config file with these options…" hidden="YES" enabled="NO" id="0HY-2M-G1v">
                                     <connections>
                                         <action selector="handleSaveOptionsToUnixConfigFile:" target="-2" id="QTh-n6-WMY"/>
                                     </connections>

@@ -227,6 +227,47 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
+                                        <button appearanceType="aqua" id="SnL-tM-N5e">
+                                            <rect key="frame" x="17" y="273" width="339" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Show alternating row colors in Tidy options panels" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="HuX-hK-3bz">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <binding destination="he1-mJ-CQo" name="value" keyPath="values.OptionsAlternateRowColors" id="Aub-iE-g0i"/>
+                                            </connections>
+                                        </button>
+                                        <textField appearanceType="aqua" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="knh-fZ-KRe">
+                                            <rect key="frame" x="29" y="225" width="330" height="42"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Alternating row colors change the background color of subsequent rows in order to help you distinguish between them." id="l4x-te-hRq">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <button appearanceType="aqua" id="tHM-Xq-7gn">
+                                            <rect key="frame" x="17" y="201" width="311" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Use hovering behavior for Tidy options panels" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="N49-Lk-Iwm">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <binding destination="he1-mJ-CQo" name="value" keyPath="values.OptionsUseHoverEffect" id="qyL-lc-yrY"/>
+                                            </connections>
+                                        </button>
+                                        <textField appearanceType="aqua" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="9Nw-3V-zd1">
+                                            <rect key="frame" x="29" y="139" width="330" height="56"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="0tw-hy-z0z">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <string key="title">Hovering behavior, when turned on, displays only text without the normal controls in the Tidy options panels, resulting in a more pleasant appearance. Turn this option off if you prefer a more traditional experience.</string>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
                                     </subviews>
                                 </view>
                             </tabViewItem>

@@ -38,6 +38,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class JSDTableView;
+
 
 /**
 	Implements special behavior for a couple of different cell types by adding
@@ -46,6 +48,9 @@
 	etc. are all already implemented.
  */
 @interface JSDTableCellView : NSTableCellView
+
+
+@property (nonatomic, assign) BOOL usesHoverEffect;
 
 /** If the view has a stepper, this outlet provides access to it. */
 @property (nonatomic, weak) IBOutlet NSStepper *stepperControl;

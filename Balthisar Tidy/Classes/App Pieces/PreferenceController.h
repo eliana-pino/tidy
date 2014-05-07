@@ -54,6 +54,8 @@
 #define JSDKeyOptionsShowHumanReadableNames		@"OptionsShowHumanReadableNames"
 #define JSDKeyMessagesTableInitialSortKey		@"MessagesTableInitialSortKey"
 #define JSDKeyOptionsAreGrouped					@"OptionsAreGrouped"
+#define JSDKeyOptionsAlternateRowColors			@"OptionsAlternateRowColors"
+#define JSDKeyOptionsUseHoverEffect				@"OptionsUseHoverEffect"
 
 /* Preferences that apply to all open documents */
 #define JSDKeyAllowMacOSTextSubstitutions		@"AllowMacOSTextSubstitutions"

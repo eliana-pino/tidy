@@ -35,8 +35,6 @@
 		D036E21418F3D2F20009A9D4 /* Tidy.icns in Resources */ = {isa = PBXBuildFile; fileRef = D036E20B18F3D2F20009A9D4 /* Tidy.icns */; };
 		D036E21518F3D2F20009A9D4 /* XML.icns in Resources */ = {isa = PBXBuildFile; fileRef = D036E20C18F3D2F20009A9D4 /* XML.icns */; };
 		D036E21618F3D2F20009A9D4 /* XML.icns in Resources */ = {isa = PBXBuildFile; fileRef = D036E20C18F3D2F20009A9D4 /* XML.icns */; };
-		D036E21818F3D81E0009A9D4 /* TidyScripting.sdef in Resources */ = {isa = PBXBuildFile; fileRef = D036E21718F3D81E0009A9D4 /* TidyScripting.sdef */; };
-		D036E21918F3D81E0009A9D4 /* TidyScripting.sdef in Resources */ = {isa = PBXBuildFile; fileRef = D036E21718F3D81E0009A9D4 /* TidyScripting.sdef */; };
 		D047C72F1915FBF100B70A94 /* JSDTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D047C72E1915FBF100B70A94 /* JSDTableCellView.m */; };
 		D047C7301915FBF100B70A94 /* JSDTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D047C72E1915FBF100B70A94 /* JSDTableCellView.m */; };
 		D04D5F991902459500F77901 /* NSApplication+TidyApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = D04D5F981902459500F77901 /* NSApplication+TidyApplication.m */; };
@@ -674,7 +672,6 @@
 				D036E20F18F3D2F20009A9D4 /* HTML.icns in Resources */,
 				D036E1EC18F3D25E0009A9D4 /* InfoPlist.strings in Resources */,
 				D036E1F018F3D25E0009A9D4 /* MainMenu.xib in Resources */,
-				D036E21818F3D81E0009A9D4 /* TidyScripting.sdef in Resources */,
 				D0E6AE761911E88000B49779 /* messagesWarning.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -702,7 +699,6 @@
 				D036E21018F3D2F20009A9D4 /* HTML.icns in Resources */,
 				D036E1ED18F3D25E0009A9D4 /* InfoPlist.strings in Resources */,
 				D036E1F118F3D25E0009A9D4 /* MainMenu.xib in Resources */,
-				D036E21918F3D81E0009A9D4 /* TidyScripting.sdef in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

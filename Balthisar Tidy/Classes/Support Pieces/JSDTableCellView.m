@@ -37,7 +37,7 @@
  **************************************************************************************************/
 
 #import "JSDTableCellView.h"
-
+#import "JSDTableView.h"
 
 #pragma mark - Private Interface Additions
 
@@ -54,21 +54,43 @@
 @implementation JSDTableCellView
 
 
+
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	awakeFromNib
 		Setup some default appearances.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)awakeFromNib
 {
-	[self.popupButtonControl setShowsBorderOnlyWhileMouseInside:YES];
+	[self.popupButtonControl setShowsBorderOnlyWhileMouseInside:self.usesHoverEffect];
 
-	[self.stepperControl setHidden:YES];
+	[self.stepperControl setHidden:self.usesHoverEffect];
 
 	[self.textField setBordered:NO];
 	[self.textField setDrawsBackground:NO];
 
+
 }
 
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	observeValueForKeyPath:ofObject:change:context
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+	if ([keyPath isEqual:@"OptionsUseHoverEffect"])
+	{
+		NSNumber *newNumber = [change objectForKey:NSKeyValueChangeNewKey];
+		[self setUsesHoverEffect:[newNumber boolValue]];
+    }
+}
+
+
+- (void)setUsesHoverEffect:(BOOL)usesHoverEffect
+{
+	_usesHoverEffect = usesHoverEffect;
+	[self.popupButtonControl setShowsBorderOnlyWhileMouseInside:self.usesHoverEffect];
+	[self.stepperControl setHidden:self.usesHoverEffect];
+}
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	setObjectValue
@@ -111,41 +133,15 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	 keyDown
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)keyDown:(NSEvent *)theEvent
-{
-	NSLog(@"%@",@"Key down!");
-//	if ([[self delegate] respondsToSelector:@selector(tableView:keyWasPressed:row:)])
-//	{
-//		BOOL handled = [(id<JSDTableViewDelegate>)[self delegate] tableView:self keyWasPressed:theEvent.keyCode row:self.selectedRow];
-//
-//		if (!handled)
-//		{
-//			[super keyDown:theEvent];
-//		}
-//		else
-//		{
-//			[self setNeedsDisplay:YES];
-//
-//			//[self reloadData];
-//		}
-//	}
-//	else
-//	{
-//		[super keyDown:theEvent];
-//	}
-
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	mouseEntered:
 		Show the NSStepper control (if there is one).
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)mouseEntered:(NSEvent *)theEvent
 {
-	self.stepperControl.hidden = NO;
+	if (self.usesHoverEffect)
+	{
+		self.stepperControl.hidden = NO;
+	}
 }
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
@@ -154,7 +150,10 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)mouseExited:(NSEvent *)theEvent
 {
-	self.stepperControl.hidden = YES;
+	if (self.usesHoverEffect)
+	{
+		self.stepperControl.hidden = YES;
+	}
 }
 
 
