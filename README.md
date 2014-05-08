@@ -1,5 +1,5 @@
-﻿Balthisar Tidy (version 1.2.0-development)
-==========================================
+﻿Balthisar Tidy (version 1.5)
+============================
 
 by Jim Derry, <http://www.balthisar.com>
 Copyright © 2003-2014 by Jim Derry. All rights reserved.
@@ -33,8 +33,34 @@ _Balthisar Tidy_ has been released with support for Mac OS X 10.8 and newer.
 Change Log
 ----------
 
-### Balthisar Tidy 1.2.0 (April-May 2014)
-- Nothing to see yet. Source code is changing often.
+### Balthisar Tidy 1.5.0 (May 2014)
+
+#### Visible changes
+- The application in general has had several improvements.
+	- New application and documents icons retaining the trademark Tidy Broom).
+	- Added missing View menu in the main menu.
+	- Added support for printing the Tidy'd text.
+	- Added a Show New User Helper to the Help Menu.
+- The documents window is now improved.
+	- New documents retain the position and size of last-used document.
+	- New documents splitter positions are retained based on last-used document.
+- The Tidy options panel is improved.
+	- It is now a modern Mac OS source list, including new controls.
+	- Apply document's Tidy options to preferences (in a document).
+	- Reset document options to preferences settings (in a document).
+	- Revert to Tidy factory presets (while in Preferences).
+- The Messages panel has some improvements.
+	- It now has some pretty icons to help distinguish severity.
+	- Columns are now all sortable.
+
+
+
+#### Invisible changes
+- Project directory layout changes.
+- Back to icns files for all icons.
+- Separated JSDTidyModel .strings into its own file.
+- Modified base TidyLib to allow a new callback filter to enable localization of output messages.
+- Added lots of strings to the new JSDTidyModel.strings to allow easy localization.
 
 
 ### Balthisar Tidy 1.1.0 (April 2014)
