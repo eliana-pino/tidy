@@ -33,7 +33,7 @@
 #import "config.h"
 
 @class JSDTidyOption;
-@class JSDTidyModel;  // @todo: do I need this in its own header?
+@class JSDTidyModel;
 
 
 #pragma mark - Some defines
@@ -44,8 +44,7 @@
 	under which all of the TidyLib options will be written. You might
 	change this if your application uses Cocoa's native preferences
 	system.
-*/
-
+ */
 #define JSDKeyTidyTidyOptionsKey @"JSDTidyTidyOptions"
 
 /*
@@ -62,51 +61,47 @@
 	TidyLib will post the following NSNotifications.
 */
 
-#define tidyNotifyOptionChanged                  @"JSDTidyDocumentOptionChanged"
-#define tidyNotifySourceTextChanged              @"JSDTidyDocumentSourceTextChanged"
-#define tidyNotifyTidyTextChanged                @"JSDTidyDocumentTidyTextChanged"
-#define tidyNotifyTidyErrorsChanged              @"JSDTidyDocumentTidyErrorsChanged"
-#define tidyNotifyPossibleInputEncodingProblem   @"JSDTidyNotifyPossibleInputEncodingProblem"
+#define tidyNotifyOptionChanged					@"JSDTidyDocumentOptionChanged"
+#define tidyNotifySourceTextChanged				@"JSDTidyDocumentSourceTextChanged"
+#define tidyNotifyTidyTextChanged				@"JSDTidyDocumentTidyTextChanged"
+#define tidyNotifyTidyErrorsChanged				@"JSDTidyDocumentTidyErrorsChanged"
+#define tidyNotifyPossibleInputEncodingProblem	@"JSDTidyNotifyPossibleInputEncodingProblem"
 
 
 #pragma mark - protocol JSDTidyModelDelegate
 
-/*
-	Protocol to define the Tidy delegate expectations.
-*/
-
+/**
+ Tidy supports GUI
+ */
 @protocol JSDTidyModelDelegate <NSObject>
 
 @optional
 
-- (void)tidyModelOptionChanged:(JSDTidyModel *)tidyModel 
-                        option:(JSDTidyOption *)tidyOption;
+- (void)tidyModelOptionChanged:(JSDTidyModel *)tidyModel option:(JSDTidyOption *)tidyOption;
 
-- (void)tidyModelSourceTextChanged:(JSDTidyModel *)tidyModel
-                              text:(NSString *)text;
+- (void)tidyModelSourceTextChanged:(JSDTidyModel *)tidyModel text:(NSString *)text;
 
-- (void)tidyModelTidyTextChanged:(JSDTidyModel *)tidyModel 
-                            text:(NSString *)text;
+- (void)tidyModelTidyTextChanged:(JSDTidyModel *)tidyModel text:(NSString *)text;
 
-- (void)tidyModelTidyMessagesChanged:(JSDTidyModel *)tidyModel
-                            messages:(NSArray *)messages;
+- (void)tidyModelTidyMessagesChanged:(JSDTidyModel *)tidyModel messages:(NSArray *)messages;
 
 - (void)tidyModelDetectedInputEncodingIssue:(JSDTidyModel *)tidyModel
-                            currentEncoding:(NSStringEncoding)currentEncoding
-                          suggestedEncoding:(NSStringEncoding)suggestedEncoding;
+							currentEncoding:(NSStringEncoding)currentEncoding
+						  suggestedEncoding:(NSStringEncoding)suggestedEncoding;
 
 @end
 
 
+
+
 #pragma mark - class JSDTidyModel
 
-/*
+/**
 	JSDTidyModel is a nice, Mac OS X wrapper for TidyLib. It uses instances
 	JSDTidyOption to contain TidyOptions. The model works with every built-
 	in TidyOption, although applications can suppress multiple individual
 	TidyOptions if desired.
  */
- 
 @interface JSDTidyModel : NSObject
 
 
@@ -117,9 +112,9 @@
 	INITIALIZATION and DEALLOCATION
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
-- (id)init;
+- (id)init;			///< Standard init.
 
-/*
+/**
 	The convenience initializers assume that strings and data
 	are already processed to NSString standard. File-based intializers
 	will try to convert to NSString standard using the default tidy
@@ -128,24 +123,23 @@
 	Given original text in these initalizers, the working text will
 	be generated immediately.
 */
-
 - (id)initWithString:(NSString *)value;
 
-- (id)initWithString:(NSString *)value copyOptionsFromModel:(JSDTidyModel *)theModel;	
+- (id)initWithString:(NSString *)value copyOptionsFromModel:(JSDTidyModel *)theModel;		///< @copydoc initWithString:
 
-- (id)initWithData:(NSData *)data;														
+- (id)initWithData:(NSData *)data;															///< @copydoc initWithString:
 
-- (id)initWithData:(NSData *)data copyOptionsFromModel:(JSDTidyModel *)theModel;		
+- (id)initWithData:(NSData *)data copyOptionsFromModel:(JSDTidyModel *)theModel;			///< @copydoc initWithString:
 
-- (id)initWithFile:(NSString *)path;														
+- (id)initWithFile:(NSString *)path;														///< @copydoc initWithString:
 
-- (id)initWithFile:(NSString *)path copyOptionsFromModel:(JSDTidyModel *)theModel;			
+- (id)initWithFile:(NSString *)path copyOptionsFromModel:(JSDTidyModel *)theModel;			///< @copydoc initWithString:
 
 
 #pragma mark - Delegate Support
 
 
-@property (weak) id <JSDTidyModelDelegate> delegate;
+@property (nonatomic, weak) id <JSDTidyModelDelegate> delegate;											///< delegate for implementors.
 
 
 #pragma mark - String Encoding Support
@@ -155,7 +149,7 @@
 	ENCODING SUPPORT
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
-/*
+/**
 	These class methods return convenience collections that
 	might be useful in implementing a user interface for the
 	encoding support of JSDTidyModel. The dictionaries all
@@ -168,177 +162,18 @@
 	only by the key. They all contain `NSStringEncoding`,
 	`LocalizedIndex`, and `LocalizedName`.
 */
-
 + (NSArray *)allAvailableEncodingLocalizedNames;
 
-+ (NSDictionary *)availableEncodingDictionariesByLocalizedName;
++ (NSDictionary *)availableEncodingDictionariesByLocalizedName;		///< @copydoc allAvailableEncodingLocalizedNames
 
-+ (NSDictionary *)availableEncodingDictionariesByNSStringEncoding;
++ (NSDictionary *)availableEncodingDictionariesByNSStringEncoding;	///< @copydoc allAvailableEncodingLocalizedNames
 
-+ (NSDictionary *)availableEncodingDictionariesByLocalizedIndex;
++ (NSDictionary *)availableEncodingDictionariesByLocalizedIndex;	///< @copydoc allAvailableEncodingLocalizedNames
 
-/*
-	These convenience properties are just shortcuts for reading the
-	current input-encoding and output-encoding for this instance.
- */
 
-@property (readonly) NSStringEncoding inputEncoding;		
+@property (readonly, nonatomic) NSStringEncoding inputEncoding;		///< Convenience shortcut for reading current input-encoding
 
-@property (readonly) NSStringEncoding outputEncoding;
-
-
-#pragma mark - Text
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	TEXT - the important, good stuff.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-
-/*
-	sourceText -- this is the text that Tidy will actually tidy up.
-	The non-string set methods decode using the current encoding
-	setting in `input-encoding`.
- */
-
-@property NSString *sourceText;
-
-- (void)setSourceTextWithData:(NSData *)data;
-
-- (void)setSourceTextWithFile:(NSString *)path;
-
-
-/*
-	tidyText -- this is the text that Tidy generates from the
-	sourceText. Note that these are read-only.
-	The non-string set methods decode using the current encoding
-	setting in `output-encoding`.
-*/
-
-@property (readonly) NSString *tidyText;
-
-@property (readonly) NSData *tidyTextAsData;
-
-- (void)tidyTextToFile:(NSString *)path;
-
-
-/**
-	isDirty - indicates that the source text is considered "dirty",
-	meaning that the source-text has changed, or the source-text
-	is not equal to the tidy'd-text.
-*/
-
-@property (readonly) BOOL isDirty;
-
-
-#pragma mark - Errors
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	ERRORS reported by tidy
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-
-@property (readonly) NSString *errorText;      // Return the error text in traditional tidy format.
-
-@property (readonly) NSArray  *errorArray;     // Error text as an array of NSDictionary of the errors.
-
-
-#pragma mark - Options management
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	OPTIONS - methods for dealing with options overall
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-
-+ (void)      optionsBuiltInDumpDocsToConsole;     // Dumps all TidyLib descriptions to error console.
-
-+ (int)       optionsBuiltInOptionCount;           // Returns the number of options built into Tidy.
-
-+ (NSArray *) optionsBuiltInOptionList;            // Returns an NSArray of NSString for all options built into Tidy.
-
-// @todo: Is the even necessary?
-//        Shouldn't thisModel.tidyOptions = [thatModel.tidyOptions copy] work?
-- (void)      optionsCopyFromModel:(JSDTidyModel *)theModel;            // Sets options based on those in theModel.
-
-- (void)      optionsCopyFromDictionary:(NSDictionary *)theDictionary;  // Sets options from values in a dictionary.
-
-- (void)      optionsResetAllToBuiltInDefaults;							  // Resets all options to factory default.
-
-// @todo: Make sure this returns ALL options by default (if nothing assigned to it).
-@property NSArray* optionsInEffect;                // Default is all options; otherwise is list of options.
-
-
-#pragma mark - Diagnostics and Repair
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	DIAGNOSTICS and REPAIR
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-
-@property (readonly) int tidyDetectedHtmlVersion;   // Returns 0, 2, 3, 4, or 5.
-
-@property (readonly) bool tidyDetectedXhtml;        // Indicates whether the document is XHTML.
-
-@property (readonly) bool tidyDetectedGenericXml;   // Indicates if the document is generic XML.
-
-@property (readonly) int tidyStatus;                // Returns 0 if there are no errors, 2 for doc errors, 1 for other.
-
-@property (readonly) uint tidyErrorCount;           // Returns number of document errors.
-
-@property (readonly) uint tidyWarningCount;         // Returns number of document warnings.
-
-@property (readonly) uint tidyAccessWarningCount;   // Returns number of document accessibility warnings.
-
-
-#pragma mark - Miscelleneous
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	MISCELLENEOUS - Misc. Tidy methods supported
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-
-@property (readonly) NSString *tidyReleaseDate;     // Returns the TidyLib release date.
-
-
-#pragma mark - Configuration List Support
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	SUPPORTED CONFIG LIST SUPPORT
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-
-/*
-	Loads a list of named potential tidy options from  file, compares
-	them to what TidyLib supports, and returns the array containing
-	only the names of the support options.
- */
-+ (NSArray *)loadConfigurationListFromResource:(NSString *)fileName 
-                                        ofType:(NSString *)fileType;
-
-
-#pragma mark - Mac OS X Prefs Support
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	MAC OS PREFS SUPPORT
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-
-/* Puts *all* TidyLib defaults values into a dictionary. */
-+ (void)addDefaultsToDictionary:(NSMutableDictionary *)defaultDictionary;
-
-/* Puts only the TidyLib defaults specified in a resource file into a dictionary. */
-+ (void)addDefaultsToDictionary:(NSMutableDictionary *)defaultDictionary
-                   fromResource:(NSString *)fileName
-                         ofType:(NSString *)fileType;
-
-/* Puts only the TidyLib defaults specified in an array of strings into a dictionary. */
-+ (void)addDefaultsToDictionary:(NSMutableDictionary *)defaultDictionary
-                      fromArray:(NSArray *)stringArray;
-
-/* Writes the current option values into the specified user defaults instance. */
-- (void)writeOptionValuesWithDefaults:(NSUserDefaults *)defaults;
-
-/* Takes option values from the specified user defaults instance. */
-- (void)takeOptionValuesFromDefaults:(NSUserDefaults *)defaults;
+@property (readonly, nonatomic) NSStringEncoding outputEncoding;	///< Convenience shortcut for reading current output-encoding
 
 
 #pragma mark - TidyOptions
@@ -348,59 +183,165 @@
 	TIDYOPTIONS
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
-
-#pragma mark - Public API and General Properties
-
-@property NSArray *tidyOptions;
-
-@property (readonly) NSUInteger count;
-
-- (void)addTidyOption:(JSDTidyOption*)option;
-
-- (void)removeTidyOption:(JSDTidyOption*)option;
+/**
+	The `tidyOptions` structure is a dictionary of keys=>tidyOption,
+	where the key is the built-in TidyOption name, and tidyOption is
+	an instance of tidyOption for that key.
+ */
+@property (strong, readonly, nonatomic) NSDictionary *tidyOptions;
 
 
-// @todo: Consider if I need this; tidyOptions array already
-//        supports indexed subscripting.
-#pragma mark - Keyed and Indexed Subscripting Support
-
-- (JSDTidyOption*)objectAtIndexedSubscript:(NSUInteger)index;
-
-- (void)setObject:(JSDTidyOption*)option atIndexedSubscript:(NSUInteger)index;
-
-- (JSDTidyOption*)objectForKeyedSubscript:(id)key;
-
-- (void)setObject:(JSDTidyOption*)option forKeyedSubscript:(id <NSCopying>)key;
-
-// @todo: Need to support but for tidyOptions, not at root level.
-#pragma mark - Undefined Key Support
-
-- (id)valueForUndefinedKey:(NSString*)key;
-
-- (void)setValue:(id)value forUndefinedKey:(NSString *)key;
+/** Support for KVC access to the TidyOptions and main properties. */
+- (id)objectForKeyedSubscript:(id <NSCopying>)key;
 
 
-#pragma mark - KVC Accessor Requirements
+/** Support for KVC access to the TidyOptions and main properties. */
+- (void)setObject:(id)obj forKeyedSubscript:(id <NSCopying>)key;
 
-- (NSUInteger)countOfTidyOptions;
 
-- (id)objectInTidyOptionsAtIndex:(NSUInteger)index;
+#pragma mark - Text
 
-- (NSArray *)tidyOptionsAtIndexes:(NSIndexSet *)indexes;
 
-- (void)getTidyOptions:(JSDTidyOption * __unsafe_unretained *)buffer range:(NSRange)inRange;
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	TEXT - the important, good stuff.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
-- (void)insertObject:(JSDTidyOption *)option inTidyOptionsAtIndex:(NSUInteger)index;
+/**
+	sourceText -- this is the text that Tidy will actually tidy up.
+	The non-string set methods decode using the current encoding
+	setting in `input-encoding`.
+ */
 
-- (void)insertTidyOptions:(NSArray *)optionArray atIndexes:(NSIndexSet *)indexes;
+@property (strong, nonatomic) NSString *sourceText;
 
-- (void)removeObjectFromTidyOptionsAtIndex:(NSUInteger)index;
+- (void)setSourceTextWithData:(NSData *)data;		///< @copydoc sourceText
 
-- (void)removeTidyOptionsAtIndexes:(NSIndexSet *)indexes;
+- (void)setSourceTextWithFile:(NSString *)path;		///< @copydoc sourceText
 
-- (void)replaceObjectInTidyOptionsAtIndex:(NSUInteger)index withObject:(id)anObject;
-	
-- (void)replaceTidyOptionsAtIndexes:(NSIndexSet *)indexes withTidyOptions:(NSArray *)optionsArray;
+
+/**
+	tidyText -- this is the text that Tidy generates from the
+	workingText. Note that these are read-only.
+*/
+
+@property (readonly, strong, nonatomic) NSString *tidyText;
+
+@property (readonly, weak, nonatomic) NSData *tidyTextAsData;	///< @copydoc tidyText
+
+- (void)tidyTextToFile:(NSString *)path;						///< @copydoc tidyText
+
+
+/**
+	isDirty - indicates that the source text is considered "dirty",
+	meaning that the source-text has changed, or the source-text
+	is not equal to the tidy'd-text.
+*/
+
+@property (readonly, nonatomic) BOOL isDirty;
+
+
+#pragma mark - Errors
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	ERRORS reported by tidy
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+
+@property (readonly, strong, nonatomic) NSString *errorText;			///< Return the error text in traditional tidy format.
+
+@property (readonly, strong, nonatomic) NSArray  *errorArray;			///< Error text as an array of |NSDictionary| of the errors.
+
+
+#pragma mark - Options management
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	OPTIONS - methods for dealing with options
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+
++ (void)		optionsBuiltInDumpDocsToConsole;							///< dumps all TidyLib descriptions to error console.
+
++ (int)			optionsBuiltInOptionCount;									///< returns the number of options built into Tidy.
+
++ (NSArray *)	optionsBuiltInOptionList;									///< returns an NSArray of NSString for all options built into Tidy.
+
+
+- (void)		optionsCopyFromModel:(JSDTidyModel *)theModel;				///< sets options based on those in theDocument.
+
+- (void)		optionsCopyFromDictionary:(NSDictionary *)theDictionary;	///< sets options from values in a dictionary.
+
+- (void)		optionsResetAllToBuiltInDefaults;							///< resets all options to factory default
+
+@property (nonatomic) NSArray* optionsInEffect;								///< default is all option; otherwise is list of options.
+
+
+#pragma mark - Diagnostics and Repair
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	DIAGNOSTICS and REPAIR
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+
+@property (readonly, nonatomic) int tidyDetectedHtmlVersion;	///< Returns 0, 2, 3, 4, or 5.
+
+@property (readonly, nonatomic) bool tidyDetectedXhtml;			///< Indicates whether the document is XHTML.
+
+@property (readonly, nonatomic) bool tidyDetectedGenericXml;	///< Indicates if the document is generic XML.
+
+@property (readonly, nonatomic) int tidyStatus;					///< Returns 0 if there are no errors, 2 for doc errors, 1 for other.
+
+@property (readonly, nonatomic) uint tidyErrorCount;			///< Returns number of document errors.
+
+@property (readonly, nonatomic) uint tidyWarningCount;			///< Returns number of document warnings.
+
+@property (readonly, nonatomic) uint tidyAccessWarningCount;	///< Returns number of document accessibility warnings.
+
+
+#pragma mark - Miscelleneous
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	MISCELLENEOUS - misc. Tidy methods supported
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+
+// TODO: These can all be properties.
+
+@property (readonly, nonatomic) NSString *tidyReleaseDate;		///< returns the TidyLib release date
+
+
+#pragma mark - Configuration List Support
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	SUPPORTED CONFIG LIST SUPPORT
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+
++ (NSArray *)loadConfigurationListFromResource:(NSString *)fileName ofType:(NSString *)fileType;	///< get list of config options.
+
+
+#pragma mark - Mac OS X Prefs Support
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	MAC OS PREFS SUPPORT
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+
+/** Puts *all* TidyLib defaults values into a dictionary. */
++ (void)addDefaultsToDictionary:(NSMutableDictionary *)defaultDictionary;
+
+/** Puts only the TidyLib defaults specified in a resource file into a dictionary. */
++ (void)addDefaultsToDictionary:(NSMutableDictionary *)defaultDictionary
+				   fromResource:(NSString *)fileName
+						 ofType:(NSString *)fileType;
+
+/** Puts only the TidyLib defaults specified in an array of strings into a dictionary. */
++ (void)addDefaultsToDictionary:(NSMutableDictionary *)defaultDictionary
+					  fromArray:(NSArray *)stringArray;
+
+
+- (void)writeOptionValuesWithDefaults:(NSUserDefaults *)defaults;			///< write the values right into prefs.
+
+- (void)takeOptionValuesFromDefaults:(NSUserDefaults *)defaults;			///< take config from passed-in defaults.
 
 
 @end
