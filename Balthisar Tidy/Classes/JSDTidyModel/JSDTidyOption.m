@@ -41,7 +41,6 @@
 
 @synthesize optionValue = _optionValue;
 
-
 #pragma mark - Initialization and Deallocation
 
 
@@ -50,12 +49,7 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (id)initSharingModel:(JSDTidyModel *)sharedTidyModel
 {
-	if (self = [super init])
-	{
-		_sharedTidyModel = sharedTidyModel;
-		_name            = @"undefined";
-	}
-	return self;
+	return [self initWithName:@"undefined" optionValue:nil sharingModel:sharedTidyModel];
 }
 
 
@@ -63,35 +57,27 @@
 	initWithName:sharingModel
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (id)initWithName:(NSString *)name
-	  sharingModel:(JSDTidyModel *)sharedTidyModel
+      sharingModel:(JSDTidyModel *)sharedTidyModel
 {
-	if (self = [super init])
-	{
-		_sharedTidyModel = sharedTidyModel;
-		_name            = name;
-		
-		if ((TidyUnknownOption == self.optionId) || ( N_TIDY_OPTIONS == self.optionId))
-		{
-			_name = @"undefined";
-		}
-	}
-	return self;
+	return [self initWithName:name optionValue:nil sharingModel:sharedTidyModel];
 }
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	initWithName:optionValue:sharingModel
+	initWithName:optionValue:sharingModel - designated initializer
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (id)initWithName:(NSString *)name
-	   optionValue:(NSString *)value
-	  sharingModel:(JSDTidyModel *)sharedTidyModel
+       optionValue:(NSString *)value
+      sharingModel:(JSDTidyModel *)sharedTidyModel
 {
 	if (self = [super init])
 	{
-		_sharedTidyModel = sharedTidyModel;
-		_name            = name;
+		_sharedTidyModel    = sharedTidyModel;
+		_name               = name;
+		_optionIsHeader     = NO;
+		_optionIsSuppressed = NO;
 		
-		if (TidyUnknownOption == self.optionId)
+		if (self.optionId == TidyUnknownOption)
 		{
 			_name = @"undefined";
 		}
@@ -104,11 +90,37 @@
 }
 
 
-#pragma mark - Accessors
+#pragma mark - Main properties
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	> setOptionValue
+	name
+		The name of the Tidy option as given in TidyLib.
+ 
+		This method is implemented automatically by compiler.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	optionValue
+		If the current value is nil, then ensure we return the
+		built-in default value instead.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (NSString*)optionValue
+{
+	if (!_optionValue)
+	{
+		return [self builtInDefaultValue];
+	}
+	else
+	{
+		return _optionValue;
+	}
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	setOptionValue
 		Sets the optionValue, and intercepts special circumstances.
 		Note that you must always ensure the encoding option values
 		always contain the NSStringEncoding value, and not the
@@ -118,7 +130,7 @@
 {
 	if ((!self.optionIsReadOnly) && (!self.optionIsSuppressed))
 	{
-		if ( self.optionIsEncodingOption)
+		if (self.optionIsEncodingOption)
 		{
 			if (self.optionId == TidyCharEncoding)
 			{
@@ -154,86 +166,6 @@
 	}
 }
 
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	< optionValue
-		If the current value is nil, then ensure we return the
-		built-in default value instead.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (NSString*)optionValue
-{
-	if (!_optionValue)
-	{
-		return [self builtInDefaultValue];
-	}
-	else
-	{
-		return _optionValue;
-	}
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	> setOptionUIValue
-		Sets option values using values from the user-interface
-		instead of setting the TidyLib TidyOption values directly.
-		Most TidyOptions have the same UI value and native value,
-		but `doctype` and the encoding options require some
-		special treatment. 
- 
-		If you're building a UI for TidyLib, then you can set the
-		UI value directly, and the correct optionValue will be set.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)setOptionUIValue:(NSString *)optionValue
-{
-	if ((!self.optionIsReadOnly) && (!self.optionIsSuppressed))
-	{
-		if ( self.optionIsEncodingOption)
-		{
-			// We have the alphabetical index, but need to find the NSStringEncoding.
-			// The real optionValue will be the NSString encoding.
-			NSString *tmp = [JSDTidyModel availableEncodingDictionariesByLocalizedIndex][@([optionValue integerValue])][@"NSStringEncoding"];
-			
-			// For some reason Objective-C wants to convert this to __NSCFNumber.
-			// It probably has something to do with properties. This keeps it as string.
-			[self setValue:[NSString stringWithFormat:@"%@", tmp] forKey:@"optionValue"];
-		}
-		else if ( [self.name isEqualToString:@"doctype"] )
-		{
-			// We have the index value from the menu, but we require a string value
-			// for this option. The real optionValue will be the string value.
-			[self setValue:self.possibleOptionValues[[optionValue integerValue]] forKey:@"optionValue"];
-		}
-		else
-		{
-			// Everything else is okay.
-			[self setValue:optionValue forKey:@"optionValue"];
-		}
-	}
-}
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	< optionUIValue
-		Gets option values suitable for use in user-interfaces.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (NSString*)optionUIValue
-{
-	if ( self.optionIsEncodingOption )
-	{
-		// Our value is an NSStringEncoding, but we want to return
-		// the menu index in the current locale.
-		return [JSDTidyModel availableEncodingDictionariesByNSStringEncoding][@([self.optionValue integerValue])][@"LocalizedIndex"];
-	}
-	else if ( [self.name isEqualToString:@"doctype"] )
-	{
-		// If we're working with doctype we need the index value, not the string value.
-		return [NSString stringWithFormat:@"%lu", [self.possibleOptionValues indexOfObject:self.optionValue]];
-	}
-	else
-	{
-		// Everything else is okay.
-		return self.optionValue;
-	}
-}
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	defaultOptionValue
@@ -267,16 +199,6 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSArray*)possibleOptionValues
 {
-	/*
-		Check for items that should NOT return their built-in
-	    list of possible option values.
-	 */
-/*	if ([[NSSet setWithObjects:@"doctype", nil] member:self.name])
-	{
-		return [[NSArray alloc] initWithObjects:nil];
-	}
-*/	
-	
 	NSMutableArray *theArray = [[NSMutableArray alloc] init];
 	
 	if (self.optionIsEncodingOption)
@@ -370,28 +292,70 @@
 }
 
 
+#pragma mark - Properties useful for implementing user interfaces
+
+
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	 optionId
+	optionUIValue
+		Gets option values suitable for use in user-interfaces.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (TidyOptionId)optionId
+- (NSString*)optionUIValue
 {
-	TidyOptionId optID = tidyOptGetIdForName( [[self name] UTF8String] );
-	
-	if (optID < N_TIDY_OPTIONS)
+	if (self.optionIsEncodingOption)
 	{
-		return optID;
+		// Our value is an NSStringEncoding, but we want to return
+		// the menu index in the current locale.
+		return [JSDTidyModel availableEncodingDictionariesByNSStringEncoding][@([self.optionValue integerValue])][@"LocalizedIndex"];
 	}
-	
-	return TidyUnknownOption;
+	else if ([self.name isEqualToString:@"doctype"])
+	{
+		// If we're working with doctype we need the index value, not the string value.
+		return [NSString stringWithFormat:@"%lu", [self.possibleOptionValues indexOfObject:self.optionValue]];
+	}
+	else
+	{
+		// Everything else is okay.
+		return self.optionValue;
+	}
 }
 
-
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	 optionType
+	setOptionUIValue
+		Sets option values using values from the user-interface
+		instead of setting the TidyLib TidyOption values directly.
+		Most TidyOptions have the same UI value and native value,
+		but `doctype` and the encoding options require some
+		special treatment. 
+ 
+		If you're building a UI for TidyLib, then you can set the
+		UI value directly, and the correct optionValue will be set.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (TidyOptionType)optionType
+- (void)setOptionUIValue:(NSString *)optionValue
 {
-	return tidyOptGetType( [self createTidyOptionInstance:self.optionId] );
+	if ((!self.optionIsReadOnly) && (!self.optionIsSuppressed))
+	{
+		if ( self.optionIsEncodingOption)
+		{
+			// We have the alphabetical index, but need to find the NSStringEncoding.
+			// The real optionValue will be the NSString encoding.
+			NSString *tmp = [JSDTidyModel availableEncodingDictionariesByLocalizedIndex][@([optionValue integerValue])][@"NSStringEncoding"];
+			
+			// For some reason Objective-C wants to convert this to __NSCFNumber.
+			// It probably has something to do with properties. This keeps it as string.
+			[self setValue:[NSString stringWithFormat:@"%@", tmp] forKey:@"optionValue"];
+		}
+		else if ( [self.name isEqualToString:@"doctype"] )
+		{
+			// We have the index value from the menu, but we require a string value
+			// for this option. The real optionValue will be the string value.
+			[self setValue:self.possibleOptionValues[[optionValue integerValue]] forKey:@"optionValue"];
+		}
+		else
+		{
+			// Everything else is okay.
+			[self setValue:optionValue forKey:@"optionValue"];
+		}
+	}
 }
 
 
@@ -424,6 +388,34 @@
 }
 
 
+#pragma mark - Properties maintained for original TidyLib compatability (may be used internally)
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	 optionId
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (TidyOptionId)optionId
+{
+	TidyOptionId optID = tidyOptGetIdForName([self.name UTF8String]);
+	
+	if (optID < N_TIDY_OPTIONS)
+	{
+		return optID;
+	}
+	
+	return TidyUnknownOption;
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	 optionType
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (TidyOptionType)optionType
+{
+	return tidyOptGetType([self createTidyOptionInstance:self.optionId]);
+}
+
+
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	builtInDefaultValue
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
@@ -451,23 +443,23 @@
 	
 	TidyOption tidyOptionInstance = [self createTidyOptionInstance:self.optionId];
 
-	TidyOptionType optType        = tidyOptGetType( tidyOptionInstance );
+	TidyOptionType optType = tidyOptGetType(tidyOptionInstance);
 	
 	
 	if (optType == TidyString)
 	{
-		ctmbstr tmp = tidyOptGetDefault( tidyOptionInstance );
+		ctmbstr tmp = tidyOptGetDefault(tidyOptionInstance);
 		return ( (tmp != nil) ? @(tmp) : @"" );
 	}
 	
 	if (optType == TidyBoolean)
 	{
-		return [NSString stringWithFormat:@"%u", tidyOptGetDefaultBool( tidyOptionInstance )];
+		return [NSString stringWithFormat:@"%u", tidyOptGetDefaultBool(tidyOptionInstance)];
 	}
 	
 	if (optType == TidyInteger)
 	{
-		return [NSString stringWithFormat:@"%lu", tidyOptGetDefaultInt( tidyOptionInstance )];
+		return [NSString stringWithFormat:@"%lu", tidyOptGetDefaultInt(tidyOptionInstance)];
 	}
 	
 	return @"";
@@ -481,7 +473,7 @@
 {
 	NSString *tidyResultString;
 
-	TidyDoc dummyDoc              = tidyCreate();
+	TidyDoc dummyDoc = tidyCreate();
 	
 	const char *tidyResultCString = tidyOptGetDoc(dummyDoc, tidyGetOption(dummyDoc, self.optionId));
 	
@@ -510,25 +502,17 @@
 }
 
 
+#pragma mark - Properties used mostly internally or for implementing user interfaces
+
+
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	optionIsSuppressed
-		The implementing application may want to suppress certain
-		built-in TidyLib options. Setting this to true will hide
-		instances of this option from most operations.
+	sharedTidyModel
+		When created we are assigned a sharedTidyModel so that
+		we know who owns us. This allows us to send notifications
+		to our owner.
  
 		This method is implemented automatically by compiler.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	optionIsEncodingOption
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (BOOL)optionIsEncodingOption
-{
-	return ((self.optionId == TidyCharEncoding) ||
-			(self.optionId == TidyInCharEncoding) ||
-			(self.optionId == TidyOutCharEncoding));
-}
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
@@ -543,7 +527,45 @@
 }
 
 
-#pragma mark - Public Methods
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	optionIsEncodingOption
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (BOOL)optionIsEncodingOption
+{
+	return ((self.optionId == TidyCharEncoding) ||
+			(self.optionId == TidyInCharEncoding) ||
+			(self.optionId == TidyOutCharEncoding));
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	optionIsHeader
+		The implementing application may want to include header
+		rows mixed in with the options array. This flag indicates
+		that an options instance isn't a real option at all, and
+		can be used to flag header behavior if desired.
+ 
+		If using bindings, make sure you exclude options with
+		this flag set.
+
+		This method is implemented automatically by compiler.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	optionIsSuppressed
+		The implementing application may want to suppress certain
+		built-in TidyLib options. Setting this to true will hide
+		instances of this option from most operations.
+		
+		If using bindings, make sure you exclude options with
+		this flag set.
+ 
+		This method is implemented automatically by compiler.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+
+
+#pragma mark - Other Public Methods
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
@@ -561,7 +583,7 @@
 	
 	if ((!self.optionIsSuppressed) && (!self.optionIsReadOnly))
 	{
-		if ( self.optionType == TidyString)
+		if (self.optionType == TidyString)
 		{
 			if ([self.optionValue length] == 0)
 			{
@@ -570,7 +592,7 @@
 				 // doesn't work. WTF?
 				if (!self.optionCanAcceptNULLSTR)
 				{
-					return tidyOptResetToDefault( destinationTidyDoc, self.optionId );
+					return tidyOptResetToDefault(destinationTidyDoc, self.optionId);
 				}
 				else
 				{
@@ -622,6 +644,30 @@
 {
 	[self optionUIValueAdjust:-1];
 }
+
+
+#pragma mark - Overrides
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	copyWithZone
+		Needed for KVO.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+-(id)copyWithZone:(NSZone *)zone
+{
+	JSDTidyOption *another = [[JSDTidyOption allocWithZone:zone] initWithName:self.name 
+															      optionValue:[self.optionValue copy]
+                                                                 sharingModel:self.sharedTidyModel];
+
+	another.optionIsHeader = self.optionIsHeader;
+
+	another.optionIsSuppressed = self.optionIsSuppressed;
+
+	return another;
+}
+
+
+#pragma mark - Other Private Methods
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
@@ -676,10 +722,6 @@
 		}
 	}
 }
-
-
-
-#pragma mark - Private
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*

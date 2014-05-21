@@ -32,56 +32,21 @@
 
 @class JSDTidyModel;
 
-/**
-	Instances of JSDTidyOption belong to a sharedTidyModel, but are largely self aware
+/*
+	Instances of JSDTidyOption belong to a sharedTidyModel, but are largely self aware and
 	handle most aspects of their operation on their own. They also provide good exposure
 	to implementing user interfaces.
  
 	The principle purpose is to hold and store options, and return information about options.
 	There is some interactivity among options (e.g., where we override character encodings),
 	but this is always mediated back through to the `sharedTidyModel`. Setting an instance of
-	an option does not cause tidying per se; this is all managed by the JSDTidyModel.
+	an option does not cause tidying per se; this is all managed by the JSDTidyModel, which
+	receives notifications that an item has changed.
  */
 @interface JSDTidyOption : NSObject
 
-@property (nonatomic, assign, readonly) JSDTidyModel *sharedTidyModel;					///< Model to which this option belongs.
 
-@property (nonatomic, strong)           NSString *optionValue;							///< Current value of this option.
-
-@property (nonatomic, strong)			NSString *optionUIValue;						///< Current value of this option used by UI's.
-
-@property (nonatomic, strong, readonly) NSString *name;									///< Built-in option name.
-
-@property (nonatomic, strong, readonly) NSString *defaultOptionValue;					///< Default value of this option (from user options).
-
-@property (nonatomic, strong, readonly) NSArray *possibleOptionValues;					///< Array of string values for possible option values.
-
-@property (nonatomic, assign, readonly) BOOL optionIsReadOnly;							///< Indicates whether or not option is read-only.
-
-@property (nonatomic, strong, readonly) NSString *localizedHumanReadableName;			///< Localized, humanized name of the option.
-
-@property (nonatomic, strong, readonly) NSAttributedString *localizedHumanReadableDescription;	///< Localized description of the option.
-
-@property (nonatomic, strong, readonly) NSString *localizedHumanReadableCategory;		///< Localized name of the option category.
-
-@property (nonatomic, assign, readonly) TidyOptionId optionId;							///< Tidy's internal TidyOptionId for this option.
-
-@property (nonatomic, assign, readonly) TidyOptionType optionType;						///< Actual type that TidyLib expects.
-
-@property (nonatomic, assign, readonly) Class optionUIType;								///< Suggested UI type for setting options. 
-
-@property (nonatomic, strong, readonly) NSString *builtInDefaultValue;					///< Tidy's built-in default value for this option.
-
-@property (nonatomic, strong, readonly) NSString *builtInDescription;					///< Tidy's built-in description for this option.
-
-@property (nonatomic, assign, readonly) TidyConfigCategory builtInCategory;				///< Tidy's built-in category for this option.
-
-@property (nonatomic, assign)           BOOL optionIsSuppressed;						///< Indicates whether or not this option is unused by JSDTidyModel.
-
-@property (nonatomic, assign, readonly) BOOL optionIsEncodingOption;					///< Indicates whether or not this option is an encoding option.
-
-@property (nonatomic, assign, readonly) BOOL optionCanAcceptNULLSTR;					///< Indicates whether or not this option can accept NULLSTR.
-
+#pragma mark - Intializers
 
 - (id)initSharingModel:(JSDTidyModel *)sharedTidyModel;
 
@@ -90,13 +55,66 @@
 - (id)initWithName:(NSString *)name optionValue:(NSMutableString *)value sharingModel:(JSDTidyModel *)sharedTidyModel;
 
 
-- (BOOL)applyOptionToTidyDoc:(TidyDoc)destinationTidyDoc;
+#pragma mark - Main properties
+
+@property (readonly)         NSString *name;                            // Built-in option name.
+
+@property                    NSString *optionValue;                     // Current value of this option.
+
+@property (readonly)         NSString *defaultOptionValue;              // Default value of this option (from user options).
+
+@property (readonly)         NSArray *possibleOptionValues;             // Array of string values for possible option values.
+
+@property (readonly)         BOOL optionIsReadOnly;                     // Indicates whether or not option is read-only.
+
+@property (readonly)         NSString *localizedHumanReadableName;      // Localized, humanized name of the option.
+
+@property (readonly)         NSAttributedString *localizedHumanReadableDescription; // Localized description of the option.
+
+@property (readonly)         NSString *localizedHumanReadableCategory;  // Localized name of the option category.
 
 
-- (void)optionUIValueIncrement;															///< Possibly useful for UI's, increments to next possible option value.
+#pragma mark - Properties useful for implementing user interfaces
 
-- (void)optionUIValueDecrement;															///< Possibly useful for UI's, decrements to next possible option value.
+@property                    NSString *optionUIValue;                   // Current value of this option used by UI's.
 
+@property (readonly)         Class optionUIType;                        // Suggested UI type for setting options. 
+
+
+#pragma mark - Properties maintained for original TidyLib compatability (may be used internally)
+
+@property (readonly)         TidyOptionId optionId;                     // Tidy's internal TidyOptionId for this option.
+
+@property (readonly)         TidyOptionType optionType;                 // Actual type that TidyLib expects.
+
+@property (readonly)         NSString *builtInDefaultValue;             // Tidy's built-in default value for this option.
+
+@property (readonly)         NSString *builtInDescription;              // Tidy's built-in description for this option.
+
+@property (readonly)         TidyConfigCategory builtInCategory;        // Tidy's built-in category for this option.
+
+
+#pragma mark - Properties used mostly internally or for implementing user interfaces
+
+@property (readonly, assign) JSDTidyModel *sharedTidyModel;             // Model to which this option belongs.
+
+@property (readonly, assign) BOOL optionCanAcceptNULLSTR;               // Indicates whether or not this option can accept NULLSTR.
+
+@property (readonly, assign) BOOL optionIsEncodingOption;               // Indicates whether or not this option is an encoding option.
+
+@property (assign)           BOOL optionIsHeader;                       // Fake option is only a header row for UI use.
+
+@property (assign)           BOOL optionIsSuppressed;                   // Indicates whether or not this option is unused by JSDTidyModel.
+
+
+
+#pragma mark - Other Public Methods
+
+- (BOOL)applyOptionToTidyDoc:(TidyDoc)destinationTidyDoc;               // Applies this option to a TidyDoc instance.
+
+- (void)optionUIValueIncrement;                                         // Possibly useful for UI's, increments to next possible option value.
+
+- (void)optionUIValueDecrement;                                         // Possibly useful for UI's, decrements to next possible option value.
 
 
 @end

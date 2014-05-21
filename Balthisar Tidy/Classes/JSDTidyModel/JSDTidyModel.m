@@ -35,7 +35,7 @@
 
 @implementation JSDTidyModel
 {
-	NSMutableArray* _tidyOptions;                 // This backing iVar must be NSMutableDictionary.
+	NSMutableDictionary* _tidyOptions;            // This backing iVar must be NSMutableDictionary.
 		
 	NSMutableArray* _errorArray;                  // This backing iVar must be NSMutableArray
 	
@@ -48,9 +48,10 @@
 #pragma mark - iVar Synthesis
 
 
-@synthesize sourceText = _sourceText;
-@synthesize tidyText   = _tidyText;
-@synthesize errorText  = _errorText;
+@synthesize sourceText      = _sourceText;
+@synthesize tidyText        = _tidyText;
+@synthesize errorText       = _errorText;
+@synthesize optionsInUse	= _optionsInUse;
 
 
 #pragma mark - Standard C Functions
@@ -58,11 +59,11 @@
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	tidyCallbackFilter (regular C-function)
 		In order to support TidyLib's callback function for
-		building an error list on the fly, we need to set up this
-		standard C function to handle the callback.
+		building an error list on the fly, we need to set up
+		this standard C function to handle the callback.
 
-		|tidyGetAppData| result will already contain a reference to
-		|self| that we set via |tidySetAppData| during processing.
+		`tidyGetAppData` result will already contain a reference to
+		`self` that we set via `tidySetAppData` during processing.
 		Essentially we're calling
 		[self errorFilter:Level:Line:Column:Message]
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
@@ -89,14 +90,14 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 {
 	if (self = [super init])
 	{
-		_tidyOptions     = [[NSMutableArray alloc] init];
+		_sourceDidChange = NO;
 		_originalData    = nil;
 		_sourceText      = @"";
 		_tidyText        = @"";
 		_errorText       = @"";
+		_tidyOptions     = [[NSMutableDictionary alloc] init];
 		_errorArray      = [[NSMutableArray alloc] init];
-		_sourceDidChange = NO;
-		
+
 		[self optionsPopulateTidyOptions];
 	}
 			
@@ -121,15 +122,15 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	initWithString:copyOptionsFromModel
+	initWithString:copyOptionValuesFromModel
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (id)initWithString:(NSString *)value copyOptionsFromModel:(JSDTidyModel *)theModel
+- (id)initWithString:(NSString *)value copyOptionValuesFromModel:(JSDTidyModel *)theModel
 {
 	self = [self init];
 	
 	if (self)
 	{
-		[self optionsCopyFromModel:theModel];
+		[self optionsCopyValuesFromModel:theModel];
 		[self setSourceText:value];
 	}
 	
@@ -154,15 +155,15 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	initWithData:copyOptionsFromModel
+	initWithData:copyOptionValuesFromModel
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (id)initWithData:(NSData *)data copyOptionsFromModel:(JSDTidyModel *)theModel
+- (id)initWithData:(NSData *)data copyOptionValuesFromModel:(JSDTidyModel *)theModel
 {
 	self = [self init];
 	
 	if (self)
 	{
-		[self optionsCopyFromModel:theModel];
+		[self optionsCopyValuesFromModel:theModel];
 		[self setSourceTextWithData:data];
 	}
 	
@@ -187,15 +188,15 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	initWithFile:copyOptionsFromModel
+	initWithFile:copyOptionValuesFromModel
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (id)initWithFile:(NSString *)path copyOptionsFromModel:(JSDTidyModel *)theModel
+- (id)initWithFile:(NSString *)path copyOptionValuesFromModel:(JSDTidyModel *)theModel
 {
 	self = [self init];
 	
 	if (self)
 	{
-		[self optionsCopyFromModel:theModel];
+		[self optionsCopyValuesFromModel:theModel];
 		[self setSourceTextWithFile:path];
 	}
 	
@@ -332,7 +333,9 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSStringEncoding)inputEncoding
 {
-	return [[self.tidyOptions[@"input-encoding"] valueForKey:@"optionValue"] integerValue];
+	JSDTidyOption *localOption = self.tidyOptions[@"input-encoding"];
+
+	return [localOption.optionValue integerValue];
 }
 
 
@@ -342,7 +345,9 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSStringEncoding)outputEncoding
 {
-	return [[self.tidyOptions[@"output-encoding"] valueForKey:@"optionValue"] integerValue];
+	JSDTidyOption *localOption = self.tidyOptions[@"output-encoding"];
+
+	return [localOption.optionValue integerValue];
 }
 
 
@@ -354,21 +359,16 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSStringEncoding)checkSourceCoding:(NSData*)data
 {
-	if ( data )
+	if (data)
 	{
-		NSUInteger dataSize   = data.length;
+		NSUInteger dataSize = data.length;
 		NSUInteger stringSize = [[[NSString alloc] initWithData:data encoding:self.inputEncoding] length];
 
 		if ( (dataSize > 0) && (stringSize < 1) )
 		{
 			/*
-			 It's likely that the string wasn't decoded properly, so we will
-			 prepare and present a friendly NSPopover with an explanation and
-			 some options.
-			 */
-
-			/*
-			 We will try all of the following encodings until we get a hit.
+				It's likely that the string wasn't decoded properly, so we will
+				try all of the following encodings until we get a hit.
 			 */
 
 			NSArray *encodingsToTry = @[@(NSUTF8StringEncoding),
@@ -400,61 +400,6 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	if (_originalData && !_sourceDidChange)
 	{
 		[self setSourceTextWithData:_originalData];
-	}
-}
-
-
-#pragma mark - TidyOptions
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	tidyOptions
-		Note that accessors are synthesized.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-
-
-#pragma mark - Key-Value Access
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	objectForKeyedSubscript:
-		We will use this as a convenience accessor to the values
-		in tidyOptions. As such they can be read using
-		`jsdmodelInstance[@"encoding"], for example.
- 
-		Additionally we will conveniently provide this easy access
-		to other properties as shown in the code.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (id)objectForKeyedSubscript:(id <NSCopying>)key
-{
-	if ([[NSSet setWithObjects:@"sourceText", @"tidyText", @"errorArray", nil] member:key])
-	{
-		return [self valueForKey:[NSString stringWithFormat:@"%@", key]];
-	}
-	else
-	{
-		// Hopefully it's a tidyOption.
-		return [[self.tidyOptions objectForKey:key] valueForKey:@"optionValue"];
-	}
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	setObject:ForKeyedSubscript:
-		We will use this as a convenience accessor to the values
-		in tidyOptions. As such they can be set using
-		`jsdmodelInstance[@"wrap"] = @(32), for example.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)setObject:(id)obj forKeyedSubscript:(id <NSCopying>)key
-{
-	if ([[NSSet setWithObjects:@"sourceText", @"tidyText", @"errorArray", nil] member:key])
-	{
-		// Handle the items above.
-		[self setValue:obj forKey:[NSString stringWithFormat:@"%@", key]];
-	}
-	else
-	{
-		// Hopefully it's a tidyOption.
-		[[self.tidyOptions objectForKey:key] setValue:obj forKey:@"optionValue"];
 	}
 }
 
@@ -603,18 +548,6 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	setTidyText
-		Setter for the tidyText property.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-
-/// @todo why would I want to set TidyText?
-- (void)setTidyText:(NSString *)tidyText
-{
-	_tidyText = tidyText;
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	tidyTextAsData
 		Return the tidy'd text in the output-encoding format.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
@@ -670,10 +603,8 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 }
 
 
-#pragma mark - Options Management
+#pragma mark - Options Overall Management
 
-
-#pragma mark - Options Management - Class Methods
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	optionsBuiltInDumpDocsToConsole (class)
@@ -739,39 +670,44 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 + (NSArray *)optionsBuiltInOptionList
 {
-	static NSMutableArray *theArray = nil;							// Just do this once.
+	static NSMutableArray *optionsArray = nil;						     // Just do this once.
 	
-	if (!theArray)
+	if (!optionsArray)
 	{
-		theArray         = [[NSMutableArray alloc] init];			// Create an array.
+		optionsArray = [[NSMutableArray alloc] init];
 		
-		TidyDoc dummyDoc = tidyCreate();							// Create a dummy document (we're a CLASS method).
+		TidyDoc dummyDoc = tidyCreate();							     // Create a dummy document (we're a CLASS method).
 		
-		TidyIterator i   = tidyGetOptionList( dummyDoc );			// Set up an iterator.
+		TidyIterator i = tidyGetOptionList( dummyDoc );			         // Set up an iterator.
 		
 		while ( i )
 		{
-			TidyOption topt = tidyGetNextOption( dummyDoc, &i );	// Get an option.
+			TidyOption aTidyOption = tidyGetNextOption( dummyDoc, &i );  // Get an option.
 			
-			[theArray addObject:@(tidyOptGetName( topt ))];			// Add the name to the array
+			[optionsArray addObject:@(tidyOptGetName( aTidyOption ))];   // Add the name to the array
 		}
-		tidyRelease(dummyDoc);										// Release the dummy document.
+
+		tidyRelease(dummyDoc);										     // Release the dummy document.
 	}
 	
-	return theArray;												// Return the array of results.
+	return optionsArray;												 // Return the array of results.
 }
 
 
-#pragma mark - Options Management - Instance Methods
-
-
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	optionsCopyFromModel
-		Copies all options from theDocument into our tidyOptions.
+	optionsCopyValuesFromModel
+		Copies all options from theModel into our tidyOptions.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)optionsCopyFromModel:(JSDTidyModel *)theModel
+- (void)optionsCopyValuesFromModel:(JSDTidyModel *)theModel
 {
-	_tidyOptions = [[theModel tidyOptions] copy];
+	JSDTidyOption *foreignOption;
+
+	for (JSDTidyOption *localOption in [self.tidyOptions allValues])
+	{
+		foreignOption = theModel.tidyOptions[localOption.name];
+
+		localOption.optionValue = foreignOption.optionValue;
+	}
 
 	[self notifyTidyModelOptionChanged:nil];
 
@@ -782,20 +718,19 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	optionsCopyFromDictionary
+	optionsCopyValuesFromDictionary
 		Copies all options from theDictionary into our tidyOptions.
 		Key is the option name and the value is the value.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)optionsCopyFromDictionary:(NSDictionary *)theDictionary
+- (void)optionsCopyValuesFromDictionary:(NSDictionary *)theDictionary
 {
-	NSString *localVal;
-	
-	for (NSString *key in [self.tidyOptions allKeys])
+	NSString *dictionaryValue;
+
+	for (JSDTidyOption *localOption in self.tidyOptions)
 	{
-		if ((localVal = [theDictionary valueForKey:key]))
+		if ((dictionaryValue = [theDictionary valueForKey:localOption.name]))
 		{
-			JSDTidyOption *optionRef = self.tidyOptions[key];
-			optionRef.optionValue = localVal;
+			localOption.optionValue = dictionaryValue;
 		}
 	}
 
@@ -813,13 +748,11 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)optionsResetAllToBuiltInDefaults
 {
-	for (NSString *key in [self.tidyOptions allKeys])
+	for (JSDTidyOption *localOption in self.tidyOptions)
 	{
-		NSString *newValue = [self.tidyOptions[key] valueForKey:@"builtInDefaultValue"];
-		
-		[self.tidyOptions[key] setString:newValue forKey:@"optionValue"];
+		localOption.optionValue = localOption.builtInDefaultValue;
 	}
-	
+
 	[self notifyTidyModelOptionChanged:nil];
 
 	[self processTidyInThread];
@@ -828,28 +761,57 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 }
 
 
-#pragma mark - Options Management - Property Accessors
-
-
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	> optionsInEffect
+	optionsInUse
 		If set, only options in the array will normally be used.
 		Options not in the array won't have values set or read,
 		and will maintain their default values. If set to nil,
 		then all built-in options will be used.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)setOptionsInEffect:(NSArray *)options
+- (NSArray*)optionsInUse
 {
-	_optionsInEffect = options;
-	for (NSString *key in [self.tidyOptions allKeys])
+	if (!_optionsInUse)
 	{
-		if (_optionsInEffect)
+		return [[self class] optionsBuiltInOptionList];
+	}
+
+	return _optionsInUse;
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	optionsInUse
+		If set, only options in the array will normally be used.
+		Options not in the array won't have values set or read,
+		and will maintain their default values. If set to nil,
+		then all built-in options will be used.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)setOptionsInUse:(NSArray *)options
+{
+	_optionsInUse = options;
+
+	for (JSDTidyOption *localOption in [self.tidyOptions allValues])
+	{
+		if (_optionsInUse)
 		{
-			[self.tidyOptions[key] setValue:@([_optionsInEffect indexOfObject:key] == NSNotFound) forKey:@"optionIsSuppressed"];
+			localOption.optionIsSuppressed = [@([_optionsInUse indexOfObject:localOption.name] == NSNotFound) boolValue];
 		}
 		else
 		{
-			[self.tidyOptions[key] setValue:@(NO) forKey:@"optionIsSuppressed"];
+			localOption.optionIsSuppressed = NO;
+		}
+	}
+
+	/* Un-suppress all applicable header items. */
+	for (JSDTidyOption *localOption in [self.tidyOptions allValues])
+	{
+		if ( (!localOption.optionIsHeader) && (!localOption.optionIsSuppressed) )
+		{
+			NSString *headerName = [NSString stringWithFormat:@"category-%u", localOption.builtInCategory];
+
+			JSDTidyOption *headerForOption = self.tidyOptions[headerName];
+
+			headerForOption.optionIsSuppressed = NO;
 		}
 	}
 }
@@ -862,19 +824,32 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	optionsPopulateTidyOptions (private)
 		Builds the tidyOptions dictionary structure using all of
 		TidyLib's available options.
-	@todo do I ever really need to access the optionID index?
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)optionsPopulateTidyOptions
 {
 	NSArray *optionsList = [[self class] optionsBuiltInOptionList];
 		
-	for (NSString *tmpStr in optionsList)
+	for (NSString *optionName in optionsList)
 	{
-		JSDTidyOption *newOption = [[JSDTidyOption alloc] initWithName:tmpStr sharingModel:self];
+		JSDTidyOption *newOption = [[JSDTidyOption alloc] initWithName:optionName sharingModel:self];
 		
-		if (!(TidyUnknownOption == [newOption optionId]))
+		if (!([newOption optionId] == TidyUnknownOption))
 		{
 			[self.tidyOptions setValue:newOption forKey:newOption.name];
+
+			/* Create a header item for this option if it doesn't already exist. */
+			NSString *headerName = [NSString stringWithFormat:@"category-%u", newOption.builtInCategory];
+
+			if (![self.tidyOptions objectForKey:headerName])
+			{
+				JSDTidyOption *headerOption = [[JSDTidyOption alloc] initWithName:headerName sharingModel:self];
+
+				headerOption.optionIsHeader = YES;
+				headerOption.optionIsSuppressed = NO;
+
+				[self.tidyOptions setValue:headerOption forKey:headerName];
+			}
+
 		}
 	}
 }
@@ -900,19 +875,20 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	 processTidy (private)
 		 Performs tidy'ing and sets _tidyText and _errorText
+	@todo need to refactor this to make it thread-safe.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)processTidy
 {
-	// Create a TidyDoc and sets its options.
+	/* Create a TidyDoc and sets its options. */
 	TidyDoc newTidy = tidyCreate();
-	
-	for (NSString *key in [self.tidyOptions allKeys])
+
+	for (JSDTidyOption *localOption in [self.tidyOptions allValues])
 	{
-		[self.tidyOptions[key] applyOptionToTidyDoc:newTidy];
+		[localOption applyOptionToTidyDoc:newTidy];
 	}
+
 	
-	
-	// Setup the |outBuffer| to copy to an NSString instead of writing to stdout
+	/* Setup the |outBuffer| to copy to an NSString instead of writing to stdout */
 	TidyBuffer *outBuffer = malloc(sizeof(TidyBuffer));
 	tidyBufInit( outBuffer );
 	
@@ -924,52 +900,52 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		this file.
 	 */
 
-	tidySetAppData( newTidy, (__bridge void *)(self) );						// Need to send a message from outside self to self.
-
-	/* 
-		This version maintains compatability with NATIVE TidyLib.
-		I'll maintain this in source code just in case forks want
-		to stick to original TidyLib distributions.
-	 */
-	//tidySetReportFilter( newTidy, (TidyReportFilter)&tidyCallbackFilter);
+	tidySetAppData(newTidy, (__bridge void *)(self));                          // Need to send a message from outside self to self.
 
 	/*
-		This version uses my modification to TidyLib allowing for
-		localization of the error strings. 
+		Official TidyLib generates a complete message string that
+		is difficult to localize. My fork introduces an additional
+	    report filter that passes back message components which
+	    can be localized and assembled in the app.
+	 
+		If you want to compile against virgin TidyLib source, then
+	    make sure you change the comments below.
 	 */
-	tidySetReportFilter2( newTidy, (TidyReportFilter2)&tidyCallbackFilter2);
+	//tidySetReportFilter(newTidy, (TidyReportFilter)&tidyCallbackFilter);     // use for virgin TidyLib compatability
+	tidySetReportFilter2(newTidy, (TidyReportFilter2)&tidyCallbackFilter2);    // use for my fork of TidyLib
 
 	
-	// Setup the error buffer to catch errors here instead of stdout
-	TidyBuffer *errBuffer = malloc(sizeof(TidyBuffer));						// Allocate a buffer for our error text.
-	tidyBufInit( errBuffer );												// Init the buffer.
-	tidySetErrorBuffer( newTidy, errBuffer );								// And let tidy know to use it.
+	/* Setup the error buffer to catch errors here instead of stdout */
+	TidyBuffer *errBuffer = malloc(sizeof(TidyBuffer));                        // Allocate a buffer for our error text.
+	tidyBufInit(errBuffer);                                                    // Init the buffer.
+	tidySetErrorBuffer(newTidy, errBuffer);                                    // And let tidy know to use it.
 	
 	
-	// Clear out all of the previous errors from our collection.
+	/* Clear out all of the previous errors from our collection. */
 	[_errorArray removeAllObjects];
 	
 	
-	// Setup tidy to use UTF8 for all internal operations.
-	tidyOptSetValue( newTidy, TidyCharEncoding, [@"utf8" UTF8String] );
-	tidyOptSetValue( newTidy, TidyInCharEncoding, [@"utf8" UTF8String] );
-	tidyOptSetValue( newTidy, TidyOutCharEncoding, [@"utf8" UTF8String] );
+	/* Setup tidy to use UTF8 for all internal operations. */
+	tidyOptSetValue(newTidy, TidyCharEncoding, [@"utf8" UTF8String]);
+	tidyOptSetValue(newTidy, TidyInCharEncoding, [@"utf8" UTF8String]);
+	tidyOptSetValue(newTidy, TidyOutCharEncoding, [@"utf8" UTF8String]);
 
 		
-	// Parse the |_sourceText| and clean, repair, and diagnose it.
-	tidyParseString( newTidy, [_sourceText UTF8String] );
-	tidyCleanAndRepair( newTidy );
-	tidyRunDiagnostics( newTidy );
+	/* Parse the `_sourceText` and clean, repair, and diagnose it. */
+	tidyParseString(newTidy, [_sourceText UTF8String]);
+	tidyCleanAndRepair(newTidy);
+	tidyRunDiagnostics(newTidy);
 	
 	
-	// Save the tidy'd text to an NSString. If the Tidy result
-	// is different than the existing Tidy text, then save
-	// the new result and post a notification.
-	// In any case post an error update notification so
-	// that apps have a chance to update their error tables.
-	// This covers a case where the source text may change but
-	// the TidyText stays identical anyway.
-	tidySaveBuffer( newTidy, outBuffer );
+	/*
+		Save the tidy'd text to an NSString. If the Tidy result is different
+		than the existing Tidy text, then save the new result and post a
+		notification. In any case post an error update notification so that
+		apps have a chance to update their error tables. This covers a case
+		where the source text may change but the TidyText stays identical
+		anyway.
+	 */
+	tidySaveBuffer(newTidy, outBuffer);
 
 	NSString *tidyResult;
 	
@@ -984,22 +960,25 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 	if ( ![tidyResult isEqualToString:_tidyText])
 	{
-		[self setTidyText:tidyResult];
+		_tidyText = tidyResult;
 		[self notifyTidyModelTidyTextChanged];
 	}
 
 	[self notifyTidyModelMessagesChanged];
 
 	
-	// Give the Tidy general info at the end of the
-	// _errorText. Note that this information is
-	// NOT captured in the error filter.
-	tidyErrorSummary( newTidy );
-	tidyGeneralInfo( newTidy );
+	/*
+		Give the Tidy general info at the end of the `_errorText`. Note that
+		this information is	NOT captured in the error filter.
+	 */
+	tidyErrorSummary(newTidy);
+	tidyGeneralInfo(newTidy);
 	
 	
-	// Copy the error buffer into an NSString -- the |_errorArray| is built using
-	// callbacks so we don't need to do anything at all to build it right here.
+	/*
+		Copy the error buffer into an NSString - the `_errorArray` is built using
+		callbacks so we don't need to do anything at all to build it right here.
+	 */
 	if (errBuffer->size > 0)
 	{
 		_errorText = [[NSString alloc] initWithUTF8String:(char *)errBuffer->bp];
@@ -1010,17 +989,17 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	}
 	
 	
-	// Set ivars for properties.
-	_tidyDetectedHtmlVersion = tidyDetectedHtmlVersion( newTidy );
-	_tidyDetectedXhtml       = tidyDetectedXhtml( newTidy );
-	_tidyDetectedGenericXml  = tidyDetectedGenericXml( newTidy );
-	_tidyStatus              = tidyStatus( newTidy );
-	_tidyErrorCount          = tidyErrorCount( newTidy );
-	_tidyWarningCount        = tidyWarningCount( newTidy );
-	_tidyAccessWarningCount  = tidyAccessWarningCount( newTidy );
+	/* Set ivars for properties. */
+	_tidyDetectedHtmlVersion = tidyDetectedHtmlVersion(newTidy);
+	_tidyDetectedXhtml       = tidyDetectedXhtml(newTidy);
+	_tidyDetectedGenericXml  = tidyDetectedGenericXml(newTidy);
+	_tidyStatus              = tidyStatus(newTidy);
+	_tidyErrorCount          = tidyErrorCount(newTidy);
+	_tidyWarningCount        = tidyWarningCount(newTidy);
+	_tidyAccessWarningCount  = tidyAccessWarningCount(newTidy);
 
 	
-	// Clean up.
+	/* Clean up. */
 	tidyBufFree(outBuffer);
 	tidyBufFree(errBuffer);
 	tidyRelease(newTidy);
@@ -1112,6 +1091,362 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 }
 
 
+#pragma mark - Configuration List Support
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	loadOptionsInUseListFromResource:ofType (class method)
+		Returns an array of NSString from a file-resource. This
+		compares each item with the linked-in TidyLib to ensure 
+		items are supported, and ensures there are no duplicates.
+		There is nothing in JSDTidyModel that uses this except
+		for the optional defaults system support below, and it aids
+		support of Balthisar Tidy's preferences implementation.
+ 
+		NOTE: does *not* set optionsInUse for this instance.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
++ (NSArray *)loadOptionsInUseListFromResource:(NSString *)fileName ofType:(NSString *)fileType
+{
+	NSMutableArray *desiredOptions = [[NSMutableArray alloc] init];
+	
+	NSString *contentPath = [[NSBundle mainBundle] pathForResource:fileName ofType:fileType];
+	
+	if (contentPath)
+	{
+		NSString *optionName;
+		NSEnumerator *enumerator = [[[NSString stringWithContentsOfFile:contentPath
+															   encoding:NSUTF8StringEncoding
+																  error:NULL]
+									 componentsSeparatedByString:@"\n"] objectEnumerator];
+		
+		while (optionName = [enumerator nextObject])
+		{
+			if ((tidyOptGetIdForName( [optionName UTF8String] ) != N_TIDY_OPTIONS) && (![desiredOptions containsObject:optionName]))
+			{
+				[desiredOptions addObject:optionName];
+			}
+		}
+	}
+
+	return desiredOptions;
+}
+
+
+#pragma mark - Mac OS X Prefs Support
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	addDefaultsToDictionary (class method)
+		Adds TidyLib's default option values to the passed in
+		dictionary for ALL TidyLib options.
+ 
+		Accomplish this by parsing through instances of 
+		JSDTidyOption and getting each of the built in default
+		values and adding them to the passed-in dictionary.
+		defined in TidyLib to ascertain its	value and add it to the
+		passed-in dictionary.
+ 
+		We DON'T register the defaults because the implementing
+		application may have other defaults to add to the dictionary
+		and register. This is just a dictionary.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
++ (void)addDefaultsToDictionary:(NSMutableDictionary *)defaultDictionary
+{
+	[[self class] addDefaultsToDictionary:defaultDictionary fromArray:[[self class] optionsBuiltInOptionList]];
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	addDefaultsToDictionary:fromResource:ofType (class method)
+		Same as `addDefaultsToDictionary`, except uses a resource
+		file list of options instead of ALL TidyLib options.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
++ (void)addDefaultsToDictionary:(NSMutableDictionary *)defaultDictionary
+				   fromResource:(NSString *)fileName ofType:(NSString *)fileType
+{
+	[[self class] addDefaultsToDictionary:defaultDictionary fromArray:[JSDTidyModel loadOptionsInUseListFromResource:fileName ofType:fileType]];
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	addDefaultsToDictionary:fromArray (class method)
+		Same as |addDefaultsToDictionary|, except uses an array
+		of strings instead of ALL TidyLib options.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
++ (void)addDefaultsToDictionary:(NSMutableDictionary *)defaultDictionary
+					  fromArray:(NSArray *)stringArray
+{
+	NSMutableDictionary *optionsDict = [[NSMutableDictionary alloc] init];
+	
+	for (NSString *optionName in stringArray)
+	{
+		JSDTidyOption *newOption = [[JSDTidyOption alloc] initWithName:optionName sharingModel:nil];
+
+		if ((!newOption.optionIsSuppressed) && (!newOption.optionIsHeader))
+		{
+			optionsDict[optionName] = newOption.builtInDefaultValue;
+		}
+
+	}
+	
+	defaultDictionary[JSDKeyTidyTidyOptionsKey] = optionsDict;
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	writeOptionValuesWithDefaults
+		Iterates through all of the current `tidyOptions` and
+		registers their values to the defaults system.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)writeOptionValuesWithDefaults:(NSUserDefaults *)defaults
+{
+	NSMutableDictionary *optionsDict = [[NSMutableDictionary alloc] init];
+
+	for (JSDTidyOption *localOption in [self.tidyOptions allValues])
+	{
+		if ((!localOption.optionIsSuppressed) && (!localOption.optionIsHeader))
+		{
+			optionsDict[localOption.name] = localOption.optionValue;
+		}
+	}
+
+	[defaults setObject:optionsDict forKey:JSDKeyTidyTidyOptionsKey];
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	takeOptionValuesFromDefaults
+		Given a defaults instance, attempts to set optionValue for
+		each tidyOptions item from the value registered int the
+		defaults system.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)takeOptionValuesFromDefaults:(NSUserDefaults *)defaults
+{
+	JSDTidyOption *localOption;
+
+	for (NSString *optionName in [[self class] optionsBuiltInOptionList])
+	{
+		NSString *valueFromPreferences = [[defaults objectForKey:JSDKeyTidyTidyOptionsKey] stringForKey:optionName];
+
+		localOption = self.tidyOptions[optionName];
+
+		if (localOption)
+		{
+			localOption.optionValue = valueFromPreferences;
+		}
+	}
+
+	[self notifyTidyModelOptionChanged:nil];
+	
+	[self processTidyInThread];
+}
+
+
+#pragma mark - Tidy Options
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	accessInstanceVariablesDirectly
+		Ensure that we keep Cocoa from direct access to our ivars.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
++(BOOL)accessInstanceVariablesDirectly
+{
+	return NO;
+}
+
+
+#pragma mark - Public API and General Properties
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	tidyOptions
+		Note that accessors are synthesized.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	tidyOptionsBindable
+		Provide a synthesized array that we can easily bind to.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (NSArray *)tidyOptionsBindable
+{
+	return [_tidyOptions allValues];
+}
+
+
+#pragma mark - KVC Accessor Requirements for our tidyOptionsBindable array.
+
+
+#pragma mark - Immutable Accessors
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	countOfTidyOptionsBindable
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (NSUInteger)countOfTidyOptionsBindable
+{
+    return [_tidyOptions count];
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	objectInTidyOptionsBindableAtIndex:
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (id)objectInTidyOptionsBindableAtIndex:(NSUInteger)index
+{
+    return [[_tidyOptions allValues] objectAtIndex:index];
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	tidyOptionsBindableAtIndexes:
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (NSArray *)tidyOptionsBindableAtIndexes:(NSIndexSet *)indexes
+{
+    return [[_tidyOptions allValues] objectsAtIndexes:indexes];
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	getTidyOptions:range:
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)getTidyOptionsBindable:(JSDTidyOption * __unsafe_unretained *)buffer range:(NSRange)inRange
+{
+    [[_tidyOptions allValues] getObjects:buffer range:inRange];
+}
+
+
+#pragma mark - Mmutable Accessors
+
+
+///*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+//	insertObject:inTidyOptionsBindableAtIndex:
+//		Will add the passed-in option, changing the keyname to
+//		something unique if necessary (-1, -2, etc.).
+// *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+//- (void)insertObject:(JSDTidyOption *)option inTidyOptionsBindableAtIndex:(NSUInteger)index
+//{
+//	NSString *proposedKey = [self suggestedKeyNameForKey:option.name];
+//
+//	// ensure that names are not duplicated.
+//	JSDTidyOption *newOption = [[JSDTidyOption alloc] initWithName:proposedKey optionValue:[option.optionValue copy] sharingModel:option.sharedTidyModel];
+//
+//    [_tidyOptions insertObject:newOption atIndex:index];
+//}
+//
+//
+//// @todo: is this needed? Externally we're immutable, but do we
+////        need these when making changes internally?
+///*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+//	insertTidyOptionsBindable:atIndexes:
+//		Each option.name will be set to unique.
+// *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+//- (void)insertTidyOptionsBindable:(NSArray *)optionArray atIndexes:(NSIndexSet *)indexes
+//{
+//	NSString *proposedKey;
+//	NSMutableArray *newArray = [[NSMutableArray alloc] initWithCapacity:[optionArray count]];
+//	
+//	for (JSDTidyOption* localOption in optionArray)
+//	{
+//		proposedKey = [self suggestedKeyNameForKey:localOption.name];
+//
+//		// ensure that names are not duplicated.
+//		JSDTidyOption *newOption = [[JSDTidyOption alloc] initWithName:proposedKey optionValue:[localOption.optionValue copy] sharingModel:localOption.sharedTidyModel];
+//
+//		[newArray addObject:newOption];
+//	}
+//	
+//	[_tidyOptions insertObjects:newArray atIndexes:indexes];
+//}
+//
+//
+//// @todo: is this needed? Externally we're immutable, but do we
+////        need these when making changes internally?
+///*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+//	removeObjectFromTidyOptionsBindableAtIndex:
+// *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+//- (void)removeObjectFromTidyOptionsBindableAtIndex:(NSUInteger)index
+//{
+//    [_tidyOptions removeObjectAtIndex:index];
+//}
+//
+//
+//// @todo: is this needed? Externally we're immutable, but do we
+////        need these when making changes internally?
+///*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+//	removeTidyOptionsBindableAtIndexes:
+// *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+//- (void)removeTidyOptionsBindableAtIndexes:(NSIndexSet *)indexes
+//{
+//    [_tidyOptions removeObjectsAtIndexes:indexes];
+//}
+//
+//
+//// @todo: is this needed? Externally we're immutable, but do we
+////        need these when making changes internally?
+///*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+//	replaceObjectInTidyOptionsBindableAtIndex:withObject:
+//		Will change the keyname to something unique if necessary.
+// *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+//- (void)replaceObjectInTidyOptionsBindableAtIndex:(NSUInteger)index
+//                               withObject:(JSDTidyOption*)option
+//{
+//	NSString *proposedKey = [self suggestedKeyNameForKey:option.name];
+//	
+//	// ensure that names are not duplicated.
+//	JSDTidyOption *newOption = [[JSDTidyOption alloc] initWithName:proposedKey optionValue:[option.optionValue copy] sharingModel:option.sharedTidyModel];
+//
+//    [_tidyOptions replaceObjectAtIndex:index withObject:newOption];
+//}
+
+
+
+#pragma mark - Private Helper Methods, Utilities, etc.
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	suggestedKeyNameForKey: (private)
+		Given a currentKey, suggest a new name if necessary so that
+		keys remain unique. For example, myKey, if already in the
+		collection, will be suggested myKey-1, myKey-2, etc.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (NSString*)suggestedKeyNameForKey:(NSString*)currentKey
+{
+	// Find matching object.
+	for (JSDTidyOption* localOption in _tidyOptions)
+	{
+		if ([localOption.name isEqualToString:currentKey])
+		{
+			// Find the suffix (if any).
+			NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"-([0-9]{1,})$" options:0 error:nil];
+			NSArray *matches = [regex matchesInString:currentKey options:0 range:NSMakeRange(0, currentKey.length)];
+			
+			if ([matches count] == 0)
+			{
+				// If there's not a suffix, just add one and recurse.
+				return [self suggestedKeyNameForKey:[NSString stringWithFormat:@"%@-1", currentKey]];
+			}
+			else
+			{
+				// If there's already a suffix, increment it and recurse.
+				NSTextCheckingResult *result = (NSTextCheckingResult *)[matches lastObject];
+
+				// Get the current suffix value.
+				NSUInteger counterValue = [[currentKey substringWithRange:[result rangeAtIndex:1]] integerValue];
+
+				// remove old suffix from the string
+				NSString *currentKeyWithoutSuffix = [currentKey stringByReplacingCharactersInRange:[result rangeAtIndex:0] withString:@""];
+
+				// return the currentKey with the incremented counter suffix
+				return [self suggestedKeyNameForKey:[NSString stringWithFormat:@"%@-%lu", currentKeyWithoutSuffix, counterValue + 1]];
+			}
+		}
+	}
+	
+	return currentKey;
+}
+
+
 #pragma mark - Notification and Delegation Support (Private)
 
 
@@ -1190,528 +1525,6 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	{
 		[[self delegate] tidyModelDetectedInputEncodingIssue:self currentEncoding:self.inputEncoding suggestedEncoding:suggestedEncoding];
 	}
-}
-
-
-
-
-#pragma mark - Configuration List Support
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	loadConfigurationListFromResource:ofType (class method)
-		Returns an array of NSString from a file-resource. This
-		compares each item with the linked-in TidyLib to ensure 
-		items are supported, and ensures there are no duplicates.
-		There is nothing in JSDTidyModel that uses this except
-		for the optional defaults system support below, and it aids
-		support of Balthisar Tidy's preferences implementation.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-+ (NSArray *)loadConfigurationListFromResource:(NSString *)fileName ofType:(NSString *)fileType
-{
-	NSMutableArray *desiredOptions = [[NSMutableArray alloc] init];
-	
-	NSString *contentPath = [[NSBundle mainBundle] pathForResource:fileName ofType:fileType];
-	
-	if (contentPath)
-	{
-		NSString *tmpStr;
-		NSEnumerator *enumerator = [[[NSString stringWithContentsOfFile:contentPath
-															   encoding:NSUTF8StringEncoding
-																  error:NULL]
-									 componentsSeparatedByString:@"\n"] objectEnumerator];
-		
-		while (tmpStr = [enumerator nextObject])
-		{
-			if ((tidyOptGetIdForName( [tmpStr UTF8String] ) != N_TIDY_OPTIONS) && (![desiredOptions containsObject:tmpStr]))
-			{
-				[desiredOptions addObject:tmpStr];
-			}
-		}
-	}
-	return desiredOptions;
-}
-
-
-#pragma mark - Mac OS X Prefs Support
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	addDefaultsToDictionary (class method)
-		Adds TidyLib's default option values to the passed in
-		dictionary for ALL TidyLib options.
- 
-		Accomplish this by parsing through instances of 
-		JSDTidyOption and getting each of the built in default
-		values and adding them to the passed-in dictionary.
-		defined in TidyLib to ascertain its	value and add it to the
-		passed-in dictionary.
- 
-		We DON'T register the defaults because the implementing
-		application may have other defaults to add to the dictionary
-		and register. This is just a dictionary.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-+ (void)addDefaultsToDictionary:(NSMutableDictionary *)defaultDictionary
-{
-	[[self class] addDefaultsToDictionary:defaultDictionary fromArray:[[self class] optionsBuiltInOptionList]];
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	addDefaultsToDictionary:fromResource:ofType (class method)
-		Same as |addDefaultsToDictionary|, except uses a resource
-		file list of options instead of ALL TidyLib options.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-+ (void)addDefaultsToDictionary:(NSMutableDictionary *)defaultDictionary
-				   fromResource:(NSString *)fileName ofType:(NSString *)fileType
-{
-	[[self class] addDefaultsToDictionary:defaultDictionary fromArray:[JSDTidyModel loadConfigurationListFromResource:fileName ofType:fileType]];
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	addDefaultsToDictionary:fromArray (class method)
-		Same as |addDefaultsToDictionary|, except uses an array
-		of strings instead of ALL TidyLib options.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-+ (void)addDefaultsToDictionary:(NSMutableDictionary *)defaultDictionary
-					  fromArray:(NSArray *)stringArray
-{
-	NSMutableDictionary *optionsDict = [[NSMutableDictionary alloc] init];
-	
-	for (NSString *optionName in stringArray)
-	{
-		optionsDict[optionName] = [[[JSDTidyOption alloc] initWithName:optionName sharingModel:nil] builtInDefaultValue];
-	}
-	
-	defaultDictionary[JSDKeyTidyTidyOptionsKey] = optionsDict;
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	writeOptionValuesWithDefaults
-		Iterates through all of the current `tidyOptions` and
-		registers their values to the defaults system.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)writeOptionValuesWithDefaults:(NSUserDefaults *)defaults
-{
-	NSMutableDictionary *optionsDict = [[NSMutableDictionary alloc] init];
-	
-	for (NSString *key in [self.tidyOptions allKeys])
-	{
-		JSDTidyOption *optionRef = self.tidyOptions[key];
-		optionsDict[key] = optionRef.optionValue;
-	}
-	
-	[defaults setObject:optionsDict forKey:JSDKeyTidyTidyOptionsKey];
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	takeOptionValuesFromDefaults
-		Given a defaults instance, attempts to set optionValue for
-		each tidyOptions item from the value registered int the
-		defaults system.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)takeOptionValuesFromDefaults:(NSUserDefaults *)defaults
-{
-	for (NSString *optionName in [[self class] optionsBuiltInOptionList])
-	{
-		NSString *myString = [[defaults objectForKey:JSDKeyTidyTidyOptionsKey] stringForKey:optionName];
-
-		[self.tidyOptions[optionName] setOptionValue:[myString copy]];
-	}
-
-	[self notifyTidyModelOptionChanged:nil];
-	
-	[self processTidyInThread];
-}
-
-
-#pragma mark - Property Access, KVO, Binding, Subscripting, etc.
-/******************************************************************************
- * Property Access, KVO, Binding, Subscripting, etc.
- ******************************************************************************/
-
-
-#pragma mark - Class Methods
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	accessInstanceVariablesDirectly
-		Ensure that we keep Cocoa from direct access to our ivars.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-+(BOOL)accessInstanceVariablesDirectly
-{
-	return NO;
-}
-
-
-#pragma mark - Public API and General Properties
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	tidyOptions
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
--(NSArray *)tidyOptions
-{
-	return [_tidyOptions copy];
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	setTidyOptions:
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
--(void)setTidyOptions:(NSArray *)options
-{
-	[self willChangeValueForKey:@"tidyOptions"];
-	
-	_tidyOptions = [NSMutableArray arrayWithArray:options];
-	
-	[self didChangeValueForKey:@"tidyOptions"];
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	addTidyOption:
-		Will add the passed-in option, changing the keyname to
-		something unique if necessary (-1, -2, etc.).
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)addTidyOption:(JSDTidyOption*)option
-{
-	[self insertObject:option inTidyOptionsAtIndex:[_tidyOptions count]];
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	removeTidyOption:
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)removeTidyOption:(JSDTidyOption*)option
-{
-	[self removeObjectFromTidyOptionsAtIndex:[_tidyOptions indexOfObject:option]];
-}
-
-
-#pragma mark - Keyed and Indexed Subscripting Support
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	objectAtIndexedSubscript:
-		Provides access to options via keyed subscripting, e.g.,
-		NSString *myValue = optionsInstance[12].optionValue;
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (JSDTidyOption*)objectAtIndexedSubscript:(NSUInteger)index
-{
-    return [_tidyOptions objectAtIndex:index];
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	setObject:atIndexedSubscript:
-		Provides access to options via index subscripting, e.g.,
-		optionsInstance[12].optionValue = @"12";
- 
-		Replaces the object at the index with the new object, 
-		possibly adding the object.
- 
-		Will add the passed-in option, changing the keyname to
-		something unique if necessary (-1, -2, etc.).
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)setObject:(JSDTidyOption*)option atIndexedSubscript:(NSUInteger)index
-{
-	if (!option)
-	{
-		@throw NSInvalidArgumentException;
-	}
-
-	if (index >= [_tidyOptions count])
-	{
-		[self insertObject:option inTidyOptionsAtIndex:[_tidyOptions count]];
-	}
-	else
-	{
-		[self replaceObjectInTidyOptionsAtIndex:index withObject:option];
-	}
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	objectForKeyedSubscript:
-		Provides access to options via keyed subscripting, e.g.,
-		NSString *myValue = optionsInstance[@"indent"].optionValue;
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (JSDTidyOption*)objectForKeyedSubscript:(id)key
-{
-	// We only accept strings as subscripts.
-	if ( [key isKindOfClass:[NSString class]] )
-	{
-		NSString *localKeyName = (NSString*)key;
-
-		// Find matching object.
-		for (JSDTidyOption* localOption in _tidyOptions)
-		{
-			if ([localOption.name isEqualToString:localKeyName])
-			{
-				return localOption;
-			}
-		}
-	}
-
-	return nil;
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	setObject:forKeyedSubscript:
-		Provides access to options via keyed subscripting, e.g.,
-		optionsInstance[@"indent"].optionValue = @"something";
-
-		We will NOT change the name. If the object exists, it will
-		simply be replaced. Additionally regardless of option.name,
-		it will be changed to reflect the keyed subscript.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)setObject:(JSDTidyOption*)option forKeyedSubscript:(id <NSCopying>)key
-{
-	// Don't mess with the protocol; make a local copy.
-	id localKey = [key copyWithZone:NULL];
-
-	// We only accept strings as subscripts.
-	if ([localKey isKindOfClass:[NSString class]])
-	{
-		JSDTidyOption *localOption = [self objectForKeyedSubscript:localKey];
-
-		if (localOption)
-		{
-			[self removeObjectFromTidyOptionsAtIndex:[_tidyOptions indexOfObject:localOption]];
-		}
-
-		option.name = localKey;		// Force the passed in object to possess correct key name!
-		
-		[self insertObject:option inTidyOptionsAtIndex:[_tidyOptions count]];
-	}
-	else
-	{
-		@throw NSInvalidArgumentException;
-	}
-}
-
-
-#pragma mark - Undefined Key Support
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	valueForUndefinedKey:
-		A lot of keys will be undefined if we try to access them
-		like @"myOptions.input-encoding.optionValue".
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (id)valueForUndefinedKey:(NSString*)key
-{
-	JSDTidyOption *result = [self objectForKeyedSubscript:key];
-
-	if (!result)
-	{
-		return [super valueForUndefinedKey:key];
-	}
-
-    return (result);
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	setValue:forUndefinedKey:
-		A lot of keys will be undefined if we try to access them
-		like @"myOptions.input-encoding.optionValue".
-		
-		Will replace an existing key if it already exists.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)setValue:(id)value forUndefinedKey:(NSString *)key
-{
-	// We'll only permit undefined keys if they're the right class.
-	if ([value isKindOfClass:[JSDTidyOption class]])
-	{
-		[self setObject:value forKeyedSubscript:key];
-	}
-	else
-	{
-		[super setValue:value forUndefinedKey:key];
-	}
-}
-
-
-#pragma mark - KVC Accessor Requirements
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	countOfTidyOptions
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (NSUInteger)countOfTidyOptions
-{
-    return [_tidyOptions count];
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	objectInTidyOptionsAtIndex:
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (id)objectInTidyOptionsAtIndex:(NSUInteger)index
-{
-    return [_tidyOptions objectAtIndex:index];
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	tidyOptionsAtIndexes:
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (NSArray *)tidyOptionsAtIndexes:(NSIndexSet *)indexes
-{
-    return [_tidyOptions objectsAtIndexes:indexes];
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	getOptions:range:
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)getOptions:(JSDTidyOption * __unsafe_unretained *)buffer range:(NSRange)inRange
-{
-    [_tidyOptions getObjects:buffer range:inRange];
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	insertObject:inTidyOptionsAtIndex:
-		Will add the passed-in option, changing the keyname to
-		something unique if necessary (-1, -2, etc.).
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)insertObject:(JSDTidyOption *)option inTidyOptionsAtIndex:(NSUInteger)index
-{
-	NSString *proposedKey = [self suggestedKeyNameForKey:option.name];
-	
-	option.name = proposedKey;
-	
-    [_tidyOptions insertObject:option atIndex:index];
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	insertTidyOptions:atIndexes:
-		Each option.name will be set to unique.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)insertTidyOptions:(NSArray *)optionArray atIndexes:(NSIndexSet *)indexes
-{
-	NSString *newName;
-	
-	for ((JSDTidyOption*)localOption in optionArray)
-	{
-		newName = [self suggestedKeyNameForKey:localOption.name];
-		
-		localOption.name = [newName copy];
-	}
-	
-	[_tidyOptions insertObjects:optionArray atIndexes:indexes];
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	removeObjectFromTidyOptionsAtIndex:
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)removeObjectFromTidyOptionsAtIndex:(NSUInteger)index
-{
-    [_tidyOptions removeObjectAtIndex:index];
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	removeTidyOptionsAtIndexes:
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)removeTidyOptionsAtIndexes:(NSIndexSet *)indexes
-{
-    [_tidyOptions removeObjectsAtIndexes:indexes];
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	replaceObjectInTidyOptionsAtIndex:withObject:
-		Will change the keyname to something unique if necessary.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)replaceObjectInTidyOptionsAtIndex:(NSUInteger)index
-                               withObject:(JSDTidyOption)option
-{
-	NSString *proposedKey = [self suggestedKeyNameForKey:option.name];
-	
-	option.name = proposedKey;
-
-    [_tidyOptions replaceObjectAtIndex:index withObject:option];
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	replaceTidyOptionsAtIndexes:withTidyOptions:
-		WARNING: this is an optional implementation, but is being
-		included for class completeness. Duplicate key detection is
-		being performed AFTER items are replaced. This means the
-		some objects may have their key names changed to -1, -2, etc.,
-		and they might not be the objects that you're adding.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)replaceTidyOptionsAtIndexes:(NSIndexSet *)indexes
-                    withTidyOptions:(NSArray *)optionsArray
-{
-    [_tidyOptions replaceObjectsAtIndexes:indexes withObjects:optionsArray];
-
-	NSString *newName;
-	
-	for ((JSDTidyOption*)localOption in optionArray)
-	{
-		newName = [self suggestedKeyNameForKey:localOption.name];
-		localOption.name = [newName copy];
-	}
-}
-
-/******************************************************************************
- * Private Helper Methods, Utilities, etc.
- ******************************************************************************/
-#pragma mark - Private Helper Methods, Utilities, etc.
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	suggestedKeyNameForKey: (private)
-		Given a currentKey, suggest a new name if necessary so that
-		keys remain unique. For example, myKey, if already in the
-		collection, will be suggested myKey-1, myKey-2, etc.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (NSString*)suggestedKeyNameForKey:(NSString*):currentKey
-{
-	// Find matching object.
-	for (JSDTidyOption* localOption in _tidyOptions)
-	{
-		if ([localOption.name isEqualToString:currentKey])
-		{
-			// Find the suffix (if any).
-			NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"-([0-9]{1,})$" options:0 error:nil];
-			NSArray *matches = [regex matchesInString:currentKey options:0 range:NSMakeRange(0, currentKey.length)];
-			
-			if ([matches count] == 0)
-			{
-				// If there's not a suffix, just add one and recurse.
-				return [self suggestedKeyNameForKey:[NSString stringWithFormat:@"%@-1", currentKey]];
-			}
-			else
-			{
-				// If there's already a suffix, increment it and recurse.
-				NSTextCheckingResult *result = (NSTextCheckingResult *)[matches lastObject];
-
-				// Get the current suffix value.
-				NSUInteger counterValue = [[currentKey substringWithRange:[result rangeAtIndex:1]] integerValue];
-
-				// remove old suffix from the string
-				NSString *currentKeyWithoutSuffix = [currentKey stringByReplacingCharactersInRange:[result rangeAtIndex:0] withString:@""];
-
-				// return the currentKey with the incremented counter suffix
-				return [self suggestedKeyNameForKey:[NSString stringWithFormat:@"%@-%i", currentKeyWithoutSuffix, counterValue + 1]];
-			}
-		}
-	}
-	
-	return currentKey;
 }
 
 

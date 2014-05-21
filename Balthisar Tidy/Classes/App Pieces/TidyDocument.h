@@ -33,24 +33,24 @@
 #import "NSTextView+JSDExtensions.h"
 #import "FirstRunController.h"
 
-/**
+/*
 	TidyDocument manages the user interaction between the document
 	window and the JSDTidyModel processor.
  */
 @interface TidyDocument : NSDocument <NSTableViewDelegate, NSSplitViewDelegate, NSTextViewDelegate>
 
-/**
+/*
 	Source Text, mostly for AppleScript KVC support.
 */
-@property (nonatomic, assign) NSString *sourceText;
+@property (assign) NSString *sourceText;
 
-/**
+/*
 	Tidy'd Text, mostly for AppleScript KVC support.
  */
-@property (nonatomic, assign, readonly) NSString *tidyText;
+@property (readonly, assign) NSString *tidyText;
 
 
-/**
+/*
 	Allow a menu item to trigger this.
  */
 - (IBAction)kickOffFirstRunSequence:(id)sender;

@@ -1,4 +1,4 @@
-﻿/**************************************************************************************************
+/**************************************************************************************************
 
 	TidyDocument.m
 
@@ -74,46 +74,46 @@
 
 
 // View Outlets
-@property (nonatomic, assign) IBOutlet NSTextView *sourceView;
-@property (nonatomic, assign) IBOutlet NSTextView *tidyView;
-@property (nonatomic, weak)   IBOutlet NSTableView *errorView;
+@property (assign) IBOutlet NSTextView *sourceView;
+@property (assign) IBOutlet NSTextView *tidyView;
+@property (weak)   IBOutlet NSTableView *errorView;
 
 
 // Encoding Helper Popover Outlets
-@property (nonatomic, weak) IBOutlet NSPopover *popoverEncoding;
-@property (nonatomic, weak) IBOutlet NSButton *buttonEncodingDoNotWarnAgain;
-@property (nonatomic, weak) IBOutlet NSButton *buttonEncodingAllowChange;
-@property (nonatomic, weak) IBOutlet NSButton *buttonEncodingIgnoreSuggestion;
-@property (nonatomic, weak) IBOutlet NSTextField *textFieldEncodingExplanation;
+@property (weak) IBOutlet NSPopover *popoverEncoding;
+@property (weak) IBOutlet NSButton *buttonEncodingDoNotWarnAgain;
+@property (weak) IBOutlet NSButton *buttonEncodingAllowChange;
+@property (weak) IBOutlet NSButton *buttonEncodingIgnoreSuggestion;
+@property (weak) IBOutlet NSTextField *textFieldEncodingExplanation;
 
 
 // Window Splitters
-@property (nonatomic, weak) IBOutlet NSSplitView *splitLeftRight;		// The left-right (main) split view in the Doc window.
-@property (nonatomic, weak) IBOutlet NSSplitView *splitTopDown;			// Top top-to-bottom split view in the Doc window.
+@property (weak) IBOutlet NSSplitView *splitLeftRight;		// The left-right (main) split view in the Doc window.
+@property (weak) IBOutlet NSSplitView *splitTopDown;			// Top top-to-bottom split view in the Doc window.
 
 
 // Option Controller
-@property (nonatomic, weak)   IBOutlet NSView *optionPane;				// Our empty optionPane in the nib.
-@property (nonatomic, strong) OptionPaneController *optionController;	// The real option pane we load into optionPane.
+@property (weak)   IBOutlet NSView *optionPane;				// Our empty optionPane in the nib.
+@property (strong) OptionPaneController *optionController;	// The real option pane we load into optionPane.
 
 
 // First Run Controller
-@property (nonatomic, strong) FirstRunController *firstRun;				// A first run controller.
+@property FirstRunController *firstRun;				       // A first run controller.
 
 // Our Tidy Processor
-@property (nonatomic, strong) JSDTidyModel *tidyProcess;
+@property JSDTidyModel *tidyProcess;
 
 
 // Document Control
-@property (nonatomic, strong) NSData *documentOpenedData;				// Hold file we open until nib is awake.
-@property (nonatomic, assign) BOOL documentIsLoading;					// Flag to supress certain event updates.
-@property (nonatomic, assign) BOOL fileWantsProtection;					// Indicates if we need special type of save.
+@property          NSData *documentOpenedData;				// Hold file we open until nib is awake.
+@property (assign) BOOL documentIsLoading;					// Flag to supress certain event updates.
+@property (assign) BOOL fileWantsProtection;					// Indicates if we need special type of save.
 
 // Local reference to our shared preferences controller.
-@property (nonatomic, assign) PreferenceController *prefs;
+@property (assign) PreferenceController *prefs;
 
 // Local, mutable copy of our tidyDocument's error array.
-@property (nonatomic, strong) NSMutableArray *messagesArray;
+@property NSMutableArray *messagesArray;
 
 
 #pragma mark - Methods
@@ -429,7 +429,7 @@
 		Set the document options. This causes the empty document to go
 		through processTidy a second time.
 	 */
-	[self.tidyProcess optionsCopyFromModel:self.optionController.tidyDocument];
+	[self.tidyProcess optionsCopyValuesFromModel:self.optionController.tidyDocument];
 
 	
 	/*
@@ -515,7 +515,7 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)handleTidyOptionChange:(NSNotification *)note
 {
-	[[self tidyProcess] optionsCopyFromModel:self.optionController.tidyDocument];
+	[[self tidyProcess] optionsCopyValuesFromModel:self.optionController.tidyDocument];
 }
 
 
@@ -634,7 +634,8 @@
 {
 	if (sender == self.buttonEncodingAllowChange)
 	{
-		self.optionController.tidyDocument[@"input-encoding"] = @(self.buttonEncodingAllowChange.tag);
+		JSDTidyOption *localOption = self.optionController.tidyDocument.tidyOptions[@"input-encoding"];
+		localOption.optionValue = [@(self.buttonEncodingAllowChange.tag) stringValue];
 
 		[self.optionController.theTable reloadData];
 	}

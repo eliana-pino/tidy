@@ -33,7 +33,7 @@
 #import "config.h"
 
 @class JSDTidyOption;
-@class JSDTidyModel;  // @todo: do I need this in its own header?
+@class JSDTidyModel;    // Required in its own header to support delegate protocol.
 
 
 #pragma mark - Some defines
@@ -76,6 +76,7 @@
 */
 
 @protocol JSDTidyModelDelegate <NSObject>
+
 
 @optional
 
@@ -131,15 +132,15 @@
 
 - (id)initWithString:(NSString *)value;
 
-- (id)initWithString:(NSString *)value copyOptionsFromModel:(JSDTidyModel *)theModel;	
+- (id)initWithString:(NSString *)value copyOptionValuesFromModel:(JSDTidyModel *)theModel;
 
 - (id)initWithData:(NSData *)data;														
 
-- (id)initWithData:(NSData *)data copyOptionsFromModel:(JSDTidyModel *)theModel;		
+- (id)initWithData:(NSData *)data copyOptionValuesFromModel:(JSDTidyModel *)theModel;
 
 - (id)initWithFile:(NSString *)path;														
 
-- (id)initWithFile:(NSString *)path copyOptionsFromModel:(JSDTidyModel *)theModel;			
+- (id)initWithFile:(NSString *)path copyOptionValuesFromModel:(JSDTidyModel *)theModel;
 
 
 #pragma mark - Delegate Support
@@ -176,6 +177,7 @@
 + (NSDictionary *)availableEncodingDictionariesByNSStringEncoding;
 
 + (NSDictionary *)availableEncodingDictionariesByLocalizedIndex;
+
 
 /*
 	These convenience properties are just shortcuts for reading the
@@ -221,7 +223,7 @@
 - (void)tidyTextToFile:(NSString *)path;
 
 
-/**
+/*
 	isDirty - indicates that the source text is considered "dirty",
 	meaning that the source-text has changed, or the source-text
 	is not equal to the tidy'd-text.
@@ -242,7 +244,7 @@
 @property (readonly) NSArray  *errorArray;     // Error text as an array of NSDictionary of the errors.
 
 
-#pragma mark - Options management
+#pragma mark - Options Overall management
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
@@ -255,16 +257,13 @@
 
 + (NSArray *) optionsBuiltInOptionList;            // Returns an NSArray of NSString for all options built into Tidy.
 
-// @todo: Is the even necessary?
-//        Shouldn't thisModel.tidyOptions = [thatModel.tidyOptions copy] work?
-- (void)      optionsCopyFromModel:(JSDTidyModel *)theModel;            // Sets options based on those in theModel.
+- (void)      optionsCopyValuesFromModel:(JSDTidyModel *)theModel;            // Sets options based on those in theModel.
 
-- (void)      optionsCopyFromDictionary:(NSDictionary *)theDictionary;  // Sets options from values in a dictionary.
+- (void)      optionsCopyValuesFromDictionary:(NSDictionary *)theDictionary;  // Sets options from values in a dictionary.
 
-- (void)      optionsResetAllToBuiltInDefaults;							  // Resets all options to factory default.
+- (void)      optionsResetAllToBuiltInDefaults;							      // Resets all options to factory default.
 
-// @todo: Make sure this returns ALL options by default (if nothing assigned to it).
-@property NSArray* optionsInEffect;                // Default is all options; otherwise is list of options.
+@property NSArray* optionsInUse;                   // Default is all options; otherwise is list of options.
 
 
 #pragma mark - Diagnostics and Repair
@@ -309,10 +308,10 @@
 /*
 	Loads a list of named potential tidy options from  file, compares
 	them to what TidyLib supports, and returns the array containing
-	only the names of the support options.
+	only the names of the supported options.
  */
-+ (NSArray *)loadConfigurationListFromResource:(NSString *)fileName 
-                                        ofType:(NSString *)fileType;
++ (NSArray *)loadOptionsInUseListFromResource:(NSString *)fileName
+									   ofType:(NSString *)fileType;
 
 
 #pragma mark - Mac OS X Prefs Support
@@ -334,7 +333,7 @@
 + (void)addDefaultsToDictionary:(NSMutableDictionary *)defaultDictionary
                       fromArray:(NSArray *)stringArray;
 
-/* Writes the current option values into the specified user defaults instance. */
+/* Places the current option values into the specified user defaults instance. */
 - (void)writeOptionValuesWithDefaults:(NSUserDefaults *)defaults;
 
 /* Takes option values from the specified user defaults instance. */
@@ -351,56 +350,36 @@
 
 #pragma mark - Public API and General Properties
 
-@property NSArray *tidyOptions;
+@property (readonly) NSDictionary *tidyOptions;
 
-@property (readonly) NSUInteger count;
-
-- (void)addTidyOption:(JSDTidyOption*)option;
-
-- (void)removeTidyOption:(JSDTidyOption*)option;
+@property (readonly) NSArray *tidyOptionsBindable;
 
 
-// @todo: Consider if I need this; tidyOptions array already
-//        supports indexed subscripting.
-#pragma mark - Keyed and Indexed Subscripting Support
+#pragma mark - KVC Accessor Requirements for our tidyOptionsBindable array.
 
-- (JSDTidyOption*)objectAtIndexedSubscript:(NSUInteger)index;
+/* These are the immutable accessors */
 
-- (void)setObject:(JSDTidyOption*)option atIndexedSubscript:(NSUInteger)index;
+- (NSUInteger)countOfTidyOptionsBindable;
 
-- (JSDTidyOption*)objectForKeyedSubscript:(id)key;
+- (id)objectInTidyOptionsBindableAtIndex:(NSUInteger)index;
 
-- (void)setObject:(JSDTidyOption*)option forKeyedSubscript:(id <NSCopying>)key;
+- (NSArray *)tidyOptionsBindableAtIndexes:(NSIndexSet *)indexes;
 
-// @todo: Need to support but for tidyOptions, not at root level.
-#pragma mark - Undefined Key Support
-
-- (id)valueForUndefinedKey:(NSString*)key;
-
-- (void)setValue:(id)value forUndefinedKey:(NSString *)key;
+- (void)getTidyOptionsBindable:(JSDTidyOption * __unsafe_unretained *)buffer range:(NSRange)inRange;
 
 
-#pragma mark - KVC Accessor Requirements
+/* These are the mutable accessors */
 
-- (NSUInteger)countOfTidyOptions;
 
-- (id)objectInTidyOptionsAtIndex:(NSUInteger)index;
-
-- (NSArray *)tidyOptionsAtIndexes:(NSIndexSet *)indexes;
-
-- (void)getTidyOptions:(JSDTidyOption * __unsafe_unretained *)buffer range:(NSRange)inRange;
-
-- (void)insertObject:(JSDTidyOption *)option inTidyOptionsAtIndex:(NSUInteger)index;
-
-- (void)insertTidyOptions:(NSArray *)optionArray atIndexes:(NSIndexSet *)indexes;
-
-- (void)removeObjectFromTidyOptionsAtIndex:(NSUInteger)index;
-
-- (void)removeTidyOptionsAtIndexes:(NSIndexSet *)indexes;
-
-- (void)replaceObjectInTidyOptionsAtIndex:(NSUInteger)index withObject:(id)anObject;
-	
-- (void)replaceTidyOptionsAtIndexes:(NSIndexSet *)indexes withTidyOptions:(NSArray *)optionsArray;
+//- (void)insertObject:(JSDTidyOption *)option inTidyOptionsBindableAtIndex:(NSUInteger)index;
+//
+//- (void)insertTidyOptionsBindable:(NSArray *)optionArray atIndexes:(NSIndexSet *)indexes;
+//
+//- (void)removeObjectFromTidyOptionsBindableAtIndex:(NSUInteger)index;
+//
+//- (void)removeTidyOptionsBindableAtIndexes:(NSIndexSet *)indexes;
+//
+//- (void)replaceObjectInTidyOptionsBindableAtIndex:(NSUInteger)index withObject:(id)anObject;
 
 
 @end

@@ -48,28 +48,28 @@
  */
 
 /* Application preferences */
-#define JSDKeyFirstRunComplete					@"FirstRunComplete"
-#define JSDKeyIgnoreInputEncodingWhenOpening	@"IgnoreInputEncodingWhenOpeningFiles"
-#define JSDKeySavingPrefStyle					@"SavingPrefStyle"
-#define JSDKeyOptionsShowHumanReadableNames		@"OptionsShowHumanReadableNames"
-#define JSDKeyMessagesTableInitialSortKey		@"MessagesTableInitialSortKey"
-#define JSDKeyOptionsAreGrouped					@"OptionsAreGrouped"
-#define JSDKeyOptionsAlternateRowColors			@"OptionsAlternateRowColors"
-#define JSDKeyOptionsUseHoverEffect				@"OptionsUseHoverEffect"
+#define JSDKeyFirstRunComplete                @"FirstRunComplete"
+#define JSDKeyIgnoreInputEncodingWhenOpening  @"IgnoreInputEncodingWhenOpeningFiles"
+#define JSDKeySavingPrefStyle                 @"SavingPrefStyle"
+#define JSDKeyOptionsShowHumanReadableNames   @"OptionsShowHumanReadableNames"
+#define JSDKeyMessagesTableInitialSortKey     @"MessagesTableInitialSortKey"
+#define JSDKeyOptionsAreGrouped               @"OptionsAreGrouped"
+#define JSDKeyOptionsAlternateRowColors       @"OptionsAlternateRowColors"
+#define JSDKeyOptionsUseHoverEffect           @"OptionsUseHoverEffect"
 
 /* Preferences that apply to all open documents */
-#define JSDKeyAllowMacOSTextSubstitutions		@"AllowMacOSTextSubstitutions"
-#define JSDKeyOptionsBooleanUseCheckBoxes		@"OptionsBooleanUseCheckBoxes"
+#define JSDKeyAllowMacOSTextSubstitutions     @"AllowMacOSTextSubstitutions"
+#define JSDKeyOptionsBooleanUseCheckBoxes     @"OptionsBooleanUseCheckBoxes"
 
 /* Preferences for new or opening documents */
-#define JSDKeyShowLikeFrontDocument				@"ShowLikeFrontDocument"
+#define JSDKeyShowLikeFrontDocument           @"ShowLikeFrontDocument"
 
-#define JSDKeyShowNewDocumentDescription		@"ShowNewDocumentDescription"
-#define JSDKeyShowNewDocumentLineNumbers		@"ShowNewDocumentLineNumbers"
-#define JSDKeyShowNewDocumentMessages			@"ShowNewDocumentMessages"
-#define JSDKeyShowNewDocumentTidyOptions		@"ShowNewDocumentTidyOptions"
-#define JSDKeyShowNewDocumentSideBySide			@"ShowNewDocumentSideBySide"
-#define JSDKeyShowNewDocumentSyncInOut			@"ShoeNewDocumentSyncInOut"
+#define JSDKeyShowNewDocumentDescription      @"ShowNewDocumentDescription"
+#define JSDKeyShowNewDocumentLineNumbers      @"ShowNewDocumentLineNumbers"
+#define JSDKeyShowNewDocumentMessages         @"ShowNewDocumentMessages"
+#define JSDKeyShowNewDocumentTidyOptions      @"ShowNewDocumentTidyOptions"
+#define JSDKeyShowNewDocumentSideBySide       @"ShowNewDocumentSideBySide"
+#define JSDKeyShowNewDocumentSyncInOut        @"ShoeNewDocumentSyncInOut"
 
 /* Key under which to store TidyOptions */
 #ifdef JSDKeyTidyTidyOptionsKey
@@ -97,7 +97,7 @@ typedef enum : NSInteger
 
 #pragma mark - class PreferenceController
 
-/**
+/*
 	The PreferenceController handles the preferences window and its interaction
 	with the defaults system and the OptionPaneController.
  
@@ -109,29 +109,18 @@ typedef enum : NSInteger
 
 #pragma mark - Properties
 
-/**
-	Contains a list of TidyOptions that Balthisar Tidy will use.
- */
-@property (readonly, nonatomic, strong) NSArray *optionsInEffect;
+@property (readonly)         NSArray *optionsInEffect;              // TidyOptions this app will use.
 
-/**
-	Exposes the tidy document. It really shouldn't be used
-	for much, but we will use it to set options externally.
-  */
-@property (readonly, nonatomic, assign) JSDTidyModel *tidyPreferencesDocument;
+@property (readonly, assign) JSDTidyModel *tidyPreferencesDocument; // Exposes the tidyDocument.
 
 
-/**
-	Contains the count of preferences panes that are available. Offered
-	mostly for AppleScript support, and that is mainly offered so that
-	I can take screenshots without having to use UI scripting.
+/*
+	These are offered for AppleScript support, and mostly so that I
+	can take screenshots without using UI scripting.
  */
 @property (readonly, assign) NSInteger countOfTabViews;
 
-/**
-	 Sets/Reads the current pane index, 0-based.
- */
-@property (assign) NSInteger indexOfCurrentTabView;
+@property (assign)           NSInteger indexOfCurrentTabView;
 
 
 #pragma mark - Class Methods

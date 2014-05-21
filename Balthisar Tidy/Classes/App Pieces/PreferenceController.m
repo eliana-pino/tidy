@@ -148,7 +148,7 @@
 	if (self = [super initWithWindowNibName:@"Preferences"])
 	{
 		[self setWindowFrameAutosaveName:@"PrefWindow"];
-		_optionsInEffect = [JSDTidyModel loadConfigurationListFromResource:@"optionsInEffect" ofType:@"txt"];
+		_optionsInEffect = [JSDTidyModel loadOptionsInUseListFromResource:@"optionsInEffect" ofType:@"txt"];
 	}
 
 	return self;

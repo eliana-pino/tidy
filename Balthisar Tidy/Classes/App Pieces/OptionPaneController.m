@@ -252,7 +252,7 @@
 - (void)setOptionsInEffect:(NSArray *)optionsInEffect
 {
 	_optionsInEffect = optionsInEffect;
-	self.tidyDocument.optionsInEffect = optionsInEffect;
+	self.tidyDocument.optionsInUse = optionsInEffect;
 
 	// @todo: this is what we have to change in order to use a different
 	// data structure to provide our table.
@@ -327,9 +327,9 @@
 {
 	NSMutableDictionary *tidyFactoryDefaults = [[NSMutableDictionary alloc] init];
 
-	[JSDTidyModel addDefaultsToDictionary:tidyFactoryDefaults fromArray:self.tidyDocument.optionsInEffect];
+	[JSDTidyModel addDefaultsToDictionary:tidyFactoryDefaults fromArray:self.tidyDocument.optionsInUse];
 
-	[self.tidyDocument optionsCopyFromDictionary:tidyFactoryDefaults[JSDKeyTidyTidyOptionsKey]];
+	[self.tidyDocument optionsCopyValuesFromDictionary:tidyFactoryDefaults[JSDKeyTidyTidyOptionsKey]];
 
 	[self.theTable reloadData];
 }
@@ -415,8 +415,7 @@
 	}
 
 
-	JSDTidyOption *optionRef = [self.tidyDocument tidyOptions][self.optionsInEffect[row]];
-
+	JSDTidyOption *optionRef = self.tidyDocument.tidyOptions[self.optionsInEffect[row]];
 
 	// Setup the view if it's a one of the Tidy Option Names.
 	if ([tableColumn.identifier isEqualToString:@"name"])
@@ -498,7 +497,7 @@
 {
 	if ([[inColumn identifier] isEqualToString:@"check"])
 	{
-		JSDTidyOption *optionRef = [self.tidyDocument tidyOptions][self.optionsInEffect[inRow]];
+		JSDTidyOption *optionRef = self.tidyDocument.tidyOptions[self.optionsInEffect[inRow]];
 				
 		if ([object isKindOfClass:[NSString class]])
 		{
@@ -525,7 +524,7 @@
 	{
 		NSString *selectedOptionName = self.optionsInEffect[[self.theTable selectedRow]];
 		
-		JSDTidyOption *optionRef = [[self tidyDocument] tidyOptions][selectedOptionName];
+		JSDTidyOption *optionRef = self.tidyDocument.tidyOptions[selectedOptionName];
 		
 		[[self theDescription] setAttributedStringValue:optionRef.localizedHumanReadableDescription];
 	}
@@ -577,7 +576,7 @@
 	{
 		NSString *selectedOptionName = self.optionsInEffect[[[self theTable] selectedRow]];
 
-		JSDTidyOption *optionRef = [[self tidyDocument] tidyOptions][selectedOptionName];
+		JSDTidyOption *optionRef = self.tidyDocument.tidyOptions[selectedOptionName];
 
 		if (keyCode == 123)
 		{
