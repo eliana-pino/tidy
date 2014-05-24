@@ -2,7 +2,8 @@
 
 	TidyDocument.h
 	 
-	The main document controller.
+	The main document controller, TidyDocument manages the user interaction between the document
+	window and the JSDTidyModel processor.
 
 
 	The MIT License (MIT)
@@ -33,26 +34,15 @@
 #import "NSTextView+JSDExtensions.h"
 #import "FirstRunController.h"
 
-/*
-	TidyDocument manages the user interaction between the document
-	window and the JSDTidyModel processor.
- */
+
 @interface TidyDocument : NSDocument <NSTableViewDelegate, NSSplitViewDelegate, NSTextViewDelegate>
 
-/*
-	Source Text, mostly for AppleScript KVC support.
-*/
-@property (assign) NSString *sourceText;
 
-/*
-	Tidy'd Text, mostly for AppleScript KVC support.
- */
-@property (readonly, assign) NSString *tidyText;
+@property (assign) NSString *sourceText;           // Source Text, mostly for AppleScript KVC support.
+
+@property (readonly, assign) NSString *tidyText;   // Tidy'd Text, mostly for AppleScript KVC support.
 
 
-/*
-	Allow a menu item to trigger this.
- */
-- (IBAction)kickOffFirstRunSequence:(id)sender;
+- (IBAction)kickOffFirstRunSequence:(id)sender;    // Exposed so we can allow a menu item to trigger this.
 
 @end

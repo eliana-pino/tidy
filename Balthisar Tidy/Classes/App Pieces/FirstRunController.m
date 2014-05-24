@@ -1,12 +1,37 @@
-//
-//  FirstRunController.m
-//  Balthisar Tidy
-//
-//  Created by Jim Derry on 3/29/14.
-//  Copyright (c) 2014 Jim Derry. All rights reserved.
-//
+/**************************************************************************************************
+
+	FirstRunController.m
+
+	Implements a first run helper using an array of programmed steps:
+		- message as NSString
+		- showRelativeToRect as NSRect
+		- ofView as NSView
+		- preferredEdge as NSRectEdge
+
+
+	The MIT License (MIT)
+
+	Copyright (c) 2001 to 2014 James S. Derry <http://www.balthisar.com>
+
+	Permission is hereby granted, free of charge, to any person obtaining a copy of this software
+	and associated documentation files (the "Software"), to deal in the Software without
+	restriction, including without limitation the rights to use, copy, modify, merge, publish,
+	distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the
+	Software is furnished to do so, subject to the following conditions:
+
+	The above copyright notice and this permission notice shall be included in
+	all copies or substantial portions of the Software.
+
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+	BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+	NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+	DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+ **************************************************************************************************/
 
 #import "FirstRunController.h"
+
 
 @interface FirstRunController ()
 
@@ -46,19 +71,20 @@
 	if (self)
 	{
 		[[NSBundle mainBundle] loadNibNamed:@"FirstRunHelper" owner:self topLevelObjects:nil];
+		
 		_userHasTouchedCheckbox = NO;
+		
 		_currentStep = 0;
 	}
 	return self;
 }
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	initWithSteps
+	initWithSteps:
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (id)initWithSteps:(NSArray*)steps
 {
-	self = [self init];
-	if (self)
+	if ((self = [self init]))
 	{
 		_steps = steps;
 	}
@@ -86,19 +112,18 @@
 	if (self.steps.count > 0)
 	{
 		self.currentStep = 0;
+		
 		[self showPopoverHavingTag:0];
 	}
 
 }
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	showPopoverHavingTag (private)
+	showPopoverHavingTag: (private)
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)showPopoverHavingTag:(NSInteger)tag
 {
-	/* 
-		Make sure we don't overstep bounds
-	 */
+	/* Make sure we don't overstep bounds */
 
 	if (tag >= self.steps.count - 1 )
 	{
@@ -110,27 +135,31 @@
 		tag = 0;
 	}
 
-	/*
-		Setup general items.
-	 */
+
+	/* Setup general items. */
+	
 	self.buttonNext.title = NSLocalizedString(@"firstRun-buttonNext", nil);
+	
 	self.checkboxShowAgain.enabled = YES;
+	
 	self.checkboxShowAgain.state = ![[[NSUserDefaults standardUserDefaults] objectForKey:self.preferencesKeyName] boolValue];
+	
 	self.buttonCancel.hidden = NO;
+	
 	self.buttonPrevious.hidden = NO;
 
-	/*
-		Special setup if we're on first item.
-	 */
+
+	/* Special setup if we're on first item. */
+	
 	if (tag == 0)
 	{
 		self.buttonNext.title = NSLocalizedString(@"firstRun-buttonBegin", nil);
+		
 		self.buttonPrevious.hidden = YES;
 	}
 
-	/*
-		Special setup if we're on last item.
-	 */
+	/* Special setup if we're on last item. */
+	
 	if (tag >= self.steps.count - 1)
 	{
 		self.buttonNext.title = NSLocalizedString(@"firstRun-buttonDone", nil);
@@ -141,10 +170,12 @@
 		}
 
 		/* No point in allowing user to cancel now. */
+		
 		self.buttonCancel.hidden = YES;
 	}
 
 	/* Display the helper text and position the popover. */
+	
 	self.textFieldExplanation.attributedStringValue = [self makeRTFStringFromString:self.steps[tag][@"message"]];
 
 	self.currentStep = tag;
@@ -196,7 +227,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	handleCheckboxShowAgain
+	handleCheckboxShowAgain:
 		We'll simply remember if the user has ever manually touched
 		the checkbox so that we don't change the state at the end
 		of the helper sequence.
@@ -227,7 +258,8 @@
 	 */
 	if ([rawString hasPrefix:@"*"])
 	{
-		// Make into RTF string.
+		/* Make into RTF string. */
+		
 		rawString = [[@"{\\rtf1\\mac\\deff0{\\fonttbl{\\f0 Consolas;}{\\f1 Lucida Grande;}}\\f1\\fs23\\sa100" stringByAppendingString:[rawString substringFromIndex:1]] stringByAppendingString:@"}"];
 
 		NSData *rawData = [rawString dataUsingEncoding:NSMacOSRomanStringEncoding];
@@ -236,7 +268,8 @@
 	}
 	else
 	{
-		// Use the string as-is.
+		/* Use the string as-is. */
+		
 		outString = [[NSAttributedString alloc] initWithString:rawString];
 	}
 	

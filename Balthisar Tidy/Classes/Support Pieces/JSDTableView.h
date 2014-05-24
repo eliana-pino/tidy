@@ -7,6 +7,8 @@
 		- captures keyDown and reports this to the delegate.
 		- overrides validateProposedFirstResponder:forEvent in order to allow controls
 		  in a table view that would ordinarily never be allowed to be first responder.
+		- binds to JSDKeyOptionsAlternateRowColors in preferences to control its own
+		  usesAlternatingRowBackgroundColors property.
 
 	The MIT License (MIT)
 
@@ -35,12 +37,12 @@
 
 @optional
 
-/** Returns YES if the key was handled. */
+/* Returns YES if the key was handled. */
 - (BOOL)tableView:(NSTableView *)aTableView keyWasPressed:(NSInteger)keyCode row:(NSInteger)rowIndex;
 
 @end
 
 
-@interface JSDTableView : NSTableView ///<JSDTableViewDelegate>
+@interface JSDTableView : NSTableView <JSDTableViewDelegate>
 
 @end

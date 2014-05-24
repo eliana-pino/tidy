@@ -127,9 +127,10 @@
 	[defaultValues setObject:@YES forKey:JSDKeyShowNewDocumentSyncInOut];
 
 
-	// Get the defaults from the linked-in TidyLib
-	// and register them with the defaults system.
-	
+	/*
+		Get the defaults from the linked-in TidyLib
+		and register them with the defaults system.
+	 */
 	[JSDTidyModel addDefaultsToDictionary:defaultValues];
 	
 	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
@@ -148,6 +149,7 @@
 	if (self = [super initWithWindowNibName:@"Preferences"])
 	{
 		[self setWindowFrameAutosaveName:@"PrefWindow"];
+		
 		_optionsInEffect = [JSDTidyModel loadOptionsInUseListFromResource:@"optionsInEffect" ofType:@"txt"];
 	}
 
@@ -178,26 +180,65 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void) awakeFromNib
 {
+	/* Instantiate and setup the optionController */
+	
 	if (!self.optionController)
 	{
-		self.optionController = [[OptionPaneController alloc] initInPreferencesView];
+		self.optionController = [[OptionPaneController alloc] init];
+		
+		self.optionController.isInPreferencesView = YES;
 	}
 			
 	self.optionController.optionsInEffect = self.optionsInEffect;
 	
 	[self.optionController putViewIntoView:self.optionPane];
 	
+	
+	/* Setup Sparkle versus No-Sparkle versions */
 
 #if INCLUDE_SPARKLE == 0
+
 	NSTabView *theTabView = [[self tabViewUpdates] tabView];
+	
 	[theTabView removeTabViewItem:[self tabViewUpdates]];
+	
 #else
+
 	SUUpdater *sharedUpdater = [SUUpdater sharedUpdater];
+
 	[[self buttonAllowUpdateChecks] bind:@"value" toObject:sharedUpdater withKeyPath:@"automaticallyChecksForUpdates" options:nil];
+
 	[[self buttonUpdateInterval] bind:@"enabled" toObject:sharedUpdater withKeyPath:@"automaticallyChecksForUpdates" options:nil];
+
 	[[self buttonUpdateInterval] bind:@"selectedTag" toObject:sharedUpdater withKeyPath:@"updateCheckInterval" options:nil];
+
 	[[self buttonAllowSystemProfile] bind:@"value" toObject:sharedUpdater withKeyPath:@"sendsSystemProfile" options:nil];
+	
 #endif
+
+
+	//* @todo: these used to be in windowDidLoad, which stopped working */
+	/* Put the Tidy defaults into the optionController. */
+	
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	
+	[[[self optionController] tidyDocument] takeOptionValuesFromDefaults:defaults];
+
+
+	/* NSNotifications from |optionController| indicate that one or more Tidy options changed. */
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(handleTidyOptionChange:)
+												 name:tidyNotifyOptionChanged
+											   object:[[self optionController] tidyDocument]];
+
+
+	/* NSNotification indicates that NSUSerDefaultsChanged. */
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(handleStandardUserDefaultsChange:)
+												 name:@"appNotifyStandardUserDefaultsChanged"
+											   object:nil];
 
 }
 
@@ -208,22 +249,22 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)windowDidLoad
 {
-	// Put the Tidy defaults into the optionController.
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	[[[self optionController] tidyDocument] takeOptionValuesFromDefaults:defaults];
-	
-	
-	// NSNotifications from |optionController| indicate that one or more Tidy options changed.
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(handleTidyOptionChange:)
-												 name:tidyNotifyOptionChanged
-											   object:[[self optionController] tidyDocument]];
-
-	// NSNotification indicates that NSUSerDefaultsChanged.
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(handleStandardUserDefaultsChange:)
-												 name:@"appNotifyStandardUserDefaultsChanged"
-											   object:nil];
+//	// Put the Tidy defaults into the optionController.
+//	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//	[[[self optionController] tidyDocument] takeOptionValuesFromDefaults:defaults];
+//	
+//	
+//	// NSNotifications from |optionController| indicate that one or more Tidy options changed.
+//	[[NSNotificationCenter defaultCenter] addObserver:self
+//											 selector:@selector(handleTidyOptionChange:)
+//												 name:tidyNotifyOptionChanged
+//											   object:[[self optionController] tidyDocument]];
+//
+//	// NSNotification indicates that NSUSerDefaultsChanged.
+//	[[NSNotificationCenter defaultCenter] addObserver:self
+//											 selector:@selector(handleStandardUserDefaultsChange:)
+//												 name:@"appNotifyStandardUserDefaultsChanged"
+//											   object:nil];
 }
 
 
@@ -321,7 +362,7 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)handleTidyOptionChange:(NSNotification *)note
 {
-	[[[self optionController] tidyDocument] writeOptionValuesWithDefaults:[NSUserDefaults standardUserDefaults]];
+	[self.optionController.tidyDocument writeOptionValuesWithDefaults:[NSUserDefaults standardUserDefaults]];
 }
 
 
@@ -334,20 +375,27 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)handleStandardUserDefaultsChange:(NSNotification *)note
 {
-	// Temporarily turn off this notification so we don't cause
-	// an event loop of notifications.
+	/*
+		Temporarily turn off this notification so we don't
+		cause an event loop of notifications.
+	 */
 	[[NSNotificationCenter defaultCenter] removeObserver:self
 													name:tidyNotifyOptionChanged
 												  object:nil];
 
-	// reload the tidy document
+
+	/* Reload the tidy document. */
+	
 	[[self.optionController tidyDocument] takeOptionValuesFromDefaults:[NSUserDefaults standardUserDefaults]];
 
-	// Now it's safe to turn it back on.
+
+	/* Now it's safe to turn it back on. */
+	
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(handleTidyOptionChange:)
 												 name:tidyNotifyOptionChanged
 											   object:[[self optionController] tidyDocument]];
+
 
 	[self.optionController.theTable reloadData];
 }

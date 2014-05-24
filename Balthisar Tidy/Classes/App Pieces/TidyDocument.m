@@ -2,7 +2,8 @@
 
 	TidyDocument.m
 
-	The main document controller.
+	The main document controller, TidyDocument manages the user interaction between the document
+	window and the JSDTidyModel processor.
 
 
 	The MIT License (MIT)
@@ -60,7 +61,6 @@
  
  **************************************************************************************************/
 
-
 #import "TidyDocument.h"
 
 
@@ -73,53 +73,76 @@
 #pragma mark - Properties
 
 
-// View Outlets
-@property (assign) IBOutlet NSTextView *sourceView;
-@property (assign) IBOutlet NSTextView *tidyView;
+/* View Outlets */
+
+@property (assign) IBOutlet NSTextView  *sourceView;
+
+@property (assign) IBOutlet NSTextView  *tidyView;
+
 @property (weak)   IBOutlet NSTableView *errorView;
 
 
-// Encoding Helper Popover Outlets
-@property (weak) IBOutlet NSPopover *popoverEncoding;
-@property (weak) IBOutlet NSButton *buttonEncodingDoNotWarnAgain;
-@property (weak) IBOutlet NSButton *buttonEncodingAllowChange;
-@property (weak) IBOutlet NSButton *buttonEncodingIgnoreSuggestion;
+/* Encoding Helper Popover Outlets */
+
+@property (weak) IBOutlet NSPopover   *popoverEncoding;
+
+@property (weak) IBOutlet NSButton    *buttonEncodingDoNotWarnAgain;
+
+@property (weak) IBOutlet NSButton    *buttonEncodingAllowChange;
+
+@property (weak) IBOutlet NSButton    *buttonEncodingIgnoreSuggestion;
+
 @property (weak) IBOutlet NSTextField *textFieldEncodingExplanation;
 
 
-// Window Splitters
-@property (weak) IBOutlet NSSplitView *splitLeftRight;		// The left-right (main) split view in the Doc window.
-@property (weak) IBOutlet NSSplitView *splitTopDown;			// Top top-to-bottom split view in the Doc window.
+/* Window Splitters */
+
+@property (weak) IBOutlet NSSplitView *splitLeftRight;
+
+@property (weak) IBOutlet NSSplitView *splitTopDown;
 
 
-// Option Controller
-@property (weak)   IBOutlet NSView *optionPane;				// Our empty optionPane in the nib.
-@property (strong) OptionPaneController *optionController;	// The real option pane we load into optionPane.
+/* Option Controller */
+
+@property (weak)   IBOutlet NSView      *optionPane;         // Our empty optionPane in the nib.
+
+@property (strong) OptionPaneController *optionController;   // The real option pane we load into optionPane.
 
 
-// First Run Controller
-@property FirstRunController *firstRun;				       // A first run controller.
+/* First Run Controller */
 
-// Our Tidy Processor
+@property FirstRunController *firstRun;
+
+
+/* Our Tidy Processor */
+
 @property JSDTidyModel *tidyProcess;
 
 
-// Document Control
-@property          NSData *documentOpenedData;				// Hold file we open until nib is awake.
-@property (assign) BOOL documentIsLoading;					// Flag to supress certain event updates.
-@property (assign) BOOL fileWantsProtection;					// Indicates if we need special type of save.
+/* Document Control */
 
-// Local reference to our shared preferences controller.
+@property          NSData *documentOpenedData;   // Hold file we open until nib is awake.
+
+@property (assign) BOOL   documentIsLoading;     // Flag to supress certain event updates.
+
+@property (assign) BOOL   fileWantsProtection;   // Indicates if we need special type of save.
+
+
+/* Local reference to our shared preferences controller. */
+
 @property (assign) PreferenceController *prefs;
 
-// Local, mutable copy of our tidyDocument's error array.
+
+/* Local, mutable copy of our tidyDocument's error array. */
+
 @property NSMutableArray *messagesArray;
 
 
 #pragma mark - Methods
 
-// Popover Actions
-- (IBAction)popoverHandler:(id)sender;									// Handler for all popover actions.
+/* Popover Actions */
+
+- (IBAction)popoverHandler:(id)sender;
 
 
 @end
@@ -146,9 +169,9 @@
  *———————————————————————————————————————————————————————————————————*/
 - (BOOL)readFromURL:(NSString *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError
 {
-	// Save the data for use until after the Nib is awake.
+	/* Save the data for use until after the Nib is awake. */
 	self.documentOpenedData = [NSData dataWithContentsOfFile:absoluteURL];
-		
+
 	return YES;
 }
 
@@ -163,14 +186,14 @@
 - (BOOL)revertToContentsOfURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError
 {
 	BOOL didRevert;
-	
+
 	if ((didRevert = [super revertToContentsOfURL:absoluteURL ofType:typeName error:outError]))
 	{
 		self.documentIsLoading = YES;
 		
 		[self.tidyProcess setSourceTextWithData:[self documentOpenedData]];
 	}
-	
+
 	return didRevert;
 }
 
@@ -203,7 +226,7 @@
 	{
 		self.sourceView.string = self.tidyProcess.tidyText;
 		
-		// force the event cycle so errors can be updated.
+		/* force the event cycle so errors can be updated. */
 		self.tidyProcess.sourceText = self.sourceView.string;
 		
 		self.fileWantsProtection = NO;
@@ -223,7 +246,10 @@
  *———————————————————————————————————————————————————————————————————*/
 - (IBAction)saveDocument:(id)sender
 {
-	// Warning will only apply if there's a current file and it's NOT been saved yet, and it's not new.
+	/*
+		Warning will only apply if there's a current file
+		and it's NOT been saved yet, and it's not new.
+	 */
 	if ( ([self.prefs[JSDKeySavingPrefStyle] longValue] == kJSDSaveButWarn) &&
 		 (self.fileWantsProtection) &&
 		 (self.fileURL.path.length > 0) )
@@ -240,7 +266,7 @@
 		}
 	}
 
-	// Save is completely disabled -- tell user to Save As…
+	/* Save is completely disabled -- tell user to Save As… */
 	if ( ([self.prefs[JSDKeySavingPrefStyle] longValue] == kJSDSaveAsOnly) &&
 		(self.fileWantsProtection) )
 	{
@@ -263,21 +289,23 @@
 /*———————————————————————————————————————————————————————————————————*
 	printDocumentWithSettings:error:
  *———————————————————————————————————————————————————————————————————*/
-- (NSPrintOperation *)printOperationWithSettings:(NSDictionary *)printSettings error:(NSError **)outError
+- (NSPrintOperation *)printOperationWithSettings:(NSDictionary *)printSettings
+										   error:(NSError **)outError
 {
 	//NSTextView *virginView = [[NSTextView alloc] init];
 
 	NSTextView *virginView = [[NSTextView alloc] initWithFrame:NSMakeRect(0, 0, 468, 648)];
 
-	 virginView.string = _sourceView.string;
+	virginView.string = _sourceView.string;
 
 	[self.printInfo setHorizontalPagination: NSFitPagination];
-    [self.printInfo setVerticalPagination: NSAutoPagination];
-    [self.printInfo setVerticallyCentered:NO];
-    [self.printInfo setLeftMargin:36];
-    [self.printInfo setRightMargin:36];
-    [self.printInfo setTopMargin:36];
-    [self.printInfo setBottomMargin:36];
+	[self.printInfo setVerticalPagination: NSAutoPagination];
+	[self.printInfo setVerticallyCentered:NO];
+	[self.printInfo setLeftMargin:36];
+	[self.printInfo setRightMargin:36];
+	[self.printInfo setTopMargin:36];
+	[self.printInfo setBottomMargin:36];
+
 	return [NSPrintOperation printOperationWithView:_tidyView printInfo:self.printInfo];
 }
 
@@ -296,6 +324,7 @@
 - (void)setSourceText:(NSString *)sourceText
 {
 	self.sourceView.string = sourceText;
+	
 	[self textDidChange:nil];
 }
 
@@ -306,6 +335,7 @@
 {
 	return self.tidyView.string;
 }
+
 
 #pragma mark - Initialization and Deallocation and Setup
 
@@ -318,7 +348,9 @@
 	if ((self = [super init]))
 	{
 		self.tidyProcess = [[JSDTidyModel alloc] init];
+		
 		self.documentOpenedData = nil;
+		
 		self.prefs = [PreferenceController sharedPreferences];
 	}
 	
@@ -363,7 +395,9 @@
 	[aView setAutomaticTextReplacementEnabled:[self.prefs[JSDKeyAllowMacOSTextSubstitutions] boolValue]];
 	[aView setAutomaticDashSubstitutionEnabled:[self.prefs[JSDKeyAllowMacOSTextSubstitutions] boolValue]];
 
-	// Provided by Category `NSTextView+JSDExtensions`
+
+	/* Provided by Category `NSTextView+JSDExtensions` */
+	
 	[aView setShowsLineNumbers:[self.prefs[JSDKeyShowNewDocumentLineNumbers] boolValue]];
 	[aView setWordwrapsText:NO];
 }
@@ -376,17 +410,24 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void) awakeFromNib
 {
-	// Create a OptionPaneController and put it in place of optionPane.
+	/* Create a OptionPaneController and put it in place of optionPane. */
+	
 	if (![self optionController])
 	{
 		self.optionController = [[OptionPaneController alloc] init];
 	}
 	
 	self.optionController.optionsInEffect = [[PreferenceController sharedPreferences] optionsInEffect];
+	
 	[[self optionController] putViewIntoView:self.optionPane];
 
 
-	NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyMessagesTableInitialSortKey] ascending:YES];
+	/* Setup for the Messages Table */
+	
+	NSString *sortKeyFromPrefs = [[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyMessagesTableInitialSortKey];
+	
+	NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:sortKeyFromPrefs ascending:YES];
+	
 	[self.errorView setSortDescriptors:[NSArray arrayWithObject:descriptor]];
 }
 
@@ -398,16 +439,17 @@
 - (void)windowControllerDidLoadNib:(NSWindowController *) aController
 {
 	[super windowControllerDidLoadNib:aController];
-
+	
 	
 	[self configureViewSettings:self.sourceView];
+	
 	[self configureViewSettings:self.tidyView];
+	
 	self.sourceView.editable = YES;
 
 	
-	/*
-		Honor the defaults system defaults.
-	 */
+	/* Honor the defaults system defaults. */
+	
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	
 	
@@ -416,12 +458,12 @@
 		causes the empty document to go through processTidy one time.
 	 */
 	[self.optionController.tidyDocument takeOptionValuesFromDefaults:defaults];
+	
 	[self.optionController.theTable reloadData];
 
 	
-	/* 
-		Saving behavior settings 
-	 */
+	/* Saving behavior settings */
+	
 	self.fileWantsProtection = !(self.documentOpenedData == nil);
 
 	
@@ -445,40 +487,39 @@
 		in a huge cascade of notifications and updates.
 	*/
 
-	// NSNotifications from the |optionController| indicate that one or more options changed.
+	/* NSNotifications from the |optionController| indicate that one or more options changed. */
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(handleTidyOptionChange:)
 												 name:tidyNotifyOptionChanged
 											   object:[[self optionController] tidyDocument]];
 	
-	// NSNotifications from the tidyProcess indicate that sourceText changed.
+	/* NSNotifications from the tidyProcess indicate that sourceText changed. */
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(handleTidySourceTextChange:)
 												 name:tidyNotifySourceTextChanged
 											   object:[self tidyProcess]];
 	
-	// NSNotifications from the tidyProcess indicate that tidyText changed.
+	/* NSNotifications from the tidyProcess indicate that tidyText changed. */
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(handleTidyTidyTextChange:)
 												 name:tidyNotifyTidyTextChanged
 											   object:[self tidyProcess]];
 
-	// NSNotifications from the tidyProcess indicate that errorTable changed.
+	/* NSNotifications from the tidyProcess indicate that errorTable changed. */
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(handleTidyTidyErrorChange:)
 												 name:tidyNotifyTidyErrorsChanged
 											   object:[self tidyProcess]];
 
-	// NSNotifications from the tidyProcess indicate that the input-encoding might be wrong.
+	/* NSNotifications from the tidyProcess indicate that the input-encoding might be wrong. */
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(handleTidyInputEncodingProblem:)
 												 name:tidyNotifyPossibleInputEncodingProblem
 											   object:[self tidyProcess]];
 
 	
-	/*
-		Run through the new user helper if appropriate
-	 */
+	/* Run through the new user helper if appropriate */
+	
 	if (![self.prefs[JSDKeyFirstRunComplete] boolValue])
 	{
 		[self kickOffFirstRunSequence:nil];
@@ -489,6 +530,7 @@
 		If we're a new document, then documentOpenData nil is fine.
 	 */
 	self.documentIsLoading = !(self.documentOpenedData == nil);
+	
 	[[self tidyProcess] setSourceTextWithData:[self documentOpenedData]];
 }
 
@@ -535,7 +577,7 @@
 
 /*———————————————————————————————————————————————————————————————————*
 	handleTidyTidyTextChange
-		|tidyText| changed, so update |tidyView| and |errorView|.
+		`tidyText` changed, so update `tidyView` and `errorView`.
  *———————————————————————————————————————————————————————————————————*/
 - (void)handleTidyTidyTextChange:(NSNotification *)note
 {
@@ -545,13 +587,16 @@
 
 /*———————————————————————————————————————————————————————————————————*
 	handleTidyTidyTextChange
-		|tidyText| changed, so update |tidyView| and |errorView|.
+		`tidyText` changed, so update `tidyView` and `errorView`.
  *———————————————————————————————————————————————————————————————————*/
 - (void)handleTidyTidyErrorChange:(NSNotification *)note
 {
 	self.messagesArray = nil;
+	
 	self.messagesArray = [self.tidyProcess.errorArray mutableCopy];
+	
 	[self.errorView reloadData];
+	
 	[self.errorView deselectAll:self];
 }
 
@@ -565,13 +610,15 @@
 {
 	if (![self.prefs[JSDKeyIgnoreInputEncodingWhenOpening] boolValue])
 	{
-		NSStringEncoding suggestedEncoding  = [[[note userInfo] objectForKey:@"suggestedEncoding"] longValue];
-		NSString         *encodingSuggested = [NSString localizedNameOfStringEncoding:suggestedEncoding];
+		NSStringEncoding suggestedEncoding    = [[[note userInfo] objectForKey:@"suggestedEncoding"] longValue];
+		
+		NSString         *encodingSuggested   = [NSString localizedNameOfStringEncoding:suggestedEncoding];
 
 		NSStringEncoding currentInputEncoding = self.tidyProcess.inputEncoding;
+		
 		NSString         *encodingCurrent     = [NSString localizedNameOfStringEncoding:currentInputEncoding];
 
-		NSString *docName = self.fileURL.lastPathComponent;
+		NSString *docName    = self.fileURL.lastPathComponent;
 
 		NSString *newMessage = [NSString stringWithFormat:self.textFieldEncodingExplanation.stringValue, docName, encodingCurrent, encodingSuggested];
 
@@ -579,7 +626,7 @@
 
 		self.buttonEncodingDoNotWarnAgain.state = [self.prefs[JSDKeyIgnoreInputEncodingWhenOpening] boolValue];
 
-		self.buttonEncodingAllowChange.tag = suggestedEncoding;	// Cheat. We'l fetch this later in the handler. Should be 64-bit.
+		self.buttonEncodingAllowChange.tag = suggestedEncoding;	// Cheat. We'll fetch this later in the handler. Should be 64-bit.
 
 		self.sourceView.editable = NO;
 
@@ -593,7 +640,7 @@
 /*———————————————————————————————————————————————————————————————————*
 	textDidChange:
 		We arrived here by virtue of being the delegate of
-		|sourceView|. Simply update the tidyProcess sourceText,
+		`sourceView`. Simply update the tidyProcess sourceText,
 		and the event chain will eventually update everything
 		else.
  *———————————————————————————————————————————————————————————————————*/
@@ -608,7 +655,9 @@
 		self.documentIsLoading = NO;
 	}
 	
-	// Handle document dirty detection
+	
+	/* Handle document dirty detection. */
+	
 	if ( (!self.tidyProcess.isDirty) || (self.tidyProcess.sourceText.length == 0) )
 	{
 		[self updateChangeCount:NSChangeCleared];
@@ -635,6 +684,7 @@
 	if (sender == self.buttonEncodingAllowChange)
 	{
 		JSDTidyOption *localOption = self.optionController.tidyDocument.tidyOptions[@"input-encoding"];
+		
 		localOption.optionValue = [@(self.buttonEncodingAllowChange.tag) stringValue];
 
 		[self.optionController.theTable reloadData];
@@ -643,6 +693,7 @@
 	[[NSUserDefaults standardUserDefaults] setBool:self.buttonEncodingDoNotWarnAgain.state forKey:JSDKeyIgnoreInputEncodingWhenOpening];
 	
 	self.sourceView.editable = YES;
+	
 	[self.popoverEncoding performClose:self];
 }
 
@@ -661,6 +712,7 @@
 	if (!self.firstRun)
 	{
 		self.firstRun = [[FirstRunController alloc] initWithSteps:[self makeFirstRunSteps]];
+		
 		self.firstRun.preferencesKeyName = JSDKeyFirstRunComplete;
 	}
 
@@ -725,7 +777,7 @@
 
 /*———————————————————————————————————————————————————————————————————*
 	numberOfRowsInTableView
-		We're here because we're the |datasource| of the errorView.
+		We're here because we're the datasource of the errorView.
 		We need to specify how many items are in the table.
  *———————————————————————————————————————————————————————————————————*/
 - (NSUInteger)numberOfRowsInTableView:(NSTableView *)aTableView
@@ -736,7 +788,7 @@
 
 /*———————————————————————————————————————————————————————————————————*
 	tableView:viewForTableColumn:row
-		We're here because we're the |datasource| of the errorView.
+		We're here because we're the datasource of the errorView.
 		We need to specify what to show in the row/column. The
 		error array consists of dictionaries with entries for
 		`level`, `line`, `column`, and `message`.
@@ -747,7 +799,8 @@
 {
 	if (row < self.messagesArray.count )
 	{
-		NSTableCellView* tableCellView = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
+		NSTableCellView* tableCellView = [tableView makeViewWithIdentifier:tableColumn.identifier owner:nil];
+		
 		NSDictionary *error = self.messagesArray[row];
 
 		if ([tableColumn.identifier isEqualToString:@"severity"])
@@ -758,8 +811,11 @@
 				the current language.
 			 */
 			NSArray *errorTypes = @[@"messagesInfo", @"messagesWarning", @"messagesConfig", @"messagesAccess", @"messagesError", @"messagesDocument", @"messagesPanic"];
+
 			tableCellView.imageView.image = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:errorTypes[[error[@"level"] intValue]] ofType:@"icns"]];
+
 			tableCellView.textField.stringValue = NSLocalizedString(errorTypes[[error[@"level"] intValue]], nil);
+
 			return tableCellView;
 		}
 
@@ -782,10 +838,10 @@
 
 		if ([tableColumn.identifier isEqualToString:@"description"])
 		{
-			/*
-				The message should already be localized by JSDTidyModel
-			 */
+			/* The message should already be localized by JSDTidyModel */
+			
 			tableCellView.textField.stringValue = error[@"message"];
+			
 			return tableCellView;
 		}
 	}
@@ -796,7 +852,7 @@
 
 /*———————————————————————————————————————————————————————————————————*
 	tableView:sortDescriptorsDidChange
-		We're here because we're the |datasource| of the errorView.
+		We're here because we're the datasource of the errorView.
 		We need to specify what to show in the row/column. The
 		error array consists of dictionaries with entries for
 		`level`, `line`, `column`, and `message`.
@@ -804,15 +860,16 @@
 - (void)tableView:(NSTableView *)tableView sortDescriptorsDidChange:(NSArray *)oldDescriptors
 {
 	[self.messagesArray sortUsingDescriptors:tableView.sortDescriptors];
+	
 	[tableView reloadData];
 }
 
 
 /*———————————————————————————————————————————————————————————————————*
 	tableViewSelectionDidChange:
-		We arrived here because we're the |delegate| of the table.
+		We arrived here because we're the delegate of the table.
 		Whenever the selection changes, highlight the related
-		column/row in the |sourceView|.
+		column/row in the `sourceView`.
  *———————————————————————————————————————————————————————————————————*/
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification
 {
@@ -821,14 +878,17 @@
 	if ((errorViewRow >= 0) && (errorViewRow < self.messagesArray.count))
 	{
 		NSInteger row = [self.messagesArray[errorViewRow][@"line"] intValue];
+		
 		NSInteger col = [self.messagesArray[errorViewRow][@"column"] intValue];
 		
 		if (row > 0)
 		{
 			[self.sourceView highlightLine:row Column:col];
+			
 			return;
 		}
 	}
+	
 	self.sourceView.showsHighlight = NO;
 }
 
@@ -846,19 +906,22 @@
 - (CGFloat)splitView:(NSSplitView *)splitView constrainMinCoordinate:(CGFloat)proposedMinimumPosition
 														 ofSubviewAt:(NSInteger)dividerIndex
 {
-	// The main splitter
+	/* The main splitter. */
+	
 	if (splitView == self.splitLeftRight)
 	{
 		return 300.0f;
 	}
 	
-	// The text views' first splitter
+	/* The text views' first splitter. */
+	
 	if (dividerIndex == 0)
 	{
 		return 68.0f;
 	}
 	
-	// The text views' second splitter is first plus 68.0f;
+	/* The text views' second splitter is first plus 68.0f;. */
+	
     return [splitView.subviews[0] frame].size.height + 68.0f;
 }
 
@@ -870,19 +933,22 @@
 - (CGFloat)splitView:(NSSplitView *)splitView constrainMaxCoordinate:(CGFloat)proposedMinimumPosition
 														 ofSubviewAt:(NSInteger)dividerIndex
 {
-	// The main splitter
+	/* The main splitter. */
+	
 	if (splitView == self.splitLeftRight)
 	{
 		return splitView.frame.size.width - 150.0f;
 	}
 	
-	// The text views' first splitter
+	/* The text views' first splitter. */
+	
 	if (dividerIndex == 0)
 	{
 		return [splitView.subviews[0] frame].size.height + [splitView.subviews[1] frame].size.height - 68.0f;
 	}
 	
-	// The text views' second splitter
+	/* The text views' second splitter. */
+	
 	return [splitView frame].size.height - 68.0f;	
 }
 
@@ -901,6 +967,7 @@
 			return NO;
 		}
 	}
+	
 	return YES;
 }
 
@@ -910,24 +977,24 @@
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	textView:doCommandBySelector:
-		We're here because we're the delegate of |sourceView|.
+		We're here because we're the delegate of `sourceView`.
 		Allow the tab key to back in and out of this view.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (BOOL)textView:(NSTextView *)aTextView doCommandBySelector:(SEL)aSelector
 {
-    if (aSelector == @selector(insertTab:))
+	if (aSelector == @selector(insertTab:))
 	{
-        [aTextView.window selectNextKeyView:nil];
-        return YES;
-    }
+		[aTextView.window selectNextKeyView:nil];
+		return YES;
+	}
 	
-    if (aSelector == @selector(insertBacktab:))
+	if (aSelector == @selector(insertBacktab:))
 	{
-        [aTextView.window selectPreviousKeyView:nil];
-        return YES;
-    }
+		[aTextView.window selectPreviousKeyView:nil];
+		return YES;
+	}
 	
-    return NO;
+	return NO;
 }
 
 

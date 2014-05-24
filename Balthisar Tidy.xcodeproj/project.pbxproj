@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D008F0191930D9D700559F3B /* JSDAllCapsValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D008F0181930D9D700559F3B /* JSDAllCapsValueTransformer.m */; };
+		D008F01A1930D9D700559F3B /* JSDAllCapsValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D008F0181930D9D700559F3B /* JSDAllCapsValueTransformer.m */; };
 		D016A92A182FD80700712C60 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D016A929182FD80700712C60 /* Cocoa.framework */; };
 		D016A936182FD80700712C60 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D016A935182FD80700712C60 /* main.m */; };
 		D036E1E818F3D25E0009A9D4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D036E1D818F3D25E0009A9D4 /* Credits.rtf */; };
@@ -159,6 +161,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D008F0171930D9D700559F3B /* JSDAllCapsValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSDAllCapsValueTransformer.h; sourceTree = "<group>"; };
+		D008F0181930D9D700559F3B /* JSDAllCapsValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSDAllCapsValueTransformer.m; sourceTree = "<group>"; };
 		D016A926182FD80700712C60 /* Balthisar Tidy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Balthisar Tidy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D016A929182FD80700712C60 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D016A92C182FD80700712C60 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -459,6 +463,8 @@
 				D047C72E1915FBF100B70A94 /* JSDTableCellView.m */,
 				D0D9EAD018E6680F008A55D5 /* JSDTextField.h */,
 				D0D9EAD118E6680F008A55D5 /* JSDTextField.m */,
+				D008F0171930D9D700559F3B /* JSDAllCapsValueTransformer.h */,
+				D008F0181930D9D700559F3B /* JSDAllCapsValueTransformer.m */,
 				D081CBD91917C1510041B2C5 /* JSDIntegerValueTransformer.h */,
 				D081CBDA1917C1510041B2C5 /* JSDIntegerValueTransformer.m */,
 				D0D9EAD218E6680F008A55D5 /* NoodleLineNumberMarker.h */,
@@ -770,6 +776,7 @@
 				D0D9ED3F18E66810008A55D5 /* NSTextView+JSDExtensions.m in Sources */,
 				D0D9ED2B18E66810008A55D5 /* AppController.m in Sources */,
 				D0D9ED7518E66810008A55D5 /* tags.c in Sources */,
+				D008F0191930D9D700559F3B /* JSDAllCapsValueTransformer.m in Sources */,
 				D0D9ED4918E66810008A55D5 /* access.c in Sources */,
 				D0D9ED5518E66810008A55D5 /* buffio.c in Sources */,
 				D0D9ED3D18E66810008A55D5 /* NoodleLineNumberView.m in Sources */,
@@ -820,6 +827,7 @@
 				D0D9ED4018E66810008A55D5 /* NSTextView+JSDExtensions.m in Sources */,
 				D0D9ED2C18E66810008A55D5 /* AppController.m in Sources */,
 				D0D9ED7618E66810008A55D5 /* tags.c in Sources */,
+				D008F01A1930D9D700559F3B /* JSDAllCapsValueTransformer.m in Sources */,
 				D0D9ED4A18E66810008A55D5 /* access.c in Sources */,
 				D0D9ED5618E66810008A55D5 /* buffio.c in Sources */,
 				D0D9ED3E18E66810008A55D5 /* NoodleLineNumberView.m in Sources */,

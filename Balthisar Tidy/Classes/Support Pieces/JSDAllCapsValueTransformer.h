@@ -1,12 +1,8 @@
 /**************************************************************************************************
 
-	FirstRunController.h
+	JSDAllCapsValueTransformer.h
 
-	Implements a first run helper using an array of programmed steps:
-		- message as NSString
-		- showRelativeToRect as NSRect
-		- ofView as NSView
-		- preferredEdge as NSRectEdge
+	A value transformer that converts strings into all capital letters.
 
 
 	The MIT License (MIT)
@@ -32,17 +28,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface FirstRunController : NSObject
 
-
-@property (nonatomic, strong) NSArray *steps;                 // Steps array, as described above.
-
-@property (nonatomic, strong) NSString *preferencesKeyName;   // Preferences key to record whether or not helper finished.
-
-
-- (id)initWithSteps:(NSArray*)steps;                          // Inital with a steps array directly.
-
-- (void)beginFirstRunSequence;                                // Start the sequence.
-
+@interface JSDAllCapsValueTransformer : NSValueTransformer
 
 @end

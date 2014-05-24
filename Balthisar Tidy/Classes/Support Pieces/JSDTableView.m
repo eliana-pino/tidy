@@ -7,6 +7,8 @@
 		- captures keyDown and reports this to the delegate.
 		- overrides validateProposedFirstResponder:forEvent in order to allow controls
 		  in a table view that would ordinarily never be allowed to be first responder.
+		- binds to JSDKeyOptionsAlternateRowColors in preferences to control its own
+		  usesAlternatingRowBackgroundColors property.
 
 	The MIT License (MIT)
 
@@ -30,8 +32,54 @@
  **************************************************************************************************/
 
 #import "JSDTableView.h"
+#import "PreferenceController.h"
+
 
 @implementation JSDTableView
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	awakeFromNib
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)awakeFromNib
+{
+	/* Register with the preferences system to trap JSDKeyOptionsAlternateRowColors */
+	[[NSUserDefaults standardUserDefaults] addObserver:self
+											forKeyPath:JSDKeyOptionsAlternateRowColors
+											   options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial)
+											   context:NULL];
+}
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	dealloc
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)dealloc
+{
+	/* Unregister KVO */
+	[[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:JSDKeyOptionsAlternateRowColors];
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	observeValueForKeyPath:ofObject:change:context
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)observeValueForKeyPath:(NSString *)keyPath
+					  ofObject:(id)object
+						change:(NSDictionary *)change
+					   context:(void *)context
+{
+	if ([keyPath isEqual:JSDKeyOptionsAlternateRowColors])
+	{
+		NSNumber *newNumber = [change objectForKey:NSKeyValueChangeNewKey];
+		
+		self.usesAlternatingRowBackgroundColors = [newNumber boolValue];
+		
+		return;
+    }
+
+	[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+}
+
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
@@ -52,8 +100,6 @@
 		else
 		{
 			[self setNeedsDisplay:YES];
-
-			//[self reloadData];
 		}
 	}
 	else
@@ -74,8 +120,11 @@
 - (BOOL)validateProposedFirstResponder:(NSResponder *)responder
 							  forEvent:(NSEvent *)event
 {
-	// We want defaults behaviors for everything except
-	// mouseDown on NSStepper and NSPopupButton.
+	/*
+		We want defaults behaviors for everything except
+		mouseDown on NSStepper and NSPopupButton.
+	 */
+	 
 	BOOL isMouseDown = ([event type] == NSLeftMouseDown);
 	BOOL isSpecial = ([responder class] == [NSStepper class]) || ([responder class] == [NSPopUpButton class]);
 
@@ -86,14 +135,18 @@
 
 	NSView *theResponder = (NSView*)responder;
 
-	// We're already on the currrently selected row.
+	/* We're already on the currrently selected row. */
+	
 	if ([self rowForView:theResponder] == [self selectedRow])
 	{
 		return YES;
 	}
 
-	// Somewhere above is an NSTableRowView. Let's find it.
+
+	/* Somewhere above is an NSTableRowView. Let's find it. */
+	
     NSView *searchView = theResponder.superview;
+	
     while ( (![searchView isKindOfClass:[NSTableRowView class]]) && (searchView != nil) )
 	{
         if (searchView.superview)
@@ -105,7 +158,9 @@
 	if (searchView)
 	{
 		NSTableRowView *targetedRow = (NSTableRowView*)searchView;
+		
 		NSInteger rowIndexNew = [self rowForView:targetedRow];
+		
 		[self selectRowIndexes:[NSIndexSet indexSetWithIndex:rowIndexNew] byExtendingSelection:NO];
 
 		return YES;

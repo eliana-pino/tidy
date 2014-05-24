@@ -29,18 +29,14 @@
 #import <Cocoa/Cocoa.h>
 #import "PreferenceController.h"
 
-/**
-	This category to NSApplication handles the application-level AppleScript support.
- */
+
 @interface NSApplication (TidyApplication)
 
-/** Handles AppleScript's preferencesWindowIsVisible property */
-@property (nonatomic, assign) BOOL preferencesWindowIsVisible;
+@property (nonatomic, assign) BOOL preferencesWindowIsVisible;                // Handles AppleScripts preferencesWindowIsVisible property.
 
-/** Handles AppleScript's countOfPrefsWindowPanels property */
-@property (nonatomic, readonly, assign) NSInteger countOfPrefsWindowPanels;
+@property (nonatomic, readonly, assign) NSInteger countOfPrefsWindowPanels;   // Handles AppleScript countOfPrefsWindowPanels property.
 
-/** Handles AppleScript's indexOfVisiblePrefsWindowPanel property */
-@property (nonatomic, assign) NSInteger indexOfVisiblePrefsWindowPanel;
+@property (nonatomic, assign) NSInteger indexOfVisiblePrefsWindowPanel;       // Handles AppleScripts indexOfVisiblePrefsWindowPanel property.
+
 
 @end

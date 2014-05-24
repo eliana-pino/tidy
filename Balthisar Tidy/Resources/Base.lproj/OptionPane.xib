@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
@@ -8,12 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="OptionPaneController">
             <connections>
                 <outlet property="View" destination="21" id="EGf-h1-qXt"/>
-                <outlet property="menuItemResetOptionsToFactoryDefaults" destination="Jxi-vi-hoO" id="dMR-u1-9Uy"/>
-                <outlet property="menuItemResetOptionsToPreferences" destination="yeA-oT-7p5" id="qXD-jX-Dwv"/>
-                <outlet property="menuItemSaveOptionsToPreferences" destination="vad-9M-vZT" id="FmQ-DK-7td"/>
-                <outlet property="menuItemSaveOptionsToUnixConfigFile" destination="0HY-2M-G1v" id="ZzG-jo-DgE"/>
-                <outlet property="menuItemShowFriendlyOptionNames" destination="Nsq-X3-5F7" id="F3b-mm-6Gr"/>
-                <outlet property="menuItemShowOptionsInGroups" destination="3pF-Gd-AlJ" id="TQC-4Z-1f5"/>
+                <outlet property="theArrayController" destination="m8S-67-rAD" id="dE3-aS-xUS"/>
                 <outlet property="theDescription" destination="Jr5-JD-RhE" id="E4I-qT-f9L"/>
                 <outlet property="theTable" destination="rLn-af-rHD" id="ZCz-4k-phA"/>
             </connections>
@@ -55,12 +50,39 @@
                                                 </textFieldCell>
                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 <prototypeCellViews>
-                                                    <tableCellView identifier="optionName" id="peW-8X-C7Y" customClass="JSDTableCellView">
+                                                    <tableCellView identifier="categoryHeader" id="6vP-gO-BlR" userLabel="localizedHumanReadableCategory" customClass="JSDTableCellView">
                                                         <rect key="frame" x="1" y="1" width="150" height="20"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
+                                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="88O-90-EWG">
+                                                                <rect key="frame" x="3" y="2" width="147" height="17"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="fAh-LN-fIn">
+                                                                    <font key="font" metaFont="systemBold"/>
+                                                                    <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
+                                                                </textFieldCell>
+                                                                <connections>
+                                                                    <binding destination="6vP-gO-BlR" name="value" keyPath="objectValue.localizedHumanReadableCategory" id="s58-nl-jzR">
+                                                                        <dictionary key="options">
+                                                                            <string key="NSValueTransformerName">JSDAllCapsValueTransformer</string>
+                                                                        </dictionary>
+                                                                    </binding>
+                                                                </connections>
+                                                            </textField>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="88O-90-EWG" firstAttribute="centerY" secondItem="6vP-gO-BlR" secondAttribute="centerY" id="Cd0-Ss-DUM"/>
+                                                            <constraint firstAttribute="trailing" secondItem="88O-90-EWG" secondAttribute="trailing" constant="2" id="MI5-tG-Eo9"/>
+                                                            <constraint firstItem="88O-90-EWG" firstAttribute="leading" secondItem="6vP-gO-BlR" secondAttribute="leading" constant="5" id="tJx-FM-eGw"/>
+                                                        </constraints>
+                                                    </tableCellView>
+                                                    <tableCellView identifier="optionName" id="peW-8X-C7Y" userLabel="name" customClass="JSDTableCellView">
+                                                        <rect key="frame" x="1" y="23" width="150" height="20"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <subviews>
                                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="SQf-Ob-fAb">
-                                                                <rect key="frame" x="8" y="2" width="142" height="17"/>
+                                                                <rect key="frame" x="18" y="2" width="132" height="17"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="CbI-lr-qxT">
                                                                     <font key="font" metaFont="system"/>
@@ -68,7 +90,7 @@
                                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                 </textFieldCell>
                                                                 <connections>
-                                                                    <binding destination="peW-8X-C7Y" name="value" keyPath="objectValue" id="Wbf-2N-mHd">
+                                                                    <binding destination="peW-8X-C7Y" name="value" keyPath="objectValue.name" id="3RQ-LZ-fhh">
                                                                         <dictionary key="options">
                                                                             <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
                                                                         </dictionary>
@@ -78,11 +100,41 @@
                                                         </subviews>
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="SQf-Ob-fAb" secondAttribute="trailing" constant="2" id="HdQ-Wu-5i5"/>
-                                                            <constraint firstItem="SQf-Ob-fAb" firstAttribute="leading" secondItem="peW-8X-C7Y" secondAttribute="leading" constant="10" id="RUi-t3-r9U"/>
+                                                            <constraint firstItem="SQf-Ob-fAb" firstAttribute="leading" secondItem="peW-8X-C7Y" secondAttribute="leading" constant="20" id="RUi-t3-r9U"/>
                                                             <constraint firstItem="SQf-Ob-fAb" firstAttribute="centerY" secondItem="peW-8X-C7Y" secondAttribute="centerY" id="al8-Wr-Pbr"/>
                                                         </constraints>
                                                         <connections>
                                                             <outlet property="textField" destination="SQf-Ob-fAb" id="WYg-Qi-NVa"/>
+                                                        </connections>
+                                                    </tableCellView>
+                                                    <tableCellView identifier="optionNameLocalized" id="HY7-3b-F6v" userLabel="localizedHumanReadableName" customClass="JSDTableCellView">
+                                                        <rect key="frame" x="1" y="45" width="150" height="20"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <subviews>
+                                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="b5f-u2-GxI">
+                                                                <rect key="frame" x="18" y="2" width="132" height="17"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="AxE-Lv-8pc">
+                                                                    <font key="font" metaFont="system"/>
+                                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                </textFieldCell>
+                                                                <connections>
+                                                                    <binding destination="HY7-3b-F6v" name="value" keyPath="objectValue.localizedHumanReadableName" id="fzM-RB-Sj3">
+                                                                        <dictionary key="options">
+                                                                            <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                                                                        </dictionary>
+                                                                    </binding>
+                                                                </connections>
+                                                            </textField>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="b5f-u2-GxI" firstAttribute="centerY" secondItem="HY7-3b-F6v" secondAttribute="centerY" id="Hgt-Hn-cF7"/>
+                                                            <constraint firstItem="b5f-u2-GxI" firstAttribute="leading" secondItem="HY7-3b-F6v" secondAttribute="leading" constant="20" id="UXp-Zx-QtN"/>
+                                                            <constraint firstAttribute="trailing" secondItem="b5f-u2-GxI" secondAttribute="trailing" constant="2" id="acT-mk-09Z"/>
+                                                        </constraints>
+                                                        <connections>
+                                                            <outlet property="textField" destination="b5f-u2-GxI" id="vlK-Ct-eR2"/>
                                                         </connections>
                                                     </tableCellView>
                                                 </prototypeCellViews>
@@ -100,20 +152,20 @@
                                                 </textFieldCell>
                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 <prototypeCellViews>
-                                                    <tableCellView identifier="optionString" id="Xxa-40-G4e" customClass="JSDTableCellView">
+                                                    <tableCellView identifier="optionString" id="Xxa-40-G4e" userLabel="optionString" customClass="JSDTableCellView">
                                                         <rect key="frame" x="154" y="1" width="144" height="20"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Wv5-Uh-AKN">
                                                                 <rect key="frame" x="12" y="2" width="132" height="17"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="ASw-zL-5Ib">
+                                                                <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="ASw-zL-5Ib">
                                                                     <font key="font" metaFont="system"/>
                                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                 </textFieldCell>
                                                                 <connections>
-                                                                    <binding destination="Xxa-40-G4e" name="value" keyPath="objectValue" id="Zit-wW-A6e"/>
+                                                                    <binding destination="Xxa-40-G4e" name="value" keyPath="objectValue.optionValue" id="nE2-Yx-Kq8"/>
                                                                 </connections>
                                                             </textField>
                                                         </subviews>
@@ -126,7 +178,7 @@
                                                             <outlet property="textField" destination="Wv5-Uh-AKN" id="Ib3-0H-5xo"/>
                                                         </connections>
                                                     </tableCellView>
-                                                    <tableCellView identifier="optionPopup" id="IF5-46-iW9" customClass="JSDTableCellView">
+                                                    <tableCellView identifier="optionPopup" id="IF5-46-iW9" userLabel="optionPopup" customClass="JSDTableCellView">
                                                         <rect key="frame" x="154" y="23" width="144" height="20"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
@@ -139,13 +191,8 @@
                                                                     <menu key="menu" title="OtherViews" id="Uvz-bY-gu8"/>
                                                                 </popUpButtonCell>
                                                                 <connections>
-                                                                    <binding destination="IF5-46-iW9" name="selectedIndex" keyPath="objectValue" previousBinding="MFN-ES-xqd" id="x4v-MK-klf">
-                                                                        <dictionary key="options">
-                                                                            <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
-                                                                            <bool key="NSConditionallySetsEnabled" value="NO"/>
-                                                                        </dictionary>
-                                                                    </binding>
-                                                                    <binding destination="IF5-46-iW9" name="contentValues" keyPath="popupButtonArray" id="MFN-ES-xqd"/>
+                                                                    <binding destination="IF5-46-iW9" name="selectedIndex" keyPath="objectValue.optionUIValue" previousBinding="UBF-zE-QtT" id="35I-0x-A0d"/>
+                                                                    <binding destination="IF5-46-iW9" name="contentValues" keyPath="objectValue.possibleOptionValues" id="UBF-zE-QtT"/>
                                                                 </connections>
                                                             </popUpButton>
                                                         </subviews>
@@ -158,7 +205,7 @@
                                                             <outlet property="popupButtonControl" destination="VM5-hM-S8Q" id="luV-fM-UxI"/>
                                                         </connections>
                                                     </tableCellView>
-                                                    <tableCellView identifier="optionStepper" id="Jlo-Y8-J8Y" customClass="JSDTableCellView">
+                                                    <tableCellView identifier="optionStepper" id="Jlo-Y8-J8Y" userLabel="optionStepper" customClass="JSDTableCellView">
                                                         <rect key="frame" x="154" y="45" width="144" height="20"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
@@ -171,7 +218,7 @@
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                         <stepperCell key="cell" controlSize="mini" continuous="YES" alignment="left" maxValue="1000" id="5vQ-KU-8dK"/>
                                                                         <connections>
-                                                                            <binding destination="Jlo-Y8-J8Y" name="value" keyPath="objectValue" id="z3g-g4-RU4">
+                                                                            <binding destination="Jlo-Y8-J8Y" name="value" keyPath="objectValue.optionValue" id="44W-bC-UJb">
                                                                                 <dictionary key="options">
                                                                                     <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
                                                                                     <bool key="NSConditionallySetsEnabled" value="NO"/>
@@ -189,7 +236,7 @@
                                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                         </textFieldCell>
                                                                         <connections>
-                                                                            <binding destination="Jlo-Y8-J8Y" name="value" keyPath="objectValue" id="0yP-uF-2yY"/>
+                                                                            <binding destination="Jlo-Y8-J8Y" name="value" keyPath="objectValue.optionValue" id="wvc-NP-1eA"/>
                                                                         </connections>
                                                                     </textField>
                                                                 </subviews>
@@ -217,8 +264,9 @@
                                             </tableColumn>
                                         </tableColumns>
                                         <connections>
-                                            <outlet property="dataSource" destination="-2" id="6Z4-LQ-n2x"/>
-                                            <outlet property="delegate" destination="-2" id="i0N-Ky-W7p"/>
+                                            <binding destination="m8S-67-rAD" name="content" keyPath="arrangedObjects" id="7W0-Wa-jBt"/>
+                                            <binding destination="m8S-67-rAD" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="7W0-Wa-jBt" id="ta8-uW-J8c"/>
+                                            <outlet property="delegate" destination="-2" id="pvW-zg-LKq"/>
                                         </connections>
                                     </tableView>
                                 </subviews>
@@ -258,6 +306,13 @@
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
+                    <connections>
+                        <binding destination="m8S-67-rAD" name="value" keyPath="selection.localizedHumanReadableDescription" id="9Wz-6h-fZb">
+                            <dictionary key="options">
+                                <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                            </dictionary>
+                        </binding>
+                    </connections>
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="XaC-w5-Lwz">
                     <rect key="frame" x="0.0" y="7" width="32" height="15"/>
@@ -268,7 +323,7 @@
                     </buttonCell>
                     <accessibility description="Toggle the visibility of the Tidy option description."/>
                     <connections>
-                        <action selector="toggleDescription:" target="-2" id="707-01-ImV"/>
+                        <action selector="handleToggleDescription:" target="-2" id="5Zn-Xb-618"/>
                     </connections>
                 </button>
                 <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="ASB-I3-wPl">
@@ -283,22 +338,29 @@
                                 <menuItem title="Reset options to factory defaults…" id="Jxi-vi-hoO">
                                     <connections>
                                         <action selector="handleResetOptionsToFactoryDefaults:" target="-2" id="Gtn-m8-4wc"/>
+                                        <binding destination="-2" name="hidden" keyPath="isInPreferencesView" id="q8U-88-kSv">
+                                            <dictionary key="options">
+                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                            </dictionary>
+                                        </binding>
                                     </connections>
                                 </menuItem>
                                 <menuItem title="Reset options to defaults in Preferences" id="yeA-oT-7p5">
                                     <connections>
                                         <action selector="handleResetOptionsToPreferences:" target="-2" id="faU-e8-tOF"/>
+                                        <binding destination="-2" name="hidden" keyPath="isInPreferencesView" id="9V2-LW-Ll5"/>
                                     </connections>
                                 </menuItem>
                                 <menuItem title="Save these option settings to Preferences…" id="vad-9M-vZT">
                                     <connections>
                                         <action selector="handleSaveOptionsToPreferences:" target="-2" id="q48-Sg-CPF"/>
+                                        <binding destination="-2" name="hidden" keyPath="isInPreferencesView" id="bUo-9x-h8B"/>
                                     </connections>
                                 </menuItem>
                                 <menuItem isSeparatorItem="YES" id="srj-Ib-rQy"/>
                                 <menuItem title="Show friendly option names" id="Nsq-X3-5F7">
                                     <connections>
-                                        <action selector="handleShowFriendlyOptionNames:" target="-2" id="DHs-fv-kMh"/>
+                                        <action selector="handleGenericReloadData:" target="-2" id="P23-hG-MtJ"/>
                                         <binding destination="-2" name="value" keyPath="self.isShowingFriendlyTidyOptionNames" id="daD-Yk-aSZ">
                                             <dictionary key="options">
                                                 <bool key="NSConditionallySetsEnabled" value="NO"/>
@@ -306,9 +368,9 @@
                                         </binding>
                                     </connections>
                                 </menuItem>
-                                <menuItem title="Show options in groups" hidden="YES" enabled="NO" id="3pF-Gd-AlJ">
+                                <menuItem title="Show options in groups" id="3pF-Gd-AlJ">
                                     <connections>
-                                        <action selector="handleShowOptionsInGroups:" target="-2" id="Iuw-ha-96B"/>
+                                        <action selector="handleGenericReloadData:" target="-2" id="L87-Cf-QKD"/>
                                         <binding destination="-2" name="value" keyPath="self.isShowingOptionsInGroups" id="2MT-RX-QSr">
                                             <dictionary key="options">
                                                 <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
@@ -343,7 +405,13 @@
                 <constraint firstItem="Jr5-JD-RhE" firstAttribute="leading" secondItem="21" secondAttribute="leading" constant="10" id="wJy-fU-BVW"/>
             </constraints>
         </customView>
-        <userDefaultsController representsSharedInstance="YES" id="rmR-wm-lSd"/>
+        <arrayController automaticallyRearrangesObjects="YES" id="m8S-67-rAD" userLabel="tidyOptions Array Controller">
+            <connections>
+                <binding destination="-2" name="contentArray" keyPath="self.tidyDocument.tidyOptionsBindable" id="eq5-l4-Skk"/>
+                <binding destination="-2" name="filterPredicate" keyPath="self.filterPredicate" id="qYA-QL-OVI"/>
+                <binding destination="-2" name="sortDescriptors" keyPath="self.sortDescriptor" previousBinding="qYA-QL-OVI" id="Dec-d6-uQP"/>
+            </connections>
+        </arrayController>
     </objects>
     <resources>
         <image name="HideDescriptionTemplate" width="11" height="10"/>

@@ -36,23 +36,16 @@
 #import "JSDTableView.h"
 #import "JSDTableCellView.h"
 
-/**
-	The main controller for the Tidy Options pane.
- */
+
 @interface OptionPaneController : NSObject <NSTableViewDataSource, JSDTableViewDelegate>
 
 
-/**
-	This instance will only concern itself with TidyOtions
-	that are listed in this array.
- */
-@property (nonatomic, strong) NSArray *optionsInEffect;
+@property (weak) IBOutlet NSArrayController *theArrayController;   // Mediates between tidyOptions and the view items.
+
+@property (nonatomic, strong) NSArray *optionsInEffect;            // Only options in this list will be used.
 
 
-/**
-	Expose the tidyDocument because it contains the
-	data that we'll be interested in later.
-
+/*
 	@todo refactor interface to this controller's model.
 	Right now we're accessing this directly from the
 	outside, and we really should have this controller
@@ -60,7 +53,7 @@
 	user preferences system.
  */
 
-@property (nonatomic, strong) JSDTidyModel *tidyDocument;
+@property (nonatomic, strong) JSDTidyModel *tidyDocument;         // Expose the tidyDocument for its options values.
 
 
 /**
@@ -74,28 +67,13 @@
 	user preferences system. Right now this hackey way
 	is only used in one spot, and it's bad design.
  */
-@property (weak, nonatomic) IBOutlet NSTableView *theTable;
+@property (weak, nonatomic) IBOutlet NSTableView *theTable;        // Expose the table.
+
+@property (nonatomic, assign) BOOL isInPreferencesView;            // Controls some item visibility if in Preferences.
 
 
-/**
-	Initialize the view so we can use it. By default it
-	will initialize with behaviors (menu presence) for
-	use in a document window.
- */
 - (id)init;
 
-/**
-	Initialize the view so we can use it. In this case,
-	it will initialize with behaviors (menu presence)
-	for use in a preferences window.
- */
-- (id)initInPreferencesView;
-
-
-
-/**
-	Put this controller's `View` into `dstView`.
- */
-- (void)putViewIntoView:(NSView *)dstView;
+- (void)putViewIntoView:(NSView *)dstView;                         // Put this controllers `view` into `dstView`.
 
 @end

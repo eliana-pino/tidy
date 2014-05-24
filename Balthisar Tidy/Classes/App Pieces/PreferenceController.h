@@ -109,43 +109,29 @@ typedef enum : NSInteger
 
 #pragma mark - Properties
 
-@property (readonly)         NSArray *optionsInEffect;              // TidyOptions this app will use.
 
-@property (readonly, assign) JSDTidyModel *tidyPreferencesDocument; // Exposes the tidyDocument.
+@property (readonly)         NSArray *optionsInEffect;                // TidyOptions this app will use.
 
+@property (readonly, assign) JSDTidyModel *tidyPreferencesDocument;   // Exposes the tidyDocument.
 
-/*
-	These are offered for AppleScript support, and mostly so that I
-	can take screenshots without using UI scripting.
- */
-@property (readonly, assign) NSInteger countOfTabViews;
+@property (readonly, assign) NSInteger countOfTabViews;               // Mostly offered for exposure to AppleScript.
 
-@property (assign)           NSInteger indexOfCurrentTabView;
+@property (assign)           NSInteger indexOfCurrentTabView;         // Mostly offered for exposure to AppleScript.
 
 
 #pragma mark - Class Methods
 
 
-/**
-	Singleton accessor for this class.
- */
-+ (id)sharedPreferences;
++ (id)sharedPreferences;        // Singleton accessor for this class.
 
-
-/**
-	Registers all of Balthisar Tidy's defaults with Mac OS X' defaults system.
- */
-+ (void)registerUserDefaults;
++ (void)registerUserDefaults;   // Registers Balthisar Tidy's defaults with Mac OS X' defaults system.
 
 
 #pragma mark - Preferences Access Support via KVC
 
 
 /*
-	We will manage most of our application options via KVC instead of
-	constantly using NSUSerDefaults. Although this PreferenceController
-	is intended to control the preferences window, it's a good, one-stop
-	shopping experience for accessing preferences on demand, too.
+	@todo: get rid of this crud.
  */
 
 /** Getter for keyed subscripts. */

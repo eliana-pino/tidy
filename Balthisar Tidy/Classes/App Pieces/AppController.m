@@ -29,6 +29,7 @@
 
 #import "AppController.h"
 #import "JSDIntegerValueTransformer.h"
+#import "JSDAllCapsValueTransformer.h"
 
 
 #pragma mark - CATEGORY - Non-Public
@@ -59,9 +60,14 @@
 {
 	[PreferenceController registerUserDefaults];
 
-	//Initialize the value transformers used throughout the application bindings
-	NSValueTransformer *transformer = [[JSDIntegerValueTransformer alloc] init];
-    [NSValueTransformer setValueTransformer:transformer forName:@"JSDIntegerValueTransformer"];
+
+	/* Initialize the value transformers used throughout the application bindings */
+
+	NSValueTransformer *transformer1 = [[JSDIntegerValueTransformer alloc] init];
+    [NSValueTransformer setValueTransformer:transformer1 forName:@"JSDIntegerValueTransformer"];
+
+	NSValueTransformer *transformer2 = [[JSDAllCapsValueTransformer alloc] init];
+    [NSValueTransformer setValueTransformer:transformer2 forName:@"JSDAllCapsValueTransformer"];
 }
 
 

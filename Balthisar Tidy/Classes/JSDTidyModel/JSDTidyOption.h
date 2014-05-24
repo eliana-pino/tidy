@@ -106,8 +106,6 @@
 
 @property (assign)           BOOL optionIsSuppressed;                   // Indicates whether or not this option is unused by JSDTidyModel.
 
-
-
 #pragma mark - Other Public Methods
 
 - (BOOL)applyOptionToTidyDoc:(TidyDoc)destinationTidyDoc;               // Applies this option to a TidyDoc instance.
@@ -115,6 +113,10 @@
 - (void)optionUIValueIncrement;                                         // Possibly useful for UI's, increments to next possible option value.
 
 - (void)optionUIValueDecrement;                                         // Possibly useful for UI's, decrements to next possible option value.
+
+-(NSComparisonResult)tidyGroupedNameCompare:(JSDTidyOption *)tidyOption;	    // Comparitor for localized sorting and grouping of tidyOptions.
+
+-(NSComparisonResult)tidyGroupedHumanNameCompare:(JSDTidyOption *)tidyOption;   // Comparitor for localized sorting and grouping of tidyOptions.
 
 
 @end

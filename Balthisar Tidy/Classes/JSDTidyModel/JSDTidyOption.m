@@ -38,7 +38,7 @@
 
 #pragma mark - iVar Synthesis
 
-
+@synthesize name        = _name;
 @synthesize optionValue = _optionValue;
 
 #pragma mark - Initialization and Deallocation
@@ -76,7 +76,7 @@
 		_name               = name;
 		_optionIsHeader     = NO;
 		_optionIsSuppressed = NO;
-		
+
 		if (self.optionId == TidyUnknownOption)
 		{
 			_name = @"undefined";
@@ -179,7 +179,7 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSString*)defaultOptionValue
 {
-	NSString *cocoaDefault = [[[NSUserDefaults standardUserDefaults] objectForKey:JSDKeyTidyTidyOptionsKey] stringForKey:self.name];
+	NSString *cocoaDefault = [[[NSUserDefaults standardUserDefaults] objectForKey:JSDKeyTidyTidyOptionsKey] stringForKey:_name];
 	
 	if (cocoaDefault)
 	{
@@ -217,7 +217,7 @@
 		}
 		
 		// Special treatment for `doctype`
-		if (([self.name isEqual: @"doctype"]) && ([theArray count] > 0))
+		if (([_name isEqual: @"doctype"]) && ([theArray count] > 0))
 		{
 			[theArray removeLastObject];
 		}
@@ -241,7 +241,7 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSString*)localizedHumanReadableName
 {
-	return NSLocalizedStringFromTable(([NSString stringWithFormat:@"tag-%@", self.name]), @"JSDTidyModel" ,nil);
+	return NSLocalizedStringFromTable(([NSString stringWithFormat:@"tag-%@", _name]), @"JSDTidyModel" ,nil);
 }
 
 
@@ -251,7 +251,7 @@
 - (NSAttributedString*)localizedHumanReadableDescription
 {
 	// parentheses around brackets required lest preprocessor get confused.
-	NSString *rawString = NSLocalizedStringFromTable(([NSString stringWithFormat:@"description-%@", self.name]), @"JSDTidyModel", nil);
+	NSString *rawString = NSLocalizedStringFromTable(([NSString stringWithFormat:@"description-%@", _name]), @"JSDTidyModel", nil);
 	
 	NSAttributedString *outString;
 	
@@ -287,8 +287,7 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSString*)localizedHumanReadableCategory
 {
-	TidyConfigCategory temp = tidyOptGetCategory( [self createTidyOptionInstance:self.optionId] );
-	return NSLocalizedStringFromTable(([NSString stringWithFormat:@"category-%u", temp]), @"JSDTidyModel", nil);
+	return NSLocalizedStringFromTable(([NSString stringWithFormat:@"category-%u", self.builtInCategory]), @"JSDTidyModel", nil);
 }
 
 
@@ -307,7 +306,7 @@
 		// the menu index in the current locale.
 		return [JSDTidyModel availableEncodingDictionariesByNSStringEncoding][@([self.optionValue integerValue])][@"LocalizedIndex"];
 	}
-	else if ([self.name isEqualToString:@"doctype"])
+	else if ([_name isEqualToString:@"doctype"])
 	{
 		// If we're working with doctype we need the index value, not the string value.
 		return [NSString stringWithFormat:@"%lu", [self.possibleOptionValues indexOfObject:self.optionValue]];
@@ -344,7 +343,7 @@
 			// It probably has something to do with properties. This keeps it as string.
 			[self setValue:[NSString stringWithFormat:@"%@", tmp] forKey:@"optionValue"];
 		}
-		else if ( [self.name isEqualToString:@"doctype"] )
+		else if ( [_name isEqualToString:@"doctype"] )
 		{
 			// We have the index value from the menu, but we require a string value
 			// for this option. The real optionValue will be the string value.
@@ -396,7 +395,7 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (TidyOptionId)optionId
 {
-	TidyOptionId optID = tidyOptGetIdForName([self.name UTF8String]);
+	TidyOptionId optID = tidyOptGetIdForName([_name UTF8String]);
 	
 	if (optID < N_TIDY_OPTIONS)
 	{
@@ -523,7 +522,7 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (BOOL)optionCanAcceptNULLSTR
 {
-	return ([[NSSet setWithObjects:@"doctype", @"slide-style", @"language", @"css-prefix", nil] member:self.name]) == nil;
+	return ([[NSSet setWithObjects:@"doctype", @"slide-style", @"language", @"css-prefix", nil] member:_name]) == nil;
 }
 
 
@@ -646,6 +645,32 @@
 }
 
 
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	tidyGroupedNameCompare (private)
+		Can be uses as a selector for an NSSortDescriptor. This will
+		ensure that collections (typically an array controller) will
+		be grouped into categories, sorted within each category,
+		with a head item being the first item in the category.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+-(NSComparisonResult)tidyGroupedNameCompare:(JSDTidyOption *)tidyOption
+{
+	return [self tidyGroupedCompareCommon:tidyOption useLocalizedName:NO];
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	tidyGroupedHumanNameCompare (private)
+		Can be uses as a selector for an NSSortDescriptor. This will
+		ensure that collections (typically an array controller) will
+		be grouped into categories, sorted within each category,
+		with a head item being the first item in the category.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+-(NSComparisonResult)tidyGroupedHumanNameCompare:(JSDTidyOption *)tidyOption
+{
+	return [self tidyGroupedCompareCommon:tidyOption useLocalizedName:YES];
+}
+
+
 #pragma mark - Overrides
 
 
@@ -655,7 +680,7 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 -(id)copyWithZone:(NSZone *)zone
 {
-	JSDTidyOption *another = [[JSDTidyOption allocWithZone:zone] initWithName:self.name 
+	JSDTidyOption *another = [[JSDTidyOption allocWithZone:zone] initWithName:_name
 															      optionValue:[self.optionValue copy]
                                                                  sharingModel:self.sharedTidyModel];
 
@@ -740,6 +765,66 @@
 	
 	return result;
 }
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	tidyGroupedCompareCommon:useLocalizedName (private)
+		Common sorting for tidyGroupedNameCompare and
+		tidyGroupedHumanNameCompare.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+-(NSComparisonResult)tidyGroupedCompareCommon:(JSDTidyOption *)tidyOption useLocalizedName:(BOOL)useLocalizedName;
+{
+	NSComparisonResult result;
+
+	/*
+		We sort first by localizedHumanReadableCategory to ensure all of the
+		tidy options within a category are grouped together.
+	 */
+
+	result = [self.localizedHumanReadableCategory localizedStandardCompare:tidyOption.localizedHumanReadableCategory];
+
+	
+	/*
+		If two items are already the same category, then we want
+		to prioritize one of them if it's a header.
+	 */
+
+    if (result == NSOrderedSame)
+	{
+		if ((self.optionIsHeader) && (tidyOption.optionIsHeader == NO))
+		{
+			result = NSOrderedAscending;
+		}
+		else if ((self.optionIsHeader == NO) && (tidyOption.optionIsHeader))
+		{
+			result = NSOrderedDescending;
+		}
+		else
+		{
+			result = NSOrderedSame;
+		}
+	}
+
+
+	/* 
+		Finally if everything's sorted by the above priorities, we
+		will sort all of the ties in a locale-friendly manner.
+	 */
+    if (result == NSOrderedSame)
+	{
+		if (useLocalizedName)
+		{
+			result = [self.name localizedStandardCompare:tidyOption.localizedHumanReadableName];
+		}
+		else
+		{
+			result = [self.name localizedStandardCompare:tidyOption.name];
+		}
+	}
+
+	return result;
+}
+
 
 
 @end

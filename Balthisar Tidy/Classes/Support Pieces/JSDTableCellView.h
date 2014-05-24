@@ -41,24 +41,14 @@
 @class JSDTableView;
 
 
-/**
-	Implements special behavior for a couple of different cell types by adding
-	a couple of properties and some behaviours for those properties. Remember
-	that as a descdendent of NSTableCell View, that objectValue, textField,
-	etc. are all already implemented.
- */
 @interface JSDTableCellView : NSTableCellView
 
 
 @property (nonatomic, assign) BOOL usesHoverEffect;
 
-/** If the view has a stepper, this outlet provides access to it. */
 @property (nonatomic, weak) IBOutlet NSStepper *stepperControl;
 
-/** If the view has a popup button, this outlet provides access to it. */
 @property (nonatomic, weak) IBOutlet NSPopUpButton *popupButtonControl;
 
-/** Populate this array in order to show options in the popup menus. */
-@property (nonatomic, strong) NSArray *popupButtonArray;
 
 @end
