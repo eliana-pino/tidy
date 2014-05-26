@@ -175,7 +175,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	optionsInEffect
+	setOptionsInEffect:
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)setOptionsInEffect:(NSArray *)optionsInEffect
 {
@@ -378,11 +378,11 @@
 {
 	if (self.isShowingOptionsInGroups)
 	{
-		return [NSPredicate predicateWithFormat:@"(optionIsSuppressed <> %@)", @(YES)];
+		return [NSPredicate predicateWithFormat:@"(optionIsSuppressed == %@)", @(NO)];
 	}
 	else
 	{
-		return [NSPredicate predicateWithFormat:@"(optionIsSuppressed <> %@) AND (optionIsHeader == NO)", @(YES)];
+		return [NSPredicate predicateWithFormat:@"(optionIsSuppressed == %@) AND (optionIsHeader == NO)", @(NO)];
 	}
 }
 
@@ -441,7 +441,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	handleGenericReloadData
+	handleGenericReloadData:
 		Properties control a lot of things, but sometimes the
 		table needs to be refresh in order to show the results.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
@@ -452,7 +452,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	handleToggleDescription
+	handleToggleDescription:
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (IBAction)handleToggleDescription:(NSButton *)sender
 {
@@ -476,7 +476,7 @@
 }
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	handleResetOptionsToFactoryDefaults
+	handleResetOptionsToFactoryDefaults:
 		- get factory default values for all optionsInEffect
 		- set the tidyDocument to those.
 		- notification system will handle the rest:
@@ -497,7 +497,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	handleResetOptionsToPreferences
+	handleResetOptionsToPreferences:
 		- tell the tidyDocument to use the stored defaults.
 		- notification system should handle the rest.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
@@ -510,7 +510,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	handleSaveOptionsToPreferences
+	handleSaveOptionsToPreferences:
 		- the Preferences window might not exist yet, so all we
 		can really do is write out the preferences, and try
 		sending a notification.
@@ -524,7 +524,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	handleSaveOptionsToUnixConfigFile
+	handleSaveOptionsToUnixConfigFile:
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)handleSaveOptionsToUnixConfigFile:(id)sender
 {

@@ -61,7 +61,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	observeValueForKeyPath:ofObject:change:context
+	observeValueForKeyPath:ofObject:change:context:
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)observeValueForKeyPath:(NSString *)keyPath
 					  ofObject:(id)object
@@ -83,7 +83,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	keyDown
+	keyDown:
 		Calls the delegate's tableViewKeyWasPressed:row:keyCode
 		method if it exists.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
@@ -111,7 +111,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	validateProposedFirstResponder:forEvent
+	validateProposedFirstResponder:forEvent:
 		Allows a control in a table to become first responder
 		out first selecting the row. Also allow some controls
 		to be first responder that generally aren't ever enabled

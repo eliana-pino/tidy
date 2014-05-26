@@ -45,7 +45,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	initSharingModel
+	initSharingModel:
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (id)initSharingModel:(JSDTidyModel *)sharedTidyModel
 {
@@ -54,7 +54,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	initWithName:sharingModel
+	initWithName:sharingModel:
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (id)initWithName:(NSString *)name
       sharingModel:(JSDTidyModel *)sharedTidyModel
@@ -64,7 +64,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	initWithName:optionValue:sharingModel - designated initializer
+	initWithName:optionValue:sharingModel: - designated initializer
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (id)initWithName:(NSString *)name
        optionValue:(NSString *)value
@@ -120,7 +120,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	setOptionValue
+	setOptionValue:
 		Sets the optionValue, and intercepts special circumstances.
 		Note that you must always ensure the encoding option values
 		always contain the NSStringEncoding value, and not the
@@ -319,7 +319,7 @@
 }
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	setOptionUIValue
+	setOptionUIValue:
 		Sets option values using values from the user-interface
 		instead of setting the TidyLib TidyOption values directly.
 		Most TidyOptions have the same UI value and native value,
@@ -371,7 +371,7 @@
 		- NSTextField, if none of the two work.
 
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (Class) optionUIType
+- (Class)optionUIType
 {
 	if ( self.possibleOptionValues.count > 0 )
 	{
@@ -568,7 +568,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	applyOptionToTidyDoc
+	applyOptionToTidyDoc:
 		Given a TidyDoc instance, apply our setting to the TidyDoc.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (BOOL)applyOptionToTidyDoc:(TidyDoc)destinationTidyDoc
@@ -646,7 +646,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	tidyGroupedNameCompare (private)
+	tidyGroupedNameCompare:
 		Can be uses as a selector for an NSSortDescriptor. This will
 		ensure that collections (typically an array controller) will
 		be grouped into categories, sorted within each category,
@@ -659,7 +659,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	tidyGroupedHumanNameCompare (private)
+	tidyGroupedHumanNameCompare:
 		Can be uses as a selector for an NSSortDescriptor. This will
 		ensure that collections (typically an array controller) will
 		be grouped into categories, sorted within each category,
@@ -750,7 +750,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	createTidyOptionInstance
+	createTidyOptionInstance:
 		Given an option id, return an instance of a tidy option.
 		This is required because many of the TidyLib functions
 		require an instance in order to return data.
@@ -768,7 +768,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	tidyGroupedCompareCommon:useLocalizedName (private)
+	tidyGroupedCompareCommon:useLocalizedName: (private)
 		Common sorting for tidyGroupedNameCompare and
 		tidyGroupedHumanNameCompare.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/

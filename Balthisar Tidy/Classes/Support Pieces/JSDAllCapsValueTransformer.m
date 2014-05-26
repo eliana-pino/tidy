@@ -31,6 +31,7 @@
 
 @implementation JSDAllCapsValueTransformer
 
+
 + (Class)transformedValueClass
 {
 	return [NSString class];
@@ -47,5 +48,6 @@
 {
 	return [value uppercaseString];
 }
+
 
 @end

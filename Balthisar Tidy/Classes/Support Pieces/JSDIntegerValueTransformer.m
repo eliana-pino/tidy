@@ -31,6 +31,7 @@
 
 @implementation JSDIntegerValueTransformer
 
+
 + (Class)transformedValueClass 
 {
 	return [NSNumber class];

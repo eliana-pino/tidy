@@ -178,7 +178,7 @@
 		- Setup Sparkle vs No-Sparkle.
 		- Give the OptionPaneController its optionsInEffect
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void) awakeFromNib
+- (void)awakeFromNib
 {
 	/* Instantiate and setup the optionController */
 	
@@ -312,7 +312,7 @@
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	tidyPreferencesDocument
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (JSDTidyModel*) tidyPreferencesDocument
+- (JSDTidyModel*)tidyPreferencesDocument
 {
 	return self.optionController.tidyDocument;
 }
@@ -325,7 +325,7 @@
 	countOfTabViews
 		Returns the number of tab views in the tab view.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (NSInteger) countOfTabViews
+- (NSInteger)countOfTabViews
 {
 	return [[self.tabView tabViewItems] count];
 }
@@ -335,7 +335,7 @@
 		Sets/Gets the index of the current tab view. We use and
 		expect standard zero-based indices here.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (NSInteger) indexOfCurrentTabView
+- (NSInteger)indexOfCurrentTabView
 {
 	return [self.tabView indexOfTabViewItem:[self.tabView selectedTabViewItem]];
 }
@@ -353,7 +353,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	handleTidyOptionChange
+	handleTidyOptionChange:
 		We're here because we registered for NSNotification.
 		One of the preferences changed in the option pane.
 		We're going to record the preference, but we're not
@@ -367,7 +367,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	handleStandardUserDefaultsChange
+	handleStandardUserDefaultsChange:
 		We get this notification if the standard user defaults have
 		changed. We have to reload the option controller's tidy
 		document with the defaults. Once that happens we'll start

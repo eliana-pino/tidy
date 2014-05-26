@@ -242,7 +242,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	makeRTFString (private)
+	makeRTFStringFromString: (private)
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSAttributedString*)makeRTFStringFromString:(NSString*)rawString
 {

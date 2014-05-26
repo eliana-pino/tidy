@@ -86,7 +86,7 @@
 	 - Returns the number of preferences panels, which is useful
 	   when we don't know how many we have, such as nosparkle builds.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (NSInteger) countOfPrefsWindowPanels
+- (NSInteger)countOfPrefsWindowPanels
 {
 	return [[PreferenceController sharedPreferences] countOfTabViews];
 }

@@ -69,13 +69,17 @@
 		Essentially we're calling
 		[self errorFilter:Level:Line:Column:Message]
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+ 
 /* Compatability with original TidyLib -- doesn't allow localization of messages. */
+
 BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col, ctmbstr mssg )
 {
 	return [(__bridge JSDTidyModel*)tidyGetAppData(tdoc) errorFilter:tdoc Level:lvl Line:line Column:col Message:mssg];
 }
 
+
 /* Requires my modifications to TidyLib, allowing localization of the messages. */
+
 BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col, ctmbstr mssg, va_list args )
 {
 	return [(__bridge JSDTidyModel*)tidyGetAppData(tdoc) errorFilterWithLocalization:tdoc Level:lvl Line:line Column:col Message:mssg Arguments:args];
@@ -109,7 +113,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	initWithString
+	initWithString:
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (id)initWithString:(NSString *)value
 {
@@ -125,7 +129,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	initWithString:copyOptionValuesFromModel
+	initWithString:copyOptionValuesFromModel:
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (id)initWithString:(NSString *)value copyOptionValuesFromModel:(JSDTidyModel *)theModel
 {
@@ -142,7 +146,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	initWithData
+	initWithData:
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (id)initWithData:(NSData *)data
 {
@@ -158,7 +162,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	initWithData:copyOptionValuesFromModel
+	initWithData:copyOptionValuesFromModel:
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (id)initWithData:(NSData *)data copyOptionValuesFromModel:(JSDTidyModel *)theModel
 {
@@ -175,7 +179,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	initWithFile
+	initWithFile:
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (id)initWithFile:(NSString *)path
 {
@@ -191,7 +195,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	initWithFile:copyOptionValuesFromModel
+	initWithFile:copyOptionValuesFromModel:
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (id)initWithFile:(NSString *)path copyOptionValuesFromModel:(JSDTidyModel *)theModel
 {
@@ -355,7 +359,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	checkSourceCoding (private)
+	checkSourceCoding: (private)
 		Checks the passed-in data to perform a sanity check versus
 		the current input-encoding. Returns suggested encoding,
 		and if the current input-encoding is okay, returns that.
@@ -421,7 +425,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	setSourceText
+	setSourceText:
 		Set the source text from an NSString. It's up to the client
 		application to ensure that a correct NSString is used; no
 		support for encoding or changing encoding is provided,
@@ -475,7 +479,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	setSourceTextWithData
+	setSourceTextWithData:
 		Set the source text from an NSData using the `input-encoding`
 		setting to decode.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
@@ -530,7 +534,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	setSourceTextWithFile
+	setSourceTextWithFile:
 		Set the source text from a file using the `input-encoding`
 		setting to decode.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
@@ -561,7 +565,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	tidyTextToFile
+	tidyTextToFile:
 		Write the tidy'd text to a file in the output-encoding format.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)tidyTextToFile:(NSString *)path
@@ -698,7 +702,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	optionsCopyValuesFromModel
+	optionsCopyValuesFromModel:
 		Copies all options from theModel into our tidyOptions.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)optionsCopyValuesFromModel:(JSDTidyModel *)theModel
@@ -721,7 +725,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	optionsCopyValuesFromDictionary
+	optionsCopyValuesFromDictionary:
 		Copies all options from theDictionary into our tidyOptions.
 		Key is the option name and the value is the value.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
@@ -783,7 +787,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	optionsInUse
+	setOptionsInUse:
 		If set, only options in the array will normally be used.
 		Options not in the array won't have values set or read,
 		and will maintain their default values. If set to nil,
@@ -845,7 +849,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	optionsPopulateTidyOptionHeaders (private)
-		When accessing the tidy options via tidyOptionsBindable
+		When accessing the tidy options via `tidyOptionsBindable`
 		we will include these fake tidy options in the array. This
 		gives UIs using bindings the ability to use them as
 		headers in (e.g.) tableviews (and if not wanted can be
@@ -903,6 +907,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 - (void)processTidy
 {
 	/* Create a TidyDoc and sets its options. */
+	
 	TidyDoc newTidy = tidyCreate();
 
 	for (JSDTidyOption *localOption in [self.tidyOptions allValues])
@@ -912,6 +917,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 	
 	/* Setup the |outBuffer| to copy to an NSString instead of writing to stdout */
+	
 	TidyBuffer *outBuffer = malloc(sizeof(TidyBuffer));
 	tidyBufInit( outBuffer );
 	
@@ -922,7 +928,6 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		information. The C function is defined near the top of
 		this file.
 	 */
-
 	tidySetAppData(newTidy, (__bridge void *)(self));                          // Need to send a message from outside self to self.
 
 	/*
@@ -934,27 +939,32 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		If you want to compile against virgin TidyLib source, then
 	    make sure you change the comments below.
 	 */
+	 
 	//tidySetReportFilter(newTidy, (TidyReportFilter)&tidyCallbackFilter);     // use for virgin TidyLib compatability
 	tidySetReportFilter2(newTidy, (TidyReportFilter2)&tidyCallbackFilter2);    // use for my fork of TidyLib
 
 	
 	/* Setup the error buffer to catch errors here instead of stdout */
+	
 	TidyBuffer *errBuffer = malloc(sizeof(TidyBuffer));                        // Allocate a buffer for our error text.
 	tidyBufInit(errBuffer);                                                    // Init the buffer.
 	tidySetErrorBuffer(newTidy, errBuffer);                                    // And let tidy know to use it.
 	
 	
 	/* Clear out all of the previous errors from our collection. */
+	
 	[_errorArray removeAllObjects];
 	
 	
 	/* Setup tidy to use UTF8 for all internal operations. */
+	
 	tidyOptSetValue(newTidy, TidyCharEncoding, [@"utf8" UTF8String]);
 	tidyOptSetValue(newTidy, TidyInCharEncoding, [@"utf8" UTF8String]);
 	tidyOptSetValue(newTidy, TidyOutCharEncoding, [@"utf8" UTF8String]);
 
 		
 	/* Parse the `_sourceText` and clean, repair, and diagnose it. */
+	
 	tidyParseString(newTidy, [_sourceText UTF8String]);
 	tidyCleanAndRepair(newTidy);
 	tidyRunDiagnostics(newTidy);
@@ -1013,6 +1023,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	
 	
 	/* Set ivars for properties. */
+	
 	_tidyDetectedHtmlVersion = tidyDetectedHtmlVersion(newTidy);
 	_tidyDetectedXhtml       = tidyDetectedXhtml(newTidy);
 	_tidyDetectedGenericXml  = tidyDetectedGenericXml(newTidy);
@@ -1023,6 +1034,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 	
 	/* Clean up. */
+	
 	tidyBufFree(outBuffer);
 	tidyBufFree(errBuffer);
 	tidyRelease(newTidy);
@@ -1030,7 +1042,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	errorFilter:Level:Line:Column:Message
+	errorFilter:Level:Line:Column:Message:
 		This is the REAL TidyError filter, and is called by the
 		standard C |tidyCallBackFilter| function implemented at the
 		top of this file.
@@ -1059,7 +1071,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	errorFilterWithLocalization:Level:Line:Column:Message:Arguments
+	errorFilterWithLocalization:Level:Line:Column:Message:Arguments:
 		This is the REAL TidyError filter, and is called by the
 		standard C |tidyCallBackFilter2| function implemented at the
 		top of this file.
@@ -1087,7 +1099,9 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	__strong NSMutableDictionary *errorDict = [[NSMutableDictionary alloc] init];
 
 	NSString *formatString = NSLocalizedStringFromTable(@(mssg), @"JSDTidyModel", nil);
+	
 	NSString *intermediateString = [[NSString alloc] initWithFormat:formatString arguments:args];
+	
 	NSString *messageString = NSLocalizedStringFromTable(intermediateString, @"JSDTidyModel", nil);
 
 	errorDict[@"level"]   = @((int)lvl);	// lvl is a c enum
@@ -1118,7 +1132,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	loadOptionsInUseListFromResource:ofType (class method)
+	loadOptionsInUseListFromResource:ofType: (class method)
 		Returns an array of NSString from a file-resource. This
 		compares each item with the linked-in TidyLib to ensure 
 		items are supported, and ensures there are no duplicates.
@@ -1159,7 +1173,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	addDefaultsToDictionary (class method)
+	addDefaultsToDictionary: (class method)
 		Adds TidyLib's default option values to the passed in
 		dictionary for ALL TidyLib options.
  
@@ -1180,7 +1194,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	addDefaultsToDictionary:fromResource:ofType (class method)
+	addDefaultsToDictionary:fromResource:ofType: (class method)
 		Same as `addDefaultsToDictionary`, except uses a resource
 		file list of options instead of ALL TidyLib options.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
@@ -1192,7 +1206,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	addDefaultsToDictionary:fromArray (class method)
+	addDefaultsToDictionary:fromArray: (class method)
 		Same as |addDefaultsToDictionary|, except uses an array
 		of strings instead of ALL TidyLib options.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
@@ -1209,7 +1223,6 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		{
 			optionsDict[optionName] = newOption.builtInDefaultValue;
 		}
-
 	}
 	
 	defaultDictionary[JSDKeyTidyTidyOptionsKey] = optionsDict;
@@ -1217,7 +1230,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	writeOptionValuesWithDefaults
+	writeOptionValuesWithDefaults:
 		Iterates through all of the current `tidyOptions` and
 		registers their values to the defaults system.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
@@ -1238,7 +1251,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	takeOptionValuesFromDefaults
+	takeOptionValuesFromDefaults:
 		Given a defaults instance, attempts to set optionValue for
 		each tidyOptions item from the value registered int the
 		defaults system.
@@ -1539,7 +1552,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	 notifyTidyModelDetectedInputEncodingIssue (private)
+	 notifyTidyModelDetectedInputEncodingIssue: (private)
 		 Fires notification and performs delegation.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)notifyTidyModelDetectedInputEncodingIssue:(NSStringEncoding)suggestedEncoding;
@@ -1547,11 +1560,15 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	NSDictionary *userData = @{@"currentEncoding"   : @(self.inputEncoding),
 							   @"suggestedEncoding" : @(suggestedEncoding)};
 
-	[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyPossibleInputEncodingProblem object:self userInfo:userData];
+	[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyPossibleInputEncodingProblem
+														object:self
+													  userInfo:userData];
 
 	if ([[self delegate] respondsToSelector:@selector(tidyModelDetectedInputEncodingIssue:currentEncoding:suggestedEncoding:)])
 	{
-		[[self delegate] tidyModelDetectedInputEncodingIssue:self currentEncoding:self.inputEncoding suggestedEncoding:suggestedEncoding];
+		[[self delegate] tidyModelDetectedInputEncodingIssue:self
+											 currentEncoding:self.inputEncoding
+										   suggestedEncoding:suggestedEncoding];
 	}
 }
 
