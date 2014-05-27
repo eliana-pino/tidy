@@ -47,7 +47,7 @@
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	initSharingModel:
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (id)initSharingModel:(JSDTidyModel *)sharedTidyModel
+- (instancetype)initSharingModel:(JSDTidyModel *)sharedTidyModel
 {
 	return [self initWithName:@"undefined" optionValue:nil sharingModel:sharedTidyModel];
 }
@@ -56,7 +56,7 @@
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	initWithName:sharingModel:
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (id)initWithName:(NSString *)name
+- (instancetype)initWithName:(NSString *)name
       sharingModel:(JSDTidyModel *)sharedTidyModel
 {
 	return [self initWithName:name optionValue:nil sharingModel:sharedTidyModel];
@@ -66,7 +66,7 @@
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	initWithName:optionValue:sharingModel: - designated initializer
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (id)initWithName:(NSString *)name
+- (instancetype)initWithName:(NSString *)name
        optionValue:(NSString *)value
       sharingModel:(JSDTidyModel *)sharedTidyModel
 {

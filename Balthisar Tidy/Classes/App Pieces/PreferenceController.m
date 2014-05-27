@@ -34,10 +34,8 @@
  **************************************************************************************************/
 
 #import "PreferenceController.h"
-
-
 #if INCLUDE_SPARKLE == 1
-#import <Sparkle/Sparkle.h>
+	#import <Sparkle/Sparkle.h>
 #endif
 
 
@@ -50,16 +48,16 @@
 #pragma mark - Properties
 
 
-// Software Updater Pane Preferences and Objects
-@property (nonatomic, weak) IBOutlet NSTabViewItem *tabViewUpdates;
-@property (nonatomic, weak) IBOutlet NSButton *buttonAllowUpdateChecks;
-@property (nonatomic, weak) IBOutlet NSButton *buttonAllowSystemProfile;
-@property (nonatomic, weak) IBOutlet NSPopUpButton * buttonUpdateInterval;
+/* Software Updater Pane Preferences and Objects */
+@property (weak) IBOutlet NSTabViewItem *tabViewUpdates;
+@property (weak) IBOutlet NSButton      *buttonAllowUpdateChecks;
+@property (weak) IBOutlet NSButton      *buttonAllowSystemProfile;
+@property (weak) IBOutlet NSPopUpButton * buttonUpdateInterval;
 
-// Other Properties
-@property (nonatomic, weak) IBOutlet NSTabView *tabView;				// The tab view.
-@property (nonatomic, weak) IBOutlet NSView *optionPane;				// The empty pane in the nib that we will inhabit.
-@property (nonatomic, strong) OptionPaneController *optionController;	// The real option pane loaded into optionPane.
+/* Other Properties */
+@property (weak) IBOutlet NSTabView *tabView;            // The tab view.
+@property (weak) IBOutlet NSView    *optionPane;         // The empty pane in the nib that we will inhabit.
+@property OptionPaneController      *optionController;   // The real option pane loaded into optionPane.
 
 
 @end
@@ -127,10 +125,7 @@
 	[defaultValues setObject:@YES forKey:JSDKeyShowNewDocumentSyncInOut];
 
 
-	/*
-		Get the defaults from the linked-in TidyLib
-		and register them with the defaults system.
-	 */
+	/* Get built-in defaults from TidyLib and register them in user defaults. */
 	[JSDTidyModel addDefaultsToDictionary:defaultValues];
 	
 	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
@@ -144,7 +139,7 @@
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	init
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (id)init
+- (instancetype)init
 {
 	if (self = [super initWithWindowNibName:@"Preferences"])
 	{

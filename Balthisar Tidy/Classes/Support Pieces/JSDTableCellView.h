@@ -44,11 +44,11 @@
 @interface JSDTableCellView : NSTableCellView
 
 
-@property (nonatomic, assign) BOOL usesHoverEffect;
+@property (assign) BOOL usesHoverEffect;
 
-@property (nonatomic, weak) IBOutlet NSStepper *stepperControl;
+@property (weak) IBOutlet NSStepper *stepperControl;
 
-@property (nonatomic, weak) IBOutlet NSPopUpButton *popupButtonControl;
+@property (weak) IBOutlet NSPopUpButton *popupButtonControl;
 
 
 @end

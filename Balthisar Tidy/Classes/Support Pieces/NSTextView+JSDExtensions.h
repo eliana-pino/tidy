@@ -38,15 +38,15 @@
 
 @interface NSTextView (JSDExtensions)
 
-	@property (nonatomic) NSInteger highlitLine;                   // Highlight this row number (0 for none).
+	@property NSInteger highlitLine;                   // Highlight this row number (0 for none).
 	
-	@property (nonatomic) NSInteger highlitColumn;                 // Highlight this column of the row (0 for none).
+	@property NSInteger highlitColumn;                 // Highlight this column of the row (0 for none).
 	
-	@property (nonatomic) BOOL showsHighlight;                     // Sets/Indicates the current highlight state.
+	@property BOOL showsHighlight;                     // Sets/Indicates the current highlight state.
 
-	@property (nonatomic) BOOL wordwrapsText;                      // Sets/Indicates the current wordwrap state.
+	@property BOOL wordwrapsText;                      // Sets/Indicates the current wordwrap state.
 
-	@property (nonatomic) BOOL showsLineNumbers;                   // Sets/Indicates whether or not line numbers appear.
+	@property BOOL showsLineNumbers;                   // Sets/Indicates whether or not line numbers appear.
 
 
 - (void)scrollLineToVisible:(NSInteger)line;                      // Ensures that a logical line is visible in the view.

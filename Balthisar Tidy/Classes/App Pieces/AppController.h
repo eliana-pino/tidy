@@ -28,7 +28,6 @@
  **************************************************************************************************/
 
 #import <Cocoa/Cocoa.h>
-#import "PreferenceController.h"
 
 #if INCLUDE_SPARKLE == 1
 	#import <Sparkle/Sparkle.h>
@@ -39,10 +38,10 @@
 @interface AppController : NSObject <NSApplicationDelegate>
 
 
-@property (readonly, nonatomic) BOOL atLeastOneDocumentIsOpen;   // Bindable property indicating at least document is open.
+@property (readonly) BOOL atLeastOneDocumentIsOpen;   // Bindable property indicating at least document is open.
 
 
-- (IBAction)showPreferences:(id)sender;                          // User wants to see Preferences window.
+- (IBAction)showPreferences:(id)sender;               // User wants to see Preferences window.
 
 
 @end

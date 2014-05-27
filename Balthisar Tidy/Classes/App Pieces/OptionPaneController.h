@@ -31,10 +31,10 @@
 
 #import <Cocoa/Cocoa.h>
 #import "PreferenceController.h"
-#import "JSDTidyModel.h"
 #import "JSDTidyOption.h"
-#import "JSDTableView.h"
+#import "JSDTidyModel.h"
 #import "JSDTableCellView.h"
+#import "JSDTableView.h"
 
 
 @interface OptionPaneController : NSObject <NSTableViewDataSource, JSDTableViewDelegate>
@@ -42,7 +42,7 @@
 
 @property (weak) IBOutlet NSArrayController *theArrayController;   // Mediates between tidyOptions and the view items.
 
-@property (nonatomic, strong) NSArray *optionsInEffect;            // Only options in this list will be used.
+@property NSArray *optionsInEffect;                                // Only options in this list will be used.
 
 
 /*
@@ -53,7 +53,7 @@
 	user preferences system.
  */
 
-@property (nonatomic, strong) JSDTidyModel *tidyDocument;         // Expose the tidyDocument for its options values.
+@property JSDTidyModel *tidyDocument;                              // Expose the tidyDocument for its options values.
 
 
 /**
@@ -67,12 +67,12 @@
 	user preferences system. Right now this hackey way
 	is only used in one spot, and it's bad design.
  */
-@property (weak, nonatomic) IBOutlet NSTableView *theTable;        // Expose the table.
+@property (weak) IBOutlet NSTableView *theTable;                   // Expose the table.
 
-@property (nonatomic, assign) BOOL isInPreferencesView;            // Controls some item visibility if in Preferences.
+@property (assign) BOOL isInPreferencesView;                       // Controls some item visibility if in Preferences.
 
 
-- (id)init;
+- (instancetype)init;
 
 - (void)putViewIntoView:(NSView *)dstView;                         // Put this controllers `view` into `dstView`.
 

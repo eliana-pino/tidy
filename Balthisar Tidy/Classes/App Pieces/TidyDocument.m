@@ -106,7 +106,7 @@
 
 @property (weak)   IBOutlet NSView      *optionPane;         // Our empty optionPane in the nib.
 
-@property (strong) OptionPaneController *optionController;   // The real option pane we load into optionPane.
+@property          OptionPaneController *optionController;   // The real option pane we load into optionPane.
 
 
 /* First Run Controller */
@@ -344,7 +344,7 @@
 /*———————————————————————————————————————————————————————————————————*
 	init
  *———————————————————————————————————————————————————————————————————*/
-- (id)init
+- (instancetype)init
 {
 	if ((self = [super init]))
 	{
@@ -369,12 +369,6 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyTidyTextChanged object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyTidyErrorsChanged object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyPossibleInputEncodingProblem object:nil];
-
-	_sourceView       = nil;
-	_tidyView         = nil;
-	_optionController = nil;
-	_tidyProcess	  = nil;
-	_firstRun         = nil;
 }
 
 

@@ -2,7 +2,9 @@
 
 	JSDTidyModel.m
 
-	JSDTidyModel acts as a model to provide Tidy services to a cocoa application.
+	JSDTidyModel is a nice, Mac OS X wrapper for TidyLib. It uses instances of JSDTidyOption
+	to contain TidyOptions. The model works with every built-in	TidyOption, although applications
+	can suppress multiple individual TidyOptions if desired.
 
 
 	The MIT License (MIT)
@@ -68,6 +70,7 @@
 		`self` that we set via `tidySetAppData` during processing.
 		Essentially we're calling
 		[self errorFilter:Level:Line:Column:Message]
+	@TODO: Can I replace these with blocks in the processTidy method?
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
  
 /* Compatability with original TidyLib -- doesn't allow localization of messages. */
@@ -92,7 +95,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	init
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (id)init
+- (instancetype)init
 {
 	if (self = [super init])
 	{
@@ -115,7 +118,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	initWithString:
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (id)initWithString:(NSString *)value
+- (instancetype)initWithString:(NSString *)value
 {
 	self = [self init];
 	
@@ -131,7 +134,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	initWithString:copyOptionValuesFromModel:
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (id)initWithString:(NSString *)value copyOptionValuesFromModel:(JSDTidyModel *)theModel
+- (instancetype)initWithString:(NSString *)value copyOptionValuesFromModel:(JSDTidyModel *)theModel
 {
 	self = [self init];
 	
@@ -148,7 +151,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	initWithData:
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (id)initWithData:(NSData *)data
+- (instancetype)initWithData:(NSData *)data
 {
 	self = [self init];
 	
@@ -164,7 +167,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	initWithData:copyOptionValuesFromModel:
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (id)initWithData:(NSData *)data copyOptionValuesFromModel:(JSDTidyModel *)theModel
+- (instancetype)initWithData:(NSData *)data copyOptionValuesFromModel:(JSDTidyModel *)theModel
 {
 	self = [self init];
 	
@@ -181,7 +184,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	initWithFile:
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (id)initWithFile:(NSString *)path
+- (instancetype)initWithFile:(NSString *)path
 {
 	self = [self init];
 	
@@ -197,7 +200,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	initWithFile:copyOptionValuesFromModel:
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (id)initWithFile:(NSString *)path copyOptionValuesFromModel:(JSDTidyModel *)theModel
+- (instancetype)initWithFile:(NSString *)path copyOptionValuesFromModel:(JSDTidyModel *)theModel
 {
 	self = [self init];
 	

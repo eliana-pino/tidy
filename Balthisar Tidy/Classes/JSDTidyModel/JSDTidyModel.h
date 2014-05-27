@@ -2,7 +2,9 @@
 
 	JSDTidyModel.h
 
-	JSDTidyModel acts as a model to provide Tidy services to a cocoa application.
+	JSDTidyModel is a nice, Mac OS X wrapper for TidyLib. It uses instances of JSDTidyOption
+	to contain TidyOptions. The model works with every built-in	TidyOption, although applications
+	can suppress multiple individual TidyOptions if desired.
 	
 
 	The MIT License (MIT)
@@ -118,7 +120,7 @@
 	INITIALIZATION and DEALLOCATION
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
-- (id)init;
+- (instancetype)init;
 
 /*
 	The convenience initializers assume that strings and data
@@ -130,17 +132,17 @@
 	be generated immediately.
 */
 
-- (id)initWithString:(NSString *)value;
+- (instancetype)initWithString:(NSString *)value;
 
-- (id)initWithString:(NSString *)value copyOptionValuesFromModel:(JSDTidyModel *)theModel;
+- (instancetype)initWithString:(NSString *)value copyOptionValuesFromModel:(JSDTidyModel *)theModel;
 
-- (id)initWithData:(NSData *)data;														
+- (instancetype)initWithData:(NSData *)data;														
 
-- (id)initWithData:(NSData *)data copyOptionValuesFromModel:(JSDTidyModel *)theModel;
+- (instancetype)initWithData:(NSData *)data copyOptionValuesFromModel:(JSDTidyModel *)theModel;
 
-- (id)initWithFile:(NSString *)path;														
+- (instancetype)initWithFile:(NSString *)path;														
 
-- (id)initWithFile:(NSString *)path copyOptionValuesFromModel:(JSDTidyModel *)theModel;
+- (instancetype)initWithFile:(NSString *)path copyOptionValuesFromModel:(JSDTidyModel *)theModel;
 
 
 #pragma mark - Delegate Support

@@ -97,13 +97,7 @@ typedef enum : NSInteger
 
 #pragma mark - class PreferenceController
 
-/*
-	The PreferenceController handles the preferences window and its interaction
-	with the defaults system and the OptionPaneController.
- 
-	Because this is a singleton class and also for convenience, it is here where
-	we will manage the `optionsInEffect` list.
- */
+
 @interface PreferenceController : NSWindowController
 
 

@@ -32,17 +32,18 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface FirstRunController : NSObject
 
 
-@property (nonatomic, strong) NSArray *steps;                 // Steps array, as described above.
+@property NSArray *steps;                 // Steps array, as described above.
 
-@property (nonatomic, strong) NSString *preferencesKeyName;   // Preferences key to record whether or not helper finished.
+@property NSString *preferencesKeyName;   // Preferences key to record whether or not helper finished.
 
 
-- (id)initWithSteps:(NSArray*)steps;                          // Inital with a steps array directly.
+- (instancetype)initWithSteps:(NSArray*)steps;   // Inital with a steps array directly.
 
-- (void)beginFirstRunSequence;                                // Start the sequence.
+- (void)beginFirstRunSequence;                   // Start the sequence.
 
 
 @end

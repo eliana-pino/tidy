@@ -35,17 +35,17 @@
 
 @interface FirstRunController ()
 
-@property (nonatomic, weak) IBOutlet NSPopover *popoverFirstRun;
-@property (nonatomic, weak) IBOutlet NSButton *buttonPrevious;
-@property (nonatomic, weak) IBOutlet NSButton *buttonCancel;
-@property (nonatomic, weak) IBOutlet NSButton *buttonNext;
-@property (nonatomic, weak) IBOutlet NSButton *checkboxShowAgain;
-@property (nonatomic, weak) IBOutlet NSTextField *textFieldExplanation;
-@property (nonatomic, weak) IBOutlet NSTextField *textFieldProgress;
+@property (weak) IBOutlet NSPopover   *popoverFirstRun;
+@property (weak) IBOutlet NSButton    *buttonPrevious;
+@property (weak) IBOutlet NSButton    *buttonCancel;
+@property (weak) IBOutlet NSButton    *buttonNext;
+@property (weak) IBOutlet NSButton    *checkboxShowAgain;
+@property (weak) IBOutlet NSTextField *textFieldExplanation;
+@property (weak) IBOutlet NSTextField *textFieldProgress;
 
-@property (nonatomic, assign) BOOL userHasTouchedCheckbox;
+@property (assign) BOOL userHasTouchedCheckbox;
 
-@property (nonatomic, assign) NSInteger currentStep;
+@property (assign) NSInteger currentStep;
 
 - (IBAction)handleButtonPrevious:(NSButton *)sender;
 - (IBAction)handleButtonCancel:(NSButton *)sender;
@@ -65,7 +65,7 @@
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	init - designated initializer
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (id)init
+- (instancetype)init
 {
 	self = [super init];
 	if (self)
@@ -82,7 +82,7 @@
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	initWithSteps:
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (id)initWithSteps:(NSArray*)steps
+- (instancetype)initWithSteps:(NSArray*)steps
 {
 	if ((self = [self init]))
 	{

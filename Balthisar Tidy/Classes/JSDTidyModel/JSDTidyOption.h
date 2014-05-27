@@ -48,11 +48,11 @@
 
 #pragma mark - Intializers
 
-- (id)initSharingModel:(JSDTidyModel *)sharedTidyModel;
+- (instancetype)initSharingModel:(JSDTidyModel *)sharedTidyModel;
 
-- (id)initWithName:(NSString *)name sharingModel:(JSDTidyModel *)sharedTidyModel;
+- (instancetype)initWithName:(NSString *)name sharingModel:(JSDTidyModel *)sharedTidyModel;
 
-- (id)initWithName:(NSString *)name optionValue:(NSMutableString *)value sharingModel:(JSDTidyModel *)sharedTidyModel;
+- (instancetype)initWithName:(NSString *)name optionValue:(NSMutableString *)value sharingModel:(JSDTidyModel *)sharedTidyModel;
 
 
 #pragma mark - Main properties
@@ -106,6 +106,7 @@
 
 @property (assign)           BOOL optionIsSuppressed;                   // Indicates whether or not this option is unused by JSDTidyModel.
 
+
 #pragma mark - Other Public Methods
 
 - (BOOL)applyOptionToTidyDoc:(TidyDoc)destinationTidyDoc;               // Applies this option to a TidyDoc instance.
@@ -120,3 +121,4 @@
 
 
 @end
+

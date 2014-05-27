@@ -38,6 +38,7 @@
 @optional
 
 /* Returns YES if the key was handled. */
+
 - (BOOL)tableView:(NSTableView *)aTableView keyWasPressed:(NSInteger)keyCode row:(NSInteger)rowIndex;
 
 @end
@@ -46,3 +47,4 @@
 @interface JSDTableView : NSTableView <JSDTableViewDelegate>
 
 @end
+

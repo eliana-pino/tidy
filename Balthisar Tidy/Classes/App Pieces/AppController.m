@@ -28,6 +28,7 @@
  **************************************************************************************************/
 
 #import "AppController.h"
+#import "PreferenceController.h"
 #import "JSDIntegerValueTransformer.h"
 #import "JSDAllCapsValueTransformer.h"
 
@@ -37,7 +38,7 @@
 
 @interface AppController ()
 
-@property (weak, nonatomic) IBOutlet NSMenuItem *menuCheckForUpdates;
+@property (weak) IBOutlet NSMenuItem *menuCheckForUpdates;
 
 @end
 

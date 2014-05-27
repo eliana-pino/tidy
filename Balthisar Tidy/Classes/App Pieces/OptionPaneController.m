@@ -43,28 +43,28 @@
 
 /* The NIB's root-level view */
 
-@property (nonatomic, weak) IBOutlet NSView *View;
+@property (weak) IBOutlet NSView *View;
 
 
 /* Properties for managing the toggling of theDescription's visibility */
 
-@property (nonatomic, weak) IBOutlet NSTextField *theDescription;
+@property (weak) IBOutlet NSTextField *theDescription;
 
-@property (nonatomic, strong) NSLayoutConstraint *theDescriptionConstraint;
+@property NSLayoutConstraint *theDescriptionConstraint;
 
 
 /* Behavior and display properties */
 
-@property (nonatomic, assign) BOOL isShowingFriendlyTidyOptionNames;
+@property (assign) BOOL isShowingFriendlyTidyOptionNames;
 
-@property (nonatomic, assign) BOOL isShowingOptionsInGroups;
+@property (assign) BOOL isShowingOptionsInGroups;
 
 
 /* Exposing sort descriptors and predicates */
 
-@property (nonatomic, strong) NSArray *sortDescriptor;
+@property NSArray *sortDescriptor;
 
-@property (nonatomic, strong) NSPredicate *filterPredicate;
+@property NSPredicate *filterPredicate;
 
 
 /* Gradient button actions */
@@ -97,7 +97,7 @@
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	init - designated initializer
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (id)init
+- (instancetype)init
 {
 	self = [super init];
 
@@ -111,15 +111,6 @@
 	}
 	return self;
 
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	dealloc
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)dealloc
-{
-	_tidyDocument = nil;
 }
 
 
@@ -333,7 +324,7 @@
 
 	if ((rowIndex >= 0) && (( keyCode == 123) || (keyCode == 124)))
 	{
-		JSDTidyOption *localOption = self.theArrayController.arrangedObjects[row];
+		JSDTidyOption *localOption = self.theArrayController.arrangedObjects[rowIndex];
 		
 		if (keyCode == 123)
 		{
@@ -343,9 +334,6 @@
 		{
 			[localOption optionUIValueIncrement];
 		}
-
-		// @todo: this should cause everything to update automatically; verify in debugger! */
-		// Maybe need this -> [self.theTable reloadData];
 		
 		return YES;
 	}
