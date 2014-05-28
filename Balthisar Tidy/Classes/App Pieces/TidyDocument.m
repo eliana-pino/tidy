@@ -62,6 +62,11 @@
  **************************************************************************************************/
 
 #import "TidyDocument.h"
+#import "JSDTidyModel.h"
+#import "OptionPaneController.h"
+#import "PreferenceController.h"
+#import "NSTextView+JSDExtensions.h"
+#import "FirstRunController.h"
 
 
 #pragma mark - CATEGORY - Non-Public

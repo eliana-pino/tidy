@@ -31,10 +31,9 @@
 
 #import <Cocoa/Cocoa.h>
 #import "PreferenceController.h"
+#import "JSDTableView.h"   // Required in header to support delegate protocol.
 #import "JSDTidyOption.h"
 #import "JSDTidyModel.h"
-#import "JSDTableCellView.h"
-#import "JSDTableView.h"
 
 
 @interface OptionPaneController : NSObject <NSTableViewDataSource, JSDTableViewDelegate>

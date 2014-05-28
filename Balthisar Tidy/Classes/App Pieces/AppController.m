@@ -32,6 +32,12 @@
 #import "JSDIntegerValueTransformer.h"
 #import "JSDAllCapsValueTransformer.h"
 
+#if INCLUDE_SPARKLE == 1
+#import <Sparkle/Sparkle.h>
+
+#endif
+
+
 
 #pragma mark - CATEGORY - Non-Public
 

@@ -30,6 +30,7 @@
 
 #import "JSDTidyModel.h"
 #import "JSDTidyOption.h"
+#import "config.h"   // from vendor/tidylib/src/
 
 
 #pragma mark - IMPLEMENTATION

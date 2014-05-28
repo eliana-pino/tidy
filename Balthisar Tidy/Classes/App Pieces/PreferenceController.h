@@ -36,7 +36,8 @@
 
 #import <Cocoa/Cocoa.h>
 #import "OptionPaneController.h"
-#import "JSDTidyModel.h"
+
+@class JSDTidyModel;
 
 
 #pragma mark - Some defines

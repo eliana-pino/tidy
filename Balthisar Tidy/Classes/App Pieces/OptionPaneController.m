@@ -34,6 +34,7 @@
  **************************************************************************************************/
 
 #import "OptionPaneController.h"
+#import "JSDTableCellView.h"
 
 
 #pragma mark - CATEGORY - Non-Public
@@ -62,9 +63,9 @@
 
 /* Exposing sort descriptors and predicates */
 
-@property NSArray *sortDescriptor;
+@property (readonly) NSArray     *sortDescriptor;
 
-@property NSPredicate *filterPredicate;
+@property (readonly) NSPredicate *filterPredicate;
 
 
 /* Gradient button actions */
@@ -89,6 +90,9 @@
 
 
 @implementation OptionPaneController
+
+
+@synthesize optionsInEffect = _optionsInEffect;
 
 
 #pragma mark - Initialization and Deallocation
@@ -164,6 +168,14 @@
 
 #pragma mark - Options Related
 
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	optionsInEffect:
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (NSArray *)optionsInEffect
+{
+	return _optionsInEffect;
+}
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	setOptionsInEffect:

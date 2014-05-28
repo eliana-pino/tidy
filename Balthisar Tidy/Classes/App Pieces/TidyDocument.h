@@ -28,11 +28,6 @@
  **************************************************************************************************/
 
 #import <Cocoa/Cocoa.h>
-#import "JSDTidyModel.h"
-#import "OptionPaneController.h"
-#import "PreferenceController.h"
-#import "NSTextView+JSDExtensions.h"
-#import "FirstRunController.h"
 
 
 @interface TidyDocument : NSDocument <NSTableViewDelegate, NSSplitViewDelegate, NSTextViewDelegate>

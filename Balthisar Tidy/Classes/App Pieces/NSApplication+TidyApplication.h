@@ -27,7 +27,6 @@
  **************************************************************************************************/
 
 #import <Cocoa/Cocoa.h>
-#import "PreferenceController.h"
 
 
 @interface NSApplication (TidyApplication)

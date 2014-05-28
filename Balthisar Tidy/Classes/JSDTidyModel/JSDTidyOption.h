@@ -27,8 +27,8 @@
  **************************************************************************************************/
 
 #import <Foundation/Foundation.h>
-#import "buffio.h"
-#import "config.h"
+#import "config.h"   // from vendor/tidylib/src/
+
 
 @class JSDTidyModel;
 
@@ -52,7 +52,7 @@
 
 - (instancetype)initWithName:(NSString *)name sharingModel:(JSDTidyModel *)sharedTidyModel;
 
-- (instancetype)initWithName:(NSString *)name optionValue:(NSMutableString *)value sharingModel:(JSDTidyModel *)sharedTidyModel;
+- (instancetype)initWithName:(NSString *)name optionValue:(NSString *)value sharingModel:(JSDTidyModel *)sharedTidyModel;
 
 
 #pragma mark - Main properties

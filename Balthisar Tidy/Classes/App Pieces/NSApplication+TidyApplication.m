@@ -27,6 +27,7 @@
  **************************************************************************************************/
 
 #import "NSApplication+TidyApplication.h"
+#import "PreferenceController.h"
 
 @implementation NSApplication (TidyApplication)
 

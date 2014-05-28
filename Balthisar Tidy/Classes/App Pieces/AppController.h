@@ -29,11 +29,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-#if INCLUDE_SPARKLE == 1
-	#import <Sparkle/Sparkle.h>
-
-#endif
-
 
 @interface AppController : NSObject <NSApplicationDelegate>
 
