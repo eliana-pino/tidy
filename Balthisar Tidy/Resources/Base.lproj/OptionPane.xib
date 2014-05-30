@@ -3,6 +3,7 @@
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="OptionPaneController">
@@ -49,74 +50,235 @@
                                                 </textFieldCell>
                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
                                                 <prototypeCellViews>
-                                                    <tableCellView id="Jz7-gz-B3D" userLabel="JSDTableCellView">
+                                                    <tableCellView id="Jz7-gz-B3D" userLabel="JSDTableCellView" customClass="JSDTableCellView">
                                                         <rect key="frame" x="0.0" y="0.0" width="300" height="24"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
-                                                            <tabView drawsBackground="NO" controlSize="mini" type="noTabsLineBorder" translatesAutoresizingMaskIntoConstraints="NO" id="jQc-25-Ewn" userLabel="TabView - Header/Data">
+                                                            <tabView drawsBackground="NO" controlSize="mini" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="jQc-25-Ewn" userLabel="TabView - Header/Data">
                                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="24"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <font key="font" metaFont="miniSystem"/>
                                                                 <tabViewItems>
-                                                                    <tabViewItem label="Tab" identifier="1" id="qHU-0w-HMF" userLabel="TabView - Header">
+                                                                    <tabViewItem label="Tab" identifier="yes" id="qHU-0w-HMF" userLabel="TabView - Header">
                                                                         <view key="view" id="RSX-RY-4xh">
-                                                                            <rect key="frame" x="1" y="1" width="298" height="22"/>
-                                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                                        </view>
-                                                                    </tabViewItem>
-                                                                    <tabViewItem label="View" identifier="2" id="jOM-tl-O9Q" userLabel="TabView - Data">
-                                                                        <view key="view" id="13r-6M-dKC">
-                                                                            <rect key="frame" x="1" y="1" width="298" height="22"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="300" height="24"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
-                                                                                <tabView drawsBackground="NO" controlSize="mini" type="noTabsLineBorder" translatesAutoresizingMaskIntoConstraints="NO" id="DGL-RW-J8s" userLabel="TabView - name/localized">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="22"/>
+                                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Wfu-vK-2yg" userLabel="localized category">
+                                                                                    <rect key="frame" x="3" y="4" width="294" height="17"/>
+                                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Localized Category" id="js9-t5-JZv">
+                                                                                        <font key="font" metaFont="systemBold"/>
+                                                                                        <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                                        <color key="backgroundColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
+                                                                                    </textFieldCell>
+                                                                                    <connections>
+                                                                                        <binding destination="Jz7-gz-B3D" name="value" keyPath="objectValue.localizedHumanReadableCategory" id="xEC-pC-zHk">
+                                                                                            <dictionary key="options">
+                                                                                                <string key="NSValueTransformerName">JSDAllCapsValueTransformer</string>
+                                                                                            </dictionary>
+                                                                                        </binding>
+                                                                                    </connections>
+                                                                                </textField>
+                                                                            </subviews>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="centerY" secondItem="Wfu-vK-2yg" secondAttribute="centerY" id="9bl-5p-mTp"/>
+                                                                                <constraint firstItem="Wfu-vK-2yg" firstAttribute="leading" secondItem="RSX-RY-4xh" secondAttribute="leading" constant="5" id="kME-9k-B6H"/>
+                                                                                <constraint firstAttribute="trailing" secondItem="Wfu-vK-2yg" secondAttribute="trailing" constant="5" id="sQP-a2-OCH"/>
+                                                                            </constraints>
+                                                                        </view>
+                                                                    </tabViewItem>
+                                                                    <tabViewItem label="View" identifier="no" id="jOM-tl-O9Q" userLabel="TabView - Data">
+                                                                        <view key="view" id="13r-6M-dKC">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="300" height="24"/>
+                                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                            <subviews>
+                                                                                <tabView drawsBackground="NO" controlSize="mini" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="DGL-RW-J8s" userLabel="TabView - name/localized">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="133" height="24"/>
                                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                                     <font key="font" metaFont="miniSystem"/>
                                                                                     <tabViewItems>
-                                                                                        <tabViewItem label="Tab" identifier="1" id="rby-Wp-iKW" userLabel="TabView - name">
+                                                                                        <tabViewItem label="Tab" identifier="no" id="rby-Wp-iKW" userLabel="TabView - name">
                                                                                             <view key="view" id="B0c-Bw-ktc">
-                                                                                                <rect key="frame" x="1" y="1" width="298" height="20"/>
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="150" height="24"/>
                                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                                                <subviews>
+                                                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="SQf-Ob-fAb" userLabel="name">
+                                                                                                        <rect key="frame" x="18" y="3" width="129" height="17"/>
+                                                                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="name" id="CbI-lr-qxT">
+                                                                                                            <font key="font" metaFont="system"/>
+                                                                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                                                        </textFieldCell>
+                                                                                                        <connections>
+                                                                                                            <binding destination="Jz7-gz-B3D" name="value" keyPath="objectValue.name" id="Z0S-aa-yMe">
+                                                                                                                <dictionary key="options">
+                                                                                                                    <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                                                                                                                </dictionary>
+                                                                                                            </binding>
+                                                                                                        </connections>
+                                                                                                    </textField>
+                                                                                                </subviews>
+                                                                                                <constraints>
+                                                                                                    <constraint firstAttribute="centerY" secondItem="SQf-Ob-fAb" secondAttribute="centerY" constant="-0.5" id="IWT-XA-0nl"/>
+                                                                                                    <constraint firstAttribute="trailing" secondItem="SQf-Ob-fAb" secondAttribute="trailing" constant="5" id="UN8-Ed-e3x"/>
+                                                                                                    <constraint firstItem="SQf-Ob-fAb" firstAttribute="leading" secondItem="B0c-Bw-ktc" secondAttribute="leading" constant="20" id="ZGa-RM-WXw"/>
+                                                                                                </constraints>
                                                                                             </view>
                                                                                         </tabViewItem>
-                                                                                        <tabViewItem label="View" identifier="2" id="GkT-aq-Jlq" userLabel="TabView - localized">
+                                                                                        <tabViewItem label="View" identifier="yes" id="GkT-aq-Jlq" userLabel="TabView - localized">
                                                                                             <view key="view" id="bnf-OP-eOm">
-                                                                                                <rect key="frame" x="1" y="1" width="0.0" height="0.0"/>
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="133" height="24"/>
                                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                                                <subviews>
+                                                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="fSk-1z-lt0">
+                                                                                                        <rect key="frame" x="18" y="3" width="112" height="17"/>
+                                                                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="localized name" id="9UQ-gv-hPo">
+                                                                                                            <font key="font" metaFont="system"/>
+                                                                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                                                        </textFieldCell>
+                                                                                                        <connections>
+                                                                                                            <binding destination="Jz7-gz-B3D" name="value" keyPath="objectValue.localizedHumanReadableName" id="fpt-Kb-CkS">
+                                                                                                                <dictionary key="options">
+                                                                                                                    <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                                                                                                                </dictionary>
+                                                                                                            </binding>
+                                                                                                        </connections>
+                                                                                                    </textField>
+                                                                                                </subviews>
+                                                                                                <constraints>
+                                                                                                    <constraint firstAttribute="trailing" secondItem="fSk-1z-lt0" secondAttribute="trailing" constant="5" id="QhX-pL-SFP"/>
+                                                                                                    <constraint firstItem="fSk-1z-lt0" firstAttribute="leading" secondItem="bnf-OP-eOm" secondAttribute="leading" constant="20" id="lea-02-oh9"/>
+                                                                                                    <constraint firstAttribute="centerY" secondItem="fSk-1z-lt0" secondAttribute="centerY" constant="-0.5" id="mpE-0y-wJO"/>
+                                                                                                </constraints>
                                                                                             </view>
                                                                                         </tabViewItem>
                                                                                     </tabViewItems>
+                                                                                    <connections>
+                                                                                        <binding destination="-2" name="selectedIdentifier" keyPath="self.isShowingFriendlyTidyOptionNames" id="aMg-5q-MOq">
+                                                                                            <dictionary key="options">
+                                                                                                <string key="NSValueTransformerName">JSDBoolToStringValueTransformer</string>
+                                                                                            </dictionary>
+                                                                                        </binding>
+                                                                                    </connections>
                                                                                 </tabView>
-                                                                                <tabView drawsBackground="NO" controlSize="mini" type="noTabsLineBorder" translatesAutoresizingMaskIntoConstraints="NO" id="tC7-3u-I3a" userLabel="TabView - data choosers">
-                                                                                    <rect key="frame" x="150" y="0.0" width="150" height="22"/>
+                                                                                <tabView drawsBackground="NO" controlSize="mini" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="tC7-3u-I3a" userLabel="TabView - data choosers">
+                                                                                    <rect key="frame" x="133" y="0.0" width="167" height="24"/>
                                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                                     <font key="font" metaFont="miniSystem"/>
                                                                                     <tabViewItems>
-                                                                                        <tabViewItem label="Tab" identifier="1" id="2Xd-NR-dx6" userLabel="TabView - text">
+                                                                                        <tabViewItem label="NSTextField" identifier="NSTextField" id="2Xd-NR-dx6" userLabel="TabView - text">
                                                                                             <view key="view" id="k4g-ZD-SzW">
-                                                                                                <rect key="frame" x="1" y="1" width="298" height="20"/>
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="167" height="24"/>
                                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                                                <subviews>
+                                                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Wv5-Uh-AKN">
+                                                                                                        <rect key="frame" x="10" y="3" width="154" height="17"/>
+                                                                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="option value" id="ASw-zL-5Ib">
+                                                                                                            <font key="font" metaFont="system"/>
+                                                                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                                                        </textFieldCell>
+                                                                                                        <connections>
+                                                                                                            <binding destination="Jz7-gz-B3D" name="value" keyPath="objectValue.optionUIValue" id="9Cv-FB-0l9"/>
+                                                                                                        </connections>
+                                                                                                    </textField>
+                                                                                                </subviews>
+                                                                                                <constraints>
+                                                                                                    <constraint firstAttribute="centerY" secondItem="Wv5-Uh-AKN" secondAttribute="centerY" constant="-0.5" id="gV6-o3-ZOq"/>
+                                                                                                    <constraint firstAttribute="trailing" secondItem="Wv5-Uh-AKN" secondAttribute="trailing" constant="5" id="hP7-3I-Du1"/>
+                                                                                                    <constraint firstItem="Wv5-Uh-AKN" firstAttribute="leading" secondItem="k4g-ZD-SzW" secondAttribute="leading" constant="12" id="zkE-U1-GFy"/>
+                                                                                                </constraints>
                                                                                             </view>
                                                                                         </tabViewItem>
-                                                                                        <tabViewItem label="View" identifier="2" id="RXS-T9-98n" userLabel="TabView - stepper">
+                                                                                        <tabViewItem label="NSStepper" identifier="NSStepper" id="RXS-T9-98n" userLabel="TabView - stepper">
                                                                                             <view key="view" id="Nf3-8A-Dio">
-                                                                                                <rect key="frame" x="1" y="1" width="298" height="20"/>
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="150" height="24"/>
                                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                                                <subviews>
+                                                                                                    <stepper hidden="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9gy-cc-TJU">
+                                                                                                        <rect key="frame" x="-2" y="4" width="13" height="15"/>
+                                                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                                                        <stepperCell key="cell" controlSize="mini" continuous="YES" alignment="left" maxValue="1000" id="uBy-1n-pIv"/>
+                                                                                                        <connections>
+                                                                                                            <binding destination="Jz7-gz-B3D" name="value" keyPath="objectValue.optionUIValue" id="YGP-hz-bcD">
+                                                                                                                <dictionary key="options">
+                                                                                                                    <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                                                                                                                    <bool key="NSConditionallySetsEnabled" value="NO"/>
+                                                                                                                </dictionary>
+                                                                                                            </binding>
+                                                                                                        </connections>
+                                                                                                    </stepper>
+                                                                                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="35g-HY-3xn">
+                                                                                                        <rect key="frame" x="10" y="3" width="137" height="17"/>
+                                                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" title="numeric value" id="eA4-6p-6c6">
+                                                                                                            <font key="font" metaFont="system"/>
+                                                                                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                                                        </textFieldCell>
+                                                                                                        <connections>
+                                                                                                            <binding destination="Jz7-gz-B3D" name="value" keyPath="objectValue.optionUIValue" id="C8I-f3-oV2">
+                                                                                                                <dictionary key="options">
+                                                                                                                    <string key="NSValueTransformerName">JSDIntegerValueTransformer</string>
+                                                                                                                </dictionary>
+                                                                                                            </binding>
+                                                                                                        </connections>
+                                                                                                    </textField>
+                                                                                                </subviews>
+                                                                                                <constraints>
+                                                                                                    <constraint firstAttribute="trailing" secondItem="35g-HY-3xn" secondAttribute="trailing" constant="5" id="7ap-Oe-0vM"/>
+                                                                                                    <constraint firstAttribute="centerY" secondItem="9gy-cc-TJU" secondAttribute="centerY" constant="-0.5" id="U4U-S0-xTd"/>
+                                                                                                    <constraint firstItem="35g-HY-3xn" firstAttribute="leading" secondItem="Nf3-8A-Dio" secondAttribute="leading" constant="12" id="o9y-gs-6Bc"/>
+                                                                                                    <constraint firstAttribute="centerY" secondItem="35g-HY-3xn" secondAttribute="centerY" constant="-0.5" id="rCD-1G-tON"/>
+                                                                                                    <constraint firstItem="9gy-cc-TJU" firstAttribute="leading" secondItem="Nf3-8A-Dio" secondAttribute="leading" id="vbN-wD-Ufz"/>
+                                                                                                </constraints>
                                                                                             </view>
                                                                                         </tabViewItem>
-                                                                                        <tabViewItem label="Item 2" identifier="" id="sqg-Ym-NMP" userLabel="TabView - popup">
+                                                                                        <tabViewItem label="NSPopUpButton" identifier="NSPopUpButton" id="sqg-Ym-NMP" userLabel="TabView - popup">
                                                                                             <view key="view" id="Vm6-Cq-tX3">
-                                                                                                <rect key="frame" x="1" y="1" width="0.0" height="22"/>
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="150" height="24"/>
                                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                                                <subviews>
+                                                                                                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yho-dg-Xfd">
+                                                                                                        <rect key="frame" x="4" y="2" width="141" height="19"/>
+                                                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                                                        <popUpButtonCell key="cell" type="roundRect" bezelStyle="roundedRect" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" inset="2" id="44K-BQ-xTa">
+                                                                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                                                            <font key="font" metaFont="cellTitle"/>
+                                                                                                            <menu key="menu" title="OtherViews" id="lmh-xo-kRD"/>
+                                                                                                        </popUpButtonCell>
+                                                                                                        <connections>
+                                                                                                            <binding destination="Jz7-gz-B3D" name="selectedIndex" keyPath="objectValue.optionUIValue" previousBinding="vJT-Bz-8kn" id="CJG-7t-EGs">
+                                                                                                                <dictionary key="options">
+                                                                                                                    <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                                                                                                                    <bool key="NSConditionallySetsEnabled" value="NO"/>
+                                                                                                                </dictionary>
+                                                                                                            </binding>
+                                                                                                            <binding destination="Jz7-gz-B3D" name="contentValues" keyPath="objectValue.possibleOptionValues" id="vJT-Bz-8kn"/>
+                                                                                                        </connections>
+                                                                                                    </popUpButton>
+                                                                                                </subviews>
+                                                                                                <constraints>
+                                                                                                    <constraint firstAttribute="trailing" secondItem="yho-dg-Xfd" secondAttribute="trailing" constant="5" id="1bR-s7-6sa"/>
+                                                                                                    <constraint firstAttribute="centerY" secondItem="yho-dg-Xfd" secondAttribute="centerY" id="B4e-jF-tP3"/>
+                                                                                                    <constraint firstItem="yho-dg-Xfd" firstAttribute="leading" secondItem="Vm6-Cq-tX3" secondAttribute="leading" constant="4" id="FtG-lR-Yjs"/>
+                                                                                                </constraints>
                                                                                             </view>
                                                                                         </tabViewItem>
                                                                                     </tabViewItems>
+                                                                                    <connections>
+                                                                                        <binding destination="Jz7-gz-B3D" name="selectedIdentifier" keyPath="objectValue.optionUIType" id="dp6-uD-xKu"/>
+                                                                                    </connections>
                                                                                 </tabView>
                                                                             </subviews>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="trailing" secondItem="tC7-3u-I3a" secondAttribute="trailing" id="b8x-DM-HcK"/>
-                                                                                <constraint firstItem="DGL-RW-J8s" firstAttribute="width" secondItem="tC7-3u-I3a" secondAttribute="width" id="drN-pX-jL4"/>
+                                                                                <constraint firstItem="DGL-RW-J8s" firstAttribute="width" secondItem="tC7-3u-I3a" secondAttribute="width" multiplier="0.8" id="drN-pX-jL4"/>
                                                                                 <constraint firstItem="tC7-3u-I3a" firstAttribute="leading" secondItem="DGL-RW-J8s" secondAttribute="trailing" id="iTj-Kr-0GL"/>
                                                                                 <constraint firstItem="DGL-RW-J8s" firstAttribute="top" secondItem="13r-6M-dKC" secondAttribute="top" id="o8b-yA-rrp"/>
                                                                                 <constraint firstAttribute="bottom" secondItem="tC7-3u-I3a" secondAttribute="bottom" id="oae-zj-3f0"/>
@@ -127,6 +289,13 @@
                                                                         </view>
                                                                     </tabViewItem>
                                                                 </tabViewItems>
+                                                                <connections>
+                                                                    <binding destination="Jz7-gz-B3D" name="selectedIdentifier" keyPath="objectValue.optionIsHeader" id="ubp-mW-z6j">
+                                                                        <dictionary key="options">
+                                                                            <string key="NSValueTransformerName">JSDBoolToStringValueTransformer</string>
+                                                                        </dictionary>
+                                                                    </binding>
+                                                                </connections>
                                                             </tabView>
                                                         </subviews>
                                                         <constraints>
@@ -135,6 +304,10 @@
                                                             <constraint firstAttribute="trailing" secondItem="jQc-25-Ewn" secondAttribute="trailing" id="pun-5c-5jh"/>
                                                             <constraint firstItem="jQc-25-Ewn" firstAttribute="leading" secondItem="Jz7-gz-B3D" secondAttribute="leading" id="rhV-PW-Luf"/>
                                                         </constraints>
+                                                        <connections>
+                                                            <outlet property="popupButtonControl" destination="yho-dg-Xfd" id="0Vr-ZG-Xo3"/>
+                                                            <outlet property="stepperControl" destination="9gy-cc-TJU" id="i5t-ZS-LLi"/>
+                                                        </connections>
                                                     </tableCellView>
                                                 </prototypeCellViews>
                                             </tableColumn>
@@ -288,316 +461,6 @@
                 <binding destination="-2" name="contentArray" keyPath="self.tidyDocument.tidyOptionsBindable" id="eq5-l4-Skk"/>
             </connections>
         </arrayController>
-        <tableCellView identifier="optionStepper" id="Jlo-Y8-J8Y" userLabel="optionStepper" customClass="JSDTableCellView">
-            <rect key="frame" x="0.0" y="0.0" width="144" height="20"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <customView translatesAutoresizingMaskIntoConstraints="NO" id="R7C-t3-XO3">
-                    <rect key="frame" x="0.0" y="0.0" width="144" height="20"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <subviews>
-                        <stepper hidden="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Yd-o5-KgU">
-                            <rect key="frame" x="-2" y="3" width="13" height="15"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <stepperCell key="cell" controlSize="mini" continuous="YES" alignment="left" maxValue="1000" id="5vQ-KU-8dK"/>
-                            <connections>
-                                <binding destination="Jlo-Y8-J8Y" name="value" keyPath="objectValue.optionValue" id="44W-bC-UJb">
-                                    <dictionary key="options">
-                                        <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
-                                        <bool key="NSConditionallySetsEnabled" value="NO"/>
-                                        <string key="NSValueTransformerName">JSDIntegerValueTransformer</string>
-                                    </dictionary>
-                                </binding>
-                            </connections>
-                        </stepper>
-                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EBb-5Y-S25">
-                            <rect key="frame" x="12" y="2" width="134" height="17"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" alignment="left" id="ksV-rd-lUs">
-                                <font key="font" metaFont="system"/>
-                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                            </textFieldCell>
-                            <connections>
-                                <binding destination="Jlo-Y8-J8Y" name="value" keyPath="objectValue.optionValue" id="wvc-NP-1eA"/>
-                            </connections>
-                        </textField>
-                    </subviews>
-                    <constraints>
-                        <constraint firstAttribute="trailing" secondItem="EBb-5Y-S25" secondAttribute="trailing" id="4Bo-vc-kjZ"/>
-                        <constraint firstAttribute="centerY" secondItem="EBb-5Y-S25" secondAttribute="centerY" id="6Iy-a7-Rnj"/>
-                        <constraint firstItem="3Yd-o5-KgU" firstAttribute="leading" secondItem="R7C-t3-XO3" secondAttribute="leading" id="eie-Sc-hFs"/>
-                        <constraint firstAttribute="centerY" secondItem="3Yd-o5-KgU" secondAttribute="centerY" id="fRk-r1-iQF"/>
-                        <constraint firstItem="EBb-5Y-S25" firstAttribute="leading" secondItem="3Yd-o5-KgU" secondAttribute="trailing" constant="5" id="qXD-dV-9uh"/>
-                    </constraints>
-                </customView>
-            </subviews>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="R7C-t3-XO3" secondAttribute="trailing" id="TgX-U3-P1B"/>
-                <constraint firstAttribute="bottom" secondItem="R7C-t3-XO3" secondAttribute="bottom" id="XCh-A5-LSQ"/>
-                <constraint firstItem="R7C-t3-XO3" firstAttribute="top" secondItem="Jlo-Y8-J8Y" secondAttribute="top" id="ZEI-56-gsY"/>
-                <constraint firstItem="R7C-t3-XO3" firstAttribute="leading" secondItem="Jlo-Y8-J8Y" secondAttribute="leading" id="rd6-p5-Ew5"/>
-            </constraints>
-            <connections>
-                <outlet property="stepperControl" destination="3Yd-o5-KgU" id="0ly-dc-1Cy"/>
-                <outlet property="textField" destination="EBb-5Y-S25" id="a6y-Bf-3He"/>
-            </connections>
-        </tableCellView>
-        <tableCellView identifier="optionPopup" id="IF5-46-iW9" userLabel="optionPopup" customClass="JSDTableCellView">
-            <rect key="frame" x="0.0" y="0.0" width="144" height="20"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VM5-hM-S8Q">
-                    <rect key="frame" x="7" y="1" width="137" height="19"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <popUpButtonCell key="cell" type="roundRect" bezelStyle="roundedRect" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" inset="2" id="7L2-Yq-tAG">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="cellTitle"/>
-                        <menu key="menu" title="OtherViews" id="Uvz-bY-gu8"/>
-                    </popUpButtonCell>
-                    <connections>
-                        <binding destination="IF5-46-iW9" name="selectedIndex" keyPath="objectValue.optionUIValue" previousBinding="UBF-zE-QtT" id="35I-0x-A0d"/>
-                        <binding destination="IF5-46-iW9" name="contentValues" keyPath="objectValue.possibleOptionValues" id="UBF-zE-QtT"/>
-                    </connections>
-                </popUpButton>
-            </subviews>
-            <constraints>
-                <constraint firstAttribute="centerY" secondItem="VM5-hM-S8Q" secondAttribute="centerY" constant="0.5" id="FZa-ea-B4h"/>
-                <constraint firstAttribute="trailing" secondItem="VM5-hM-S8Q" secondAttribute="trailing" id="PUV-H6-1IJ"/>
-                <constraint firstItem="VM5-hM-S8Q" firstAttribute="leading" secondItem="IF5-46-iW9" secondAttribute="leading" constant="7" id="kC5-Rs-Rm9"/>
-            </constraints>
-            <connections>
-                <outlet property="popupButtonControl" destination="VM5-hM-S8Q" id="luV-fM-UxI"/>
-            </connections>
-        </tableCellView>
-        <tableCellView identifier="optionString" id="Xxa-40-G4e" userLabel="optionString" customClass="JSDTableCellView">
-            <rect key="frame" x="0.0" y="0.0" width="144" height="20"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Wv5-Uh-AKN">
-                    <rect key="frame" x="12" y="2" width="132" height="17"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="ASw-zL-5Ib">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="Xxa-40-G4e" name="value" keyPath="objectValue.optionValue" id="nE2-Yx-Kq8"/>
-                    </connections>
-                </textField>
-            </subviews>
-            <constraints>
-                <constraint firstItem="Wv5-Uh-AKN" firstAttribute="leading" secondItem="Xxa-40-G4e" secondAttribute="leading" constant="14" id="FSP-X3-12k"/>
-                <constraint firstAttribute="centerY" secondItem="Wv5-Uh-AKN" secondAttribute="centerY" id="hBh-OR-Ne5"/>
-                <constraint firstAttribute="trailing" secondItem="Wv5-Uh-AKN" secondAttribute="trailing" constant="2" id="xIc-hs-T1S"/>
-            </constraints>
-            <connections>
-                <outlet property="textField" destination="Wv5-Uh-AKN" id="Ib3-0H-5xo"/>
-            </connections>
-        </tableCellView>
-        <tableCellView identifier="optionName" id="peW-8X-C7Y" userLabel="name" customClass="JSDTableCellView">
-            <rect key="frame" x="0.0" y="0.0" width="150" height="20"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="SQf-Ob-fAb">
-                    <rect key="frame" x="18" y="2" width="132" height="17"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="CbI-lr-qxT">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="peW-8X-C7Y" name="value" keyPath="objectValue.name" id="3RQ-LZ-fhh">
-                            <dictionary key="options">
-                                <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
-                            </dictionary>
-                        </binding>
-                    </connections>
-                </textField>
-            </subviews>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="SQf-Ob-fAb" secondAttribute="trailing" constant="2" id="HdQ-Wu-5i5"/>
-                <constraint firstItem="SQf-Ob-fAb" firstAttribute="leading" secondItem="peW-8X-C7Y" secondAttribute="leading" constant="20" id="RUi-t3-r9U"/>
-                <constraint firstItem="SQf-Ob-fAb" firstAttribute="centerY" secondItem="peW-8X-C7Y" secondAttribute="centerY" id="al8-Wr-Pbr"/>
-            </constraints>
-            <connections>
-                <outlet property="textField" destination="SQf-Ob-fAb" id="WYg-Qi-NVa"/>
-            </connections>
-        </tableCellView>
-        <tableCellView identifier="optionsColumn" id="xbC-cn-p7t" userLabel="oldJSDTableCellView" customClass="JSDTableCellView">
-            <rect key="frame" x="0.0" y="0.0" width="300" height="17"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <tabView drawsBackground="NO" controlSize="mini" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="1kS-Pz-SGs" userLabel="TabView - header or content">
-                    <rect key="frame" x="0.0" y="0.0" width="300" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <font key="font" metaFont="miniSystem"/>
-                    <tabViewItems>
-                        <tabViewItem label="header" identifier="yes" id="sja-ee-3WO" userLabel="TabViewItem - header">
-                            <view key="view" id="MSM-Ze-KyO">
-                                <rect key="frame" x="0.0" y="0.0" width="300" height="17"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <subviews>
-                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Yc-QG-KOd" userLabel="localized category">
-                                        <rect key="frame" x="3" y="0.0" width="294" height="22"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Localized Category" id="4ae-fb-uYs">
-                                            <font key="font" metaFont="systemBold"/>
-                                            <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                        <connections>
-                                            <binding destination="xbC-cn-p7t" name="value" keyPath="objectValue.localizedHumanReadableCategory" id="8GX-xv-SLu">
-                                                <dictionary key="options">
-                                                    <string key="NSValueTransformerName">JSDAllCapsValueTransformer</string>
-                                                </dictionary>
-                                            </binding>
-                                        </connections>
-                                    </textField>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="1Yc-QG-KOd" firstAttribute="leading" secondItem="MSM-Ze-KyO" secondAttribute="leading" constant="5" id="KcE-E7-94t"/>
-                                    <constraint firstItem="1Yc-QG-KOd" firstAttribute="trailing" secondItem="MSM-Ze-KyO" secondAttribute="trailing" constant="5" id="P2g-JE-HZq"/>
-                                    <constraint firstItem="1Yc-QG-KOd" firstAttribute="bottom" secondItem="MSM-Ze-KyO" secondAttribute="bottom" id="lvr-Sc-he7"/>
-                                    <constraint firstItem="1Yc-QG-KOd" firstAttribute="top" secondItem="MSM-Ze-KyO" secondAttribute="top" id="ypV-3V-k3q"/>
-                                </constraints>
-                            </view>
-                        </tabViewItem>
-                        <tabViewItem label="content" identifier="no" id="Uti-gC-5x0" userLabel="TabViewItem - content">
-                            <view key="view" id="2E2-wX-ez1">
-                                <rect key="frame" x="0.0" y="0.0" width="300" height="17"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <subviews>
-                                    <tabView drawsBackground="NO" controlSize="mini" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="U9f-wY-8l6" userLabel="TabView - name or localized">
-                                        <rect key="frame" x="0.0" y="0.0" width="115" height="17"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <font key="font" metaFont="miniSystem"/>
-                                        <tabViewItems>
-                                            <tabViewItem label="Tab" identifier="no" id="VQR-qE-KTN" userLabel="TabViewItem - name">
-                                                <view key="view" id="wJe-XI-Rm1">
-                                                    <rect key="frame" x="0.0" y="0.0" width="115" height="17"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <subviews>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="YE0-CD-4F6" userLabel="name">
-                                                            <rect key="frame" x="13" y="0.0" width="104" height="17"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="name" id="J6b-05-iYz">
-                                                                <font key="font" metaFont="system"/>
-                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                            </textFieldCell>
-                                                            <connections>
-                                                                <binding destination="xbC-cn-p7t" name="value" keyPath="objectValue.name" id="YRi-jy-Eti">
-                                                                    <dictionary key="options">
-                                                                        <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
-                                                                    </dictionary>
-                                                                </binding>
-                                                            </connections>
-                                                        </textField>
-                                                    </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="YE0-CD-4F6" firstAttribute="top" secondItem="wJe-XI-Rm1" secondAttribute="top" id="JpN-Ae-puQ"/>
-                                                        <constraint firstItem="YE0-CD-4F6" firstAttribute="leading" secondItem="wJe-XI-Rm1" secondAttribute="leading" constant="15" id="Ooc-44-Mfd"/>
-                                                        <constraint firstAttribute="trailing" secondItem="YE0-CD-4F6" secondAttribute="trailing" id="Ovw-CD-hW9"/>
-                                                        <constraint firstAttribute="bottom" secondItem="YE0-CD-4F6" secondAttribute="bottom" id="n2d-Sv-JFv"/>
-                                                    </constraints>
-                                                </view>
-                                            </tabViewItem>
-                                            <tabViewItem label="View" identifier="yes" id="bCK-vS-gOT" userLabel="TabViewItem - localizedname">
-                                                <view key="view" id="9yB-dt-Ug7">
-                                                    <rect key="frame" x="0.0" y="0.0" width="115" height="17"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <subviews>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="b5f-u2-GxI" userLabel="localized name">
-                                                            <rect key="frame" x="13" y="0.0" width="99" height="17"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="localized name" id="AxE-Lv-8pc">
-                                                                <font key="font" metaFont="system"/>
-                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                            </textFieldCell>
-                                                            <connections>
-                                                                <binding destination="xbC-cn-p7t" name="value" keyPath="objectValue.localizedHumanReadableName" id="St7-x5-z5J">
-                                                                    <dictionary key="options">
-                                                                        <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
-                                                                    </dictionary>
-                                                                </binding>
-                                                            </connections>
-                                                        </textField>
-                                                    </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="b5f-u2-GxI" firstAttribute="top" secondItem="9yB-dt-Ug7" secondAttribute="top" id="1oK-e4-Mnd"/>
-                                                        <constraint firstItem="b5f-u2-GxI" firstAttribute="leading" secondItem="9yB-dt-Ug7" secondAttribute="leading" constant="15" id="XZt-Yf-cc1"/>
-                                                        <constraint firstAttribute="bottom" secondItem="b5f-u2-GxI" secondAttribute="bottom" id="e0J-vd-hhJ"/>
-                                                        <constraint firstAttribute="trailing" secondItem="b5f-u2-GxI" secondAttribute="trailing" constant="5" id="xpc-4b-LSx"/>
-                                                    </constraints>
-                                                </view>
-                                            </tabViewItem>
-                                        </tabViewItems>
-                                        <connections>
-                                            <binding destination="-2" name="selectedIdentifier" keyPath="self.isShowingFriendlyTidyOptionNames" id="gAv-FJ-qR3">
-                                                <dictionary key="options">
-                                                    <string key="NSValueTransformerName">JSDBoolToStringValueTransformer</string>
-                                                </dictionary>
-                                            </binding>
-                                        </connections>
-                                    </tabView>
-                                    <tabView drawsBackground="NO" controlSize="mini" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="wsb-Ah-E8T" userLabel="TabView - input types">
-                                        <rect key="frame" x="115" y="0.0" width="185" height="17"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <font key="font" metaFont="miniSystem"/>
-                                        <tabViewItems>
-                                            <tabViewItem label="Tab" identifier="no" id="Qoj-tr-BwB" userLabel="TabViewItem - text">
-                                                <view key="view" id="RhE-aa-MvE">
-                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="24"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                </view>
-                                            </tabViewItem>
-                                            <tabViewItem label="View" identifier="yes" id="N1a-BR-IRK" userLabel="TabViewItem - stepper">
-                                                <view key="view" id="U86-Ga-FS1">
-                                                    <rect key="frame" x="0.0" y="0.0" width="185" height="17"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                </view>
-                                            </tabViewItem>
-                                            <tabViewItem label="Item 2" identifier="" id="ZlS-0A-8hQ" userLabel="Tab View Item - popup">
-                                                <view key="view" id="vcA-mf-wrw">
-                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="24"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                </view>
-                                            </tabViewItem>
-                                        </tabViewItems>
-                                    </tabView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="wsb-Ah-E8T" secondAttribute="bottom" id="MjY-SL-zFB"/>
-                                    <constraint firstItem="wsb-Ah-E8T" firstAttribute="top" secondItem="2E2-wX-ez1" secondAttribute="top" id="ZhN-JM-lO0"/>
-                                    <constraint firstItem="U9f-wY-8l6" firstAttribute="top" secondItem="2E2-wX-ez1" secondAttribute="top" id="aFc-5u-Iht"/>
-                                    <constraint firstAttribute="trailing" secondItem="wsb-Ah-E8T" secondAttribute="trailing" id="j21-aX-TGA"/>
-                                    <constraint firstItem="wsb-Ah-E8T" firstAttribute="leading" secondItem="U9f-wY-8l6" secondAttribute="trailing" id="ngm-KF-8PV"/>
-                                    <constraint firstItem="U9f-wY-8l6" firstAttribute="leading" secondItem="2E2-wX-ez1" secondAttribute="leading" id="phQ-Mx-2zq"/>
-                                    <constraint firstAttribute="bottom" secondItem="U9f-wY-8l6" secondAttribute="bottom" id="vd3-hP-C7W"/>
-                                </constraints>
-                            </view>
-                        </tabViewItem>
-                    </tabViewItems>
-                    <connections>
-                        <binding destination="xbC-cn-p7t" name="selectedIdentifier" keyPath="objectValue.optionIsHeader" id="irs-HX-Ho1">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">JSDBoolToStringValueTransformer</string>
-                            </dictionary>
-                        </binding>
-                    </connections>
-                </tabView>
-            </subviews>
-            <constraints>
-                <constraint firstItem="1kS-Pz-SGs" firstAttribute="top" secondItem="xbC-cn-p7t" secondAttribute="top" id="5mJ-Nt-B9f"/>
-                <constraint firstItem="1kS-Pz-SGs" firstAttribute="leading" secondItem="xbC-cn-p7t" secondAttribute="leading" id="XjQ-qt-gob"/>
-                <constraint firstItem="1kS-Pz-SGs" firstAttribute="trailing" secondItem="xbC-cn-p7t" secondAttribute="trailing" id="fHp-WL-9UO"/>
-                <constraint firstItem="1kS-Pz-SGs" firstAttribute="bottom" secondItem="xbC-cn-p7t" secondAttribute="bottom" id="xyk-Id-JaG"/>
-            </constraints>
-        </tableCellView>
     </objects>
     <resources>
         <image name="HideDescriptionTemplate" width="11" height="10"/>
