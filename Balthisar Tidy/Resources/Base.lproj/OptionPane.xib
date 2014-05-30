@@ -3,7 +3,6 @@
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="OptionPaneController">
@@ -94,7 +93,7 @@
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
                                                                                 <tabView drawsBackground="NO" controlSize="mini" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="DGL-RW-J8s" userLabel="TabView - name/localized">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="133" height="24"/>
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="24"/>
                                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                                     <font key="font" metaFont="miniSystem"/>
                                                                                     <tabViewItems>
@@ -166,17 +165,17 @@
                                                                                     </connections>
                                                                                 </tabView>
                                                                                 <tabView drawsBackground="NO" controlSize="mini" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="tC7-3u-I3a" userLabel="TabView - data choosers">
-                                                                                    <rect key="frame" x="133" y="0.0" width="167" height="24"/>
+                                                                                    <rect key="frame" x="150" y="0.0" width="150" height="24"/>
                                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                                     <font key="font" metaFont="miniSystem"/>
                                                                                     <tabViewItems>
                                                                                         <tabViewItem label="NSTextField" identifier="NSTextField" id="2Xd-NR-dx6" userLabel="TabView - text">
                                                                                             <view key="view" id="k4g-ZD-SzW">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="167" height="24"/>
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="150" height="24"/>
                                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                                 <subviews>
                                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Wv5-Uh-AKN">
-                                                                                                        <rect key="frame" x="10" y="3" width="154" height="17"/>
+                                                                                                        <rect key="frame" x="10" y="3" width="137" height="17"/>
                                                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="option value" id="ASw-zL-5Ib">
                                                                                                             <font key="font" metaFont="system"/>
@@ -278,7 +277,7 @@
                                                                             </subviews>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="trailing" secondItem="tC7-3u-I3a" secondAttribute="trailing" id="b8x-DM-HcK"/>
-                                                                                <constraint firstItem="DGL-RW-J8s" firstAttribute="width" secondItem="tC7-3u-I3a" secondAttribute="width" multiplier="0.8" id="drN-pX-jL4"/>
+                                                                                <constraint firstItem="DGL-RW-J8s" firstAttribute="width" secondItem="tC7-3u-I3a" secondAttribute="width" id="drN-pX-jL4"/>
                                                                                 <constraint firstItem="tC7-3u-I3a" firstAttribute="leading" secondItem="DGL-RW-J8s" secondAttribute="trailing" id="iTj-Kr-0GL"/>
                                                                                 <constraint firstItem="DGL-RW-J8s" firstAttribute="top" secondItem="13r-6M-dKC" secondAttribute="top" id="o8b-yA-rrp"/>
                                                                                 <constraint firstAttribute="bottom" secondItem="tC7-3u-I3a" secondAttribute="bottom" id="oae-zj-3f0"/>
