@@ -201,7 +201,7 @@
 		method is still required to provide the correct type of
 		view based on the tidy optionUIType.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (NSView *)tableView:(NSTableView *)tableView
+- (NSView *)xxtableView:(NSTableView *)tableView
    viewForTableColumn:(NSTableColumn *)tableColumn
 				  row:(NSInteger)row
 {
@@ -275,7 +275,7 @@
 		We're here because we're the delegate of the `theTable`.
 		We need to specify if the row is a group row or not.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
--(BOOL)tableView:(NSTableView *)tableView isGroupRow:(NSInteger)row
+-(BOOL)xtableView:(NSTableView *)tableView isGroupRow:(NSInteger)row
 {
 	JSDTidyOption *localOption = self.theArrayController.arrangedObjects[row];
 

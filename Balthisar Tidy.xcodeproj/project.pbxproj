@@ -37,6 +37,8 @@
 		D036E21418F3D2F20009A9D4 /* Tidy.icns in Resources */ = {isa = PBXBuildFile; fileRef = D036E20B18F3D2F20009A9D4 /* Tidy.icns */; };
 		D036E21518F3D2F20009A9D4 /* XML.icns in Resources */ = {isa = PBXBuildFile; fileRef = D036E20C18F3D2F20009A9D4 /* XML.icns */; };
 		D036E21618F3D2F20009A9D4 /* XML.icns in Resources */ = {isa = PBXBuildFile; fileRef = D036E20C18F3D2F20009A9D4 /* XML.icns */; };
+		D04753B71938A19D00BB7163 /* JSDBoolToStringValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D04753B61938A19D00BB7163 /* JSDBoolToStringValueTransformer.m */; };
+		D04753B81938A19D00BB7163 /* JSDBoolToStringValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D04753B61938A19D00BB7163 /* JSDBoolToStringValueTransformer.m */; };
 		D047C72F1915FBF100B70A94 /* JSDTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D047C72E1915FBF100B70A94 /* JSDTableCellView.m */; };
 		D047C7301915FBF100B70A94 /* JSDTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D047C72E1915FBF100B70A94 /* JSDTableCellView.m */; };
 		D04D5F991902459500F77901 /* NSApplication+TidyApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = D04D5F981902459500F77901 /* NSApplication+TidyApplication.m */; };
@@ -200,6 +202,8 @@
 		D036E20B18F3D2F20009A9D4 /* Tidy.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Tidy.icns; sourceTree = "<group>"; };
 		D036E20C18F3D2F20009A9D4 /* XML.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = XML.icns; sourceTree = "<group>"; };
 		D036E21718F3D81E0009A9D4 /* TidyScripting.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TidyScripting.sdef; sourceTree = "<group>"; };
+		D04753B51938A19D00BB7163 /* JSDBoolToStringValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSDBoolToStringValueTransformer.h; sourceTree = "<group>"; };
+		D04753B61938A19D00BB7163 /* JSDBoolToStringValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSDBoolToStringValueTransformer.m; sourceTree = "<group>"; };
 		D047C72D1915FBF100B70A94 /* JSDTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSDTableCellView.h; sourceTree = "<group>"; };
 		D047C72E1915FBF100B70A94 /* JSDTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSDTableCellView.m; sourceTree = "<group>"; };
 		D04D5F971902459500F77901 /* NSApplication+TidyApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSApplication+TidyApplication.h"; sourceTree = "<group>"; };
@@ -512,6 +516,8 @@
 				D0D9EAD118E6680F008A55D5 /* JSDTextField.m */,
 				D008F0171930D9D700559F3B /* JSDAllCapsValueTransformer.h */,
 				D008F0181930D9D700559F3B /* JSDAllCapsValueTransformer.m */,
+				D04753B51938A19D00BB7163 /* JSDBoolToStringValueTransformer.h */,
+				D04753B61938A19D00BB7163 /* JSDBoolToStringValueTransformer.m */,
 				D081CBD91917C1510041B2C5 /* JSDIntegerValueTransformer.h */,
 				D081CBDA1917C1510041B2C5 /* JSDIntegerValueTransformer.m */,
 				D0D9EAD218E6680F008A55D5 /* NoodleLineNumberMarker.h */,
@@ -852,6 +858,7 @@
 				D0D9ED7718E66810008A55D5 /* tidylib.c in Sources */,
 				D0D9ED3F18E66810008A55D5 /* NSTextView+JSDExtensions.m in Sources */,
 				D0D9ED2B18E66810008A55D5 /* AppController.m in Sources */,
+				D04753B71938A19D00BB7163 /* JSDBoolToStringValueTransformer.m in Sources */,
 				D0D9ED7518E66810008A55D5 /* tags.c in Sources */,
 				D008F0191930D9D700559F3B /* JSDAllCapsValueTransformer.m in Sources */,
 				D0D9ED4918E66810008A55D5 /* access.c in Sources */,
@@ -911,6 +918,7 @@
 				D0D9ED7818E66810008A55D5 /* tidylib.c in Sources */,
 				D0D9ED4018E66810008A55D5 /* NSTextView+JSDExtensions.m in Sources */,
 				D0D9ED2C18E66810008A55D5 /* AppController.m in Sources */,
+				D04753B81938A19D00BB7163 /* JSDBoolToStringValueTransformer.m in Sources */,
 				D0D9ED7618E66810008A55D5 /* tags.c in Sources */,
 				D008F01A1930D9D700559F3B /* JSDAllCapsValueTransformer.m in Sources */,
 				D0D9ED4A18E66810008A55D5 /* access.c in Sources */,
@@ -1316,6 +1324,7 @@
 				D0806A681935F765003C34A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D0913CDB18B0AC06005DB2E4 /* Build configuration list for PBXNativeTarget "Balthisar Tidy (no sparkle)" */ = {
 			isa = XCConfigurationList;

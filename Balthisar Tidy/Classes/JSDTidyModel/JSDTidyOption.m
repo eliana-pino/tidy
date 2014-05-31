@@ -361,6 +361,7 @@
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	 optionUIType
 		Suggests an object class to use for setting Tidy options.
+		This is returned as a string to make bindings very easy.
 
 		TidyLib option types can be TidyString, TidyInteger, or
 		TidyBoolean. JSDTidyOption will return one of three classes
@@ -371,19 +372,19 @@
 		- NSTextField, if none of the two work.
 
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (Class)optionUIType
+- (NSString*)optionUIType
 {
 	if ( self.possibleOptionValues.count > 0 )
 	{
-		return [NSPopUpButton class];
+		return NSStringFromClass([NSPopUpButton class]);
 	}
 
 	if  ( self.optionType == TidyInteger )
 	{
-		return [NSStepper class];
+		return NSStringFromClass([NSStepper class]);
 	}
 
-	return [NSTextField class];
+	return NSStringFromClass([NSTextField class]);
 }
 
 
@@ -824,7 +825,6 @@
 
 	return result;
 }
-
 
 
 @end

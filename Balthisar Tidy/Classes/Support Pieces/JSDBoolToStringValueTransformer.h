@@ -1,8 +1,8 @@
 /**************************************************************************************************
 
-	JSDIntegerValueTransformer.m
+	JSDAllCapsValueTransformer.h
 
-	Ensures that numbers are always converted to integers.
+	A value transformer that converts bool values into lower-case strings.
 
 
 	The MIT License (MIT)
@@ -26,28 +26,8 @@
 
  **************************************************************************************************/
 
-#import "JSDIntegerValueTransformer.h"
+#import <Foundation/Foundation.h>
 
-
-@implementation JSDIntegerValueTransformer
-
-
-+ (Class)transformedValueClass 
-{
-	return [NSNumber class];
-}
-
-
-+ (BOOL)allowsReverseTransformation
-{
-	return YES;
-}
-
-
-- (id)transformedValue:(id)value
-{
-	return [NSNumber numberWithInteger:[value integerValue]];
-}
-
+@interface JSDBoolToStringValueTransformer : NSValueTransformer
 
 @end

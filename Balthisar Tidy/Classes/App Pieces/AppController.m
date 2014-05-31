@@ -31,6 +31,7 @@
 #import "PreferenceController.h"
 #import "JSDIntegerValueTransformer.h"
 #import "JSDAllCapsValueTransformer.h"
+#import "JSDBoolToStringValueTransformer.h"
 
 #if INCLUDE_SPARKLE == 1
 #import <Sparkle/Sparkle.h>
@@ -75,6 +76,10 @@
 
 	NSValueTransformer *transformer2 = [[JSDAllCapsValueTransformer alloc] init];
     [NSValueTransformer setValueTransformer:transformer2 forName:@"JSDAllCapsValueTransformer"];
+
+	NSValueTransformer *transformer3 = [[JSDBoolToStringValueTransformer alloc] init];
+    [NSValueTransformer setValueTransformer:transformer3 forName:@"JSDBoolToStringValueTransformer"];
+
 }
 
 

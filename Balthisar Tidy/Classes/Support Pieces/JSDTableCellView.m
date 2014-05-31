@@ -75,9 +75,9 @@
 
 	[self.stepperControl setHidden:self.usesHoverEffect];
 
-	[self.textField setBordered:NO];
+	//[self.textField setBordered:NO];
 
-	[self.textField setDrawsBackground:NO];
+	//[self.textField setDrawsBackground:NO];
 
 	[[NSUserDefaults standardUserDefaults] addObserver:self
 											forKeyPath:JSDKeyOptionsUseHoverEffect
