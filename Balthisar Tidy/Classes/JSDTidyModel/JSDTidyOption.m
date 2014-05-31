@@ -297,6 +297,16 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	keyPathsForValuesAffectingOptionUIValue
+		Signal to KVO that if one of the included keys changes,
+		then it should also be aware that UIValue changed.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
++ (NSSet *)keyPathsForValuesAffectingOptionUIValue
+{
+    return [NSSet setWithObjects:@"optionValue", nil];
+}
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	optionUIValue
 		Gets option values suitable for use in user-interfaces.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/

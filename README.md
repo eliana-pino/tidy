@@ -1,10 +1,17 @@
-﻿Balthisar Tidy (version 1.5)
+﻿Balthisar Tidy (version 2.0)
 ============================
 
 by Jim Derry, <http://www.balthisar.com>
 Copyright © 2003-2014 by Jim Derry. All rights reserved.
 See “Legal Stuff” below for license details.
 
+_DEVELOPMENT BRANCH_
+====================
+_This is the development branch for version 2.0 of Balthisar Tidy. There's no guarantee that
+this code will run, and it probably won't run because I make frequent code commits. On the other
+hand it might run, so you can see that latest and greatest features. You should switch to the
+release branch if you want working code. Or just download an executable from the website or from
+the Mac App Store._
 
 About
 -----
@@ -32,6 +39,9 @@ _Balthisar Tidy_ has been released with support for Mac OS X 10.8 and newer.
 
 Change Log
 ----------
+
+### Balthisar Tidy 2.0.0 (June 2014)
+- __This is still a work in progress__
 
 ### Balthisar Tidy 1.5.0 (May 2014)
 

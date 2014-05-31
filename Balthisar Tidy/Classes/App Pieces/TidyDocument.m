@@ -133,11 +133,6 @@
 @property (assign) BOOL   fileWantsProtection;   // Indicates if we need special type of save.
 
 
-/* Local reference to our shared preferences controller. */
-
-@property (assign) PreferenceController *prefs;
-
-
 /* Local, mutable copy of our tidyDocument's error array. */
 
 @property NSMutableArray *messagesArray;
@@ -251,11 +246,13 @@
  *———————————————————————————————————————————————————————————————————*/
 - (IBAction)saveDocument:(id)sender
 {
+	NSUserDefaults *localDefaults = [NSUserDefaults standardUserDefaults];
+	
 	/*
 		Warning will only apply if there's a current file
 		and it's NOT been saved yet, and it's not new.
 	 */
-	if ( ([self.prefs[JSDKeySavingPrefStyle] longValue] == kJSDSaveButWarn) &&
+	if ( ([[localDefaults valueForKey:JSDKeySavingPrefStyle] longValue] == kJSDSaveButWarn) &&
 		 (self.fileWantsProtection) &&
 		 (self.fileURL.path.length > 0) )
 	{
@@ -272,8 +269,8 @@
 	}
 
 	/* Save is completely disabled -- tell user to Save As… */
-	
-	if ( ([self.prefs[JSDKeySavingPrefStyle] longValue] == kJSDSaveAsOnly) &&
+
+	if ( ([[localDefaults valueForKey:JSDKeySavingPrefStyle] longValue] == kJSDSaveAsOnly) &&
 		(self.fileWantsProtection) )
 	{
 		NSRunAlertPanel(NSLocalizedString(@"WarnSaveDisabled", nil),
@@ -356,8 +353,6 @@
 		self.tidyProcess = [[JSDTidyModel alloc] init];
 		
 		self.documentOpenedData = nil;
-		
-		self.prefs = [PreferenceController sharedPreferences];
 	}
 	
 	return self;
@@ -369,11 +364,11 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)dealloc
 {
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyOptionChanged object:nil];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifySourceTextChanged object:nil];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyTidyTextChanged object:nil];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyTidyErrorsChanged object:nil];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyPossibleInputEncodingProblem object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyOptionChanged object:[[self optionController] tidyDocument]];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifySourceTextChanged object:[self tidyProcess]];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyTidyTextChanged object:[self tidyProcess]];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyTidyErrorsChanged object:[self tidyProcess]];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyPossibleInputEncodingProblem object:[self tidyProcess]];
 }
 
 
@@ -383,6 +378,8 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)configureViewSettings:(NSTextView *)aView
 {
+	NSUserDefaults *localDefaults = [NSUserDefaults standardUserDefaults];
+
 	[aView setFont:[NSFont fontWithName:@"Menlo" size:11]];
 	[aView setRichText:NO];
 	[aView setUsesFontPanel:NO];
@@ -391,44 +388,15 @@
 	[aView setEditable:NO];
 	[aView setImportsGraphics:NO];
 	[aView setAutomaticQuoteSubstitutionEnabled:NO];
-	
-	[aView setAutomaticTextReplacementEnabled:[self.prefs[JSDKeyAllowMacOSTextSubstitutions] boolValue]];
-	[aView setAutomaticDashSubstitutionEnabled:[self.prefs[JSDKeyAllowMacOSTextSubstitutions] boolValue]];
+
+	[aView setAutomaticTextReplacementEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
+	[aView setAutomaticDashSubstitutionEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
 
 
 	/* Provided by Category `NSTextView+JSDExtensions` */
 	
-	[aView setShowsLineNumbers:[self.prefs[JSDKeyShowNewDocumentLineNumbers] boolValue]];
+	[aView setShowsLineNumbers:[[localDefaults valueForKey:JSDKeyShowNewDocumentLineNumbers] boolValue]];
 	[aView setWordwrapsText:NO];
-}
-
-
-/*———————————————————————————————————————————————————————————————————*
-	awakeFromNib
-		When we wake from the nib file, setup the option controller
-		and initial messesages table sorting.
- *———————————————————————————————————————————————————————————————————*/
-- (void)awakeFromNib
-{
-	/* Create a OptionPaneController and put it in place of optionPane. */
-	
-	if (![self optionController])
-	{
-		self.optionController = [[OptionPaneController alloc] init];
-	}
-	
-	self.optionController.optionsInEffect = [[PreferenceController sharedPreferences] optionsInEffect];
-	
-	[[self optionController] putViewIntoView:self.optionPane];
-
-
-	/* Setup for the Messages Table */
-	
-	NSString *sortKeyFromPrefs = [[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyMessagesTableInitialSortKey];
-	
-	NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:sortKeyFromPrefs ascending:YES];
-	
-	[self.errorView setSortDescriptors:[NSArray arrayWithObject:descriptor]];
 }
 
 
@@ -436,11 +404,25 @@
 	windowControllerDidLoadNib:
 		The nib is loaded.
  *———————————————————————————————————————————————————————————————————*/
-- (void)windowControllerDidLoadNib:(NSWindowController *) aController
+- (void)windowControllerDidLoadNib:(NSWindowController *)aController
 {
 	[super windowControllerDidLoadNib:aController];
-	
-	
+
+
+	/* Create an OptionController and put it in place of optionPane. */
+
+	if (![self optionController])
+	{
+		self.optionController = [[OptionPaneController alloc] init];
+	}
+
+	self.optionController.optionsInEffect = [[PreferenceController sharedPreferences] optionsInEffect];
+
+	[[self optionController] putViewIntoView:self.optionPane];
+
+
+	/* Configure the text view settings */
+
 	[self configureViewSettings:self.sourceView];
 	
 	[self configureViewSettings:self.tidyView];
@@ -459,8 +441,6 @@
 	 */
 	[self.optionController.tidyDocument takeOptionValuesFromDefaults:defaults];
 	
-	[self.optionController.theTable reloadData];
-
 	
 	/* Saving behavior settings */
 	
@@ -480,7 +460,17 @@
 		document the event system will replace it forthwith.
 	 */
 	self.tidyView.string = self.tidyProcess.tidyText;
-	
+
+
+	/* Setup for the Messages Table */
+
+	NSString *sortKeyFromPrefs = [[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyMessagesTableInitialSortKey];
+
+	NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:sortKeyFromPrefs ascending:YES];
+
+	[self.errorView setSortDescriptors:[NSArray arrayWithObject:descriptor]];
+
+
 	/*
 		Delay setting up notifications until now, because otherwise
 		all of the earlier options setup is simply going to result
@@ -519,15 +509,15 @@
 
 	
 	/* Run through the new user helper if appropriate */
-	
-	if (![self.prefs[JSDKeyFirstRunComplete] boolValue])
+
+	if (![[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyFirstRunComplete] boolValue])
 	{
 		[self kickOffFirstRunSequence:nil];
 	}
 
 	/*
 		Set the tidyProcess data. The event system will set the view later.
-		If we're a new document, then documentOpenData nil is fine.
+		If we're a new document, then documentOpenedData nil is fine.
 	 */
 	self.documentIsLoading = !(self.documentOpenedData == nil);
 	
@@ -608,7 +598,9 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)handleTidyInputEncodingProblem:(NSNotification*)note
 {
-	if (![self.prefs[JSDKeyIgnoreInputEncodingWhenOpening] boolValue])
+	NSUserDefaults *localDefaults = [NSUserDefaults standardUserDefaults];
+
+	if (![[localDefaults valueForKey:JSDKeyIgnoreInputEncodingWhenOpening] boolValue])
 	{
 		NSStringEncoding suggestedEncoding    = [[[note userInfo] objectForKey:@"suggestedEncoding"] longValue];
 		
@@ -624,7 +616,7 @@
 
 		self.textFieldEncodingExplanation.stringValue = newMessage;
 
-		self.buttonEncodingDoNotWarnAgain.state = [self.prefs[JSDKeyIgnoreInputEncodingWhenOpening] boolValue];
+		self.buttonEncodingDoNotWarnAgain.state = [[localDefaults valueForKey:JSDKeyIgnoreInputEncodingWhenOpening] boolValue];
 
 		self.buttonEncodingAllowChange.tag = suggestedEncoding;	// Cheat. We'll fetch this later in the handler. Should be 64-bit.
 
@@ -684,10 +676,8 @@
 	if (sender == self.buttonEncodingAllowChange)
 	{
 		JSDTidyOption *localOption = self.optionController.tidyDocument.tidyOptions[@"input-encoding"];
-		
-		localOption.optionValue = [@(self.buttonEncodingAllowChange.tag) stringValue];
 
-		[self.optionController.theTable reloadData];
+		localOption.optionValue = [@(self.buttonEncodingAllowChange.tag) stringValue];
 	}
 	
 	[[NSUserDefaults standardUserDefaults] setBool:self.buttonEncodingDoNotWarnAgain.state forKey:JSDKeyIgnoreInputEncodingWhenOpening];

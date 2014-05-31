@@ -47,6 +47,12 @@
 @property (weak) IBOutlet NSView *View;
 
 
+/* Mediates between tidyOptions and the view items. */
+/* Must keep strong to prevent it from deallocing before the bindings are released */
+
+@property (strong) IBOutlet NSArrayController *theArrayController;
+
+
 /* Properties for managing the toggling of theDescription's visibility */
 
 @property (weak) IBOutlet NSTextField *theDescription;
@@ -70,8 +76,6 @@
 
 /* Gradient button actions */
 
-- (IBAction)handleGenericReloadData:(id)sender;
-
 - (IBAction)handleToggleDescription:(NSButton *)sender;
 
 - (IBAction)handleResetOptionsToFactoryDefaults:(id)sender;
@@ -92,9 +96,6 @@
 @implementation OptionPaneController
 
 
-@synthesize optionsInEffect = _optionsInEffect;
-
-
 #pragma mark - Initialization and Deallocation
 
 
@@ -111,44 +112,38 @@
 
 		_tidyDocument = [[JSDTidyModel alloc] init];
 
+		
+		/* This constraint will be modifed as needed to allow showing and hiding of the description field. */
+
+		self.theDescriptionConstraint = [NSLayoutConstraint constraintWithItem:self.theDescription
+																	 attribute:NSLayoutAttributeHeight
+																	 relatedBy:NSLayoutRelationEqual
+																		toItem:nil
+																	 attribute:NSLayoutAttributeNotAnAttribute
+																	multiplier:1.0
+																	  constant:0.0];
+
+
+		/* These options are on a per-window basis, but default from user defauts */
+
+		self.isShowingFriendlyTidyOptionNames = [[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyOptionsShowHumanReadableNames];
+
+		self.isShowingOptionsInGroups = [[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyOptionsAreGrouped];
+
 		self.isInPreferencesView = NO;
+
 	}
 	return self;
 
 }
 
 
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	awakeFromNib
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void) awakeFromNib
-{
-	/*
-		This constraint will be modifed as needed in order to
-		allow showing and hiding of the description field.
-	 */
-	self.theDescriptionConstraint = [NSLayoutConstraint constraintWithItem:self.theDescription
-																 attribute:NSLayoutAttributeHeight
-																 relatedBy:NSLayoutRelationEqual
-																	toItem:nil
-																 attribute:NSLayoutAttributeNotAnAttribute
-																multiplier:1.0
-																  constant:0.0];
-
-
-	/* These options are on a per-window basis, but default from user defauts */
-
-	self.isShowingFriendlyTidyOptionNames = [[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyOptionsShowHumanReadableNames];
-
-	self.isShowingOptionsInGroups = [[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyOptionsAreGrouped];
-
-	// @todo: find out why the table is selecting the first row if I don't do this.
-	// this is ugly and shows visibly on the screen.
-	if (self.isInPreferencesView)
-	{
-		[self.theTable reloadData];
-	}
-}
+///*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+//	awakeFromNib
+// *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+//- (void)awakeFromNib
+//{
+//}
 
 
 #pragma mark - Setup
@@ -181,7 +176,7 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSArray *)optionsInEffect
 {
-	return _optionsInEffect;
+	return self.tidyDocument.optionsInUse;
 }
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
@@ -189,11 +184,11 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)setOptionsInEffect:(NSArray *)optionsInEffect
 {
-	_optionsInEffect = optionsInEffect;
-
 	self.tidyDocument.optionsInUse = optionsInEffect;
 
 	[self.theArrayController bind:NSContentBinding toObject:self withKeyPath:@"tidyDocument.tidyOptionsBindable" options:nil];
+
+	[self.theTable reloadData];
 }
 
 
@@ -327,26 +322,18 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	handleGenericReloadData:
-		Properties control a lot of things, but sometimes the
-		table needs to be refresh in order to show the results.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)handleGenericReloadData:(id)sender
-{
-	[self.theTable reloadData];
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	handleToggleDescription:
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (IBAction)handleToggleDescription:(NSButton *)sender
 {
 	[_View layoutSubtreeIfNeeded];
-	[NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+	[NSAnimationContext runAnimationGroup:^(NSAnimationContext *context)
+	{
 		[context setAllowsImplicitAnimation: YES];
-		// This little function makes a nice acceleration curved based on the height.
+
+		/* This little function makes a nice acceleration curved based on the height. */
 		context.duration = pow(1 / self.theDescription.intrinsicContentSize.height,1/3) / 5;
+
 		if (sender.state)
 		{
 			[self.theDescription addConstraint:self.theDescriptionConstraint];
@@ -356,10 +343,12 @@
 			[self.theDescription removeConstraint:self.theDescriptionConstraint];
 		}
 		[_View layoutSubtreeIfNeeded];
-	} completionHandler:^{
+	} completionHandler:^
+	{
 		[[self theTable] scrollRowToVisible:self.theTable.selectedRow];
 	}];
 }
+
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	handleResetOptionsToFactoryDefaults:
@@ -377,8 +366,6 @@
 	[JSDTidyModel addDefaultsToDictionary:tidyFactoryDefaults fromArray:self.tidyDocument.optionsInUse];
 
 	[self.tidyDocument optionsCopyValuesFromDictionary:tidyFactoryDefaults[JSDKeyTidyTidyOptionsKey]];
-
-	[self.theTable reloadData];
 }
 
 
@@ -390,8 +377,6 @@
 - (void)handleResetOptionsToPreferences:(id)sender
 {
 	[self.tidyDocument takeOptionValuesFromDefaults:[NSUserDefaults standardUserDefaults]];
-
-	[self.theTable reloadData];
 }
 
 

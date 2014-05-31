@@ -115,11 +115,8 @@
 
 	/* TODO: Preferences that apply to all open documents */
 	[defaultValues setObject:@NO forKey:JSDKeyAllowMacOSTextSubstitutions];
-	[defaultValues setObject:@NO forKey:JSDKeyOptionsBooleanUseCheckBoxes];
 
 	/* TODO: Preferences for new or opening documents */
-	[defaultValues setObject:@YES forKey:JSDKeyShowLikeFrontDocument];
-	[defaultValues setObject:@YES forKey:JSDKeyShowNewDocumentDescription];
 	[defaultValues setObject:@YES forKey:JSDKeyShowNewDocumentLineNumbers];
 	[defaultValues setObject:@YES forKey:JSDKeyShowNewDocumentMessages];
 	[defaultValues setObject:@YES forKey:JSDKeyShowNewDocumentTidyOptions];
@@ -131,7 +128,7 @@
 	[JSDTidyModel addDefaultsToDictionary:defaultValues];
 	
 	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
-	[[NSUserDefaults standardUserDefaults] synchronize];
+//	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 
@@ -161,11 +158,12 @@
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self
 													name:tidyNotifyOptionChanged
-												  object:nil];
+												  object:[[self optionController] tidyDocument]];
 
-	[[NSNotificationCenter defaultCenter] removeObserver:self
-													name:@"appNotifyStandardUserDefaultsChanged"
-												  object:nil];
+// @todo: doesn't seem to be used.
+//	[[NSNotificationCenter defaultCenter] removeObserver:self
+//													name:@"appNotifyStandardUserDefaultsChanged"
+//												  object:nil];
 }
 
 
@@ -214,12 +212,9 @@
 #endif
 
 
-	//* @todo: these used to be in windowDidLoad, which stopped working */
 	/* Put the Tidy defaults into the optionController. */
 	
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	
-	[[[self optionController] tidyDocument] takeOptionValuesFromDefaults:defaults];
+	[[[self optionController] tidyDocument] takeOptionValuesFromDefaults:[NSUserDefaults standardUserDefaults]];
 
 
 	/* NSNotifications from |optionController| indicate that one or more Tidy options changed. */
@@ -231,75 +226,13 @@
 
 
 	/* NSNotification indicates that NSUSerDefaultsChanged. */
-	
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(handleStandardUserDefaultsChange:)
-												 name:@"appNotifyStandardUserDefaultsChanged"
-											   object:nil];
 
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	windowDidLoad
-		Use the defaults to setup the correct preferences settings.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)windowDidLoad
-{
-//	// Put the Tidy defaults into the optionController.
-//	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//	[[[self optionController] tidyDocument] takeOptionValuesFromDefaults:defaults];
-//	
-//	
-//	// NSNotifications from |optionController| indicate that one or more Tidy options changed.
-//	[[NSNotificationCenter defaultCenter] addObserver:self
-//											 selector:@selector(handleTidyOptionChange:)
-//												 name:tidyNotifyOptionChanged
-//											   object:[[self optionController] tidyDocument]];
-//
-//	// NSNotification indicates that NSUSerDefaultsChanged.
+//@todo: can't remember why we wanted this.
 //	[[NSNotificationCenter defaultCenter] addObserver:self
 //											 selector:@selector(handleStandardUserDefaultsChange:)
 //												 name:@"appNotifyStandardUserDefaultsChanged"
 //											   object:nil];
-}
 
-
-#pragma mark - Preferences Access Support via KVC
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	objectForKeyedSubscript:
-		We will use this as a convenience accessor to the values
-		for the application-wide preferences. Example:
-	NSString *myVal = [PreferenceController sharedPreferences][mykey]
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (id)objectForKeyedSubscript:(id <NSCopying, NSObject>)key
-{
-	// Note: no checking for valid keys is performed. Always
-	// use the constants so the compiler will flag mistakes.
-	if ( [key isKindOfClass:[NSString class]])
-	{
-		return [[NSUserDefaults standardUserDefaults] objectForKey:(NSString*)key];
-	}
-	return nil;
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	setObject:ForKeyedSubscript:
-		We will use this as a convenience accessor to the values
-		for the application-wide preferences. Example:
-	NSString *myVal = [PreferenceController sharedPreferences][mykey]
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)setObject:(id)obj forKeyedSubscript:(id <NSCopying, NSObject>)key
-{
-	// Note: no checking for valid keys is performed. Always
-	// use the constants so the compiler will flag mistakes.
-	if ( [key isKindOfClass:[NSString class]])
-	{
-		[[NSUserDefaults standardUserDefaults] setObject:obj forKey:(NSString*)key];
-	}
 }
 
 
@@ -363,38 +296,39 @@
 }
 
 
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	handleStandardUserDefaultsChange:
-		We get this notification if the standard user defaults have
-		changed. We have to reload the option controller's tidy
-		document with the defaults. Once that happens we'll start
-		an event loop of notifications, so prevent that.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)handleStandardUserDefaultsChange:(NSNotification *)note
-{
-	/*
-		Temporarily turn off this notification so we don't
-		cause an event loop of notifications.
-	 */
-	[[NSNotificationCenter defaultCenter] removeObserver:self
-													name:tidyNotifyOptionChanged
-												  object:nil];
-
-
-	/* Reload the tidy document. */
-	
-	[[self.optionController tidyDocument] takeOptionValuesFromDefaults:[NSUserDefaults standardUserDefaults]];
-
-
-	/* Now it's safe to turn it back on. */
-	
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(handleTidyOptionChange:)
-												 name:tidyNotifyOptionChanged
-											   object:[[self optionController] tidyDocument]];
-
-
-	[self.optionController.theTable reloadData];
-}
+// @todo: nothing seems to be calling this.
+///*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+//	handleStandardUserDefaultsChange:
+//		We get this notification if the standard user defaults have
+//		changed. We have to reload the option controller's tidy
+//		document with the defaults. Once that happens we'll start
+//		an event loop of notifications, so prevent that.
+// *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+//- (void)handleStandardUserDefaultsChange:(NSNotification *)note
+//{
+//	/*
+//		Temporarily turn off this notification so we don't
+//		cause an event loop of notifications.
+//	 */
+//	[[NSNotificationCenter defaultCenter] removeObserver:self
+//													name:tidyNotifyOptionChanged
+//												  object:nil];
+//
+//
+//	/* Reload the tidy document. */
+//	
+//	[[self.optionController tidyDocument] takeOptionValuesFromDefaults:[NSUserDefaults standardUserDefaults]];
+//
+//
+//	/* Now it's safe to turn it back on. */
+//	
+//	[[NSNotificationCenter defaultCenter] addObserver:self
+//											 selector:@selector(handleTidyOptionChange:)
+//												 name:tidyNotifyOptionChanged
+//											   object:[[self optionController] tidyDocument]];
+//
+//
+//	[self.optionController.theTable reloadData];
+//}
 
 @end

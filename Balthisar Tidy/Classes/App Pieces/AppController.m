@@ -71,15 +71,16 @@
 
 	/* Initialize the value transformers used throughout the application bindings */
 
-	NSValueTransformer *transformer1 = [[JSDIntegerValueTransformer alloc] init];
-    [NSValueTransformer setValueTransformer:transformer1 forName:@"JSDIntegerValueTransformer"];
+	NSValueTransformer *localTransformer;
 
-	NSValueTransformer *transformer2 = [[JSDAllCapsValueTransformer alloc] init];
-    [NSValueTransformer setValueTransformer:transformer2 forName:@"JSDAllCapsValueTransformer"];
+	localTransformer = [[JSDIntegerValueTransformer alloc] init];
+    [NSValueTransformer setValueTransformer:localTransformer forName:@"JSDIntegerValueTransformer"];
 
-	NSValueTransformer *transformer3 = [[JSDBoolToStringValueTransformer alloc] init];
-    [NSValueTransformer setValueTransformer:transformer3 forName:@"JSDBoolToStringValueTransformer"];
+	localTransformer = [[JSDAllCapsValueTransformer alloc] init];
+    [NSValueTransformer setValueTransformer:localTransformer forName:@"JSDAllCapsValueTransformer"];
 
+	localTransformer = [[JSDBoolToStringValueTransformer alloc] init];
+    [NSValueTransformer setValueTransformer:localTransformer forName:@"JSDBoolToStringValueTransformer"];
 }
 
 

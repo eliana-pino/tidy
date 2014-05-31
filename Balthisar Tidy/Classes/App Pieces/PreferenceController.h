@@ -60,12 +60,8 @@
 
 /* Preferences that apply to all open documents */
 #define JSDKeyAllowMacOSTextSubstitutions     @"AllowMacOSTextSubstitutions"
-#define JSDKeyOptionsBooleanUseCheckBoxes     @"OptionsBooleanUseCheckBoxes"
 
 /* Preferences for new or opening documents */
-#define JSDKeyShowLikeFrontDocument           @"ShowLikeFrontDocument"
-
-#define JSDKeyShowNewDocumentDescription      @"ShowNewDocumentDescription"
 #define JSDKeyShowNewDocumentLineNumbers      @"ShowNewDocumentLineNumbers"
 #define JSDKeyShowNewDocumentMessages         @"ShowNewDocumentMessages"
 #define JSDKeyShowNewDocumentTidyOptions      @"ShowNewDocumentTidyOptions"
@@ -105,7 +101,7 @@ typedef enum : NSInteger
 #pragma mark - Properties
 
 
-@property (readonly)         NSArray *optionsInEffect;                // TidyOptions this app will use.
+@property (readonly)         NSArray      *optionsInEffect;           // TidyOptions this app will use.
 
 @property (readonly, assign) JSDTidyModel *tidyPreferencesDocument;   // Exposes the tidyDocument.
 
@@ -120,21 +116,6 @@ typedef enum : NSInteger
 + (id)sharedPreferences;        // Singleton accessor for this class.
 
 + (void)registerUserDefaults;   // Registers Balthisar Tidy's defaults with Mac OS X' defaults system.
-
-
-#pragma mark - Preferences Access Support via KVC
-
-
-/*
-	@todo: get rid of this crud.
- */
-
-/** Getter for keyed subscripts. */
-- (id)objectForKeyedSubscript:(id <NSCopying>)key;
-
-
-/** Setter for keyed subscripts. */
-- (void)setObject:(id)obj forKeyedSubscript:(id <NSCopying>)key;
 
 
 @end

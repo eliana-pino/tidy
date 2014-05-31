@@ -39,20 +39,11 @@
 @interface OptionPaneController : NSObject <NSTableViewDataSource, JSDTableViewDelegate>
 
 
-@property (weak) IBOutlet NSArrayController *theArrayController;   // Mediates between tidyOptions and the view items.
-
 @property NSArray *optionsInEffect;                                // Only options in this list will be used.
 
-
-/*
-	@todo refactor interface to this controller's model.
-	Right now we're accessing this directly from the
-	outside, and we really should have this controller
-	host a key-value pair model, probably from the 
-	user preferences system.
- */
-
 @property JSDTidyModel *tidyDocument;                              // Expose the tidyDocument for its options values.
+
+@property (assign) BOOL isInPreferencesView;                       // Controls some item visibility if in Preferences.
 
 
 /**
@@ -67,8 +58,6 @@
 	is only used in one spot, and it's bad design.
  */
 @property (weak) IBOutlet NSTableView *theTable;                   // Expose the table.
-
-@property (assign) BOOL isInPreferencesView;                       // Controls some item visibility if in Preferences.
 
 
 - (instancetype)init;

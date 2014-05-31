@@ -50,7 +50,7 @@
                                                 </textFieldCell>
                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
                                                 <prototypeCellViews>
-                                                    <tableCellView id="Jz7-gz-B3D" userLabel="JSDTableCellView" customClass="JSDTableCellView">
+                                                    <tableCellView identifier="optionsColumn" id="Jz7-gz-B3D" userLabel="JSDTableCellView" customClass="JSDTableCellView">
                                                         <rect key="frame" x="0.0" y="0.0" width="300" height="24"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
@@ -172,11 +172,11 @@
                                                                                     <tabViewItems>
                                                                                         <tabViewItem label="NSTextField" identifier="NSTextField" id="2Xd-NR-dx6" userLabel="TabView - text">
                                                                                             <view key="view" id="k4g-ZD-SzW">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="150" height="24"/>
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="130" height="24"/>
                                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                                 <subviews>
                                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Wv5-Uh-AKN">
-                                                                                                        <rect key="frame" x="10" y="3" width="137" height="17"/>
+                                                                                                        <rect key="frame" x="10" y="3" width="117" height="17"/>
                                                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="option value" id="ASw-zL-5Ib">
                                                                                                             <font key="font" metaFont="system"/>
@@ -205,11 +205,10 @@
                                                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                                                         <stepperCell key="cell" controlSize="mini" continuous="YES" alignment="left" maxValue="1000" id="uBy-1n-pIv"/>
                                                                                                         <connections>
-                                                                                                            <binding destination="Jz7-gz-B3D" name="value" keyPath="objectValue.optionUIValue" id="wlE-tv-4L8">
+                                                                                                            <binding destination="Jz7-gz-B3D" name="value" keyPath="objectValue.optionUIValue" id="Gvt-bB-I9a">
                                                                                                                 <dictionary key="options">
                                                                                                                     <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
                                                                                                                     <bool key="NSConditionallySetsEnabled" value="NO"/>
-                                                                                                                    <string key="NSValueTransformerName">JSDIntegerValueTransformer</string>
                                                                                                                 </dictionary>
                                                                                                             </binding>
                                                                                                         </connections>
@@ -223,7 +222,12 @@
                                                                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                                         </textFieldCell>
                                                                                                         <connections>
-                                                                                                            <binding destination="Jz7-gz-B3D" name="value" keyPath="objectValue.optionUIValue" id="sg9-ZX-ba1"/>
+                                                                                                            <binding destination="Jz7-gz-B3D" name="value" keyPath="objectValue.optionUIValue" id="27i-aB-jyF">
+                                                                                                                <dictionary key="options">
+                                                                                                                    <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                                                                                                                    <bool key="NSConditionallySetsEditable" value="NO"/>
+                                                                                                                </dictionary>
+                                                                                                            </binding>
                                                                                                         </connections>
                                                                                                     </textField>
                                                                                                 </subviews>
@@ -381,7 +385,7 @@
                         <menu key="menu" title="OtherViews" id="R7n-xJ-CI7">
                             <items>
                                 <menuItem state="on" image="NSActionTemplate" hidden="YES" id="qnG-dD-b9P"/>
-                                <menuItem title="Reset options to factory defaults…" id="Jxi-vi-hoO">
+                                <menuItem title="Reset options to factory defaults" id="Jxi-vi-hoO">
                                     <connections>
                                         <action selector="handleResetOptionsToFactoryDefaults:" target="-2" id="Gtn-m8-4wc"/>
                                         <binding destination="-2" name="hidden" keyPath="isInPreferencesView" id="q8U-88-kSv">
@@ -397,7 +401,7 @@
                                         <binding destination="-2" name="hidden" keyPath="isInPreferencesView" id="9V2-LW-Ll5"/>
                                     </connections>
                                 </menuItem>
-                                <menuItem title="Save these option settings to Preferences…" id="vad-9M-vZT">
+                                <menuItem title="Save these option settings to Preferences" id="vad-9M-vZT">
                                     <connections>
                                         <action selector="handleSaveOptionsToPreferences:" target="-2" id="q48-Sg-CPF"/>
                                         <binding destination="-2" name="hidden" keyPath="isInPreferencesView" id="bUo-9x-h8B"/>
@@ -406,7 +410,6 @@
                                 <menuItem isSeparatorItem="YES" id="srj-Ib-rQy"/>
                                 <menuItem title="Show friendly option names" id="Nsq-X3-5F7">
                                     <connections>
-                                        <action selector="handleGenericReloadData:" target="-2" id="P23-hG-MtJ"/>
                                         <binding destination="-2" name="value" keyPath="self.isShowingFriendlyTidyOptionNames" id="daD-Yk-aSZ">
                                             <dictionary key="options">
                                                 <bool key="NSConditionallySetsEnabled" value="NO"/>
@@ -416,7 +419,6 @@
                                 </menuItem>
                                 <menuItem title="Show options in groups" id="3pF-Gd-AlJ">
                                     <connections>
-                                        <action selector="handleGenericReloadData:" target="-2" id="L87-Cf-QKD"/>
                                         <binding destination="-2" name="value" keyPath="self.isShowingOptionsInGroups" id="2MT-RX-QSr">
                                             <dictionary key="options">
                                                 <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
