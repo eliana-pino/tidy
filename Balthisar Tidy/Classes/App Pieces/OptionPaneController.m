@@ -141,6 +141,13 @@
 	self.isShowingFriendlyTidyOptionNames = [[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyOptionsShowHumanReadableNames];
 
 	self.isShowingOptionsInGroups = [[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyOptionsAreGrouped];
+
+	// @todo: find out why the table is selecting the first row if I don't do this.
+	// this is ugly and shows visibly on the screen.
+	if (self.isInPreferencesView)
+	{
+		[self.theTable reloadData];
+	}
 }
 
 
@@ -194,96 +201,6 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	tableView:viewForTableColumn:row:
-		We're here because we're the delegate of `theTable`.
-		We need to deliver a view to show in the table. Note that
-		the data still comes from Cocoa bindings, but this delegate
-		method is still required to provide the correct type of
-		view based on the tidy optionUIType.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (NSView *)xxtableView:(NSTableView *)tableView
-   viewForTableColumn:(NSTableColumn *)tableColumn
-				  row:(NSInteger)row
-{
-	/* Setup the view if it's a header. */
-	
-	if (tableColumn == nil)
-	{
-		NSTableCellView *theView = [tableView makeViewWithIdentifier:@"categoryHeader" owner:nil];
-
-		//[theView.textField setEditable:NO];
-
-		return theView;
-	}
-
-
-	/* Setup the view if it's a one of the Tidy Option Names. */
-	
-	if ([tableColumn.identifier isEqualToString:@"name"])
-	{
-		NSTableCellView *theView;
-
-		if (self.isShowingFriendlyTidyOptionNames)
-		{
-			theView = [tableView makeViewWithIdentifier:@"optionNameLocalized" owner:nil];
-		}
-		else
-		{
-			theView = [tableView makeViewWithIdentifier:@"optionName" owner:nil];
-		}
-
-		return theView;
-	}
-
-
-	JSDTidyOption *optionRef = self.theArrayController.arrangedObjects[row];
-
-	/* Setup the view if it's one of the option values. */
-	
-	if ( [tableColumn.identifier isEqualToString:@"check"])
-	{
-		JSDTableCellView *theView;
-
-		/* Pure Text View */
-		if ( optionRef.optionUIType == [NSTextField class] )
-		{
-			theView = [tableView makeViewWithIdentifier:@"optionString" owner:nil];
-		}
-
-		/* NSPopupMenu View */
-		if (optionRef.optionUIType == [NSPopUpButton class])
-		{
-			theView = [tableView makeViewWithIdentifier:@"optionPopup" owner:nil];
-		}
-
-		/* NSStepper View */
-		if (optionRef.optionUIType == [NSStepper class])
-		{
-			theView = [tableView makeViewWithIdentifier:@"optionStepper" owner:nil];
-		}
-
-		return theView;
-
-	}
-
-	return nil;
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	tableView:isGroupRow:
-		We're here because we're the delegate of the `theTable`.
-		We need to specify if the row is a group row or not.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
--(BOOL)xtableView:(NSTableView *)tableView isGroupRow:(NSInteger)row
-{
-	JSDTidyOption *localOption = self.theArrayController.arrangedObjects[row];
-
-	return localOption.optionIsHeader;
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	tableView:shouldSelectRow:
 		We're here because we're the delegate of the `theTable`.
 		We need to specify if it's okay to select the row.
@@ -294,37 +211,6 @@
 
 	return !localOption.optionIsHeader;
 }
-
-
-
-
-///*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-//	tableView:setObjectValue:forTableColumn:row
-//		We're here because we're the datasource of `theTable`.
-//		Retrieves the data object for an item in the specified row 
-//		and column. The user changed a value in `theTable` and so we
-//		will record that in our own data structure.
-// 
-//		NOTE: this is actually deprecated in view-based tables,
-//		but it's convenient given our data model. Thus it's
-//		being called (as a datasource) from the CellView.
-// *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-//- (void)tableView:(NSTableView *)aTableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)inColumn row:(NSInteger)inRow
-//{
-//	if ([[inColumn identifier] isEqualToString:@"check"])
-//	{
-//		JSDTidyOption *optionRef = self.tidyDocument.tidyOptions[self.optionsInEffect[inRow]];
-//				
-//		if ([object isKindOfClass:[NSString class]])
-//		{
-//			optionRef.optionUIValue = [NSString stringWithString:object];
-//		}
-//		else
-//		{
-//			optionRef.optionUIValue = [object stringValue];
-//		}
-//	}
-//}
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*

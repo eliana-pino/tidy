@@ -216,7 +216,7 @@
 			[theArray addObject:@(tidyOptGetNextPick(tidyOptionInstance, &i))];
 		}
 		
-		// Special treatment for `doctype`
+		/* Special treatment for `doctype` */
 		if (([_name isEqual: @"doctype"]) && ([theArray count] > 0))
 		{
 			[theArray removeLastObject];
@@ -265,7 +265,8 @@
 	 */
 	if ([rawString hasPrefix:@"*"])
 	{
-		// Make into RTF string.
+		/* Make into RTF string. */
+
 		rawString = [[@"{\\rtf1\\mac\\deff0{\\fonttbl{\\f0 Consolas;}{\\f1 Lucida Grande;}}\\f1\\fs22\\qj\\sa100" stringByAppendingString:[rawString substringFromIndex:1]] stringByAppendingString:@"}"];
 
 		NSData *rawData = [rawString dataUsingEncoding:NSMacOSRomanStringEncoding];
@@ -274,7 +275,8 @@
 	}
 	else
 	{
-		// Use the string as-is.
+		/* Use the string as-is. */
+
 		outString = [[NSAttributedString alloc] initWithString:rawString];
 	}
 	
@@ -302,18 +304,20 @@
 {
 	if (self.optionIsEncodingOption)
 	{
-		// Our value is an NSStringEncoding, but we want to return
-		// the menu index in the current locale.
+		/* Our value is an NSStringEncoding, but we want to return  the menu index in the current locale. */
+
 		return [JSDTidyModel availableEncodingDictionariesByNSStringEncoding][@([self.optionValue integerValue])][@"LocalizedIndex"];
 	}
 	else if ([_name isEqualToString:@"doctype"])
 	{
-		// If we're working with doctype we need the index value, not the string value.
+		/* If we're working with doctype we need the index value, not the string value. */
+
 		return [NSString stringWithFormat:@"%lu", [self.possibleOptionValues indexOfObject:self.optionValue]];
 	}
 	else
 	{
-		// Everything else is okay.
+		/* Everything else is okay. */
+
 		return self.optionValue;
 	}
 }
@@ -335,23 +339,29 @@
 	{
 		if ( self.optionIsEncodingOption)
 		{
-			// We have the alphabetical index, but need to find the NSStringEncoding.
-			// The real optionValue will be the NSString encoding.
+			/*
+				We have the alphabetical index, but need to find the NSStringEncoding.
+				The real optionValue will be the NSString encoding.
+			 */
 			NSString *tmp = [JSDTidyModel availableEncodingDictionariesByLocalizedIndex][@([optionValue integerValue])][@"NSStringEncoding"];
 			
-			// For some reason Objective-C wants to convert this to __NSCFNumber.
-			// It probably has something to do with properties. This keeps it as string.
+			/*
+				For some reason Objective-C wants to convert this to __NSCFNumber.
+				It probably has something to do with properties. This keeps it as string.
+			 */
 			[self setValue:[NSString stringWithFormat:@"%@", tmp] forKey:@"optionValue"];
 		}
 		else if ( [_name isEqualToString:@"doctype"] )
 		{
-			// We have the index value from the menu, but we require a string value
-			// for this option. The real optionValue will be the string value.
+			/*
+				We have the index value from the menu, but we require a string value
+				for this option. The real optionValue will be the string value.
+			 */
 			[self setValue:self.possibleOptionValues[[optionValue integerValue]] forKey:@"optionValue"];
 		}
 		else
 		{
-			// Everything else is okay.
+			/* Everything else is okay. */
 			[self setValue:optionValue forKey:@"optionValue"];
 		}
 	}
@@ -421,7 +431,7 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSString*)builtInDefaultValue
 {
-	// ENCODING OPTIONS -- special case, so handle first.
+	/* ENCODING OPTIONS -- special case, so handle first. */
 	if (self.optionIsEncodingOption)
 	{
 		if (self.optionId == TidyCharEncoding)
@@ -439,13 +449,20 @@
 			return [NSString stringWithFormat:@"%u", tidyDefaultOutputEncoding];
 		}
 	}
-	
-	
+
+
+	/* doctype -- normally is nil, but we're going to force one. */
+	if ([self.name isEqualToString:@"doctype"])
+	{
+		return @"auto";
+	}
+
+
 	TidyOption tidyOptionInstance = [self createTidyOptionInstance:self.optionId];
 
 	TidyOptionType optType = tidyOptGetType(tidyOptionInstance);
-	
-	
+
+
 	if (optType == TidyString)
 	{
 		ctmbstr tmp = tidyOptGetDefault(tidyOptionInstance);
@@ -576,8 +593,10 @@
 {
 	if (self.optionIsEncodingOption)
 	{
-		// Force TidyLib to use UTF8 internally. Mac OS X will handle
-		// file encoding and file input-output.
+		/*
+			Force TidyLib to use UTF8 internally. Mac OS X will handle
+			file encoding and file input-output.
+		 */
 		return tidyOptSetValue(destinationTidyDoc, self.optionId, [@"utf8" UTF8String]);
 	}
 	
@@ -587,9 +606,11 @@
 		{
 			if ([self.optionValue length] == 0)
 			{
-				 // Some tidy options can't accept NULLSTR but can be reset to default
-				 // NULLSTR. Some, though require a NULLSTR and resetting to default
-				 // doesn't work. WTF?
+				 /*
+					Some tidy options can't accept NULLSTR but can be reset to default
+					NULLSTR. Some, though require a NULLSTR and resetting to default
+					doesn't work. WTF?
+				  */
 				if (!self.optionCanAcceptNULLSTR)
 				{
 					return tidyOptResetToDefault(destinationTidyDoc, self.optionId);
@@ -711,7 +732,7 @@
 
 	if (lastIndex > 0)
 	{
-		// There *is* a picklist, so advance it.
+		/* There *is* a picklist, so advance it. */
 
 		newPick = [self.optionUIValue integerValue] + byAmount;
 
@@ -729,7 +750,8 @@
 	}
 	else
 	{
-		// There is no picklist, but if it's an integer, then increment its value.
+		/* There is no picklist, but if it's an integer, then increment its value. */
+		
 		if (self.optionType == TidyInteger)
 		{
 			newPick = [self.optionValue integerValue] + byAmount;
@@ -744,7 +766,7 @@
 				newPick = 0;
 			}
 
-			self.optionValue = [NSString stringWithFormat:@"%ld", newPick];
+			self.optionUIValue = [NSString stringWithFormat:@"%ld", newPick];
 		}
 	}
 }

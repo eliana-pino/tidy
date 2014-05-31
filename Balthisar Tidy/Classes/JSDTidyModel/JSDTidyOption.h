@@ -78,7 +78,7 @@
 
 @property                    NSString *optionUIValue;                   // Current value of this option used by UI's.
 
-@property (readonly)         NSString *optionUIType;                        // Suggested UI type for setting options.
+@property (readonly)         NSString *optionUIType;                    // Suggested UI type for setting options.
 
 
 #pragma mark - Properties maintained for original TidyLib compatability (may be used internally)
