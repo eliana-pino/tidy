@@ -45,7 +45,7 @@
 #pragma mark - Properties
 
 
-@property                    NSArray      *optionsInEffect;           // TidyOptions this app will use.
+@property                    NSArray   *optionsInEffect;              // TidyOptions this app will use.
 
 @property (readonly, assign) NSInteger countOfTabViews;               // Mostly offered for exposure to AppleScript.
 
