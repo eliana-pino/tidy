@@ -34,6 +34,9 @@
  **************************************************************************************************/
 
 #import "OptionPaneController.h"
+#import "PreferencesDefinitions.h"
+#import "JSDTidyModel.h"
+#import "JSDTidyOption.h"
 #import "JSDTableCellView.h"
 
 
@@ -45,6 +48,11 @@
 /* The NIB's root-level view */
 
 @property (weak) IBOutlet NSView *View;
+
+
+/* The table used for options settings */
+
+@property (weak) IBOutlet NSTableView *theTable;                   // Expose the table.
 
 
 /* Mediates between tidyOptions and the view items. */

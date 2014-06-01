@@ -62,9 +62,11 @@
  **************************************************************************************************/
 
 #import "TidyDocument.h"
-#import "JSDTidyModel.h"
-#import "OptionPaneController.h"
+#import "PreferencesDefinitions.h"
 #import "PreferenceController.h"
+#import "JSDTidyModel.h"
+#import "JSDTidyOption.h"
+#import "OptionPaneController.h"
 #import "NSTextView+JSDExtensions.h"
 #import "FirstRunController.h"
 

@@ -32,17 +32,7 @@
  **************************************************************************************************/
 
 #import <Cocoa/Cocoa.h>
-
-@protocol JSDTableViewDelegate <NSTableViewDelegate>
-
-@optional
-
-/* Returns YES if the key was handled. */
-
-- (BOOL)tableView:(NSTableView *)aTableView keyWasPressed:(NSInteger)keyCode row:(NSInteger)rowIndex;
-
-@end
-
+#import "JSDTableViewDelegate.h"
 
 @interface JSDTableView : NSTableView <JSDTableViewDelegate>
 

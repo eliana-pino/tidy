@@ -29,14 +29,12 @@
  **************************************************************************************************/
 
 #import <Foundation/Foundation.h>
-
+#import "JSDTidyModelDelegate.h"
 
 @class JSDTidyOption;
-@class JSDTidyModel;    // Required in its own header to support delegate protocol.
 
 
-#pragma mark - Some defines
-
+#pragma mark - Some definitions
 
 /*
 	This is the main key in the implementing application's prefs file
@@ -57,56 +55,9 @@
 #define tidyDefaultOutputEncoding	NSUTF8StringEncoding
 
 
-/*
-	TidyLib will post the following NSNotifications.
-*/
-
-#define tidyNotifyOptionChanged                  @"JSDTidyDocumentOptionChanged"
-#define tidyNotifySourceTextChanged              @"JSDTidyDocumentSourceTextChanged"
-#define tidyNotifyTidyTextChanged                @"JSDTidyDocumentTidyTextChanged"
-#define tidyNotifyTidyErrorsChanged              @"JSDTidyDocumentTidyErrorsChanged"
-#define tidyNotifyPossibleInputEncodingProblem   @"JSDTidyNotifyPossibleInputEncodingProblem"
-
-
-#pragma mark - protocol JSDTidyModelDelegate
-
-/*
-	Protocol to define the Tidy delegate expectations.
-*/
-
-@protocol JSDTidyModelDelegate <NSObject>
-
-
-@optional
-
-- (void)tidyModelOptionChanged:(JSDTidyModel *)tidyModel 
-                        option:(JSDTidyOption *)tidyOption;
-
-- (void)tidyModelSourceTextChanged:(JSDTidyModel *)tidyModel
-                              text:(NSString *)text;
-
-- (void)tidyModelTidyTextChanged:(JSDTidyModel *)tidyModel 
-                            text:(NSString *)text;
-
-- (void)tidyModelTidyMessagesChanged:(JSDTidyModel *)tidyModel
-                            messages:(NSArray *)messages;
-
-- (void)tidyModelDetectedInputEncodingIssue:(JSDTidyModel *)tidyModel
-                            currentEncoding:(NSStringEncoding)currentEncoding
-                          suggestedEncoding:(NSStringEncoding)suggestedEncoding;
-
-@end
-
-
 #pragma mark - class JSDTidyModel
 
-/*
-	JSDTidyModel is a nice, Mac OS X wrapper for TidyLib. It uses instances
-	JSDTidyOption to contain TidyOptions. The model works with every built-
-	in TidyOption, although applications can suppress multiple individual
-	TidyOptions if desired.
- */
- 
+
 @interface JSDTidyModel : NSObject
 
 
@@ -365,20 +316,6 @@
 - (NSArray *)tidyOptionsBindableAtIndexes:(NSIndexSet *)indexes;
 
 - (void)getTidyOptionsBindable:(JSDTidyOption * __unsafe_unretained *)buffer range:(NSRange)inRange;
-
-
-/* These are the mutable accessors */
-
-
-//- (void)insertObject:(JSDTidyOption *)option inTidyOptionsBindableAtIndex:(NSUInteger)index;
-//
-//- (void)insertTidyOptionsBindable:(NSArray *)optionArray atIndexes:(NSIndexSet *)indexes;
-//
-//- (void)removeObjectFromTidyOptionsBindableAtIndex:(NSUInteger)index;
-//
-//- (void)removeTidyOptionsBindableAtIndexes:(NSIndexSet *)indexes;
-//
-//- (void)replaceObjectInTidyOptionsBindableAtIndex:(NSUInteger)index withObject:(id)anObject;
 
 
 @end

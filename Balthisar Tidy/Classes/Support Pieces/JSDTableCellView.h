@@ -38,8 +38,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class JSDTableView;
-
 
 @interface JSDTableCellView : NSTableCellView
 

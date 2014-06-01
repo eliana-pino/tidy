@@ -30,10 +30,9 @@
  **************************************************************************************************/
 
 #import <Cocoa/Cocoa.h>
-#import "PreferenceController.h"
-#import "JSDTableView.h"   // Required in header to support delegate protocol.
-#import "JSDTidyOption.h"
-#import "JSDTidyModel.h"
+#import "JSDTableViewDelegate.h"
+
+@class JSDTidyModel;
 
 
 @interface OptionPaneController : NSObject <NSTableViewDataSource, JSDTableViewDelegate>
@@ -44,20 +43,6 @@
 @property JSDTidyModel *tidyDocument;                              // Expose the tidyDocument for its options values.
 
 @property (assign) BOOL isInPreferencesView;                       // Controls some item visibility if in Preferences.
-
-
-/**
-	External exposure because we need to force reload the
-	data sometimes.
-	
-	@todo refactor interface to this controller's model.
-	Right now we're accessing this directly from the
-	outside, and we really should have this controller
-	host a key-value pair model, probably from the
-	user preferences system. Right now this hackey way
-	is only used in one spot, and it's bad design.
- */
-@property (weak) IBOutlet NSTableView *theTable;                   // Expose the table.
 
 
 - (instancetype)init;

@@ -34,6 +34,8 @@
  **************************************************************************************************/
 
 #import "PreferenceController.h"
+#import "PreferencesDefinitions.h"
+#import "OptionPaneController.h"
 #import "JSDTidyModel.h"
 
 #if INCLUDE_SPARKLE == 1

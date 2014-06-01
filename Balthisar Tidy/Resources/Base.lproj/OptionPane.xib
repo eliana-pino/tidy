@@ -24,7 +24,7 @@
                     <rect key="frame" x="0.0" y="52" width="315" height="337"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
-                        <scrollView focusRingType="none" borderType="none" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ecw-EI-FCd">
+                        <scrollView focusRingType="none" borderType="none" horizontalLineScroll="26" horizontalPageScroll="10" verticalLineScroll="26" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ecw-EI-FCd">
                             <rect key="frame" x="0.0" y="0.0" width="315" height="337"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <clipView key="contentView" focusRingType="none" drawsBackground="NO" copiesOnScroll="NO" id="aOZ-nq-ZoB">
@@ -34,6 +34,7 @@
                                     <tableView identifier="optionsTable" focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" selectionHighlightStyle="sourceList" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" autosaveName="" rowHeight="24" rowSizeStyle="automatic" viewBased="YES" floatsGroupRows="NO" id="rLn-af-rHD" customClass="JSDTableView">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="337"/>
                                         <autoresizingMask key="autoresizingMask"/>
+                                        <size key="intercellSpacing" width="0.0" height="2"/>
                                         <color key="backgroundColor" name="controlLightHighlightColor" catalog="System" colorSpace="catalog"/>
                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                         <tableColumns>
@@ -51,7 +52,7 @@
                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
                                                 <prototypeCellViews>
                                                     <tableCellView identifier="optionsColumn" id="Jz7-gz-B3D" userLabel="JSDTableCellView" customClass="JSDTableCellView">
-                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="24"/>
+                                                        <rect key="frame" x="0.0" y="1" width="300" height="24"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <tabView drawsBackground="NO" controlSize="mini" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="jQc-25-Ewn" userLabel="TabView - Header/Data">
@@ -242,11 +243,11 @@
                                                                                         </tabViewItem>
                                                                                         <tabViewItem label="NSPopUpButton" identifier="NSPopUpButton" id="sqg-Ym-NMP" userLabel="TabView - popup">
                                                                                             <view key="view" id="Vm6-Cq-tX3">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="150" height="24"/>
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="130" height="24"/>
                                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                                 <subviews>
                                                                                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yho-dg-Xfd">
-                                                                                                        <rect key="frame" x="4" y="2" width="141" height="19"/>
+                                                                                                        <rect key="frame" x="4" y="2" width="121" height="19"/>
                                                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                                                         <popUpButtonCell key="cell" type="roundRect" bezelStyle="roundedRect" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" inset="2" id="44K-BQ-xTa">
                                                                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

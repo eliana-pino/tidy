@@ -1,20 +1,15 @@
 /**************************************************************************************************
 
-	PreferenceController.h
- 
-	The main preference controller. Here we'll control the following:
+	JSDTableViewDelegate.h
 
-	- Handles the application preferences.
-	- Implements class methods to be used before instantiation.
+	Protocol for JSDTableView:
 
-	This controller parses `optionsInEffect.txt` in the application bundle, and compares
-	the options listed there with the linked-in TidyLib to determine which options are
-	in effect and valid. We use an instance of `JSDTidyModel` to deal with this.
- 
+		- tableView:keyWasPressed:row:
+
 
 	The MIT License (MIT)
 
-	Copyright (c) 2001 to 2014 James S. Derry <http://www.balthisar.com>
+	Copyright (c) 2001 to 2013 James S. Derry <http://www.balthisar.com>
 
 	Permission is hereby granted, free of charge, to any person obtaining a copy of this software
 	and associated documentation files (the "Software"), to deal in the Software without
@@ -33,33 +28,14 @@
 
  **************************************************************************************************/
 
-
 #import <Cocoa/Cocoa.h>
 
-@class JSDTidyModel;
+@protocol JSDTableViewDelegate <NSTableViewDelegate>
 
+@optional
 
-@interface PreferenceController : NSWindowController
+/* Returns YES if the key was handled. */
 
-
-#pragma mark - Properties
-
-
-@property (readonly)         NSArray      *optionsInEffect;           // TidyOptions this app will use.
-
-@property (readonly, assign) JSDTidyModel *tidyPreferencesDocument;   // Exposes the tidyDocument.
-
-@property (readonly, assign) NSInteger countOfTabViews;               // Mostly offered for exposure to AppleScript.
-
-@property (assign)           NSInteger indexOfCurrentTabView;         // Mostly offered for exposure to AppleScript.
-
-
-#pragma mark - Class Methods
-
-
-+ (id)sharedPreferences;        // Singleton accessor for this class.
-
-+ (void)registerUserDefaults;   // Registers Balthisar Tidy's defaults with Mac OS X' defaults system.
-
+- (BOOL)tableView:(NSTableView *)aTableView keyWasPressed:(NSInteger)keyCode row:(NSInteger)rowIndex;
 
 @end
