@@ -48,7 +48,7 @@
 
 /* Important Stuff in the NIB */
 
-@property (weak) IBOutlet NSView *rootView;
+@property (strong) IBOutlet NSView *rootView; // must keep strong
 
 @property (weak) IBOutlet NSTableView *theTable;
 
