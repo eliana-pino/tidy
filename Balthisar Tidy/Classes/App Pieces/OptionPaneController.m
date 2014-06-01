@@ -45,20 +45,14 @@
 
 @interface OptionPaneController ()
 
-/* The NIB's root-level view */
 
-@property (weak) IBOutlet NSView *View;
+/* Important Stuff in the NIB */
 
+@property (weak) IBOutlet NSView *rootView;
 
-/* The table used for options settings */
+@property (weak) IBOutlet NSTableView *theTable;
 
-@property (weak) IBOutlet NSTableView *theTable;                   // Expose the table.
-
-
-/* Mediates between tidyOptions and the view items. */
-/* Must keep strong to prevent it from deallocing before the bindings are released */
-
-@property (strong) IBOutlet NSArrayController *theArrayController;
+@property (strong) IBOutlet NSArrayController *theArrayController; // must keep strong
 
 
 /* Properties for managing the toggling of theDescription's visibility */
@@ -77,7 +71,7 @@
 
 /* Exposing sort descriptors and predicates */
 
-@property (readonly) NSArray     *sortDescriptor;
+@property (readonly) NSArray *sortDescriptor;
 
 @property (readonly) NSPredicate *filterPredicate;
 
@@ -132,7 +126,7 @@
 																	  constant:0.0];
 
 
-		/* These options are on a per-window basis, but default from user defauts */
+		/* These options are on a per-window basis, but originate from user defauts */
 
 		self.isShowingFriendlyTidyOptionNames = [[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyOptionsShowHumanReadableNames];
 
@@ -141,17 +135,9 @@
 		self.isInPreferencesView = NO;
 
 	}
+
 	return self;
-
 }
-
-
-///*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-//	awakeFromNib
-// *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-//- (void)awakeFromNib
-//{
-//}
 
 
 #pragma mark - Setup
@@ -170,9 +156,9 @@
 
 	[self.theTable.enclosingScrollView setHasHorizontalScroller:NO];
 
-	[self.View setFrame:[dstView bounds]];
+	[self.rootView setFrame:[dstView bounds]];
 
-	[dstView addSubview:_View];
+	[dstView addSubview:self.rootView];
 }
 
 
@@ -219,6 +205,8 @@
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	tableView:keyWasPressed:row:
 		Respond to table view keypresses.
+		In this case we're allowing the left and right cursors keys
+		to increment/decrement option values.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (BOOL)tableView:(NSTableView *)aTableView keyWasPressed:(NSInteger)keyCode row:(NSInteger)rowIndex
 {
@@ -334,27 +322,29 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (IBAction)handleToggleDescription:(NSButton *)sender
 {
-	[_View layoutSubtreeIfNeeded];
+	[self.rootView layoutSubtreeIfNeeded];
+
 	[NSAnimationContext runAnimationGroup:^(NSAnimationContext *context)
-	{
-		[context setAllowsImplicitAnimation: YES];
-
-		/* This little function makes a nice acceleration curved based on the height. */
-		context.duration = pow(1 / self.theDescription.intrinsicContentSize.height,1/3) / 5;
-
-		if (sender.state)
 		{
-			[self.theDescription addConstraint:self.theDescriptionConstraint];
+			[context setAllowsImplicitAnimation: YES];
+
+			/* This little function makes a nice acceleration curved based on the height. */
+			context.duration = pow(1 / self.theDescription.intrinsicContentSize.height,1/3) / 5;
+
+			if (sender.state)
+			{
+				[self.theDescription addConstraint:self.theDescriptionConstraint];
+			}
+			else
+			{
+				[self.theDescription removeConstraint:self.theDescriptionConstraint];
+			}
+			[self.rootView layoutSubtreeIfNeeded];
 		}
-		else
+		completionHandler:^
 		{
-			[self.theDescription removeConstraint:self.theDescriptionConstraint];
-		}
-		[_View layoutSubtreeIfNeeded];
-	} completionHandler:^
-	{
-		[[self theTable] scrollRowToVisible:self.theTable.selectedRow];
-	}];
+			[[self theTable] scrollRowToVisible:self.theTable.selectedRow];
+		}];
 }
 
 

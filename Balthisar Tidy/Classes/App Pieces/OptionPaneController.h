@@ -38,15 +38,15 @@
 @interface OptionPaneController : NSObject <NSTableViewDataSource, JSDTableViewDelegate>
 
 
-@property NSArray *optionsInEffect;                                // Only options in this list will be used.
+@property NSArray *optionsInEffect;               // Only options in this list will be used.
 
-@property JSDTidyModel *tidyDocument;                              // Expose the tidyDocument for its options values.
+@property JSDTidyModel *tidyDocument;             // Expose the tidyDocument for its options values.
 
-@property (assign) BOOL isInPreferencesView;                       // Controls some item visibility if in Preferences.
+@property (assign) BOOL isInPreferencesView;      // Controls some item visibility if in Preferences.
 
 
 - (instancetype)init;
 
-- (void)putViewIntoView:(NSView *)dstView;                         // Put this controllers `view` into `dstView`.
+- (void)putViewIntoView:(NSView *)dstView;        // Put this controllers `view` into `dstView`.
 
 @end

@@ -8,7 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="OptionPaneController">
             <connections>
-                <outlet property="View" destination="21" id="EGf-h1-qXt"/>
+                <outlet property="rootView" destination="21" id="xgu-q7-Zh5"/>
                 <outlet property="theArrayController" destination="m8S-67-rAD" id="dE3-aS-xUS"/>
                 <outlet property="theDescription" destination="Jr5-JD-RhE" id="E4I-qT-f9L"/>
                 <outlet property="theTable" destination="rLn-af-rHD" id="ZCz-4k-phA"/>
