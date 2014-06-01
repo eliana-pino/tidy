@@ -251,15 +251,6 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	tidyPreferencesDocument
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (JSDTidyModel*)tidyPreferencesDocument
-{
-	return self.optionController.tidyDocument;
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	countOfTabViews
 		Returns the number of tab views in the tab view.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
