@@ -139,6 +139,8 @@
 
 @property NSMutableArray *messagesArray;
 
+@property (strong) IBOutlet NSArrayController *messagesArrayController;
+
 
 #pragma mark - Methods
 
@@ -154,6 +156,204 @@
 
 
 @implementation TidyDocument
+
+
+#pragma mark - Initialization and Deallocation
+
+
+/*———————————————————————————————————————————————————————————————————*
+	init
+ *———————————————————————————————————————————————————————————————————*/
+- (instancetype)init
+{
+	if ((self = [super init]))
+	{
+		self.tidyProcess = [[JSDTidyModel alloc] init];
+
+		self.documentOpenedData = nil;
+	}
+
+	return self;
+}
+
+
+/*———————————————————————————————————————————————————————————————————*
+	dealloc
+ *———————————————————————————————————————————————————————————————————*/
+- (void)dealloc
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyOptionChanged object:[[self optionController] tidyDocument]];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifySourceTextChanged object:[self tidyProcess]];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyTidyTextChanged object:[self tidyProcess]];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyTidyErrorsChanged object:[self tidyProcess]];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyPossibleInputEncodingProblem object:[self tidyProcess]];
+}
+
+
+#pragma mark - Setup
+
+
+/*———————————————————————————————————————————————————————————————————*
+	configureViewSettings:
+		Given aView, make it non-wrapping. Also set fonts.
+ *———————————————————————————————————————————————————————————————————*/
+- (void)configureViewSettings:(NSTextView *)aView
+{
+	NSUserDefaults *localDefaults = [NSUserDefaults standardUserDefaults];
+
+	[aView setFont:[NSFont fontWithName:@"Menlo" size:11]];
+	[aView setRichText:NO];
+	[aView setUsesFontPanel:NO];
+	[aView setContinuousSpellCheckingEnabled:NO];
+	[aView setSelectable:YES];
+	[aView setEditable:NO];
+	[aView setImportsGraphics:NO];
+	[aView setAutomaticQuoteSubstitutionEnabled:NO];
+
+	[aView setAutomaticTextReplacementEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
+	[aView setAutomaticDashSubstitutionEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
+
+
+	/* Provided by Category `NSTextView+JSDExtensions` */
+
+	[aView setShowsLineNumbers:[[localDefaults valueForKey:JSDKeyShowNewDocumentLineNumbers] boolValue]];
+	[aView setWordwrapsText:NO];
+}
+
+
+/*———————————————————————————————————————————————————————————————————*
+	windowControllerDidLoadNib:
+		The nib is loaded.
+ *———————————————————————————————————————————————————————————————————*/
+- (void)windowControllerDidLoadNib:(NSWindowController *)aController
+{
+	[super windowControllerDidLoadNib:aController];
+
+
+	/* Create an OptionController and put it in place of optionPane. */
+
+	if (![self optionController])
+	{
+		self.optionController = [[OptionPaneController alloc] init];
+	}
+
+	self.optionController.optionsInEffect = [[PreferenceController sharedPreferences] optionsInEffect];
+
+	[[self optionController] putViewIntoView:self.optionPane];
+
+
+	/* Configure the text view settings */
+
+	[self configureViewSettings:self.sourceView];
+
+	[self configureViewSettings:self.tidyView];
+
+	self.sourceView.editable = YES;
+
+
+	/* Honor the defaults system defaults. */
+
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+
+	/*
+	 Make the optionController take the default values. This actually
+	 causes the empty document to go through processTidy one time.
+	 */
+	[self.optionController.tidyDocument takeOptionValuesFromDefaults:defaults];
+
+
+	/* Saving behavior settings */
+
+	self.fileWantsProtection = !(self.documentOpenedData == nil);
+
+
+	/*
+	 Set the document options. This causes the empty document to go
+	 through processTidy a second time.
+	 */
+	[self.tidyProcess optionsCopyValuesFromModel:self.optionController.tidyDocument];
+
+
+	/*
+	 Since this is startup, seed the tidyText view with this
+	 initial value for a blank document. If we're opening a
+	 document the event system will replace it forthwith.
+	 */
+	self.tidyView.string = self.tidyProcess.tidyText;
+
+
+	/* Setup for the Messages Table */
+
+	NSString *sortKeyFromPrefs = [[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyMessagesTableInitialSortKey];
+
+	NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:sortKeyFromPrefs ascending:YES];
+
+	[self.errorView setSortDescriptors:[NSArray arrayWithObject:descriptor]];
+
+
+	/*
+	 Delay setting up notifications until now, because otherwise
+	 all of the earlier options setup is simply going to result
+	 in a huge cascade of notifications and updates.
+	 */
+
+	/* NSNotifications from the |optionController| indicate that one or more options changed. */
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(handleTidyOptionChange:)
+												 name:tidyNotifyOptionChanged
+											   object:[[self optionController] tidyDocument]];
+
+	/* NSNotifications from the tidyProcess indicate that sourceText changed. */
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(handleTidySourceTextChange:)
+												 name:tidyNotifySourceTextChanged
+											   object:[self tidyProcess]];
+
+	/* NSNotifications from the tidyProcess indicate that tidyText changed. */
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(handleTidyTidyTextChange:)
+												 name:tidyNotifyTidyTextChanged
+											   object:[self tidyProcess]];
+
+	/* NSNotifications from the tidyProcess indicate that errorTable changed. */
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(handleTidyTidyErrorChange:)
+												 name:tidyNotifyTidyErrorsChanged
+											   object:[self tidyProcess]];
+
+	/* NSNotifications from the tidyProcess indicate that the input-encoding might be wrong. */
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(handleTidyInputEncodingProblem:)
+												 name:tidyNotifyPossibleInputEncodingProblem
+											   object:[self tidyProcess]];
+
+
+	/* Run through the new user helper if appropriate */
+
+	if (![[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyFirstRunComplete] boolValue])
+	{
+		[self kickOffFirstRunSequence:nil];
+	}
+
+	/*
+	 Set the tidyProcess data. The event system will set the view later.
+	 If we're a new document, then documentOpenedData nil is fine.
+	 */
+	self.documentIsLoading = !(self.documentOpenedData == nil);
+
+	[[self tidyProcess] setSourceTextWithData:[self documentOpenedData]];
+}
+
+
+/*———————————————————————————————————————————————————————————————————*
+	windowNibName
+		Return the name of the Nib associated with this class.
+ *———————————————————————————————————————————————————————————————————*/
+- (NSString *)windowNibName
+{
+	return @"TidyDocument";
+}
 
 
 #pragma mark - File I/O Handling
@@ -339,201 +539,6 @@
 - (NSString *)tidyText
 {
 	return self.tidyView.string;
-}
-
-
-#pragma mark - Initialization and Deallocation and Setup
-
-
-/*———————————————————————————————————————————————————————————————————*
-	init
- *———————————————————————————————————————————————————————————————————*/
-- (instancetype)init
-{
-	if ((self = [super init]))
-	{
-		self.tidyProcess = [[JSDTidyModel alloc] init];
-		
-		self.documentOpenedData = nil;
-	}
-	
-	return self;
-}
-
-
-/*———————————————————————————————————————————————————————————————————*
-	dealloc
- *———————————————————————————————————————————————————————————————————*/
-- (void)dealloc
-{
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyOptionChanged object:[[self optionController] tidyDocument]];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifySourceTextChanged object:[self tidyProcess]];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyTidyTextChanged object:[self tidyProcess]];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyTidyErrorsChanged object:[self tidyProcess]];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyPossibleInputEncodingProblem object:[self tidyProcess]];
-}
-
-
-/*———————————————————————————————————————————————————————————————————*
-	configureViewSettings:
-		Given aView, make it non-wrapping. Also set fonts.
- *———————————————————————————————————————————————————————————————————*/
-- (void)configureViewSettings:(NSTextView *)aView
-{
-	NSUserDefaults *localDefaults = [NSUserDefaults standardUserDefaults];
-
-	[aView setFont:[NSFont fontWithName:@"Menlo" size:11]];
-	[aView setRichText:NO];
-	[aView setUsesFontPanel:NO];
-	[aView setContinuousSpellCheckingEnabled:NO];
-	[aView setSelectable:YES];
-	[aView setEditable:NO];
-	[aView setImportsGraphics:NO];
-	[aView setAutomaticQuoteSubstitutionEnabled:NO];
-
-	[aView setAutomaticTextReplacementEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
-	[aView setAutomaticDashSubstitutionEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
-
-
-	/* Provided by Category `NSTextView+JSDExtensions` */
-	
-	[aView setShowsLineNumbers:[[localDefaults valueForKey:JSDKeyShowNewDocumentLineNumbers] boolValue]];
-	[aView setWordwrapsText:NO];
-}
-
-
-/*———————————————————————————————————————————————————————————————————*
-	windowControllerDidLoadNib:
-		The nib is loaded.
- *———————————————————————————————————————————————————————————————————*/
-- (void)windowControllerDidLoadNib:(NSWindowController *)aController
-{
-	[super windowControllerDidLoadNib:aController];
-
-
-	/* Create an OptionController and put it in place of optionPane. */
-
-	if (![self optionController])
-	{
-		self.optionController = [[OptionPaneController alloc] init];
-	}
-
-	self.optionController.optionsInEffect = [[PreferenceController sharedPreferences] optionsInEffect];
-
-	[[self optionController] putViewIntoView:self.optionPane];
-
-
-	/* Configure the text view settings */
-
-	[self configureViewSettings:self.sourceView];
-	
-	[self configureViewSettings:self.tidyView];
-	
-	self.sourceView.editable = YES;
-
-	
-	/* Honor the defaults system defaults. */
-	
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	
-	
-	/*
-		Make the optionController take the default values. This actually
-		causes the empty document to go through processTidy one time.
-	 */
-	[self.optionController.tidyDocument takeOptionValuesFromDefaults:defaults];
-	
-	
-	/* Saving behavior settings */
-	
-	self.fileWantsProtection = !(self.documentOpenedData == nil);
-
-	
-	/*
-		Set the document options. This causes the empty document to go
-		through processTidy a second time.
-	 */
-	[self.tidyProcess optionsCopyValuesFromModel:self.optionController.tidyDocument];
-
-	
-	/*
-		Since this is startup, seed the tidyText view with this
-		initial value for a blank document. If we're opening a
-		document the event system will replace it forthwith.
-	 */
-	self.tidyView.string = self.tidyProcess.tidyText;
-
-
-	/* Setup for the Messages Table */
-
-	NSString *sortKeyFromPrefs = [[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyMessagesTableInitialSortKey];
-
-	NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:sortKeyFromPrefs ascending:YES];
-
-	[self.errorView setSortDescriptors:[NSArray arrayWithObject:descriptor]];
-
-
-	/*
-		Delay setting up notifications until now, because otherwise
-		all of the earlier options setup is simply going to result
-		in a huge cascade of notifications and updates.
-	*/
-
-	/* NSNotifications from the |optionController| indicate that one or more options changed. */
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(handleTidyOptionChange:)
-												 name:tidyNotifyOptionChanged
-											   object:[[self optionController] tidyDocument]];
-	
-	/* NSNotifications from the tidyProcess indicate that sourceText changed. */
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(handleTidySourceTextChange:)
-												 name:tidyNotifySourceTextChanged
-											   object:[self tidyProcess]];
-	
-	/* NSNotifications from the tidyProcess indicate that tidyText changed. */
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(handleTidyTidyTextChange:)
-												 name:tidyNotifyTidyTextChanged
-											   object:[self tidyProcess]];
-
-	/* NSNotifications from the tidyProcess indicate that errorTable changed. */
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(handleTidyTidyErrorChange:)
-												 name:tidyNotifyTidyErrorsChanged
-											   object:[self tidyProcess]];
-
-	/* NSNotifications from the tidyProcess indicate that the input-encoding might be wrong. */
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(handleTidyInputEncodingProblem:)
-												 name:tidyNotifyPossibleInputEncodingProblem
-											   object:[self tidyProcess]];
-
-	
-	/* Run through the new user helper if appropriate */
-
-	if (![[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyFirstRunComplete] boolValue])
-	{
-		[self kickOffFirstRunSequence:nil];
-	}
-
-	/*
-		Set the tidyProcess data. The event system will set the view later.
-		If we're a new document, then documentOpenedData nil is fine.
-	 */
-	self.documentIsLoading = !(self.documentOpenedData == nil);
-	
-	[[self tidyProcess] setSourceTextWithData:[self documentOpenedData]];
-}
-
-
-/*———————————————————————————————————————————————————————————————————*
-	windowNibName
-		Return the name of the Nib associated with this class.
- *———————————————————————————————————————————————————————————————————*/
-- (NSString *)windowNibName
-{
-	return @"TidyDocument";
 }
 
 
@@ -767,123 +772,112 @@
 #pragma mark - Error Table Handling
 
 
-/*———————————————————————————————————————————————————————————————————*
-	numberOfRowsInTableView:
-		We're here because we're the datasource of the errorView.
-		We need to specify how many items are in the table.
- *———————————————————————————————————————————————————————————————————*/
-- (NSUInteger)numberOfRowsInTableView:(NSTableView *)aTableView
-{
-	return self.messagesArray.count;
-}
+///*———————————————————————————————————————————————————————————————————*
+//	tableView:viewForTableColumn:row:
+//		We're here because we're the datasource of the errorView.
+//		We need to specify what to show in the row/column. The
+//		error array consists of dictionaries with entries for
+//		`level`, `line`, `column`, and `message`.
+// *———————————————————————————————————————————————————————————————————*/
+//- (NSView *)tableView:(NSTableView *)tableView
+//   viewForTableColumn:(NSTableColumn *)tableColumn
+//				  row:(NSInteger)row
+//{
+//	if (row < self.messagesArray.count )
+//	{
+//		NSTableCellView* tableCellView = [tableView makeViewWithIdentifier:tableColumn.identifier owner:nil];
+//		
+//		NSDictionary *error = self.messagesArray[row];
+//
+//		if ([tableColumn.identifier isEqualToString:@"severity"])
+//		{
+//			/*
+//				The severity of the error reported by TidyLib is
+//				converted to a string label and localized into
+//				the current language.
+//			 */
+//			NSArray *errorTypes = @[@"messagesInfo", @"messagesWarning", @"messagesConfig", @"messagesAccess", @"messagesError", @"messagesDocument", @"messagesPanic"];
+//
+//			tableCellView.imageView.image = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:errorTypes[[error[@"level"] intValue]] ofType:@"icns"]];
+//
+//			tableCellView.textField.stringValue = NSLocalizedString(errorTypes[[error[@"level"] intValue]], nil);
+//
+//			return tableCellView;
+//		}
+//
+//		if ([tableColumn.identifier isEqualToString:@"where"])
+//		{
+//			/*
+//			 We can also localize N/A and line and column.
+//			 */
+//			if (([error[@"line"] intValue] == 0) || ([error[@"column"] intValue] == 0))
+//			{
+//				tableCellView.textField.stringValue = NSLocalizedString(@"N/A", nil);
+//			}
+//			else
+//			{
+//				tableCellView.textField.stringValue = [NSString stringWithFormat:@"%@ %@, %@ %@", NSLocalizedString(@"line", nil), error[@"line"], NSLocalizedString(@"column", nil), error[@"column"]];
+//			}
+//
+//			return tableCellView;
+//		}
+//
+//		if ([tableColumn.identifier isEqualToString:@"description"])
+//		{
+//			/* The message should already be localized by JSDTidyModel */
+//			
+//			tableCellView.textField.stringValue = error[@"message"];
+//			
+//			return tableCellView;
+//		}
+//	}
+//
+//	return nil;
+//}
+//
 
-
-/*———————————————————————————————————————————————————————————————————*
-	tableView:viewForTableColumn:row:
-		We're here because we're the datasource of the errorView.
-		We need to specify what to show in the row/column. The
-		error array consists of dictionaries with entries for
-		`level`, `line`, `column`, and `message`.
- *———————————————————————————————————————————————————————————————————*/
-- (NSView *)tableView:(NSTableView *)tableView
-   viewForTableColumn:(NSTableColumn *)tableColumn
-				  row:(NSInteger)row
-{
-	if (row < self.messagesArray.count )
-	{
-		NSTableCellView* tableCellView = [tableView makeViewWithIdentifier:tableColumn.identifier owner:nil];
-		
-		NSDictionary *error = self.messagesArray[row];
-
-		if ([tableColumn.identifier isEqualToString:@"severity"])
-		{
-			/*
-				The severity of the error reported by TidyLib is
-				converted to a string label and localized into
-				the current language.
-			 */
-			NSArray *errorTypes = @[@"messagesInfo", @"messagesWarning", @"messagesConfig", @"messagesAccess", @"messagesError", @"messagesDocument", @"messagesPanic"];
-
-			tableCellView.imageView.image = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:errorTypes[[error[@"level"] intValue]] ofType:@"icns"]];
-
-			tableCellView.textField.stringValue = NSLocalizedString(errorTypes[[error[@"level"] intValue]], nil);
-
-			return tableCellView;
-		}
-
-		if ([tableColumn.identifier isEqualToString:@"where"])
-		{
-			/*
-			 We can also localize N/A and line and column.
-			 */
-			if (([error[@"line"] intValue] == 0) || ([error[@"column"] intValue] == 0))
-			{
-				tableCellView.textField.stringValue = NSLocalizedString(@"N/A", nil);
-			}
-			else
-			{
-				tableCellView.textField.stringValue = [NSString stringWithFormat:@"%@ %@, %@ %@", NSLocalizedString(@"line", nil), error[@"line"], NSLocalizedString(@"column", nil), error[@"column"]];
-			}
-
-			return tableCellView;
-		}
-
-		if ([tableColumn.identifier isEqualToString:@"description"])
-		{
-			/* The message should already be localized by JSDTidyModel */
-			
-			tableCellView.textField.stringValue = error[@"message"];
-			
-			return tableCellView;
-		}
-	}
-
-	return nil;
-}
-
-
-/*———————————————————————————————————————————————————————————————————*
-	tableView:sortDescriptorsDidChange:
-		We're here because we're the datasource of the errorView.
-		We need to specify what to show in the row/column. The
-		error array consists of dictionaries with entries for
-		`level`, `line`, `column`, and `message`.
- *———————————————————————————————————————————————————————————————————*/
-- (void)tableView:(NSTableView *)tableView sortDescriptorsDidChange:(NSArray *)oldDescriptors
-{
-	[self.messagesArray sortUsingDescriptors:tableView.sortDescriptors];
-	
-	[tableView reloadData];
-}
-
-
-/*———————————————————————————————————————————————————————————————————*
-	tableViewSelectionDidChange:
-		We arrived here because we're the delegate of the table.
-		Whenever the selection changes, highlight the related
-		column/row in the `sourceView`.
- *———————————————————————————————————————————————————————————————————*/
-- (void)tableViewSelectionDidChange:(NSNotification *)aNotification
-{
-	NSInteger errorViewRow = self.errorView.selectedRow;
-	
-	if ((errorViewRow >= 0) && (errorViewRow < self.messagesArray.count))
-	{
-		NSInteger row = [self.messagesArray[errorViewRow][@"line"] intValue];
-		
-		NSInteger col = [self.messagesArray[errorViewRow][@"column"] intValue];
-		
-		if (row > 0)
-		{
-			[self.sourceView highlightLine:row Column:col];
-			
-			return;
-		}
-	}
-	
-	self.sourceView.showsHighlight = NO;
-}
-
+///*———————————————————————————————————————————————————————————————————*
+//	tableView:sortDescriptorsDidChange:
+//		We're here because we're the datasource of the errorView.
+//		We need to specify what to show in the row/column. The
+//		error array consists of dictionaries with entries for
+//		`level`, `line`, `column`, and `message`.
+// *———————————————————————————————————————————————————————————————————*/
+//- (void)tableView:(NSTableView *)tableView sortDescriptorsDidChange:(NSArray *)oldDescriptors
+//{
+//	[self.messagesArray sortUsingDescriptors:tableView.sortDescriptors];
+//	
+//	[tableView reloadData];
+//}
+//
+//
+///*———————————————————————————————————————————————————————————————————*
+//	tableViewSelectionDidChange:
+//		We arrived here because we're the delegate of the table.
+//		Whenever the selection changes, highlight the related
+//		column/row in the `sourceView`.
+// *———————————————————————————————————————————————————————————————————*/
+//- (void)tableViewSelectionDidChange:(NSNotification *)aNotification
+//{
+//	NSInteger errorViewRow = self.errorView.selectedRow;
+//	
+//	if ((errorViewRow >= 0) && (errorViewRow < self.messagesArray.count))
+//	{
+//		NSInteger row = [self.messagesArray[errorViewRow][@"line"] intValue];
+//		
+//		NSInteger col = [self.messagesArray[errorViewRow][@"column"] intValue];
+//		
+//		if (row > 0)
+//		{
+//			[self.sourceView highlightLine:row Column:col];
+//			
+//			return;
+//		}
+//	}
+//	
+//	self.sourceView.showsHighlight = NO;
+//}
+//
 
 #pragma mark - Split View handling
 
