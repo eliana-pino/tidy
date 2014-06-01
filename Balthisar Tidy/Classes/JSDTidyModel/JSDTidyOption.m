@@ -446,17 +446,17 @@
 	{
 		if (self.optionId == TidyCharEncoding)
 		{
-			return [NSString stringWithFormat:@"%u", tidyDefaultInputEncoding];
+			return [NSString stringWithFormat:@"%u", NSUTF8StringEncoding];
 		}
 		
 		if (self.optionId == TidyInCharEncoding)
 		{
-			return [NSString stringWithFormat:@"%u", tidyDefaultInputEncoding];
+			return [NSString stringWithFormat:@"%u", NSUTF8StringEncoding];
 		}
 		
 		if (self.optionId == TidyOutCharEncoding)
 		{
-			return [NSString stringWithFormat:@"%u", tidyDefaultOutputEncoding];
+			return [NSString stringWithFormat:@"%u", NSUTF8StringEncoding];
 		}
 	}
 
