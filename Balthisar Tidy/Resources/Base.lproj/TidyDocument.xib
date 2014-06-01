@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
@@ -11,6 +11,7 @@
                 <outlet property="buttonEncodingDoNotWarnAgain" destination="doV-lt-6BJ" id="8wL-Eu-wUj"/>
                 <outlet property="buttonEncodingIgnoreSuggestion" destination="BSz-1n-JGJ" id="aU9-oT-LBI"/>
                 <outlet property="errorView" destination="398" id="401"/>
+                <outlet property="messagesArrayController" destination="stB-y5-7GX" id="7H7-GK-7Pd"/>
                 <outlet property="optionPane" destination="kOf-B8-B6Q" id="4hO-cc-Qi1"/>
                 <outlet property="popoverEncoding" destination="Ubj-f5-N5W" id="yeO-Wv-IyK"/>
                 <outlet property="sourceView" destination="LIi-0a-MJV" id="aHs-1P-RdS"/>
@@ -163,14 +164,14 @@
                                                         <rect key="frame" x="1" y="17" width="468" height="144"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
-                                                            <tableView autoresizesSubviews="NO" focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" autosaveName="positionDocumentWindowTableColumns" rowSizeStyle="automatic" headerView="413" viewBased="YES" id="398">
+                                                            <tableView autoresizesSubviews="NO" focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" autosaveName="positionDocumentWindowTableColumns" rowSizeStyle="automatic" headerView="413" viewBased="YES" floatsGroupRows="NO" id="398">
                                                                 <rect key="frame" x="0.0" y="0.0" width="468" height="144"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                                 <tableColumns>
-                                                                    <tableColumn identifier="severity" editable="NO" width="108" minWidth="100" maxWidth="200" id="404">
+                                                                    <tableColumn identifier="severity" editable="NO" width="110" minWidth="100" maxWidth="200" id="404">
                                                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Severity">
                                                                             <font key="font" metaFont="smallSystem"/>
                                                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -184,8 +185,8 @@
                                                                         <sortDescriptor key="sortDescriptorPrototype" selector="compare:" sortKey="level"/>
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
-                                                                            <tableCellView id="2Mb-CQ-zHR">
-                                                                                <rect key="frame" x="1" y="1" width="108" height="17"/>
+                                                                            <tableCellView identifier="severity" id="2Mb-CQ-zHR">
+                                                                                <rect key="frame" x="1" y="1" width="110" height="17"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="4HN-yB-zVc">
@@ -194,13 +195,20 @@
                                                                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSActionTemplate" id="L1v-BB-RgH"/>
                                                                                     </imageView>
                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="gCf-kp-s0y">
-                                                                                        <rect key="frame" x="25" y="-2" width="83" height="17"/>
+                                                                                        <rect key="frame" x="25" y="-2" width="85" height="17"/>
                                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="xgw-b3-FgB">
                                                                                             <font key="font" metaFont="smallSystem"/>
                                                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                                         </textFieldCell>
+                                                                                        <connections>
+                                                                                            <binding destination="2Mb-CQ-zHR" name="value" keyPath="objectValue.levelDescription" id="5uo-eR-kcL">
+                                                                                                <dictionary key="options">
+                                                                                                    <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                                                                                                </dictionary>
+                                                                                            </binding>
+                                                                                        </connections>
                                                                                     </textField>
                                                                                 </subviews>
                                                                                 <connections>
@@ -224,8 +232,8 @@
                                                                         <sortDescriptor key="sortDescriptorPrototype" selector="compare:" sortKey="line"/>
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
-                                                                            <tableCellView id="fbI-dr-SCk">
-                                                                                <rect key="frame" x="112" y="1" width="114" height="17"/>
+                                                                            <tableCellView identifier="where" id="fbI-dr-SCk">
+                                                                                <rect key="frame" x="114" y="1" width="114" height="17"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="ONi-8F-Mnk">
@@ -236,6 +244,9 @@
                                                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                                         </textFieldCell>
+                                                                                        <connections>
+                                                                                            <binding destination="fbI-dr-SCk" name="value" keyPath="objectValue.locationString" id="9B6-oK-BrW"/>
+                                                                                        </connections>
                                                                                     </textField>
                                                                                 </subviews>
                                                                                 <connections>
@@ -244,7 +255,7 @@
                                                                             </tableCellView>
                                                                         </prototypeCellViews>
                                                                     </tableColumn>
-                                                                    <tableColumn identifier="description" editable="NO" width="237" minWidth="94.791999816894531" maxWidth="1000" id="405">
+                                                                    <tableColumn identifier="description" editable="NO" width="235" minWidth="94.791999816894531" maxWidth="1000" id="405">
                                                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Error Description">
                                                                             <font key="font" metaFont="smallSystem"/>
                                                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -258,18 +269,21 @@
                                                                         <sortDescriptor key="sortDescriptorPrototype" selector="compare:" sortKey="message"/>
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
-                                                                            <tableCellView id="iH5-i0-Bze">
-                                                                                <rect key="frame" x="229" y="1" width="237" height="17"/>
+                                                                            <tableCellView identifier="description" id="iH5-i0-Bze">
+                                                                                <rect key="frame" x="231" y="1" width="235" height="17"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="MAr-of-2Ht">
-                                                                                        <rect key="frame" x="0.0" y="-2" width="237" height="17"/>
+                                                                                        <rect key="frame" x="0.0" y="-2" width="235" height="17"/>
                                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="Zj7-64-aBe">
                                                                                             <font key="font" metaFont="smallSystem"/>
                                                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                                         </textFieldCell>
+                                                                                        <connections>
+                                                                                            <binding destination="iH5-i0-Bze" name="value" keyPath="objectValue.message" id="yAZ-fg-cNE"/>
+                                                                                        </connections>
                                                                                     </textField>
                                                                                 </subviews>
                                                                                 <connections>
@@ -281,6 +295,7 @@
                                                                 </tableColumns>
                                                                 <accessibility description="This area contains messages generated by the tidying process."/>
                                                                 <connections>
+                                                                    <binding destination="stB-y5-7GX" name="content" keyPath="arrangedObjects" id="Wdh-V9-TF9"/>
                                                                     <outlet property="dataSource" destination="-2" id="402"/>
                                                                     <outlet property="delegate" destination="-2" id="403"/>
                                                                 </connections>
@@ -408,6 +423,16 @@ DQ
                 </textField>
             </subviews>
         </customView>
+        <arrayController editable="NO" id="stB-y5-7GX" userLabel="Messages Array Controller">
+            <connections>
+                <binding destination="-2" name="contentArray" keyPath="self.tidyProcess.errorArray" id="iJb-ph-sx0">
+                    <dictionary key="options">
+                        <bool key="NSConditionallySetsEditable" value="NO"/>
+                        <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                    </dictionary>
+                </binding>
+            </connections>
+        </arrayController>
     </objects>
     <resources>
         <image name="NSActionTemplate" width="14" height="14"/>

@@ -53,6 +53,7 @@
 
 
 /* Software Updater Pane Preferences and Objects */
+
 @property (weak) IBOutlet NSTabViewItem *tabViewUpdates;
 @property (weak) IBOutlet NSButton      *buttonAllowUpdateChecks;
 @property (weak) IBOutlet NSButton      *buttonAllowSystemProfile;
@@ -60,6 +61,7 @@
 
 
 /* Other Properties */
+
 @property (weak) IBOutlet NSTabView *tabView;            // The tab view.
 @property (weak) IBOutlet NSView    *optionPane;         // The empty pane in the nib that we will inhabit.
 @property OptionPaneController      *optionController;   // The real option pane loaded into optionPane.
@@ -237,7 +239,7 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSArray*)optionsInEffect
 {
-	return self.optionController.tidyDocument.optionsInUse;
+	return self.optionController.optionsInEffect;
 }
 
 
@@ -246,7 +248,7 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)setOptionsInEffect:(NSArray *)optionsInEffect
 {
-	self.optionController.tidyDocument.optionsInUse = optionsInEffect;
+	self.optionController.optionsInEffect = optionsInEffect;
 }
 
 

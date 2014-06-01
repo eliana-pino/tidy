@@ -34,7 +34,7 @@
 @class JSDTidyOption;
 
 
-#pragma mark - Some definitions
+#pragma mark - Definitions
 
 /*
 	This is the main key in the implementing application's prefs file
@@ -44,15 +44,6 @@
 */
 
 #define JSDKeyTidyTidyOptionsKey @"JSDTidyTidyOptions"
-
-/*
-	The default encoding styles that override the TidyLib-implemented
-	character encodings. These are present in the header in case you
-	want to provide your own defaults.
-*/
-
-#define tidyDefaultInputEncoding	NSUTF8StringEncoding
-#define tidyDefaultOutputEncoding	NSUTF8StringEncoding
 
 
 #pragma mark - class JSDTidyModel
@@ -186,12 +177,12 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	ERRORS reported by tidy
+	MESSAGES reported by tidy
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
 @property (readonly) NSString *errorText;      // Return the error text in traditional tidy format.
 
-@property (readonly) NSArray  *errorArray;     // Error text as an array of NSDictionary of the errors.
+@property (readonly) NSArray  *errorArray;     // Message text as an array of NSDictionary of the errors.
 
 
 #pragma mark - Options Overall management
@@ -303,19 +294,6 @@
 @property (readonly) NSDictionary *tidyOptions;
 
 @property (readonly) NSArray *tidyOptionsBindable;
-
-
-#pragma mark - KVC Accessor Requirements for our tidyOptionsBindable array.
-
-/* These are the immutable accessors */
-
-- (NSUInteger)countOfTidyOptionsBindable;
-
-- (id)objectInTidyOptionsBindableAtIndex:(NSUInteger)index;
-
-- (NSArray *)tidyOptionsBindableAtIndexes:(NSIndexSet *)indexes;
-
-- (void)getTidyOptionsBindable:(JSDTidyOption * __unsafe_unretained *)buffer range:(NSRange)inRange;
 
 
 @end

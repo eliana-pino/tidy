@@ -37,6 +37,8 @@
 
 @interface OptionPaneController : NSObject <NSTableViewDataSource, JSDTableViewDelegate>
 
+@property (weak) IBOutlet NSTableView *theTable;
+
 
 @property NSArray *optionsInEffect;               // Only options in this list will be used.
 

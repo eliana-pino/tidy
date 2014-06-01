@@ -50,7 +50,7 @@
 
 @property (strong) IBOutlet NSView *rootView; // must keep strong
 
-@property (weak) IBOutlet NSTableView *theTable;
+//@property (weak) IBOutlet NSTableView *theTable;
 
 @property (strong) IBOutlet NSArrayController *theArrayController; // must keep strong
 

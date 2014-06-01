@@ -489,7 +489,6 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)setSourceTextWithData:(NSData *)data
 {
-	
 	if (data != _originalData)
 	{
 		/*
@@ -513,6 +512,8 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	
 	NSString *testText = nil;
 	
+	[self willChangeValueForKey:@"sourceText"];
+
 	if ((testText = [[NSString alloc] initWithData:data encoding:self.inputEncoding] ))
 	{
 		_sourceText = testText;
@@ -521,7 +522,10 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	{
 		_sourceText = @"";
 	}
-	
+
+	[self didChangeValueForKey:@"sourceText"];
+
+
 	_sourceDidChange = NO;
 
 	[self notifyTidyModelSourceTextChanged];
@@ -603,6 +607,15 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	return _errorText;
 }
 
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	keyPathsForValuesAffectingErrorArray
+		All of listed keys affect the error array.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
++ (NSSet *)keyPathsForValuesAffectingErrorArray
+{
+    return [NSSet setWithObjects:@"sourceText", @"tidyOptions", @"tidyOptionsBindable", nil];
+}
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	errorArray
@@ -1100,7 +1113,10 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 							Message:(ctmbstr)mssg
 						  Arguments:(va_list)args
 {
-	__strong NSMutableDictionary *errorDict = [[NSMutableDictionary alloc] init];
+	NSMutableDictionary *errorDict = [[NSMutableDictionary alloc] init];
+
+
+	/* Localize the message */
 
 	NSString *formatString = NSLocalizedStringFromTable(@(mssg), @"JSDTidyModel", nil);
 	
@@ -1108,10 +1124,69 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	
 	NSString *messageString = NSLocalizedStringFromTable(intermediateString, @"JSDTidyModel", nil);
 
-	errorDict[@"level"]   = @((int)lvl);	// lvl is a c enum
-	errorDict[@"line"]    = @(line);
-	errorDict[@"column"]  = @(col);
-	errorDict[@"message"] = messageString;
+
+	/* Localize the levelDescription */
+
+	NSArray *errorTypes = @[@"messagesInfo", @"messagesWarning", @"messagesConfig", @"messagesAccess", @"messagesError", @"messagesDocument", @"messagesPanic"];
+
+	NSString *levelDescription = NSLocalizedStringFromTable(errorTypes[(int)lvl], @"JSDTidyModel", nil);
+
+
+	/* Localize the locaation strings */
+
+	NSString *lineString;
+
+	if (line == 0)
+	{
+		lineString = NSLocalizedStringFromTable(@"N/A", @"JSDTidyModel", @"");
+	}
+	else
+	{
+		lineString = [NSString stringWithFormat:@"%@ %u", NSLocalizedStringFromTable(@"line", @"JSDTidyModel", nil), line];
+	}
+
+	NSString *columnString;
+
+	if (col == 0)
+	{
+		columnString = NSLocalizedStringFromTable(@"N/A", @"JSDTidyModel", @"");
+	}
+	else
+	{
+		columnString = [NSString stringWithFormat:@"%@ %u", NSLocalizedStringFromTable(@"column", @"JSDTidyModel", nil), col];
+	}
+
+	NSString *locationString;
+
+	if ((line == 0) || (col == 0))
+	{
+		locationString = NSLocalizedStringFromTable(@"N/A", @"JSDTidyModel", @"");
+	}
+	else
+	{
+		locationString = [NSString stringWithFormat:@"%@, %@", lineString, columnString];
+	}
+
+
+	/* Build the finished array */
+
+	errorDict[@"level"]            = @((int)lvl);	// lvl is a c enum
+	errorDict[@"levelDescription"] = levelDescription;
+	errorDict[@"line"]             = @(line);
+	errorDict[@"lineString"]       = lineString;
+	errorDict[@"column"]           = @(col);
+	errorDict[@"columnString"]     = columnString;
+	errorDict[@"locationString"]   = locationString;
+	errorDict[@"message"]          = messageString;
+
+
+
+//tableCellView.imageView.image = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:errorTypes[[error[@"level"] intValue]] ofType:@"icns"]];
+
+
+	
+	
+
 
 	[_errorArray addObject:errorDict];
 
@@ -1316,48 +1391,6 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 - (NSArray *)tidyOptionsBindable
 {
 	return [[_tidyOptions allValues] arrayByAddingObjectsFromArray:_tidyOptionHeaders];
-}
-
-
-#pragma mark - KVC Accessor Requirements for our tidyOptionsBindable array.
-
-
-#pragma mark - Immutable Accessors
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	countOfTidyOptionsBindable
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (NSUInteger)countOfTidyOptionsBindable
-{
-    return [_tidyOptions count];
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	objectInTidyOptionsBindableAtIndex:
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (id)objectInTidyOptionsBindableAtIndex:(NSUInteger)index
-{
-    return [[_tidyOptions allValues] objectAtIndex:index];
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	tidyOptionsBindableAtIndexes:
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (NSArray *)tidyOptionsBindableAtIndexes:(NSIndexSet *)indexes
-{
-    return [[_tidyOptions allValues] objectsAtIndexes:indexes];
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	getTidyOptions:range:
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)getTidyOptionsBindable:(JSDTidyOption * __unsafe_unretained *)buffer range:(NSRange)inRange
-{
-    [[_tidyOptions allValues] getObjects:buffer range:inRange];
 }
 
 
