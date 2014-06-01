@@ -6,6 +6,22 @@
 "category-4"	= "Miscellaneous Options";
 
 
+/* Severity Levels */
+"messagesInfo"			= "Information";
+"messagesWarning"		= "Warning";
+"messagesConfig"		= "Configuration";
+"messagesAccess"		= "Access";
+"messagesError"			= "Error";
+"messagesDocument"		= "Document";
+"messagesPanic"			= "PANIC!";
+
+
+/* Location Descriptions for messages array */
+"N/A"			= " ";
+"line"			= "Line";
+"column"		= "Column";
+
+
 /* Human-readable tag names. */
 "tag-accessibility-check"                   = "Accessibility Check";
 "tag-add-xml-decl"                          = "Add XML Declaration";

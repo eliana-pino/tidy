@@ -10,23 +10,8 @@
 "do not save"	= "Don’t Save";
 "cancel"		= "Cancel";
 
-/* Tidy Error Table */
-
-"messagesInfo"			= "Information";
-"messagesWarning"		= "Warning";
-"messagesConfig"		= "Configuration";
-"messagesAccess"		= "Access";
-"messagesError"			= "Error";
-"messagesDocument"		= "Document";
-"messagesPanic"			= "PANIC!";
-
-"N/A"			= " ";
-
-"line"			= "Line";
-"column"		= "Column";
-
-
 /* FirstRunController */
+
 "firstRun-stepXofY"		= "Step %u of %u";
 "firstRun-buttonBegin"	= "Begin";
 "firstRun-buttonDone"	= "Done";
