@@ -34,8 +34,7 @@
 #import "JSDBoolToStringValueTransformer.h"
 
 #if INCLUDE_SPARKLE == 1
-#import <Sparkle/Sparkle.h>
-
+	#import <Sparkle/Sparkle.h>
 #endif
 
 
@@ -90,19 +89,19 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-/*
-	The `Balthisar Tidy (no sparkle)` target has NOSPARKLE=1 defined.
-	Because we're building completely without Sparkle, we have to
-	make sure there are no references to it in the MainMenu nib,
-	and set its target-action programmatically.
- */
-#if INCLUDE_SPARKLE == 0
-	[[self menuCheckForUpdates] setHidden:YES];
-#else
-	[[self menuCheckForUpdates] setTarget:[SUUpdater sharedUpdater]];
-	[[self menuCheckForUpdates] setAction:@selector(checkForUpdates:)];
-	[[self menuCheckForUpdates] setEnabled:YES];
-#endif
+	/*
+		The `Balthisar Tidy (no sparkle)` target has NOSPARKLE=1 defined.
+		Because we're building completely without Sparkle, we have to
+		make sure there are no references to it in the MainMenu nib,
+		and set its target-action programmatically.
+	 */
+	#if INCLUDE_SPARKLE == 0
+		[[self menuCheckForUpdates] setHidden:YES];
+	#else
+		[[self menuCheckForUpdates] setTarget:[SUUpdater sharedUpdater]];
+		[[self menuCheckForUpdates] setAction:@selector(checkForUpdates:)];
+		[[self menuCheckForUpdates] setEnabled:YES];
+	#endif
 }
 
 
