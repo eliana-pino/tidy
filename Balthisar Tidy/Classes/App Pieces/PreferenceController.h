@@ -45,7 +45,7 @@
 #pragma mark - Properties
 
 
-@property (readonly)         NSArray      *optionsInEffect;           // TidyOptions this app will use.
+@property                    NSArray      *optionsInEffect;           // TidyOptions this app will use.
 
 @property (readonly, assign) JSDTidyModel *tidyPreferencesDocument;   // Exposes the tidyDocument.
 

@@ -58,6 +58,7 @@
 @property (weak) IBOutlet NSButton      *buttonAllowSystemProfile;
 @property (weak) IBOutlet NSPopUpButton * buttonUpdateInterval;
 
+
 /* Other Properties */
 @property (weak) IBOutlet NSTabView *tabView;            // The tab view.
 @property (weak) IBOutlet NSView    *optionPane;         // The empty pane in the nib that we will inhabit.
@@ -101,36 +102,40 @@
 {
 	NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary];
 	
-	/* Put all of the defaults in the new dictionary */
+	/* Tidy Options */
+	[JSDTidyModel addDefaultsToDictionary:defaultValues];
 
-	/* Application preferences */
-	[defaultValues setObject:@YES forKey:@"NSPrintHeaderAndFooter"];
-	[defaultValues setObject:@NO forKey:JSDKeyFirstRunComplete];
-	[defaultValues setObject:@NO forKey:JSDKeyIgnoreInputEncodingWhenOpening];
-	[defaultValues setObject:@(kJSDSaveAsOnly) forKey:JSDKeySavingPrefStyle];
-	[defaultValues setObject:@NO forKey:JSDKeyOptionsShowHumanReadableNames];
-	[defaultValues setObject:@"line" forKey:JSDKeyMessagesTableInitialSortKey];
-	[defaultValues setObject:@YES forKey:JSDKeyOptionsAreGrouped];
+	/** Options List Appearance */
 	[defaultValues setObject:@YES forKey:JSDKeyOptionsAlternateRowColors];
+	[defaultValues setObject:@YES forKey:JSDKeyOptionsAreGrouped];
+	[defaultValues setObject:@NO  forKey:JSDKeyOptionsShowHumanReadableNames];
 	[defaultValues setObject:@YES forKey:JSDKeyOptionsUseHoverEffect];
 
-
-	/* TODO: Preferences that apply to all open documents */
-	[defaultValues setObject:@NO forKey:JSDKeyAllowMacOSTextSubstitutions];
-
-	/* TODO: Preferences for new or opening documents */
+	/** Document Appearance */
 	[defaultValues setObject:@YES forKey:JSDKeyShowNewDocumentLineNumbers];
 	[defaultValues setObject:@YES forKey:JSDKeyShowNewDocumentMessages];
 	[defaultValues setObject:@YES forKey:JSDKeyShowNewDocumentTidyOptions];
 	[defaultValues setObject:@YES forKey:JSDKeyShowNewDocumentSideBySide];
 	[defaultValues setObject:@YES forKey:JSDKeyShowNewDocumentSyncInOut];
 
+	/* File Saving Options */
+	[defaultValues setObject:@(kJSDSaveAsOnly) forKey:JSDKeySavingPrefStyle];
 
-	/* Get built-in defaults from TidyLib and register them in user defaults. */
-	[JSDTidyModel addDefaultsToDictionary:defaultValues];
-	
+	/* Miscellaneous Options */
+	[defaultValues setObject:@NO forKey:JSDKeyAllowMacOSTextSubstitutions];
+	[defaultValues setObject:@NO forKey:JSDKeyFirstRunComplete];
+	[defaultValues setObject:@NO forKey:JSDKeyIgnoreInputEncodingWhenOpening];
+
+	/* Updates */
+	// none - handled by Sparkle
+
+
+	/* Other Defaults */
+	[defaultValues setObject:@YES forKey:@"NSPrintHeaderAndFooter"];
+	[defaultValues setObject:@"line" forKey:JSDKeyMessagesTableInitialSortKey];
+
+
 	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
-//	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 
@@ -145,8 +150,18 @@
 	if (self = [super initWithWindowNibName:@"Preferences"])
 	{
 		[self setWindowFrameAutosaveName:@"PrefWindow"];
-		
-		_optionsInEffect = [JSDTidyModel loadOptionsInUseListFromResource:@"optionsInEffect" ofType:@"txt"];
+
+		/*
+			We might not load the NIB right away, because this class
+			is also acting as our singleton host for preferences, etc.
+			Let's create the optionController and set optionsInEffect
+			now instead of later.
+		 */
+		self.optionController = [[OptionPaneController alloc] init];
+
+		self.optionController.isInPreferencesView = YES;
+
+		self.optionsInEffect = [JSDTidyModel loadOptionsInUseListFromResource:@"optionsInEffect" ofType:@"txt"];
 	}
 
 	return self;
@@ -161,11 +176,6 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self
 													name:tidyNotifyOptionChanged
 												  object:[[self optionController] tidyDocument]];
-
-// @todo: doesn't seem to be used.
-//	[[NSNotificationCenter defaultCenter] removeObserver:self
-//													name:@"appNotifyStandardUserDefaultsChanged"
-//												  object:nil];
 }
 
 
@@ -177,20 +187,9 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)awakeFromNib
 {
-	/* Instantiate and setup the optionController */
-	
-	if (!self.optionController)
-	{
-		self.optionController = [[OptionPaneController alloc] init];
-		
-		self.optionController.isInPreferencesView = YES;
-	}
-			
-	self.optionController.optionsInEffect = self.optionsInEffect;
-	
 	[self.optionController putViewIntoView:self.optionPane];
-	
-	
+
+
 	/* Setup Sparkle versus No-Sparkle versions */
 
 #if INCLUDE_SPARKLE == 0
@@ -214,31 +213,41 @@
 #endif
 
 
-	/* Put the Tidy defaults into the optionController. */
+	/* Set the option values in the optionController from user defaults. */
 	
 	[[[self optionController] tidyDocument] takeOptionValuesFromDefaults:[NSUserDefaults standardUserDefaults]];
 
 
-	/* NSNotifications from |optionController| indicate that one or more Tidy options changed. */
-	
+	/* 
+		NSNotifications from `optionController` indicate that one or more Tidy options changed.
+		This is what we will use to capture changes and record them into user defaults.
+	 */
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(handleTidyOptionChange:)
 												 name:tidyNotifyOptionChanged
 											   object:[[self optionController] tidyDocument]];
-
-
-	/* NSNotification indicates that NSUSerDefaultsChanged. */
-
-//@todo: can't remember why we wanted this.
-//	[[NSNotificationCenter defaultCenter] addObserver:self
-//											 selector:@selector(handleStandardUserDefaultsChange:)
-//												 name:@"appNotifyStandardUserDefaultsChanged"
-//											   object:nil];
-
 }
 
 
-#pragma mark - Document Exposure
+#pragma mark - Property Accessors
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	optionsInEffect
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (NSArray*)optionsInEffect
+{
+	return self.optionController.tidyDocument.optionsInUse;
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	setOptionsInEffect
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)setOptionsInEffect:(NSArray *)optionsInEffect
+{
+	self.optionController.tidyDocument.optionsInUse = optionsInEffect;
+}
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
@@ -248,9 +257,6 @@
 {
 	return self.optionController.tidyDocument;
 }
-
-
-#pragma mark - AppleScript properties support
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
@@ -297,40 +303,5 @@
 	[self.optionController.tidyDocument writeOptionValuesWithDefaults:[NSUserDefaults standardUserDefaults]];
 }
 
-
-// @todo: nothing seems to be calling this.
-///*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-//	handleStandardUserDefaultsChange:
-//		We get this notification if the standard user defaults have
-//		changed. We have to reload the option controller's tidy
-//		document with the defaults. Once that happens we'll start
-//		an event loop of notifications, so prevent that.
-// *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-//- (void)handleStandardUserDefaultsChange:(NSNotification *)note
-//{
-//	/*
-//		Temporarily turn off this notification so we don't
-//		cause an event loop of notifications.
-//	 */
-//	[[NSNotificationCenter defaultCenter] removeObserver:self
-//													name:tidyNotifyOptionChanged
-//												  object:nil];
-//
-//
-//	/* Reload the tidy document. */
-//	
-//	[[self.optionController tidyDocument] takeOptionValuesFromDefaults:[NSUserDefaults standardUserDefaults]];
-//
-//
-//	/* Now it's safe to turn it back on. */
-//	
-//	[[NSNotificationCenter defaultCenter] addObserver:self
-//											 selector:@selector(handleTidyOptionChange:)
-//												 name:tidyNotifyOptionChanged
-//											   object:[[self optionController] tidyDocument]];
-//
-//
-//	[self.optionController.theTable reloadData];
-//}
 
 @end
