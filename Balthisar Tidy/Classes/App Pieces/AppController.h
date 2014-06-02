@@ -33,9 +33,6 @@
 @interface AppController : NSObject <NSApplicationDelegate>
 
 
-@property (readonly) BOOL atLeastOneDocumentIsOpen;   // Bindable property indicating at least document is open.
-
-
 - (IBAction)showPreferences:(id)sender;               // User wants to see Preferences window.
 
 

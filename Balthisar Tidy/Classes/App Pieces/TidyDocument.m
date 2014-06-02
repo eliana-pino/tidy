@@ -135,18 +135,16 @@
 @property (assign) BOOL   fileWantsProtection;   // Indicates if we need special type of save.
 
 
-/* Local, mutable copy of our tidyDocument's error array. */
-
-@property NSMutableArray *messagesArray;
+/* ArrayController linked to tidyProcess' error array. */
 
 @property (strong) IBOutlet NSArrayController *messagesArrayController;
 
 
 #pragma mark - Methods
 
-/* Popover Actions */
+/* Encoding Popover Actions */
 
-- (IBAction)popoverHandler:(id)sender;
+- (IBAction)popoverEncodingHandler:(id)sender;
 
 
 @end
@@ -182,11 +180,11 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)dealloc
 {
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyOptionChanged object:[[self optionController] tidyDocument]];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifySourceTextChanged object:[self tidyProcess]];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyTidyTextChanged object:[self tidyProcess]];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyTidyErrorsChanged object:[self tidyProcess]];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyPossibleInputEncodingProblem object:[self tidyProcess]];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyOptionChanged object:self.optionController.tidyDocument];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifySourceTextChanged object:self.tidyProcess];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyTidyTextChanged object:self.tidyProcess];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyTidyErrorsChanged object:self.tidyProcess];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyPossibleInputEncodingProblem object:self.tidyProcess];
 }
 
 
@@ -195,24 +193,17 @@
 
 /*———————————————————————————————————————————————————————————————————*
 	configureViewSettings:
-		Given aView, make it non-wrapping. Also set fonts.
+		Configure text view `aView` with uniform settings.
  *———————————————————————————————————————————————————————————————————*/
 - (void)configureViewSettings:(NSTextView *)aView
 {
 	NSUserDefaults *localDefaults = [NSUserDefaults standardUserDefaults];
 
-	[aView setFont:[NSFont fontWithName:@"Menlo" size:11]];
-	[aView setRichText:NO];
-	[aView setUsesFontPanel:NO];
-	[aView setContinuousSpellCheckingEnabled:NO];
-	[aView setSelectable:YES];
-	[aView setEditable:NO];
-	[aView setImportsGraphics:NO];
-	[aView setAutomaticQuoteSubstitutionEnabled:NO];
 
+	[aView setFont:[NSFont fontWithName:@"Menlo" size:[NSFont systemFontSize]]];
+	[aView setAutomaticQuoteSubstitutionEnabled:NO]; // IB setting doesn't work for this.
 	[aView setAutomaticTextReplacementEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
 	[aView setAutomaticDashSubstitutionEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
-
 
 	/* Provided by Category `NSTextView+JSDExtensions` */
 
@@ -232,7 +223,7 @@
 
 	/* Create an OptionController and put it in place of optionPane. */
 
-	if (![self optionController])
+	if (!self.optionController)
 	{
 		self.optionController = [[OptionPaneController alloc] init];
 	}
@@ -245,10 +236,7 @@
 	/* Configure the text view settings */
 
 	[self configureViewSettings:self.sourceView];
-
 	[self configureViewSettings:self.tidyView];
-
-	self.sourceView.editable = YES;
 
 
 	/* Honor the defaults system defaults. */
@@ -257,10 +245,17 @@
 
 
 	/*
-	 Make the optionController take the default values. This actually
-	 causes the empty document to go through processTidy one time.
+		Make the optionController take the default values. This actually
+		causes the empty document to go through processTidy one time.
 	 */
 	[self.optionController.tidyDocument takeOptionValuesFromDefaults:defaults];
+
+
+	/*
+		 Set the document options. This causes the empty document to go
+		 through processTidy a second time.
+	 */
+	[self.tidyProcess optionsCopyValuesFromModel:self.optionController.tidyDocument];
 
 
 	/* Saving behavior settings */
@@ -269,16 +264,9 @@
 
 
 	/*
-	 Set the document options. This causes the empty document to go
-	 through processTidy a second time.
-	 */
-	[self.tidyProcess optionsCopyValuesFromModel:self.optionController.tidyDocument];
-
-
-	/*
-	 Since this is startup, seed the tidyText view with this
-	 initial value for a blank document. If we're opening a
-	 document the event system will replace it forthwith.
+		Since this is startup, seed the tidyText view with this
+		initial value for a blank document. If we're opening a
+		document the event system will replace it forthwith.
 	 */
 	self.tidyView.string = self.tidyProcess.tidyText;
 
@@ -299,34 +287,44 @@
 
 
 	/*
-	 Delay setting up notifications until now, because otherwise
-	 all of the earlier options setup is simply going to result
-	 in a huge cascade of notifications and updates.
+		Delay setting up notifications until now, because otherwise
+		all of the earlier options setup is simply going to result
+		in a huge cascade of notifications and updates.
 	 */
 
-	/* NSNotifications from the |optionController| indicate that one or more options changed. */
+	/* NSNotifications from the `optionController` indicate that one or more options changed. */
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(handleTidyOptionChange:)
 												 name:tidyNotifyOptionChanged
 											   object:[[self optionController] tidyDocument]];
 
-	/* NSNotifications from the tidyProcess indicate that sourceText changed. */
+	/* NSNotifications from the `tidyProcess` indicate that sourceText changed. */
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(handleTidySourceTextChange:)
 												 name:tidyNotifySourceTextChanged
 											   object:[self tidyProcess]];
 
-	/* NSNotifications from the tidyProcess indicate that tidyText changed. */
+	/* NSNotifications from the `tidyProcess` indicate that tidyText changed. */
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(handleTidyTidyTextChange:)
 												 name:tidyNotifyTidyTextChanged
 											   object:[self tidyProcess]];
 
-	/* NSNotifications from the tidyProcess indicate that the input-encoding might be wrong. */
+	/* NSNotifications from the `tidyProcess` indicate that the input-encoding might be wrong. */
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(handleTidyInputEncodingProblem:)
 												 name:tidyNotifyPossibleInputEncodingProblem
 											   object:[self tidyProcess]];
+
+	/* 
+		Will use KVC on the array controller instead of a delegate method to capture changes
+		because the delegate doesn't catch when the table unselects all rows (meaning that
+		highlighted text in the sourceText stays behind). This prevents that.
+	 */
+	[self.messagesArrayController addObserver:self
+								   forKeyPath:@"selection"
+									  options:(NSKeyValueObservingOptionNew)
+									  context:NULL];
 
 
 	/* Run through the new user helper if appropriate */
@@ -337,12 +335,14 @@
 	}
 
 	/*
-	 Set the tidyProcess data. The event system will set the view later.
-	 If we're a new document, then documentOpenedData nil is fine.
+		self.documentIsLoading is used later to prevent some multiple
+		notifications that aren't needed, and represents that we've
+		loaded data from a file. We will also set the tidyProcess'
+		source text (nil assigment is okay).
 	 */
 	self.documentIsLoading = !(self.documentOpenedData == nil);
 
-	[[self tidyProcess] setSourceTextWithData:[self documentOpenedData]];
+	[self.tidyProcess setSourceTextWithData:[self documentOpenedData]];
 }
 
 
@@ -554,7 +554,7 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)handleTidyOptionChange:(NSNotification *)note
 {
-	[[self tidyProcess] optionsCopyValuesFromModel:self.optionController.tidyDocument];
+	[self.tidyProcess optionsCopyValuesFromModel:self.optionController.tidyDocument];
 }
 
 
@@ -574,7 +574,7 @@
 
 /*———————————————————————————————————————————————————————————————————*
 	handleTidyTidyTextChange:
-		`tidyText` changed, so update `tidyView` and `errorView`.
+		`tidyText` changed, so update `tidyView`.
  *———————————————————————————————————————————————————————————————————*/
 - (void)handleTidyTidyTextChange:(NSNotification *)note
 {
@@ -607,16 +607,14 @@
 
 		self.textFieldEncodingExplanation.stringValue = newMessage;
 
-		self.buttonEncodingDoNotWarnAgain.state = [[localDefaults valueForKey:JSDKeyIgnoreInputEncodingWhenOpening] boolValue];
-
-		self.buttonEncodingAllowChange.tag = suggestedEncoding;	// Cheat. We'll fetch this later in the handler. Should be 64-bit.
+		self.buttonEncodingAllowChange.tag = suggestedEncoding;	// We'll fetch this later in popoverHandler.
 
 		self.sourceView.editable = NO;
 
 		[self.popoverEncoding showRelativeToRect:self.sourceView.bounds
 										  ofView:self.sourceView
 								   preferredEdge:NSMaxYEdge];
-		}
+	}
 }
 
 
@@ -629,8 +627,12 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)textDidChange:(NSNotification *)aNotification
 {
-	self.sourceView.showsHighlight = NO;
-
+	/*
+		If we're still in the loading stages, then simply flip the
+		flag and don't set any text. All we're doing is preventing
+		the tidyProcess from an extra, useless round of processing.
+		We will be called again in the document loading process.
+	 */
 	if (!self.documentIsLoading)
 	{
 		self.tidyProcess.sourceText = self.sourceView.string;
@@ -659,12 +661,12 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
-	popoverHandler:
+	popoverEncodingHandler:
 		Handles all possibles actions from the input-encoding
 		helper popover. The only two senders should be
 		buttonAllowChange and buttonIgnoreSuggestion.
  *———————————————————————————————————————————————————————————————————*/
-- (IBAction)popoverHandler:(id)sender
+- (IBAction)popoverEncodingHandler:(id)sender
 {
 	if (sender == self.buttonEncodingAllowChange)
 	{
@@ -672,9 +674,7 @@
 
 		localOption.optionValue = [@(self.buttonEncodingAllowChange.tag) stringValue];
 	}
-	
-	[[NSUserDefaults standardUserDefaults] setBool:self.buttonEncodingDoNotWarnAgain.state forKey:JSDKeyIgnoreInputEncodingWhenOpening];
-	
+
 	self.sourceView.editable = YES;
 	
 	[self.popoverEncoding performClose:self];
@@ -691,100 +691,110 @@
  *———————————————————————————————————————————————————————————————————*/
 - (IBAction)kickOffFirstRunSequence:(id)sender;
 {
-	self.firstRun = nil;
-	if (!self.firstRun)
-	{
-		self.firstRun = [[FirstRunController alloc] initWithSteps:[self makeFirstRunSteps]];
+	NSArray *firstRunSteps = @[
+							   @{ @"message": NSLocalizedString(@"popOverExplainWelcome", nil),
+								  @"showRelativeToRect": NSStringFromRect(self.sourceView.bounds),
+								  @"ofView": self.sourceView,
+								  @"preferredEdge": @(NSMinXEdge) },
+
+							   @{ @"message": NSLocalizedString(@"popOverExplainTidyOptions", nil),
+								  @"showRelativeToRect": NSStringFromRect(self.optionPane.bounds),
+								  @"ofView": self.optionPane,
+								  @"preferredEdge": @(NSMinXEdge) },
+
+							   @{ @"message": NSLocalizedString(@"popOverExplainSourceView", nil),
+								  @"showRelativeToRect": NSStringFromRect(self.sourceView.bounds),
+								  @"ofView": self.sourceView,
+								  @"preferredEdge": @(NSMinXEdge) },
+
+							   @{ @"message": NSLocalizedString(@"popOverExplainTidyView", nil),
+								  @"showRelativeToRect": NSStringFromRect(self.tidyView.bounds),
+								  @"ofView": self.tidyView,
+								  @"preferredEdge": @(NSMinXEdge) },
+
+							   @{ @"message": NSLocalizedString(@"popOverExplainErrorView", nil),
+								  @"showRelativeToRect": NSStringFromRect(self.errorView.bounds),
+								  @"ofView": self.errorView,
+								  @"preferredEdge": @(NSMinXEdge) },
+
+							   @{ @"message": NSLocalizedString(@"popOverExplainPreferences", nil),
+								  @"showRelativeToRect": NSStringFromRect(self.optionPane.bounds),
+								  @"ofView": self.optionPane,
+								  @"preferredEdge": @(NSMinXEdge) },
+
+							   @{ @"message": NSLocalizedString(@"popOverExplainSplitters", nil),
+								  @"showRelativeToRect": NSStringFromRect(self.optionPane.bounds),
+								  @"ofView": self.optionPane,
+								  @"preferredEdge": @(NSMaxXEdge) },
+
+							   @{ @"message": NSLocalizedString(@"popOverExplainStart", nil),
+								  @"showRelativeToRect": NSStringFromRect(self.tidyView.bounds),
+								  @"ofView": self.tidyView,
+								  @"preferredEdge": @(NSMinYEdge) },
+							   ];
+
+	self.firstRun = [[FirstRunController alloc] initWithSteps:firstRunSteps];
 		
-		self.firstRun.preferencesKeyName = JSDKeyFirstRunComplete;
-	}
+	self.firstRun.preferencesKeyName = JSDKeyFirstRunComplete;
 
-	if (self.firstRun)
-	{
-		[self.firstRun beginFirstRunSequence];
-	}
-}
-
-/*———————————————————————————————————————————————————————————————————*
-	makeFirstRunSteps (private)
-		Build the array that we need for the first-run helper.
- *———————————————————————————————————————————————————————————————————*/
-- (NSArray*)makeFirstRunSteps
-{
-	return	@[
-			  @{ @"message": NSLocalizedString(@"popOverExplainWelcome", nil),
-				 @"showRelativeToRect": NSStringFromRect(self.sourceView.bounds),
-				 @"ofView": self.sourceView,
-				 @"preferredEdge": @(NSMinXEdge) },
-
-			  @{ @"message": NSLocalizedString(@"popOverExplainTidyOptions", nil),
-				 @"showRelativeToRect": NSStringFromRect(self.optionPane.bounds),
-				 @"ofView": self.optionPane,
-				 @"preferredEdge": @(NSMinXEdge) },
-
-			  @{ @"message": NSLocalizedString(@"popOverExplainSourceView", nil),
-				 @"showRelativeToRect": NSStringFromRect(self.sourceView.bounds),
-				 @"ofView": self.sourceView,
-				 @"preferredEdge": @(NSMinXEdge) },
-
-			  @{ @"message": NSLocalizedString(@"popOverExplainTidyView", nil),
-				 @"showRelativeToRect": NSStringFromRect(self.tidyView.bounds),
-				 @"ofView": self.tidyView,
-				 @"preferredEdge": @(NSMinXEdge) },
-
-			  @{ @"message": NSLocalizedString(@"popOverExplainErrorView", nil),
-				 @"showRelativeToRect": NSStringFromRect(self.errorView.bounds),
-				 @"ofView": self.errorView,
-				 @"preferredEdge": @(NSMinXEdge) },
-
-			  @{ @"message": NSLocalizedString(@"popOverExplainPreferences", nil),
-				 @"showRelativeToRect": NSStringFromRect(self.optionPane.bounds),
-				 @"ofView": self.optionPane,
-				 @"preferredEdge": @(NSMinXEdge) },
-
-			  @{ @"message": NSLocalizedString(@"popOverExplainSplitters", nil),
-				 @"showRelativeToRect": NSStringFromRect(self.optionPane.bounds),
-				 @"ofView": self.optionPane,
-				 @"preferredEdge": @(NSMaxXEdge) },
-
-			  @{ @"message": NSLocalizedString(@"popOverExplainStart", nil),
-				 @"showRelativeToRect": NSStringFromRect(self.tidyView.bounds),
-				 @"ofView": self.tidyView,
-				 @"preferredEdge": @(NSMinYEdge) },
-			  ];
+	[self.firstRun beginFirstRunSequence];
 }
 
 
-#pragma mark - Error Table Handling
+/*———————————————————————————————————————————————————————————————————*
+	validateUserInterfaceItem:
+		Validates whether a user interface item should or should not
+		be enabled. We're using it to ensure that the first run
+		helper menu item isn't enabled if the first run helper is
+		already displayed.
+ *———————————————————————————————————————————————————————————————————*/
+- (BOOL)validateUserInterfaceItem:(id <NSValidatedUserInterfaceItem>)anItem
+{
+    SEL theAction = [anItem action];
+
+    if (theAction == @selector(kickOffFirstRunSequence:))
+	{
+		return !(BOOL)[self.firstRun valueForKeyPath:@"popoverFirstRun.shown"];
+    }
+
+    return [super validateUserInterfaceItem:anItem];
+}
+
+
+#pragma mark - KVC Notification Handling
 
 
 /*———————————————————————————————————————————————————————————————————*
-	tableViewSelectionDidChange:
-		We're here because we're the delegate of the errorView.
-		Whenever the selection changes, highlight the related
-		column/row in the `sourceView`.
+	observeValueForKeyPath:ofObject:change:context:
+		Handle KVC Notifications:
+		- error view selection changed.
  *———————————————————————————————————————————————————————————————————*/
-- (void)tableViewSelectionDidChange:(NSNotification *)aNotification
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-	NSArray *localObjects = self.messagesArrayController.arrangedObjects;
+	/* Handle changes to the selection of the messages table. */
 
-	NSInteger errorViewRow = self.messagesArrayController.selectionIndex;
-
-	if ((errorViewRow >= 0) && (errorViewRow < [localObjects count]))
+	if ((object == self.messagesArrayController) && ([keyPath isEqualToString:@"selection"]))
 	{
-		NSInteger row = [localObjects[errorViewRow][@"line"] intValue];
-		
-		NSInteger col = [localObjects[errorViewRow][@"column"] intValue];
-		
-		if (row > 0)
+		self.sourceView.showsHighlight = NO;
+
+		NSArray *localObjects = self.messagesArrayController.arrangedObjects;
+
+		NSInteger errorViewRow = self.messagesArrayController.selectionIndex;
+
+		if ((errorViewRow >= 0) && (errorViewRow < [localObjects count]))
 		{
-			[self.sourceView highlightLine:row Column:col];
-			
-			return;
+			NSInteger row = [localObjects[errorViewRow][@"line"] intValue];
+
+			NSInteger col = [localObjects[errorViewRow][@"column"] intValue];
+
+			if (row > 0)
+			{
+				[self.sourceView highlightLine:row Column:col];
+				
+				return;
+			}
 		}
 	}
-	
-	self.sourceView.showsHighlight = NO;
 }
 
 

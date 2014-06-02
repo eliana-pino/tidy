@@ -32,6 +32,7 @@
 #import "JSDIntegerValueTransformer.h"
 #import "JSDAllCapsValueTransformer.h"
 #import "JSDBoolToStringValueTransformer.h"
+#import "TidyDocument.h"
 
 #if INCLUDE_SPARKLE == 1
 	#import <Sparkle/Sparkle.h>
@@ -105,7 +106,7 @@
 }
 
 
-#pragma mark - Showing preferences and batch windows
+#pragma mark - Showing preferences and such
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
@@ -116,13 +117,5 @@
 	[[PreferenceController sharedPreferences] showWindow:self];
 }
 
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	Indicates that at least one document is open.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (BOOL) atLeastOneDocumentIsOpen
-{
-	return [[[NSDocumentController sharedDocumentController] documents] count] > 0;
-}
 
 @end
