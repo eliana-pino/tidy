@@ -1394,17 +1394,16 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 {
 	NSMutableString *result = [[NSMutableString alloc] init];
 
-	[result appendString:[NSString stringWithFormat:@"# %@\n", NSLocalizedStringFromTable(@"export-byline-1", @"JSDTidyModel", nil)]];
-	[result appendString:[NSString stringWithFormat:@"# %@\n", NSLocalizedStringFromTable(@"export-byline-2", @"JSDTidyModel", nil)]];
-	[result appendString:[NSString stringWithFormat:@"# %@\n", NSLocalizedStringFromTable(@"export-byline-3", @"JSDTidyModel", nil)]];
-	[result appendString:[NSString stringWithFormat:@"# %@\n", NSLocalizedStringFromTable(@"export-byline-4", @"JSDTidyModel", nil)]];
-	NSString *tempString = [NSString stringWithFormat:@"# %@\n", NSLocalizedStringFromTable(@"export-byline-5", @"JSDTidyModel", nil)];
+
+	NSString *tempString = [NSString stringWithFormat:@"# %@\n", NSLocalizedStringFromTable(@"export-byline", @"JSDTidyModel", nil)];
+
 	[result appendString:[NSString stringWithFormat:tempString, baseFileName]];
+
 
 	NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
 
-	NSArray *localOptions = [[self.tidyOptions allValues] copy];
-	NSArray *localSortedOptions = [localOptions sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]];
+	NSArray *localSortedOptions = [[[self.tidyOptions allValues] copy] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]];
+
 
 	for (JSDTidyOption *localOption in localSortedOptions)
 	{
@@ -1413,7 +1412,6 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 			[result appendString:localOption.optionConfigString];
 		}
 	}
-
 
 	return  (NSString*)result;
 }

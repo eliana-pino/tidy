@@ -411,7 +411,10 @@
         if (result == NSFileHandlingPanelOKButton)
 		{
             [savePanel orderOut:self];
-			NSLog(@"%@", [self.tidyDocument tidyOptionsConfigFile:@"HELLLLLO!"]);
+
+			NSString *result = [self.tidyDocument tidyOptionsConfigFile:[savePanel nameFieldStringValue]];
+
+			[result writeToURL:[savePanel URL] atomically:YES encoding:NSUTF8StringEncoding error:nil];
 		}
     }];
 }

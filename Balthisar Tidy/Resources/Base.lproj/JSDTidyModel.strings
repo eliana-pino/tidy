@@ -22,12 +22,20 @@
 "column"		= "Column";
 
 
-/* Export settings bylines */
-"export-byline-1" = "Tidy Options generated and exported by Balthisar Tidy for Mac OS X.";
-"export-byline-2" = "Please visit http://www.balthisar.com for more information about Balthisar Tidy.";
-"export-byline-3" = "(Note: that if \"accessibility-check\" has a string after the number, it’s okay; it will work fine.)";
-"export-byline-4" = "To use this configuration file with the native command line version of Tidy, use Tidy like this:";
-"export-byline-5" = "tidy -config %@ some_file.html";
+/* 
+	Export settings byline.
+	Note that this is all one, proper string. Syntax highlighers (such
+	as XCode) may not display the syntax highlighting properly, making
+	you think, "WTF?" It's a good string, though.
+ */
+
+"export-byline" = "# Tidy Options generated and exported by Balthisar Tidy for Mac OS X.
+# Please visit http://www.balthisar.com for more information about Balthisar Tidy.
+# - Double-check encoding values; Balthisar Tidy set them all to \"utf8\".
+# - If \"accessibility-check\" has a string after the number, it’s okay; it will work fine.
+# To use this configuration file with the native command line version of Tidy, use Tidy like this:
+# tidy -config %@ some_file.html
+#";
 
 
 /* Human-readable tag names. */
