@@ -204,6 +204,8 @@
 
 - (void)      optionsResetAllToBuiltInDefaults;							      // Resets all options to factory default.
 
+- (NSString *)tidyOptionsConfigFile:(NSString*)baseFileName;                  // Returns a string of current config.
+
 @property NSArray* optionsInUse;                   // Default is all options; otherwise is list of options.
 
 
@@ -294,7 +296,6 @@
 @property (readonly) NSDictionary *tidyOptions;
 
 @property (readonly) NSArray *tidyOptionsBindable;
-
 
 @end
 

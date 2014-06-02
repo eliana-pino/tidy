@@ -10,6 +10,7 @@
 "do not save"	= "Don’t Save";
 "cancel"		= "Cancel";
 
+
 /* FirstRunController */
 
 "firstRun-stepXofY"		= "Step %u of %u";
@@ -37,3 +38,10 @@
 "popOverExplainSplitters"				= "*Splitters exist between all of the panes so you can control the size of the panes that you want to focus on or ignore.";
 
 "popOverExplainStart"					= "*Thanks for your patience. This brief tutorial is complete. After you press {\\f0 Done} you will be able to use Balthisar Tidy.\\par To see this introduction again, choose “Show the New User Helper…” in the Help menu.";
+
+
+/* Tidy Options Exporting NSSavePanel strings */
+
+"ExportAs"         = "Export As:";
+"Export"           = "Export";
+"ExportMessage"    = "You will export a configuration file suitable for use with the built-in terminal version of Tidy.";

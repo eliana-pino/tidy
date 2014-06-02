@@ -429,7 +429,7 @@
                                     </connections>
                                 </menuItem>
                                 <menuItem isSeparatorItem="YES" hidden="YES" enabled="YES" id="6cm-3G-Q97"/>
-                                <menuItem title="Save a Unix config file with these options…" hidden="YES" enabled="NO" id="0HY-2M-G1v">
+                                <menuItem title="Export a Unix config file with these options…" id="0HY-2M-G1v">
                                     <connections>
                                         <action selector="handleSaveOptionsToUnixConfigFile:" target="-2" id="QTh-n6-WMY"/>
                                     </connections>

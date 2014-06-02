@@ -397,7 +397,23 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)handleSaveOptionsToUnixConfigFile:(id)sender
 {
+    NSSavePanel *savePanel = [NSSavePanel savePanel];
 
+	[savePanel setNameFieldStringValue:@"tidy.cfg"];
+	[savePanel setNameFieldLabel:NSLocalizedString(@"ExportAs", nil)];
+	[savePanel setPrompt:NSLocalizedString(@"Export", nil)];
+	[savePanel setMessage:NSLocalizedString(@"ExportMessage", nil)];
+	[savePanel setShowsHiddenFiles:YES];
+	[savePanel setExtensionHidden:NO];
+	[savePanel setCanSelectHiddenExtension: NO];
+
+    [savePanel beginSheetModalForWindow:self.rootView.window completionHandler:^(NSInteger result) {
+        if (result == NSFileHandlingPanelOKButton)
+		{
+            [savePanel orderOut:self];
+			NSLog(@"%@", [self.tidyDocument tidyOptionsConfigFile:@"HELLLLLO!"]);
+		}
+    }];
 }
 
 

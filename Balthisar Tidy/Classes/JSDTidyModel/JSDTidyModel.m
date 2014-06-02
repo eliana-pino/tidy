@@ -1377,6 +1377,47 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 }
 
 
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	tidyOptionsConfigFile
+		Returns a string representation of the current configuration
+		suitable for use with command-line Tidy. We will only output
+		the values of non-supressed options, and we will set any
+		encoding options to UTF8 (because we can't match between
+		TidyLib's options and Mac OS X' options).
+ 
+		We are NOT going to use TidyLib's approach of only exporting
+		non-default values, because we can't count on other versions
+		of Tidy using the same defaults. It's a good practice to set
+		all values.
+  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (NSString*)tidyOptionsConfigFile:(NSString*)baseFileName
+{
+	NSMutableString *result = [[NSMutableString alloc] init];
+
+	[result appendString:[NSString stringWithFormat:@"# %@\n", NSLocalizedStringFromTable(@"export-byline-1", @"JSDTidyModel", nil)]];
+	[result appendString:[NSString stringWithFormat:@"# %@\n", NSLocalizedStringFromTable(@"export-byline-2", @"JSDTidyModel", nil)]];
+	[result appendString:[NSString stringWithFormat:@"# %@\n", NSLocalizedStringFromTable(@"export-byline-3", @"JSDTidyModel", nil)]];
+	[result appendString:[NSString stringWithFormat:@"# %@\n", NSLocalizedStringFromTable(@"export-byline-4", @"JSDTidyModel", nil)]];
+	NSString *tempString = [NSString stringWithFormat:@"# %@\n", NSLocalizedStringFromTable(@"export-byline-5", @"JSDTidyModel", nil)];
+	[result appendString:[NSString stringWithFormat:tempString, baseFileName]];
+
+	NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
+
+	NSArray *localOptions = [[self.tidyOptions allValues] copy];
+	NSArray *localSortedOptions = [localOptions sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]];
+
+	for (JSDTidyOption *localOption in localSortedOptions)
+	{
+		if (!localOption.optionIsSuppressed)
+		{
+			[result appendString:localOption.optionConfigString];
+		}
+	}
+
+
+	return  (NSString*)result;
+}
+
 #pragma mark - Notification and Delegation Support (Private)
 
 

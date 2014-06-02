@@ -409,6 +409,31 @@
 }
 
 
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	optionConfigString
+		String representation of a tidy option with value suitable
+		for use in a tidy options configuration document.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (NSString*)optionConfigString
+{
+	NSString *result;
+	if (self.optionIsEncodingOption)
+	{
+		result = @"utf8";
+	}
+	else if (self.possibleOptionValues.count > 0)
+	{
+		result = self.possibleOptionValues[[self.optionUIValue integerValue]];
+	}
+	else
+	{
+		result = self.optionValue;
+	}
+
+	return [NSString stringWithFormat:@"%@: %@\n", self.name, result];
+}
+
+
 #pragma mark - Properties maintained for original TidyLib compatability (may be used internally)
 
 

@@ -80,6 +80,8 @@
 
 @property (readonly)         NSString *optionUIType;                    // Suggested UI type for setting options.
 
+@property (readonly)         NSString *optionConfigString;              // Option suitable for use in a config file.
+
 
 #pragma mark - Properties maintained for original TidyLib compatability (may be used internally)
 
