@@ -283,13 +283,19 @@
 	self.tidyView.string = self.tidyProcess.tidyText;
 
 
-	/* Setup for the Messages Table */
+	/* 
+		Setup for the Messages Table
+		The value for key JSDKeyMessagesTableInitialSortKey should only
+		ever be used this one time, unless the user deletes preferences.
+	 */
+	if (![[NSUserDefaults standardUserDefaults] objectForKey:JSDKeyMessagesTableSortDescriptors])
+	{
+		NSString *sortKeyFromPrefs = [[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyMessagesTableInitialSortKey];
 
-	NSString *sortKeyFromPrefs = [[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyMessagesTableInitialSortKey];
+		NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:sortKeyFromPrefs ascending:YES];
 
-	NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:sortKeyFromPrefs ascending:YES];
-
-	[self.errorView setSortDescriptors:[NSArray arrayWithObject:descriptor]];
+		[self.messagesArrayController setSortDescriptors:[NSArray arrayWithObject:descriptor]];
+	}
 
 
 	/*
@@ -314,12 +320,6 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(handleTidyTidyTextChange:)
 												 name:tidyNotifyTidyTextChanged
-											   object:[self tidyProcess]];
-
-	/* NSNotifications from the tidyProcess indicate that errorTable changed. */
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(handleTidyTidyErrorChange:)
-												 name:tidyNotifyTidyErrorsChanged
 											   object:[self tidyProcess]];
 
 	/* NSNotifications from the tidyProcess indicate that the input-encoding might be wrong. */
@@ -583,22 +583,6 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
-	handleTidyTidyErrorChange:
-		`tidyText` changed, so update `tidyView` and `errorView`.
- *———————————————————————————————————————————————————————————————————*/
-- (void)handleTidyTidyErrorChange:(NSNotification *)note
-{
-	self.messagesArray = nil;
-	
-	self.messagesArray = [self.tidyProcess.errorArray mutableCopy];
-	
-	[self.errorView reloadData];
-	
-	[self.errorView deselectAll:self];
-}
-
-
-/*———————————————————————————————————————————————————————————————————*
 	handleTidyInputEncodingProblem:
 		The input-encoding might have been wrong for the file
 		that tidy is trying to process.
@@ -645,6 +629,8 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)textDidChange:(NSNotification *)aNotification
 {
+	self.sourceView.showsHighlight = NO;
+
 	if (!self.documentIsLoading)
 	{
 		self.tidyProcess.sourceText = self.sourceView.string;
@@ -772,112 +758,35 @@
 #pragma mark - Error Table Handling
 
 
-///*———————————————————————————————————————————————————————————————————*
-//	tableView:viewForTableColumn:row:
-//		We're here because we're the datasource of the errorView.
-//		We need to specify what to show in the row/column. The
-//		error array consists of dictionaries with entries for
-//		`level`, `line`, `column`, and `message`.
-// *———————————————————————————————————————————————————————————————————*/
-//- (NSView *)tableView:(NSTableView *)tableView
-//   viewForTableColumn:(NSTableColumn *)tableColumn
-//				  row:(NSInteger)row
-//{
-//	if (row < self.messagesArray.count )
-//	{
-//		NSTableCellView* tableCellView = [tableView makeViewWithIdentifier:tableColumn.identifier owner:nil];
-//		
-//		NSDictionary *error = self.messagesArray[row];
-//
-//		if ([tableColumn.identifier isEqualToString:@"severity"])
-//		{
-//			/*
-//				The severity of the error reported by TidyLib is
-//				converted to a string label and localized into
-//				the current language.
-//			 */
-//			NSArray *errorTypes = @[@"messagesInfo", @"messagesWarning", @"messagesConfig", @"messagesAccess", @"messagesError", @"messagesDocument", @"messagesPanic"];
-//
-//			tableCellView.imageView.image = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:errorTypes[[error[@"level"] intValue]] ofType:@"icns"]];
-//
-//			tableCellView.textField.stringValue = NSLocalizedString(errorTypes[[error[@"level"] intValue]], nil);
-//
-//			return tableCellView;
-//		}
-//
-//		if ([tableColumn.identifier isEqualToString:@"where"])
-//		{
-//			/*
-//			 We can also localize N/A and line and column.
-//			 */
-//			if (([error[@"line"] intValue] == 0) || ([error[@"column"] intValue] == 0))
-//			{
-//				tableCellView.textField.stringValue = NSLocalizedString(@"N/A", nil);
-//			}
-//			else
-//			{
-//				tableCellView.textField.stringValue = [NSString stringWithFormat:@"%@ %@, %@ %@", NSLocalizedString(@"line", nil), error[@"line"], NSLocalizedString(@"column", nil), error[@"column"]];
-//			}
-//
-//			return tableCellView;
-//		}
-//
-//		if ([tableColumn.identifier isEqualToString:@"description"])
-//		{
-//			/* The message should already be localized by JSDTidyModel */
-//			
-//			tableCellView.textField.stringValue = error[@"message"];
-//			
-//			return tableCellView;
-//		}
-//	}
-//
-//	return nil;
-//}
-//
+/*———————————————————————————————————————————————————————————————————*
+	tableViewSelectionDidChange:
+		We're here because we're the delegate of the errorView.
+		Whenever the selection changes, highlight the related
+		column/row in the `sourceView`.
+ *———————————————————————————————————————————————————————————————————*/
+- (void)tableViewSelectionDidChange:(NSNotification *)aNotification
+{
+	NSArray *localObjects = self.messagesArrayController.arrangedObjects;
 
-///*———————————————————————————————————————————————————————————————————*
-//	tableView:sortDescriptorsDidChange:
-//		We're here because we're the datasource of the errorView.
-//		We need to specify what to show in the row/column. The
-//		error array consists of dictionaries with entries for
-//		`level`, `line`, `column`, and `message`.
-// *———————————————————————————————————————————————————————————————————*/
-//- (void)tableView:(NSTableView *)tableView sortDescriptorsDidChange:(NSArray *)oldDescriptors
-//{
-//	[self.messagesArray sortUsingDescriptors:tableView.sortDescriptors];
-//	
-//	[tableView reloadData];
-//}
-//
-//
-///*———————————————————————————————————————————————————————————————————*
-//	tableViewSelectionDidChange:
-//		We arrived here because we're the delegate of the table.
-//		Whenever the selection changes, highlight the related
-//		column/row in the `sourceView`.
-// *———————————————————————————————————————————————————————————————————*/
-//- (void)tableViewSelectionDidChange:(NSNotification *)aNotification
-//{
-//	NSInteger errorViewRow = self.errorView.selectedRow;
-//	
-//	if ((errorViewRow >= 0) && (errorViewRow < self.messagesArray.count))
-//	{
-//		NSInteger row = [self.messagesArray[errorViewRow][@"line"] intValue];
-//		
-//		NSInteger col = [self.messagesArray[errorViewRow][@"column"] intValue];
-//		
-//		if (row > 0)
-//		{
-//			[self.sourceView highlightLine:row Column:col];
-//			
-//			return;
-//		}
-//	}
-//	
-//	self.sourceView.showsHighlight = NO;
-//}
-//
+	NSInteger errorViewRow = self.messagesArrayController.selectionIndex;
+
+	if ((errorViewRow >= 0) && (errorViewRow < [localObjects count]))
+	{
+		NSInteger row = [localObjects[errorViewRow][@"line"] intValue];
+		
+		NSInteger col = [localObjects[errorViewRow][@"column"] intValue];
+		
+		if (row > 0)
+		{
+			[self.sourceView highlightLine:row Column:col];
+			
+			return;
+		}
+	}
+	
+	self.sourceView.showsHighlight = NO;
+}
+
 
 #pragma mark - Split View handling
 

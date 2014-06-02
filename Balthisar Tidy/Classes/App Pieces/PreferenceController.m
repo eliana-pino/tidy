@@ -134,7 +134,7 @@
 
 	/* Other Defaults */
 	[defaultValues setObject:@YES forKey:@"NSPrintHeaderAndFooter"];
-	[defaultValues setObject:@"line" forKey:JSDKeyMessagesTableInitialSortKey];
+	[defaultValues setObject:@"locationString" forKey:JSDKeyMessagesTableInitialSortKey];
 
 
 	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];

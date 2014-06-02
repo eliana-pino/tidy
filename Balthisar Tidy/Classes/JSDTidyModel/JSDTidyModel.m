@@ -71,9 +71,8 @@
 		`self` that we set via `tidySetAppData` during processing.
 		Essentially we're calling
 		[self errorFilter:Level:Line:Column:Message]
-	@TODO: Can I replace these with blocks in the processTidy method?
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
- 
+
 /* Compatability with original TidyLib -- doesn't allow localization of messages. */
 
 BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col, ctmbstr mssg )
@@ -478,7 +477,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		_sourceDidChange = YES;
 	}
 	
-	[self processTidyInThread];
+	[self processTidy];
 }
 
 
@@ -494,8 +493,8 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		/*
 			Unlike with setting via NSString, the presumption for file-
 			and data-based setters is that this is a one-time occurrence,
-			and so |_originalData| will be overwritten. This supports
-			the use of TidyLib in a text editor so: the |_originalData|
+			and so `_originalData` will be overwritten. This supports
+			the use of TidyLib in a text editor so: the `_originalData`
 			is set only once; text changes set via NSString will not
 			overwrite the original data.
 		*/
@@ -529,7 +528,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	_sourceDidChange = NO;
 
 	[self notifyTidyModelSourceTextChanged];
-	[self processTidyInThread];
+	[self processTidy];
 
 	/* Sanity check the input-encoding */
 	NSStringEncoding suggestedEncoding = [self checkSourceCoding:data];
@@ -735,7 +734,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 	[self notifyTidyModelOptionChanged:nil];
 
-	[self processTidyInThread];
+	[self processTidy];
 	
 	[self fixSourceCoding];
 }
@@ -760,7 +759,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 	[self notifyTidyModelOptionChanged:nil];
 
-	[self processTidyInThread];
+	[self processTidy];
 	
 	[self fixSourceCoding];
 }
@@ -779,7 +778,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 	[self notifyTidyModelOptionChanged:nil];
 
-	[self processTidyInThread];
+	[self processTidy];
 	
 	[self fixSourceCoding];
 }
@@ -902,20 +901,6 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 #pragma mark - Diagnostics and Repair
 
 
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	 processTidyInThread (private)
-		 Performs tidy'ing and sets _tidyText and _errorText
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)processTidyInThread
-{
-//	dispatch_queue_t myQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-//	dispatch_async(myQueue, ^{
-		[self processTidy];
-//	});
-}
-
-
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	 processTidy (private)
 		 Performs tidy'ing and sets _tidyText and _errorText
@@ -933,7 +918,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	}
 
 	
-	/* Setup the |outBuffer| to copy to an NSString instead of writing to stdout */
+	/* Setup the `outBuffer` to copy later to an NSString instead of writing to stdout */
 	
 	TidyBuffer *outBuffer = malloc(sizeof(TidyBuffer));
 	tidyBufInit( outBuffer );
@@ -957,10 +942,10 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	    make sure you change the comments below.
 	 */
 	 
-	//tidySetReportFilter(newTidy, (TidyReportFilter)&tidyCallbackFilter);     // use for virgin TidyLib compatability
-	tidySetReportFilter2(newTidy, (TidyReportFilter2)&tidyCallbackFilter2);    // use for my fork of TidyLib
+	//tidySetReportFilter(newTidy, (TidyReportFilter)&tidyCallbackFilter);     // Use for virgin TidyLib compatability.
+	tidySetReportFilter2(newTidy, (TidyReportFilter2)&tidyCallbackFilter2);    // Use for my fork of TidyLib.
 
-	
+
 	/* Setup the error buffer to catch errors here instead of stdout */
 	
 	TidyBuffer *errBuffer = malloc(sizeof(TidyBuffer));                        // Allocate a buffer for our error text.
@@ -1061,7 +1046,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	errorFilter:Level:Line:Column:Message:
 		This is the REAL TidyError filter, and is called by the
-		standard C |tidyCallBackFilter| function implemented at the
+		standard C `tidyCallBackFilter` function implemented at the
 		top of this file.
 
 		TidyLib doesn't maintain a structured list of all of its
@@ -1090,7 +1075,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	errorFilterWithLocalization:Level:Line:Column:Message:Arguments:
 		This is the REAL TidyError filter, and is called by the
-		standard C |tidyCallBackFilter2| function implemented at the
+		standard C `tidyCallBackFilter2` function implemented at the
 		top of this file.
 
 		TidyLib doesn't maintain a structured list of all of its
@@ -1119,17 +1104,19 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	/* Localize the message */
 
 	NSString *formatString = NSLocalizedStringFromTable(@(mssg), @"JSDTidyModel", nil);
-	
+
 	NSString *intermediateString = [[NSString alloc] initWithFormat:formatString arguments:args];
 	
 	NSString *messageString = NSLocalizedStringFromTable(intermediateString, @"JSDTidyModel", nil);
 
 
-	/* Localize the levelDescription */
+	/* Localize the levelDescription and get an image */
 
 	NSArray *errorTypes = @[@"messagesInfo", @"messagesWarning", @"messagesConfig", @"messagesAccess", @"messagesError", @"messagesDocument", @"messagesPanic"];
 
 	NSString *levelDescription = NSLocalizedStringFromTable(errorTypes[(int)lvl], @"JSDTidyModel", nil);
+
+	NSImage *levelImage = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:errorTypes[(int)lvl] ofType:@"icns"]];
 
 
 	/* Localize the locaation strings */
@@ -1168,7 +1155,12 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	}
 
 
+	/* Provide an image */
+
+
 	/* Build the finished array */
+
+	[errorDict setObject:levelImage forKey:@"levelImage"];
 
 	errorDict[@"level"]            = @((int)lvl);	// lvl is a c enum
 	errorDict[@"levelDescription"] = levelDescription;
@@ -1178,15 +1170,6 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	errorDict[@"columnString"]     = columnString;
 	errorDict[@"locationString"]   = locationString;
 	errorDict[@"message"]          = messageString;
-
-
-
-//tableCellView.imageView.image = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:errorTypes[[error[@"level"] intValue]] ofType:@"icns"]];
-
-
-	
-	
-
 
 	[_errorArray addObject:errorDict];
 
@@ -1286,7 +1269,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	addDefaultsToDictionary:fromArray: (class method)
-		Same as |addDefaultsToDictionary|, except uses an array
+		Same as `addDefaultsToDictionary`, except uses an array
 		of strings instead of ALL TidyLib options.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 + (void)addDefaultsToDictionary:(NSMutableDictionary *)defaultDictionary
@@ -1355,7 +1338,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 	[self notifyTidyModelOptionChanged:nil];
 	
-	[self processTidyInThread];
+	[self processTidy];
 
 	[self didChangeValueForKey:@"tidyOptionsBindable"];
 
@@ -1391,52 +1374,6 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 - (NSArray *)tidyOptionsBindable
 {
 	return [[_tidyOptions allValues] arrayByAddingObjectsFromArray:_tidyOptionHeaders];
-}
-
-
-#pragma mark - Private Helper Methods, Utilities, etc.
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	suggestedKeyNameForKey: (private)
-		Given a currentKey, suggest a new name if necessary so that
-		keys remain unique. For example, myKey, if already in the
-		collection, will be suggested myKey-1, myKey-2, etc.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (NSString*)suggestedKeyNameForKey:(NSString*)currentKey
-{
-	// Find matching object.
-	for (JSDTidyOption* localOption in _tidyOptions)
-	{
-		if ([localOption.name isEqualToString:currentKey])
-		{
-			// Find the suffix (if any).
-			NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"-([0-9]{1,})$" options:0 error:nil];
-			NSArray *matches = [regex matchesInString:currentKey options:0 range:NSMakeRange(0, currentKey.length)];
-			
-			if ([matches count] == 0)
-			{
-				// If there's not a suffix, just add one and recurse.
-				return [self suggestedKeyNameForKey:[NSString stringWithFormat:@"%@-1", currentKey]];
-			}
-			else
-			{
-				// If there's already a suffix, increment it and recurse.
-				NSTextCheckingResult *result = (NSTextCheckingResult *)[matches lastObject];
-
-				// Get the current suffix value.
-				NSUInteger counterValue = [[currentKey substringWithRange:[result rangeAtIndex:1]] integerValue];
-
-				// remove old suffix from the string
-				NSString *currentKeyWithoutSuffix = [currentKey stringByReplacingCharactersInRange:[result rangeAtIndex:0] withString:@""];
-
-				// return the currentKey with the incremented counter suffix
-				return [self suggestedKeyNameForKey:[NSString stringWithFormat:@"%@-%lu", currentKeyWithoutSuffix, counterValue + 1]];
-			}
-		}
-	}
-	
-	return currentKey;
 }
 
 

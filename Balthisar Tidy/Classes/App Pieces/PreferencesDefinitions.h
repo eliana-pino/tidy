@@ -31,30 +31,41 @@
 
 #pragma mark - User Defaults Keys
 
-	/* Application preferences */
 
-	#define JSDKeyFirstRunComplete                @"FirstRunComplete"
-	#define JSDKeyIgnoreInputEncodingWhenOpening  @"IgnoreInputEncodingWhenOpeningFiles"
-	#define JSDKeySavingPrefStyle                 @"SavingPrefStyle"
-	#define JSDKeyOptionsShowHumanReadableNames   @"OptionsShowHumanReadableNames"
-	#define JSDKeyMessagesTableInitialSortKey     @"MessagesTableInitialSortKey"
-	#define JSDKeyOptionsAreGrouped               @"OptionsAreGrouped"
+	/* Options List Appearance */
+
 	#define JSDKeyOptionsAlternateRowColors       @"OptionsAlternateRowColors"
+	#define JSDKeyOptionsAreGrouped               @"OptionsAreGrouped"
+	#define JSDKeyOptionsShowHumanReadableNames   @"OptionsShowHumanReadableNames"
 	#define JSDKeyOptionsUseHoverEffect           @"OptionsUseHoverEffect"
 
 
-	/* Preferences that apply to all open documents */
-
-	#define JSDKeyAllowMacOSTextSubstitutions     @"AllowMacOSTextSubstitutions"
-
-
-	/* Preferences for new or opening documents */
+	/** Document Appearance */
 
 	#define JSDKeyShowNewDocumentLineNumbers      @"ShowNewDocumentLineNumbers"
 	#define JSDKeyShowNewDocumentMessages         @"ShowNewDocumentMessages"
 	#define JSDKeyShowNewDocumentTidyOptions      @"ShowNewDocumentTidyOptions"
 	#define JSDKeyShowNewDocumentSideBySide       @"ShowNewDocumentSideBySide"
 	#define JSDKeyShowNewDocumentSyncInOut        @"ShoeNewDocumentSyncInOut"
+
+
+	/* File Saving Options */
+
+	#define JSDKeySavingPrefStyle                 @"SavingPrefStyle"
+
+
+	/* Miscellaneous Options */
+
+	#define JSDKeyAllowMacOSTextSubstitutions     @"AllowMacOSTextSubstitutions"
+	#define JSDKeyFirstRunComplete                @"FirstRunComplete"
+	#define JSDKeyIgnoreInputEncodingWhenOpening  @"IgnoreInputEncodingWhenOpeningFiles"
+
+
+	/* Application preferences */
+
+	#define JSDKeyMessagesTableInitialSortKey     @"MessagesTableInitialSortKey"
+	#define JSDKeyMessagesTableSortDescriptors    @"MessagesTableSortDescriptors"
+
 
 
 	/* Key under which to store TidyOptions */

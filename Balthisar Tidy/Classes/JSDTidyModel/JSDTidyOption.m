@@ -381,7 +381,8 @@
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	 optionUIType
 		Suggests an object class to use for setting Tidy options.
-		This is returned as a string to make bindings very easy.
+		This is returned as a string to make bindings very easy,
+		and can be converted back to a class (if needed) in code.
 
 		TidyLib option types can be TidyString, TidyInteger, or
 		TidyBoolean. JSDTidyOption will return one of three classes
