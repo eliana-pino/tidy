@@ -4,12 +4,17 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Balthisar Tidy (no Sparkle).xcscheme</key>
+		<key>Balthisar Tidy (free).xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>Balthisar Tidy.xcscheme</key>
+		<key>Balthisar Tidy (pro).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>Balthisar Tidy (web).xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -38,6 +43,11 @@
 			<true/>
 		</dict>
 		<key>D0913CA118B0AC06005DB2E4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D0BB67B6193C820A007A3EB0</key>
 		<dict>
 			<key>primary</key>
 			<true/>

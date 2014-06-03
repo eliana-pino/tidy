@@ -1,6 +1,7 @@
-#if INCLUDE_SPARKLE == 1
+#if defined VERSION_WEB_FREE
 #define TIDY_BUNDLE_IDENTIFIER com.balthisar.web.free.balthisar-tidy
-#else
+#elif defined VERSION_MAS_FREE
 #define TIDY_BUNDLE_IDENTIFIER com.balthisar.Balthisar-Tidy
+#elif defined VERSION_MAS_PRO
+#define TIDY_BUNDLE_IDENTIFIER com.balthisar.Balthisar-Tidy.pro
 #endif
-#define MY_URL "http://www.balthisar.com/softwareupdates/updatecheck/tidy"
