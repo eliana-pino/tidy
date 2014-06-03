@@ -428,10 +428,23 @@
                                         </binding>
                                     </connections>
                                 </menuItem>
-                                <menuItem isSeparatorItem="YES" hidden="YES" enabled="YES" id="6cm-3G-Q97"/>
+                                <menuItem isSeparatorItem="YES" enabled="YES" id="6cm-3G-Q97">
+                                    <connections>
+                                        <binding destination="4Me-6K-eyZ" name="hidden" keyPath="values.proExportsTidyCfg" id="Lp7-ld-F4t">
+                                            <dictionary key="options">
+                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                            </dictionary>
+                                        </binding>
+                                    </connections>
+                                </menuItem>
                                 <menuItem title="Export a Unix config file with these options…" id="0HY-2M-G1v">
                                     <connections>
                                         <action selector="handleSaveOptionsToUnixConfigFile:" target="-2" id="QTh-n6-WMY"/>
+                                        <binding destination="4Me-6K-eyZ" name="hidden" keyPath="values.proExportsTidyCfg" id="Avq-XW-Ehc">
+                                            <dictionary key="options">
+                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                            </dictionary>
+                                        </binding>
                                     </connections>
                                 </menuItem>
                             </items>
@@ -454,6 +467,7 @@
                 <constraint firstItem="Jr5-JD-RhE" firstAttribute="leading" secondItem="21" secondAttribute="leading" constant="10" id="wJy-fU-BVW"/>
             </constraints>
         </customView>
+        <customObject id="GKf-fA-Bsf" customClass="AppController"/>
         <arrayController automaticallyRearrangesObjects="YES" id="m8S-67-rAD" userLabel="tidyOptions Array Controller">
             <connections>
                 <binding destination="-2" name="filterPredicate" keyPath="self.filterPredicate" id="qYA-QL-OVI"/>
@@ -461,6 +475,7 @@
                 <binding destination="-2" name="contentArray" keyPath="self.tidyDocument.tidyOptionsBindable" id="eq5-l4-Skk"/>
             </connections>
         </arrayController>
+        <userDefaultsController representsSharedInstance="YES" id="4Me-6K-eyZ"/>
     </objects>
     <resources>
         <image name="HideDescriptionTemplate" width="11" height="10"/>

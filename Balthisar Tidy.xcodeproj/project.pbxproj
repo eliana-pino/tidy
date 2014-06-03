@@ -488,7 +488,26 @@
 			path = "Balthisar Tidy";
 			sourceTree = SOURCE_ROOT;
 		};
-		D036E20718F3D2F20009A9D4 /* Icons */ = {
+		D01AACBC193DEA4900C4E5B2 /* UI Icons */ = {
+			isa = PBXGroup;
+			children = (
+				D0E6AE6B1911E88000B49779 /* messagesConfig.icns */,
+				D0E6AE6C1911E88000B49779 /* messagesDocument.icns */,
+				D0E6AE6D1911E88000B49779 /* messagesError.icns */,
+				D0E6AE6E1911E88000B49779 /* messagesInfo.icns */,
+				D0E6AE6F1911E88000B49779 /* messagesPanic.icns */,
+				D0E6AE701911E88000B49779 /* messagesWarning.icns */,
+				D0E6AE691911E4DC00B49779 /* messagesAccess.icns */,
+				D0E6AE1F190CB34500B49779 /* PaneBottomShadow.tiff */,
+				D0E6AE16190C9FAC00B49779 /* HideDescriptionTemplate.pdf */,
+				D0E6AE17190C9FAC00B49779 /* ShowDescriptionTemplate.pdf */,
+				D036E21718F3D81E0009A9D4 /* TidyScripting.sdef */,
+				D0CCEE2818E9967B0052E56C /* Balthisar Tidy.help */,
+			);
+			name = "UI Icons";
+			sourceTree = "<group>";
+		};
+		D036E20718F3D2F20009A9D4 /* File Icons */ = {
 			isa = PBXGroup;
 			children = (
 				D036E20818F3D2F20009A9D4 /* Application.icns */,
@@ -497,6 +516,7 @@
 				D036E20B18F3D2F20009A9D4 /* Tidy.icns */,
 				D036E20C18F3D2F20009A9D4 /* XML.icns */,
 			);
+			name = "File Icons";
 			path = Icons;
 			sourceTree = "<group>";
 		};
@@ -538,20 +558,9 @@
 		D08A7C9118D442AD00341DCB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				D0E6AE6B1911E88000B49779 /* messagesConfig.icns */,
-				D0E6AE6C1911E88000B49779 /* messagesDocument.icns */,
-				D0E6AE6D1911E88000B49779 /* messagesError.icns */,
-				D0E6AE6E1911E88000B49779 /* messagesInfo.icns */,
-				D0E6AE6F1911E88000B49779 /* messagesPanic.icns */,
-				D0E6AE701911E88000B49779 /* messagesWarning.icns */,
-				D0E6AE691911E4DC00B49779 /* messagesAccess.icns */,
-				D0E6AE1F190CB34500B49779 /* PaneBottomShadow.tiff */,
-				D0E6AE16190C9FAC00B49779 /* HideDescriptionTemplate.pdf */,
-				D0E6AE17190C9FAC00B49779 /* ShowDescriptionTemplate.pdf */,
-				D036E21718F3D81E0009A9D4 /* TidyScripting.sdef */,
-				D0CCEE2818E9967B0052E56C /* Balthisar Tidy.help */,
 				D08A7C9218D442FF00341DCB /* optionsInEffect.txt */,
-				D036E20718F3D2F20009A9D4 /* Icons */,
+				D01AACBC193DEA4900C4E5B2 /* UI Icons */,
+				D036E20718F3D2F20009A9D4 /* File Icons */,
 				D07AF49A183658F100913067 /* Base.lproj */,
 			);
 			path = Resources;
@@ -1354,8 +1363,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Balthisar Tidy/Balthisar Tidy-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
 					"INCLUDE_SPARKLE=1",
+					"PRO=0",
+					"$(inherited)",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				INFOPLIST_FILE = "Balthisar Tidy/Balthisar Tidy-Info.plist";
@@ -1389,7 +1399,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Balthisar Tidy/Balthisar Tidy-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "INCLUDE_SPARKLE=1";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"INCLUDE_SPARKLE=1",
+					"PRO=0",
+				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				INFOPLIST_FILE = "Balthisar Tidy/Balthisar Tidy-Info.plist";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
@@ -1477,6 +1490,7 @@
 				GCC_PREFIX_HEADER = "Balthisar Tidy/Balthisar Tidy-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"INCLUDE_SPARKLE=0",
+					"PRO=0",
 					"$(inherited)",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
@@ -1512,7 +1526,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Balthisar Tidy/Balthisar Tidy-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "INCLUDE_SPARKLE=0";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"INCLUDE_SPARKLE=0",
+					"PRO=0",
+				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				INFOPLIST_FILE = "Balthisar Tidy/Balthisar Tidy-Info.plist";
@@ -1549,6 +1566,7 @@
 				GCC_PREFIX_HEADER = "Balthisar Tidy/Balthisar Tidy-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"INCLUDE_SPARKLE=0",
+					"PRO=1",
 					"$(inherited)",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
@@ -1584,7 +1602,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Balthisar Tidy/Balthisar Tidy-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "INCLUDE_SPARKLE=0";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"INCLUDE_SPARKLE=0",
+					"PRO=1",
+				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				INFOPLIST_FILE = "Balthisar Tidy/Balthisar Tidy-Info.plist";

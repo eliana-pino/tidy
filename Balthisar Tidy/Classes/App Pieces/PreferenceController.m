@@ -133,11 +133,19 @@
 
 
 	/* Other Defaults */
-	[defaultValues setObject:@YES forKey:@"NSPrintHeaderAndFooter"];
+	[defaultValues setObject:@NO  forKey:@"NSPrintHeaderAndFooter"];
 	[defaultValues setObject:@"locationString" forKey:JSDKeyMessagesTableInitialSortKey];
+	[defaultValues setObject:@NO  forKey:@"proExportsTidyCfg"];
 
 
 	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
+
+	#if PRO == 0
+		[[NSUserDefaults standardUserDefaults] setObject:@NO  forKey:@"proExportsTidyCfg"];
+	#else
+		[[NSUserDefaults standardUserDefaults] setObject:@YES forKey:@"proExportsTidyCfg"];
+	#endif
+
 }
 
 

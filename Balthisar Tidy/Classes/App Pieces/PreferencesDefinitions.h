@@ -67,6 +67,8 @@
 	#define JSDKeyMessagesTableSortDescriptors    @"MessagesTableSortDescriptors"
 
 
+	/* Other */
+
 
 	/* Key under which to store TidyOptions */
 
