@@ -69,15 +69,13 @@
 #import "OptionPaneController.h"
 #import "NSTextView+JSDExtensions.h"
 #import "FirstRunController.h"
+#import "EncodingHelperController.h"
 
 
 #pragma mark - CATEGORY - Non-Public
 
 
 @interface TidyDocument ()
-
-
-#pragma mark - Properties
 
 
 /* View Outlets */
@@ -87,19 +85,6 @@
 @property (assign) IBOutlet NSTextView  *tidyView;
 
 @property (weak)   IBOutlet NSTableView *errorView;
-
-
-/* Encoding Helper Popover Outlets */
-
-@property (weak) IBOutlet NSPopover   *popoverEncoding;
-
-@property (weak) IBOutlet NSButton    *buttonEncodingDoNotWarnAgain;
-
-@property (weak) IBOutlet NSButton    *buttonEncodingAllowChange;
-
-@property (weak) IBOutlet NSButton    *buttonEncodingIgnoreSuggestion;
-
-@property (weak) IBOutlet NSTextField *textFieldEncodingExplanation;
 
 
 /* Window Splitters */
@@ -121,6 +106,11 @@
 @property FirstRunController *firstRun;
 
 
+/* Encoding Helper Controller */
+
+@property EncodingHelperController *encodingHelper;
+
+
 /* Our Tidy Processor */
 
 @property JSDTidyModel *tidyProcess;
@@ -138,13 +128,6 @@
 /* ArrayController linked to tidyProcess' error array. */
 
 @property (strong) IBOutlet NSArrayController *messagesArrayController;
-
-
-#pragma mark - Methods
-
-/* Encoding Popover Actions */
-
-- (IBAction)popoverEncodingHandler:(id)sender;
 
 
 @end
@@ -352,7 +335,7 @@
  *———————————————————————————————————————————————————————————————————*/
 - (NSString *)windowNibName
 {
-	return @"TidyDocument";
+	return @"TidyDocumentWindow";
 }
 
 
@@ -584,36 +567,17 @@
 
 /*———————————————————————————————————————————————————————————————————*
 	handleTidyInputEncodingProblem:
-		The input-encoding might have been wrong for the file
+		We're here as the result of a notification. The value for
+		input-encoding might have been wrong for the file
 		that tidy is trying to process.
  *———————————————————————————————————————————————————————————————————*/
 - (void)handleTidyInputEncodingProblem:(NSNotification*)note
 {
-	NSUserDefaults *localDefaults = [NSUserDefaults standardUserDefaults];
-
-	if (![[localDefaults valueForKey:JSDKeyIgnoreInputEncodingWhenOpening] boolValue])
+	if (![[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyIgnoreInputEncodingWhenOpening] boolValue])
 	{
-		NSStringEncoding suggestedEncoding    = [[[note userInfo] objectForKey:@"suggestedEncoding"] longValue];
-		
-		NSString         *encodingSuggested   = [NSString localizedNameOfStringEncoding:suggestedEncoding];
+		self.encodingHelper = [[EncodingHelperController alloc] initWithNote:note fromDocument:self forView:self.sourceView];
 
-		NSStringEncoding currentInputEncoding = self.tidyProcess.inputEncoding;
-		
-		NSString         *encodingCurrent     = [NSString localizedNameOfStringEncoding:currentInputEncoding];
-
-		NSString *docName    = self.fileURL.lastPathComponent;
-
-		NSString *newMessage = [NSString stringWithFormat:self.textFieldEncodingExplanation.stringValue, docName, encodingCurrent, encodingSuggested];
-
-		self.textFieldEncodingExplanation.stringValue = newMessage;
-
-		self.buttonEncodingAllowChange.tag = suggestedEncoding;	// We'll fetch this later in popoverHandler.
-
-		self.sourceView.editable = NO;
-
-		[self.popoverEncoding showRelativeToRect:self.sourceView.bounds
-										  ofView:self.sourceView
-								   preferredEdge:NSMaxYEdge];
+		[self.encodingHelper startHelper];
 	}
 }
 
@@ -654,30 +618,6 @@
 		[self updateChangeCount:NSChangeDone];
 	}
 
-}
-
-
-#pragma mark - Document Opening Encoding Error Support
-
-
-/*———————————————————————————————————————————————————————————————————*
-	popoverEncodingHandler:
-		Handles all possibles actions from the input-encoding
-		helper popover. The only two senders should be
-		buttonAllowChange and buttonIgnoreSuggestion.
- *———————————————————————————————————————————————————————————————————*/
-- (IBAction)popoverEncodingHandler:(id)sender
-{
-	if (sender == self.buttonEncodingAllowChange)
-	{
-		JSDTidyOption *localOption = self.optionController.tidyDocument.tidyOptions[@"input-encoding"];
-
-		localOption.optionValue = [@(self.buttonEncodingAllowChange.tag) stringValue];
-	}
-
-	self.sourceView.editable = YES;
-	
-	[self.popoverEncoding performClose:self];
 }
 
 
