@@ -29,13 +29,7 @@
 
 #import "TidyDocument.h"
 #import "PreferencesDefinitions.h"
-#import "PreferenceController.h"
 #import "JSDTidyModel.h"
-#import "JSDTidyOption.h"
-#import "OptionPaneController.h"
-#import "NSTextView+JSDExtensions.h"
-#import "FirstRunController.h"
-#import "EncodingHelperController.h"
 #import "TidyDocumentWindowController.h"
 
 
