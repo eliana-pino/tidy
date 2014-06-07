@@ -35,24 +35,17 @@
 /* Internal Properties */
 
 @property (strong) TidyDocument *documentReference;
-
 @property (strong) NSView *documentViewReference;
-
 @property (assign) NSStringEncoding currentEncoding;
-
 @property (assign) NSStringEncoding suggestedEncoding;
 
 
 /* Outlets and Actions */
 
 @property (weak) IBOutlet NSPopover   *popoverEncoding;
-
 @property (weak) IBOutlet NSButton    *buttonEncodingDoNotWarnAgain;
-
 @property (weak) IBOutlet NSButton    *buttonEncodingAllowChange;
-
 @property (weak) IBOutlet NSButton    *buttonEncodingIgnoreSuggestion;
-
 @property (weak) IBOutlet NSTextField *textFieldEncodingExplanation;
 
 - (IBAction)popoverEncodingHandler:(id)sender;
@@ -136,7 +129,7 @@
 	if (sender == self.buttonEncodingAllowChange)
 	{
 		[self.documentReference setValue:[@(self.buttonEncodingAllowChange.tag) stringValue]
-							  forKeyPath:@"optionController.tidyDocument.tidyOptions.input-encoding.optionValue"];
+							  forKeyPath:@"windowController.optionController.tidyDocument.tidyOptions.input-encoding.optionValue"];
 	}
 
 	if ([self.documentViewReference class] == [NSTextView class])

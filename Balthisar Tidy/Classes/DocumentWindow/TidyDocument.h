@@ -1,9 +1,9 @@
 /**************************************************************************************************
 
-	TidyDocument.h
+	TidyDocument
 	 
-	The main document controller, TidyDocument manages the user interaction between the document
-	window and the JSDTidyModel processor.
+	The main document controller, TidyDocument manages a single Tidy document and mediates
+	access between the TidyDocumentWindowController and the JSDTidyModel processor.
 
 
 	The MIT License (MIT)
@@ -29,15 +29,27 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class JSDTidyModel;
+@class TidyDocumentWindowController;
 
-@interface TidyDocument : NSDocument <NSTableViewDelegate, NSSplitViewDelegate, NSTextViewDelegate>
 
+@interface TidyDocument : NSDocument
+
+
+@property (readonly) JSDTidyModel *tidyProcess;             // Instance of JSDTidyModel that will perform all work.
+
+@property NSData *documentOpenedData;                       // The original, loaded data if opened from file.
+
+@property TidyDocumentWindowController *windowController;   // The associated windowcontroller.
+
+@property (assign) BOOL fileWantsProtection;                // Indicates whether we need special type of save.
+
+
+/* Properties used for AppleScript support */
 
 @property (assign) NSString *sourceText;           // Source Text, mostly for AppleScript KVC support.
 
 @property (readonly, assign) NSString *tidyText;   // Tidy'd Text, mostly for AppleScript KVC support.
 
-
-- (IBAction)kickOffFirstRunSequence:(id)sender;    // Exposed so we can allow a menu item to trigger this.
 
 @end

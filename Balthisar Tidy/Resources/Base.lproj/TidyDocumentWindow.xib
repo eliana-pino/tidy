@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="TidyDocument">
+        <customObject id="-2" userLabel="File's Owner" customClass="TidyDocumentWindowController">
             <connections>
                 <outlet property="errorView" destination="398" id="401"/>
                 <outlet property="messagesArrayController" destination="stB-y5-7GX" id="7H7-GK-7Pd"/>
@@ -166,7 +166,7 @@
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                                 <tableColumns>
-                                                                    <tableColumn identifier="severity" editable="NO" width="121" minWidth="100" maxWidth="200" id="404">
+                                                                    <tableColumn identifier="severity" editable="NO" width="122" minWidth="100" maxWidth="200" id="404">
                                                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Severity">
                                                                             <font key="font" metaFont="smallSystem"/>
                                                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -180,7 +180,7 @@
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
                                                                             <tableCellView identifier="severity" id="2Mb-CQ-zHR">
-                                                                                <rect key="frame" x="1" y="1" width="121" height="17"/>
+                                                                                <rect key="frame" x="1" y="1" width="122" height="17"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="4HN-yB-zVc">
@@ -197,7 +197,7 @@
                                                                                         </connections>
                                                                                     </imageView>
                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="gCf-kp-s0y">
-                                                                                        <rect key="frame" x="25" y="-2" width="96" height="17"/>
+                                                                                        <rect key="frame" x="25" y="-2" width="97" height="17"/>
                                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Severity" id="xgw-b3-FgB">
                                                                                             <font key="font" metaFont="smallSystem"/>
@@ -242,7 +242,7 @@
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
                                                                             <tableCellView identifier="where" id="fbI-dr-SCk">
-                                                                                <rect key="frame" x="125" y="1" width="114" height="17"/>
+                                                                                <rect key="frame" x="126" y="1" width="114" height="17"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="ONi-8F-Mnk">
@@ -276,7 +276,7 @@
                                                                             </binding>
                                                                         </connections>
                                                                     </tableColumn>
-                                                                    <tableColumn identifier="description" editable="NO" width="224" minWidth="94.791999816894531" maxWidth="1000" id="405">
+                                                                    <tableColumn identifier="description" editable="NO" width="223" minWidth="94.791999816894531" maxWidth="1000" id="405">
                                                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Message Description">
                                                                             <font key="font" metaFont="smallSystem"/>
                                                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -290,11 +290,11 @@
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
                                                                             <tableCellView identifier="description" id="iH5-i0-Bze">
-                                                                                <rect key="frame" x="242" y="1" width="224" height="17"/>
+                                                                                <rect key="frame" x="243" y="1" width="223" height="17"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="MAr-of-2Ht">
-                                                                                        <rect key="frame" x="0.0" y="-2" width="224" height="17"/>
+                                                                                        <rect key="frame" x="0.0" y="-2" width="223" height="17"/>
                                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Message" id="Zj7-64-aBe">
                                                                                             <font key="font" metaFont="smallSystem"/>
