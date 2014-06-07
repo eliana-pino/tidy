@@ -197,9 +197,9 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)awakeFromNib
 {
-	[self.optionController putViewIntoView:self.optionPane];
+	[self.optionPane addSubview:self.optionController.view];
 
-
+	
 	/* Setup Sparkle versus No-Sparkle versions */
 
 #if INCLUDE_SPARKLE == 0

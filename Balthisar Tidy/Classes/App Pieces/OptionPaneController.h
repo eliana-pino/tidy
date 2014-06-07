@@ -35,10 +35,7 @@
 @class JSDTidyModel;
 
 
-@interface OptionPaneController : NSObject <NSTableViewDataSource, JSDTableViewDelegate>
-
-@property (weak) IBOutlet NSTableView *theTable;
-
+@interface OptionPaneController : NSViewController <NSTableViewDataSource, JSDTableViewDelegate>
 
 @property NSArray *optionsInEffect;               // Only options in this list will be used.
 
@@ -48,7 +45,5 @@
 
 
 - (instancetype)init;
-
-- (void)putViewIntoView:(NSView *)dstView;        // Put this controllers `view` into `dstView`.
 
 @end

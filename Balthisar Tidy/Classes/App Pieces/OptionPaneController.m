@@ -48,9 +48,9 @@
 
 /* Important Stuff in the NIB */
 
-@property (strong) IBOutlet NSView *rootView; // must keep strong
+//@property (strong) IBOutlet NSView *rootView; // must keep strong
 
-//@property (weak) IBOutlet NSTableView *theTable;
+@property (weak) IBOutlet NSTableView *theTable;
 
 @property (strong) IBOutlet NSArrayController *theArrayController; // must keep strong
 
@@ -106,25 +106,11 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (instancetype)init
 {
-	self = [super init];
+	self = [super initWithNibName:@"OptionPane" bundle:nil];
 
 	if (self)
 	{
-		[[NSBundle mainBundle] loadNibNamed:@"OptionPane" owner:self topLevelObjects:nil];
-
 		_tidyDocument = [[JSDTidyModel alloc] init];
-
-		
-		/* This constraint will be modifed as needed to allow showing and hiding of the description field. */
-
-		self.theDescriptionConstraint = [NSLayoutConstraint constraintWithItem:self.theDescription
-																	 attribute:NSLayoutAttributeHeight
-																	 relatedBy:NSLayoutRelationEqual
-																		toItem:nil
-																	 attribute:NSLayoutAttributeNotAnAttribute
-																	multiplier:1.0
-																	  constant:0.0];
-
 
 		/* These options are on a per-window basis, but originate from user defauts */
 
@@ -133,36 +119,32 @@
 		self.isShowingOptionsInGroups = [[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyOptionsAreGrouped];
 
 		self.isInPreferencesView = NO;
-
 	}
 
 	return self;
 }
 
 
-#pragma mark - Setup
-
-
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	putViewIntoView:
-		Whoever calls me will put my `View` into THIER `dstView`.
+	awakeFromNib
+		Set up the description label's constraint.
+		Ensure view occupies entire parent container.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)putViewIntoView:(NSView *)dstView
+- (void)awakeFromNib
 {
-	for (NSView *trash in [dstView subviews])
+	self.theDescriptionConstraint = [NSLayoutConstraint constraintWithItem:self.theDescription
+																 attribute:NSLayoutAttributeHeight
+																 relatedBy:NSLayoutRelationEqual
+																	toItem:nil
+																 attribute:NSLayoutAttributeNotAnAttribute
+																multiplier:1.0
+																  constant:0.0];
+
+	if (self.view.superview)
 	{
-		[trash removeFromSuperview];
+		[self.view setFrame:self.view.superview.bounds];
 	}
-
-	[self.theTable.enclosingScrollView setHasHorizontalScroller:NO];
-
-	[self.rootView setFrame:[dstView bounds]];
-
-	[dstView addSubview:self.rootView];
 }
-
-
-#pragma mark - Options Related
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
@@ -322,7 +304,7 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (IBAction)handleToggleDescription:(NSButton *)sender
 {
-	[self.rootView layoutSubtreeIfNeeded];
+	[self.view layoutSubtreeIfNeeded];
 
 	[NSAnimationContext runAnimationGroup:^(NSAnimationContext *context)
 		{
@@ -339,7 +321,7 @@
 			{
 				[self.theDescription removeConstraint:self.theDescriptionConstraint];
 			}
-			[self.rootView layoutSubtreeIfNeeded];
+			[self.view layoutSubtreeIfNeeded];
 		}
 		completionHandler:^
 		{
@@ -407,7 +389,7 @@
 	[savePanel setExtensionHidden:NO];
 	[savePanel setCanSelectHiddenExtension: NO];
 
-    [savePanel beginSheetModalForWindow:self.rootView.window completionHandler:^(NSInteger result) {
+    [savePanel beginSheetModalForWindow:self.view.window completionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelOKButton)
 		{
             [savePanel orderOut:self];

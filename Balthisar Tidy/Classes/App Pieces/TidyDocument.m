@@ -230,7 +230,7 @@
 
 	self.optionController.optionsInEffect = [[PreferenceController sharedPreferences] optionsInEffect];
 
-	[[self optionController] putViewIntoView:self.optionPane];
+	[self.optionPane addSubview:self.optionController.view];
 
 
 	/* Configure the text view settings */
