@@ -56,6 +56,14 @@
 
 #pragma mark - Setup
 
+//- (void)dealloc
+//{
+////	[self.windowController.messagesArrayController unbind:@""];
+//
+//	NSLog(@"TidyDocument dealloc");
+//	[self removeWindowController:self.windowController];
+//	self.windowController = nil;
+//}
 
 /*———————————————————————————————————————————————————————————————————*
 	makeWindowControllers
@@ -105,8 +113,8 @@
 	revertToContentsOfURL:ofType:error:
 		Allow the default reversion to take place, and then put the
 		correct value in the editor if it took place. The inherited
-		method does |readFromFile|, so put the documentOpenedData
-		into our |tidyProcess|.
+		method does `readFromFile`, so put the documentOpenedData
+		into our `tidyProcess`.
  *———————————————————————————————————————————————————————————————————*/
 - (BOOL)revertToContentsOfURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError
 {

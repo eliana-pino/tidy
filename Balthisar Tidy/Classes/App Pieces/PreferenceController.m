@@ -199,6 +199,9 @@
 {
 	[self.optionPane addSubview:self.optionController.view];
 
+	// We need this here, too, to tickle the table view into renewing its bindings
+	self.optionsInEffect = [JSDTidyModel loadOptionsInUseListFromResource:@"optionsInEffect" ofType:@"txt"];
+
 	
 	/* Setup Sparkle versus No-Sparkle versions */
 

@@ -51,31 +51,31 @@
 
 @property (assign) IBOutlet NSTextView  *tidyView;
 
-@property (weak)   IBOutlet NSTableView *errorView;
+@property (assign)   IBOutlet NSTableView *errorView;
 
 
 /* ArrayController linked to tidyProcess' error array. */
 
-@property (strong) IBOutlet NSArrayController *messagesArrayController;
+@property (assign) IBOutlet NSArrayController *messagesArrayController;
 
 
 /* Window Splitters */
 
-@property (weak) IBOutlet NSSplitView *splitLeftRight;
+@property (assign) IBOutlet NSSplitView *splitLeftRight;
 
-@property (weak) IBOutlet NSSplitView *splitTopDown;
+@property (assign) IBOutlet NSSplitView *splitTopDown;
 
 
 /* Option Controller */
 
-@property (weak)   IBOutlet NSView      *optionPane;         // Our empty optionPane in the nib.
+@property (assign)   IBOutlet NSView      *optionPane;   // Our empty optionPane in the nib.
 
-@property          OptionPaneController *optionController;   // The real option pane we load into optionPane.
+@property OptionPaneController *optionController;        // The real option pane we load into optionPane.
 
 
 /* Document Control */
 
-@property (assign) BOOL documentIsLoading;     // Flag to supress certain event updates.
+@property (assign) BOOL documentIsLoading;   // Flag to supress certain event updates.
 
 
 /* Helpers */

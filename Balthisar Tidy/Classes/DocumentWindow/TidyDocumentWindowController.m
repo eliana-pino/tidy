@@ -103,6 +103,8 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyTidyTextChanged object:self.tidyProcess];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyTidyErrorsChanged object:self.tidyProcess];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyPossibleInputEncodingProblem object:self.tidyProcess];
+
+	[self.messagesArrayController removeObserver:self forKeyPath:@"selection"];
 }
 
 
@@ -126,10 +128,9 @@
 		self.optionController = [[OptionPaneController alloc] init];
 	}
 
-	self.optionController.optionsInEffect = [[PreferenceController sharedPreferences] optionsInEffect];
-
 	[self.optionPane addSubview:self.optionController.view];
 
+	self.optionController.optionsInEffect = [[PreferenceController sharedPreferences] optionsInEffect];
 
 	/* Configure the text view settings */
 
