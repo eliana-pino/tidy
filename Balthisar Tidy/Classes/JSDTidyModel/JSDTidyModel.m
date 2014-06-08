@@ -1326,7 +1326,10 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 	for (NSString *optionName in [[self class] optionsBuiltInOptionList])
 	{
-		NSString *valueFromPreferences = [[defaults objectForKey:JSDKeyTidyTidyOptionsKey] stringForKey:optionName];
+
+		NSLog(@"%@", [defaults objectForKey:JSDKeyTidyTidyOptionsKey]);
+		
+		NSString *valueFromPreferences = [[defaults objectForKey:JSDKeyTidyTidyOptionsKey] objectForKey:optionName];
 
 		localOption = self.tidyOptions[optionName];
 
