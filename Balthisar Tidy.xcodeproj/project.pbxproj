@@ -83,9 +83,6 @@
 		D074B7AA1944035800F2E6F1 /* TidyDocumentMessagesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D074B7A81944035800F2E6F1 /* TidyDocumentMessagesView.xib */; };
 		D074B7AB1944035800F2E6F1 /* TidyDocumentMessagesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D074B7A81944035800F2E6F1 /* TidyDocumentMessagesView.xib */; };
 		D074B7AC1944035800F2E6F1 /* TidyDocumentMessagesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D074B7A81944035800F2E6F1 /* TidyDocumentMessagesView.xib */; };
-		D074B7AF194405E700F2E6F1 /* TidyMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D074B7AE194405E700F2E6F1 /* TidyMessagesViewController.m */; };
-		D074B7B0194405E700F2E6F1 /* TidyMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D074B7AE194405E700F2E6F1 /* TidyMessagesViewController.m */; };
-		D074B7B1194405E700F2E6F1 /* TidyMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D074B7AE194405E700F2E6F1 /* TidyMessagesViewController.m */; };
 		D0806A5B1935F765003C34A8 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D016A94B182FD80700712C60 /* XCTest.framework */; };
 		D0806A611935F765003C34A8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0806A5F1935F765003C34A8 /* InfoPlist.strings */; };
 		D0806A6B1935F81A003C34A8 /* JSDTidyOptionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D0806A6A1935F81A003C34A8 /* JSDTidyOptionTests.m */; };
@@ -314,8 +311,6 @@
 		D074B7991942CF0300F2E6F1 /* TidyDocumentWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TidyDocumentWindowController.h; path = DocumentWindow/TidyDocumentWindowController.h; sourceTree = "<group>"; };
 		D074B79A1942CF0300F2E6F1 /* TidyDocumentWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TidyDocumentWindowController.m; path = DocumentWindow/TidyDocumentWindowController.m; sourceTree = "<group>"; };
 		D074B7A91944035800F2E6F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TidyDocumentMessagesView.xib; sourceTree = "<group>"; };
-		D074B7AD194405E700F2E6F1 /* TidyMessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TidyMessagesViewController.h; path = DocumentWindow/TidyMessagesViewController.h; sourceTree = "<group>"; };
-		D074B7AE194405E700F2E6F1 /* TidyMessagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TidyMessagesViewController.m; path = DocumentWindow/TidyMessagesViewController.m; sourceTree = "<group>"; };
 		D0806A5A1935F765003C34A8 /* Balthisar Tidy Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Balthisar Tidy Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0806A5E1935F765003C34A8 /* Balthisar Tidy Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Balthisar Tidy Tests-Info.plist"; sourceTree = "<group>"; };
 		D0806A601935F765003C34A8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -552,8 +547,6 @@
 				D074B7941942CF0300F2E6F1 /* EncodingHelperController.m */,
 				D074B7951942CF0300F2E6F1 /* FirstRunController.h */,
 				D074B7961942CF0300F2E6F1 /* FirstRunController.m */,
-				D074B7AD194405E700F2E6F1 /* TidyMessagesViewController.h */,
-				D074B7AE194405E700F2E6F1 /* TidyMessagesViewController.m */,
 			);
 			name = DocumentWindow;
 			sourceTree = "<group>";
@@ -1069,7 +1062,6 @@
 				D0D9ED5918E66810008A55D5 /* clean.c in Sources */,
 				D0D9ED5B18E66810008A55D5 /* config.c in Sources */,
 				D0D9ED5318E66810008A55D5 /* attrs.c in Sources */,
-				D074B7AF194405E700F2E6F1 /* TidyMessagesViewController.m in Sources */,
 				D0D9ED5718E66810008A55D5 /* charsets.c in Sources */,
 				D0D9ED7318E66810008A55D5 /* tagask.c in Sources */,
 				D0D9ED6118E66810008A55D5 /* gdoc.c in Sources */,
@@ -1132,7 +1124,6 @@
 				D0D9ED5C18E66810008A55D5 /* config.c in Sources */,
 				D0D9ED5418E66810008A55D5 /* attrs.c in Sources */,
 				D0D9ED5818E66810008A55D5 /* charsets.c in Sources */,
-				D074B7B0194405E700F2E6F1 /* TidyMessagesViewController.m in Sources */,
 				D0D9ED7418E66810008A55D5 /* tagask.c in Sources */,
 				D0D9ED6218E66810008A55D5 /* gdoc.c in Sources */,
 				D0D9ED6C18E66810008A55D5 /* mappedio.c in Sources */,
@@ -1187,7 +1178,6 @@
 				D0BB67BC193C820A007A3EB0 /* config.c in Sources */,
 				D0BB67BD193C820A007A3EB0 /* attrs.c in Sources */,
 				D0BB67BF193C820A007A3EB0 /* charsets.c in Sources */,
-				D074B7B1194405E700F2E6F1 /* TidyMessagesViewController.m in Sources */,
 				D0BB67C0193C820A007A3EB0 /* tagask.c in Sources */,
 				D0BB67C1193C820A007A3EB0 /* gdoc.c in Sources */,
 				D0BB67C2193C820A007A3EB0 /* mappedio.c in Sources */,

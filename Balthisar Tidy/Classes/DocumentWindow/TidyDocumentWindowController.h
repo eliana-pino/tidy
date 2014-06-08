@@ -48,12 +48,10 @@
 /*
 	A shared ArrayController for use by all of the subviews. It's connected to the
 	document's tidyProcess.errorArray, and can be reached from the subviews by
-	representedObject.windowController.sharedMessagesArrayController.arrangedObjects
+	representedObject.windowController.sharedMessagesArrayController.arrangedObjects, etc.
  */
 
 @property (assign) IBOutlet NSArrayController *sharedMessagesArrayController;
-
-@property NSIndexSet *sharedMessagesSelectionIndexes;
 
 
 /* View Outlets */
@@ -61,8 +59,6 @@
 @property (assign) IBOutlet NSTextView  *sourceView;
 
 @property (assign) IBOutlet NSTextView  *tidyView;
-
-@property (assign)   IBOutlet NSTableView *errorView;
 
 
 /* Window Splitters */
@@ -83,7 +79,7 @@
 
 @property (assign)   IBOutlet NSView *messagesPane;
 
-@property TidyMessagesViewController *messagesController;
+@property NSViewController *messagesController;
 
 
 

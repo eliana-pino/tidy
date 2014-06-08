@@ -40,7 +40,7 @@
 		else.
  
 		If `tidyText` changes we will receive NSNotification, and put the new `tidyText`
-		into the `tidyView`, and also update `errorView`.
+		into the `tidyView`, and also update `messagesViewController`.
   
 		If `optionController` sends an NSNotification, then we will copy the new
 		options to `tidyProcess`. The event chain will eventually handle everything else.
@@ -69,7 +69,6 @@
 #import "NSTextView+JSDExtensions.h"
 #import "FirstRunController.h"
 #import "EncodingHelperController.h"
-#import "TidyMessagesViewController.h"
 
 @implementation TidyDocumentWindowController
 
@@ -116,9 +115,6 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)awakeFromNib
 {
-	NSLog(@"WindowController awakeFromNib");
-
-
 	/******************************************************
 		Setup the optionController and its view settings. 
 	 ******************************************************/
@@ -141,11 +137,13 @@
 		Setup the messagesController and its view settings.
 	 ******************************************************/
 
-	self.messagesController = [[TidyMessagesViewController alloc] init];
+	self.messagesController = [[NSViewController alloc] initWithNibName:@"TidyDocumentMessagesView" bundle:nil];
 
 	self.messagesController.representedObject = self.document;
 
 	[self.messagesPane addSubview:self.messagesController.view];
+
+	self.messagesController.view.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
 
 	[self.messagesController.view setFrame:self.messagesPane.bounds];
 
@@ -230,18 +228,6 @@
 										 forKeyPath:@"selection"
 											options:(NSKeyValueObservingOptionNew)
 											context:NULL];
-
-
-	/*
-		self.documentIsLoading is used later to prevent some multiple
-		notifications that aren't needed, and represents that we've
-		loaded data from a file. We will also set the tidyProcess'
-		source text (nil assigment is okay).
-	 */
-	self.documentIsLoading = !(self.documentOpenedData == nil);
-
-	[self.tidyProcess setSourceTextWithData:[self documentOpenedData]];
-
 }
 
 /*———————————————————————————————————————————————————————————————————*
@@ -252,6 +238,19 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
+
+	/*
+		self.documentIsLoading is used later to prevent some multiple
+		notifications that aren't needed, and represents that we've
+		loaded data from a file. We will also set the tidyProcess'
+		source text (nil assigment is okay). If we try this in
+		awakeFromNib, we might receive a notification before the
+		nibs are all done loading, so we will do this here.
+	 */
+	self.documentIsLoading = !(self.documentOpenedData == nil);
+
+	[self.tidyProcess setSourceTextWithData:[self documentOpenedData]];
+
 
 	/* Run through the new user helper if appropriate */
 
@@ -452,8 +451,8 @@
 								  @"preferredEdge": @(NSMinXEdge) },
 
 							   @{ @"message": NSLocalizedString(@"popOverExplainErrorView", nil),
-								  @"showRelativeToRect": NSStringFromRect(self.errorView.bounds),
-								  @"ofView": self.errorView,
+								  @"showRelativeToRect": NSStringFromRect(self.messagesPane.bounds),
+								  @"ofView": self.messagesPane,
 								  @"preferredEdge": @(NSMinXEdge) },
 
 							   @{ @"message": NSLocalizedString(@"popOverExplainPreferences", nil),
