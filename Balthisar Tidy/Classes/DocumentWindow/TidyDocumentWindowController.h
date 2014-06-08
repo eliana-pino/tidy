@@ -53,6 +53,8 @@
 
 @property (assign) IBOutlet NSArrayController *sharedMessagesArrayController;
 
+@property NSIndexSet *sharedMessagesSelectionIndexes;
+
 
 /* View Outlets */
 

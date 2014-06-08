@@ -177,12 +177,13 @@
         </window>
         <arrayController automaticallyRearrangesObjects="YES" id="E3s-sV-0hw" userLabel="messagesArrayController">
             <connections>
-                <binding destination="-2" name="contentArray" keyPath="self.tidyProcess.errorArray" id="Ag9-23-eES">
+                <binding destination="-2" name="contentArray" keyPath="self.document.tidyProcess.errorArray" id="0JE-mI-tpQ">
                     <dictionary key="options">
                         <bool key="NSConditionallySetsEditable" value="NO"/>
                     </dictionary>
                 </binding>
-                <binding destination="HPK-3U-7WI" name="sortDescriptors" keyPath="values.MessagesTableSortDescriptors" id="VMF-zb-YMN">
+                <binding destination="-2" name="selectionIndexes" keyPath="self.sharedSelectionIndexes" id="4yC-N7-DfY"/>
+                <binding destination="HPK-3U-7WI" name="sortDescriptors" keyPath="values.MessagesTableSortDescriptors" previousBinding="4yC-N7-DfY" id="rE2-cM-WF7">
                     <dictionary key="options">
                         <bool key="NSValidatesImmediately" value="YES"/>
                         <string key="NSValueTransformerName">NSUnarchiveFromData</string>
