@@ -37,7 +37,7 @@
 @interface TidyDocumentWindowController : NSWindowController <NSTableViewDelegate, NSSplitViewDelegate, NSTextViewDelegate>
 
 
-/* Document references */
+/* Document references (setters and getters pull from self.document) */
 
 @property (readonly) JSDTidyModel *tidyProcess;
 
@@ -68,9 +68,9 @@
 
 /* Option Controller */
 
-@property (assign)   IBOutlet NSView      *optionPane;   // Our empty optionPane in the nib.
+@property (assign)   IBOutlet NSView *optionPane;   // Empty pane in NIB where optionController's view will live.
 
-@property OptionPaneController *optionController;        // The real option pane we load into optionPane.
+@property OptionPaneController *optionController;   // An OptionPaneController.
 
 
 /* Document Control */
@@ -80,7 +80,7 @@
 
 /* Helpers */
 
-@property FirstRunController *firstRun;
+@property FirstRunController *firstRunHelper;
 
 @property EncodingHelperController *encodingHelper;
 

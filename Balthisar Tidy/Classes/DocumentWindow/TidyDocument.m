@@ -47,7 +47,7 @@
 	if ((self = [super init]))
 	{
 		_tidyProcess = [[JSDTidyModel alloc] init];
-		self.documentOpenedData = nil;
+		_documentOpenedData = nil;
 	}
 
 	return self;
@@ -56,14 +56,6 @@
 
 #pragma mark - Setup
 
-//- (void)dealloc
-//{
-////	[self.windowController.messagesArrayController unbind:@""];
-//
-//	NSLog(@"TidyDocument dealloc");
-//	[self removeWindowController:self.windowController];
-//	self.windowController = nil;
-//}
 
 /*———————————————————————————————————————————————————————————————————*
 	makeWindowControllers
@@ -103,7 +95,7 @@
 {
 	/* Save the data for use until after the Nib is awake. */
 
-	self.documentOpenedData = [NSData dataWithContentsOfFile:absoluteURL];
+	_documentOpenedData = [NSData dataWithContentsOfFile:absoluteURL];
 
 	return YES;
 }

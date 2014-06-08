@@ -38,7 +38,7 @@
 
 @property (readonly) JSDTidyModel *tidyProcess;             // Instance of JSDTidyModel that will perform all work.
 
-@property NSData *documentOpenedData;                       // The original, loaded data if opened from file.
+@property (readonly) NSData *documentOpenedData;            // The original, loaded data if opened from file.
 
 @property TidyDocumentWindowController *windowController;   // The associated windowcontroller.
 

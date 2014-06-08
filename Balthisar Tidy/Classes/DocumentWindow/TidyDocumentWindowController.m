@@ -35,28 +35,28 @@
 		The Tidy processor is loosely coupled with the document controller. Most
 		interaction with it is handled via NSNotifications.
  
-		If user types text we receive a |textDidChange| delegate notification, and we will set
+		If user types text we receive a `textDidChange` delegate notification, and we will set
 		new text in [tidyProcess sourceText]. The event chain will eventually handle everything
 		else.
  
-		If |tidyText| changes we will receive NSNotification, and put the new |tidyText|
-		into the |tidyView|, and also update |errorView|.
+		If `tidyText` changes we will receive NSNotification, and put the new `tidyText`
+		into the `tidyView`, and also update `errorView`.
   
-		If |optionController| sends an NSNotification, then we will copy the new
-		options to |tidyProcess|. The event chain will eventually handle everything else.
+		If `optionController` sends an NSNotification, then we will copy the new
+		options to `tidyProcess`. The event chain will eventually handle everything else.
  
-		If we set |sourceText| via file or data (only happens when opening or reverting)
-		we will NOT update |sourceView|. We will wait for |tidyProcess| NSNotification that
-		the |sourceText| changed, then set the |sourceView|. HOWEVER this presents a small
+		If we set `sourceText` via file or data (only happens when opening or reverting)
+		we will NOT update `sourceView`. We will wait for `tidyProcess` NSNotification that
+		the `sourceText` changed, then set the `sourceView`. HOWEVER this presents a small
 		issue to overcome:
  
-			- If we set |sourceView| we will get |textDidChange| notification, causing
+			- If we set `sourceView` we will get `textDidChange` notification, causing
 			  us to update [tidyProcess sourceText] again, resulting in processing the
 			  document twice, which we don't want to do.
  
-			- To prevent this we will set |documentIsLoading| to YES any time we we set
-			  |sourceText| from file or data. In the |textDidChange| handler we will NOT
-			  set [tidyProcess sourceText], and we will flip |documentIsLoading| back to NO.
+			- To prevent this we will set `documentIsLoading` to YES any time we we set
+			  `sourceText` from file or data. In the `textDidChange` handler we will NOT
+			  set [tidyProcess sourceText], and we will flip `documentIsLoading` back to NO.
  
  **************************************************************************************************/
 
@@ -291,8 +291,8 @@
 
 /*———————————————————————————————————————————————————————————————————*
 	handleTidyOptionChange:
-		One or more options changed in |optionController|. Copy
-		those options to our |tidyProcess|. The event chain will
+		One or more options changed in `optionController`. Copy
+		those options to our `tidyProcess`. The event chain will
 		eventually update everything else because this should
 		cause the tidyText to change.
  *———————————————————————————————————————————————————————————————————*/
@@ -449,11 +449,11 @@
 								  @"preferredEdge": @(NSMinYEdge) },
 							   ];
 
-	self.firstRun = [[FirstRunController alloc] initWithSteps:firstRunSteps];
+	self.firstRunHelper = [[FirstRunController alloc] initWithSteps:firstRunSteps];
 
-	self.firstRun.preferencesKeyName = JSDKeyFirstRunComplete;
+	self.firstRunHelper.preferencesKeyName = JSDKeyFirstRunComplete;
 
-	[self.firstRun beginFirstRunSequence];
+	[self.firstRunHelper beginFirstRunSequence];
 }
 
 
@@ -470,7 +470,7 @@
 
     if (theAction == @selector(kickOffFirstRunSequence:))
 	{
-		return !(BOOL)[self.firstRun valueForKeyPath:@"popoverFirstRun.shown"];
+		return !(BOOL)[self.firstRunHelper valueForKeyPath:@"popoverFirstRun.shown"];
     }
 
     return NO;
