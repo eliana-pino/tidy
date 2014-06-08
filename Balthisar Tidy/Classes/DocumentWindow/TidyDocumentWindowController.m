@@ -69,7 +69,7 @@
 #import "NSTextView+JSDExtensions.h"
 #import "FirstRunController.h"
 #import "EncodingHelperController.h"
-
+#import "TidyMessagesViewController.h"
 
 @implementation TidyDocumentWindowController
 
@@ -104,7 +104,7 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyTidyErrorsChanged object:self.tidyProcess];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyPossibleInputEncodingProblem object:self.tidyProcess];
 
-	[self.messagesArrayController removeObserver:self forKeyPath:@"selection"];
+	[self.sharedMessagesArrayController removeObserver:self forKeyPath:@"selection"];
 }
 
 
@@ -112,61 +112,44 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
-	windowDidLoad
-		This method handles initialization after the window 
-		controller's window has been loaded from its nib file.
+	awakeFromNib
  *———————————————————————————————————————————————————————————————————*/
-- (void)windowDidLoad
+- (void)awakeFromNib
 {
-    [super windowDidLoad];
+	NSLog(@"WindowController awakeFromNib");
 
 
-	/* Create an OptionController and put it in place of optionPane. */
+	/******************************************************
+		Setup the optionController and its view settings. 
+	 ******************************************************/
 
-	if (!self.optionController)
-	{
-		self.optionController = [[OptionPaneController alloc] init];
-	}
+	self.optionController = [[OptionPaneController alloc] init];
 
 	[self.optionPane addSubview:self.optionController.view];
 
 	self.optionController.optionsInEffect = [[PreferenceController sharedPreferences] optionsInEffect];
 
-	/* Configure the text view settings */
-
-	[self configureViewSettings:self.sourceView];
-	[self configureViewSettings:self.tidyView];
-
-
-	/* Honor the defaults system defaults. */
-
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
-
 	/*
 		Make the optionController take the default values. This actually
 		causes the empty document to go through processTidy one time.
 	 */
-	[self.optionController.tidyDocument takeOptionValuesFromDefaults:defaults];
+	[self.optionController.tidyDocument takeOptionValuesFromDefaults:[NSUserDefaults standardUserDefaults]];
 
 
-	/*
-		Make the local processor take the default values. This causes
-		the empty document to go through processTidy a second time.
-	 */
-	[self.tidyProcess takeOptionValuesFromDefaults:defaults];
 
+	/******************************************************
+		Setup the messagesController and its view settings.
+	 ******************************************************/
 
-	/*
-		Since this is startup, seed the tidyText view with this
-		initial value for a blank document. If we're opening a
-		document the event system will replace it a bit later.
-	 */
-	self.tidyView.string = self.tidyProcess.tidyText;
+	self.messagesController = [[TidyMessagesViewController alloc] init];
 
+	self.messagesController.representedObject = self.document;
+
+	[self.messagesPane addSubview:self.messagesController.view];
+
+	[self.messagesController.view setFrame:self.messagesPane.bounds];
 
 	/*
-		Setup for the Messages Table
 		The value for key JSDKeyMessagesTableInitialSortKey should only
 		ever be used this one time, unless the user deletes preferences.
 	 */
@@ -176,8 +159,36 @@
 
 		NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:sortKeyFromPrefs ascending:YES];
 
-		[self.messagesArrayController setSortDescriptors:[NSArray arrayWithObject:descriptor]];
+		[self.sharedMessagesArrayController setSortDescriptors:[NSArray arrayWithObject:descriptor]];
 	}
+
+
+	/******************************************************
+		Setup the text view settings.
+	 ******************************************************/
+
+	[self configureViewSettings:self.sourceView];
+
+	[self configureViewSettings:self.tidyView];
+	
+
+	/******************************************************
+		Remaining initial document conditions.
+	 ******************************************************/
+
+	/*
+		Make the local processor take the default values. This causes
+		the empty document to go through processTidy a second time.
+	 */
+	[self.tidyProcess takeOptionValuesFromDefaults:[NSUserDefaults standardUserDefaults]];
+
+
+	/*
+		Since this is startup, seed the tidyText view with this
+		initial value for a blank document. If we're opening a
+		document the event system will replace it a bit later.
+	 */
+	self.tidyView.string = self.tidyProcess.tidyText;
 
 
 	/*
@@ -215,18 +226,11 @@
 		because the delegate doesn't catch when the table unselects all rows (meaning that
 		highlighted text in the sourceText stays behind). This prevents that.
 	 */
-	[self.messagesArrayController addObserver:self
-								   forKeyPath:@"selection"
-									  options:(NSKeyValueObservingOptionNew)
-									  context:NULL];
+	[self.sharedMessagesArrayController addObserver:self
+										 forKeyPath:@"selection"
+											options:(NSKeyValueObservingOptionNew)
+											context:NULL];
 
-
-	/* Run through the new user helper if appropriate */
-
-	if (![[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyFirstRunComplete] boolValue])
-	{
-		[self kickOffFirstRunSequence:nil];
-	}
 
 	/*
 		self.documentIsLoading is used later to prevent some multiple
@@ -237,6 +241,25 @@
 	self.documentIsLoading = !(self.documentOpenedData == nil);
 
 	[self.tidyProcess setSourceTextWithData:[self documentOpenedData]];
+
+}
+
+/*———————————————————————————————————————————————————————————————————*
+	windowDidLoad
+		This method handles initialization after the window 
+		controller's window has been loaded from its nib file.
+ *———————————————————————————————————————————————————————————————————*/
+- (void)windowDidLoad
+{
+    [super windowDidLoad];
+
+	/* Run through the new user helper if appropriate */
+
+	if (![[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyFirstRunComplete] boolValue])
+	{
+		[self kickOffFirstRunSequence:nil];
+	}
+	
 }
 
 
@@ -489,13 +512,13 @@
 {
 	/* Handle changes to the selection of the messages table. */
 
-	if ((object == self.messagesArrayController) && ([keyPath isEqualToString:@"selection"]))
+	if ((object == self.sharedMessagesArrayController) && ([keyPath isEqualToString:@"selection"]))
 	{
 		self.sourceView.showsHighlight = NO;
 
-		NSArray *localObjects = self.messagesArrayController.arrangedObjects;
+		NSArray *localObjects = self.sharedMessagesArrayController.arrangedObjects;
 
-		NSInteger errorViewRow = self.messagesArrayController.selectionIndex;
+		NSInteger errorViewRow = self.sharedMessagesArrayController.selectionIndex;
 
 		if ((errorViewRow >= 0) && (errorViewRow < [localObjects count]))
 		{
