@@ -69,6 +69,7 @@
 #import "NSTextView+JSDExtensions.h"
 #import "FirstRunController.h"
 #import "EncodingHelperController.h"
+#import "JSDTableViewController.h"
 
 @implementation TidyDocumentWindowController
 
@@ -103,7 +104,7 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyTidyErrorsChanged object:self.tidyProcess];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyPossibleInputEncodingProblem object:self.tidyProcess];
 
-	[self.sharedMessagesArrayController removeObserver:self forKeyPath:@"selection"];
+	[self.messagesController.arrayController removeObserver:self forKeyPath:@"selection"];
 }
 
 
@@ -132,12 +133,11 @@
 	[self.optionController.tidyDocument takeOptionValuesFromDefaults:[NSUserDefaults standardUserDefaults]];
 
 
-
 	/******************************************************
 		Setup the messagesController and its view settings.
 	 ******************************************************/
 
-	self.messagesController = [[NSViewController alloc] initWithNibName:@"TidyDocumentMessagesView" bundle:nil];
+	self.messagesController = [[JSDTableViewController alloc] initWithNibName:@"TidyDocumentMessagesView" bundle:nil];
 
 	self.messagesController.representedObject = self.document;
 
@@ -146,19 +146,6 @@
 	self.messagesController.view.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
 
 	[self.messagesController.view setFrame:self.messagesPane.bounds];
-
-	/*
-		The value for key JSDKeyMessagesTableInitialSortKey should only
-		ever be used this one time, unless the user deletes preferences.
-	 */
-	if (![[NSUserDefaults standardUserDefaults] objectForKey:JSDKeyMessagesTableSortDescriptors])
-	{
-		NSString *sortKeyFromPrefs = [[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyMessagesTableInitialSortKey];
-
-		NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:sortKeyFromPrefs ascending:YES];
-
-		[self.sharedMessagesArrayController setSortDescriptors:[NSArray arrayWithObject:descriptor]];
-	}
 
 
 	/******************************************************
@@ -224,10 +211,10 @@
 		because the delegate doesn't catch when the table unselects all rows (meaning that
 		highlighted text in the sourceText stays behind). This prevents that.
 	 */
-	[self.sharedMessagesArrayController addObserver:self
-										 forKeyPath:@"selection"
-											options:(NSKeyValueObservingOptionNew)
-											context:NULL];
+	[self.messagesController.arrayController addObserver:self
+											  forKeyPath:@"selection"
+												 options:(NSKeyValueObservingOptionNew)
+												 context:NULL];
 }
 
 /*———————————————————————————————————————————————————————————————————*
@@ -237,7 +224,7 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)windowDidLoad
 {
-    [super windowDidLoad];
+	[super windowDidLoad];
 
 	/*
 		self.documentIsLoading is used later to prevent some multiple
@@ -511,13 +498,13 @@
 {
 	/* Handle changes to the selection of the messages table. */
 
-	if ((object == self.sharedMessagesArrayController) && ([keyPath isEqualToString:@"selection"]))
+	if ((object == self.messagesController.arrayController) && ([keyPath isEqualToString:@"selection"]))
 	{
 		self.sourceView.showsHighlight = NO;
 
-		NSArray *localObjects = self.sharedMessagesArrayController.arrangedObjects;
+		NSArray *localObjects = self.messagesController.arrayController.arrangedObjects;
 
-		NSInteger errorViewRow = self.sharedMessagesArrayController.selectionIndex;
+		NSInteger errorViewRow = self.messagesController.arrayController.selectionIndex;
 
 		if ((errorViewRow >= 0) && (errorViewRow < [localObjects count]))
 		{

@@ -83,6 +83,9 @@
 		D074B7AA1944035800F2E6F1 /* TidyDocumentMessagesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D074B7A81944035800F2E6F1 /* TidyDocumentMessagesView.xib */; };
 		D074B7AB1944035800F2E6F1 /* TidyDocumentMessagesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D074B7A81944035800F2E6F1 /* TidyDocumentMessagesView.xib */; };
 		D074B7AC1944035800F2E6F1 /* TidyDocumentMessagesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D074B7A81944035800F2E6F1 /* TidyDocumentMessagesView.xib */; };
+		D074B7B41947D93800F2E6F1 /* JSDTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D074B7B31947D93800F2E6F1 /* JSDTableViewController.m */; };
+		D074B7B51947D93800F2E6F1 /* JSDTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D074B7B31947D93800F2E6F1 /* JSDTableViewController.m */; };
+		D074B7B61947D93800F2E6F1 /* JSDTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D074B7B31947D93800F2E6F1 /* JSDTableViewController.m */; };
 		D0806A5B1935F765003C34A8 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D016A94B182FD80700712C60 /* XCTest.framework */; };
 		D0806A611935F765003C34A8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0806A5F1935F765003C34A8 /* InfoPlist.strings */; };
 		D0806A6B1935F81A003C34A8 /* JSDTidyOptionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D0806A6A1935F81A003C34A8 /* JSDTidyOptionTests.m */; };
@@ -311,6 +314,8 @@
 		D074B7991942CF0300F2E6F1 /* TidyDocumentWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TidyDocumentWindowController.h; path = DocumentWindow/TidyDocumentWindowController.h; sourceTree = "<group>"; };
 		D074B79A1942CF0300F2E6F1 /* TidyDocumentWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TidyDocumentWindowController.m; path = DocumentWindow/TidyDocumentWindowController.m; sourceTree = "<group>"; };
 		D074B7A91944035800F2E6F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TidyDocumentMessagesView.xib; sourceTree = "<group>"; };
+		D074B7B21947D93800F2E6F1 /* JSDTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSDTableViewController.h; sourceTree = "<group>"; };
+		D074B7B31947D93800F2E6F1 /* JSDTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSDTableViewController.m; sourceTree = "<group>"; };
 		D0806A5A1935F765003C34A8 /* Balthisar Tidy Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Balthisar Tidy Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0806A5E1935F765003C34A8 /* Balthisar Tidy Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Balthisar Tidy Tests-Info.plist"; sourceTree = "<group>"; };
 		D0806A601935F765003C34A8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -666,6 +671,8 @@
 				D0BB67B1193AB45A007A3EB0 /* JSDTableViewDelegate.h */,
 				D0D9F1A118E6BF8D008A55D5 /* JSDTableView.h */,
 				D0D9F1A218E6BF8D008A55D5 /* JSDTableView.m */,
+				D074B7B21947D93800F2E6F1 /* JSDTableViewController.h */,
+				D074B7B31947D93800F2E6F1 /* JSDTableViewController.m */,
 				D0D9EAD018E6680F008A55D5 /* JSDTextField.h */,
 				D0D9EAD118E6680F008A55D5 /* JSDTextField.m */,
 				D0D9EAD618E6680F008A55D5 /* NSTextView+JSDExtensions.h */,
@@ -1081,6 +1088,7 @@
 				D0D9ED6318E66810008A55D5 /* iconvtc.c in Sources */,
 				D0D9ED2F18E66810008A55D5 /* PreferenceController.m in Sources */,
 				D0D9ED2D18E66810008A55D5 /* OptionPaneController.m in Sources */,
+				D074B7B41947D93800F2E6F1 /* JSDTableViewController.m in Sources */,
 				D0D9ED7118E66810008A55D5 /* streamio.c in Sources */,
 				D016A936182FD80700712C60 /* main.m in Sources */,
 				D0D9ED7718E66810008A55D5 /* tidylib.c in Sources */,
@@ -1143,6 +1151,7 @@
 				D0D9ED3018E66810008A55D5 /* PreferenceController.m in Sources */,
 				D0D9ED2E18E66810008A55D5 /* OptionPaneController.m in Sources */,
 				D0D9ED7218E66810008A55D5 /* streamio.c in Sources */,
+				D074B7B51947D93800F2E6F1 /* JSDTableViewController.m in Sources */,
 				D0913CAF18B0AC06005DB2E4 /* main.m in Sources */,
 				D0D9ED7818E66810008A55D5 /* tidylib.c in Sources */,
 				D0D9ED4018E66810008A55D5 /* NSTextView+JSDExtensions.m in Sources */,
@@ -1197,6 +1206,7 @@
 				D0BB67CF193C820A007A3EB0 /* PreferenceController.m in Sources */,
 				D0BB67D0193C820A007A3EB0 /* OptionPaneController.m in Sources */,
 				D0BB67D1193C820A007A3EB0 /* streamio.c in Sources */,
+				D074B7B61947D93800F2E6F1 /* JSDTableViewController.m in Sources */,
 				D0BB67D2193C820A007A3EB0 /* main.m in Sources */,
 				D0BB67D3193C820A007A3EB0 /* tidylib.c in Sources */,
 				D0BB67D4193C820A007A3EB0 /* NSTextView+JSDExtensions.m in Sources */,

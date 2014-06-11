@@ -9,7 +9,6 @@
             <connections>
                 <outlet property="messagesPane" destination="2BO-Mf-Rqb" id="PBr-Nh-mGq"/>
                 <outlet property="optionPane" destination="kOf-B8-B6Q" id="4hO-cc-Qi1"/>
-                <outlet property="sharedMessagesArrayController" destination="E3s-sV-0hw" id="Hsk-2N-6uk"/>
                 <outlet property="sourceView" destination="LIi-0a-MJV" id="aHs-1P-RdS"/>
                 <outlet property="splitLeftRight" destination="385" id="mrV-yF-kKe"/>
                 <outlet property="splitTopDown" destination="244" id="gmQ-vE-x4d"/>
@@ -175,21 +174,6 @@
                 <outlet property="initialFirstResponder" destination="LIi-0a-MJV" id="1WL-G7-g7L"/>
             </connections>
         </window>
-        <arrayController preservesSelection="NO" avoidsEmptySelection="NO" automaticallyRearrangesObjects="YES" id="E3s-sV-0hw" userLabel="sharedMessagesArrayController">
-            <connections>
-                <binding destination="-2" name="contentArray" keyPath="self.document.tidyProcess.errorArray" id="0JE-mI-tpQ">
-                    <dictionary key="options">
-                        <bool key="NSConditionallySetsEditable" value="NO"/>
-                    </dictionary>
-                </binding>
-                <binding destination="HPK-3U-7WI" name="sortDescriptors" keyPath="values.MessagesTableSortDescriptors" id="bot-EM-5Hq">
-                    <dictionary key="options">
-                        <bool key="NSValidatesImmediately" value="YES"/>
-                        <string key="NSValueTransformerName">NSUnarchiveFromData</string>
-                    </dictionary>
-                </binding>
-            </connections>
-        </arrayController>
         <userDefaultsController representsSharedInstance="YES" id="HPK-3U-7WI"/>
     </objects>
 </document>

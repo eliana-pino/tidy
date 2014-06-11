@@ -33,6 +33,7 @@
 @class FirstRunController;
 @class JSDTidyModel;
 @class TidyMessagesViewController;
+@class JSDTableViewController;
 
 
 @interface TidyDocumentWindowController : NSWindowController <NSTableViewDelegate, NSSplitViewDelegate, NSTextViewDelegate>
@@ -45,13 +46,18 @@
 @property (readonly) NSData *documentOpenedData;
 
 
-/*
-	A shared ArrayController for use by all of the subviews. It's connected to the
-	document's tidyProcess.errorArray, and can be reached from the subviews by
-	representedObject.windowController.sharedMessagesArrayController.arrangedObjects, etc.
- */
+/* Option Controller */
 
-@property (assign) IBOutlet NSArrayController *sharedMessagesArrayController;
+@property (assign)   IBOutlet NSView *optionPane;   // Empty pane in NIB where optionController's view will live.
+
+@property OptionPaneController *optionController;   // An OptionPaneController.
+
+
+/* Messages Controller */
+
+@property (assign)   IBOutlet NSView *messagesPane;
+
+@property JSDTableViewController *messagesController;
 
 
 /* View Outlets */
@@ -66,21 +72,6 @@
 @property (assign) IBOutlet NSSplitView *splitLeftRight;
 
 @property (assign) IBOutlet NSSplitView *splitTopDown;
-
-
-/* Option Controller */
-
-@property (assign)   IBOutlet NSView *optionPane;   // Empty pane in NIB where optionController's view will live.
-
-@property OptionPaneController *optionController;   // An OptionPaneController.
-
-
-/* Messages Controller */
-
-@property (assign)   IBOutlet NSView *messagesPane;
-
-@property NSViewController *messagesController;
-
 
 
 /* Document Control */

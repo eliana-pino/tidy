@@ -131,11 +131,15 @@
 	/* Updates */
 	// none - handled by Sparkle
 
+	/* Sort Descriptor Defaults */
+	NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"locationString" ascending:YES];
+	[defaultValues setObject:[NSArchiver archivedDataWithRootObject:@[descriptor]]
+					  forKey:JSDKeyMessagesTableSortDescriptors];
 
 	/* Other Defaults */
 	[defaultValues setObject:@NO  forKey:@"NSPrintHeaderAndFooter"];
-	[defaultValues setObject:@"locationString" forKey:JSDKeyMessagesTableInitialSortKey];
 	[defaultValues setObject:@NO  forKey:@"proExportsTidyCfg"];
+
 
 
 	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
