@@ -31,6 +31,7 @@
 #import "PreferencesDefinitions.h"
 #import "JSDTidyModel.h"
 #import "TidyDocumentWindowController.h"
+#import "TidyDocumentSourceViewController.h"
 
 
 @implementation TidyDocument
@@ -226,7 +227,7 @@
 	[self.printInfo setTopMargin:36];
 	[self.printInfo setBottomMargin:36];
 
-	return [NSPrintOperation printOperationWithView:self.windowController.tidyView printInfo:self.printInfo];
+	return [NSPrintOperation printOperationWithView:self.windowController.sourceController.tidyTextView printInfo:self.printInfo];
 }
 
 
@@ -238,12 +239,12 @@
  *———————————————————————————————————————————————————————————————————*/
 - (NSString *)sourceText
 {
-	return self.windowController.sourceView.string;
+	return self.windowController.sourceController.sourceTextView.string;
 }
 
 - (void)setSourceText:(NSString *)sourceText
 {
-	self.windowController.sourceView.string = sourceText;
+	self.windowController.sourceController.sourceTextView.string = sourceText;
 	
 	[self.windowController textDidChange:nil];
 }
@@ -253,7 +254,7 @@
  *———————————————————————————————————————————————————————————————————*/
 - (NSString *)tidyText
 {
-	return self.windowController.tidyView.string;
+	return self.windowController.sourceController.tidyTextView.string;
 }
 
 

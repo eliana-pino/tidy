@@ -70,6 +70,7 @@
 #import "FirstRunController.h"
 #import "EncodingHelperController.h"
 #import "JSDTableViewController.h"
+#import "TidyDocumentSourceViewController.h"
 
 @implementation TidyDocumentWindowController
 
@@ -149,13 +150,32 @@
 
 
 	/******************************************************
+		Setup the sourceController and its view settings.
+	 ******************************************************/
+
+	self.sourceController = [[TidyDocumentSourceViewController alloc] initVertical:YES];
+	
+	self.sourceController.representedObject = self.document;
+
+	[self.sourcePane addSubview:self.sourceController.view];
+
+	[self.sourceController setupViewAppearance];
+
+//	self.sourceController.view.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+//	
+//	[self.sourceController.view setFrame:self.sourcePane.bounds];
+
+	
+	
+	
+	/******************************************************
 		Setup the text view settings.
 	 ******************************************************/
 
-	[self configureViewSettings:self.sourceView];
+//	[self configureViewSettings:self.sourceView];
+//
+//	[self configureViewSettings:self.tidyView];
 
-	[self configureViewSettings:self.tidyView];
-	
 
 	/******************************************************
 		Remaining initial document conditions.
@@ -173,7 +193,7 @@
 		initial value for a blank document. If we're opening a
 		document the event system will replace it a bit later.
 	 */
-	self.tidyView.string = self.tidyProcess.tidyText;
+	self.sourceController.tidyTextView.string = self.tidyProcess.tidyText;
 
 
 	/*
@@ -321,7 +341,7 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)handleTidySourceTextChange:(NSNotification *)note
 {
-	self.sourceView.string = self.tidyProcess.sourceText;
+	self.sourceController.sourceTextView.string = self.tidyProcess.sourceText;
 }
 
 
@@ -331,7 +351,7 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)handleTidyTidyTextChange:(NSNotification *)note
 {
-	self.tidyView.string = self.tidyProcess.tidyText;
+	self.sourceController.tidyTextView.string = self.tidyProcess.tidyText;
 }
 
 
@@ -345,7 +365,7 @@
 {
 	if (![[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyIgnoreInputEncodingWhenOpening] boolValue])
 	{
-		self.encodingHelper = [[EncodingHelperController alloc] initWithNote:note fromDocument:self.document forView:self.sourceView];
+		self.encodingHelper = [[EncodingHelperController alloc] initWithNote:note fromDocument:self.document forView:self.sourceController.sourceTextView];
 
 		[self.encodingHelper startHelper];
 	}
@@ -360,10 +380,10 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)documentDidWriteFile
 {
-	self.sourceView.string = self.tidyProcess.tidyText;
+	self.sourceController.sourceTextView.string = self.tidyProcess.tidyText;
 
 	/* force the event cycle so errors can be updated. */
-	self.tidyProcess.sourceText = self.sourceView.string;
+	self.tidyProcess.sourceText = self.sourceController.sourceTextView.string;
 }
 
 
@@ -384,7 +404,7 @@
 	 */
 	if (!self.documentIsLoading)
 	{
-		self.tidyProcess.sourceText = self.sourceView.string;
+		self.tidyProcess.sourceText = self.sourceController.sourceTextView.string;
 	}
 	else
 	{
@@ -418,8 +438,8 @@
 {
 	NSArray *firstRunSteps = @[
 							   @{ @"message": NSLocalizedString(@"popOverExplainWelcome", nil),
-								  @"showRelativeToRect": NSStringFromRect(self.sourceView.bounds),
-								  @"ofView": self.sourceView,
+								  @"showRelativeToRect": NSStringFromRect(self.sourceController.sourceTextView.bounds),
+								  @"ofView": self.sourceController.sourceTextView,
 								  @"preferredEdge": @(NSMinXEdge) },
 
 							   @{ @"message": NSLocalizedString(@"popOverExplainTidyOptions", nil),
@@ -428,13 +448,13 @@
 								  @"preferredEdge": @(NSMinXEdge) },
 
 							   @{ @"message": NSLocalizedString(@"popOverExplainSourceView", nil),
-								  @"showRelativeToRect": NSStringFromRect(self.sourceView.bounds),
-								  @"ofView": self.sourceView,
+								  @"showRelativeToRect": NSStringFromRect(self.sourceController.sourceTextView.bounds),
+								  @"ofView": self.sourceController.sourceTextView,
 								  @"preferredEdge": @(NSMinXEdge) },
 
 							   @{ @"message": NSLocalizedString(@"popOverExplainTidyView", nil),
-								  @"showRelativeToRect": NSStringFromRect(self.tidyView.bounds),
-								  @"ofView": self.tidyView,
+								  @"showRelativeToRect": NSStringFromRect(self.sourceController.tidyTextView.bounds),
+								  @"ofView": self.sourceController.tidyTextView,
 								  @"preferredEdge": @(NSMinXEdge) },
 
 							   @{ @"message": NSLocalizedString(@"popOverExplainErrorView", nil),
@@ -453,8 +473,8 @@
 								  @"preferredEdge": @(NSMaxXEdge) },
 
 							   @{ @"message": NSLocalizedString(@"popOverExplainStart", nil),
-								  @"showRelativeToRect": NSStringFromRect(self.tidyView.bounds),
-								  @"ofView": self.tidyView,
+								  @"showRelativeToRect": NSStringFromRect(self.sourceController.tidyTextView.bounds),
+								  @"ofView": self.sourceController.tidyTextView,
 								  @"preferredEdge": @(NSMinYEdge) },
 							   ];
 
@@ -500,7 +520,7 @@
 
 	if ((object == self.messagesController.arrayController) && ([keyPath isEqualToString:@"selection"]))
 	{
-		self.sourceView.showsHighlight = NO;
+		self.sourceController.sourceTextView.showsHighlight = NO;
 
 		NSArray *localObjects = self.messagesController.arrayController.arrangedObjects;
 
@@ -514,7 +534,7 @@
 
 			if (row > 0)
 			{
-				[self.sourceView highlightLine:row Column:col];
+				[self.sourceController.sourceTextView highlightLine:row Column:col];
 
 				return;
 			}

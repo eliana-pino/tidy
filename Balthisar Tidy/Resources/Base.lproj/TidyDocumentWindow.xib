@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
@@ -7,12 +7,11 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="TidyDocumentWindowController">
             <connections>
-                <outlet property="messagesPane" destination="2BO-Mf-Rqb" id="PBr-Nh-mGq"/>
+                <outlet property="messagesPane" destination="0jN-hG-2u0" id="wfo-Fn-P0t"/>
                 <outlet property="optionPane" destination="kOf-B8-B6Q" id="4hO-cc-Qi1"/>
-                <outlet property="sourceView" destination="LIi-0a-MJV" id="aHs-1P-RdS"/>
+                <outlet property="sourcePane" destination="2BO-Mf-Rqb" id="Ddh-xA-bJd"/>
                 <outlet property="splitLeftRight" destination="385" id="mrV-yF-kKe"/>
                 <outlet property="splitTopDown" destination="244" id="gmQ-vE-x4d"/>
-                <outlet property="tidyView" destination="Ecb-zM-Jyq" id="sjC-EA-EpR"/>
                 <outlet property="window" destination="5" id="18"/>
             </connections>
         </customObject>
@@ -22,13 +21,13 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
             <rect key="contentRect" x="57" y="253" width="800" height="512"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1440"/>
             <value key="minSize" type="size" width="512" height="384"/>
-            <view key="contentView" focusRingType="none" id="6">
+            <view key="contentView" focusRingType="none" id="6" userLabel="Back View">
                 <rect key="frame" x="0.0" y="0.0" width="800" height="512"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <splitView focusRingType="none" autosaveName="positionDocumentWindowSplitter01" dividerStyle="thin" vertical="YES" id="385">
+                    <splitView focusRingType="none" autosaveName="positionDocumentWindowSplitter01" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="385">
                         <rect key="frame" x="0.0" y="0.0" width="800" height="512"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -36,8 +35,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="512"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="4rw-xC-PtS">
-                                        <rect key="frame" x="8" y="495" width="94" height="17"/>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4rw-xC-PtS">
+                                        <rect key="frame" x="8" y="496" width="314" height="16"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="TIDY OPTIONS" id="y2z-Wv-UUH">
                                             <font key="font" metaFont="cellTitle"/>
@@ -45,112 +44,35 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <customView id="kOf-B8-B6Q" userLabel="OptionPaneController's View">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="495"/>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="kOf-B8-B6Q" userLabel="OptionPaneController's View">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="496"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </customView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="4rw-xC-PtS" firstAttribute="top" secondItem="384" secondAttribute="top" id="7NE-1g-oZO"/>
+                                    <constraint firstItem="4rw-xC-PtS" firstAttribute="leading" secondItem="384" secondAttribute="leading" constant="10" id="CFq-Mr-iSd"/>
+                                    <constraint firstItem="kOf-B8-B6Q" firstAttribute="leading" secondItem="384" secondAttribute="leading" id="CZe-e1-0Az"/>
+                                    <constraint firstAttribute="bottom" secondItem="kOf-B8-B6Q" secondAttribute="bottom" id="EzH-69-3xY"/>
+                                    <constraint firstItem="kOf-B8-B6Q" firstAttribute="top" secondItem="4rw-xC-PtS" secondAttribute="bottom" id="HWP-AW-buI"/>
+                                    <constraint firstAttribute="trailing" secondItem="4rw-xC-PtS" secondAttribute="trailing" id="MbN-CY-lKQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="kOf-B8-B6Q" secondAttribute="trailing" id="OX5-38-qM4"/>
+                                </constraints>
                             </customView>
-                            <splitView autosaveName="positionDocumentWindowSplitter02" dividerStyle="thin" id="244">
+                            <splitView fixedFrame="YES" autosaveName="positionDocumentWindowSplitter02" dividerStyle="thin" id="244">
                                 <rect key="frame" x="321" y="0.0" width="479" height="512"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <box autoresizesSubviews="NO" title="SOURCE HTML" borderType="none" id="234">
-                                        <rect key="frame" x="-3" y="0.0" width="485" height="162"/>
+                                    <customView fixedFrame="YES" id="2BO-Mf-Rqb">
+                                        <rect key="frame" x="0.0" y="0.0" width="479" height="382"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView">
-                                            <rect key="frame" x="0.0" y="0.0" width="485" height="145"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <subviews>
-                                                <scrollView autoresizesSubviews="NO" focusRingType="exterior" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="KOJ-rh-VSQ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="485" height="145"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <clipView key="contentView" id="gjN-sq-Uif">
-                                                        <rect key="frame" x="1" y="1" width="468" height="143"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                        <subviews>
-                                                            <textView importsGraphics="NO" richText="NO" allowsUndo="YES" verticallyResizable="YES" id="LIi-0a-MJV">
-                                                                <rect key="frame" x="0.0" y="0.0" width="474" height="143"/>
-                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <size key="minSize" width="468" height="143"/>
-                                                                <size key="maxSize" width="530" height="10000000"/>
-                                                                <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <size key="minSize" width="468" height="143"/>
-                                                                <size key="maxSize" width="530" height="10000000"/>
-                                                                <accessibility description="This area contains the original text that you want to Tidy."/>
-                                                                <connections>
-                                                                    <outlet property="delegate" destination="-2" id="2Gm-Rg-YhE"/>
-                                                                </connections>
-                                                            </textView>
-                                                        </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </clipView>
-                                                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="mn6-PP-EKI">
-                                                        <rect key="frame" x="-100" y="-100" width="87" height="18"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
-                                                    </scroller>
-                                                    <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="tfX-6u-K34">
-                                                        <rect key="frame" x="469" y="1" width="15" height="143"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
-                                                    </scroller>
-                                                </scrollView>
-                                            </subviews>
-                                        </view>
-                                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <font key="titleFont" size="12" name="LucidaGrande"/>
-                                    </box>
-                                    <box autoresizesSubviews="NO" title="TIDY HTML" borderType="none" id="236">
-                                        <rect key="frame" x="-3" y="159" width="485" height="162"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView">
-                                            <rect key="frame" x="0.0" y="0.0" width="485" height="145"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <subviews>
-                                                <scrollView focusRingType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="AzS-AA-hy1">
-                                                    <rect key="frame" x="0.0" y="0.0" width="485" height="145"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <clipView key="contentView" id="cwj-dT-Xd1">
-                                                        <rect key="frame" x="1" y="1" width="468" height="143"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                        <subviews>
-                                                            <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" id="Ecb-zM-Jyq">
-                                                                <rect key="frame" x="0.0" y="0.0" width="468" height="143"/>
-                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <size key="minSize" width="468" height="143"/>
-                                                                <size key="maxSize" width="524" height="10000000"/>
-                                                                <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <size key="minSize" width="468" height="143"/>
-                                                                <size key="maxSize" width="524" height="10000000"/>
-                                                                <accessibility description="This area contains the tidied text generated by the Tidy process."/>
-                                                            </textView>
-                                                        </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </clipView>
-                                                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="B98-U3-YdA">
-                                                        <rect key="frame" x="-100" y="-100" width="87" height="18"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
-                                                    </scroller>
-                                                    <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="SnX-ho-q7e">
-                                                        <rect key="frame" x="469" y="1" width="15" height="143"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
-                                                    </scroller>
-                                                </scrollView>
-                                            </subviews>
-                                        </view>
-                                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <font key="titleFont" size="12" name="LucidaGrande"/>
-                                    </box>
-                                    <customView id="2BO-Mf-Rqb">
-                                        <rect key="frame" x="0.0" y="318" width="479" height="194"/>
-                                        <autoresizingMask key="autoresizingMask"/>
+                                    </customView>
+                                    <customView fixedFrame="YES" id="0jN-hG-2u0">
+                                        <rect key="frame" x="0.0" y="383" width="479" height="129"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     </customView>
                                 </subviews>
                                 <holdingPriorities>
-                                    <real value="250"/>
                                     <real value="250"/>
                                     <real value="250"/>
                                 </holdingPriorities>
@@ -168,10 +90,15 @@
                         </connections>
                     </splitView>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="385" secondAttribute="trailing" id="Uk3-ot-wrr"/>
+                    <constraint firstItem="385" firstAttribute="leading" secondItem="6" secondAttribute="leading" id="gLM-bh-htg"/>
+                    <constraint firstAttribute="bottom" secondItem="385" secondAttribute="bottom" id="mHD-Lf-oQU"/>
+                    <constraint firstItem="385" firstAttribute="top" secondItem="6" secondAttribute="top" id="ph4-Pt-UMB"/>
+                </constraints>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="359"/>
-                <outlet property="initialFirstResponder" destination="LIi-0a-MJV" id="1WL-G7-g7L"/>
             </connections>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="HPK-3U-7WI"/>

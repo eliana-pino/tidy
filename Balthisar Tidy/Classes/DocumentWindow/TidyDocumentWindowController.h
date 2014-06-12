@@ -33,6 +33,7 @@
 @class FirstRunController;
 @class JSDTidyModel;
 @class TidyMessagesViewController;
+@class TidyDocumentSourceViewController;
 @class JSDTableViewController;
 
 
@@ -48,23 +49,29 @@
 
 /* Option Controller */
 
-@property (assign)   IBOutlet NSView *optionPane;   // Empty pane in NIB where optionController's view will live.
+@property (assign) IBOutlet NSView *optionPane;     // Empty pane in NIB where optionController's view will live.
 
 @property OptionPaneController *optionController;   // An OptionPaneController.
 
 
 /* Messages Controller */
 
-@property (assign)   IBOutlet NSView *messagesPane;
+@property (assign) IBOutlet NSView *messagesPane;
 
 @property JSDTableViewController *messagesController;
+
+/* Source Controller */
+
+@property (assign) IBOutlet NSView *sourcePane;
+
+@property TidyDocumentSourceViewController *sourceController;
 
 
 /* View Outlets */
 
-@property (assign) IBOutlet NSTextView  *sourceView;
-
-@property (assign) IBOutlet NSTextView  *tidyView;
+//@property (assign) IBOutlet NSTextView  *sourceView;
+//
+//@property (assign) IBOutlet NSTextView  *tidyView;
 
 
 /* Window Splitters */

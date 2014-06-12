@@ -18,7 +18,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eWb-HN-93R">
-                    <rect key="frame" x="-2" y="261" width="468" height="16"/>
+                    <rect key="frame" x="8" y="261" width="458" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="TIDY MESSAGES" id="xuw-cA-kZ4">
                         <font key="font" metaFont="cellTitle"/>
@@ -233,7 +233,7 @@
                 <constraint firstAttribute="trailing" secondItem="eWb-HN-93R" secondAttribute="trailing" id="GJT-pb-jvj"/>
                 <constraint firstAttribute="trailing" secondItem="KXC-PI-f6t" secondAttribute="trailing" id="JIt-qq-5lZ"/>
                 <constraint firstItem="KXC-PI-f6t" firstAttribute="leading" secondItem="7A9-HJ-lyR" secondAttribute="leading" id="P3h-87-MWp"/>
-                <constraint firstItem="eWb-HN-93R" firstAttribute="leading" secondItem="7A9-HJ-lyR" secondAttribute="leading" id="WHy-Ts-p6n"/>
+                <constraint firstItem="eWb-HN-93R" firstAttribute="leading" secondItem="7A9-HJ-lyR" secondAttribute="leading" constant="10" id="WHy-Ts-p6n"/>
                 <constraint firstItem="eWb-HN-93R" firstAttribute="top" secondItem="7A9-HJ-lyR" secondAttribute="top" id="deX-JS-QFg"/>
                 <constraint firstAttribute="bottom" secondItem="KXC-PI-f6t" secondAttribute="bottom" id="nUm-R7-Q0L"/>
             </constraints>
