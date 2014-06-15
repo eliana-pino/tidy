@@ -74,6 +74,7 @@
                                 <constraint firstItem="SOu-tI-xv9" firstAttribute="leading" secondItem="Wtd-Ct-su1" secondAttribute="leading" id="aTC-BE-MbG"/>
                                 <constraint firstAttribute="bottom" secondItem="SOu-tI-xv9" secondAttribute="bottom" id="g5h-Us-Ng1"/>
                                 <constraint firstItem="PDw-Ba-aQD" firstAttribute="leading" secondItem="Wtd-Ct-su1" secondAttribute="leading" constant="10" id="kBN-Eu-eEX"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="nbf-4J-C3A"/>
                                 <constraint firstItem="PDw-Ba-aQD" firstAttribute="top" secondItem="Wtd-Ct-su1" secondAttribute="top" id="qD7-UN-agb"/>
                                 <constraint firstItem="SOu-tI-xv9" firstAttribute="top" secondItem="PDw-Ba-aQD" secondAttribute="bottom" id="tJN-lt-ulk"/>
                             </constraints>
@@ -124,6 +125,7 @@
                             <constraints>
                                 <constraint firstItem="aE3-Zp-GCM" firstAttribute="leading" secondItem="aYp-BA-fxv" secondAttribute="leading" constant="10" id="LAi-Uq-x0B"/>
                                 <constraint firstAttribute="trailing" secondItem="cAy-NR-ORO" secondAttribute="trailing" id="WEJ-FA-LFz"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="bIi-fC-jbh"/>
                                 <constraint firstItem="cAy-NR-ORO" firstAttribute="leading" secondItem="aYp-BA-fxv" secondAttribute="leading" id="hBH-iC-8ws"/>
                                 <constraint firstItem="aE3-Zp-GCM" firstAttribute="top" secondItem="aYp-BA-fxv" secondAttribute="top" id="rok-NI-WCJ"/>
                                 <constraint firstAttribute="trailing" secondItem="aE3-Zp-GCM" secondAttribute="trailing" id="sEA-Zp-3pK"/>
@@ -132,9 +134,6 @@
                             </constraints>
                         </customView>
                     </subviews>
-                    <constraints>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="39" id="ovE-BE-CxV"/>
-                    </constraints>
                     <holdingPriorities>
                         <real value="250"/>
                         <real value="250"/>

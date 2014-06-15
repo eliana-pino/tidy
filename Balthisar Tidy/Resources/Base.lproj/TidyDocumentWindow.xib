@@ -56,8 +56,8 @@
                                     <constraint firstAttribute="bottom" secondItem="kOf-B8-B6Q" secondAttribute="bottom" id="EzH-69-3xY"/>
                                     <constraint firstItem="kOf-B8-B6Q" firstAttribute="top" secondItem="4rw-xC-PtS" secondAttribute="bottom" id="HWP-AW-buI"/>
                                     <constraint firstAttribute="trailing" secondItem="4rw-xC-PtS" secondAttribute="trailing" id="MbN-CY-lKQ"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="OTv-Ut-mpP"/>
                                     <constraint firstAttribute="trailing" secondItem="kOf-B8-B6Q" secondAttribute="trailing" id="OX5-38-qM4"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="rZl-vl-JQ7"/>
                                 </constraints>
                             </customView>
                             <splitView identifier="IDUIPositionsSplitter02" autosaveName="UIPositionsSplitter02" dividerStyle="thin" id="244">
@@ -68,19 +68,19 @@
                                         <rect key="frame" x="0.0" y="0.0" width="479" height="382"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="mMe-Y0-OaN"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="150" id="b09-LK-rnM"/>
                                         </constraints>
                                     </customView>
                                     <customView id="0jN-hG-2u0">
                                         <rect key="frame" x="0.0" y="383" width="479" height="129"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="izp-G9-be6"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="125" id="i1M-qo-uVA"/>
                                         </constraints>
                                     </customView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="ZUH-H8-Dxa"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="yfn-mS-cYH"/>
                                 </constraints>
                                 <holdingPriorities>
                                     <real value="250"/>
@@ -89,12 +89,9 @@
                             </splitView>
                         </subviews>
                         <holdingPriorities>
-                            <real value="490"/>
-                            <real value="1"/>
+                            <real value="251"/>
+                            <real value="250"/>
                         </holdingPriorities>
-                        <connections>
-                            <outlet property="delegate" destination="-2" id="rm2-06-J0F"/>
-                        </connections>
                     </splitView>
                 </subviews>
                 <constraints>

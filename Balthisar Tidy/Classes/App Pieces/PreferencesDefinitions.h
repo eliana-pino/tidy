@@ -46,7 +46,7 @@
 	#define JSDKeyShowNewDocumentMessages         @"ShowNewDocumentMessages"
 	#define JSDKeyShowNewDocumentTidyOptions      @"ShowNewDocumentTidyOptions"
 	#define JSDKeyShowNewDocumentSideBySide       @"ShowNewDocumentSideBySide"
-	#define JSDKeyShowNewDocumentSyncInOut        @"ShoeNewDocumentSyncInOut"
+	#define JSDKeyShowNewDocumentSyncInOut        @"ShowNewDocumentSyncInOut"
 
 
 	/* File Saving Options */

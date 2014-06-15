@@ -35,11 +35,11 @@
 
 @property (assign) IBOutlet NSTextView *tidyTextView;
 
-@property (assign) BOOL ViewsAreVertical;
+@property (readonly, assign) BOOL viewsAreVertical;
 
-@property (assign) BOOL ViewsAreSynced;
+@property (assign) BOOL viewsAreSynced;
 
-@property (assign) BOOL ViewsAreDiffed;
+@property (assign) BOOL viewsAreDiffed;
 
 
 - (instancetype)initVertical:(BOOL)initVertical;

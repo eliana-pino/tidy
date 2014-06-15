@@ -72,6 +72,7 @@
 #import "JSDTableViewController.h"
 #import "TidyDocumentSourceViewController.h"
 
+
 @implementation TidyDocumentWindowController
 
 
@@ -152,13 +153,9 @@
 		Setup the sourceController and its view settings.
 	 ******************************************************/
 
-	self.sourceController = [[TidyDocumentSourceViewController alloc] initVertical:YES];
-	
-	self.sourceController.representedObject = self.document;
+	BOOL localVertical = [[[NSUserDefaults standardUserDefaults] objectForKey:JSDKeyShowNewDocumentSideBySide] boolValue];
 
-	[self.sourcePane addSubview:self.sourceController.view];
-
-	[self.sourceController setupViewAppearance];
+	[self showSourceController:localVertical];
 
 
 	/******************************************************
@@ -375,6 +372,45 @@
 }
 
 
+#pragma mark - View Handling
+
+
+/*———————————————————————————————————————————————————————————————————*
+	showSourceController:
+		Displays the desired sourceController.
+ *———————————————————————————————————————————————————————————————————*/
+- (void)showSourceController:(BOOL)vertical
+{
+	if (!vertical)
+	{
+		if (!self.sourceControllerHorizontal)
+		{
+			self.sourceControllerHorizontal = [[TidyDocumentSourceViewController alloc] initVertical:NO];
+			self.sourceControllerHorizontal.representedObject = self.document;
+		}
+
+		self.sourceController = self.sourceControllerHorizontal;
+	}
+	else
+	{
+		if (!self.sourceControllerVertical)
+		{
+			self.sourceControllerVertical = [[TidyDocumentSourceViewController alloc] initVertical:YES];
+			self.sourceControllerVertical.representedObject = self.document;
+		}
+
+		self.sourceController = self.sourceControllerVertical;
+	}
+
+	[self.sourcePane setSubviews:[NSArray array]];
+	[self.sourcePane addSubview:self.sourceController.view];
+
+	[self.sourceController setupViewAppearance];
+}
+
+#pragma mark - Other Details
+
+
 /*———————————————————————————————————————————————————————————————————*
 	validateUserInterfaceItem:
 		Validates whether a user interface item should or should not
@@ -392,78 +428,6 @@
     }
 
     return NO;
-}
-
-
-#pragma mark - Split View handling
-
-
-///*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-//	splitView:constrainMinCoordinate:ofSubviewAt:
-//		We're here because we're the delegate of the split views.
-//		This allows us to set the minimum constraint of the left/top
-//		item in a splitview. Must coordinate max to ensure others
-//		have space, too.
-// *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-//- (CGFloat)splitView:(NSSplitView *)splitView constrainMinCoordinate:(CGFloat)proposedMinimumPosition
-//														 ofSubviewAt:(NSInteger)dividerIndex
-//{
-//	/* The main splitter. */
-//	if (splitView == self.splitLeftRight)
-//	{
-//		return 300.0f;
-//	}
-//
-//	/* The source/messages splitter. */
-//	if (splitView == self.splitTopDown)
-//	{
-//		return 100.0f;
-//	}
-//
-//	return proposedMinimumPosition;
-//}
-//
-//
-///*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-//	splitView:constrainMaxCoordinate:ofSubviewAt:
-//		We're here because we're the delegate of the split views.
-// *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-//- (CGFloat)splitView:(NSSplitView *)splitView constrainMaxCoordinate:(CGFloat)proposedMaximumPosition
-//														 ofSubviewAt:(NSInteger)dividerIndex
-//{
-//	/* The main splitter. */
-//
-//	if (splitView == self.splitLeftRight)
-//	{
-//		return splitView.frame.size.width - 300.0f; // 150.0f
-//	}
-//
-//	/* The source/messages splitter. */
-//	if (splitView == self.splitTopDown)
-//	{
-//		return splitView.frame.size.height - 100.0f;
-//	}
-//
-//	return proposedMaximumPosition;
-//}
-//
-//
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	splitView:shouldAdjustSizeOfSubview:
-		We're here because we're the delegate of the split views.
-		Prevent the left pane from resizing during window resize.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (BOOL)splitView:(NSSplitView *)splitView shouldAdjustSizeOfSubview:(NSView *)subview
-{
-	if (splitView == self.splitLeftRight)
-	{
-		if (subview == [self.splitLeftRight subviews][0])
-		{
-			return NO;
-		}
-	}
-
-	return YES;
 }
 
 

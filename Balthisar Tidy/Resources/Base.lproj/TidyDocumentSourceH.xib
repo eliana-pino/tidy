@@ -70,6 +70,7 @@
                                 </scrollView>
                             </subviews>
                             <constraints>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="4Fg-2W-Aru"/>
                                 <constraint firstAttribute="trailing" secondItem="hWO-8u-OvI" secondAttribute="trailing" id="E96-xr-QIK"/>
                                 <constraint firstAttribute="trailing" secondItem="Ofm-uY-8WI" secondAttribute="trailing" id="JYk-Bt-l2I"/>
                                 <constraint firstItem="hWO-8u-OvI" firstAttribute="leading" secondItem="Wtd-Ct-su1" secondAttribute="leading" constant="10" id="MCq-Q9-FZz"/>
@@ -129,6 +130,7 @@
                                 <constraint firstItem="ubT-FK-0U7" firstAttribute="leading" secondItem="aYp-BA-fxv" secondAttribute="leading" id="Oew-HK-Z3q"/>
                                 <constraint firstAttribute="trailing" secondItem="ubT-FK-0U7" secondAttribute="trailing" id="QKm-NO-1Vf"/>
                                 <constraint firstAttribute="bottom" secondItem="ubT-FK-0U7" secondAttribute="bottom" id="TQE-g5-z7d"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="cCN-HI-vSC"/>
                                 <constraint firstItem="ubT-FK-0U7" firstAttribute="top" secondItem="m1I-Ed-GpO" secondAttribute="bottom" id="jHa-nF-HmM"/>
                                 <constraint firstItem="m1I-Ed-GpO" firstAttribute="leading" secondItem="aYp-BA-fxv" secondAttribute="leading" constant="10" id="oDh-Ha-gFS"/>
                             </constraints>

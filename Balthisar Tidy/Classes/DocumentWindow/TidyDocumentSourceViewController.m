@@ -34,10 +34,6 @@
 #import "JSDTidyModel.h"
 
 
-@interface TidyDocumentSourceViewController ()
-
-@end
-
 @implementation TidyDocumentSourceViewController
 
 
@@ -53,9 +49,9 @@
 
 	if ((self = [super initWithNibName:nibName bundle:nil]))
 	{
-		_ViewsAreVertical = initVertical;
-		_ViewsAreSynced = NO;
-		_ViewsAreDiffed = NO;
+		_viewsAreVertical = initVertical;
+		_viewsAreSynced = NO;
+		_viewsAreDiffed = NO;
 	}
 
 	return self;
@@ -168,8 +164,6 @@
 }
 
 
-
-
 #pragma mark - KVC Notification Handling
 
 
@@ -209,6 +203,7 @@
 
 
 #pragma mark - Appearance Setup
+
 
 /*———————————————————————————————————————————————————————————————————*
 	setupViewAppearance

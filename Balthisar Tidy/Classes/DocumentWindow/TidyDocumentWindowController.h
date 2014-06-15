@@ -60,6 +60,10 @@
 
 @property TidyDocumentSourceViewController *sourceController;
 
+@property TidyDocumentSourceViewController *sourceControllerHorizontal;
+
+@property TidyDocumentSourceViewController *sourceControllerVertical;
+
 
 /* Window Splitters */
 
