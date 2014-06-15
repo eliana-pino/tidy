@@ -995,7 +995,9 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 	if ( ![tidyResult isEqualToString:_tidyText])
 	{
+		[self willChangeValueForKey:@"tidyText"];
 		_tidyText = tidyResult;
+		[self didChangeValueForKey:@"tidyText"];
 		[self notifyTidyModelTidyTextChanged];
 	}
 
