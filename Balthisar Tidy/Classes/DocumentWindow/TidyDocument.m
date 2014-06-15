@@ -49,6 +49,7 @@
 	{
 		_tidyProcess = [[JSDTidyModel alloc] init];
 		_documentOpenedData = nil;
+		_documentIsLoading = NO;
 	}
 
 	return self;
@@ -98,6 +99,13 @@
 
 	_documentOpenedData = [NSData dataWithContentsOfFile:absoluteURL];
 
+	/*
+	 self.documentIsLoading is used later to prevent some multiple
+	 notifications that aren't needed, and represents that we've
+	 loaded data from a file.
+	 */
+	self.documentIsLoading = !(self.documentOpenedData == nil);
+
 	return YES;
 }
 
@@ -115,9 +123,9 @@
 
 	if ((didRevert = [super revertToContentsOfURL:absoluteURL ofType:typeName error:outError]))
 	{
-		self.windowController.documentIsLoading = YES;
+		self.documentIsLoading = YES;
 		
-		[self.tidyProcess setSourceTextWithData:self.windowController.documentOpenedData];
+		[self.tidyProcess setSourceTextWithData:self.documentOpenedData];
 	}
 
 	return didRevert;

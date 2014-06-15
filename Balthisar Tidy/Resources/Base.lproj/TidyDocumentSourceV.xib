@@ -18,7 +18,7 @@
             <rect key="frame" x="0.0" y="0.0" width="500" height="160"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <splitView autosaveName="positionDocumentWindowSplitter04" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y6t-Ex-3lq">
+                <splitView identifier="IDUIPositionsSplitter04" autosaveName="UIPositionsSplitter04" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y6t-Ex-3lq">
                     <rect key="frame" x="0.0" y="0.0" width="500" height="160"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
@@ -42,7 +42,7 @@
                                         <rect key="frame" x="1" y="1" width="225" height="142"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <textView importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="KRB-GZ-N30">
+                                            <textView importsGraphics="NO" richText="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" verticallyResizable="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="KRB-GZ-N30">
                                                 <rect key="frame" x="0.0" y="0.0" width="225" height="142"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -51,6 +51,9 @@
                                                 <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 <size key="minSize" width="225" height="142"/>
                                                 <size key="maxSize" width="463" height="10000000"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="-2" id="wjM-DA-05P"/>
+                                                </connections>
                                             </textView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -95,7 +98,7 @@
                                         <rect key="frame" x="1" y="1" width="240" height="142"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <textView importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="lie-7P-2t7">
+                                            <textView editable="NO" importsGraphics="NO" richText="NO" findStyle="panel" continuousSpellChecking="YES" verticallyResizable="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="lie-7P-2t7">
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="142"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

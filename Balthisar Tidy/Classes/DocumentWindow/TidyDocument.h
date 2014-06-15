@@ -40,6 +40,8 @@
 
 @property (readonly) NSData *documentOpenedData;            // The original, loaded data if opened from file.
 
+@property (assign) BOOL documentIsLoading;                  // Flag to indicate that the document is in loading process.
+
 @property TidyDocumentWindowController *windowController;   // The associated windowcontroller.
 
 @property (assign) BOOL fileWantsProtection;                // Indicates whether we need special type of save.

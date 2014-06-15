@@ -40,13 +40,6 @@
 @interface TidyDocumentWindowController : NSWindowController <NSTableViewDelegate, NSSplitViewDelegate, NSTextViewDelegate>
 
 
-/* Document references (setters and getters pull from self.document) */
-
-@property (readonly) JSDTidyModel *tidyProcess;
-
-@property (readonly) NSData *documentOpenedData;
-
-
 /* Option Controller */
 
 @property (assign) IBOutlet NSView *optionPane;     // Empty pane in NIB where optionController's view will live.
@@ -60,6 +53,7 @@
 
 @property JSDTableViewController *messagesController;
 
+
 /* Source Controller */
 
 @property (assign) IBOutlet NSView *sourcePane;
@@ -67,23 +61,11 @@
 @property TidyDocumentSourceViewController *sourceController;
 
 
-/* View Outlets */
-
-//@property (assign) IBOutlet NSTextView  *sourceView;
-//
-//@property (assign) IBOutlet NSTextView  *tidyView;
-
-
 /* Window Splitters */
 
 @property (assign) IBOutlet NSSplitView *splitLeftRight;
 
 @property (assign) IBOutlet NSSplitView *splitTopDown;
-
-
-/* Document Control */
-
-@property (assign) BOOL documentIsLoading;   // Flag to supress certain event updates.
 
 
 /* Helpers */

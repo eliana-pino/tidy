@@ -99,11 +99,10 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)dealloc
 {
+	TidyDocument *localDocument = self.document;
+
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyOptionChanged object:self.optionController.tidyDocument];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifySourceTextChanged object:self.tidyProcess];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyTidyTextChanged object:self.tidyProcess];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyTidyErrorsChanged object:self.tidyProcess];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyPossibleInputEncodingProblem object:self.tidyProcess];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyPossibleInputEncodingProblem object:localDocument.tidyProcess];
 
 	[self.messagesController.arrayController removeObserver:self forKeyPath:@"selection"];
 }
@@ -161,21 +160,6 @@
 
 	[self.sourceController setupViewAppearance];
 
-//	self.sourceController.view.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
-//	
-//	[self.sourceController.view setFrame:self.sourcePane.bounds];
-
-	
-	
-	
-	/******************************************************
-		Setup the text view settings.
-	 ******************************************************/
-
-//	[self configureViewSettings:self.sourceView];
-//
-//	[self configureViewSettings:self.tidyView];
-
 
 	/******************************************************
 		Remaining initial document conditions.
@@ -185,15 +169,7 @@
 		Make the local processor take the default values. This causes
 		the empty document to go through processTidy a second time.
 	 */
-	[self.tidyProcess takeOptionValuesFromDefaults:[NSUserDefaults standardUserDefaults]];
-
-
-	/*
-		Since this is startup, seed the tidyText view with this
-		initial value for a blank document. If we're opening a
-		document the event system will replace it a bit later.
-	 */
-	self.sourceController.tidyTextView.string = self.tidyProcess.tidyText;
+	[((TidyDocument*)self.document).tidyProcess takeOptionValuesFromDefaults:[NSUserDefaults standardUserDefaults]];
 
 
 	/*
@@ -208,26 +184,15 @@
 												 name:tidyNotifyOptionChanged
 											   object:[[self optionController] tidyDocument]];
 
-	/* NSNotifications from the `tidyProcess` indicate that sourceText changed. */
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(handleTidySourceTextChange:)
-												 name:tidyNotifySourceTextChanged
-											   object:[self tidyProcess]];
-
-	/* NSNotifications from the `tidyProcess` indicate that tidyText changed. */
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(handleTidyTidyTextChange:)
-												 name:tidyNotifyTidyTextChanged
-											   object:[self tidyProcess]];
-
 	/* NSNotifications from the `tidyProcess` indicate that the input-encoding might be wrong. */
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(handleTidyInputEncodingProblem:)
 												 name:tidyNotifyPossibleInputEncodingProblem
-											   object:[self tidyProcess]];
+											   object:((TidyDocument*)self.document).tidyProcess];
 
 	/*
-		Will use KVC on the array controller instead of a delegate method to capture changes
+		KVO on the `arrayController` indicate that a message table row was selected.
+		Will use KVO on the array controller instead of a delegate method to capture changes
 		because the delegate doesn't catch when the table unselects all rows (meaning that
 		highlighted text in the sourceText stays behind). This prevents that.
 	 */
@@ -247,16 +212,12 @@
 	[super windowDidLoad];
 
 	/*
-		self.documentIsLoading is used later to prevent some multiple
-		notifications that aren't needed, and represents that we've
-		loaded data from a file. We will also set the tidyProcess'
-		source text (nil assigment is okay). If we try this in
-		awakeFromNib, we might receive a notification before the
-		nibs are all done loading, so we will do this here.
+		We will set the tidyProcess' source text (nil assigment is 
+		okay). If we try this in awakeFromNib, we might receive a
+		notification before the	nibs are all done loading, so we 
+		will do this here.
 	 */
-	self.documentIsLoading = !(self.documentOpenedData == nil);
-
-	[self.tidyProcess setSourceTextWithData:[self documentOpenedData]];
+	[((TidyDocument*)self.document).tidyProcess setSourceTextWithData:((TidyDocument*)self.document).documentOpenedData];
 
 
 	/* Run through the new user helper if appropriate */
@@ -266,52 +227,6 @@
 		[self kickOffFirstRunSequence:nil];
 	}
 	
-}
-
-
-/*———————————————————————————————————————————————————————————————————*
-	configureViewSettings:
-		Configure text view `aView` with uniform settings.
- *———————————————————————————————————————————————————————————————————*/
-- (void)configureViewSettings:(NSTextView *)aView
-{
-	NSUserDefaults *localDefaults = [NSUserDefaults standardUserDefaults];
-
-
-	[aView setFont:[NSFont fontWithName:@"Menlo" size:[NSFont systemFontSize]]];
-	[aView setAutomaticQuoteSubstitutionEnabled:NO]; // IB setting doesn't work for this.
-	[aView setAutomaticTextReplacementEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
-	[aView setAutomaticDashSubstitutionEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
-
-	/* Provided by Category `NSTextView+JSDExtensions` */
-
-	[aView setShowsLineNumbers:[[localDefaults valueForKey:JSDKeyShowNewDocumentLineNumbers] boolValue]];
-	[aView setWordwrapsText:NO];
-}
-
-
-#pragma mark - Document Property Accessors
-
-
-/*———————————————————————————————————————————————————————————————————*
-	tidyProcess
-		Will use the document controller's tidyProcess.
- *———————————————————————————————————————————————————————————————————*/
-- (JSDTidyModel*)tidyProcess
-{
-	TidyDocument *localDocument = self.document;
-	return localDocument.tidyProcess;
-}
-
-
-/*———————————————————————————————————————————————————————————————————*
-	documentOpenedData
-		Will use the document controller's documentOpenedData.
- *———————————————————————————————————————————————————————————————————*/
-- (NSData*)documentOpenedData
-{
-	TidyDocument *localDocument = self.document;
-	return localDocument.documentOpenedData;
 }
 
 
@@ -327,31 +242,7 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)handleTidyOptionChange:(NSNotification *)note
 {
-	[self.tidyProcess optionsCopyValuesFromModel:self.optionController.tidyDocument];
-}
-
-
-/*———————————————————————————————————————————————————————————————————*
-	handleTidySourceTextChange:
-		The tidyProcess changed the sourceText for some reason,
-		probably because the user changed input-encoding. Note
-		that this event is only received if Tidy itself changes
-		the sourceText, not as the result of outside setting.
-		The event chain will eventually update everything else.
- *———————————————————————————————————————————————————————————————————*/
-- (void)handleTidySourceTextChange:(NSNotification *)note
-{
-	self.sourceController.sourceTextView.string = self.tidyProcess.sourceText;
-}
-
-
-/*———————————————————————————————————————————————————————————————————*
-	handleTidyTidyTextChange:
-		`tidyText` changed, so update `tidyView`.
- *———————————————————————————————————————————————————————————————————*/
-- (void)handleTidyTidyTextChange:(NSNotification *)note
-{
-	self.sourceController.tidyTextView.string = self.tidyProcess.tidyText;
+	[((TidyDocument*)self.document).tidyProcess optionsCopyValuesFromModel:self.optionController.tidyDocument];
 }
 
 
@@ -380,49 +271,47 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)documentDidWriteFile
 {
-	self.sourceController.sourceTextView.string = self.tidyProcess.tidyText;
+	self.sourceController.sourceTextView.string = ((TidyDocument*)self.document).tidyProcess.tidyText;
 
 	/* force the event cycle so errors can be updated. */
-	self.tidyProcess.sourceText = self.sourceController.sourceTextView.string;
+	((TidyDocument*)self.document).tidyProcess.sourceText = self.sourceController.sourceTextView.string;
 }
 
 
+#pragma mark - KVC Notification Handling
+
+
 /*———————————————————————————————————————————————————————————————————*
-	textDidChange:
-		We arrived here by virtue of being the delegate of
-		`sourceView`. Simply update the tidyProcess sourceText,
-		and the event chain will eventually update everything
-		else.
+	observeValueForKeyPath:ofObject:change:context:
+		Handle KVC Notifications:
+		- error view selection changed.
  *———————————————————————————————————————————————————————————————————*/
-- (void)textDidChange:(NSNotification *)aNotification
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-	/*
-		If we're still in the loading stages, then simply flip the
-		flag and don't set any text. All we're doing is preventing
-		the tidyProcess from an extra, useless round of processing.
-		We will be called again in the document loading process.
-	 */
-	if (!self.documentIsLoading)
-	{
-		self.tidyProcess.sourceText = self.sourceController.sourceTextView.string;
-	}
-	else
-	{
-		self.documentIsLoading = NO;
-	}
+	/* Handle changes to the selection of the messages table. */
 
-
-	/* Handle document dirty detection. */
-
-	if ( (!self.tidyProcess.isDirty) || (self.tidyProcess.sourceText.length == 0) )
+	if ((object == self.messagesController.arrayController) && ([keyPath isEqualToString:@"selection"]))
 	{
-		[self.document updateChangeCount:NSChangeCleared];
-	}
-	else
-	{
-		[self.document updateChangeCount:NSChangeDone];
-	}
+		self.sourceController.sourceTextView.showsHighlight = NO;
 
+		NSArray *localObjects = self.messagesController.arrayController.arrangedObjects;
+
+		NSInteger errorViewRow = self.messagesController.arrayController.selectionIndex;
+
+		if ((errorViewRow >= 0) && (errorViewRow < [localObjects count]))
+		{
+			NSInteger row = [localObjects[errorViewRow][@"line"] intValue];
+
+			NSInteger col = [localObjects[errorViewRow][@"column"] intValue];
+
+			if (row > 0)
+			{
+				[self.sourceController.sourceTextView highlightLine:row Column:col];
+
+				return;
+			}
+		}
+	}
 }
 
 
@@ -506,103 +395,59 @@
 }
 
 
-#pragma mark - KVC Notification Handling
-
-
-/*———————————————————————————————————————————————————————————————————*
-	observeValueForKeyPath:ofObject:change:context:
-		Handle KVC Notifications:
-		- error view selection changed.
- *———————————————————————————————————————————————————————————————————*/
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-	/* Handle changes to the selection of the messages table. */
-
-	if ((object == self.messagesController.arrayController) && ([keyPath isEqualToString:@"selection"]))
-	{
-		self.sourceController.sourceTextView.showsHighlight = NO;
-
-		NSArray *localObjects = self.messagesController.arrayController.arrangedObjects;
-
-		NSInteger errorViewRow = self.messagesController.arrayController.selectionIndex;
-
-		if ((errorViewRow >= 0) && (errorViewRow < [localObjects count]))
-		{
-			NSInteger row = [localObjects[errorViewRow][@"line"] intValue];
-
-			NSInteger col = [localObjects[errorViewRow][@"column"] intValue];
-
-			if (row > 0)
-			{
-				[self.sourceController.sourceTextView highlightLine:row Column:col];
-
-				return;
-			}
-		}
-	}
-}
-
-
 #pragma mark - Split View handling
 
 
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	splitView:constrainMinCoordinate:ofSubviewAt:
-		We're here because we're the delegate of the split views.
-		This allows us to set the minimum constraint of the left/top
-		item in a splitview. Must coordinate max to ensure others
-		have space, too.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (CGFloat)splitView:(NSSplitView *)splitView constrainMinCoordinate:(CGFloat)proposedMinimumPosition
-														 ofSubviewAt:(NSInteger)dividerIndex
-{
-	/* The main splitter. */
-
-	if (splitView == self.splitLeftRight)
-	{
-		return 300.0f;
-	}
-
-	/* The text views' first splitter. */
-
-	if (dividerIndex == 0)
-	{
-		return 68.0f;
-	}
-
-	/* The text views' second splitter is first plus 68.0f;. */
-
-    return [splitView.subviews[0] frame].size.height + 68.0f;
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	splitView:constrainMaxCoordinate:ofSubviewAt:
-		We're here because we're the delegate of the split views.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (CGFloat)splitView:(NSSplitView *)splitView constrainMaxCoordinate:(CGFloat)proposedMinimumPosition
-														 ofSubviewAt:(NSInteger)dividerIndex
-{
-	/* The main splitter. */
-
-	if (splitView == self.splitLeftRight)
-	{
-		return splitView.frame.size.width - 150.0f;
-	}
-
-	/* The text views' first splitter. */
-
-	if (dividerIndex == 0)
-	{
-		return [splitView.subviews[0] frame].size.height + [splitView.subviews[1] frame].size.height - 68.0f;
-	}
-
-	/* The text views' second splitter. */
-
-	return [splitView frame].size.height - 68.0f;
-}
-
-
+///*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+//	splitView:constrainMinCoordinate:ofSubviewAt:
+//		We're here because we're the delegate of the split views.
+//		This allows us to set the minimum constraint of the left/top
+//		item in a splitview. Must coordinate max to ensure others
+//		have space, too.
+// *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+//- (CGFloat)splitView:(NSSplitView *)splitView constrainMinCoordinate:(CGFloat)proposedMinimumPosition
+//														 ofSubviewAt:(NSInteger)dividerIndex
+//{
+//	/* The main splitter. */
+//	if (splitView == self.splitLeftRight)
+//	{
+//		return 300.0f;
+//	}
+//
+//	/* The source/messages splitter. */
+//	if (splitView == self.splitTopDown)
+//	{
+//		return 100.0f;
+//	}
+//
+//	return proposedMinimumPosition;
+//}
+//
+//
+///*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+//	splitView:constrainMaxCoordinate:ofSubviewAt:
+//		We're here because we're the delegate of the split views.
+// *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+//- (CGFloat)splitView:(NSSplitView *)splitView constrainMaxCoordinate:(CGFloat)proposedMaximumPosition
+//														 ofSubviewAt:(NSInteger)dividerIndex
+//{
+//	/* The main splitter. */
+//
+//	if (splitView == self.splitLeftRight)
+//	{
+//		return splitView.frame.size.width - 300.0f; // 150.0f
+//	}
+//
+//	/* The source/messages splitter. */
+//	if (splitView == self.splitTopDown)
+//	{
+//		return splitView.frame.size.height - 100.0f;
+//	}
+//
+//	return proposedMaximumPosition;
+//}
+//
+//
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	splitView:shouldAdjustSizeOfSubview:
 		We're here because we're the delegate of the split views.
@@ -619,32 +464,6 @@
 	}
 
 	return YES;
-}
-
-
-#pragma mark - Tab key handling
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	textView:doCommandBySelector:
-		We're here because we're the delegate of `sourceView`.
-		Allow the tab key to back in and out of this view.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (BOOL)textView:(NSTextView *)aTextView doCommandBySelector:(SEL)aSelector
-{
-	if (aSelector == @selector(insertTab:))
-	{
-		[aTextView.window selectNextKeyView:nil];
-		return YES;
-	}
-
-	if (aSelector == @selector(insertBacktab:))
-	{
-		[aTextView.window selectPreviousKeyView:nil];
-		return YES;
-	}
-
-	return NO;
 }
 
 

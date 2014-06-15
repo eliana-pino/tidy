@@ -18,7 +18,7 @@
             <rect key="frame" x="0.0" y="0.0" width="431" height="272"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <splitView autosaveName="positionDocumentWindowSplitter03" dividerStyle="thin" translatesAutoresizingMaskIntoConstraints="NO" id="Y6t-Ex-3lq">
+                <splitView identifier="IDUIPositionsSplitter03" autosaveName="UIPositionsSplitter03" dividerStyle="thin" translatesAutoresizingMaskIntoConstraints="NO" id="Y6t-Ex-3lq">
                     <rect key="frame" x="0.0" y="0.0" width="431" height="272"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
@@ -52,6 +52,9 @@
                                                 <size key="minSize" width="414" height="116"/>
                                                 <size key="maxSize" width="530" height="10000000"/>
                                                 <accessibility description="This area contains the original text that you want to Tidy."/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="-2" id="Gsw-D2-jTa"/>
+                                                </connections>
                                             </textView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

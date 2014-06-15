@@ -30,6 +30,8 @@
 #import "TidyDocumentSourceViewController.h"
 #import "PreferencesDefinitions.h"
 #import "NSTextView+JSDExtensions.h"
+#import "TidyDocument.h"
+#import "JSDTidyModel.h"
 
 
 @interface TidyDocumentSourceViewController ()
@@ -37,6 +39,9 @@
 @end
 
 @implementation TidyDocumentSourceViewController
+
+
+#pragma mark - Initialization and Deallocation
 
 
 /*———————————————————————————————————————————————————————————————————*
@@ -65,6 +70,145 @@
 	return [self initVertical:NO];
 }
 
+
+/*———————————————————————————————————————————————————————————————————*
+	dealloc
+ *———————————————————————————————————————————————————————————————————*/
+- (void)dealloc
+{
+	TidyDocument *localDocument = self.representedObject;
+
+	[localDocument removeObserver:self forKeyPath:@"tidyProcess.sourceText"];
+	[localDocument removeObserver:self forKeyPath:@"tidyProcess.tidyText"];
+}
+
+/*———————————————————————————————————————————————————————————————————*
+	awakeFromNib
+ *———————————————————————————————————————————————————————————————————*/
+- (void)awakeFromNib
+{
+	TidyDocument *localDocument = self.representedObject;
+
+	/* KVO on the document's sourceText */
+	[localDocument addObserver:self
+					forKeyPath:@"tidyProcess.sourceText"
+					   options:(NSKeyValueObservingOptionNew)
+					   context:NULL];
+
+	/* KVO on the document's tidyText */
+	[localDocument addObserver:self
+					forKeyPath:@"tidyProcess.tidyText"
+					   options:(NSKeyValueObservingOptionNew)
+					   context:NULL];
+}
+
+
+#pragma mark - Delegate Methods
+
+
+/*———————————————————————————————————————————————————————————————————*
+	textDidChange:
+		We arrived here by virtue of being the delegate of
+		`sourcetextView`. Simply update the tidyProcess sourceText,
+		and the event chain will eventually update everything
+		else.
+ *———————————————————————————————————————————————————————————————————*/
+- (void)textDidChange:(NSNotification *)aNotification
+{
+	TidyDocument *localDocument = self.representedObject;
+	/*
+		If the document is still in the loading stages, then simply
+		flip the flag and don't set any text. All we're doing is 
+		preventing the tidyProcess from an extra, useless round of 
+		processing.	We will be called again during the real document
+		loading process.
+	 */
+	if (!localDocument.documentIsLoading)
+	{
+		localDocument.tidyProcess.sourceText = self.sourceTextView.string;
+	}
+	else
+	{
+		localDocument.documentIsLoading = NO;
+	}
+
+
+	/* Handle document dirty detection. */
+
+	if ( (!localDocument.tidyProcess.isDirty) || (localDocument.tidyProcess.sourceText.length == 0) )
+	{
+		[localDocument updateChangeCount:NSChangeCleared];
+	}
+	else
+	{
+		[localDocument updateChangeCount:NSChangeDone];
+	}
+}
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	textView:doCommandBySelector:
+		We're here because we're the delegate of `sourceTextView`.
+		Allow the tab key to back in and out of this view.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (BOOL)textView:(NSTextView *)aTextView doCommandBySelector:(SEL)aSelector
+{
+	if (aSelector == @selector(insertTab:))
+	{
+		[aTextView.window selectNextKeyView:nil];
+		return YES;
+	}
+
+	if (aSelector == @selector(insertBacktab:))
+	{
+		[aTextView.window selectPreviousKeyView:nil];
+		return YES;
+	}
+
+	return NO;
+}
+
+
+
+
+#pragma mark - KVC Notification Handling
+
+
+/*———————————————————————————————————————————————————————————————————*
+	observeValueForKeyPath:ofObject:change:context:
+		Handle KVC Notifications:
+		- the processor's sourceText changed.
+ *———————————————————————————————————————————————————————————————————*/
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+	TidyDocument *localDocument = self.representedObject;
+
+	/*
+		Handle changes to the tidyProcess's sourceText property.
+		The tidyProcess changed the sourceText for some reason,
+		probably because the user changed input-encoding. Note
+		that this event is only received if Tidy itself changes
+		the sourceText, not as the result of outside setting.
+		The event chain will eventually update everything else.
+	 */
+	if ((object == localDocument) && ([keyPath isEqualToString:@"tidyProcess.sourceText"]))
+	{
+		if (localDocument.documentIsLoading)
+		{
+			self.sourceTextView.string = ((TidyDocument*)self.representedObject).tidyProcess.sourceText;
+		}
+	}
+
+	/* 
+		The processor's `tidyText` changed, so update `tidyTextView`.
+	 */
+	if ((object == localDocument) && ([keyPath isEqualToString:@"tidyProcess.tidyText"]))
+	{
+		self.tidyTextView.string = ((TidyDocument*)self.representedObject).tidyProcess.tidyText;
+	}
+}
+
+
+#pragma mark - Appearance Setup
 
 /*———————————————————————————————————————————————————————————————————*
 	setupViewAppearance
