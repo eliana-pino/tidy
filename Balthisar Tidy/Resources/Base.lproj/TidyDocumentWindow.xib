@@ -10,8 +10,6 @@
                 <outlet property="messagesPane" destination="0jN-hG-2u0" id="wfo-Fn-P0t"/>
                 <outlet property="optionPane" destination="kOf-B8-B6Q" id="4hO-cc-Qi1"/>
                 <outlet property="sourcePane" destination="2BO-Mf-Rqb" id="Ddh-xA-bJd"/>
-                <outlet property="splitLeftRight" destination="385" id="mrV-yF-kKe"/>
-                <outlet property="splitTopDown" destination="244" id="gmQ-vE-x4d"/>
                 <outlet property="window" destination="5" id="18"/>
             </connections>
         </customObject>

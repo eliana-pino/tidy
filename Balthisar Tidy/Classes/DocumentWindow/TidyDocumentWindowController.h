@@ -65,13 +65,6 @@
 @property TidyDocumentSourceViewController *sourceControllerVertical;
 
 
-/* Window Splitters */
-
-@property (assign) IBOutlet NSSplitView *splitLeftRight;
-
-@property (assign) IBOutlet NSSplitView *splitTopDown;
-
-
 /* Helpers */
 
 @property FirstRunController *firstRunHelper;

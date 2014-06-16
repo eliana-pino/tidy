@@ -208,6 +208,8 @@
 {
 	[super windowDidLoad];
 
+	[self.window setInitialFirstResponder:self.optionController.view];
+
 	/*
 		We will set the tidyProcess' source text (nil assigment is 
 		okay). If we try this in awakeFromNib, we might receive a
@@ -407,6 +409,7 @@
 
 	[self.sourceController setupViewAppearance];
 }
+
 
 #pragma mark - Other Details
 
