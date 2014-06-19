@@ -166,6 +166,42 @@
 		D0BB67F8193C820A007A3EB0 /* HTML.icns in Resources */ = {isa = PBXBuildFile; fileRef = D036E20918F3D2F20009A9D4 /* HTML.icns */; };
 		D0BB67F9193C820A007A3EB0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D036E1DC18F3D25E0009A9D4 /* InfoPlist.strings */; };
 		D0BB67FA193C820A007A3EB0 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D036E1E018F3D25E0009A9D4 /* MainMenu.xib */; };
+		D0CA8F561953280700BBD54C /* Layout01Template.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F4A1953280700BBD54C /* Layout01Template.png */; };
+		D0CA8F571953280700BBD54C /* Layout01Template.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F4A1953280700BBD54C /* Layout01Template.png */; };
+		D0CA8F581953280700BBD54C /* Layout01Template.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F4A1953280700BBD54C /* Layout01Template.png */; };
+		D0CA8F591953280700BBD54C /* Layout02Template.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F4B1953280700BBD54C /* Layout02Template.png */; };
+		D0CA8F5A1953280700BBD54C /* Layout02Template.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F4B1953280700BBD54C /* Layout02Template.png */; };
+		D0CA8F5B1953280700BBD54C /* Layout02Template.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F4B1953280700BBD54C /* Layout02Template.png */; };
+		D0CA8F5C1953280700BBD54C /* Layout03Template.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F4C1953280700BBD54C /* Layout03Template.png */; };
+		D0CA8F5D1953280700BBD54C /* Layout03Template.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F4C1953280700BBD54C /* Layout03Template.png */; };
+		D0CA8F5E1953280700BBD54C /* Layout03Template.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F4C1953280700BBD54C /* Layout03Template.png */; };
+		D0CA8F5F1953280700BBD54C /* Layout04Template.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F4D1953280700BBD54C /* Layout04Template.png */; };
+		D0CA8F601953280700BBD54C /* Layout04Template.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F4D1953280700BBD54C /* Layout04Template.png */; };
+		D0CA8F611953280700BBD54C /* Layout04Template.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F4D1953280700BBD54C /* Layout04Template.png */; };
+		D0CA8F621953280700BBD54C /* Layout05Template.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F4E1953280700BBD54C /* Layout05Template.png */; };
+		D0CA8F631953280700BBD54C /* Layout05Template.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F4E1953280700BBD54C /* Layout05Template.png */; };
+		D0CA8F641953280700BBD54C /* Layout05Template.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F4E1953280700BBD54C /* Layout05Template.png */; };
+		D0CA8F651953280700BBD54C /* Layout06Template.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F4F1953280700BBD54C /* Layout06Template.png */; };
+		D0CA8F661953280700BBD54C /* Layout06Template.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F4F1953280700BBD54C /* Layout06Template.png */; };
+		D0CA8F671953280700BBD54C /* Layout06Template.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F4F1953280700BBD54C /* Layout06Template.png */; };
+		D0CA8F681953280700BBD54C /* Layout07Template.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F501953280700BBD54C /* Layout07Template.png */; };
+		D0CA8F691953280700BBD54C /* Layout07Template.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F501953280700BBD54C /* Layout07Template.png */; };
+		D0CA8F6A1953280700BBD54C /* Layout07Template.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F501953280700BBD54C /* Layout07Template.png */; };
+		D0CA8F6B1953280700BBD54C /* Layout08Template.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F511953280700BBD54C /* Layout08Template.png */; };
+		D0CA8F6C1953280700BBD54C /* Layout08Template.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F511953280700BBD54C /* Layout08Template.png */; };
+		D0CA8F6D1953280700BBD54C /* Layout08Template.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F511953280700BBD54C /* Layout08Template.png */; };
+		D0CA8F6E1953280700BBD54C /* LayoutBottomPaneTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F521953280700BBD54C /* LayoutBottomPaneTemplate.png */; };
+		D0CA8F6F1953280700BBD54C /* LayoutBottomPaneTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F521953280700BBD54C /* LayoutBottomPaneTemplate.png */; };
+		D0CA8F701953280700BBD54C /* LayoutBottomPaneTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F521953280700BBD54C /* LayoutBottomPaneTemplate.png */; };
+		D0CA8F711953280700BBD54C /* LayoutLeftPaneTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F531953280700BBD54C /* LayoutLeftPaneTemplate.png */; };
+		D0CA8F721953280700BBD54C /* LayoutLeftPaneTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F531953280700BBD54C /* LayoutLeftPaneTemplate.png */; };
+		D0CA8F731953280700BBD54C /* LayoutLeftPaneTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F531953280700BBD54C /* LayoutLeftPaneTemplate.png */; };
+		D0CA8F741953280700BBD54C /* LayoutSourceHTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F541953280700BBD54C /* LayoutSourceHTemplate.png */; };
+		D0CA8F751953280700BBD54C /* LayoutSourceHTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F541953280700BBD54C /* LayoutSourceHTemplate.png */; };
+		D0CA8F761953280700BBD54C /* LayoutSourceHTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F541953280700BBD54C /* LayoutSourceHTemplate.png */; };
+		D0CA8F771953280700BBD54C /* LayoutSourceVTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F551953280700BBD54C /* LayoutSourceVTemplate.png */; };
+		D0CA8F781953280700BBD54C /* LayoutSourceVTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F551953280700BBD54C /* LayoutSourceVTemplate.png */; };
+		D0CA8F791953280700BBD54C /* LayoutSourceVTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F551953280700BBD54C /* LayoutSourceVTemplate.png */; };
 		D0CCEE2918E9967B0052E56C /* Balthisar Tidy.help in Resources */ = {isa = PBXBuildFile; fileRef = D0CCEE2818E9967B0052E56C /* Balthisar Tidy.help */; };
 		D0CCEE2A18E9967B0052E56C /* Balthisar Tidy.help in Resources */ = {isa = PBXBuildFile; fileRef = D0CCEE2818E9967B0052E56C /* Balthisar Tidy.help */; };
 		D0D9ED2B18E66810008A55D5 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9EAC218E6680F008A55D5 /* AppController.m */; };
@@ -347,6 +383,18 @@
 		D0BB67B2193AB54D007A3EB0 /* JSDTidyModelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSDTidyModelDelegate.h; sourceTree = "<group>"; };
 		D0BB67B5193ABB19007A3EB0 /* PreferencesDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesDefinitions.h; sourceTree = "<group>"; };
 		D0BB67FF193C820A007A3EB0 /* Balthisar Tidy for Work.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Balthisar Tidy for Work.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0CA8F4A1953280700BBD54C /* Layout01Template.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Layout01Template.png; path = "Images for Toolbar/Layout01Template.png"; sourceTree = "<group>"; };
+		D0CA8F4B1953280700BBD54C /* Layout02Template.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Layout02Template.png; path = "Images for Toolbar/Layout02Template.png"; sourceTree = "<group>"; };
+		D0CA8F4C1953280700BBD54C /* Layout03Template.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Layout03Template.png; path = "Images for Toolbar/Layout03Template.png"; sourceTree = "<group>"; };
+		D0CA8F4D1953280700BBD54C /* Layout04Template.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Layout04Template.png; path = "Images for Toolbar/Layout04Template.png"; sourceTree = "<group>"; };
+		D0CA8F4E1953280700BBD54C /* Layout05Template.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Layout05Template.png; path = "Images for Toolbar/Layout05Template.png"; sourceTree = "<group>"; };
+		D0CA8F4F1953280700BBD54C /* Layout06Template.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Layout06Template.png; path = "Images for Toolbar/Layout06Template.png"; sourceTree = "<group>"; };
+		D0CA8F501953280700BBD54C /* Layout07Template.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Layout07Template.png; path = "Images for Toolbar/Layout07Template.png"; sourceTree = "<group>"; };
+		D0CA8F511953280700BBD54C /* Layout08Template.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Layout08Template.png; path = "Images for Toolbar/Layout08Template.png"; sourceTree = "<group>"; };
+		D0CA8F521953280700BBD54C /* LayoutBottomPaneTemplate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LayoutBottomPaneTemplate.png; path = "Images for Toolbar/LayoutBottomPaneTemplate.png"; sourceTree = "<group>"; };
+		D0CA8F531953280700BBD54C /* LayoutLeftPaneTemplate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LayoutLeftPaneTemplate.png; path = "Images for Toolbar/LayoutLeftPaneTemplate.png"; sourceTree = "<group>"; };
+		D0CA8F541953280700BBD54C /* LayoutSourceHTemplate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LayoutSourceHTemplate.png; path = "Images for Toolbar/LayoutSourceHTemplate.png"; sourceTree = "<group>"; };
+		D0CA8F551953280700BBD54C /* LayoutSourceVTemplate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LayoutSourceVTemplate.png; path = "Images for Toolbar/LayoutSourceVTemplate.png"; sourceTree = "<group>"; };
 		D0CCEE2818E9967B0052E56C /* Balthisar Tidy.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Balthisar Tidy.help"; sourceTree = "<group>"; };
 		D0D9EAC118E6680F008A55D5 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		D0D9EAC218E6680F008A55D5 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
@@ -418,17 +466,17 @@
 		D0D9EB1918E6680F008A55D5 /* win32tc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = win32tc.h; sourceTree = "<group>"; };
 		D0D9F1A118E6BF8D008A55D5 /* JSDTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSDTableView.h; sourceTree = "<group>"; };
 		D0D9F1A218E6BF8D008A55D5 /* JSDTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSDTableView.m; sourceTree = "<group>"; };
-		D0E6AE16190C9FAC00B49779 /* HideDescriptionTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = HideDescriptionTemplate.pdf; sourceTree = "<group>"; };
-		D0E6AE17190C9FAC00B49779 /* ShowDescriptionTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ShowDescriptionTemplate.pdf; sourceTree = "<group>"; };
-		D0E6AE1F190CB34500B49779 /* PaneBottomShadow.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = PaneBottomShadow.tiff; sourceTree = "<group>"; };
+		D0E6AE16190C9FAC00B49779 /* HideDescriptionTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = HideDescriptionTemplate.pdf; path = "Balthisar Tidy/Resources/Images for UI/HideDescriptionTemplate.pdf"; sourceTree = SOURCE_ROOT; };
+		D0E6AE17190C9FAC00B49779 /* ShowDescriptionTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = ShowDescriptionTemplate.pdf; path = "Balthisar Tidy/Resources/Images for UI/ShowDescriptionTemplate.pdf"; sourceTree = SOURCE_ROOT; };
+		D0E6AE1F190CB34500B49779 /* PaneBottomShadow.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = PaneBottomShadow.tiff; path = "Balthisar Tidy/Resources/Images for UI/PaneBottomShadow.tiff"; sourceTree = SOURCE_ROOT; };
 		D0E6AE23190CDAA200B49779 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/JSDTidyModel.strings; sourceTree = "<group>"; };
-		D0E6AE691911E4DC00B49779 /* messagesAccess.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = messagesAccess.icns; sourceTree = "<group>"; };
-		D0E6AE6B1911E88000B49779 /* messagesConfig.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = messagesConfig.icns; sourceTree = "<group>"; };
-		D0E6AE6C1911E88000B49779 /* messagesDocument.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = messagesDocument.icns; sourceTree = "<group>"; };
-		D0E6AE6D1911E88000B49779 /* messagesError.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = messagesError.icns; sourceTree = "<group>"; };
-		D0E6AE6E1911E88000B49779 /* messagesInfo.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = messagesInfo.icns; sourceTree = "<group>"; };
-		D0E6AE6F1911E88000B49779 /* messagesPanic.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = messagesPanic.icns; sourceTree = "<group>"; };
-		D0E6AE701911E88000B49779 /* messagesWarning.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = messagesWarning.icns; sourceTree = "<group>"; };
+		D0E6AE691911E4DC00B49779 /* messagesAccess.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = messagesAccess.icns; path = "Balthisar Tidy/Resources/Images for UI/messagesAccess.icns"; sourceTree = SOURCE_ROOT; };
+		D0E6AE6B1911E88000B49779 /* messagesConfig.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = messagesConfig.icns; path = "Balthisar Tidy/Resources/Images for UI/messagesConfig.icns"; sourceTree = SOURCE_ROOT; };
+		D0E6AE6C1911E88000B49779 /* messagesDocument.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = messagesDocument.icns; path = "Balthisar Tidy/Resources/Images for UI/messagesDocument.icns"; sourceTree = SOURCE_ROOT; };
+		D0E6AE6D1911E88000B49779 /* messagesError.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = messagesError.icns; path = "Balthisar Tidy/Resources/Images for UI/messagesError.icns"; sourceTree = SOURCE_ROOT; };
+		D0E6AE6E1911E88000B49779 /* messagesInfo.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = messagesInfo.icns; path = "Balthisar Tidy/Resources/Images for UI/messagesInfo.icns"; sourceTree = SOURCE_ROOT; };
+		D0E6AE6F1911E88000B49779 /* messagesPanic.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = messagesPanic.icns; path = "Balthisar Tidy/Resources/Images for UI/messagesPanic.icns"; sourceTree = SOURCE_ROOT; };
+		D0E6AE701911E88000B49779 /* messagesWarning.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = messagesWarning.icns; path = "Balthisar Tidy/Resources/Images for UI/messagesWarning.icns"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -524,7 +572,7 @@
 			path = "Balthisar Tidy";
 			sourceTree = SOURCE_ROOT;
 		};
-		D01AACBC193DEA4900C4E5B2 /* UI Icons */ = {
+		D01AACBC193DEA4900C4E5B2 /* Images for UI */ = {
 			isa = PBXGroup;
 			children = (
 				D0E6AE6B1911E88000B49779 /* messagesConfig.icns */,
@@ -538,7 +586,7 @@
 				D0E6AE16190C9FAC00B49779 /* HideDescriptionTemplate.pdf */,
 				D0E6AE17190C9FAC00B49779 /* ShowDescriptionTemplate.pdf */,
 			);
-			name = "UI Icons";
+			name = "Images for UI";
 			sourceTree = "<group>";
 		};
 		D036E20718F3D2F20009A9D4 /* File Icons */ = {
@@ -616,8 +664,9 @@
 				D036E21718F3D81E0009A9D4 /* TidyScripting.sdef */,
 				D0CCEE2818E9967B0052E56C /* Balthisar Tidy.help */,
 				D08A7C9218D442FF00341DCB /* optionsInEffect.txt */,
-				D01AACBC193DEA4900C4E5B2 /* UI Icons */,
 				D036E20718F3D2F20009A9D4 /* File Icons */,
+				D01AACBC193DEA4900C4E5B2 /* Images for UI */,
+				D0CA8F091953168500BBD54C /* Images for Toolbar */,
 				D07AF49A183658F100913067 /* Base.lproj */,
 			);
 			path = Resources;
@@ -632,6 +681,25 @@
 				D0BB67AB193AB382007A3EB0 /* NoodleLineNumberView.m */,
 			);
 			path = NoodleKit;
+			sourceTree = "<group>";
+		};
+		D0CA8F091953168500BBD54C /* Images for Toolbar */ = {
+			isa = PBXGroup;
+			children = (
+				D0CA8F4A1953280700BBD54C /* Layout01Template.png */,
+				D0CA8F4B1953280700BBD54C /* Layout02Template.png */,
+				D0CA8F4C1953280700BBD54C /* Layout03Template.png */,
+				D0CA8F4D1953280700BBD54C /* Layout04Template.png */,
+				D0CA8F4E1953280700BBD54C /* Layout05Template.png */,
+				D0CA8F4F1953280700BBD54C /* Layout06Template.png */,
+				D0CA8F501953280700BBD54C /* Layout07Template.png */,
+				D0CA8F511953280700BBD54C /* Layout08Template.png */,
+				D0CA8F521953280700BBD54C /* LayoutBottomPaneTemplate.png */,
+				D0CA8F531953280700BBD54C /* LayoutLeftPaneTemplate.png */,
+				D0CA8F541953280700BBD54C /* LayoutSourceHTemplate.png */,
+				D0CA8F551953280700BBD54C /* LayoutSourceVTemplate.png */,
+			);
+			name = "Images for Toolbar";
 			sourceTree = "<group>";
 		};
 		D0D9EABF18E6680F008A55D5 /* Classes */ = {
@@ -922,22 +990,32 @@
 				D0CCEE2918E9967B0052E56C /* Balthisar Tidy.help in Resources */,
 				D0E6AE6A1911E4DC00B49779 /* messagesAccess.icns in Resources */,
 				D0E6AE711911E88000B49779 /* messagesConfig.icns in Resources */,
+				D0CA8F651953280700BBD54C /* Layout06Template.png in Resources */,
+				D0CA8F591953280700BBD54C /* Layout02Template.png in Resources */,
 				D074B7AA1944035800F2E6F1 /* TidyDocumentMessagesView.xib in Resources */,
 				D0E6AE721911E88000B49779 /* messagesDocument.icns in Resources */,
 				D0E6AE731911E88000B49779 /* messagesError.icns in Resources */,
+				D0CA8F561953280700BBD54C /* Layout01Template.png in Resources */,
 				D0E6AE741911E88000B49779 /* messagesInfo.icns in Resources */,
 				D0E6AE751911E88000B49779 /* messagesPanic.icns in Resources */,
 				D0E6AE761911E88000B49779 /* messagesWarning.icns in Resources */,
 				D036E20D18F3D2F20009A9D4 /* Application.icns in Resources */,
 				D036E20F18F3D2F20009A9D4 /* HTML.icns in Resources */,
+				D0CA8F5F1953280700BBD54C /* Layout04Template.png in Resources */,
+				D0CA8F771953280700BBD54C /* LayoutSourceVTemplate.png in Resources */,
 				D036E21118F3D2F20009A9D4 /* PHP.icns in Resources */,
+				D0CA8F621953280700BBD54C /* Layout05Template.png in Resources */,
 				D036E21518F3D2F20009A9D4 /* XML.icns in Resources */,
 				D036E21318F3D2F20009A9D4 /* Tidy.icns in Resources */,
+				D0CA8F741953280700BBD54C /* LayoutSourceHTemplate.png in Resources */,
 				D0E6AE18190C9FAC00B49779 /* HideDescriptionTemplate.pdf in Resources */,
 				D0E6AE1A190C9FAC00B49779 /* ShowDescriptionTemplate.pdf in Resources */,
 				D036E1E818F3D25E0009A9D4 /* Credits.rtf in Resources */,
 				D086893A1948439700BDAD72 /* TidyDocumentSourceV.xib in Resources */,
+				D0CA8F5C1953280700BBD54C /* Layout03Template.png in Resources */,
 				D074B78B1942BEE200F2E6F1 /* TidyEncodingHelper.xib in Resources */,
+				D0CA8F6B1953280700BBD54C /* Layout08Template.png in Resources */,
+				D0CA8F6E1953280700BBD54C /* LayoutBottomPaneTemplate.png in Resources */,
 				D036E1EC18F3D25E0009A9D4 /* InfoPlist.strings in Resources */,
 				D0E6AE24190CDAA200B49779 /* JSDTidyModel.strings in Resources */,
 				D036E1EE18F3D25E0009A9D4 /* Localizable.strings in Resources */,
@@ -947,7 +1025,9 @@
 				D036E1F018F3D25E0009A9D4 /* MainMenu.xib in Resources */,
 				D036E1F418F3D25E0009A9D4 /* Preferences.xib in Resources */,
 				D036E1F218F3D25E0009A9D4 /* OptionPane.xib in Resources */,
+				D0CA8F681953280700BBD54C /* Layout07Template.png in Resources */,
 				D036E1F618F3D25E0009A9D4 /* TidyDocumentWindow.xib in Resources */,
+				D0CA8F711953280700BBD54C /* LayoutLeftPaneTemplate.png in Resources */,
 				D08689371948439700BDAD72 /* TidyDocumentSourceH.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -967,22 +1047,32 @@
 				D0CCEE2A18E9967B0052E56C /* Balthisar Tidy.help in Resources */,
 				D01AACA5193DE2DA00C4E5B2 /* messagesAccess.icns in Resources */,
 				D01AAC9F193DE2DA00C4E5B2 /* messagesConfig.icns in Resources */,
+				D0CA8F661953280700BBD54C /* Layout06Template.png in Resources */,
+				D0CA8F5A1953280700BBD54C /* Layout02Template.png in Resources */,
 				D074B7AB1944035800F2E6F1 /* TidyDocumentMessagesView.xib in Resources */,
 				D01AACA0193DE2DA00C4E5B2 /* messagesDocument.icns in Resources */,
 				D01AACA1193DE2DA00C4E5B2 /* messagesError.icns in Resources */,
+				D0CA8F571953280700BBD54C /* Layout01Template.png in Resources */,
 				D01AACA2193DE2DA00C4E5B2 /* messagesInfo.icns in Resources */,
 				D01AACA3193DE2DA00C4E5B2 /* messagesPanic.icns in Resources */,
 				D01AACA4193DE2DA00C4E5B2 /* messagesWarning.icns in Resources */,
 				D036E20E18F3D2F20009A9D4 /* Application.icns in Resources */,
 				D036E21018F3D2F20009A9D4 /* HTML.icns in Resources */,
+				D0CA8F601953280700BBD54C /* Layout04Template.png in Resources */,
+				D0CA8F781953280700BBD54C /* LayoutSourceVTemplate.png in Resources */,
 				D036E21218F3D2F20009A9D4 /* PHP.icns in Resources */,
+				D0CA8F631953280700BBD54C /* Layout05Template.png in Resources */,
 				D036E21418F3D2F20009A9D4 /* Tidy.icns in Resources */,
 				D036E21618F3D2F20009A9D4 /* XML.icns in Resources */,
+				D0CA8F751953280700BBD54C /* LayoutSourceHTemplate.png in Resources */,
 				D0E6AE19190C9FAC00B49779 /* HideDescriptionTemplate.pdf in Resources */,
 				D0E6AE1B190C9FAC00B49779 /* ShowDescriptionTemplate.pdf in Resources */,
 				D036E1E918F3D25E0009A9D4 /* Credits.rtf in Resources */,
 				D086893B1948439700BDAD72 /* TidyDocumentSourceV.xib in Resources */,
+				D0CA8F5D1953280700BBD54C /* Layout03Template.png in Resources */,
 				D074B78C1942BEE200F2E6F1 /* TidyEncodingHelper.xib in Resources */,
+				D0CA8F6C1953280700BBD54C /* Layout08Template.png in Resources */,
+				D0CA8F6F1953280700BBD54C /* LayoutBottomPaneTemplate.png in Resources */,
 				D036E1ED18F3D25E0009A9D4 /* InfoPlist.strings in Resources */,
 				D0E6AE25190CDAA200B49779 /* JSDTidyModel.strings in Resources */,
 				D036E1EF18F3D25E0009A9D4 /* Localizable.strings in Resources */,
@@ -992,7 +1082,9 @@
 				D036E1F118F3D25E0009A9D4 /* MainMenu.xib in Resources */,
 				D036E1F518F3D25E0009A9D4 /* Preferences.xib in Resources */,
 				D036E1F718F3D25E0009A9D4 /* TidyDocumentWindow.xib in Resources */,
+				D0CA8F691953280700BBD54C /* Layout07Template.png in Resources */,
 				D036E1F318F3D25E0009A9D4 /* OptionPane.xib in Resources */,
+				D0CA8F721953280700BBD54C /* LayoutLeftPaneTemplate.png in Resources */,
 				D08689381948439700BDAD72 /* TidyDocumentSourceH.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1003,22 +1095,33 @@
 			files = (
 				D01AACB0193DE53200C4E5B2 /* Balthisar Tidy.help in Resources */,
 				D01AACB7193DE54100C4E5B2 /* messagesAccess.icns in Resources */,
+				D0CA8F641953280700BBD54C /* Layout05Template.png in Resources */,
+				D0CA8F581953280700BBD54C /* Layout01Template.png in Resources */,
 				D01AACB1193DE54100C4E5B2 /* messagesConfig.icns in Resources */,
 				D01AACB2193DE54100C4E5B2 /* messagesDocument.icns in Resources */,
+				D0CA8F6D1953280700BBD54C /* Layout08Template.png in Resources */,
 				D01AACB3193DE54100C4E5B2 /* messagesError.icns in Resources */,
 				D01AACB4193DE54100C4E5B2 /* messagesInfo.icns in Resources */,
 				D01AACB5193DE54100C4E5B2 /* messagesPanic.icns in Resources */,
 				D01AACB6193DE54100C4E5B2 /* messagesWarning.icns in Resources */,
 				D074B78D1942BEE200F2E6F1 /* TidyEncodingHelper.xib in Resources */,
+				D0CA8F5E1953280700BBD54C /* Layout03Template.png in Resources */,
 				D0BB67F3193C820A007A3EB0 /* Application.icns in Resources */,
 				D0BB67F8193C820A007A3EB0 /* HTML.icns in Resources */,
+				D0CA8F761953280700BBD54C /* LayoutSourceHTemplate.png in Resources */,
 				D0BB67EF193C820A007A3EB0 /* PHP.icns in Resources */,
+				D0CA8F5B1953280700BBD54C /* Layout02Template.png in Resources */,
 				D074B7AC1944035800F2E6F1 /* TidyDocumentMessagesView.xib in Resources */,
+				D0CA8F701953280700BBD54C /* LayoutBottomPaneTemplate.png in Resources */,
 				D0BB67F7193C820A007A3EB0 /* Tidy.icns in Resources */,
+				D0CA8F6A1953280700BBD54C /* Layout07Template.png in Resources */,
 				D0BB67F0193C820A007A3EB0 /* XML.icns in Resources */,
 				D01AACB8193DE56000C4E5B2 /* HideDescriptionTemplate.pdf in Resources */,
+				D0CA8F791953280700BBD54C /* LayoutSourceVTemplate.png in Resources */,
 				D01AACB9193DE56000C4E5B2 /* ShowDescriptionTemplate.pdf in Resources */,
+				D0CA8F731953280700BBD54C /* LayoutLeftPaneTemplate.png in Resources */,
 				D0BB67F5193C820A007A3EB0 /* Credits.rtf in Resources */,
+				D0CA8F671953280700BBD54C /* Layout06Template.png in Resources */,
 				D01AACAF193DE49500C4E5B2 /* TidyScripting.sdef in Resources */,
 				D086893C1948439700BDAD72 /* TidyDocumentSourceV.xib in Resources */,
 				D0BB67F9193C820A007A3EB0 /* InfoPlist.strings in Resources */,
@@ -1032,6 +1135,7 @@
 				D08689391948439700BDAD72 /* TidyDocumentSourceH.xib in Resources */,
 				D0BB67F4193C820A007A3EB0 /* OptionPane.xib in Resources */,
 				D0BB67F6193C820A007A3EB0 /* TidyDocumentWindow.xib in Resources */,
+				D0CA8F611953280700BBD54C /* Layout04Template.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
