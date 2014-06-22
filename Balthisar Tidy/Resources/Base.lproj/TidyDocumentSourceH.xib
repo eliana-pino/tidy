@@ -8,6 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="TidyDocumentSourceViewController">
             <connections>
                 <outlet property="sourceTextView" destination="Jrd-iH-M6b" id="2nf-08-Eoq"/>
+                <outlet property="splitterViews" destination="Y6t-Ex-3lq" id="Moy-fX-AFZ"/>
                 <outlet property="tidyTextView" destination="yNc-ln-wRj" id="2eJ-qI-hla"/>
                 <outlet property="view" destination="c22-O7-iKe" id="7VH-KP-Oxs"/>
             </connections>
@@ -18,7 +19,7 @@
             <rect key="frame" x="0.0" y="0.0" width="431" height="272"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <splitView identifier="IDUIPositionsSplitter03" autosaveName="UIPositionsSplitter03" dividerStyle="thin" translatesAutoresizingMaskIntoConstraints="NO" id="Y6t-Ex-3lq">
+                <splitView autosaveName="UIPositionsSplitter03" dividerStyle="thin" translatesAutoresizingMaskIntoConstraints="NO" id="Y6t-Ex-3lq">
                     <rect key="frame" x="0.0" y="0.0" width="431" height="272"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
@@ -35,21 +36,21 @@
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <scrollView autoresizesSubviews="NO" focusRingType="exterior" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ofm-uY-8WI">
+                                <scrollView autoresizesSubviews="NO" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ofm-uY-8WI">
                                     <rect key="frame" x="0.0" y="0.0" width="431" height="118"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <clipView key="contentView" id="c8h-rm-xXc">
-                                        <rect key="frame" x="1" y="1" width="414" height="116"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="416" height="118"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <textView importsGraphics="NO" richText="NO" allowsUndo="YES" verticallyResizable="YES" spellingCorrection="YES" id="Jrd-iH-M6b">
-                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="116"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="2" height="118"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <size key="minSize" width="414" height="116"/>
+                                                <size key="minSize" width="2" height="118"/>
                                                 <size key="maxSize" width="530" height="10000000"/>
                                                 <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                <size key="minSize" width="414" height="116"/>
+                                                <size key="minSize" width="2" height="118"/>
                                                 <size key="maxSize" width="530" height="10000000"/>
                                                 <accessibility description="This area contains the original text that you want to Tidy."/>
                                                 <connections>
@@ -64,7 +65,7 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                     </scroller>
                                     <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="kby-Mx-fzJ">
-                                        <rect key="frame" x="415" y="1" width="15" height="116"/>
+                                        <rect key="frame" x="416" y="0.0" width="15" height="118"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </scroller>
                                 </scrollView>
@@ -93,23 +94,31 @@
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <scrollView focusRingType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubT-FK-0U7">
+                                <scrollView focusRingType="none" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubT-FK-0U7">
                                     <rect key="frame" x="0.0" y="0.0" width="431" height="121"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <clipView key="contentView" id="o4S-A4-rfD">
-                                        <rect key="frame" x="1" y="1" width="414" height="119"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="416" height="121"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" id="yNc-ln-wRj">
-                                                <rect key="frame" x="0.0" y="0.0" width="833" height="119"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="835" height="121"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <size key="minSize" width="414" height="119"/>
+                                                <size key="minSize" width="416" height="121"/>
                                                 <size key="maxSize" width="862" height="10000000"/>
                                                 <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                <size key="minSize" width="414" height="119"/>
+                                                <size key="minSize" width="416" height="121"/>
                                                 <size key="maxSize" width="862" height="10000000"/>
                                                 <accessibility description="This area contains the tidied text generated by the Tidy process."/>
+                                                <connections>
+                                                    <binding destination="-2" name="value" keyPath="self.representedObject.tidyProcess.tidyText" id="wjn-0B-xSa">
+                                                        <dictionary key="options">
+                                                            <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                                                            <bool key="NSConditionallySetsEditable" value="NO"/>
+                                                        </dictionary>
+                                                    </binding>
+                                                </connections>
                                             </textView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -119,7 +128,7 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                     </scroller>
                                     <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="IgK-fZ-ejq">
-                                        <rect key="frame" x="415" y="1" width="15" height="119"/>
+                                        <rect key="frame" x="416" y="0.0" width="15" height="121"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </scroller>
                                 </scrollView>

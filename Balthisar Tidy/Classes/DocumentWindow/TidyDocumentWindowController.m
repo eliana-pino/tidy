@@ -125,6 +125,8 @@
 
 	[self.optionPane addSubview:self.optionController.view];
 
+	self.optionsPanelIsVisible = [[[NSUserDefaults standardUserDefaults] objectForKey:JSDKeyShowNewDocumentTidyOptions] boolValue];
+
 	self.optionController.optionsInEffect = [[PreferenceController sharedPreferences] optionsInEffect];
 
 	/*
@@ -148,16 +150,16 @@
 
 	[self.messagesController.view setFrame:self.messagesPane.bounds];
 
+	self.messagesPanelIsVisible = [[[NSUserDefaults standardUserDefaults] objectForKey:JSDKeyShowNewDocumentMessages] boolValue];
+
 
 	/******************************************************
 		Setup the sourceController and its view settings.
 	 ******************************************************/
 
-	BOOL localVertical = [[[NSUserDefaults standardUserDefaults] objectForKey:JSDKeyShowNewDocumentSideBySide] boolValue];
+	self.sourcePanelIsVertical  = [[[NSUserDefaults standardUserDefaults] objectForKey:JSDKeyShowNewDocumentSideBySide] boolValue];
 
-	[self showSourceController:localVertical];
-
-
+	
 	/******************************************************
 		Remaining initial document conditions.
 	 ******************************************************/
@@ -229,7 +231,7 @@
 }
 
 
-#pragma mark - Event Handling
+#pragma mark - Event and KVO Notification Handling
 
 
 /*———————————————————————————————————————————————————————————————————*
@@ -277,9 +279,6 @@
 }
 
 
-#pragma mark - KVC Notification Handling
-
-
 /*———————————————————————————————————————————————————————————————————*
 	observeValueForKeyPath:ofObject:change:context:
 		Handle KVC Notifications:
@@ -291,30 +290,278 @@
 
 	if ((object == self.messagesController.arrayController) && ([keyPath isEqualToString:@"selection"]))
 	{
-		self.sourceController.sourceTextView.showsHighlight = NO;
-
-		NSArray *localObjects = self.messagesController.arrayController.arrangedObjects;
-
-		NSInteger errorViewRow = self.messagesController.arrayController.selectionIndex;
-
-		if ((errorViewRow >= 0) && (errorViewRow < [localObjects count]))
-		{
-			NSInteger row = [localObjects[errorViewRow][@"line"] intValue];
-
-			NSInteger col = [localObjects[errorViewRow][@"column"] intValue];
-
-			if (row > 0)
-			{
-				[self.sourceController.sourceTextView highlightLine:row Column:col];
-
-				return;
-			}
-		}
+		[self.sourceController highlightSourceTextUsingArrayController:self.messagesController.arrayController];
 	}
 }
 
 
-#pragma mark - First-Run Support
+#pragma mark - Split View Handling
+
+
+/*———————————————————————————————————————————————————————————————————*
+	splitView:canCollapseSubview
+		Supports hiding the tidy options and/or messsages panels.
+		Although we're handing this programmatically, this delegate
+		method is still required if we want it to work.
+ *———————————————————————————————————————————————————————————————————*/
+- (BOOL)splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview
+{
+	NSView *viewOfInterest;
+
+	if ([splitView isEqual:self.splitterOptions])
+	{
+		viewOfInterest = [[splitView subviews] objectAtIndex:0];
+	}
+
+	if ([splitView isEqual:self.splitterMessages])
+	{
+		viewOfInterest = [[splitView subviews] objectAtIndex:1];
+	}
+
+    return ([subview isEqual:viewOfInterest]);
+}
+
+
+#pragma mark - Menu and State Validation
+
+
+/*———————————————————————————————————————————————————————————————————*
+	validateMenuItem:
+		Validates and sets main menu items. We could use instead
+		validateUserInterfaceItem:, but we're only worried about
+		menus and this ensures everything is a menu item. All of
+		the toolbars are validated via bindings.
+ *———————————————————————————————————————————————————————————————————*/
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
+{
+	if (menuItem.action == @selector(kickOffFirstRunSequence:))
+	{
+		[menuItem setState:self.firstRunHelper.isVisible];
+		return !self.firstRunHelper.isVisible;
+	}
+
+	if (menuItem.action == @selector(toggleOptionsPanelIsVisible:))
+	{
+		[menuItem setState:self.optionsPanelIsVisible];
+		return !self.firstRunHelper.isVisible;
+	}
+
+	if (menuItem.action == @selector(toggleMessagesPanelIsVisible:))
+	{
+		[menuItem setState:self.messagesPanelIsVisible];
+		return !self.firstRunHelper.isVisible;
+	}
+
+	if (menuItem.action == @selector(toggleSourcePanelIsVertical:))
+	{
+		[menuItem setState:self.sourcePanelIsVertical];
+		return !self.firstRunHelper.isVisible;
+	}
+
+	return NO;
+}
+
+
+#pragma mark - Properties
+
+
+/*———————————————————————————————————————————————————————————————————*
+	optionsPaneIsVisible
+ *———————————————————————————————————————————————————————————————————*/
+- (BOOL)optionsPanelIsVisible
+{
+	NSView *viewOfInterest = [[self.splitterOptions subviews] objectAtIndex:0];
+
+	BOOL isCollapsed = [self.splitterOptions isSubviewCollapsed:viewOfInterest];
+	
+	return !isCollapsed;
+}
+
+- (void)setOptionsPanelIsVisible:(BOOL)optionsPanelIsVisible
+{
+	static CGFloat savedPositionWidth = 0.0f;
+
+	/*
+		If the savedPosition is zero, this is the first time we've been here. In that
+		case let's get the value from the actual pane, which should be either the
+		IB default or whatever came in from user defaults.
+	 */
+
+	if (savedPositionWidth == 0.0f)
+	{
+		savedPositionWidth = ((NSView*)[[self.splitterOptions subviews] objectAtIndex:0]).frame.size.width;
+	}
+
+
+    if (optionsPanelIsVisible)
+	{
+		[self.splitterOptions setPosition:savedPositionWidth ofDividerAtIndex:0];
+    }
+	else
+	{
+		savedPositionWidth = ((NSView*)[[self.splitterOptions subviews] objectAtIndex:0]).frame.size.width;
+		[self.splitterOptions setPosition:0.0f ofDividerAtIndex:0];
+    }
+}
+
+
+/*———————————————————————————————————————————————————————————————————*
+	messagesPanelIsVisible
+ *———————————————————————————————————————————————————————————————————*/
+- (BOOL)messagesPanelIsVisible
+{
+	NSView *viewOfInterest = [[self.splitterMessages subviews] objectAtIndex:1];
+
+	BOOL isCollapsed = [self.splitterMessages isSubviewCollapsed:viewOfInterest];
+
+	return !isCollapsed;
+}
+
+- (void)setMessagesPanelIsVisible:(BOOL)messagesPanelIsVisible
+{
+	static CGFloat savedPositionHeight = 0.0f;
+
+	/*
+	 If the savedPosition is zero, this is the first time we've been here. In that
+	 case let's get the value from the actual pane, which should be either the
+	 IB default or whatever came in from user defaults.
+	 */
+
+	if (savedPositionHeight == 0.0f)
+	{
+		savedPositionHeight = ((NSView*)[[self.splitterMessages subviews] objectAtIndex:1]).frame.size.height;
+	}
+
+
+    if (messagesPanelIsVisible)
+	{
+		CGFloat splitterHeight = self.splitterMessages.frame.size.height;
+		[self.splitterMessages setPosition:(splitterHeight - savedPositionHeight) ofDividerAtIndex:0];
+    }
+	else
+	{
+		savedPositionHeight = ((NSView*)[[self.splitterMessages subviews] objectAtIndex:1]).frame.size.height;
+		[self.splitterMessages setPosition:self.splitterMessages.frame.size.height ofDividerAtIndex:0];
+    }
+}
+
+
+/*———————————————————————————————————————————————————————————————————*
+	sourcePanelIsVertical
+ *———————————————————————————————————————————————————————————————————*/
+- (BOOL)sourcePanelIsVertical
+{
+	return self.sourceController.isVertical;
+}
+
+- (void)setSourcePanelIsVertical:(BOOL)sourcePanelIsVertical
+{
+	/* Setup (and create if necessary) the appropriate subview controller */
+
+	if (!sourcePanelIsVertical)
+	{
+		if (!self.sourceControllerHorizontal)
+		{
+			self.sourceControllerHorizontal = [[TidyDocumentSourceViewController alloc] initVertical:NO];
+			self.sourceControllerHorizontal.representedObject = self.document;
+		}
+
+		self.sourceController = self.sourceControllerHorizontal;
+	}
+	else
+	{
+		if (!self.sourceControllerVertical)
+		{
+			self.sourceControllerVertical = [[TidyDocumentSourceViewController alloc] initVertical:YES];
+			self.sourceControllerVertical.representedObject = self.document;
+		}
+
+		self.sourceController = self.sourceControllerVertical;
+	}
+
+	[self.sourcePane setSubviews:[NSArray array]];
+	[self.sourcePane addSubview:self.sourceController.view];
+
+	[self.sourceController setupViewAppearance];
+
+
+	/* Ensure that the correct text is in the source */
+
+	self.sourceController.sourceTextView.string = ((TidyDocument*)self.document).tidyProcess.sourceText;
+
+
+	/* In case something is selected in the messages table, highlight it again. */
+
+	[self.sourceController highlightSourceTextUsingArrayController:self.messagesController.arrayController];
+}
+
+
+#pragma mark - Menu Actions
+
+
+- (IBAction)toggleOptionsPanelIsVisible:(id)sender
+{
+	self.optionsPanelIsVisible = !self.optionsPanelIsVisible;
+}
+
+
+- (IBAction)toggleMessagesPanelIsVisible:(id)sender
+{
+	self.messagesPanelIsVisible = !self.messagesPanelIsVisible;
+}
+
+
+- (IBAction)toggleSourcePanelIsVertical:(id)sender
+{
+	self.sourcePanelIsVertical = !self.sourcePanelIsVertical;
+}
+
+
+#pragma mark - Toolbar Actions
+
+
+/*———————————————————————————————————————————————————————————————————*
+	handleWebPreview:
+		Show the web preview of the tidy'd document.
+ *———————————————————————————————————————————————————————————————————*/
+- (IBAction)handleWebPreview:(id)sender
+{
+	NSLog(@"%@", @"Here is where we will show the web preview.");
+}
+
+
+/*———————————————————————————————————————————————————————————————————*
+	handleShowDiffView:
+		Show the traditional diff panel.
+ *———————————————————————————————————————————————————————————————————*/
+- (IBAction)handleShowDiffView:(id)sender
+{
+	NSLog(@"%@", @"Here is where we will show the traditional diff panel.");
+}
+
+
+/*———————————————————————————————————————————————————————————————————*
+	togleSyncronizedDiffs:
+		Toggle the display of the diff highlighter.
+		Yes, this is a typo but will be replaced with a property.
+ *———————————————————————————————————————————————————————————————————*/
+- (IBAction)togleSyncronizedDiffs:(id)sender
+{
+	NSLog(@"%@", @"Here we will toggle sync'd diffs.");
+}
+
+
+/*———————————————————————————————————————————————————————————————————*
+	toggleSynchronizedScrolling:
+		Toggle synchronized scrolling of the source and tidy'd text.
+ *———————————————————————————————————————————————————————————————————*/
+- (IBAction)toggleSynchronizedScrolling:(id)sender
+{
+	NSLog(@"%@", @"Here is where we toggle sync'd scrolling.");
+}
+
+
+#pragma mark - Quick Tutorial Support
 
 
 /*———————————————————————————————————————————————————————————————————*
@@ -370,68 +617,21 @@
 
 	self.firstRunHelper.preferencesKeyName = JSDKeyFirstRunComplete;
 
+	if (!self.optionsPanelIsVisible)
+	{
+		self.optionsPanelIsVisible = YES;
+	}
+
+	if (!self.messagesPanelIsVisible)
+	{
+		self.messagesPanelIsVisible = YES;
+	}
+	
 	[self.firstRunHelper beginFirstRunSequence];
 }
 
 
-#pragma mark - View Handling
-
-
-/*———————————————————————————————————————————————————————————————————*
-	showSourceController:
-		Displays the desired sourceController.
- *———————————————————————————————————————————————————————————————————*/
-- (void)showSourceController:(BOOL)vertical
-{
-	if (!vertical)
-	{
-		if (!self.sourceControllerHorizontal)
-		{
-			self.sourceControllerHorizontal = [[TidyDocumentSourceViewController alloc] initVertical:NO];
-			self.sourceControllerHorizontal.representedObject = self.document;
-		}
-
-		self.sourceController = self.sourceControllerHorizontal;
-	}
-	else
-	{
-		if (!self.sourceControllerVertical)
-		{
-			self.sourceControllerVertical = [[TidyDocumentSourceViewController alloc] initVertical:YES];
-			self.sourceControllerVertical.representedObject = self.document;
-		}
-
-		self.sourceController = self.sourceControllerVertical;
-	}
-
-	[self.sourcePane setSubviews:[NSArray array]];
-	[self.sourcePane addSubview:self.sourceController.view];
-
-	[self.sourceController setupViewAppearance];
-}
-
-
-#pragma mark - Other Details
-
-
-/*———————————————————————————————————————————————————————————————————*
-	validateUserInterfaceItem:
-		Validates whether a user interface item should or should not
-		be enabled. We're using it to ensure that the first run
-		helper menu item isn't enabled if the first run helper is
-		already displayed.
- *———————————————————————————————————————————————————————————————————*/
-- (BOOL)validateUserInterfaceItem:(id <NSValidatedUserInterfaceItem>)anItem
-{
-    SEL theAction = [anItem action];
-
-    if (theAction == @selector(kickOffFirstRunSequence:))
-	{
-		return !(BOOL)[self.firstRunHelper valueForKeyPath:@"popoverFirstRun.shown"];
-    }
-
-    return NO;
-}
+#pragma mark - Private Methods
 
 
 @end

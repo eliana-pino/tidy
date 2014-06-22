@@ -117,7 +117,7 @@
 	[defaultValues setObject:@YES forKey:JSDKeyShowNewDocumentLineNumbers];
 	[defaultValues setObject:@YES forKey:JSDKeyShowNewDocumentMessages];
 	[defaultValues setObject:@YES forKey:JSDKeyShowNewDocumentTidyOptions];
-	[defaultValues setObject:@YES forKey:JSDKeyShowNewDocumentSideBySide];
+	[defaultValues setObject:@NO  forKey:JSDKeyShowNewDocumentSideBySide];
 	[defaultValues setObject:@YES forKey:JSDKeyShowNewDocumentSyncInOut];
 
 	/* File Saving Options */

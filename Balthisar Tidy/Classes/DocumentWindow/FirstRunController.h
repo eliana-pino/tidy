@@ -36,9 +36,11 @@
 @interface FirstRunController : NSObject
 
 
-@property NSArray *steps;                 // Steps array, as described above.
+@property NSArray *steps;                      // Steps array, as described above.
 
-@property NSString *preferencesKeyName;   // Preferences key to record whether or not helper finished.
+@property NSString *preferencesKeyName;        // Preferences key to record whether or not helper finished.
+
+@property (readonly, assign) BOOL isVisible;   // Indicates whether or not the helper is currently shown.
 
 
 - (instancetype)initWithSteps:(NSArray*)steps;   // Inital with a steps array directly.

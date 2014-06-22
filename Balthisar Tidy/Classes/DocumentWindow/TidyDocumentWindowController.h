@@ -37,7 +37,14 @@
 @class JSDTableViewController;
 
 
-@interface TidyDocumentWindowController : NSWindowController <NSTableViewDelegate, NSSplitViewDelegate, NSTextViewDelegate>
+@interface TidyDocumentWindowController : NSWindowController <NSSplitViewDelegate, NSTextViewDelegate>
+
+
+/* Split Views */
+
+@property (weak) IBOutlet NSSplitView *splitterOptions;
+
+@property (weak) IBOutlet NSSplitView *splitterMessages;
 
 
 /* Option Controller */
@@ -75,6 +82,34 @@
 /* React after saving a file */
 
 - (void)documentDidWriteFile;
+
+
+/* Properties that we will bind to for window control */
+
+@property BOOL optionsPanelIsVisible;
+
+@property BOOL messagesPanelIsVisible;
+
+@property BOOL sourcePanelIsVertical;
+
+
+/* Actions to support properties from Menus */
+- (IBAction)toggleOptionsPanelIsVisible:(id)sender;
+- (IBAction)toggleMessagesPanelIsVisible:(id)sender;
+- (IBAction)toggleSourcePanelIsVertical:(id)sender;
+
+
+
+
+/* Toolbar Actions */
+
+- (IBAction)handleWebPreview:(id)sender;
+
+- (IBAction)handleShowDiffView:(id)sender;
+
+- (IBAction)togleSyncronizedDiffs:(id)sender;
+
+- (IBAction)toggleSynchronizedScrolling:(id)sender;
 
 
 @end

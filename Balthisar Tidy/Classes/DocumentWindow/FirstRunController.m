@@ -58,6 +58,7 @@
 
 @implementation FirstRunController
 
+@synthesize isVisible = _isVisible;
 
 #pragma mark - Initialization and Deallocation
 
@@ -114,6 +115,10 @@
 		self.currentStep = 0;
 		
 		[self showPopoverHavingTag:0];
+
+		[self willChangeValueForKey:@"isVisible"];
+		_isVisible = YES;
+		[self didChangeValueForKey:@"isVisible"];
 	}
 
 }
@@ -206,7 +211,12 @@
 - (IBAction)handleButtonCancel:(NSButton *)sender
 {
 	[[NSUserDefaults standardUserDefaults] setObject:@(!self.checkboxShowAgain.state) forKey:self.preferencesKeyName];
+
 	[self.popoverFirstRun performClose:self];
+
+	[self willChangeValueForKey:@"isVisible"];
+	_isVisible = NO;
+	[self didChangeValueForKey:@"isVisible"];
 }
 
 
@@ -235,6 +245,19 @@
 - (IBAction)handleCheckboxShowAgain:(NSButton *)sender
 {
 	self.userHasTouchedCheckbox = YES;
+}
+
+
+#pragma mark - Property Accessors
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	isVisible
+		Indicates whether or not the popup is currently displayed.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (BOOL)isVisible
+{
+	return _isVisible;
 }
 
 

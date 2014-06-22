@@ -35,7 +35,9 @@
 
 @property (assign) IBOutlet NSTextView *tidyTextView;
 
-@property (readonly, assign) BOOL viewsAreVertical;
+@property (weak) IBOutlet NSSplitView *splitterViews;
+
+@property (readonly, assign) BOOL isVertical;
 
 @property (assign) BOOL viewsAreSynced;
 
@@ -45,5 +47,7 @@
 - (instancetype)initVertical:(BOOL)initVertical;
 
 - (void)setupViewAppearance;
+
+- (void)highlightSourceTextUsingArrayController:(NSArrayController*)arrayController;
 
 @end

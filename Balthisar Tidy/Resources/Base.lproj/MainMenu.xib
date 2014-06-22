@@ -221,54 +221,23 @@
                             <menuItem isSeparatorItem="YES" id="vmf-gL-Wnp">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Show Tidy Options" id="DDY-2T-58z">
+                            <menuItem title="Tidy Options" id="DDY-2T-58z">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="toggleToolbarShown:" target="-1" id="AoB-DD-iOq"/>
+                                    <action selector="toggleOptionsPanelIsVisible:" target="-1" id="NUf-ap-ZIp"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Show Messages" id="jm7-pi-wMh">
+                            <menuItem title="Tidy Messages" id="jm7-pi-wMh">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="toggleToolbarShown:" target="-1" id="SCx-NY-Bra"/>
+                                    <action selector="toggleMessagesPanelIsVisible:" target="-1" id="zOr-TW-4de"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Layout Source Code Horizontally" id="ryP-vf-ZZn">
+                            <menuItem title="Vertical Source Code" id="ryP-vf-ZZn">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="toggleToolbarShown:" target="-1" id="75T-uE-c4G"/>
+                                    <action selector="toggleSourcePanelIsVertical:" target="-1" id="Ary-kb-vyM"/>
                                 </connections>
-                            </menuItem>
-                            <menuItem title="Quick Layouts" id="6z1-4t-vdA">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Quick Layouts" id="DbC-KT-OS7">
-                                    <items>
-                                        <menuItem image="Layout01Template" id="grf-Dl-KOz">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                        <menuItem image="Layout02Template" id="Re1-qQ-aoq">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                        <menuItem image="Layout03Template" id="FOV-PJ-FF8">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                        <menuItem image="Layout04Template" id="dXi-rk-YrU">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                        <menuItem image="Layout05Template" id="yqB-Lu-XaG">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                        <menuItem image="Layout06Template" id="Y0v-Ds-5tr">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                        <menuItem image="Layout07Template" id="2Ck-cQ-oi6">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                        <menuItem image="Layout08Template" id="DFI-kb-WXg">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                    </items>
-                                </menu>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="Tzh-yj-wyS">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
@@ -315,7 +284,7 @@
                                     <action selector="showHelp:" target="-1" id="122"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Show the New User Helper…" id="jyw-56-ssy">
+                            <menuItem title="Show the Quick Tutorial…" id="jyw-56-ssy">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="kickOffFirstRunSequence:" target="-1" id="7Bd-x5-Ogh"/>
@@ -331,16 +300,5 @@
                 <outlet property="menuCheckForUpdates" destination="5yb-1q-fgS" id="1Lz-mD-U0u"/>
             </connections>
         </customObject>
-        <userDefaultsController representsSharedInstance="YES" id="4tQ-eN-yZa"/>
     </objects>
-    <resources>
-        <image name="Layout01Template" width="21" height="21"/>
-        <image name="Layout02Template" width="21" height="21"/>
-        <image name="Layout03Template" width="21" height="21"/>
-        <image name="Layout04Template" width="21" height="21"/>
-        <image name="Layout05Template" width="21" height="21"/>
-        <image name="Layout06Template" width="21" height="21"/>
-        <image name="Layout07Template" width="21" height="21"/>
-        <image name="Layout08Template" width="21" height="21"/>
-    </resources>
 </document>

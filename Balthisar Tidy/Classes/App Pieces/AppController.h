@@ -30,7 +30,7 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface AppController : NSObject <NSApplicationDelegate>
+@interface AppController : NSDocument <NSApplicationDelegate>
 
 
 - (IBAction)showPreferences:(id)sender;               // User wants to see Preferences window.

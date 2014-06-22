@@ -49,7 +49,7 @@
 
 	if ((self = [super initWithNibName:nibName bundle:nil]))
 	{
-		_viewsAreVertical = initVertical;
+		_isVertical = initVertical;
 		_viewsAreSynced = NO;
 		_viewsAreDiffed = NO;
 	}
@@ -91,11 +91,11 @@
 					   options:(NSKeyValueObservingOptionNew)
 					   context:NULL];
 
-	/* KVO on the document's tidyText */
-	[localDocument addObserver:self
-					forKeyPath:@"tidyProcess.tidyText"
-					   options:(NSKeyValueObservingOptionNew)
-					   context:NULL];
+//	NSScrollView *localScrollView = (NSScrollView*)self.sourceTextView.superview.superview;
+//	[localScrollView setAutohidesScrollers:YES];
+//
+//	localScrollView = (NSScrollView*)self.tidyTextView.superview.superview;
+//	[localScrollView setAutohidesScrollers:YES];
 }
 
 
@@ -191,14 +191,6 @@
 			self.sourceTextView.string = ((TidyDocument*)self.representedObject).tidyProcess.sourceText;
 		}
 	}
-
-	/* 
-		The processor's `tidyText` changed, so update `tidyTextView`.
-	 */
-	if ((object == localDocument) && ([keyPath isEqualToString:@"tidyProcess.tidyText"]))
-	{
-		self.tidyTextView.string = ((TidyDocument*)self.representedObject).tidyProcess.tidyText;
-	}
 }
 
 
@@ -217,6 +209,36 @@
 	[self configureViewSettings:self.sourceTextView];
 	[self configureViewSettings:self.tidyTextView];
 }
+
+
+/*———————————————————————————————————————————————————————————————————*
+	highlightSourceTextUsingArrayController
+		Perform error highlighting on the source text using
+		appropriate values from arrayController.
+ *———————————————————————————————————————————————————————————————————*/
+- (void)highlightSourceTextUsingArrayController:(NSArrayController*)arrayController
+{
+	self.sourceTextView.showsHighlight = NO;
+
+	NSArray *localObjects = arrayController.arrangedObjects;
+
+	NSInteger errorViewRow = arrayController.selectionIndex;
+
+	if ((errorViewRow >= 0) && (errorViewRow < [localObjects count]))
+	{
+		NSInteger row = [localObjects[errorViewRow][@"line"] intValue];
+
+		NSInteger col = [localObjects[errorViewRow][@"column"] intValue];
+
+		if (row > 0)
+		{
+			[self.sourceTextView highlightLine:row Column:col];
+		}
+	}
+}
+
+
+#pragma mark - Private Methods
 
 
 /*———————————————————————————————————————————————————————————————————*
@@ -239,6 +261,5 @@
 	[aView setWordwrapsText:NO];
 }
 
+
 @end
-
-
