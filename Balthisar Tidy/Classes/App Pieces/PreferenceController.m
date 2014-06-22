@@ -1,16 +1,12 @@
 /**************************************************************************************************
 
-	PreferenceController.m
+	PreferenceController
 
 	The main preference controller. Here we'll control the following:
 
 	- Handles the application preferences.
 	- Implements class methods to be used before instantiation.
 
-	This controller parses `optionsInEffect.txt` in the application bundle, and compares
-	the options listed there with the linked-in TidyLib to determine which options are
-	in effect and valid. We use an instance of `JSDTidyModel` to deal with this.
- 
 
 	The MIT License (MIT)
 
@@ -149,7 +145,123 @@
 	#else
 		[[NSUserDefaults standardUserDefaults] setObject:@YES forKey:@"proExportsTidyCfg"];
 	#endif
+}
 
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	optionsInEffect (class)
+		Because JSDTidyModel pretty successfully integrates with the
+		native TidyLib without having to hardcode everything, it
+		will use *all* tidy options if we let it. We don't want
+		to use every tidy option, though, so here we will provide
+		an array of tidy options that we will support.
+ 
+		Note that this replaces the old `optionsInEffect.txt` file
+		that was previously used for this purpose.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
++ (NSArray*)optionsInEffect
+{
+	/*
+		Note that EVERY tidy option available (as of the current
+		linked in version) is listed below; we're excluding the
+		ones we don't want simply by commenting them out.
+	 */
+
+	return @[
+			 @"add-xml-decl",
+			 @"add-xml-space",
+			 @"accessibility-check",
+			 @"alt-text",
+			 @"anchor-as-name",
+			 @"ascii-chars",
+			 @"assume-xml-procins",
+			 @"bare",
+			 @"break-before-br",
+			 //@"char-encoding",                // Balthisar Tidy handles this directly
+			 @"clean",
+			 @"coerce-endtags",
+			 @"css-prefix",
+			 @"decorate-inferred-ul",
+			 @"doctype",
+			 //@"doctype-mode",                 // Read-only; should use `doctype`.
+			 @"drop-empty-elements",
+			 @"drop-empty-paras",
+			 @"drop-font-tags",
+			 @"drop-proprietary-attributes",
+			 @"enclose-block-text",
+			 @"enclose-text",
+			 //@"error-file",                   // Balthisar Tidy handles this directly.
+			 @"escape-cdata",
+			 @"fix-backslash",
+			 @"fix-bad-comments",
+			 @"fix-uri",
+			 @"force-output",
+			 @"gdoc",
+			 //@"gnu-emacs".                    // Balthisar Tidy handles this directly.
+			 //@"gnu-emacs-file",               // Balthisar Tidy handles this directly.
+			 @"hide-comments",
+			 //@"hide-endtags",                 // Is a dupe of `omit-optional-tags`
+			 @"indent",
+			 @"indent-attributes",
+			 @"indent-cdata",
+			 @"indent-spaces",
+			 @"input-encoding",
+			 @"input-xml",
+			 @"join-classes",
+			 @"join-styles",
+			 //@"keep-time",                    // Balthisar Tidy handles this directly.
+			 //@"language",                     // Not currently used; Mac OS X supports localization natively.
+			 @"literal-attributes",
+			 @"logical-emphasis",
+			 @"lower-literals",
+			 @"markup",
+			 @"merge-divs",
+			 @"merge-emphasis",
+			 @"merge-spans",
+			 @"ncr",
+			 @"new-blocklevel-tags",
+			 @"new-empty-tags",
+			 @"new-inline-tags",
+			 @"new-pre-tags",
+			 @"newline",
+			 @"numeric-entities",
+			 @"omit-optional-tags",
+			 //@"output-bom",                   // Balthisar Tidy handles this directly.
+			 @"output-encoding",
+			 //@"output-file",                  // Balthisar Tidy handles this directly.
+			 @"output-html",
+			 @"output-xhtml",
+			 @"output-xml",
+			 @"preserve-entities",
+			 @"punctuation-wrap",
+			 //@"quiet",                        // Balthisar Tidy handles this directly.
+			 @"quote-ampersand",
+			 @"quote-marks",
+			 @"quote-nbsp",
+			 @"repeated-attributes",
+			 @"replace-color",
+			 @"show-body-only",
+			 //@"show-error",                   // Balthisar Tidy handles this directly.
+			 //@"show-info",                    // Balthisar Tidy handles this directly.
+			 //@"show-warnings",                // Balthisar Tidy handles this directly.
+			 //@"slide-style",                  // marked as `obsolete` in TidyLib source code.
+			 @"sort-attributes",
+			 //@"split",                        // marked as `obsolete` in TidyLib source code.
+			 @"tab-size",
+			 @"uppercase-attributes",
+			 @"uppercase-tags",
+			 @"vertical-space",
+			 @"word-2000",
+			 @"wrap",
+			 @"wrap-asp",
+			 @"wrap-attributes",
+			 @"wrap-jste",
+			 @"wrap-php",
+			 @"wrap-script-literals",
+			 @"wrap-sections",
+			 @"tidy-mark",
+			 //@"write-back",                   // Balthisar Tidy handles this directly.
+			 ];
 }
 
 
@@ -163,19 +275,7 @@
 {
 	if (self = [super initWithWindowNibName:@"Preferences"])
 	{
-		[self setWindowFrameAutosaveName:@"PrefWindow"];
-
-		/*
-			We might not load the NIB right away, because this class
-			is also acting as our singleton host for preferences, etc.
-			Let's create the optionController and set optionsInEffect
-			now instead of later.
-		 */
-		self.optionController = [[OptionPaneController alloc] init];
-
-		self.optionController.isInPreferencesView = YES;
-
-		self.optionsInEffect = [JSDTidyModel loadOptionsInUseListFromResource:@"optionsInEffect" ofType:@"txt"];
+		// Nothing to see here!
 	}
 
 	return self;
@@ -201,10 +301,16 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)awakeFromNib
 {
+
+	/* Create and setup the option controller. */
+
+	self.optionController = [[OptionPaneController alloc] init];
+
+	self.optionController.isInPreferencesView = YES;
+
 	[self.optionPane addSubview:self.optionController.view];
 
-	// We need this here, too, to tickle the table view into renewing its bindings
-	self.optionsInEffect = [JSDTidyModel loadOptionsInUseListFromResource:@"optionsInEffect" ofType:@"txt"];
+	self.optionController.optionsInEffect = [[self class] optionsInEffect];
 
 	
 	/* Setup Sparkle versus No-Sparkle versions */
@@ -247,24 +353,6 @@
 
 
 #pragma mark - Property Accessors
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	optionsInEffect
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (NSArray*)optionsInEffect
-{
-	return self.optionController.optionsInEffect;
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	setOptionsInEffect
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)setOptionsInEffect:(NSArray *)optionsInEffect
-{
-	self.optionController.optionsInEffect = optionsInEffect;
-}
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*

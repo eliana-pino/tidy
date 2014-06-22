@@ -1,16 +1,12 @@
 /**************************************************************************************************
 
-	PreferenceController.h
+	PreferenceController
  
 	The main preference controller. Here we'll control the following:
 
 	- Handles the application preferences.
 	- Implements class methods to be used before instantiation.
 
-	This controller parses `optionsInEffect.txt` in the application bundle, and compares
-	the options listed there with the linked-in TidyLib to determine which options are
-	in effect and valid. We use an instance of `JSDTidyModel` to deal with this.
- 
 
 	The MIT License (MIT)
 
@@ -45,8 +41,6 @@
 #pragma mark - Properties
 
 
-@property                    NSArray   *optionsInEffect;              // TidyOptions this app will use.
-
 @property (readonly, assign) NSInteger countOfTabViews;               // Mostly offered for exposure to AppleScript.
 
 @property (assign)           NSInteger indexOfCurrentTabView;         // Mostly offered for exposure to AppleScript.
@@ -58,6 +52,8 @@
 + (id)sharedPreferences;        // Singleton accessor for this class.
 
 + (void)registerUserDefaults;   // Registers Balthisar Tidy's defaults with Mac OS X' defaults system.
+
++ (NSArray*)optionsInEffect;    // An array of the tidy options that Balthisar Tidy supports.
 
 
 @end

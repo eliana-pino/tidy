@@ -127,7 +127,7 @@
 
 	self.optionsPanelIsVisible = [[[NSUserDefaults standardUserDefaults] objectForKey:JSDKeyShowNewDocumentTidyOptions] boolValue];
 
-	self.optionController.optionsInEffect = [[PreferenceController sharedPreferences] optionsInEffect];
+	self.optionController.optionsInEffect = [PreferenceController optionsInEffect];
 
 	/*
 		Make the optionController take the default values. This actually

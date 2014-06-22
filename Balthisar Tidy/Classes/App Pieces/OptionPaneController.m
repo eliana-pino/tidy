@@ -7,10 +7,6 @@
 	- document windows
 	- the preferences window
 
-	This controller parses `optionsInEffect.txt` in the application bundle, and compares
-	the options listed there with the linked-in TidyLib to determine which options are
-	in effect and valid. We use an instance of `JSDTidyModel` to deal with this.
-
 
 	The MIT License (MIT)
 
