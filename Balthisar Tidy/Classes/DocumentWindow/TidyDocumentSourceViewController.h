@@ -35,7 +35,12 @@
 
 @property (assign) IBOutlet NSTextView *tidyTextView;
 
-@property (weak) IBOutlet NSSplitView *splitterViews;
+@property (assign) IBOutlet NSSplitView *splitterViews;
+
+@property (assign) IBOutlet NSTextField *sourceLabel;
+
+@property (assign) IBOutlet NSTextField *tidyLabel;
+
 
 @property (readonly, assign) BOOL isVertical;
 

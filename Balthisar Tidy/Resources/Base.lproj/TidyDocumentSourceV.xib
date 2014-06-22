@@ -7,8 +7,10 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="TidyDocumentSourceViewController">
             <connections>
+                <outlet property="sourceLabel" destination="PDw-Ba-aQD" id="Kqf-7b-cBY"/>
                 <outlet property="sourceTextView" destination="KRB-GZ-N30" id="ceu-hO-LjX"/>
                 <outlet property="splitterViews" destination="Y6t-Ex-3lq" id="JTf-je-YEW"/>
+                <outlet property="tidyLabel" destination="aE3-Zp-GCM" id="MYn-wB-6di"/>
                 <outlet property="tidyTextView" destination="lie-7P-2t7" id="ZsX-ga-pEa"/>
                 <outlet property="view" destination="c22-O7-iKe" id="Rei-Yi-Jng"/>
             </connections>

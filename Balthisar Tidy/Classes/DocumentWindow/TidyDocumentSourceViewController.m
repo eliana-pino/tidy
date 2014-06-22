@@ -249,7 +249,6 @@
 {
 	NSUserDefaults *localDefaults = [NSUserDefaults standardUserDefaults];
 
-
 	[aView setFont:[NSFont fontWithName:@"Menlo" size:[NSFont systemFontSize]]];
 	[aView setAutomaticQuoteSubstitutionEnabled:NO]; // IB setting doesn't work for this.
 	[aView setAutomaticTextReplacementEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];

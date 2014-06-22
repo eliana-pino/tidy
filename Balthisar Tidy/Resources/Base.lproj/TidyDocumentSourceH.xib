@@ -7,8 +7,10 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="TidyDocumentSourceViewController">
             <connections>
+                <outlet property="sourceLabel" destination="hWO-8u-OvI" id="1gj-de-RWi"/>
                 <outlet property="sourceTextView" destination="Jrd-iH-M6b" id="2nf-08-Eoq"/>
                 <outlet property="splitterViews" destination="Y6t-Ex-3lq" id="Moy-fX-AFZ"/>
+                <outlet property="tidyLabel" destination="m1I-Ed-GpO" id="rGT-mT-lKJ"/>
                 <outlet property="tidyTextView" destination="yNc-ln-wRj" id="2eJ-qI-hla"/>
                 <outlet property="view" destination="c22-O7-iKe" id="7VH-KP-Oxs"/>
             </connections>
@@ -47,10 +49,10 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="2" height="118"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <size key="minSize" width="2" height="118"/>
+                                                <size key="minSize" width="416" height="118"/>
                                                 <size key="maxSize" width="530" height="10000000"/>
                                                 <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                <size key="minSize" width="2" height="118"/>
+                                                <size key="minSize" width="416" height="118"/>
                                                 <size key="maxSize" width="530" height="10000000"/>
                                                 <accessibility description="This area contains the original text that you want to Tidy."/>
                                                 <connections>
