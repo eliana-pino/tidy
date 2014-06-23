@@ -30,6 +30,9 @@
 		D01AACB8193DE56000C4E5B2 /* HideDescriptionTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE16190C9FAC00B49779 /* HideDescriptionTemplate.pdf */; };
 		D01AACB9193DE56000C4E5B2 /* ShowDescriptionTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE17190C9FAC00B49779 /* ShowDescriptionTemplate.pdf */; };
 		D01AACBA193DE58200C4E5B2 /* PaneBottomShadow.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE1F190CB34500B49779 /* PaneBottomShadow.tiff */; };
+		D025BD5E195856B6006D7356 /* Acknowledgments.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D025BD5C195856B6006D7356 /* Acknowledgments.rtf */; };
+		D025BD5F195856C0006D7356 /* Acknowledgments.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D025BD5C195856B6006D7356 /* Acknowledgments.rtf */; };
+		D025BD60195856C1006D7356 /* Acknowledgments.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D025BD5C195856B6006D7356 /* Acknowledgments.rtf */; };
 		D036E1E818F3D25E0009A9D4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D036E1D818F3D25E0009A9D4 /* Credits.rtf */; };
 		D036E1E918F3D25E0009A9D4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D036E1D818F3D25E0009A9D4 /* Credits.rtf */; };
 		D036E1EA18F3D25E0009A9D4 /* FirstRunHelper.xib in Resources */ = {isa = PBXBuildFile; fileRef = D036E1DA18F3D25E0009A9D4 /* FirstRunHelper.xib */; };
@@ -101,6 +104,21 @@
 		D086893C1948439700BDAD72 /* TidyDocumentSourceV.xib in Resources */ = {isa = PBXBuildFile; fileRef = D08689351948439700BDAD72 /* TidyDocumentSourceV.xib */; };
 		D0913CAF18B0AC06005DB2E4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D016A935182FD80700712C60 /* main.m */; };
 		D0913CC918B0AC06005DB2E4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D016A929182FD80700712C60 /* Cocoa.framework */; };
+		D0B9F0F119585010008864D6 /* DCOAboutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0B9F0EE19585010008864D6 /* DCOAboutWindow.xib */; };
+		D0B9F0F219585010008864D6 /* DCOAboutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0B9F0EE19585010008864D6 /* DCOAboutWindow.xib */; };
+		D0B9F0F319585010008864D6 /* DCOAboutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0B9F0EE19585010008864D6 /* DCOAboutWindow.xib */; };
+		D0B9F0F419585010008864D6 /* DCOAboutWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B9F0F019585010008864D6 /* DCOAboutWindowController.m */; };
+		D0B9F0F519585010008864D6 /* DCOAboutWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B9F0F019585010008864D6 /* DCOAboutWindowController.m */; };
+		D0B9F0F619585010008864D6 /* DCOAboutWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B9F0F019585010008864D6 /* DCOAboutWindowController.m */; };
+		D0B9F0FC19585060008864D6 /* DCOTransparentScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B9F0F919585060008864D6 /* DCOTransparentScroller.m */; };
+		D0B9F0FD19585060008864D6 /* DCOTransparentScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B9F0F919585060008864D6 /* DCOTransparentScroller.m */; };
+		D0B9F0FE19585060008864D6 /* DCOTransparentScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B9F0F919585060008864D6 /* DCOTransparentScroller.m */; };
+		D0B9F0FF19585060008864D6 /* DCOTransparentScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B9F0FB19585060008864D6 /* DCOTransparentScrollView.m */; };
+		D0B9F10019585060008864D6 /* DCOTransparentScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B9F0FB19585060008864D6 /* DCOTransparentScrollView.m */; };
+		D0B9F10119585060008864D6 /* DCOTransparentScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B9F0FB19585060008864D6 /* DCOTransparentScrollView.m */; };
+		D0B9F10419585474008864D6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B9F10319585474008864D6 /* QuartzCore.framework */; };
+		D0B9F1051958547A008864D6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B9F10319585474008864D6 /* QuartzCore.framework */; };
+		D0B9F1061958547B008864D6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B9F10319585474008864D6 /* QuartzCore.framework */; };
 		D0BB67AC193AB382007A3EB0 /* NoodleLineNumberMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = D0BB67A9193AB382007A3EB0 /* NoodleLineNumberMarker.m */; };
 		D0BB67AD193AB382007A3EB0 /* NoodleLineNumberMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = D0BB67A9193AB382007A3EB0 /* NoodleLineNumberMarker.m */; };
 		D0BB67AE193AB382007A3EB0 /* NoodleLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0BB67AB193AB382007A3EB0 /* NoodleLineNumberView.m */; };
@@ -290,6 +308,7 @@
 		D016A935182FD80700712C60 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Balthisar Tidy/main.m"; sourceTree = "<group>"; };
 		D016A937182FD80700712C60 /* Balthisar Tidy-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Balthisar Tidy-Prefix.pch"; path = "Balthisar Tidy/Balthisar Tidy-Prefix.pch"; sourceTree = "<group>"; };
 		D016A94B182FD80700712C60 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		D025BD5D195856B6006D7356 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Base; path = Base.lproj/Acknowledgments.rtf; sourceTree = "<group>"; };
 		D026169E1836F48A002ABD72 /* Balthisar Tidy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = "Balthisar Tidy.entitlements"; path = "Balthisar Tidy/Balthisar Tidy.entitlements"; sourceTree = "<group>"; };
 		D036E1D918F3D25E0009A9D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Base; path = Base.lproj/Credits.rtf; sourceTree = "<group>"; };
 		D036E1DB18F3D25E0009A9D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/FirstRunHelper.xib; sourceTree = "<group>"; };
@@ -335,6 +354,14 @@
 		D08689361948439700BDAD72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TidyDocumentSourceV.xib; sourceTree = "<group>"; };
 		D0913CDE18B0AC06005DB2E4 /* Balthisar Tidy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Balthisar Tidy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D091D067191A514700317409 /* InfoPlist-preprocessor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "InfoPlist-preprocessor.h"; path = "Balthisar Tidy/InfoPlist-preprocessor.h"; sourceTree = "<group>"; };
+		D0B9F0EE19585010008864D6 /* DCOAboutWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DCOAboutWindow.xib; path = DCOAboutWindow/DCOAboutWindow/DCOAboutWindow.xib; sourceTree = "<group>"; };
+		D0B9F0EF19585010008864D6 /* DCOAboutWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCOAboutWindowController.h; path = DCOAboutWindow/DCOAboutWindow/DCOAboutWindowController.h; sourceTree = "<group>"; };
+		D0B9F0F019585010008864D6 /* DCOAboutWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCOAboutWindowController.m; path = DCOAboutWindow/DCOAboutWindow/DCOAboutWindowController.m; sourceTree = "<group>"; };
+		D0B9F0F819585060008864D6 /* DCOTransparentScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCOTransparentScroller.h; path = DCOTransparentScroller/DCOTransparentScroller/DCOTransparentScroller.h; sourceTree = "<group>"; };
+		D0B9F0F919585060008864D6 /* DCOTransparentScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCOTransparentScroller.m; path = DCOTransparentScroller/DCOTransparentScroller/DCOTransparentScroller.m; sourceTree = "<group>"; };
+		D0B9F0FA19585060008864D6 /* DCOTransparentScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCOTransparentScrollView.h; path = DCOTransparentScroller/DCOTransparentScroller/DCOTransparentScrollView.h; sourceTree = "<group>"; };
+		D0B9F0FB19585060008864D6 /* DCOTransparentScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCOTransparentScrollView.m; path = DCOTransparentScroller/DCOTransparentScroller/DCOTransparentScrollView.m; sourceTree = "<group>"; };
+		D0B9F10319585474008864D6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D0BB67A8193AB382007A3EB0 /* NoodleLineNumberMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoodleLineNumberMarker.h; sourceTree = "<group>"; };
 		D0BB67A9193AB382007A3EB0 /* NoodleLineNumberMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoodleLineNumberMarker.m; sourceTree = "<group>"; };
 		D0BB67AA193AB382007A3EB0 /* NoodleLineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoodleLineNumberView.h; sourceTree = "<group>"; };
@@ -436,6 +463,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0B9F10419585474008864D6 /* QuartzCore.framework in Frameworks */,
 				D016A92A182FD80700712C60 /* Cocoa.framework in Frameworks */,
 				D06626CF18B09B330091CBD8 /* Sparkle.framework in Frameworks */,
 			);
@@ -445,6 +473,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0B9F1051958547A008864D6 /* QuartzCore.framework in Frameworks */,
 				D0913CC918B0AC06005DB2E4 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -453,6 +482,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0B9F1061958547B008864D6 /* QuartzCore.framework in Frameworks */,
 				D0BB67E6193C820A007A3EB0 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -487,6 +517,7 @@
 		D016A928182FD80700712C60 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D0B9F10319585474008864D6 /* QuartzCore.framework */,
 				D06626CE18B09B330091CBD8 /* Sparkle.framework */,
 				D016A929182FD80700712C60 /* Cocoa.framework */,
 				D016A94B182FD80700712C60 /* XCTest.framework */,
@@ -573,6 +604,7 @@
 				D08689331948439700BDAD72 /* TidyDocumentSourceH.xib */,
 				D08689351948439700BDAD72 /* TidyDocumentSourceV.xib */,
 				D074B7891942BEE200F2E6F1 /* TidyEncodingHelper.xib */,
+				D025BD5C195856B6006D7356 /* Acknowledgments.rtf */,
 				D036E1D818F3D25E0009A9D4 /* Credits.rtf */,
 				D036E1DC18F3D25E0009A9D4 /* InfoPlist.strings */,
 				D036E1DE18F3D25E0009A9D4 /* Localizable.strings */,
@@ -592,6 +624,27 @@
 				D07AF49A183658F100913067 /* Base.lproj */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		D0B9F0F719585018008864D6 /* DCOAboutWindow */ = {
+			isa = PBXGroup;
+			children = (
+				D0B9F0EE19585010008864D6 /* DCOAboutWindow.xib */,
+				D0B9F0EF19585010008864D6 /* DCOAboutWindowController.h */,
+				D0B9F0F019585010008864D6 /* DCOAboutWindowController.m */,
+			);
+			name = DCOAboutWindow;
+			sourceTree = "<group>";
+		};
+		D0B9F1021958506B008864D6 /* DCOTransparentScroller */ = {
+			isa = PBXGroup;
+			children = (
+				D0B9F0F819585060008864D6 /* DCOTransparentScroller.h */,
+				D0B9F0F919585060008864D6 /* DCOTransparentScroller.m */,
+				D0B9F0FA19585060008864D6 /* DCOTransparentScrollView.h */,
+				D0B9F0FB19585060008864D6 /* DCOTransparentScrollView.m */,
+			);
+			name = DCOTransparentScroller;
 			sourceTree = "<group>";
 		};
 		D0BB67A7193AB382007A3EB0 /* NoodleKit */ = {
@@ -686,6 +739,8 @@
 		D0D9EAD818E6680F008A55D5 /* vendor */ = {
 			isa = PBXGroup;
 			children = (
+				D0B9F0F719585018008864D6 /* DCOAboutWindow */,
+				D0B9F1021958506B008864D6 /* DCOTransparentScroller */,
 				D0BB67A7193AB382007A3EB0 /* NoodleKit */,
 				D0D9EAD918E6680F008A55D5 /* tidylib */,
 			);
@@ -909,11 +964,13 @@
 				D0E6AE24190CDAA200B49779 /* JSDTidyModel.strings in Resources */,
 				D036E1EE18F3D25E0009A9D4 /* Localizable.strings in Resources */,
 				D0E6AE20190CB34500B49779 /* PaneBottomShadow.tiff in Resources */,
+				D025BD5E195856B6006D7356 /* Acknowledgments.rtf in Resources */,
 				D036E1EA18F3D25E0009A9D4 /* FirstRunHelper.xib in Resources */,
 				D036E1F018F3D25E0009A9D4 /* MainMenu.xib in Resources */,
 				D036E1F418F3D25E0009A9D4 /* Preferences.xib in Resources */,
 				D036E1F218F3D25E0009A9D4 /* OptionPane.xib in Resources */,
 				D03B89DA1955474700E9B4D5 /* DiffViewTemplate.png in Resources */,
+				D0B9F0F119585010008864D6 /* DCOAboutWindow.xib in Resources */,
 				D036E1F618F3D25E0009A9D4 /* TidyDocumentWindow.xib in Resources */,
 				D03B89D81955457500E9B4D5 /* ScrollLockTemplate.png in Resources */,
 				D0CA8F711953280700BBD54C /* LayoutLeftPaneTemplate.png in Resources */,
@@ -925,11 +982,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0B9F0F219585010008864D6 /* DCOAboutWindow.xib in Resources */,
 				D0CCEE2A18E9967B0052E56C /* Balthisar Tidy.help in Resources */,
 				D01AACA5193DE2DA00C4E5B2 /* messagesAccess.icns in Resources */,
 				D01AAC9F193DE2DA00C4E5B2 /* messagesConfig.icns in Resources */,
 				D074B7AB1944035800F2E6F1 /* TidyDocumentMessagesView.xib in Resources */,
 				D01AACA0193DE2DA00C4E5B2 /* messagesDocument.icns in Resources */,
+				D025BD5F195856C0006D7356 /* Acknowledgments.rtf in Resources */,
 				D01AACA1193DE2DA00C4E5B2 /* messagesError.icns in Resources */,
 				D01AACA2193DE2DA00C4E5B2 /* messagesInfo.icns in Resources */,
 				D01AACA3193DE2DA00C4E5B2 /* messagesPanic.icns in Resources */,
@@ -967,10 +1026,12 @@
 			files = (
 				D01AACB0193DE53200C4E5B2 /* Balthisar Tidy.help in Resources */,
 				D01AACB7193DE54100C4E5B2 /* messagesAccess.icns in Resources */,
+				D0B9F0F319585010008864D6 /* DCOAboutWindow.xib in Resources */,
 				D01AACB1193DE54100C4E5B2 /* messagesConfig.icns in Resources */,
 				D01AACB2193DE54100C4E5B2 /* messagesDocument.icns in Resources */,
 				D01AACB3193DE54100C4E5B2 /* messagesError.icns in Resources */,
 				D01AACB4193DE54100C4E5B2 /* messagesInfo.icns in Resources */,
+				D025BD60195856C1006D7356 /* Acknowledgments.rtf in Resources */,
 				D01AACB5193DE54100C4E5B2 /* messagesPanic.icns in Resources */,
 				D01AACB6193DE54100C4E5B2 /* messagesWarning.icns in Resources */,
 				D074B78D1942BEE200F2E6F1 /* TidyEncodingHelper.xib in Resources */,
@@ -1053,6 +1114,7 @@
 			files = (
 				D074B7A11942CF0300F2E6F1 /* TidyDocument.m in Sources */,
 				D0D9ED6D18E66810008A55D5 /* parser.c in Sources */,
+				D0B9F0FC19585060008864D6 /* DCOTransparentScroller.m in Sources */,
 				D0D9ED6518E66810008A55D5 /* istack.c in Sources */,
 				D0D9ED3718E66810008A55D5 /* JSDTidyOption.m in Sources */,
 				D0BB67AC193AB382007A3EB0 /* NoodleLineNumberMarker.m in Sources */,
@@ -1081,10 +1143,12 @@
 				D0D9ED2D18E66810008A55D5 /* OptionPaneController.m in Sources */,
 				D074B7B41947D93800F2E6F1 /* JSDTableViewController.m in Sources */,
 				D0D9ED7118E66810008A55D5 /* streamio.c in Sources */,
+				D0B9F0FF19585060008864D6 /* DCOTransparentScrollView.m in Sources */,
 				D016A936182FD80700712C60 /* main.m in Sources */,
 				D0D9ED7718E66810008A55D5 /* tidylib.c in Sources */,
 				D0D9ED3F18E66810008A55D5 /* NSTextView+JSDExtensions.m in Sources */,
 				D0D9ED2B18E66810008A55D5 /* AppController.m in Sources */,
+				D0B9F0F419585010008864D6 /* DCOAboutWindowController.m in Sources */,
 				D04753B71938A19D00BB7163 /* JSDBoolToStringValueTransformer.m in Sources */,
 				D0D9ED7518E66810008A55D5 /* tags.c in Sources */,
 				D074B79E1942CF0300F2E6F1 /* FirstRunController.m in Sources */,
@@ -1109,6 +1173,7 @@
 			files = (
 				D074B7A21942CF0300F2E6F1 /* TidyDocument.m in Sources */,
 				D0D9ED6E18E66810008A55D5 /* parser.c in Sources */,
+				D0B9F0FD19585060008864D6 /* DCOTransparentScroller.m in Sources */,
 				D0D9ED6618E66810008A55D5 /* istack.c in Sources */,
 				D0D9ED3818E66810008A55D5 /* JSDTidyOption.m in Sources */,
 				D0D9ED5A18E66810008A55D5 /* clean.c in Sources */,
@@ -1137,10 +1202,12 @@
 				D0D9ED7218E66810008A55D5 /* streamio.c in Sources */,
 				D074B7B51947D93800F2E6F1 /* JSDTableViewController.m in Sources */,
 				D0913CAF18B0AC06005DB2E4 /* main.m in Sources */,
+				D0B9F10019585060008864D6 /* DCOTransparentScrollView.m in Sources */,
 				D0D9ED7818E66810008A55D5 /* tidylib.c in Sources */,
 				D0D9ED4018E66810008A55D5 /* NSTextView+JSDExtensions.m in Sources */,
 				D0D9ED2C18E66810008A55D5 /* AppController.m in Sources */,
 				D0BB67AF193AB382007A3EB0 /* NoodleLineNumberView.m in Sources */,
+				D0B9F0F519585010008864D6 /* DCOAboutWindowController.m in Sources */,
 				D04753B81938A19D00BB7163 /* JSDBoolToStringValueTransformer.m in Sources */,
 				D0D9ED7618E66810008A55D5 /* tags.c in Sources */,
 				D074B79F1942CF0300F2E6F1 /* FirstRunController.m in Sources */,
@@ -1165,6 +1232,7 @@
 			files = (
 				D074B7A31942CF0300F2E6F1 /* TidyDocument.m in Sources */,
 				D0BB67B8193C820A007A3EB0 /* parser.c in Sources */,
+				D0B9F0FE19585060008864D6 /* DCOTransparentScroller.m in Sources */,
 				D0BB67B9193C820A007A3EB0 /* istack.c in Sources */,
 				D0BB67BA193C820A007A3EB0 /* JSDTidyOption.m in Sources */,
 				D0BB67BB193C820A007A3EB0 /* clean.c in Sources */,
@@ -1193,10 +1261,12 @@
 				D0BB67D1193C820A007A3EB0 /* streamio.c in Sources */,
 				D074B7B61947D93800F2E6F1 /* JSDTableViewController.m in Sources */,
 				D0BB67D2193C820A007A3EB0 /* main.m in Sources */,
+				D0B9F10119585060008864D6 /* DCOTransparentScrollView.m in Sources */,
 				D0BB67D3193C820A007A3EB0 /* tidylib.c in Sources */,
 				D0BB67D4193C820A007A3EB0 /* NSTextView+JSDExtensions.m in Sources */,
 				D0BB67D5193C820A007A3EB0 /* AppController.m in Sources */,
 				D0BB67D6193C820A007A3EB0 /* NoodleLineNumberView.m in Sources */,
+				D0B9F0F619585010008864D6 /* DCOAboutWindowController.m in Sources */,
 				D0BB67D7193C820A007A3EB0 /* JSDBoolToStringValueTransformer.m in Sources */,
 				D0BB67D9193C820A007A3EB0 /* tags.c in Sources */,
 				D074B7A01942CF0300F2E6F1 /* FirstRunController.m in Sources */,
@@ -1218,6 +1288,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		D025BD5C195856B6006D7356 /* Acknowledgments.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D025BD5D195856B6006D7356 /* Base */,
+			);
+			name = Acknowledgments.rtf;
+			sourceTree = "<group>";
+		};
 		D036E1D818F3D25E0009A9D4 /* Credits.rtf */ = {
 			isa = PBXVariantGroup;
 			children = (

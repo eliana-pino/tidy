@@ -20,7 +20,7 @@
                             <menuItem title="About Balthisar Tidy" id="58">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="orderFrontStandardAboutPanel:" target="-2" id="142"/>
+                                    <action selector="showAboutWindow:" target="236" id="6dB-dx-BgZ"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="rDW-PQ-dRq">

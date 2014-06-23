@@ -33,6 +33,7 @@
 #import "JSDAllCapsValueTransformer.h"
 #import "JSDBoolToStringValueTransformer.h"
 #import "TidyDocument.h"
+#import "DCOAboutWindowController.h"
 
 #if INCLUDE_SPARKLE == 1
 	#import <Sparkle/Sparkle.h>
@@ -45,7 +46,9 @@
 
 @interface AppController ()
 
-@property (weak) IBOutlet NSMenuItem *menuCheckForUpdates;
+@property (weak) IBOutlet NSMenuItem *menuCheckForUpdates;               // We need to hide this for App Store builds.
+
+@property (nonatomic) DCOAboutWindowController *aboutWindowController;   // Window controller for About...
 
 @end
 
@@ -110,7 +113,39 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	Show the preferences window.
+	aboutWindowController
+		Implemented as a property in order to allow lazy-loading.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (DCOAboutWindowController *)aboutWindowController
+{
+    if (!_aboutWindowController)
+	{
+        _aboutWindowController = [[DCOAboutWindowController alloc] init];
+    }
+    return _aboutWindowController;
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	showAboutWindow:
+		Show the about window.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (IBAction)showAboutWindow:(id)sender {
+    
+    /* Configure the controller to override defaults. */
+
+    self.aboutWindowController.appWebsiteURL = [NSURL URLWithString:@"http://www.balthisar.com/software/tidy/"];
+
+	self.aboutWindowController.acknowledgmentsUseEditor = NO;
+    
+    [self.aboutWindowController showWindow:nil];
+    
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	showPreferences:
+		Show the preferences window.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (IBAction)showPreferences:(id)sender
 {

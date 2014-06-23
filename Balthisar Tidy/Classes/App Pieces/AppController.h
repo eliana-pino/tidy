@@ -33,7 +33,9 @@
 @interface AppController : NSDocument <NSApplicationDelegate>
 
 
-- (IBAction)showPreferences:(id)sender;               // User wants to see Preferences window.
+- (IBAction)showPreferences:(id)sender;   // User wants to see Preferences window.
+
+- (IBAction)showAboutWindow:(id)sender;   // User wants to see the About window.
 
 
 @end
