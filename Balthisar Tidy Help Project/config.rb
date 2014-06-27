@@ -1,41 +1,36 @@
 ###
-# Compass
+# Setup directories to mirror Help Book directory layout.
 ###
+set :source,       'Contents (source)'
+set :build_dir,    'Contents (build)'
 
-# Change Compass configuration
-# compass_config do |config|
-#   config.output_style = :compact
-# end
+set :css_dir,      'Resources/Base.lproj/css'
+set :js_dir,       'Resources/Base.lproj/javascript'
+set :images_dir,   'Resources/Base.lproj/images'
 
-# Build Configurations
-#config :development do
-#  compass_config do |config|
-#    config.sass_options = {:debug_info => true}
-#  end
-#end
-
+set :partials_dir, 'partials'
+set :layouts_dir,  'layouts'
+set :data_dir,     'Contents (source)/data'
 
 
 ###
-# Page options, layouts, aliases and proxies
+# Ignore items we don't want copied to the destination
 ###
+ignore 'data/*'
 
-# Per-page layout changes:
-#
-# With no layout
-# page "/path/to/file.html", :layout => false
-#
-# With alternative layout
-# page "/path/to/file.html", :layout => :otherlayout
-#
-# A path which all have the same layout
-# with_layout :admin do
-#   page "/admin/*"
-# end
 
-# Proxy pages (http://middlemanapp.com/basics/dynamic-pages/)
-# proxy "/this-page-has-no-template.html", "/template-file.html", :locals => {
-#  :which_fake_page => "Rendering a fake page with a local variable" }
+###
+# All of our links and assets must be relative
+# to the file location, and never absolute.
+###
+set :relative_links, true
+activate :relative_assets
+
+###
+# Everything in pages will use Apple-recommended HTML 4.01 layout.
+###
+page "Resources/Base.lproj/pages/*", :layout => :'layout-html4'
+
 
 ###
 # Helpers
@@ -43,11 +38,6 @@
 
 # Automatic image dimensions on image_tag helper
 # activate :automatic_image_sizes
-
-# Reload the browser automatically whenever files change
-# configure :development do
-#   activate :livereload
-# end
 
 # Methods defined in the helpers block are available in templates
 # helpers do
@@ -72,41 +62,35 @@ def page_classes
 end
 
 
-set :source, 'Contents (source)'
 
-set :build_dir, 'Contents (build)'
-
-set :css_dir, 'Resources/Base.lproj/css'
-
-set :js_dir, 'Resources/Base.lproj/javascript'
-
-set :images_dir, 'Resources/Base.lproj/images'
-
-set :partials_dir, 'partials'
-
-set :layouts_dir, 'layouts'
-
-set :data_dir, 'Contents (source)/data'
-
-ignore 'data/*'
-
-set :relative_links, true
+###
+# Build-specific configurations
+# - development: whenever the server is running and watching files.
+# - build: when build is executed specifically.
+###
 
 
-# Build-specific configuration
+configure :development do
+
+  # Reload the browser automatically whenever files change
+  activate :livereload, :host => "127.0.0.1"
+
+  compass_config do |config|
+    config.output_style = :expanded
+    config.sass_options = { :line_comments => true }
+  end
+
+end
+
 configure :build do
-  # For example, change the Compass output style for deployment
-  # activate :minify_css
 
-  # Minify Javascript on build
-  # activate :minify_javascript
+  # Compass
+  compass_config do |config|
+    config.output_style = :expanded
+    config.sass_options = { :line_comments => false }
+  end
 
-  # Enable cache buster
-  # activate :asset_hash
+  # Minify js
+  activate :minify_javascript
 
-  # Use relative URLs
-  # activate :relative_assets
-
-  # Or use a different image path
-  # set :http_prefix, "/Content/images/"
 end
