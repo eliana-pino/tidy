@@ -28,6 +28,10 @@ $plist_destination = "Contents (source)/Info.plist"
 $strings_template = "Contents (source)/Resources/Base.lproj/_InfoPlist.strings"
 $strings_destination ="Contents (source)/Resources/Base.lproj/InfoPlist.strings"
 
+# local directory where finished .help build should go. Make null to
+# leave in the help project directory. Must use a final path separator!
+$FinalOutputPrefix = "../Balthisar Tidy/Resources/"
+
 ###################################
 # Capture command line arguments.
 ###################################
@@ -53,12 +57,25 @@ end
 # Define Remaning Variables
 ###################################
 $CFBundleIdentifier = $CFBundleIDs[ARGV[0]]
-$FinalOutput = "#{$CFBundleName} (#{ARGV[0]}).help"
+$FinalOutput = "#{$FinalOutputPrefix}#{$CFBundleName} (#{ARGV[0]}).help"
 
 ENV['CFBundleName'] = $CFBundleName
 ENV['CFBundleIdentifier'] = $CFBundleIdentifier
+ENV['HelpBookTaget'] = ARGV[0]
 
 STDOUT.puts "\nWill use CFBundleName = #{$CFBundleName} and CFBundleIdentifier = #{$CFBundleIdentifier}."
+
+
+###################################
+# Feature Specific Env. Vars
+###################################
+ENV['feature_advertise_pro']        = (ARGV[0] == "web" || ARGV[0] == "app") ? "yes" : "no"
+ENV['feature_sparkle']              = (ARGV[0] == "web") ? "yes" : "no"
+ENV['feature_exports_config']       = (ARGV[0] == "pro") ? "yes" : "no"
+ENV['feature_supports_applescript'] = (ARGV[0] == "pro") ? "yes" : "no"
+ENV['feature_supports_service']     = (ARGV[0] == "pro") ? "yes" : "no"
+ENV['feature_supports_extensions']  = (ARGV[0] == "pro") ? "yes" : "no"
+ENV['feature_supports_SxS_diffs']   = (ARGV[0] == "pro") ? "yes" : "no"
 
 
 ###################################
@@ -114,20 +131,6 @@ File.open($strings_destination,'w') {|f| $doc.write_xml_to f}
 
 
 ###################################
-# Run hituil.
-###################################
-
-STDOUT.puts "Running the help indexer..."
-
-`command -v hituil > /dev/null`
-unless $?.success?
-    STDOUT.puts "\n     NOTE: `hituil` is not on path or not installed. A new help index will NOT be generated.\n\n"
-end
-
-# TODO HERE
-
-
-###################################
 # Run middleman.
 ###################################
 
@@ -138,6 +141,20 @@ unless $?.success?
     STDOUT.puts "\nNOTE: `middleman` did not exit cleanly. Build process will stop now."
     exit 1
 end
+
+
+###################################
+# Run hiutil.
+###################################
+
+STDOUT.puts "Running the help indexer..."
+
+`command -v hiutil > /dev/null`
+unless $?.success?
+    STDOUT.puts "\n     NOTE: `hituil` is not on path or not installed. A new help index will NOT be generated.\n\n"
+end
+
+`hiutil -Cf "Contents (build)/Resources/Base.lproj/#{$CFBundleName}.helpindex" "Contents (build)/Resources/Base.lproj"`
 
 
 ###################################

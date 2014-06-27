@@ -2,7 +2,8 @@
 
 	PreferencesDefinitions.h
  
-	Application wide keys for top-hierarchy preferences managed by this application.
+	Application wide keys for top-hierarchy preferences managed by this application., and 
+	application wide definitions for behaviors based on the build targets' preprocessor macros.
 
 
 	The MIT License (MIT)
@@ -83,6 +84,40 @@
 		preferences keys that are implemented automatically by
 		Sparkle. Nothing is defined for them.
 	 */
+
+
+#pragma mark - Feature Definitions
+
+
+#ifdef TARGET_WEB
+	#define FEATURE_ADVERTISE_PRO
+	#define FEATURE_SPARKLE
+//	#define FEATURE_EXPORTS_CONFIG
+//	#define FEATURE_SUPPORTS_APPLESCRIPT
+//	#define FEATURE_SUPPORTS_SERVICE
+//	#define FEATURE_SUPPORTS_EXTENSIONS
+//	#define FEATURE_SUPPORTS_SXS_DIFFS
+#endif
+
+#ifdef TARGET_APP
+	#define FEATURE_ADVERTISE_PRO
+//	#define FEATURE_SPARKLE
+//	#define FEATURE_EXPORTS_CONFIG
+//	#define FEATURE_SUPPORTS_APPLESCRIPT
+//	#define FEATURE_SUPPORTS_SERVICE
+//	#define FEATURE_SUPPORTS_EXTENSIONS
+//	#define FEATURE_SUPPORTS_SXS_DIFFS
+#endif
+
+#ifdef TARGET_PRO
+//	#define FEATURE_ADVERTISE_PRO
+//	#define FEATURE_SPARKLE
+	#define FEATURE_EXPORTS_CONFIG
+	#define FEATURE_SUPPORTS_APPLESCRIPT
+	#define FEATURE_SUPPORTS_SERVICE
+	#define FEATURE_SUPPORTS_EXTENSIONS
+	#define FEATURE_SUPPORTS_SXS_DIFFS
+#endif
 
 
 #pragma mark - Other Definitions

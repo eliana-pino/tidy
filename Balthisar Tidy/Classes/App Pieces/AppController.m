@@ -29,13 +29,14 @@
 
 #import "AppController.h"
 #import "PreferenceController.h"
+#import "PreferencesDefinitions.h"
 #import "JSDIntegerValueTransformer.h"
 #import "JSDAllCapsValueTransformer.h"
 #import "JSDBoolToStringValueTransformer.h"
 #import "TidyDocument.h"
 #import "DCOAboutWindowController.h"
 
-#if INCLUDE_SPARKLE == 1
+#ifdef FEATURE_SPARKLE
 	#import <Sparkle/Sparkle.h>
 #endif
 
@@ -46,9 +47,16 @@
 
 @interface AppController ()
 
+
 @property (weak) IBOutlet NSMenuItem *menuCheckForUpdates;               // We need to hide this for App Store builds.
 
 @property (nonatomic) DCOAboutWindowController *aboutWindowController;   // Window controller for About...
+
+
+/* Feature Properties for binding to conditionally-compiled features. */
+
+@property (readonly) BOOL featureExportsConfig; // exposes conditional define FEATURE_EXPORTS_CONFIG for binding.
+
 
 @end
 
@@ -99,12 +107,12 @@
 		make sure there are no references to it in the MainMenu nib,
 		and set its target-action programmatically.
 	 */
-	#if INCLUDE_SPARKLE == 0
-		[[self menuCheckForUpdates] setHidden:YES];
-	#else
+	#ifdef FEATURE_SPARKLE
 		[[self menuCheckForUpdates] setTarget:[SUUpdater sharedUpdater]];
 		[[self menuCheckForUpdates] setAction:@selector(checkForUpdates:)];
 		[[self menuCheckForUpdates] setEnabled:YES];
+	#else
+		[[self menuCheckForUpdates] setHidden:YES];
 	#endif
 }
 
@@ -150,6 +158,22 @@
 - (IBAction)showPreferences:(id)sender
 {
 	[[PreferenceController sharedPreferences] showWindow:self];
+}
+
+#pragma mark - Feature Accessors
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+ featureExportsConfig
+ Hard-compiled feature setter.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (BOOL)featureExportsConfig
+{
+#ifdef FEATURE_EXPORTS_CONFIG
+	return YES;
+#else
+	return NO;
+#endif
 }
 
 

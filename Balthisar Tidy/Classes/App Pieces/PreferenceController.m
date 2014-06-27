@@ -34,7 +34,7 @@
 #import "OptionPaneController.h"
 #import "JSDTidyModel.h"
 
-#if INCLUDE_SPARKLE == 1
+#ifdef FEATURE_SPARKLE
 	#import <Sparkle/Sparkle.h>
 #endif
 
@@ -134,17 +134,9 @@
 
 	/* Other Defaults */
 	[defaultValues setObject:@NO  forKey:@"NSPrintHeaderAndFooter"];
-	[defaultValues setObject:@NO  forKey:@"proExportsTidyCfg"];
-
 
 
 	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
-
-	#if PRO == 0
-		[[NSUserDefaults standardUserDefaults] setObject:@NO  forKey:@"proExportsTidyCfg"];
-	#else
-		[[NSUserDefaults standardUserDefaults] setObject:@YES forKey:@"proExportsTidyCfg"];
-	#endif
 }
 
 
@@ -315,13 +307,7 @@
 	
 	/* Setup Sparkle versus No-Sparkle versions */
 
-#if INCLUDE_SPARKLE == 0
-
-	NSTabView *theTabView = [[self tabViewUpdates] tabView];
-	
-	[theTabView removeTabViewItem:[self tabViewUpdates]];
-	
-#else
+#ifdef FEATURE_SPARKLE
 
 	SUUpdater *sharedUpdater = [SUUpdater sharedUpdater];
 
@@ -332,7 +318,13 @@
 	[[self buttonUpdateInterval] bind:@"selectedTag" toObject:sharedUpdater withKeyPath:@"updateCheckInterval" options:nil];
 
 	[[self buttonAllowSystemProfile] bind:@"value" toObject:sharedUpdater withKeyPath:@"sendsSystemProfile" options:nil];
-	
+
+#else
+
+	NSTabView *theTabView = [[self tabViewUpdates] tabView];
+
+	[theTabView removeTabViewItem:[self tabViewUpdates]];
+
 #endif
 
 

@@ -430,7 +430,7 @@
                                 </menuItem>
                                 <menuItem isSeparatorItem="YES" enabled="YES" id="6cm-3G-Q97">
                                     <connections>
-                                        <binding destination="4Me-6K-eyZ" name="hidden" keyPath="values.proExportsTidyCfg" id="Lp7-ld-F4t">
+                                        <binding destination="GKf-fA-Bsf" name="hidden" keyPath="featureExportsConfig" id="X9T-Ni-bOW">
                                             <dictionary key="options">
                                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                                             </dictionary>
@@ -440,7 +440,7 @@
                                 <menuItem title="Export a Unix config file with these options…" id="0HY-2M-G1v">
                                     <connections>
                                         <action selector="handleSaveOptionsToUnixConfigFile:" target="-2" id="QTh-n6-WMY"/>
-                                        <binding destination="4Me-6K-eyZ" name="hidden" keyPath="values.proExportsTidyCfg" id="Avq-XW-Ehc">
+                                        <binding destination="GKf-fA-Bsf" name="hidden" keyPath="featureExportsConfig" id="npG-sG-qqH">
                                             <dictionary key="options">
                                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                                             </dictionary>

@@ -91,9 +91,9 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleHelpBookFolder</key>
-	<string>Balthisar Tidy.help</string>
+	<string>TIDY_HELP_BOOK_FOLDER</string>
 	<key>CFBundleHelpBookName</key>
-	<string>com.balthisar.tidy.help</string>
+	<string>TIDY_HELP_BOOK_KEY</string>
 	<key>CFBundleIconFile</key>
 	<string>Application.icns</string>
 	<key>CFBundleIdentifier</key>
