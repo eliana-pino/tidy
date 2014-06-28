@@ -42,7 +42,5 @@ Distribution
 Documentation/Doxygen
 Documentation/html
 
-"Balthisar Tidy Help Project/Contents (build)"
-"Balthisar Tidy Help Project/Contents (build)/"
-"Contents (build)"
-"Contents (build)/"
+# Help Build System built content.
+Contents\ \(build\)
