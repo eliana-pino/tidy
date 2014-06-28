@@ -1,8 +1,8 @@
 ---
 title: Setting Updates Preferences
+layout: layout-logo-small-top
 ---
-
-<div><img src="../../shared/icon_256x256@2x.png" class="top-icon" alt="logo"/></div>
+<% if ENV['feature_sparkle'] == 'yes' %>
 <h1>Updates Preferences Page</h1>
 <p>
 	These preferences affect Balthisar Tidy’s automatic software updating
@@ -12,7 +12,7 @@ title: Setting Updates Preferences
 
 <div class="split_article">
 	<div>
-		<img src="../images/tidy-prefs-04.png" alt="example"/>
+		<img src="../images/tidy-prefs-04.png" alt="example" class="maxW840px"/>
 	</div>
 	<div>
 		<p>
@@ -30,3 +30,4 @@ title: Setting Updates Preferences
 
 	</div>
 </div>
+<% end %>

@@ -1,7 +1,7 @@
 ---
 title: Setting Miscellaneous Preferences
+layout: layout-logo-small-top
 ---
-<div><img src="../../shared/icon_256x256@2x.png" class="top-icon" alt="logo"/></div>
 <h1>Miscellaneous Preferences Page</h1>
 <p>
 	These preferences affect some of Balthisar Tidy’s miscellaneous behaviors.
@@ -10,7 +10,11 @@ title: Setting Miscellaneous Preferences
 
 <div class="split_article">
 	<div>
-		<img src="../images/tidy-prefs-03.png" alt="example"/>
+		<% if ENV['feature_sparkle'] == 'yes' %>
+		<img src="../images/tidy-prefs-03.png" alt="example" class="maxW840px"/>
+		<% else %>
+		<img src="../images/tidy-prefs-03-ns.png" alt="example" class="maxW840px"/>
+		<% end %>
 	</div>
 	<div>
 		<p>

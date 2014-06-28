@@ -1,7 +1,14 @@
 ---
 title: Getting Started
-layout: layout-logo-medium-top
+layout: layout-logo-medium-right
 ---
+<% content_for :relatedTopics do %>
+	<h1>Related Topics</h1>
+	<ul>
+		<li><a href="how-index.html">How do I…?</a></li>
+		<li><a href="reference.html">Reference</a></li>
+	</ul>
+<% end %>
 
 <h1>Getting Started with <em>Balthisar Tidy</em></h1>
 
@@ -97,11 +104,3 @@ layout: layout-logo-medium-top
 	Congratulations! You now understand the basic workflow and options that
 	<em>Balthisar Tidy</em> has to offer!
 </p>
-
-<% content_for :relatedTopics do %>
-	<h1>Related Topics</h1>
-	<ul>
-		<li><a href="how-index.html">How do I…?</a></li>
-		<li><a href="reference.html">Reference</a></li>
-	</ul>
-<% end %>

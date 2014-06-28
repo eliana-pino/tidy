@@ -12,10 +12,15 @@ $interMargins: 1.5ex;
 
 * { padding: 0; margin: 0;}
 
+html {
+	height: 100%;
+}
+
 body {
 	font-family: "Helvetica Neue", Arial, sans-serif;
 	font-size: 11pt;
 	min-width: 600px;
+	height: 100%;
 }
 
 h1 {
@@ -93,7 +98,12 @@ li, li li {
 	image contstraints
  *************************************/
 
+img.maxW420px { max-width: 420px; }
+img.maxW592px { max-width: 592px; }
+img.maxW644px { max-width: 644px; }
+img.maxW840px { max-width: 840px; }
 img.maxW1660px { max-width: 1660px; }
+img.maxW2304px { max-width: 2304px; }
 
 
 /*************************************
@@ -108,6 +118,7 @@ div.container-logo-large {
 	left: 0;
 	right: 0;
 	width: 100%;
+	height: 100%;
 
 		/* left block */
 	 	> div:first-child {
@@ -123,6 +134,7 @@ div.container-logo-large {
 			> div:first-child {
 
 				> img {
+					display: block;
 					width: 80%;
 					margin: 0 auto;
 				  }
@@ -153,18 +165,79 @@ div.container-logo-large {
 			margin-left: $logowidth;
 			padding-top: 1em;
 			padding-left: 1em;
+			padding-right: 1em;
 			border-left: 1px solid #bfbfbf;
+			min-height: 100%;
 	}
 }
 
 
 /*************************************
-	layout-logo-small-top,
-	layout-logo-medium-top styles
+	layout-logo-medium-right styles
  *************************************/
 
-div.container-logo-small-top,
-div.container-logo-medium-top
+div.container-logo-medium-right {
+
+	$logowidth: 130pt;
+
+	position: relative;
+	left: 0;
+	right: 0;
+	width: 100%;
+
+		/* left block */
+		> div:first-child {
+			margin-right: $logowidth;
+			padding-top: 1em;
+			padding-left: 1em;
+			padding-right: 1em;
+			padding-bottom: 1em;
+			border-right: 1px solid #bfbfbf;
+	}
+
+		/* right block */
+	 	> div:first-child + div {
+			width: $logowidth;
+			position: absolute;
+			top: 0;
+			right: 0;
+			padding: 1em 0 0 0;
+			margin: 0;
+
+			/* top of right block, where image lives */
+			> div:first-child {
+
+				> img {
+					display: block;
+					width: 80%;
+					margin: 0 auto;
+				  }
+			}
+
+			/* bottom of left block, for related topics */
+			> div:first-child + div {
+				padding: 1em 0.5em 1em 0.5em;
+				text-align: left;
+
+					> h1 {
+						margin: 0 0 ($interMargins/2) 0;
+						font-size: 12pt;
+					}
+
+					li {
+						margin: 1ex 0;
+						font-size: 9pt;
+					}
+			}
+	}
+}
+
+
+/*************************************
+	layout-logo-small-top
+ *************************************/
+
+div.container-logo-small-top
 {
 
 	padding-left: 1.5em;
@@ -207,24 +280,6 @@ div.container-logo-medium-top
 	}
 }
 
-/*************************************
-	layout-logo-medium-top overrides
- *************************************/
-
-div.container-logo-medium-top {
-
-	> img:first-child {
-		height: 96pt;
-		padding: 0 0 0 1em;
-		float: right;
-
-		/* just the first headline */
-		+ h1 {
-			line-height: 36pt;
-		}
-	}
-}
-
 
 /*************************************
 	Other Block Level Elements
@@ -243,6 +298,7 @@ pre {
 	font-size: 9pt;
 	font-family: Menlo, Courier, monospace;
 }
+
 
 div.steps
 {
@@ -264,6 +320,25 @@ div.steps
 		}
 }
 
+
+.split_article
+{
+	box-sizing: border-box;
+
+	> div
+	{
+		float: left;
+		box-sizing: border-box;
+		padding: 1em;
+		width: 45%;
+
+		img {
+			display: block;
+			float: right;
+			width: 100%;
+		}
+	}
+}
 
 
 /*
@@ -566,24 +641,6 @@ img.top-icon
 	width: 24px;
 	padding: 0 1em 0 0;
 	float: left;
-}
-
-.split_article
-{
-	box-sizing: border-box;
-
-}
-.split_article > div
-{
-	float: left;
-	box-sizing: border-box;
-	padding: 1em;
-	width: 45%;
-}
-
-.split_article > div img
-{
-	max-width: 100%;
 }
 
 */
