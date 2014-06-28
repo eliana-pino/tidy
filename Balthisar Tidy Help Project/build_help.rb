@@ -84,6 +84,9 @@ HEREDOC
 $localSource = "Contents (source)/"
 $localBuild = "Contents (build)/"
 
+$titlepage_template = File.join($localSource, "Resources/", "Base.lproj/", "_title_page.html.erb")
+$titlepage_destination = File.join($localSource, "Resources/", "Base.lproj/", "#{$CFBundleName}.html.erb")
+
 $plist_template = File.join($localSource, "_Info.plist")
 $plist_destination = File.join($localSource, "Info.plist")
 
@@ -99,11 +102,17 @@ $strings_destination = File.join($localSource, "Resources/", "Base.lproj/", "Inf
 $targets = ARGV.map(&:downcase).uniq
 
 # ensure each argument is valid, and fail if not
-$targets.each do |target|
-	unless $CFBundleIDs.key?(target) || target == "all"
-		STDOUT.puts $documentation
-		exit 1
+if $targets.count > 0
+	$targets.each do |target|
+		unless $CFBundleIDs.key?(target) || target == "all"
+			STDOUT.puts $documentation
+			exit 1
+		end
 	end
+else
+	# no arguments isn't a failure.
+	STDOUT.puts $documentation
+	exit 0
 end
 
 
@@ -241,6 +250,11 @@ BEGIN {
 
 		File.open($strings_destination,'w') {|f| $doc.write_xml_to f}
 
+
+		#--------------------------------------------
+		# Make the title page.
+		#--------------------------------------------
+		FileUtils.cp($titlepage_template, $titlepage_destination)
 
 		#--------------------------------------------
 		# Run middleman.
