@@ -74,8 +74,6 @@
 
 /* Gradient button actions */
 
-- (IBAction)handleToggleDescription:(NSButton *)sender;
-
 - (IBAction)handleResetOptionsToFactoryDefaults:(id)sender;
 
 - (IBAction)handleResetOptionsToPreferences:(id)sender;
