@@ -72,10 +72,9 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)dealloc
 {
-	TidyDocument *localDocument = self.representedObject;
+	[self.representedObject removeObserver:self forKeyPath:@"tidyProcess.sourceText"];
 
-	[localDocument removeObserver:self forKeyPath:@"tidyProcess.sourceText"];
-	[localDocument removeObserver:self forKeyPath:@"tidyProcess.tidyText"];
+	[[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:JSDKeyAllowMacOSTextSubstitutions];
 }
 
 /*———————————————————————————————————————————————————————————————————*
@@ -83,19 +82,19 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)awakeFromNib
 {
-	TidyDocument *localDocument = self.representedObject;
-
 	/* KVO on the document's sourceText */
-	[localDocument addObserver:self
-					forKeyPath:@"tidyProcess.sourceText"
-					   options:(NSKeyValueObservingOptionNew)
-					   context:NULL];
+	[self.representedObject addObserver:self
+							 forKeyPath:@"tidyProcess.sourceText"
+								options:(NSKeyValueObservingOptionNew)
+								context:NULL];
 
-//	NSScrollView *localScrollView = (NSScrollView*)self.sourceTextView.superview.superview;
-//	[localScrollView setAutohidesScrollers:YES];
-//
-//	localScrollView = (NSScrollView*)self.tidyTextView.superview.superview;
-//	[localScrollView setAutohidesScrollers:YES];
+	
+	/* KVO on user prefs to look for Text Substitution Preference Changes */
+	[[NSUserDefaults standardUserDefaults] addObserver:self
+											forKeyPath:JSDKeyAllowMacOSTextSubstitutions
+											   options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial)
+											   context:NULL];
+
 }
 
 
@@ -191,6 +190,15 @@
 			self.sourceTextView.string = ((TidyDocument*)self.representedObject).tidyProcess.sourceText;
 		}
 	}
+
+
+	/* Handle changes to the preferences for allowing or disallowing Mac OS X Text Substitutions */
+	if ((object == [NSUserDefaults standardUserDefaults]) && ([keyPath isEqualToString:JSDKeyAllowMacOSTextSubstitutions]))
+	{
+		[self.sourceTextView setAutomaticTextReplacementEnabled:[[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
+		[self.sourceTextView setAutomaticDashSubstitutionEnabled:[[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
+	}
+
 }
 
 

@@ -50,6 +50,7 @@
 		_tidyProcess = [[JSDTidyModel alloc] init];
 		_documentOpenedData = nil;
 		_documentIsLoading = NO;
+		_fileWantsProtection = NO;
 	}
 
 	return self;
@@ -67,16 +68,6 @@
 	self.windowController = [[TidyDocumentWindowController alloc] init];
 
 	[self addWindowController:self.windowController];
-}
-
-
-/*———————————————————————————————————————————————————————————————————*
-	windowControllerDidLoadNib:
-		The nib is loaded.
- *———————————————————————————————————————————————————————————————————*/
-- (void)windowControllerDidLoadNib:(NSWindowController *)windowController
-{
-	self.fileWantsProtection = !(self.documentOpenedData == nil);
 }
 
 
@@ -105,6 +96,13 @@
 	 loaded data from a file.
 	 */
 	self.documentIsLoading = !(self.documentOpenedData == nil);
+
+
+	/*
+		Flag that we've loaded data from a file. Our file-safety
+		checks will use this later.
+	 */
+	self.fileWantsProtection = !(self.documentOpenedData == nil);
 
 	return YES;
 }
