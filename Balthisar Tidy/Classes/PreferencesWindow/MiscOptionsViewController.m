@@ -1,11 +1,8 @@
 /**************************************************************************************************
 
-	PreferenceController
- 
-	The main preference controller. Here we'll control the following:
-
-	- Handles the application preferences.
-	- Implements class methods to be used before instantiation.
+	MiscOptionsViewController
+	 
+	A view controller to manage the preferences' miscellaneous options.
 
 
 	The MIT License (MIT)
@@ -30,30 +27,21 @@
  **************************************************************************************************/
 
 
-#import <Cocoa/Cocoa.h>
+#import "MiscOptionsViewController.h"
 
-@class JSDTidyModel;
+@interface MiscOptionsViewController ()
 
+@end
 
-@interface PreferenceController : NSWindowController
+@implementation MiscOptionsViewController
 
-
-#pragma mark - Properties
-
-
-@property (readonly, assign) NSInteger countOfTabViews;               // Mostly offered for exposure to AppleScript.
-
-@property (assign)           NSInteger indexOfCurrentTabView;         // Mostly offered for exposure to AppleScript.
-
-
-#pragma mark - Class Methods
-
-
-+ (id)sharedPreferences;        // Singleton accessor for this class.
-
-+ (void)registerUserDefaults;   // Registers Balthisar Tidy's defaults with Mac OS X' defaults system.
-
-+ (NSArray*)optionsInEffect;    // An array of the tidy options that Balthisar Tidy supports.
-
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Initialization code here.
+    }
+    return self;
+}
 
 @end

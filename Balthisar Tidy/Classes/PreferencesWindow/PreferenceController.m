@@ -1,11 +1,16 @@
 /**************************************************************************************************
 
 	PreferenceController
-
+ 
 	The main preference controller. Here we'll control the following:
 
 	- Handles the application preferences.
 	- Implements class methods to be used before instantiation.
+ 
+	This controller is a subclass of MASPreferencesController, upon which we are piggybacking
+	to continue to use the singleton instance of this class as our main preference controller.
+	As the application preferences model is not very large or sophisticated, this is a logical
+	place to manage it for the time being.
 
 
 	The MIT License (MIT)
