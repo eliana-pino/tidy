@@ -664,7 +664,6 @@
 		D01AACBC193DEA4900C4E5B2 /* Images for UI */ = {
 			isa = PBXGroup;
 			children = (
-				D06C9AB019600550004D6C27 /* PaneTopShadow.png */,
 				D0E6AE6B1911E88000B49779 /* messagesConfig.icns */,
 				D0E6AE6C1911E88000B49779 /* messagesDocument.icns */,
 				D0E6AE6D1911E88000B49779 /* messagesError.icns */,
@@ -673,6 +672,7 @@
 				D0E6AE701911E88000B49779 /* messagesWarning.icns */,
 				D0E6AE691911E4DC00B49779 /* messagesAccess.icns */,
 				D0E6AE1F190CB34500B49779 /* PaneBottomShadow.tiff */,
+				D06C9AB019600550004D6C27 /* PaneTopShadow.png */,
 				D0E6AE16190C9FAC00B49779 /* HideDescriptionTemplate.pdf */,
 				D0E6AE17190C9FAC00B49779 /* ShowDescriptionTemplate.pdf */,
 			);

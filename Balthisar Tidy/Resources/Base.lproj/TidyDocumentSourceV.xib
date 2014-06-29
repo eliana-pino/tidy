@@ -38,6 +38,11 @@
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
+                                <imageView autoresizesSubviews="NO" horizontalHuggingPriority="5" verticalHuggingPriority="5" horizontalCompressionResistancePriority="5" verticalCompressionResistancePriority="5" translatesAutoresizingMaskIntoConstraints="NO" id="h7s-g6-Yh6">
+                                    <rect key="frame" x="0.0" y="144" width="242" height="5"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <imageCell key="cell" controlSize="small" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="PaneTopShadow" id="md2-zd-sEX"/>
+                                </imageView>
                                 <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SOu-tI-xv9">
                                     <rect key="frame" x="0.0" y="0.0" width="242" height="144"/>
                                     <autoresizingMask key="autoresizingMask"/>
@@ -72,6 +77,9 @@
                                 </scrollView>
                             </subviews>
                             <constraints>
+                                <constraint firstItem="h7s-g6-Yh6" firstAttribute="leading" secondItem="Wtd-Ct-su1" secondAttribute="leading" id="KiZ-ks-iaX"/>
+                                <constraint firstAttribute="trailing" secondItem="h7s-g6-Yh6" secondAttribute="trailing" id="OtB-2u-2ed"/>
+                                <constraint firstItem="SOu-tI-xv9" firstAttribute="top" secondItem="h7s-g6-Yh6" secondAttribute="bottom" id="Tja-lZ-4b7"/>
                                 <constraint firstAttribute="trailing" secondItem="PDw-Ba-aQD" secondAttribute="trailing" id="W4H-4g-6jP"/>
                                 <constraint firstAttribute="trailing" secondItem="SOu-tI-xv9" secondAttribute="trailing" id="ZzL-pJ-VEM"/>
                                 <constraint firstItem="SOu-tI-xv9" firstAttribute="leading" secondItem="Wtd-Ct-su1" secondAttribute="leading" id="aTC-BE-MbG"/>
@@ -95,6 +103,11 @@
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
+                                <imageView autoresizesSubviews="NO" horizontalHuggingPriority="5" verticalHuggingPriority="5" horizontalCompressionResistancePriority="5" verticalCompressionResistancePriority="5" translatesAutoresizingMaskIntoConstraints="NO" id="Lft-Qt-k2r">
+                                    <rect key="frame" x="0.0" y="144" width="257" height="5"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <imageCell key="cell" controlSize="small" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="PaneTopShadow" id="bew-Rr-FuH"/>
+                                </imageView>
                                 <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAy-NR-ORO">
                                     <rect key="frame" x="0.0" y="0.0" width="257" height="144"/>
                                     <autoresizingMask key="autoresizingMask"/>
@@ -134,9 +147,12 @@
                                 </scrollView>
                             </subviews>
                             <constraints>
+                                <constraint firstItem="Lft-Qt-k2r" firstAttribute="leading" secondItem="aYp-BA-fxv" secondAttribute="leading" id="9Q4-WO-2hJ"/>
                                 <constraint firstItem="aE3-Zp-GCM" firstAttribute="leading" secondItem="aYp-BA-fxv" secondAttribute="leading" constant="10" id="LAi-Uq-x0B"/>
+                                <constraint firstItem="cAy-NR-ORO" firstAttribute="top" secondItem="Lft-Qt-k2r" secondAttribute="bottom" id="U2a-c6-6Ob"/>
                                 <constraint firstAttribute="trailing" secondItem="cAy-NR-ORO" secondAttribute="trailing" id="WEJ-FA-LFz"/>
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="bIi-fC-jbh"/>
+                                <constraint firstAttribute="trailing" secondItem="Lft-Qt-k2r" secondAttribute="trailing" id="fcA-wL-JX4"/>
                                 <constraint firstItem="cAy-NR-ORO" firstAttribute="leading" secondItem="aYp-BA-fxv" secondAttribute="leading" id="hBH-iC-8ws"/>
                                 <constraint firstItem="aE3-Zp-GCM" firstAttribute="top" secondItem="aYp-BA-fxv" secondAttribute="top" id="rok-NI-WCJ"/>
                                 <constraint firstAttribute="trailing" secondItem="aE3-Zp-GCM" secondAttribute="trailing" id="sEA-Zp-3pK"/>
@@ -159,4 +175,7 @@
             </constraints>
         </customView>
     </objects>
+    <resources>
+        <image name="PaneTopShadow" width="117" height="5"/>
+    </resources>
 </document>
