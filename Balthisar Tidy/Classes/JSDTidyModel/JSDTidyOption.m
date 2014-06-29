@@ -1,6 +1,6 @@
 /**************************************************************************************************
  
-	JSDTidyOption.h
+	JSDTidyOption
 
 	Provides most of the options-related services to JSDTidyModel.
 

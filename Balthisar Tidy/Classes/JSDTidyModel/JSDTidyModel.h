@@ -1,6 +1,6 @@
 /**************************************************************************************************
 
-	JSDTidyModel.h
+	JSDTidyModel
 
 	JSDTidyModel is a nice, Mac OS X wrapper for TidyLib. It uses instances of JSDTidyOption
 	to contain TidyOptions. The model works with every built-in	TidyOption, although applications
