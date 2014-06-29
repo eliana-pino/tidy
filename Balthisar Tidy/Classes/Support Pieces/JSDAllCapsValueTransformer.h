@@ -1,6 +1,6 @@
 /**************************************************************************************************
 
-	JSDAllCapsValueTransformer.h
+	JSDAllCapsValueTransformer
 
 	A value transformer that converts strings into all capital letters.
 

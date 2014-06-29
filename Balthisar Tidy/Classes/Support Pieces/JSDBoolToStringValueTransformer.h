@@ -1,6 +1,6 @@
 /**************************************************************************************************
 
-	JSDAllCapsValueTransformer.h
+	JSDAllCapsValueTransformer
 
 	A value transformer that converts bool values into lower-case strings.
 

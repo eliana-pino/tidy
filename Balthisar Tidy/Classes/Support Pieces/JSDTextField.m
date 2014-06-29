@@ -1,6 +1,6 @@
 /**************************************************************************************************
  
-	JSDTextField.h
+	JSDTextField
 
 	Simple NSTextField subclass that
 

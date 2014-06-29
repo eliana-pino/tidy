@@ -1,6 +1,6 @@
 /**************************************************************************************************
 
-	JSDIntegerValueTransformer.h
+	JSDIntegerValueTransformer
 
 	Ensures that numbers are always converted to integers.
 

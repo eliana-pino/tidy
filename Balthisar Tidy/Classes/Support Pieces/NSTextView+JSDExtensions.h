@@ -1,6 +1,6 @@
 /**************************************************************************************************
 
-	NSTextView+JSDExtensions.h
+	NSTextView+JSDExtensions
 
 	Some nice extensions to NSTextView
 

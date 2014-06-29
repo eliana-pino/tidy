@@ -1,6 +1,6 @@
 /**************************************************************************************************
 
-	JSDTableView.h
+	JSDTableView
 
 	Simple NSTableView subclass that adds a couple of things:
 

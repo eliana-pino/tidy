@@ -1,6 +1,6 @@
 /**************************************************************************************************
 
-	JSDTableCellView.h
+	JSDTableCellView
 
 	Simple NSTableCellView subclass that's just generic enough to handle a couple of cases:
 
