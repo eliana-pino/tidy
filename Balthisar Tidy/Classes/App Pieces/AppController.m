@@ -160,12 +160,13 @@
 	[[PreferenceController sharedPreferences] showWindow:self];
 }
 
+
 #pragma mark - Feature Accessors
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
- featureExportsConfig
- Hard-compiled feature setter.
+	featureExportsConfig
+		Hard-compiled feature determiner.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (BOOL)featureExportsConfig
 {
@@ -175,6 +176,21 @@
 	return NO;
 #endif
 }
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	featureSyncedDiffs
+		Hard-compiled feature determiner.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (BOOL)featureSyncedDiffs
+{
+#ifdef FEATURE_SUPPORTS_SXS_DIFFS
+	return NO;
+#else
+	return NO;
+#endif
+}
+
 
 
 @end

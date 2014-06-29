@@ -119,6 +119,7 @@
 	/** Options List Appearance */
 	[defaultValues setObject:@YES forKey:JSDKeyOptionsAlternateRowColors];
 	[defaultValues setObject:@YES forKey:JSDKeyOptionsAreGrouped];
+	[defaultValues setObject:@YES forKey:JSDKeyOptionsShowDescription];
 	[defaultValues setObject:@NO  forKey:JSDKeyOptionsShowHumanReadableNames];
 	[defaultValues setObject:@YES forKey:JSDKeyOptionsUseHoverEffect];
 

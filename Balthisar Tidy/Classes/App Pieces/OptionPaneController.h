@@ -41,7 +41,9 @@
 
 @property JSDTidyModel *tidyDocument;             // Expose the tidyDocument for its options values.
 
-@property (assign) BOOL isInPreferencesView;      // Controls some item visibility if in Preferences.
+@property (assign) BOOL isInPreferencesView;      // Controls some item visibility if in Preferences. View binds to this.
+
+@property BOOL descriptionIsVisible;              // Sets/Views whether or not the description is visible.
 
 
 - (instancetype)init;

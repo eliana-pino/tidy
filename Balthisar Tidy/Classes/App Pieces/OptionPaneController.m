@@ -140,6 +140,8 @@
 	{
 		[self.view setFrame:self.view.superview.bounds];
 	}
+
+	self.descriptionIsVisible = [[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyOptionsShowDescription] boolValue];
 }
 
 
@@ -296,34 +298,72 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	handleToggleDescription:
+	descriptionIsVisible
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (IBAction)handleToggleDescription:(NSButton *)sender
+- (BOOL)descriptionIsVisible
 {
-	[self.view layoutSubtreeIfNeeded];
-
-	[NSAnimationContext runAnimationGroup:^(NSAnimationContext *context)
-		{
-			[context setAllowsImplicitAnimation: YES];
-
-			/* This little function makes a nice acceleration curved based on the height. */
-			context.duration = pow(1 / self.theDescription.intrinsicContentSize.height,1/3) / 5;
-
-			if (sender.state)
-			{
-				[self.theDescription addConstraint:self.theDescriptionConstraint];
-			}
-			else
-			{
-				[self.theDescription removeConstraint:self.theDescriptionConstraint];
-			}
-			[self.view layoutSubtreeIfNeeded];
-		}
-		completionHandler:^
-		{
-			[[self theTable] scrollRowToVisible:self.theTable.selectedRow];
-		}];
+	return self.theDescription.frame.size.height != 0.0f;
 }
+
+- (void)setDescriptionIsVisible:(BOOL)descriptionIsVisible
+{
+	if (self.descriptionIsVisible != descriptionIsVisible)
+	{
+		[self.view layoutSubtreeIfNeeded];
+
+		[NSAnimationContext runAnimationGroup:^(NSAnimationContext *context)
+		 {
+			 [context setAllowsImplicitAnimation: YES];
+
+			 /* This little function makes a nice acceleration curved based on the height. */
+			 context.duration = pow(1 / self.theDescription.intrinsicContentSize.height,1/3) / 5;
+
+			 if (self.descriptionIsVisible)
+			 {
+				 [self.theDescription addConstraint:self.theDescriptionConstraint];
+			 }
+			 else
+			 {
+				 [self.theDescription removeConstraint:self.theDescriptionConstraint];
+			 }
+			 [self.view layoutSubtreeIfNeeded];
+		 }
+							completionHandler:^
+		 {
+			 [[self theTable] scrollRowToVisible:self.theTable.selectedRow];
+		 }];
+	}
+}
+
+///*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+//	handleToggleDescription:
+// *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+//- (IBAction)handleToggleDescription:(NSButton *)sender
+//{
+//	[self.view layoutSubtreeIfNeeded];
+//
+//	[NSAnimationContext runAnimationGroup:^(NSAnimationContext *context)
+//		{
+//			[context setAllowsImplicitAnimation: YES];
+//
+//			/* This little function makes a nice acceleration curved based on the height. */
+//			context.duration = pow(1 / self.theDescription.intrinsicContentSize.height,1/3) / 5;
+//
+//			if (sender.state)
+//			{
+//				[self.theDescription addConstraint:self.theDescriptionConstraint];
+//			}
+//			else
+//			{
+//				[self.theDescription removeConstraint:self.theDescriptionConstraint];
+//			}
+//			[self.view layoutSubtreeIfNeeded];
+//		}
+//		completionHandler:^
+//		{
+//			[[self theTable] scrollRowToVisible:self.theTable.selectedRow];
+//		}];
+//}
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*

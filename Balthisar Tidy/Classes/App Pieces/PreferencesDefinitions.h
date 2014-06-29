@@ -38,9 +38,9 @@
 
 	#define JSDKeyOptionsAlternateRowColors       @"OptionsAlternateRowColors"
 	#define JSDKeyOptionsAreGrouped               @"OptionsAreGrouped"
+	#define JSDKeyOptionsShowDescription          @"OptionsShowDescriptions"
 	#define JSDKeyOptionsShowHumanReadableNames   @"OptionsShowHumanReadableNames"
 	#define JSDKeyOptionsUseHoverEffect           @"OptionsUseHoverEffect"
-
 
 	/** Document Appearance */
 

@@ -374,7 +374,7 @@
                     </buttonCell>
                     <accessibility description="Toggle the visibility of the Tidy option description."/>
                     <connections>
-                        <action selector="handleToggleDescription:" target="-2" id="5Zn-Xb-618"/>
+                        <binding destination="-2" name="value" keyPath="self.descriptionIsVisible" id="9sh-gP-zwB"/>
                     </connections>
                 </button>
                 <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="ASB-I3-wPl">
