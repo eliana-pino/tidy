@@ -1,6 +1,6 @@
 /**************************************************************************************************
 
-	AppController.m
+	AppController
 
 	This main application controller handles the preferences and most of the Sparkle vs.
 	non-sparkle builds.

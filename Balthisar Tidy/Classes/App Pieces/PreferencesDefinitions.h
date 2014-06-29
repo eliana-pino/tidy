@@ -2,8 +2,9 @@
 
 	PreferencesDefinitions.h
  
-	Application wide keys for top-hierarchy preferences managed by this application., and 
-	application wide definitions for behaviors based on the build targets' preprocessor macros.
+	Application-wide preferences and definitions.
+	- Keys for top-hierarchy preferences managed by this application.
+	- Definitions for behaviors based on the build targets' preprocessor macros.
 
 
 	The MIT License (MIT)

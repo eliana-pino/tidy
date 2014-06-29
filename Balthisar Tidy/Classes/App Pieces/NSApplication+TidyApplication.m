@@ -1,6 +1,6 @@
 /**************************************************************************************************
 
-	NSApplication+TidyApplication.m
+	NSApplication+TidyApplication
 
 	This category to NSApplication handles some of our application-level AppleScript support.
 

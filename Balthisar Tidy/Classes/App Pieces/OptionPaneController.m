@@ -1,6 +1,6 @@
 /**************************************************************************************************
 
-	OptionPaneController.m
+	OptionPaneController
 
 	The main controller for the Tidy Options pane. Used separately by
 
