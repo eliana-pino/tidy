@@ -30,19 +30,33 @@
 #import "OptionListViewController.h"
 
 
-@interface OptionListViewController ()
-
-@end
-
 @implementation OptionListViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+
+- (id)init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Initialization code here.
-    }
-    return self;
+    return [super initWithNibName:@"OptionListViewController" bundle:nil];
+}
+
+
+#pragma mark - <MASPreferencesViewController> Support
+
+
+- (NSString *)identifier
+{
+    return @"OptionListPreferences";
+}
+
+
+- (NSImage *)toolbarItemImage
+{
+    return [NSImage imageNamed:@"prefsTidy"];
+}
+
+
+- (NSString *)toolbarItemLabel
+{
+    return NSLocalizedString(@"Tidy Options", nil);
 }
 
 @end

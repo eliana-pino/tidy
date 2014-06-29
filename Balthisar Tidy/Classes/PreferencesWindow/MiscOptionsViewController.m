@@ -29,19 +29,34 @@
 
 #import "MiscOptionsViewController.h"
 
-@interface MiscOptionsViewController ()
-
-@end
 
 @implementation MiscOptionsViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+
+- (id)init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Initialization code here.
-    }
-    return self;
+    return [super initWithNibName:@"MiscOptionsViewController" bundle:nil];
+}
+
+
+#pragma mark - <MASPreferencesViewController> Support
+
+
+- (NSString *)identifier
+{
+    return @"MiscOptionsPreferences";
+}
+
+
+- (NSImage *)toolbarItemImage
+{
+    return [NSImage imageNamed:NSImageNameAdvanced];
+}
+
+
+- (NSString *)toolbarItemLabel
+{
+    return NSLocalizedString(@"Miscellaneous", nil);
 }
 
 @end

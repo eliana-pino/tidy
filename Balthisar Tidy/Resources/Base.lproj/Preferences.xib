@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="PreferenceController">
+        <customObject id="-2" userLabel="File's Owner">
             <connections>
                 <outlet property="buttonAllowSystemProfile" destination="pCG-9l-lM2" id="e0a-m5-AG6"/>
                 <outlet property="buttonAllowUpdateChecks" destination="i8G-ur-VJc" id="PN2-Qc-vVD"/>

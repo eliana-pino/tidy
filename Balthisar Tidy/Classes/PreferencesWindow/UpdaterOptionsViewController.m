@@ -29,19 +29,34 @@
 
 #import "UpdaterOptionsViewController.h"
 
-@interface UpdaterOptionsViewController ()
-
-@end
 
 @implementation UpdaterOptionsViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+
+- (id)init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Initialization code here.
-    }
-    return self;
+    return [super initWithNibName:@"UpdaterOptionsViewController" bundle:nil];
+}
+
+
+#pragma mark - <MASPreferencesViewController> Support
+
+
+- (NSString *)identifier
+{
+    return @"UpdaterOptionsPreferences";
+}
+
+
+- (NSImage *)toolbarItemImage
+{
+    return [NSImage imageNamed:@"prefsUpdate"];
+}
+
+
+- (NSString *)toolbarItemLabel
+{
+    return NSLocalizedString(@"Software Updates", nil);
 }
 
 @end

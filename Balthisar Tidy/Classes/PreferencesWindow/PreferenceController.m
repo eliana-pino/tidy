@@ -36,8 +36,16 @@
 
 #import "PreferenceController.h"
 #import "PreferencesDefinitions.h"
-#import "OptionPaneController.h"
 #import "JSDTidyModel.h"
+#import "OptionListViewController.h"
+#import "OptionListAppearanceViewController.h"
+#import "DocumentAppearanceViewController.h"
+#import "SavingOptionsViewController.h"
+#import "MiscOptionsViewController.h"
+#import "UpdaterOptionsViewController.h"
+
+// @TODO: won't need this here.
+#import "OptionPaneController.h"
 
 #ifdef FEATURE_SPARKLE
 	#import <Sparkle/Sparkle.h>
@@ -270,83 +278,103 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (instancetype)init
 {
-	if (self = [super initWithWindowNibName:@"Preferences"])
-	{
-		// Nothing to see here!
-	}
+	NSViewController *optionListViewController = [[OptionListViewController alloc] init];
+	NSViewController *optionListAppearanceViewController = [[OptionListAppearanceViewController alloc] init];
+	NSViewController *documentAppearanceViewController = [[DocumentAppearanceViewController alloc] init];
+	NSViewController *savingOptionsViewController = [[SavingOptionsViewController alloc] init];
+	NSViewController *miscOptionsViewController = [[MiscOptionsViewController alloc] init];
+	NSViewController *updaterOptionsViewController = [[UpdaterOptionsViewController alloc] init];
+
+	NSArray *controllers = @[optionListViewController,
+							 optionListAppearanceViewController,
+							 documentAppearanceViewController,
+							 savingOptionsViewController,
+							 miscOptionsViewController,
+							 updaterOptionsViewController];
+
+
+	//NSString *title = NSLocalizedString(@"Preferences", nil);
+
+	self = [super initWithViewControllers:controllers];//] title:title];
 
 	return self;
 }
 
 
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	dealloc
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)dealloc
-{
-	[[NSNotificationCenter defaultCenter] removeObserver:self
-													name:tidyNotifyOptionChanged
-												  object:[[self optionController] tidyDocument]];
-}
+//- (void)setSelectedViewController:(NSViewController <MASPreferencesViewController> *)controller
+//{
+//	[super setSelectedViewController:controller];
+//
+//}
+
+///*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+//	dealloc
+// *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+//- (void)dealloc
+//{
+//	[[NSNotificationCenter defaultCenter] removeObserver:self
+//													name:tidyNotifyOptionChanged
+//												  object:[[self optionController] tidyDocument]];
+//}
 
 
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	awakeFromNib
-		  in place of the empty optionPane in the xib.
-		- Setup Sparkle vs No-Sparkle.
-		- Give the OptionPaneController its optionsInEffect
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)awakeFromNib
-{
-
-	/* Create and setup the option controller. */
-
-	self.optionController = [[OptionPaneController alloc] init];
-
-	self.optionController.isInPreferencesView = YES;
-
-	[self.optionPane addSubview:self.optionController.view];
-
-	self.optionController.optionsInEffect = [[self class] optionsInEffect];
-
-	
-	/* Setup Sparkle versus No-Sparkle versions */
-
-#ifdef FEATURE_SPARKLE
-
-	SUUpdater *sharedUpdater = [SUUpdater sharedUpdater];
-
-	[[self buttonAllowUpdateChecks] bind:@"value" toObject:sharedUpdater withKeyPath:@"automaticallyChecksForUpdates" options:nil];
-
-	[[self buttonUpdateInterval] bind:@"enabled" toObject:sharedUpdater withKeyPath:@"automaticallyChecksForUpdates" options:nil];
-
-	[[self buttonUpdateInterval] bind:@"selectedTag" toObject:sharedUpdater withKeyPath:@"updateCheckInterval" options:nil];
-
-	[[self buttonAllowSystemProfile] bind:@"value" toObject:sharedUpdater withKeyPath:@"sendsSystemProfile" options:nil];
-
-#else
-
-	NSTabView *theTabView = [[self tabViewUpdates] tabView];
-
-	[theTabView removeTabViewItem:[self tabViewUpdates]];
-
-#endif
-
-
-	/* Set the option values in the optionController from user defaults. */
-	
-	[[[self optionController] tidyDocument] takeOptionValuesFromDefaults:[NSUserDefaults standardUserDefaults]];
-
-
-	/* 
-		NSNotifications from `optionController` indicate that one or more Tidy options changed.
-		This is what we will use to capture changes and record them into user defaults.
-	 */
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(handleTidyOptionChange:)
-												 name:tidyNotifyOptionChanged
-											   object:[[self optionController] tidyDocument]];
-}
+///*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+//	awakeFromNib
+//		  in place of the empty optionPane in the xib.
+//		- Setup Sparkle vs No-Sparkle.
+//		- Give the OptionPaneController its optionsInEffect
+// *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+//- (void)awakeFromNib
+//{
+//
+//	/* Create and setup the option controller. */
+//
+//	self.optionController = [[OptionPaneController alloc] init];
+//
+//	self.optionController.isInPreferencesView = YES;
+//
+//	[self.optionPane addSubview:self.optionController.view];
+//
+//	self.optionController.optionsInEffect = [[self class] optionsInEffect];
+//
+//	
+//	/* Setup Sparkle versus No-Sparkle versions */
+//
+//#ifdef FEATURE_SPARKLE
+//
+//	SUUpdater *sharedUpdater = [SUUpdater sharedUpdater];
+//
+//	[[self buttonAllowUpdateChecks] bind:@"value" toObject:sharedUpdater withKeyPath:@"automaticallyChecksForUpdates" options:nil];
+//
+//	[[self buttonUpdateInterval] bind:@"enabled" toObject:sharedUpdater withKeyPath:@"automaticallyChecksForUpdates" options:nil];
+//
+//	[[self buttonUpdateInterval] bind:@"selectedTag" toObject:sharedUpdater withKeyPath:@"updateCheckInterval" options:nil];
+//
+//	[[self buttonAllowSystemProfile] bind:@"value" toObject:sharedUpdater withKeyPath:@"sendsSystemProfile" options:nil];
+//
+//#else
+//
+//	NSTabView *theTabView = [[self tabViewUpdates] tabView];
+//
+//	[theTabView removeTabViewItem:[self tabViewUpdates]];
+//
+//#endif
+//
+//
+//	/* Set the option values in the optionController from user defaults. */
+//	
+//	[[[self optionController] tidyDocument] takeOptionValuesFromDefaults:[NSUserDefaults standardUserDefaults]];
+//
+//
+//	/* 
+//		NSNotifications from `optionController` indicate that one or more Tidy options changed.
+//		This is what we will use to capture changes and record them into user defaults.
+//	 */
+//	[[NSNotificationCenter defaultCenter] addObserver:self
+//											 selector:@selector(handleTidyOptionChange:)
+//												 name:tidyNotifyOptionChanged
+//											   object:[[self optionController] tidyDocument]];
+//}
 
 
 #pragma mark - Property Accessors

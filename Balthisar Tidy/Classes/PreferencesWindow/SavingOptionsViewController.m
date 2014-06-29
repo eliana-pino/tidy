@@ -29,19 +29,34 @@
 
 #import "SavingOptionsViewController.h"
 
-@interface SavingOptionsViewController ()
-
-@end
 
 @implementation SavingOptionsViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+
+- (id)init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Initialization code here.
-    }
-    return self;
+    return [super initWithNibName:@"SavingOptionsViewController" bundle:nil];
+}
+
+
+#pragma mark - <MASPreferencesViewController> Support
+
+
+- (NSString *)identifier
+{
+    return @"SavingOptionsPreferences";
+}
+
+
+- (NSImage *)toolbarItemImage
+{
+    return [NSImage imageNamed:@"prefsSave"];
+}
+
+
+- (NSString *)toolbarItemLabel
+{
+    return NSLocalizedString(@"File Saving", nil);
 }
 
 @end

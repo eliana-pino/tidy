@@ -90,12 +90,12 @@
 		D06C9A52195FB955004D6C27 /* OptionListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A4E195FB955004D6C27 /* OptionListViewController.xib */; };
 		D06C9A53195FB955004D6C27 /* OptionListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A4E195FB955004D6C27 /* OptionListViewController.xib */; };
 		D06C9A54195FB955004D6C27 /* OptionListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A4E195FB955004D6C27 /* OptionListViewController.xib */; };
-		D06C9A58195FB997004D6C27 /* OptionListAppeanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06C9A56195FB997004D6C27 /* OptionListAppeanceViewController.m */; };
-		D06C9A59195FB997004D6C27 /* OptionListAppeanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06C9A56195FB997004D6C27 /* OptionListAppeanceViewController.m */; };
-		D06C9A5A195FB997004D6C27 /* OptionListAppeanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06C9A56195FB997004D6C27 /* OptionListAppeanceViewController.m */; };
-		D06C9A5B195FB997004D6C27 /* OptionListAppeanceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A57195FB997004D6C27 /* OptionListAppeanceViewController.xib */; };
-		D06C9A5C195FB997004D6C27 /* OptionListAppeanceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A57195FB997004D6C27 /* OptionListAppeanceViewController.xib */; };
-		D06C9A5D195FB997004D6C27 /* OptionListAppeanceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A57195FB997004D6C27 /* OptionListAppeanceViewController.xib */; };
+		D06C9A58195FB997004D6C27 /* OptionListAppearanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06C9A56195FB997004D6C27 /* OptionListAppearanceViewController.m */; };
+		D06C9A59195FB997004D6C27 /* OptionListAppearanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06C9A56195FB997004D6C27 /* OptionListAppearanceViewController.m */; };
+		D06C9A5A195FB997004D6C27 /* OptionListAppearanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06C9A56195FB997004D6C27 /* OptionListAppearanceViewController.m */; };
+		D06C9A5B195FB997004D6C27 /* OptionListAppearanceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A57195FB997004D6C27 /* OptionListAppearanceViewController.xib */; };
+		D06C9A5C195FB997004D6C27 /* OptionListAppearanceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A57195FB997004D6C27 /* OptionListAppearanceViewController.xib */; };
+		D06C9A5D195FB997004D6C27 /* OptionListAppearanceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A57195FB997004D6C27 /* OptionListAppearanceViewController.xib */; };
 		D06C9A61195FB9D0004D6C27 /* DocumentAppearanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06C9A5F195FB9D0004D6C27 /* DocumentAppearanceViewController.m */; };
 		D06C9A62195FB9D0004D6C27 /* DocumentAppearanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06C9A5F195FB9D0004D6C27 /* DocumentAppearanceViewController.m */; };
 		D06C9A63195FB9D0004D6C27 /* DocumentAppearanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06C9A5F195FB9D0004D6C27 /* DocumentAppearanceViewController.m */; };
@@ -120,6 +120,36 @@
 		D06C9A7F195FBA3F004D6C27 /* UpdaterOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A7B195FBA3F004D6C27 /* UpdaterOptionsViewController.xib */; };
 		D06C9A80195FBA3F004D6C27 /* UpdaterOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A7B195FBA3F004D6C27 /* UpdaterOptionsViewController.xib */; };
 		D06C9A81195FBA3F004D6C27 /* UpdaterOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A7B195FBA3F004D6C27 /* UpdaterOptionsViewController.xib */; };
+		D06C9A8C195FE854004D6C27 /* prefsSave.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A84195FE854004D6C27 /* prefsSave.png */; };
+		D06C9A8D195FE854004D6C27 /* prefsSave.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A84195FE854004D6C27 /* prefsSave.png */; };
+		D06C9A8E195FE854004D6C27 /* prefsSave.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A84195FE854004D6C27 /* prefsSave.png */; };
+		D06C9A8F195FE854004D6C27 /* prefsSave@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A85195FE854004D6C27 /* prefsSave@2x.png */; };
+		D06C9A90195FE854004D6C27 /* prefsSave@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A85195FE854004D6C27 /* prefsSave@2x.png */; };
+		D06C9A91195FE854004D6C27 /* prefsSave@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A85195FE854004D6C27 /* prefsSave@2x.png */; };
+		D06C9A92195FE854004D6C27 /* prefsTidy.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A86195FE854004D6C27 /* prefsTidy.png */; };
+		D06C9A93195FE854004D6C27 /* prefsTidy.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A86195FE854004D6C27 /* prefsTidy.png */; };
+		D06C9A94195FE854004D6C27 /* prefsTidy.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A86195FE854004D6C27 /* prefsTidy.png */; };
+		D06C9A95195FE854004D6C27 /* prefsTidy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A87195FE854004D6C27 /* prefsTidy@2x.png */; };
+		D06C9A96195FE854004D6C27 /* prefsTidy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A87195FE854004D6C27 /* prefsTidy@2x.png */; };
+		D06C9A97195FE854004D6C27 /* prefsTidy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A87195FE854004D6C27 /* prefsTidy@2x.png */; };
+		D06C9A98195FE854004D6C27 /* prefsTidyAppearance.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A88195FE854004D6C27 /* prefsTidyAppearance.png */; };
+		D06C9A99195FE854004D6C27 /* prefsTidyAppearance.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A88195FE854004D6C27 /* prefsTidyAppearance.png */; };
+		D06C9A9A195FE854004D6C27 /* prefsTidyAppearance.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A88195FE854004D6C27 /* prefsTidyAppearance.png */; };
+		D06C9A9B195FE854004D6C27 /* prefsTidyAppearance@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A89195FE854004D6C27 /* prefsTidyAppearance@2x.png */; };
+		D06C9A9C195FE854004D6C27 /* prefsTidyAppearance@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A89195FE854004D6C27 /* prefsTidyAppearance@2x.png */; };
+		D06C9A9D195FE854004D6C27 /* prefsTidyAppearance@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A89195FE854004D6C27 /* prefsTidyAppearance@2x.png */; };
+		D06C9A9E195FE854004D6C27 /* prefsUpdate.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A8A195FE854004D6C27 /* prefsUpdate.png */; };
+		D06C9A9F195FE854004D6C27 /* prefsUpdate.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A8A195FE854004D6C27 /* prefsUpdate.png */; };
+		D06C9AA0195FE854004D6C27 /* prefsUpdate.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A8A195FE854004D6C27 /* prefsUpdate.png */; };
+		D06C9AA1195FE854004D6C27 /* prefsUpdate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A8B195FE854004D6C27 /* prefsUpdate@2x.png */; };
+		D06C9AA2195FE854004D6C27 /* prefsUpdate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A8B195FE854004D6C27 /* prefsUpdate@2x.png */; };
+		D06C9AA3195FE854004D6C27 /* prefsUpdate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A8B195FE854004D6C27 /* prefsUpdate@2x.png */; };
+		D06C9AA6195FEC11004D6C27 /* prefsDoc.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9AA4195FEC11004D6C27 /* prefsDoc.png */; };
+		D06C9AA7195FEC11004D6C27 /* prefsDoc.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9AA4195FEC11004D6C27 /* prefsDoc.png */; };
+		D06C9AA8195FEC11004D6C27 /* prefsDoc.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9AA4195FEC11004D6C27 /* prefsDoc.png */; };
+		D06C9AA9195FEC11004D6C27 /* prefsDoc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9AA5195FEC11004D6C27 /* prefsDoc@2x.png */; };
+		D06C9AAA195FEC11004D6C27 /* prefsDoc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9AA5195FEC11004D6C27 /* prefsDoc@2x.png */; };
+		D06C9AAB195FEC11004D6C27 /* prefsDoc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9AA5195FEC11004D6C27 /* prefsDoc@2x.png */; };
 		D074B78B1942BEE200F2E6F1 /* TidyEncodingHelper.xib in Resources */ = {isa = PBXBuildFile; fileRef = D074B7891942BEE200F2E6F1 /* TidyEncodingHelper.xib */; };
 		D074B78C1942BEE200F2E6F1 /* TidyEncodingHelper.xib in Resources */ = {isa = PBXBuildFile; fileRef = D074B7891942BEE200F2E6F1 /* TidyEncodingHelper.xib */; };
 		D074B78D1942BEE200F2E6F1 /* TidyEncodingHelper.xib in Resources */ = {isa = PBXBuildFile; fileRef = D074B7891942BEE200F2E6F1 /* TidyEncodingHelper.xib */; };
@@ -392,9 +422,9 @@
 		D06C9A4C195FB955004D6C27 /* OptionListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OptionListViewController.h; path = "Balthisar Tidy/Classes/PreferencesWindow/OptionListViewController.h"; sourceTree = SOURCE_ROOT; };
 		D06C9A4D195FB955004D6C27 /* OptionListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OptionListViewController.m; path = "Balthisar Tidy/Classes/PreferencesWindow/OptionListViewController.m"; sourceTree = SOURCE_ROOT; };
 		D06C9A4E195FB955004D6C27 /* OptionListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OptionListViewController.xib; path = "Balthisar Tidy/Resources/Base.lproj/OptionListViewController.xib"; sourceTree = SOURCE_ROOT; };
-		D06C9A55195FB997004D6C27 /* OptionListAppeanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OptionListAppeanceViewController.h; path = "Balthisar Tidy/Classes/PreferencesWindow/OptionListAppeanceViewController.h"; sourceTree = SOURCE_ROOT; };
-		D06C9A56195FB997004D6C27 /* OptionListAppeanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OptionListAppeanceViewController.m; path = "Balthisar Tidy/Classes/PreferencesWindow/OptionListAppeanceViewController.m"; sourceTree = SOURCE_ROOT; };
-		D06C9A57195FB997004D6C27 /* OptionListAppeanceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OptionListAppeanceViewController.xib; path = "Balthisar Tidy/Resources/Base.lproj/OptionListAppeanceViewController.xib"; sourceTree = SOURCE_ROOT; };
+		D06C9A55195FB997004D6C27 /* OptionListAppearanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OptionListAppearanceViewController.h; path = "Balthisar Tidy/Classes/PreferencesWindow/OptionListAppearanceViewController.h"; sourceTree = SOURCE_ROOT; };
+		D06C9A56195FB997004D6C27 /* OptionListAppearanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OptionListAppearanceViewController.m; path = "Balthisar Tidy/Classes/PreferencesWindow/OptionListAppearanceViewController.m"; sourceTree = SOURCE_ROOT; };
+		D06C9A57195FB997004D6C27 /* OptionListAppearanceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OptionListAppearanceViewController.xib; path = "Balthisar Tidy/Resources/Base.lproj/OptionListAppearanceViewController.xib"; sourceTree = SOURCE_ROOT; };
 		D06C9A5E195FB9D0004D6C27 /* DocumentAppearanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocumentAppearanceViewController.h; path = "Balthisar Tidy/Classes/PreferencesWindow/DocumentAppearanceViewController.h"; sourceTree = SOURCE_ROOT; };
 		D06C9A5F195FB9D0004D6C27 /* DocumentAppearanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocumentAppearanceViewController.m; path = "Balthisar Tidy/Classes/PreferencesWindow/DocumentAppearanceViewController.m"; sourceTree = SOURCE_ROOT; };
 		D06C9A60195FB9D0004D6C27 /* DocumentAppearanceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DocumentAppearanceViewController.xib; path = "Balthisar Tidy/Resources/Base.lproj/DocumentAppearanceViewController.xib"; sourceTree = SOURCE_ROOT; };
@@ -407,6 +437,16 @@
 		D06C9A79195FBA3F004D6C27 /* UpdaterOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpdaterOptionsViewController.h; path = "Balthisar Tidy/Classes/PreferencesWindow/UpdaterOptionsViewController.h"; sourceTree = SOURCE_ROOT; };
 		D06C9A7A195FBA3F004D6C27 /* UpdaterOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UpdaterOptionsViewController.m; path = "Balthisar Tidy/Classes/PreferencesWindow/UpdaterOptionsViewController.m"; sourceTree = SOURCE_ROOT; };
 		D06C9A7B195FBA3F004D6C27 /* UpdaterOptionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UpdaterOptionsViewController.xib; path = "Balthisar Tidy/Resources/Base.lproj/UpdaterOptionsViewController.xib"; sourceTree = SOURCE_ROOT; };
+		D06C9A84195FE854004D6C27 /* prefsSave.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = prefsSave.png; path = "Images for Prefs/prefsSave.png"; sourceTree = "<group>"; };
+		D06C9A85195FE854004D6C27 /* prefsSave@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "prefsSave@2x.png"; path = "Images for Prefs/prefsSave@2x.png"; sourceTree = "<group>"; };
+		D06C9A86195FE854004D6C27 /* prefsTidy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = prefsTidy.png; path = "Images for Prefs/prefsTidy.png"; sourceTree = "<group>"; };
+		D06C9A87195FE854004D6C27 /* prefsTidy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "prefsTidy@2x.png"; path = "Images for Prefs/prefsTidy@2x.png"; sourceTree = "<group>"; };
+		D06C9A88195FE854004D6C27 /* prefsTidyAppearance.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = prefsTidyAppearance.png; path = "Images for Prefs/prefsTidyAppearance.png"; sourceTree = "<group>"; };
+		D06C9A89195FE854004D6C27 /* prefsTidyAppearance@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "prefsTidyAppearance@2x.png"; path = "Images for Prefs/prefsTidyAppearance@2x.png"; sourceTree = "<group>"; };
+		D06C9A8A195FE854004D6C27 /* prefsUpdate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = prefsUpdate.png; path = "Images for Prefs/prefsUpdate.png"; sourceTree = "<group>"; };
+		D06C9A8B195FE854004D6C27 /* prefsUpdate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "prefsUpdate@2x.png"; path = "Images for Prefs/prefsUpdate@2x.png"; sourceTree = "<group>"; };
+		D06C9AA4195FEC11004D6C27 /* prefsDoc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = prefsDoc.png; path = "Images for Prefs/prefsDoc.png"; sourceTree = "<group>"; };
+		D06C9AA5195FEC11004D6C27 /* prefsDoc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "prefsDoc@2x.png"; path = "Images for Prefs/prefsDoc@2x.png"; sourceTree = "<group>"; };
 		D074B78A1942BEE200F2E6F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TidyEncodingHelper.xib; sourceTree = "<group>"; };
 		D074B7931942CF0300F2E6F1 /* EncodingHelperController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EncodingHelperController.h; path = DocumentWindow/EncodingHelperController.h; sourceTree = "<group>"; };
 		D074B7941942CF0300F2E6F1 /* EncodingHelperController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EncodingHelperController.m; path = DocumentWindow/EncodingHelperController.m; sourceTree = "<group>"; };
@@ -665,8 +705,8 @@
 				D0D9EAC618E6680F008A55D5 /* PreferenceController.m */,
 				D06C9A4C195FB955004D6C27 /* OptionListViewController.h */,
 				D06C9A4D195FB955004D6C27 /* OptionListViewController.m */,
-				D06C9A55195FB997004D6C27 /* OptionListAppeanceViewController.h */,
-				D06C9A56195FB997004D6C27 /* OptionListAppeanceViewController.m */,
+				D06C9A55195FB997004D6C27 /* OptionListAppearanceViewController.h */,
+				D06C9A56195FB997004D6C27 /* OptionListAppearanceViewController.m */,
 				D06C9A5E195FB9D0004D6C27 /* DocumentAppearanceViewController.h */,
 				D06C9A5F195FB9D0004D6C27 /* DocumentAppearanceViewController.m */,
 				D06C9A67195FB9F2004D6C27 /* SavingOptionsViewController.h */,
@@ -696,15 +736,32 @@
 		D06C9A82195FBAA9004D6C27 /* PreferencesWindow */ = {
 			isa = PBXGroup;
 			children = (
-				D06C9A7B195FBA3F004D6C27 /* UpdaterOptionsViewController.xib */,
-				D06C9A57195FB997004D6C27 /* OptionListAppeanceViewController.xib */,
 				D06C9A4E195FB955004D6C27 /* OptionListViewController.xib */,
+				D06C9A57195FB997004D6C27 /* OptionListAppearanceViewController.xib */,
 				D06C9A60195FB9D0004D6C27 /* DocumentAppearanceViewController.xib */,
 				D06C9A69195FB9F2004D6C27 /* SavingOptionsViewController.xib */,
 				D06C9A72195FBA0F004D6C27 /* MiscOptionsViewController.xib */,
+				D06C9A7B195FBA3F004D6C27 /* UpdaterOptionsViewController.xib */,
 			);
 			name = PreferencesWindow;
 			path = "../Classes/App Pieces";
+			sourceTree = "<group>";
+		};
+		D06C9A83195FE82D004D6C27 /* Images for Prefs */ = {
+			isa = PBXGroup;
+			children = (
+				D06C9A86195FE854004D6C27 /* prefsTidy.png */,
+				D06C9A87195FE854004D6C27 /* prefsTidy@2x.png */,
+				D06C9A88195FE854004D6C27 /* prefsTidyAppearance.png */,
+				D06C9A89195FE854004D6C27 /* prefsTidyAppearance@2x.png */,
+				D06C9AA4195FEC11004D6C27 /* prefsDoc.png */,
+				D06C9AA5195FEC11004D6C27 /* prefsDoc@2x.png */,
+				D06C9A84195FE854004D6C27 /* prefsSave.png */,
+				D06C9A85195FE854004D6C27 /* prefsSave@2x.png */,
+				D06C9A8A195FE854004D6C27 /* prefsUpdate.png */,
+				D06C9A8B195FE854004D6C27 /* prefsUpdate@2x.png */,
+			);
+			name = "Images for Prefs";
 			sourceTree = "<group>";
 		};
 		D074B7A71942CF0900F2E6F1 /* DocumentWindow */ = {
@@ -749,6 +806,7 @@
 				D04E8FAD195D964F00D1CEDC /* Balthisar Tidy (pro).help */,
 				D036E21718F3D81E0009A9D4 /* TidyScripting.sdef */,
 				D036E20718F3D2F20009A9D4 /* File Icons */,
+				D06C9A83195FE82D004D6C27 /* Images for Prefs */,
 				D01AACBC193DEA4900C4E5B2 /* Images for UI */,
 				D0CA8F091953168500BBD54C /* Images for Toolbar */,
 				D07AF49A183658F100913067 /* Base.lproj */,
@@ -1065,19 +1123,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D06C9A5B195FB997004D6C27 /* OptionListAppeanceViewController.xib in Resources */,
+				D06C9A95195FE854004D6C27 /* prefsTidy@2x.png in Resources */,
+				D06C9A5B195FB997004D6C27 /* OptionListAppearanceViewController.xib in Resources */,
 				D06C9A7F195FBA3F004D6C27 /* UpdaterOptionsViewController.xib in Resources */,
 				D0E6AE6A1911E4DC00B49779 /* messagesAccess.icns in Resources */,
 				D0E6AE711911E88000B49779 /* messagesConfig.icns in Resources */,
 				D074B7AA1944035800F2E6F1 /* TidyDocumentMessagesView.xib in Resources */,
 				D0E6AE721911E88000B49779 /* messagesDocument.icns in Resources */,
 				D0E6AE731911E88000B49779 /* messagesError.icns in Resources */,
+				D06C9A98195FE854004D6C27 /* prefsTidyAppearance.png in Resources */,
 				D0E6AE741911E88000B49779 /* messagesInfo.icns in Resources */,
 				D03B89D419553E5D00E9B4D5 /* DiffsTemplate.png in Resources */,
 				D0E6AE751911E88000B49779 /* messagesPanic.icns in Resources */,
 				D0E6AE761911E88000B49779 /* messagesWarning.icns in Resources */,
+				D06C9AA1195FE854004D6C27 /* prefsUpdate@2x.png in Resources */,
 				D036E20D18F3D2F20009A9D4 /* Application.icns in Resources */,
 				D036E20F18F3D2F20009A9D4 /* HTML.icns in Resources */,
+				D06C9A8C195FE854004D6C27 /* prefsSave.png in Resources */,
 				D0CA8F771953280700BBD54C /* LayoutSourceVTemplate.png in Resources */,
 				D036E21118F3D2F20009A9D4 /* PHP.icns in Resources */,
 				D036E21518F3D2F20009A9D4 /* XML.icns in Resources */,
@@ -1088,14 +1150,20 @@
 				D0E6AE1A190C9FAC00B49779 /* ShowDescriptionTemplate.pdf in Resources */,
 				D036E1E818F3D25E0009A9D4 /* Credits.rtf in Resources */,
 				D086893A1948439700BDAD72 /* TidyDocumentSourceV.xib in Resources */,
+				D06C9AA6195FEC11004D6C27 /* prefsDoc.png in Resources */,
 				D06C9A43195FB4A4004D6C27 /* MASPreferencesWindow.xib in Resources */,
+				D06C9A9B195FE854004D6C27 /* prefsTidyAppearance@2x.png in Resources */,
 				D074B78B1942BEE200F2E6F1 /* TidyEncodingHelper.xib in Resources */,
+				D06C9A92195FE854004D6C27 /* prefsTidy.png in Resources */,
 				D0CA8F6E1953280700BBD54C /* LayoutBottomPaneTemplate.png in Resources */,
 				D036E1EC18F3D25E0009A9D4 /* InfoPlist.strings in Resources */,
 				D0E6AE24190CDAA200B49779 /* JSDTidyModel.strings in Resources */,
+				D06C9A9E195FE854004D6C27 /* prefsUpdate.png in Resources */,
+				D06C9AA9195FEC11004D6C27 /* prefsDoc@2x.png in Resources */,
 				D036E1EE18F3D25E0009A9D4 /* Localizable.strings in Resources */,
 				D0E6AE20190CB34500B49779 /* PaneBottomShadow.tiff in Resources */,
 				D06C9A76195FBA0F004D6C27 /* MiscOptionsViewController.xib in Resources */,
+				D06C9A8F195FE854004D6C27 /* prefsSave@2x.png in Resources */,
 				D04E8FB5195D964F00D1CEDC /* Balthisar Tidy (web).help in Resources */,
 				D025BD5E195856B6006D7356 /* Acknowledgments.rtf in Resources */,
 				D036E1EA18F3D25E0009A9D4 /* FirstRunHelper.xib in Resources */,
@@ -1117,19 +1185,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D06C9A5C195FB997004D6C27 /* OptionListAppeanceViewController.xib in Resources */,
+				D06C9A96195FE854004D6C27 /* prefsTidy@2x.png in Resources */,
+				D06C9A5C195FB997004D6C27 /* OptionListAppearanceViewController.xib in Resources */,
 				D06C9A80195FBA3F004D6C27 /* UpdaterOptionsViewController.xib in Resources */,
 				D0B9F0F219585010008864D6 /* DCOAboutWindow.xib in Resources */,
 				D01AACA5193DE2DA00C4E5B2 /* messagesAccess.icns in Resources */,
 				D01AAC9F193DE2DA00C4E5B2 /* messagesConfig.icns in Resources */,
 				D04E8FB8195DAA9400D1CEDC /* DiffViewTemplate.png in Resources */,
 				D074B7AB1944035800F2E6F1 /* TidyDocumentMessagesView.xib in Resources */,
+				D06C9A99195FE854004D6C27 /* prefsTidyAppearance.png in Resources */,
 				D01AACA0193DE2DA00C4E5B2 /* messagesDocument.icns in Resources */,
 				D025BD5F195856C0006D7356 /* Acknowledgments.rtf in Resources */,
 				D01AACA1193DE2DA00C4E5B2 /* messagesError.icns in Resources */,
 				D01AACA2193DE2DA00C4E5B2 /* messagesInfo.icns in Resources */,
+				D06C9AA2195FE854004D6C27 /* prefsUpdate@2x.png in Resources */,
 				D01AACA3193DE2DA00C4E5B2 /* messagesPanic.icns in Resources */,
 				D01AACA4193DE2DA00C4E5B2 /* messagesWarning.icns in Resources */,
+				D06C9A8D195FE854004D6C27 /* prefsSave.png in Resources */,
 				D036E20E18F3D2F20009A9D4 /* Application.icns in Resources */,
 				D036E21018F3D2F20009A9D4 /* HTML.icns in Resources */,
 				D0CA8F781953280700BBD54C /* LayoutSourceVTemplate.png in Resources */,
@@ -1140,14 +1212,20 @@
 				D036E21418F3D2F20009A9D4 /* Tidy.icns in Resources */,
 				D036E21618F3D2F20009A9D4 /* XML.icns in Resources */,
 				D0CA8F751953280700BBD54C /* LayoutSourceHTemplate.png in Resources */,
+				D06C9AA7195FEC11004D6C27 /* prefsDoc.png in Resources */,
 				D06C9A44195FB4A4004D6C27 /* MASPreferencesWindow.xib in Resources */,
+				D06C9A9C195FE854004D6C27 /* prefsTidyAppearance@2x.png in Resources */,
 				D0E6AE19190C9FAC00B49779 /* HideDescriptionTemplate.pdf in Resources */,
+				D06C9A93195FE854004D6C27 /* prefsTidy.png in Resources */,
 				D0E6AE1B190C9FAC00B49779 /* ShowDescriptionTemplate.pdf in Resources */,
 				D036E1E918F3D25E0009A9D4 /* Credits.rtf in Resources */,
 				D086893B1948439700BDAD72 /* TidyDocumentSourceV.xib in Resources */,
+				D06C9A9F195FE854004D6C27 /* prefsUpdate.png in Resources */,
+				D06C9AAA195FEC11004D6C27 /* prefsDoc@2x.png in Resources */,
 				D074B78C1942BEE200F2E6F1 /* TidyEncodingHelper.xib in Resources */,
 				D0CA8F6F1953280700BBD54C /* LayoutBottomPaneTemplate.png in Resources */,
 				D06C9A77195FBA0F004D6C27 /* MiscOptionsViewController.xib in Resources */,
+				D06C9A90195FE854004D6C27 /* prefsSave@2x.png in Resources */,
 				D036E1ED18F3D25E0009A9D4 /* InfoPlist.strings in Resources */,
 				D0E6AE25190CDAA200B49779 /* JSDTidyModel.strings in Resources */,
 				D036E1EF18F3D25E0009A9D4 /* Localizable.strings in Resources */,
@@ -1179,13 +1257,15 @@
 				D01AACB5193DE54100C4E5B2 /* messagesPanic.icns in Resources */,
 				D04E8FBB195DAA9500D1CEDC /* DiffViewTemplate.png in Resources */,
 				D01AACB6193DE54100C4E5B2 /* messagesWarning.icns in Resources */,
+				D06C9AAB195FEC11004D6C27 /* prefsDoc@2x.png in Resources */,
 				D074B78D1942BEE200F2E6F1 /* TidyEncodingHelper.xib in Resources */,
 				D0BB67F3193C820A007A3EB0 /* Application.icns in Resources */,
 				D06C9A45195FB4A4004D6C27 /* MASPreferencesWindow.xib in Resources */,
 				D0BB67F8193C820A007A3EB0 /* HTML.icns in Resources */,
+				D06C9A8E195FE854004D6C27 /* prefsSave.png in Resources */,
 				D0CA8F761953280700BBD54C /* LayoutSourceHTemplate.png in Resources */,
 				D04E8FBC195DAA9500D1CEDC /* DiffsTemplate.png in Resources */,
-				D06C9A5D195FB997004D6C27 /* OptionListAppeanceViewController.xib in Resources */,
+				D06C9A5D195FB997004D6C27 /* OptionListAppearanceViewController.xib in Resources */,
 				D0BB67EF193C820A007A3EB0 /* PHP.icns in Resources */,
 				D074B7AC1944035800F2E6F1 /* TidyDocumentMessagesView.xib in Resources */,
 				D04E8FB4195D964F00D1CEDC /* Balthisar Tidy (pro).help in Resources */,
@@ -1194,11 +1274,16 @@
 				D0BB67F7193C820A007A3EB0 /* Tidy.icns in Resources */,
 				D0BB67F0193C820A007A3EB0 /* XML.icns in Resources */,
 				D01AACB8193DE56000C4E5B2 /* HideDescriptionTemplate.pdf in Resources */,
+				D06C9A94195FE854004D6C27 /* prefsTidy.png in Resources */,
 				D0CA8F791953280700BBD54C /* LayoutSourceVTemplate.png in Resources */,
 				D01AACB9193DE56000C4E5B2 /* ShowDescriptionTemplate.pdf in Resources */,
+				D06C9A91195FE854004D6C27 /* prefsSave@2x.png in Resources */,
 				D06C9A78195FBA0F004D6C27 /* MiscOptionsViewController.xib in Resources */,
 				D06C9A6F195FB9F2004D6C27 /* SavingOptionsViewController.xib in Resources */,
 				D0CA8F731953280700BBD54C /* LayoutLeftPaneTemplate.png in Resources */,
+				D06C9A9D195FE854004D6C27 /* prefsTidyAppearance@2x.png in Resources */,
+				D06C9AA3195FE854004D6C27 /* prefsUpdate@2x.png in Resources */,
+				D06C9A9A195FE854004D6C27 /* prefsTidyAppearance.png in Resources */,
 				D0BB67F5193C820A007A3EB0 /* Credits.rtf in Resources */,
 				D01AACAF193DE49500C4E5B2 /* TidyScripting.sdef in Resources */,
 				D086893C1948439700BDAD72 /* TidyDocumentSourceV.xib in Resources */,
@@ -1209,12 +1294,15 @@
 				D0BB67E8193C820A007A3EB0 /* Preferences.xib in Resources */,
 				D0BB67EB193C820A007A3EB0 /* FirstRunHelper.xib in Resources */,
 				D0BB67FA193C820A007A3EB0 /* MainMenu.xib in Resources */,
+				D06C9A97195FE854004D6C27 /* prefsTidy@2x.png in Resources */,
 				D06C9A81195FBA3F004D6C27 /* UpdaterOptionsViewController.xib in Resources */,
 				D08689391948439700BDAD72 /* TidyDocumentSourceH.xib in Resources */,
 				D0BB67F4193C820A007A3EB0 /* OptionPane.xib in Resources */,
 				D06C9A54195FB955004D6C27 /* OptionListViewController.xib in Resources */,
+				D06C9AA8195FEC11004D6C27 /* prefsDoc.png in Resources */,
 				D0BB67F6193C820A007A3EB0 /* TidyDocumentWindow.xib in Resources */,
 				D04E8FBD195DAA9500D1CEDC /* ScrollLockTemplate.png in Resources */,
+				D06C9AA0195FE854004D6C27 /* prefsUpdate.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1241,7 +1329,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D06C9A58195FB997004D6C27 /* OptionListAppeanceViewController.m in Sources */,
+				D06C9A58195FB997004D6C27 /* OptionListAppearanceViewController.m in Sources */,
 				D074B7A11942CF0300F2E6F1 /* TidyDocument.m in Sources */,
 				D0D9ED6D18E66810008A55D5 /* parser.c in Sources */,
 				D0B9F0FC19585060008864D6 /* DCOTransparentScroller.m in Sources */,
@@ -1307,7 +1395,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D06C9A59195FB997004D6C27 /* OptionListAppeanceViewController.m in Sources */,
+				D06C9A59195FB997004D6C27 /* OptionListAppearanceViewController.m in Sources */,
 				D074B7A21942CF0300F2E6F1 /* TidyDocument.m in Sources */,
 				D0D9ED6E18E66810008A55D5 /* parser.c in Sources */,
 				D0B9F0FD19585060008864D6 /* DCOTransparentScroller.m in Sources */,
@@ -1373,7 +1461,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D06C9A5A195FB997004D6C27 /* OptionListAppeanceViewController.m in Sources */,
+				D06C9A5A195FB997004D6C27 /* OptionListAppearanceViewController.m in Sources */,
 				D074B7A31942CF0300F2E6F1 /* TidyDocument.m in Sources */,
 				D0BB67B8193C820A007A3EB0 /* parser.c in Sources */,
 				D0B9F0FE19585060008864D6 /* DCOTransparentScroller.m in Sources */,

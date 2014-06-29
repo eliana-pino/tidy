@@ -27,10 +27,36 @@
  **************************************************************************************************/
 
 
-#import <Cocoa/Cocoa.h>
-#import "MASPreferencesViewController.h"
+#import "OptionListAppearanceViewController.h"
 
 
-@interface OptionListAppeanceViewController : NSViewController <MASPreferencesViewController>
+@implementation OptionListAppearanceViewController
+
+
+- (id)init
+{
+    return [super initWithNibName:@"OptionListAppearanceViewController" bundle:nil];
+}
+
+
+#pragma mark - <MASPreferencesViewController> Support
+
+
+- (NSString *)identifier
+{
+    return @"OptionListAppearancePreferences";
+}
+
+
+- (NSImage *)toolbarItemImage
+{
+    return [NSImage imageNamed:@"prefsTidyAppearance"];
+}
+
+
+- (NSString *)toolbarItemLabel
+{
+    return NSLocalizedString(@"Option List Appearance", nil);
+}
 
 @end

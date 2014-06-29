@@ -27,21 +27,10 @@
  **************************************************************************************************/
 
 
-#import "OptionListAppeanceViewController.h"
+#import <Cocoa/Cocoa.h>
+#import "MASPreferencesViewController.h"
 
-@interface OptionListAppeanceViewController ()
 
-@end
-
-@implementation OptionListAppeanceViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Initialization code here.
-    }
-    return self;
-}
+@interface OptionListAppearanceViewController : NSViewController <MASPreferencesViewController>
 
 @end

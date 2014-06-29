@@ -29,19 +29,34 @@
 
 #import "DocumentAppearanceViewController.h"
 
-@interface DocumentAppearanceViewController ()
-
-@end
 
 @implementation DocumentAppearanceViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+
+- (id)init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Initialization code here.
-    }
-    return self;
+    return [super initWithNibName:@"DocumentAppearanceViewController" bundle:nil];
+}
+
+
+#pragma mark - <MASPreferencesViewController> Support
+
+
+- (NSString *)identifier
+{
+    return @"DocumentAppearancePreferences";
+}
+
+
+- (NSImage *)toolbarItemImage
+{
+    return [NSImage imageNamed:@"prefsDoc"];
+}
+
+
+- (NSString *)toolbarItemLabel
+{
+    return NSLocalizedString(@"Document Options", nil);
 }
 
 @end
