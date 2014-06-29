@@ -44,8 +44,6 @@
 		D036E1F118F3D25E0009A9D4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D036E1E018F3D25E0009A9D4 /* MainMenu.xib */; };
 		D036E1F218F3D25E0009A9D4 /* OptionPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = D036E1E218F3D25E0009A9D4 /* OptionPane.xib */; };
 		D036E1F318F3D25E0009A9D4 /* OptionPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = D036E1E218F3D25E0009A9D4 /* OptionPane.xib */; };
-		D036E1F418F3D25E0009A9D4 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = D036E1E418F3D25E0009A9D4 /* Preferences.xib */; };
-		D036E1F518F3D25E0009A9D4 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = D036E1E418F3D25E0009A9D4 /* Preferences.xib */; };
 		D036E1F618F3D25E0009A9D4 /* TidyDocumentWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D036E1E618F3D25E0009A9D4 /* TidyDocumentWindow.xib */; };
 		D036E1F718F3D25E0009A9D4 /* TidyDocumentWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D036E1E618F3D25E0009A9D4 /* TidyDocumentWindow.xib */; };
 		D036E20D18F3D2F20009A9D4 /* Application.icns in Resources */ = {isa = PBXBuildFile; fileRef = D036E20818F3D2F20009A9D4 /* Application.icns */; };
@@ -250,7 +248,6 @@
 		D0BB67E3193C820A007A3EB0 /* alloc.c in Sources */ = {isa = PBXBuildFile; fileRef = D0D9EAEA18E6680F008A55D5 /* alloc.c */; };
 		D0BB67E4193C820A007A3EB0 /* NSApplication+TidyApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = D04D5F981902459500F77901 /* NSApplication+TidyApplication.m */; };
 		D0BB67E6193C820A007A3EB0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D016A929182FD80700712C60 /* Cocoa.framework */; };
-		D0BB67E8193C820A007A3EB0 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = D036E1E418F3D25E0009A9D4 /* Preferences.xib */; };
 		D0BB67EB193C820A007A3EB0 /* FirstRunHelper.xib in Resources */ = {isa = PBXBuildFile; fileRef = D036E1DA18F3D25E0009A9D4 /* FirstRunHelper.xib */; };
 		D0BB67EC193C820A007A3EB0 /* JSDTidyModel.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE22190CDAA200B49779 /* JSDTidyModel.strings */; };
 		D0BB67ED193C820A007A3EB0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D036E1DE18F3D25E0009A9D4 /* Localizable.strings */; };
@@ -397,7 +394,6 @@
 		D036E1DF18F3D25E0009A9D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D036E1E118F3D25E0009A9D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		D036E1E318F3D25E0009A9D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/OptionPane.xib; sourceTree = "<group>"; };
-		D036E1E518F3D25E0009A9D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Preferences.xib; sourceTree = "<group>"; };
 		D036E1E718F3D25E0009A9D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TidyDocumentWindow.xib; sourceTree = "<group>"; };
 		D036E20818F3D2F20009A9D4 /* Application.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Application.icns; sourceTree = "<group>"; };
 		D036E20918F3D2F20009A9D4 /* HTML.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = HTML.icns; sourceTree = "<group>"; };
@@ -793,7 +789,6 @@
 				D06C9A82195FBAA9004D6C27 /* PreferencesWindow */,
 				D036E1E018F3D25E0009A9D4 /* MainMenu.xib */,
 				D036E1E218F3D25E0009A9D4 /* OptionPane.xib */,
-				D036E1E418F3D25E0009A9D4 /* Preferences.xib */,
 				D025BD5C195856B6006D7356 /* Acknowledgments.rtf */,
 				D036E1D818F3D25E0009A9D4 /* Credits.rtf */,
 				D036E1DC18F3D25E0009A9D4 /* InfoPlist.strings */,
@@ -1175,7 +1170,6 @@
 				D036E1EA18F3D25E0009A9D4 /* FirstRunHelper.xib in Resources */,
 				D06C9A6D195FB9F2004D6C27 /* SavingOptionsViewController.xib in Resources */,
 				D036E1F018F3D25E0009A9D4 /* MainMenu.xib in Resources */,
-				D036E1F418F3D25E0009A9D4 /* Preferences.xib in Resources */,
 				D036E1F218F3D25E0009A9D4 /* OptionPane.xib in Resources */,
 				D03B89DA1955474700E9B4D5 /* DiffViewTemplate.png in Resources */,
 				D0B9F0F119585010008864D6 /* DCOAboutWindow.xib in Resources */,
@@ -1240,7 +1234,6 @@
 				D0E6AE21190CB34500B49779 /* PaneBottomShadow.tiff in Resources */,
 				D036E1EB18F3D25E0009A9D4 /* FirstRunHelper.xib in Resources */,
 				D036E1F118F3D25E0009A9D4 /* MainMenu.xib in Resources */,
-				D036E1F518F3D25E0009A9D4 /* Preferences.xib in Resources */,
 				D036E1F718F3D25E0009A9D4 /* TidyDocumentWindow.xib in Resources */,
 				D036E1F318F3D25E0009A9D4 /* OptionPane.xib in Resources */,
 				D04E8FBA195DAA9400D1CEDC /* ScrollLockTemplate.png in Resources */,
@@ -1298,7 +1291,6 @@
 				D0BB67EC193C820A007A3EB0 /* JSDTidyModel.strings in Resources */,
 				D0BB67ED193C820A007A3EB0 /* Localizable.strings in Resources */,
 				D01AACBA193DE58200C4E5B2 /* PaneBottomShadow.tiff in Resources */,
-				D0BB67E8193C820A007A3EB0 /* Preferences.xib in Resources */,
 				D0BB67EB193C820A007A3EB0 /* FirstRunHelper.xib in Resources */,
 				D06C9AB319600550004D6C27 /* PaneTopShadow.png in Resources */,
 				D0BB67FA193C820A007A3EB0 /* MainMenu.xib in Resources */,
@@ -1588,14 +1580,6 @@
 				D036E1E318F3D25E0009A9D4 /* Base */,
 			);
 			name = OptionPane.xib;
-			sourceTree = "<group>";
-		};
-		D036E1E418F3D25E0009A9D4 /* Preferences.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D036E1E518F3D25E0009A9D4 /* Base */,
-			);
-			name = Preferences.xib;
 			sourceTree = "<group>";
 		};
 		D036E1E618F3D25E0009A9D4 /* TidyDocumentWindow.xib */ = {
