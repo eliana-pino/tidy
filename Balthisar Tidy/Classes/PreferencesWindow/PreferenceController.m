@@ -292,20 +292,11 @@
 							 miscOptionsViewController,
 							 updaterOptionsViewController];
 
-
-	//NSString *title = NSLocalizedString(@"Preferences", nil);
-
 	self = [super initWithViewControllers:controllers];//] title:title];
 
 	return self;
 }
 
-
-//- (void)setSelectedViewController:(NSViewController <MASPreferencesViewController> *)controller
-//{
-//	[super setSelectedViewController:controller];
-//
-//}
 
 ///*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 //	dealloc
@@ -320,24 +311,12 @@
 
 ///*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 //	awakeFromNib
-//		  in place of the empty optionPane in the xib.
 //		- Setup Sparkle vs No-Sparkle.
-//		- Give the OptionPaneController its optionsInEffect
 // *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 //- (void)awakeFromNib
 //{
 //
-//	/* Create and setup the option controller. */
 //
-//	self.optionController = [[OptionPaneController alloc] init];
-//
-//	self.optionController.isInPreferencesView = YES;
-//
-//	[self.optionPane addSubview:self.optionController.view];
-//
-//	self.optionController.optionsInEffect = [[self class] optionsInEffect];
-//
-//	
 //	/* Setup Sparkle versus No-Sparkle versions */
 //
 //#ifdef FEATURE_SPARKLE
@@ -361,19 +340,6 @@
 //#endif
 //
 //
-//	/* Set the option values in the optionController from user defaults. */
-//	
-//	[[[self optionController] tidyDocument] takeOptionValuesFromDefaults:[NSUserDefaults standardUserDefaults]];
-//
-//
-//	/* 
-//		NSNotifications from `optionController` indicate that one or more Tidy options changed.
-//		This is what we will use to capture changes and record them into user defaults.
-//	 */
-//	[[NSNotificationCenter defaultCenter] addObserver:self
-//											 selector:@selector(handleTidyOptionChange:)
-//												 name:tidyNotifyOptionChanged
-//											   object:[[self optionController] tidyDocument]];
 //}
 
 
@@ -405,23 +371,6 @@
 	{
 		[self.tabView selectTabViewItemAtIndex:indexOfCurrentTabView];
 	}
-}
-
-
-#pragma mark - Events
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	handleTidyOptionChange:
-		We're here because we registered for NSNotification.
-		One of the preferences changed in the option pane.
-		We're going to record the preference, but we're not
-		going to post a notification, because new documents
-		will read the preferences themselves.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)handleTidyOptionChange:(NSNotification *)note
-{
-	[self.optionController.tidyDocument writeOptionValuesWithDefaults:[NSUserDefaults standardUserDefaults]];
 }
 
 

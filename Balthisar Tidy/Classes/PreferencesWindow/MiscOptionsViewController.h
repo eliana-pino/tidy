@@ -33,4 +33,7 @@
 
 @interface MiscOptionsViewController : NSViewController <MASPreferencesViewController>
 
+@property (nonatomic, readonly) BOOL hasResizableWidth;
+@property (nonatomic, readonly) BOOL hasResizableHeight;
+
 @end

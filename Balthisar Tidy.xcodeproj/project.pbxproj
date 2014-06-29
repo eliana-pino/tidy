@@ -150,6 +150,9 @@
 		D06C9AA9195FEC11004D6C27 /* prefsDoc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9AA5195FEC11004D6C27 /* prefsDoc@2x.png */; };
 		D06C9AAA195FEC11004D6C27 /* prefsDoc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9AA5195FEC11004D6C27 /* prefsDoc@2x.png */; };
 		D06C9AAB195FEC11004D6C27 /* prefsDoc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9AA5195FEC11004D6C27 /* prefsDoc@2x.png */; };
+		D06C9AB119600550004D6C27 /* PaneTopShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9AB019600550004D6C27 /* PaneTopShadow.png */; };
+		D06C9AB219600550004D6C27 /* PaneTopShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9AB019600550004D6C27 /* PaneTopShadow.png */; };
+		D06C9AB319600550004D6C27 /* PaneTopShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9AB019600550004D6C27 /* PaneTopShadow.png */; };
 		D074B78B1942BEE200F2E6F1 /* TidyEncodingHelper.xib in Resources */ = {isa = PBXBuildFile; fileRef = D074B7891942BEE200F2E6F1 /* TidyEncodingHelper.xib */; };
 		D074B78C1942BEE200F2E6F1 /* TidyEncodingHelper.xib in Resources */ = {isa = PBXBuildFile; fileRef = D074B7891942BEE200F2E6F1 /* TidyEncodingHelper.xib */; };
 		D074B78D1942BEE200F2E6F1 /* TidyEncodingHelper.xib in Resources */ = {isa = PBXBuildFile; fileRef = D074B7891942BEE200F2E6F1 /* TidyEncodingHelper.xib */; };
@@ -447,6 +450,7 @@
 		D06C9A8B195FE854004D6C27 /* prefsUpdate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "prefsUpdate@2x.png"; path = "Images for Prefs/prefsUpdate@2x.png"; sourceTree = "<group>"; };
 		D06C9AA4195FEC11004D6C27 /* prefsDoc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = prefsDoc.png; path = "Images for Prefs/prefsDoc.png"; sourceTree = "<group>"; };
 		D06C9AA5195FEC11004D6C27 /* prefsDoc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "prefsDoc@2x.png"; path = "Images for Prefs/prefsDoc@2x.png"; sourceTree = "<group>"; };
+		D06C9AB019600550004D6C27 /* PaneTopShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PaneTopShadow.png; path = "Images for UI/PaneTopShadow.png"; sourceTree = "<group>"; };
 		D074B78A1942BEE200F2E6F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TidyEncodingHelper.xib; sourceTree = "<group>"; };
 		D074B7931942CF0300F2E6F1 /* EncodingHelperController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EncodingHelperController.h; path = DocumentWindow/EncodingHelperController.h; sourceTree = "<group>"; };
 		D074B7941942CF0300F2E6F1 /* EncodingHelperController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EncodingHelperController.m; path = DocumentWindow/EncodingHelperController.m; sourceTree = "<group>"; };
@@ -660,6 +664,7 @@
 		D01AACBC193DEA4900C4E5B2 /* Images for UI */ = {
 			isa = PBXGroup;
 			children = (
+				D06C9AB019600550004D6C27 /* PaneTopShadow.png */,
 				D0E6AE6B1911E88000B49779 /* messagesConfig.icns */,
 				D0E6AE6C1911E88000B49779 /* messagesDocument.icns */,
 				D0E6AE6D1911E88000B49779 /* messagesError.icns */,
@@ -1124,6 +1129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D06C9A95195FE854004D6C27 /* prefsTidy@2x.png in Resources */,
+				D06C9AB119600550004D6C27 /* PaneTopShadow.png in Resources */,
 				D06C9A5B195FB997004D6C27 /* OptionListAppearanceViewController.xib in Resources */,
 				D06C9A7F195FBA3F004D6C27 /* UpdaterOptionsViewController.xib in Resources */,
 				D0E6AE6A1911E4DC00B49779 /* messagesAccess.icns in Resources */,
@@ -1186,6 +1192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D06C9A96195FE854004D6C27 /* prefsTidy@2x.png in Resources */,
+				D06C9AB219600550004D6C27 /* PaneTopShadow.png in Resources */,
 				D06C9A5C195FB997004D6C27 /* OptionListAppearanceViewController.xib in Resources */,
 				D06C9A80195FBA3F004D6C27 /* UpdaterOptionsViewController.xib in Resources */,
 				D0B9F0F219585010008864D6 /* DCOAboutWindow.xib in Resources */,
@@ -1293,6 +1300,7 @@
 				D01AACBA193DE58200C4E5B2 /* PaneBottomShadow.tiff in Resources */,
 				D0BB67E8193C820A007A3EB0 /* Preferences.xib in Resources */,
 				D0BB67EB193C820A007A3EB0 /* FirstRunHelper.xib in Resources */,
+				D06C9AB319600550004D6C27 /* PaneTopShadow.png in Resources */,
 				D0BB67FA193C820A007A3EB0 /* MainMenu.xib in Resources */,
 				D06C9A97195FE854004D6C27 /* prefsTidy@2x.png in Resources */,
 				D06C9A81195FBA3F004D6C27 /* UpdaterOptionsViewController.xib in Resources */,

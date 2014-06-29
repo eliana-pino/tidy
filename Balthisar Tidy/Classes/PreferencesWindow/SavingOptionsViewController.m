@@ -42,6 +42,18 @@
 #pragma mark - <MASPreferencesViewController> Support
 
 
+- (BOOL)hasResizableHeight
+{
+	return NO;
+}
+
+
+- (BOOL)hasResizableWidth
+{
+	return NO;
+}
+
+
 - (NSString *)identifier
 {
     return @"SavingOptionsPreferences";
