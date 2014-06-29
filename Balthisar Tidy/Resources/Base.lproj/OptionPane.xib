@@ -430,7 +430,7 @@
                                 </menuItem>
                                 <menuItem isSeparatorItem="YES" enabled="YES" id="6cm-3G-Q97">
                                     <connections>
-                                        <binding destination="GKf-fA-Bsf" name="hidden" keyPath="featureExportsConfig" id="X9T-Ni-bOW">
+                                        <binding destination="-3" name="hidden" keyPath="delegate.featureExportsConfig" id="fXY-9N-5ts">
                                             <dictionary key="options">
                                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                                             </dictionary>
@@ -440,7 +440,7 @@
                                 <menuItem title="Export a Unix config file with these options…" id="0HY-2M-G1v">
                                     <connections>
                                         <action selector="handleSaveOptionsToUnixConfigFile:" target="-2" id="QTh-n6-WMY"/>
-                                        <binding destination="GKf-fA-Bsf" name="hidden" keyPath="featureExportsConfig" id="npG-sG-qqH">
+                                        <binding destination="-3" name="hidden" keyPath="delegate.featureExportsConfig" id="Yjh-6Y-Dol">
                                             <dictionary key="options">
                                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                                             </dictionary>
@@ -467,7 +467,6 @@
                 <constraint firstItem="Jr5-JD-RhE" firstAttribute="leading" secondItem="21" secondAttribute="leading" constant="10" id="wJy-fU-BVW"/>
             </constraints>
         </customView>
-        <customObject id="GKf-fA-Bsf" customClass="AppController"/>
         <arrayController automaticallyRearrangesObjects="YES" id="m8S-67-rAD" userLabel="tidyOptions Array Controller">
             <connections>
                 <binding destination="-2" name="filterPredicate" keyPath="self.filterPredicate" id="qYA-QL-OVI"/>

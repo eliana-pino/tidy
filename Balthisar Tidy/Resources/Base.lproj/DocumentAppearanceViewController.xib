@@ -32,6 +32,14 @@
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <binding destination="OGO-5o-d3W" name="value" keyPath="values.ShowNewDocumentTidyOptions" id="TF8-CQ-Vdl">
+                            <dictionary key="options">
+                                <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                                <bool key="NSConditionallySetsEnabled" value="NO"/>
+                            </dictionary>
+                        </binding>
+                    </connections>
                 </button>
                 <textField appearanceType="aqua" horizontalHuggingPriority="100" verticalHuggingPriority="750" horizontalCompressionResistancePriority="100" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fe7-zi-IUF">
                     <rect key="frame" x="33" y="280" width="339" height="28"/>
@@ -49,6 +57,14 @@
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <binding destination="OGO-5o-d3W" name="value" keyPath="values.ShowNewDocumentMessages" id="HaX-5W-5jg">
+                            <dictionary key="options">
+                                <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                                <bool key="NSConditionallySetsEnabled" value="NO"/>
+                            </dictionary>
+                        </binding>
+                    </connections>
                 </button>
                 <textField appearanceType="aqua" horizontalHuggingPriority="100" verticalHuggingPriority="750" horizontalCompressionResistancePriority="100" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zaw-zQ-rsT">
                     <rect key="frame" x="33" y="215" width="339" height="28"/>
@@ -66,6 +82,14 @@
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <binding destination="OGO-5o-d3W" name="value" keyPath="values.ShowNewDocumentLineNumbers" id="eap-y3-Fpo">
+                            <dictionary key="options">
+                                <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                                <bool key="NSConditionallySetsEnabled" value="NO"/>
+                            </dictionary>
+                        </binding>
+                    </connections>
                 </button>
                 <textField appearanceType="aqua" horizontalHuggingPriority="100" verticalHuggingPriority="750" horizontalCompressionResistancePriority="100" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JMc-BQ-haE">
                     <rect key="frame" x="33" y="164" width="339" height="14"/>
@@ -83,6 +107,14 @@
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <binding destination="OGO-5o-d3W" name="value" keyPath="values.ShowNewDocumentSideBySide" id="xvL-XF-b4t">
+                            <dictionary key="options">
+                                <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                                <bool key="NSConditionallySetsEnabled" value="NO"/>
+                            </dictionary>
+                        </binding>
+                    </connections>
                 </button>
                 <textField appearanceType="aqua" horizontalHuggingPriority="100" verticalHuggingPriority="750" horizontalCompressionResistancePriority="100" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PdF-Ag-0qv">
                     <rect key="frame" x="33" y="85" width="339" height="42"/>
@@ -97,19 +129,40 @@
                 <button appearanceType="aqua" horizontalHuggingPriority="100" verticalHuggingPriority="750" horizontalCompressionResistancePriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="yyx-qS-xCE">
                     <rect key="frame" x="18" y="54" width="354" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Show diffs by default when in side-by-side mode" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ss2-tD-GNr">
+                    <buttonCell key="cell" type="check" title="Show diffs by default when in side-by-side mode" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="ss2-tD-GNr">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <binding destination="-3" name="hidden" keyPath="delegate.featureSyncedDiffs" id="ROj-HO-Z1s">
+                            <dictionary key="options">
+                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                        <binding destination="OGO-5o-d3W" name="value" keyPath="values.ShowNewDocumentSyncInOut" id="55p-xs-cXj">
+                            <dictionary key="options">
+                                <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                                <bool key="NSConditionallySetsEnabled" value="NO"/>
+                            </dictionary>
+                        </binding>
+                    </connections>
                 </button>
                 <textField appearanceType="aqua" horizontalHuggingPriority="100" verticalHuggingPriority="750" horizontalCompressionResistancePriority="100" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TWu-DI-5pp">
                     <rect key="frame" x="33" y="20" width="339" height="28"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="If selected and the Source View is in side-by-side style, then diffs will be shown automatically." id="SDI-tp-Cg2">
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="If selected and the Source View is in side-by-side style, then diffs will be shown automatically. (NOT IMPLEMENTED)" id="SDI-tp-Cg2">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
+                    <connections>
+                        <binding destination="-3" name="hidden" keyPath="delegate.featureSyncedDiffs" id="BfV-ud-eVK">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
                 </textField>
             </subviews>
             <constraints>
@@ -149,5 +202,6 @@
                 <constraint firstItem="OOq-Jx-L3p" firstAttribute="top" secondItem="Fe7-zi-IUF" secondAttribute="bottom" constant="15" id="zUo-o7-KVQ"/>
             </constraints>
         </customView>
+        <userDefaultsController representsSharedInstance="YES" id="OGO-5o-d3W"/>
     </objects>
 </document>
