@@ -1,6 +1,6 @@
 /**************************************************************************************************
 
-	FirstRunController.h
+	FirstRunController
 
 	Implements a first run helper using an array of programmed steps:
 		- message as NSString
