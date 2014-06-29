@@ -65,7 +65,7 @@
 	BOOL isWindowVisible = [[[PreferenceController sharedPreferences] window ] isVisible];
 	if (isWindowVisible)
 	{
-		return [[PreferenceController sharedPreferences] indexOfCurrentTabView] + 1;
+		return [[PreferenceController sharedPreferences] indexOfSelectedController] + 1;
 	}
 	else
 	{
@@ -77,7 +77,7 @@
 {
 	if (self.preferencesWindowIsVisible)
 	{
-		[[PreferenceController sharedPreferences] setIndexOfCurrentTabView:indexOfVisiblePrefsWindowPanel - 1];
+		[[PreferenceController sharedPreferences] selectControllerAtIndex:indexOfVisiblePrefsWindowPanel - 1];
 	}
 }
 
@@ -89,7 +89,7 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSInteger)countOfPrefsWindowPanels
 {
-	return [[PreferenceController sharedPreferences] countOfTabViews];
+	return [[[PreferenceController sharedPreferences] viewControllers] count];
 }
 
 

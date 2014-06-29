@@ -32,7 +32,18 @@
 
 @interface UpdaterOptionsViewController : NSViewController <MASPreferencesViewController>
 
+
+/* Software Updater Pane Preferences and Objects */
+
+@property (weak) IBOutlet NSButton      *buttonAllowUpdateChecks;
+@property (weak) IBOutlet NSButton      *buttonAllowSystemProfile;
+@property (weak) IBOutlet NSPopUpButton *buttonUpdateInterval;
+
+
+/* <MASPreferencesViewController> */
+
 @property (nonatomic, readonly) BOOL hasResizableWidth;
 @property (nonatomic, readonly) BOOL hasResizableHeight;
+
 
 @end

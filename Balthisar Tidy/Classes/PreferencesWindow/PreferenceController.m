@@ -44,40 +44,6 @@
 #import "MiscOptionsViewController.h"
 #import "UpdaterOptionsViewController.h"
 
-// @TODO: won't need this here.
-#import "OptionPaneController.h"
-
-#ifdef FEATURE_SPARKLE
-	#import <Sparkle/Sparkle.h>
-#endif
-
-
-#pragma mark - CATEGORY - Non-Public
-
-
-@interface PreferenceController ()
-
-
-#pragma mark - Properties
-
-
-/* Software Updater Pane Preferences and Objects */
-
-@property (weak) IBOutlet NSTabViewItem *tabViewUpdates;
-@property (weak) IBOutlet NSButton      *buttonAllowUpdateChecks;
-@property (weak) IBOutlet NSButton      *buttonAllowSystemProfile;
-@property (weak) IBOutlet NSPopUpButton * buttonUpdateInterval;
-
-
-/* Other Properties */
-
-@property (weak) IBOutlet NSTabView *tabView;            // The tab view.
-@property (weak) IBOutlet NSView    *optionPane;         // The empty pane in the nib that we will inhabit.
-@property OptionPaneController      *optionController;   // The real option pane loaded into optionPane.
-
-
-@end
-
 
 #pragma mark - IMPLEMENTATION
 
@@ -284,6 +250,9 @@
 	NSViewController *documentAppearanceViewController = [[DocumentAppearanceViewController alloc] init];
 	NSViewController *savingOptionsViewController = [[SavingOptionsViewController alloc] init];
 	NSViewController *miscOptionsViewController = [[MiscOptionsViewController alloc] init];
+
+#ifdef FEATURE_SPARKLE
+
 	NSViewController *updaterOptionsViewController = [[UpdaterOptionsViewController alloc] init];
 
 	NSArray *controllers = @[optionListViewController,
@@ -292,86 +261,17 @@
 							 savingOptionsViewController,
 							 miscOptionsViewController,
 							 updaterOptionsViewController];
+#else
+	NSArray *controllers = @[optionListViewController,
+							 optionListAppearanceViewController,
+							 documentAppearanceViewController,
+							 savingOptionsViewController,
+							 miscOptionsViewController];
+#endif
 
 	self = [super initWithViewControllers:controllers];//] title:title];
 
 	return self;
-}
-
-
-///*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-//	dealloc
-// *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-//- (void)dealloc
-//{
-//	[[NSNotificationCenter defaultCenter] removeObserver:self
-//													name:tidyNotifyOptionChanged
-//												  object:[[self optionController] tidyDocument]];
-//}
-
-
-///*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-//	awakeFromNib
-//		- Setup Sparkle vs No-Sparkle.
-// *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-//- (void)awakeFromNib
-//{
-//
-//
-//	/* Setup Sparkle versus No-Sparkle versions */
-//
-//#ifdef FEATURE_SPARKLE
-//
-//	SUUpdater *sharedUpdater = [SUUpdater sharedUpdater];
-//
-//	[[self buttonAllowUpdateChecks] bind:@"value" toObject:sharedUpdater withKeyPath:@"automaticallyChecksForUpdates" options:nil];
-//
-//	[[self buttonUpdateInterval] bind:@"enabled" toObject:sharedUpdater withKeyPath:@"automaticallyChecksForUpdates" options:nil];
-//
-//	[[self buttonUpdateInterval] bind:@"selectedTag" toObject:sharedUpdater withKeyPath:@"updateCheckInterval" options:nil];
-//
-//	[[self buttonAllowSystemProfile] bind:@"value" toObject:sharedUpdater withKeyPath:@"sendsSystemProfile" options:nil];
-//
-//#else
-//
-//	NSTabView *theTabView = [[self tabViewUpdates] tabView];
-//
-//	[theTabView removeTabViewItem:[self tabViewUpdates]];
-//
-//#endif
-//
-//
-//}
-
-
-#pragma mark - Property Accessors
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	countOfTabViews
-		Returns the number of tab views in the tab view.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (NSInteger)countOfTabViews
-{
-	return [[self.tabView tabViewItems] count];
-}
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	indexOfCurrentTabView
-		Sets/Gets the index of the current tab view. We use and
-		expect standard zero-based indices here.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (NSInteger)indexOfCurrentTabView
-{
-	return [self.tabView indexOfTabViewItem:[self.tabView selectedTabViewItem]];
-}
-
-- (void) setIndexOfCurrentTabView:(NSInteger)indexOfCurrentTabView
-{
-	if (indexOfCurrentTabView <= [[self.tabView tabViewItems] count] - 1)
-	{
-		[self.tabView selectTabViewItemAtIndex:indexOfCurrentTabView];
-	}
 }
 
 
