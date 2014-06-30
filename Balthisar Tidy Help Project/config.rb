@@ -8,7 +8,7 @@ set :css_dir,      'Resources/Base.lproj/css'
 set :js_dir,       'Resources/Base.lproj/javascript'
 set :images_dir,   'Resources/Base.lproj/images'
 
-set :partials_dir, 'partials'
+#set :partials_dir, 'partials'
 set :layouts_dir,  'layouts'
 set :data_dir,     'Contents (source)/data'
 

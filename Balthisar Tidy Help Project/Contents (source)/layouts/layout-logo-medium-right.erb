@@ -8,9 +8,11 @@
 			<div>
 				<img src="../../shared/icon_256x256@2x.png"  alt="logo" />
 			</div>
+        	<% if content_for?(:relatedTopics) %>
 			<div>
 				<%= yield_content :relatedTopics %>
 			</div>
+			<% end %>
 		</div>
 	</div>
 

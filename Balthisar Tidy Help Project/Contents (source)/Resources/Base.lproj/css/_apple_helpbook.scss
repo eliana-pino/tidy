@@ -110,7 +110,8 @@ img.maxW2304px { max-width: 2304px; }
 	layout-logo-large layout styles
  *************************************/
 
-div.container-logo-large {
+div.container-logo-large
+{
 
 	$logowidth: 200pt;
 
@@ -121,7 +122,8 @@ div.container-logo-large {
 	height: 100%;
 
 		/* left block */
-	 	> div:first-child {
+	 	> div:first-child
+		{
 			width: $logowidth;
 			position: absolute;
 			top: 0;
@@ -131,44 +133,51 @@ div.container-logo-large {
 			text-align: center;
 
 			/* top of left block, where image lives */
-			> div:first-child {
+			> div:first-child
+			{
 
-				> img {
+				> img
+				{
 					display: block;
 					width: 80%;
 					margin: 0 auto;
-				  }
+				}
 
-				> h1 {
+				> h1
+				{
 					margin-bottom: 0;
 				}
 			}
 
 			/* bottom of left block, for related topics */
-			> div:first-child + div {
+			> div:first-child + div
+			{
 				padding: 2em 1em 1em 3em;
 				text-align: left;
 
-					> h1 {
+					> h1
+					{
 						margin: 0 0 ($interMargins/2) 0;
 						font-size: 13pt;
 					}
 
-					li {
+					li
+					{
 						margin: 0.5ex;
 					}
 			}
-	}
+		}
 
 		/* right block */
-		> div:first-child + div {
+		> div:first-child + div
+		{
 			margin-left: $logowidth;
 			padding-top: 1em;
 			padding-left: 1em;
 			padding-right: 1em;
 			border-left: 1px solid #bfbfbf;
 			min-height: 100%;
-	}
+		}
 }
 
 
@@ -244,24 +253,27 @@ div.container-logo-small-top
 	padding-right: 1.5em;
 	padding-bottom: 1.5em;
 
-	> img:first-child {
+	img.logo
+	{
 		height: 36pt;
+		width: auto;
 		padding: 0 1em 0 0;
 		float: left;
+	}
 
-		/* just the first headline */
-		+ h1 {
-			line-height: 36pt;
-		}
+	/* just the first headline */
+	img.logo + h1
+	{
+		line-height: 36pt;
+	}
 
-		/* other images in the div, after the first-child */
-		~ img,
-		> img {
-			display: block;
-			margin-left: auto;
-			margin-right: auto;
-			width: 100%;
-		}
+	/* other images in the div, after the first-child */
+	img:not(logo)
+	{
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 100%;
 	}
 
 	/* This will be the related topics div */
@@ -288,10 +300,10 @@ div.container-logo-small-top
 pre {
 	background-color: #eeeeee;
 	color: black;
-	display:  block;
-	padding-left:  20px;
-	padding-top:  5px;
-	padding-bottom:  5px;
+	display: block;
+	padding-left: 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 	margin-top: 10px;
 	margin-left: 2em;
 	margin-right: 2em;
@@ -345,45 +357,14 @@ div.steps
 
 ORIGINAL
 
-body {
-	font-family: "Helvetica Neue", Arial, sans-serif;
-	margin: 1em;
-	font-size: 10pt;
-	min-width: 600px;
-}
-
-h1 {
-	font-size: 15pt;
-	margin-bottom: 0;
-}
-
-
-h2 {
-	font-size: 13pt;
-	margin-top: 5px;
-	margin-bottom: -6px;
-}
-
-h3 {
-	font-size: 11pt;
-	font-weight: bold;
-	margin-top: 5px;
-	margin-bottom: -2px;
-}
-
-p {
-	font-size: 10pt;
-	line-height: 12pt;
-	text-decoration: none;
-}
 
 code {
 	background-color: #eeeeee;
 	color: black;
-	display:  block;
-	padding-left:  20px;
-	padding-top:  5px;
-	padding-bottom:  5px;
+	display: block;
+	padding-left: 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 	margin-top: 10px;
 	height: 1.8em;
 	font-size: 9pt;
@@ -395,7 +376,7 @@ code {
 	margin-left: 20px;
 	margin-right: 20px;
 	padding: 0px 15px 15px 15px;
-	margin-bottom:  -15px;
+	margin-bottom: -15px;
 	border: 1px solid #eaeaea;
 }
 
@@ -424,28 +405,28 @@ code {
 	white-space: nowrap;
 }
 
-#banner div + div:last-child  {
+#banner div + div:last-child {
 	float: right;
 	border-right: 0;
 	border-left: solid 1px #bfbfbf;
 }
 
 #breadcrumb {
-  width: 100%;
-  background: #eee none;
+	width: 100%;
+	background: #eee none;
 }
 
 #breadcrumb ul {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
 }
 
 #breadcrumb li {
-  margin: 0;
-  padding-right: 1em;
-  float: left;
-}
+	margin: 0;
+	padding-right: 1em;
+	float: left;
+	}
 
 #breadcrumb li:before {
 	content: ">";
@@ -453,7 +434,7 @@ code {
 
 #container {
 	margin-top: 40px;
-	min-height:  200px;
+	min-height: 200px;
 	padding-right: 6px;
 }
 
@@ -479,7 +460,7 @@ code {
 	clear: left;
 }
 
-#seealso  h2 {
+#seealso h2 {
 	margin-top: 10px;
 	margin-bottom: 10px;
 	color: #5c5c5c;
@@ -487,22 +468,22 @@ code {
 }
 
 #seealso a {
-	display:  block;
-	margin-left:  20px;
+	display: block;
+	margin-left: 20px;
 	height: 1.2em;
 }
 
 
 #footer {
 	float: left;
-	clear:  both;
+	clear: both;
 	width: 100%;
 	margin-top: 20px;
 	border-top: solid 1px #bfbfbf;
 }
 
 #footer p {
-	text-align:  center;
+	text-align: center;
 	font-size: 8pt;
 }
 
