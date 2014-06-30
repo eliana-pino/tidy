@@ -168,6 +168,7 @@ div.container-logo-medium-right {
   left: 0;
   right: 0;
   width: 100%;
+  height: 100%;
   /* left block */
   /* right block */
 }
@@ -178,6 +179,7 @@ div.container-logo-medium-right > div:first-child {
   padding-right: 1em;
   padding-bottom: 1em;
   border-right: 1px solid #bfbfbf;
+  min-height: 100%;
 }
 div.container-logo-medium-right > div:first-child + div {
   width: 130pt;
@@ -214,20 +216,20 @@ div.container-logo-small-top {
   padding-left: 1.5em;
   padding-right: 1.5em;
   padding-bottom: 1.5em;
-  /* This will be the related topics div */
-}
-div.container-logo-small-top > img:first-child {
-  height: 36pt;
-  padding: 0 1em 0 0;
-  float: left;
   /* just the first headline */
   /* other images in the div, after the first-child */
+  /* This will be the related topics div */
 }
-div.container-logo-small-top > img:first-child + h1 {
+div.container-logo-small-top img.logo {
+  height: 36pt;
+  width: auto;
+  padding: 0 1em 0 0;
+  float: left;
+}
+div.container-logo-small-top img.logo + h1 {
   line-height: 36pt;
 }
-div.container-logo-small-top > img:first-child ~ img,
-div.container-logo-small-top > img:first-child > img {
+div.container-logo-small-top img:not(logo) {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -299,45 +301,14 @@ div.steps ol li {
 
 ORIGINAL
 
-body {
-	font-family: "Helvetica Neue", Arial, sans-serif;
-	margin: 1em;
-	font-size: 10pt;
-	min-width: 600px;
-}
-
-h1 {
-	font-size: 15pt;
-	margin-bottom: 0;
-}
-
-
-h2 {
-	font-size: 13pt;
-	margin-top: 5px;
-	margin-bottom: -6px;
-}
-
-h3 {
-	font-size: 11pt;
-	font-weight: bold;
-	margin-top: 5px;
-	margin-bottom: -2px;
-}
-
-p {
-	font-size: 10pt;
-	line-height: 12pt;
-	text-decoration: none;
-}
 
 code {
 	background-color: #eeeeee;
 	color: black;
-	display:  block;
-	padding-left:  20px;
-	padding-top:  5px;
-	padding-bottom:  5px;
+	display: block;
+	padding-left: 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 	margin-top: 10px;
 	height: 1.8em;
 	font-size: 9pt;
@@ -349,7 +320,7 @@ code {
 	margin-left: 20px;
 	margin-right: 20px;
 	padding: 0px 15px 15px 15px;
-	margin-bottom:  -15px;
+	margin-bottom: -15px;
 	border: 1px solid #eaeaea;
 }
 
@@ -378,28 +349,28 @@ code {
 	white-space: nowrap;
 }
 
-#banner div + div:last-child  {
+#banner div + div:last-child {
 	float: right;
 	border-right: 0;
 	border-left: solid 1px #bfbfbf;
 }
 
 #breadcrumb {
-  width: 100%;
-  background: #eee none;
+	width: 100%;
+	background: #eee none;
 }
 
 #breadcrumb ul {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
 }
 
 #breadcrumb li {
-  margin: 0;
-  padding-right: 1em;
-  float: left;
-}
+	margin: 0;
+	padding-right: 1em;
+	float: left;
+	}
 
 #breadcrumb li:before {
 	content: ">";
@@ -407,7 +378,7 @@ code {
 
 #container {
 	margin-top: 40px;
-	min-height:  200px;
+	min-height: 200px;
 	padding-right: 6px;
 }
 
@@ -433,7 +404,7 @@ code {
 	clear: left;
 }
 
-#seealso  h2 {
+#seealso h2 {
 	margin-top: 10px;
 	margin-bottom: 10px;
 	color: #5c5c5c;
@@ -441,22 +412,22 @@ code {
 }
 
 #seealso a {
-	display:  block;
-	margin-left:  20px;
+	display: block;
+	margin-left: 20px;
 	height: 1.2em;
 }
 
 
 #footer {
 	float: left;
-	clear:  both;
+	clear: both;
 	width: 100%;
 	margin-top: 20px;
 	border-top: solid 1px #bfbfbf;
 }
 
 #footer p {
-	text-align:  center;
+	text-align: center;
 	font-size: 8pt;
 }
 

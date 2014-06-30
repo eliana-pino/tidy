@@ -84,8 +84,8 @@ HEREDOC
 $localSource = "Contents (source)/"
 $localBuild = "Contents (build)/"
 
-$titlepage_template = File.join($localSource, "Resources/", "Base.lproj/", "_title_page.html.erb")
-$titlepage_destination = File.join($localSource, "Resources/", "Base.lproj/", "#{$CFBundleName}.html.erb")
+$titlepage_template = File.join($localSource, "Resources/", "Base.lproj/", "_title_page.html.md.erb")
+$titlepage_destination = File.join($localSource, "Resources/", "Base.lproj/", "#{$CFBundleName}.html.md.erb")
 
 $plist_template = File.join($localSource, "_Info.plist")
 $plist_destination = File.join($localSource, "Info.plist")
@@ -276,17 +276,16 @@ BEGIN {
 		outpCyan "Looking for the help indexer..."
 
 		`command -v hiutil > /dev/null`
-		unless $?.success?
+		if $?.success?
+            $indexDir = File.join($localBuild, "Resources/", "Base.lproj")
+            $indexDst = File.join($indexDir, "#{$CFBundleName}.helpindex")
+
+            outpCyan "Help indexer is indexing '#{$indexDir}' and index will be placed in '#{$indexDst}'."
+
+            `hiutil -Cf "#{$indexDst}" "#{$indexDir}"`
+		else
 			outpYellow "\n   - NOTE: `hituil` is not on path or not installed. A new help index will NOT be generated for target '#{localTarget}'.\n"
 		end
-
-
-		$indexDir = File.join($localBuild, "Resources/", "Base.lproj")
-		$indexDst = File.join($indexDir, "#{$CFBundleName}.helpindex")
-
-		outpCyan "Help indexer is indexing '#{$indexDir}' and index will be placed in '#{$indexDst}'."
-
-		`hiutil -Cf "#{$indexDst}" "#{$indexDir}"`
 
 
 		#--------------------------------------------

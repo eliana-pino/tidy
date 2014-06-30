@@ -8,7 +8,7 @@ set :css_dir,      'Resources/Base.lproj/css'
 set :js_dir,       'Resources/Base.lproj/javascript'
 set :images_dir,   'Resources/Base.lproj/images'
 
-#set :partials_dir, 'partials'
+set :partials_dir, 'partials'
 set :layouts_dir,  'layouts'
 set :data_dir,     'Contents (source)/data'
 
@@ -40,27 +40,11 @@ page "Resources/Base.lproj/pages/*", :layout => :'layout-html4'
 # activate :automatic_image_sizes
 
 # Methods defined in the helpers block are available in templates
-# helpers do
-#   def some_helper
-#     "Helping"
-#   end
-# end
-
-
-# Sets the page_class variable to the name of the current page.
-# Layouts can then use, e.g., <body class="<%= page_classes %>">
-def page_classes
-  path = request.path_info.dup
-  path << settings.index_file if path.match(%r{/$})
-  path = path.gsub(%r{^/}, '')
-
-  classes = []
-  parts = path.split('.')[0].split('/')
-  parts.each_with_index { |path, i| classes << parts.first(i+1).join('_') }
-
-  classes.join(' ')
+helpers do
+   def page_name
+     File.basename( current_page.url, ".*" )
+   end
 end
-
 
 
 ###
