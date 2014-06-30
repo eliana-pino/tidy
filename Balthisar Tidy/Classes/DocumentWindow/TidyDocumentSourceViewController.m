@@ -264,7 +264,7 @@
 
 	/* Provided by Category `NSTextView+JSDExtensions` */
 
-	[aView setShowsLineNumbers:[[localDefaults valueForKey:JSDKeyShowNewDocumentLineNumbers] boolValue]];
+	///[aView setShowsLineNumbers:[[localDefaults valueForKey:JSDKeyShowNewDocumentLineNumbers] boolValue]];
 	[aView setWordwrapsText:NO];
 }
 

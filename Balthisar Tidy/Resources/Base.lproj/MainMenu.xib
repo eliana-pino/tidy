@@ -233,11 +233,24 @@
                                     <action selector="toggleMessagesPanelIsVisible:" target="-1" id="zOr-TW-4de"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Vertical Source Code" id="ryP-vf-ZZn">
+                            <menuItem title="Source Code" id="QIG-9u-3jn">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="toggleSourcePanelIsVertical:" target="-1" id="Ary-kb-vyM"/>
-                                </connections>
+                                <menu key="submenu" title="Source Code" id="MnE-Sg-au2">
+                                    <items>
+                                        <menuItem title="Line Numbers" id="rGP-0c-dWN">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="toggleSourcePaneShowsLineNumbers:" target="-1" id="qaW-Z7-qGZ"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Vertical Source Code" id="ryP-vf-ZZn">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="toggleSourcePanelIsVertical:" target="-1" id="Ary-kb-vyM"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="Tzh-yj-wyS">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>

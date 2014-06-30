@@ -92,12 +92,14 @@
 
 @property BOOL sourcePanelIsVertical;
 
+@property BOOL sourcePaneLineNumbersAreVisible;
+
 
 /* Actions to support properties from Menus */
 - (IBAction)toggleOptionsPanelIsVisible:(id)sender;
 - (IBAction)toggleMessagesPanelIsVisible:(id)sender;
 - (IBAction)toggleSourcePanelIsVertical:(id)sender;
-
+- (IBAction)toggleSourcePaneShowsLineNumbers:(id)sender;
 
 
 

@@ -76,6 +76,8 @@
 @implementation TidyDocumentWindowController
 
 
+@synthesize sourcePaneLineNumbersAreVisible = _sourcePaneLineNumbersAreVisible;
+
 #pragma mark - Initialization and Deallocation
 
 
@@ -158,6 +160,7 @@
 	 ******************************************************/
 
 	self.sourcePanelIsVertical  = [[[NSUserDefaults standardUserDefaults] objectForKey:JSDKeyShowNewDocumentSideBySide] boolValue];
+	self.sourcePaneLineNumbersAreVisible = [[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyShowNewDocumentLineNumbers] boolValue];
 
 	
 	/******************************************************
@@ -358,6 +361,12 @@
 		return !self.firstRunHelper.isVisible;
 	}
 
+	if (menuItem.action == @selector(toggleSourcePaneShowsLineNumbers:))
+	{
+		[menuItem setState:self.sourcePaneLineNumbersAreVisible];
+		return YES;
+	}
+
 	return NO;
 }
 
@@ -483,7 +492,7 @@
 	[self.sourcePane addSubview:self.sourceController.view];
 
 	[self.sourceController setupViewAppearance];
-
+	self.sourcePaneLineNumbersAreVisible = _sourcePaneLineNumbersAreVisible;
 
 	/* Ensure that the correct text is in the source */
 
@@ -493,6 +502,21 @@
 	/* In case something is selected in the messages table, highlight it again. */
 
 	[self.sourceController highlightSourceTextUsingArrayController:self.messagesController.arrayController];
+}
+
+/*———————————————————————————————————————————————————————————————————*
+	lineNumbersAreVisible
+ *———————————————————————————————————————————————————————————————————*/
+- (BOOL)sourcePaneLineNumbersAreVisible
+{
+	return _sourcePaneLineNumbersAreVisible;
+}
+
+- (void)setSourcePaneLineNumbersAreVisible:(BOOL)sourcePaneLineNumbersAreVisible
+{
+	self.sourceController.sourceTextView.showsLineNumbers = sourcePaneLineNumbersAreVisible;
+	self.sourceController.tidyTextView.showsLineNumbers = sourcePaneLineNumbersAreVisible;
+	_sourcePaneLineNumbersAreVisible = sourcePaneLineNumbersAreVisible;
 }
 
 
@@ -514,6 +538,11 @@
 - (IBAction)toggleSourcePanelIsVertical:(id)sender
 {
 	self.sourcePanelIsVertical = !self.sourcePanelIsVertical;
+}
+
+- (IBAction)toggleSourcePaneShowsLineNumbers:(id)sender
+{
+	self.sourcePaneLineNumbersAreVisible = !self.sourcePaneLineNumbersAreVisible;
 }
 
 
