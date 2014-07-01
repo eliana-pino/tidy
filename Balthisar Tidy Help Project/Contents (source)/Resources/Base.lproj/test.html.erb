@@ -1,0 +1,61 @@
+---
+title: Test
+layout: layout-logo-medium-right
+---
+
+<h1>Test</h1>
+
+<%= page_group %>
+
+<hr/>
+
+<%= current_page.data.inspect %>
+
+<hr/>
+
+<%= current_page.path.inspect %>
+
+<hr/>
+
+<%= current_page.parent.inspect %>
+
+<%= current_page.children.inspect %>
+
+<%= current_page.siblings.inspect %>
+
+<hr/>
+
+<% pages = related_pages %>
+<ul>
+<% pages.each do |p| %>
+    <li>URL: <%= p.url %>
+        <ul>
+            <li>path: <%= p.path %></li>
+            <li>destination_path: <%= p.destination_path %></li>
+            <li>request_path: <%= p.request_path %></li>
+            <li>source_file: <%= p.source_file %></li>
+            <li>page_group: <%= File.basename(File.split(p.source_file)[0]) %></li>
+        </ul>
+<% end %>
+</ul>
+
+
+<hr/>
+
+<% pages = current_group_pages %>
+<ul>
+<% pages.each do |p| %>
+    <li>URL: <%= p.url %>
+        <ul>
+            <li>path: <%= p.path %></li>
+            <li>destination_path: <%= p.destination_path %></li>
+            <li>request_path: <%= p.request_path %></li>
+            <li>source_file: <%= p.source_file %></li>
+            <li>page_group: <%= File.basename(File.split(p.source_file)[0]) %></li>
+        </ul>
+<% end %>
+</ul>
+
+
+
+<hr/>

@@ -1,0 +1,29 @@
+---
+title: Use Advanced Features of Balthisar Tidy
+layout: layout-logo-large
+order: 0
+---
+<%= partial "markdown_images_links" %>
+
+<% unless ENV['feature_advertise_pro'] == 'yes' %>
+
+Use Advanced Features of _Balthisar Tidy_
+=========================================
+
+<% if ENV['feature_supports_applescript'] == 'yes' %>
+- Use AppleScript to control Tidy
+<% end %>
+<% if ENV['feature_supports_service'] == 'yes' %>
+- Use Tidy as a system service
+<% end %>
+<% if ENV['feature_supports_extensions'] == 'yes' %>
+- Use Tidy as an extension
+<% end %>
+<% if ENV['feature_exports_config'] == 'yes' %>
+- Use my Tidy options with command-line Tidy
+<% end %>
+<% if ENV['feature_supports_SxS_diffs'] == 'yes' %>
+- Compare file differences side-by-side
+<% end %>
+
+<% end %>

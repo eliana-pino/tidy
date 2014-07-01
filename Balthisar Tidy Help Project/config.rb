@@ -41,8 +41,35 @@ page "Resources/Base.lproj/pages/*", :layout => :'layout-html4'
 
 # Methods defined in the helpers block are available in templates
 helpers do
+   # make page_name available for each page
+   # this is the file name - useful for assigning classes, etc.
    def page_name
      File.basename( current_page.url, ".*" )
+   end
+
+   # make page+group available for each page.
+   # this is the source containing directory (not the request path)
+   # useful for for assigning classes, and/or group conditionals.
+   def page_group
+     File.basename(File.split(current_page.source_file)[0])
+   end
+
+   def related_pages
+     pages = sitemap.resources.find_all do |p|
+       p.path.match(/\.html/) &&
+       File.basename(File.split(p.source_file)[0]) == page_group &&
+       File.basename( p.url, ".*" ) != page_name &&
+       !File.basename( p.url ).start_with?("000") &&
+       p.data.key?("order")
+     end
+     pages.sort_by { |p| p.data["order"] }
+   end
+
+   def current_group_pages
+     sitemap.resources.find_all do |p|
+       p.path.match(/\.html/) &&
+       File.basename(File.split(p.source_file)[0]) == page_group
+     end
    end
 end
 

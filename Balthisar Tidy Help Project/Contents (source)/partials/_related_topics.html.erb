@@ -1,0 +1,11 @@
+<%
+pages = related_pages
+if !pages.to_a.empty?
+%>
+    <h1>Related Topics</h1>
+    <ul>
+    <% pages.each do |p| %>
+        <li><a href="<%= File.basename( p.url ) %>"><%= p.data.title %></a></li>
+    <% end %>
+    </ul>
+<% end %>
