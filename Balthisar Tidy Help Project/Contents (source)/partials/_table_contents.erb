@@ -1,0 +1,13 @@
+<%
+pages = related_pages
+if !pages.to_a.empty?
+%>
+    <dl>
+    <% pages.each do |p| %>
+        <dt><a href="<%= File.basename( p.url ) %>"><%= p.data.title %></a></dt>
+        <% if p.data.blurb %>
+        <dd><%= p.data.blurb %></dd>
+        <% end %>
+    <% end %>
+    </dl>
+<% end %>
