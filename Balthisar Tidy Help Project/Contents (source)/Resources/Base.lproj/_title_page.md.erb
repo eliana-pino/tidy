@@ -1,3 +1,5 @@
+<%= partial "markdown_links" %>
+
 Welcome to _Balthisar Tidy_
 ===========================
 
@@ -21,10 +23,10 @@ make your HTML much, much better.
 [Getting Started](tutorial/000_tutorial.html)
  :  A step-by-step walkthrough to getting started with _Balthisar Tidy_.
 
-[How do I…?](howto/000_howto.html)
+[How do I…?](000_howto.html)
  :  How to accomplish common tasks with _Balthisar Tidy_.
 
-<% unless ENV['feature_advertise_pro'] == 'yes' %>
+<% unless boolENV('feature_advertise_pro') %>
 [Use Advanced Features of _Balthisar Tidy_](advanced/000_advanced.html)
  :  Discover some of _Balthisar Tidy_’s advanced features..
 <% end %>
@@ -32,7 +34,7 @@ make your HTML much, much better.
 [Reference](reference/000_reference.html)
  :  An overall reference to _Balthisar Tidy_.
 
-<% if ENV['feature_advertise_pro'] == 'yes' %>
+<% if boolENV('feature_advertise_pro') %>
 [Get Balthisar Tidy for Work](advanced/tidyforwork.html)
  :  Discover some of the added features included in _Balthisar Tidy for Work_.
 <% end %>

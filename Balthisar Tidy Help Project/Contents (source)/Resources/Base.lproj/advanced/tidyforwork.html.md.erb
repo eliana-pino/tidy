@@ -1,10 +1,12 @@
 ---
 title: Presenting Balthisar Tidy for Work
-layout: layout-logo-small-top
+layout: template-logo-small
+target:
+ - feature_advertise_pro
 ---
-<%= partial "markdown_images_links" %>
+<%= partial "markdown_links" %>
 
-<% if ENV['feature_advertise_pro'] == 'yes' %>
+<% if boolENV('feature_advertise_pro') %>
 
 Presenting Balthisar Tidy for Work
 ==================================

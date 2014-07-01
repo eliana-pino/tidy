@@ -83,7 +83,7 @@ li, li li {
 }
 
 /*************************************
-	image contstraints
+	image constraints
  *************************************/
 img.maxW420px {
   max-width: 420px;
@@ -153,17 +153,21 @@ div.container-logo-large > div:first-child > div:first-child + div li {
 }
 div.container-logo-large > div:first-child + div {
   margin-left: 200pt;
-  padding-top: 1em;
+  padding-top: 0;
   padding-left: 1em;
   padding-right: 1em;
   border-left: 1px solid #bfbfbf;
   min-height: 100%;
 }
+div.container-logo-large > div:first-child + div h1 {
+  padding-top: 1em;
+  margin-top: 0;
+}
 
 /*************************************
-	layout-logo-medium-right styles
+	layout-logo-medium styles
  *************************************/
-div.container-logo-medium-right {
+div.container-logo-medium {
   position: relative;
   left: 0;
   right: 0;
@@ -172,47 +176,54 @@ div.container-logo-medium-right {
   /* left block */
   /* right block */
 }
-div.container-logo-medium-right > div:first-child {
+div.container-logo-medium > div:first-child {
   margin-right: 130pt;
-  padding-top: 1em;
+  padding-top: 0;
   padding-left: 1em;
   padding-right: 1em;
-  padding-bottom: 1em;
+  padding-bottom: 0;
   border-right: 1px solid #bfbfbf;
   min-height: 100%;
 }
-div.container-logo-medium-right > div:first-child + div {
+div.container-logo-medium > div:first-child h1 {
+  padding-top: 1em;
+  margin-top: 0;
+}
+div.container-logo-medium > div:first-child + div {
   width: 130pt;
   position: absolute;
   top: 0;
   right: 0;
-  padding: 1em 0 0 0;
+  padding: 0 0 0 0;
   margin: 0;
   /* top of right block, where image lives */
   /* bottom of left block, for related topics */
 }
-div.container-logo-medium-right > div:first-child + div > div:first-child > img {
+div.container-logo-medium > div:first-child + div > div:first-child {
+  padding-top: 1em;
+}
+div.container-logo-medium > div:first-child + div > div:first-child > img {
   display: block;
   width: 80%;
   margin: 0 auto;
 }
-div.container-logo-medium-right > div:first-child + div > div:first-child + div {
+div.container-logo-medium > div:first-child + div > div:first-child + div {
   padding: 1em 0.5em 1em 0.5em;
   text-align: left;
 }
-div.container-logo-medium-right > div:first-child + div > div:first-child + div > h1 {
+div.container-logo-medium > div:first-child + div > div:first-child + div > h1 {
   margin: 0 0 0.75ex 0;
   font-size: 12pt;
 }
-div.container-logo-medium-right > div:first-child + div > div:first-child + div li {
+div.container-logo-medium > div:first-child + div > div:first-child + div li {
   margin: 1ex 0;
   font-size: 9pt;
 }
 
 /*************************************
-	layout-logo-small-top
+	layout-logo-small
  *************************************/
-div.container-logo-small-top {
+div.container-logo-small {
   padding-left: 1.5em;
   padding-right: 1.5em;
   padding-bottom: 1.5em;
@@ -220,30 +231,30 @@ div.container-logo-small-top {
   /* other images in the div, after the first-child */
   /* This will be the related topics div */
 }
-div.container-logo-small-top img.logo {
+div.container-logo-small img.logo {
   height: 36pt;
   width: auto;
   padding: 0 1em 0 0;
   float: left;
 }
-div.container-logo-small-top img.logo + h1 {
+div.container-logo-small img.logo + h1 {
   line-height: 36pt;
 }
-div.container-logo-small-top img:not(logo) {
+div.container-logo-small img:not(logo) {
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 100%;
 }
-div.container-logo-small-top ~ div {
+div.container-logo-small ~ div {
   padding: 0 1em 1em 3em;
   text-align: left;
 }
-div.container-logo-small-top ~ div > h1 {
+div.container-logo-small ~ div > h1 {
   margin: 0 0 0.75ex 0;
   font-size: 13pt;
 }
-div.container-logo-small-top ~ div li {
+div.container-logo-small ~ div li {
   margin: 0.5ex;
 }
 

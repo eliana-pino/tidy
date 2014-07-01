@@ -62,3 +62,47 @@ installing the Ruby Gem, everything should "just work." However the build
 script uses Nokogiri to manipulate the plists in order to allow the script
 to run on non-Mac platforms where PlistBuddy is not available. A simple
 `(sudo) gem install nokogiri` should work on any platform.
+
+
+Front Matter Content
+--------------------
+
+---
+
+title: Page title
+layout: layout to use
+order: local sort order (if missing, won't be included)
+toc_description: a description to appear in TOC.
+targets:
+ - array
+ - this item will only appear if the current ENV['HelpBookTarget']
+ - is found in this array, OR any of the ENV['feature_xxx'] = 'yes'
+ - are found in the array.
+exclude:
+ - array
+ - same as above, but will exclude items that equal yes.
+ - exclude overrides targets. If something included then excluded, will be excluded.
+---
+
+
+Examples of the targets array:
+
+targets:
+ - pro (equals web)
+ - feature_sparkle (equals yes)
+ - feature_exports_config (equals no)
+
+This item will be included because all feature_sparkle is allowed.
+
+targets:
+ - pro (equals web)
+ - features_sparkle (equals no)
+ - feature_exports_config (equals no)
+
+None of these is valid, so the item will be excluded.
+
+exclude:
+ - pro (equals web)
+ - features_sparkle (equals no)
+
+Nothing will be excluded, because we are currently web, and features_sparkle is not yes.

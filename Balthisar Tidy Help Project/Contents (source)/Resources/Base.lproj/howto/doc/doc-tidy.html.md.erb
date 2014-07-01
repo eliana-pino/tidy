@@ -1,11 +1,12 @@
 ---
 title: EMPTY
-layout: layout-logo-medium-right
+layout: template-logo-medium
 order: 2
 ---
-<%= partial "markdown_images_links" %>
+<%= partial "markdown_links" %>
 
 <% content_for :relatedTopics do %>
+<%= partial "related_topics.html" %>
 <% end %>
 
 

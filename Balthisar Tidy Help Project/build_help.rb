@@ -174,7 +174,7 @@ BEGIN {
 
 		ENV['CFBundleName'] = $CFBundleName
 		ENV['CFBundleIdentifier'] = $CFBundleIdentifier
-		ENV['HelpBookTaget'] = localTarget
+		ENV['HelpBookTarget'] = localTarget
 
 		#--------------------------------------------
 		# Announce our intentions
@@ -262,7 +262,7 @@ BEGIN {
 
 		outpCyan "Building content with middleman..."
 
-		`bundle exec middleman build`
+		`bundle exec middleman build --verbose 2>&1 >build_help.log`
 		unless $?.success?
 			outpRed "\n   * NOTE: `middleman` did not exit cleanly for target '#{localTarget}'. Build process will stop now.\n\n"
 			exit 1
