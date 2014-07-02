@@ -118,127 +118,6 @@
             </view>
             <toolbar key="toolbar" implicitIdentifier="E4C6395B-8F3E-4FD8-8C10-DBA698EC6C86" explicitIdentifier="DocumentToolbar" showsBaselineSeparator="NO" displayMode="iconAndLabel" sizeMode="regular" id="cpY-Ux-cXQ">
                 <allowedToolbarItems>
-                    <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="kzV-EM-jbV"/>
-                    <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="vUm-AR-Pq4"/>
-                    <toolbarItem implicitItemIdentifier="EE9E1AC7-3387-4E05-AEC7-7B0838925C75" label="Preferences" paletteLabel="Preferences" image="NSAdvanced" id="GCC-l2-uGf">
-                        <nil key="toolTip"/>
-                        <size key="minSize" width="22" height="22"/>
-                        <size key="maxSize" width="22" height="22"/>
-                        <button key="view" verticalHuggingPriority="750" id="Ug9-Ch-bdh">
-                            <rect key="frame" x="24" y="14" width="22" height="22"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="NSAdvanced" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="fqr-nr-b8o">
-                                <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                        </button>
-                        <connections>
-                            <action selector="showPreferences:" target="-1" id="yMi-Gl-qzd"/>
-                        </connections>
-                    </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="8D5C10CF-777C-4E40-B1CD-78A6C6CDAED2" label="Tutorial" paletteLabel="Quick Tutorial" image="NSInfo" id="4rs-PQ-6mk">
-                        <nil key="toolTip"/>
-                        <size key="minSize" width="22" height="22"/>
-                        <size key="maxSize" width="22" height="22"/>
-                        <button key="view" verticalHuggingPriority="750" id="TIN-cK-8Ab">
-                            <rect key="frame" x="30" y="14" width="22" height="22"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="NSInfo" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="HK0-4E-rP7">
-                                <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                        </button>
-                        <connections>
-                            <action selector="kickOffFirstRunSequence:" target="-2" id="qOS-sf-hZM"/>
-                            <binding destination="-2" name="enabled" keyPath="self.firstRunHelper.isVisible" id="dOp-pA-eRj">
-                                <dictionary key="options">
-                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                </dictionary>
-                            </binding>
-                        </connections>
-                    </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="38525B90-95A8-4BCC-841B-3A11EBCE7AB4" label="Help" paletteLabel="Help" id="nJ0-xA-NFx">
-                        <nil key="toolTip"/>
-                        <size key="minSize" width="22" height="22"/>
-                        <size key="maxSize" width="29" height="29"/>
-                        <button key="view" verticalHuggingPriority="750" id="VbI-7g-yaz">
-                            <rect key="frame" x="2" y="14" width="29" height="29"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="help" bezelStyle="helpButton" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="dzH-ou-iPb">
-                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                        </button>
-                        <connections>
-                            <action selector="showHelp:" target="-1" id="dI2-B8-oL9"/>
-                        </connections>
-                    </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="xLH-ip-EF8"/>
-                    <toolbarItem implicitItemIdentifier="5E2E8E27-F594-4427-92C3-AD794B4E79BE" label="Preview" paletteLabel="Preview Tidy'd Document" image="NSQuickLookTemplate" id="QDl-Ew-uWN">
-                        <nil key="toolTip"/>
-                        <size key="minSize" width="22" height="22"/>
-                        <size key="maxSize" width="22" height="22"/>
-                        <button key="view" verticalHuggingPriority="750" id="Wpv-ul-4w9">
-                            <rect key="frame" x="60" y="14" width="22" height="22"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="NSQuickLookTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="7Zc-f4-eUJ">
-                                <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
-                                <font key="font" metaFont="system"/>
-                                <connections>
-                                    <action selector="handleWebPreview:" target="-2" id="rQj-6G-kcn"/>
-                                </connections>
-                            </buttonCell>
-                        </button>
-                    </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="75E0C4C9-CEC7-46E7-AE76-25E7E703525A" label="Diff View" paletteLabel="Traditional Diff View" image="DiffViewTemplate" id="OpE-g2-h34">
-                        <nil key="toolTip"/>
-                        <size key="minSize" width="22" height="22"/>
-                        <size key="maxSize" width="22" height="22"/>
-                        <button key="view" verticalHuggingPriority="750" id="Ae8-Wn-vSZ">
-                            <rect key="frame" x="47" y="14" width="22" height="22"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="DiffViewTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="RDQ-hu-dEd">
-                                <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                            <connections>
-                                <action selector="handleShowDiffView:" target="-2" id="8go-Ja-tJr"/>
-                            </connections>
-                        </button>
-                    </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="C8B1082B-BBE0-42A8-8E09-72A2405AFBB3" label="Diffs" paletteLabel="Syncronized Diffs" image="DiffsTemplate" id="kHq-Rj-Jac">
-                        <nil key="toolTip"/>
-                        <size key="minSize" width="22" height="22"/>
-                        <size key="maxSize" width="22" height="22"/>
-                        <button key="view" verticalHuggingPriority="750" id="onJ-Om-BoZ">
-                            <rect key="frame" x="39" y="14" width="22" height="22"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="DiffsTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="dHJ-zJ-KqU">
-                                <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                        </button>
-                        <connections>
-                            <action selector="togleSyncronizedDiffs:" target="-2" id="ffA-RY-R1l"/>
-                            <binding destination="-2" name="enabled" keyPath="self.sourcePanelIsVertical" id="8Na-p5-9CY"/>
-                        </connections>
-                    </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="244560D0-3789-4DA1-89E3-1D3405BD9DF2" label="Scrolling" paletteLabel="Synchronized Scrolling" image="ScrollLockTemplate" id="nF7-hW-P1X">
-                        <nil key="toolTip"/>
-                        <size key="minSize" width="22" height="22"/>
-                        <size key="maxSize" width="22" height="22"/>
-                        <button key="view" verticalHuggingPriority="750" id="tKY-4a-MyN">
-                            <rect key="frame" x="54" y="14" width="22" height="22"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="ScrollLockTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="GmD-WH-K1D">
-                                <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                        </button>
-                        <connections>
-                            <action selector="toggleSynchronizedScrolling:" target="-2" id="slO-Me-TdY"/>
-                        </connections>
-                    </toolbarItem>
                     <toolbarItem implicitItemIdentifier="8C3D9A93-D849-4E39-8941-98F19233975D" label="Options" paletteLabel="Tidy Options Panel" image="LayoutLeftPaneTemplate" id="win-EU-Pc0">
                         <nil key="toolTip"/>
                         <size key="minSize" width="22" height="22"/>
@@ -318,17 +197,67 @@
                             </binding>
                         </connections>
                     </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="EE9E1AC7-3387-4E05-AEC7-7B0838925C75" label="Preferences" paletteLabel="Preferences" image="NSAdvanced" id="GCC-l2-uGf">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="22" height="22"/>
+                        <size key="maxSize" width="22" height="22"/>
+                        <button key="view" verticalHuggingPriority="750" id="Ug9-Ch-bdh">
+                            <rect key="frame" x="24" y="14" width="22" height="22"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="NSAdvanced" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="fqr-nr-b8o">
+                                <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                        <connections>
+                            <action selector="showPreferences:" target="-1" id="yMi-Gl-qzd"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="8D5C10CF-777C-4E40-B1CD-78A6C6CDAED2" label="Tutorial" paletteLabel="Quick Tutorial" image="NSInfo" id="4rs-PQ-6mk">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="22" height="22"/>
+                        <size key="maxSize" width="22" height="22"/>
+                        <button key="view" verticalHuggingPriority="750" id="TIN-cK-8Ab">
+                            <rect key="frame" x="30" y="14" width="22" height="22"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="NSInfo" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="HK0-4E-rP7">
+                                <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                        <connections>
+                            <action selector="kickOffFirstRunSequence:" target="-2" id="qOS-sf-hZM"/>
+                            <binding destination="-2" name="enabled" keyPath="self.firstRunHelper.isVisible" id="dOp-pA-eRj">
+                                <dictionary key="options">
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="kzV-EM-jbV"/>
+                    <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="vUm-AR-Pq4"/>
+                    <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="xLH-ip-EF8"/>
+                    <toolbarItem implicitItemIdentifier="38525B90-95A8-4BCC-841B-3A11EBCE7AB4" label="Help" paletteLabel="Help" id="nJ0-xA-NFx">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="22" height="22"/>
+                        <size key="maxSize" width="29" height="29"/>
+                        <button key="view" verticalHuggingPriority="750" id="VbI-7g-yaz">
+                            <rect key="frame" x="2" y="14" width="29" height="29"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="help" bezelStyle="helpButton" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="dzH-ou-iPb">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                        <connections>
+                            <action selector="showHelp:" target="-1" id="dI2-B8-oL9"/>
+                        </connections>
+                    </toolbarItem>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
                     <toolbarItem reference="GCC-l2-uGf"/>
                     <toolbarItem reference="4rs-PQ-6mk"/>
                     <toolbarItem reference="vUm-AR-Pq4"/>
-                    <toolbarItem reference="QDl-Ew-uWN"/>
-                    <toolbarItem reference="OpE-g2-h34"/>
-                    <toolbarItem reference="kzV-EM-jbV"/>
-                    <toolbarItem reference="kHq-Rj-Jac"/>
-                    <toolbarItem reference="nF7-hW-P1X"/>
-                    <toolbarItem reference="kzV-EM-jbV"/>
                     <toolbarItem reference="win-EU-Pc0"/>
                     <toolbarItem reference="NPy-nL-J4E"/>
                     <toolbarItem reference="1H8-1h-b2x"/>
@@ -339,6 +268,71 @@
             </connections>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="HPK-3U-7WI"/>
+        <toolbarItem implicitItemIdentifier="5E2E8E27-F594-4427-92C3-AD794B4E79BE" label="Preview" paletteLabel="Preview Tidy'd Document" image="NSQuickLookTemplate" id="QDl-Ew-uWN">
+            <nil key="toolTip"/>
+            <size key="minSize" width="22" height="22"/>
+            <size key="maxSize" width="22" height="22"/>
+            <button key="view" verticalHuggingPriority="750" id="Wpv-ul-4w9">
+                <rect key="frame" x="60" y="14" width="22" height="22"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="NSQuickLookTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="7Zc-f4-eUJ">
+                    <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                    <font key="font" metaFont="system"/>
+                    <connections>
+                        <action selector="handleWebPreview:" target="-2" id="rQj-6G-kcn"/>
+                    </connections>
+                </buttonCell>
+            </button>
+        </toolbarItem>
+        <toolbarItem implicitItemIdentifier="C8B1082B-BBE0-42A8-8E09-72A2405AFBB3" label="Diffs" paletteLabel="Syncronized Diffs" image="DiffsTemplate" id="kHq-Rj-Jac">
+            <nil key="toolTip"/>
+            <size key="minSize" width="22" height="22"/>
+            <size key="maxSize" width="22" height="22"/>
+            <button key="view" verticalHuggingPriority="750" id="onJ-Om-BoZ">
+                <rect key="frame" x="39" y="14" width="22" height="22"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="DiffsTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="dHJ-zJ-KqU">
+                    <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                    <font key="font" metaFont="system"/>
+                </buttonCell>
+            </button>
+            <connections>
+                <action selector="togleSyncronizedDiffs:" target="-2" id="ffA-RY-R1l"/>
+                <binding destination="-2" name="enabled" keyPath="self.sourcePanelIsVertical" id="8Na-p5-9CY"/>
+            </connections>
+        </toolbarItem>
+        <toolbarItem implicitItemIdentifier="244560D0-3789-4DA1-89E3-1D3405BD9DF2" label="Scrolling" paletteLabel="Synchronized Scrolling" image="ScrollLockTemplate" id="nF7-hW-P1X">
+            <nil key="toolTip"/>
+            <size key="minSize" width="22" height="22"/>
+            <size key="maxSize" width="22" height="22"/>
+            <button key="view" verticalHuggingPriority="750" id="tKY-4a-MyN">
+                <rect key="frame" x="54" y="14" width="22" height="22"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="ScrollLockTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="GmD-WH-K1D">
+                    <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                    <font key="font" metaFont="system"/>
+                </buttonCell>
+            </button>
+            <connections>
+                <action selector="toggleSynchronizedScrolling:" target="-2" id="slO-Me-TdY"/>
+            </connections>
+        </toolbarItem>
+        <toolbarItem implicitItemIdentifier="75E0C4C9-CEC7-46E7-AE76-25E7E703525A" label="Diff View" paletteLabel="Traditional Diff View" image="DiffViewTemplate" id="OpE-g2-h34">
+            <nil key="toolTip"/>
+            <size key="minSize" width="22" height="22"/>
+            <size key="maxSize" width="22" height="22"/>
+            <button key="view" verticalHuggingPriority="750" id="Ae8-Wn-vSZ">
+                <rect key="frame" x="47" y="14" width="22" height="22"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="DiffViewTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="RDQ-hu-dEd">
+                    <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                    <font key="font" metaFont="system"/>
+                </buttonCell>
+                <connections>
+                    <action selector="handleShowDiffView:" target="-2" id="8go-Ja-tJr"/>
+                </connections>
+            </button>
+        </toolbarItem>
     </objects>
     <resources>
         <image name="DiffViewTemplate" width="64" height="64"/>
