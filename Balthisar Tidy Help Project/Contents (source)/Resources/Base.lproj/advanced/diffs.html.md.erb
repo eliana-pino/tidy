@@ -1,14 +1,23 @@
 ---
-title: EMPTY
+title: View Live, Side-by-Side diffs of Source and Tidy HTML
+blurb: Use this advanced tool to have an expert look at the before and after
+       versions of your HTML code.
 layout: template-logo-medium
 order: 5
+target:
+ - feature_supports_SxS_diffs
 ---
+
+<% if boolENV('feature_supports_SxS_diffs') %>
+
 <% content_for :relatedTopics do %>
 <%= partial "related_topics.html" %>
 <% end %>
 
+<%= current_page.data.title %>
+==============================
 
 EMPTY
-=====================================
 
-EMPTY
+
+<% end %>

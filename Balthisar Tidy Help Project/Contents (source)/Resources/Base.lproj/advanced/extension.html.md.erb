@@ -1,14 +1,24 @@
 ---
-title: EMPTY
+title: Use Tidy as a System Extension (Mac OS X 10.10+)
+blurb: Learn how to use the power of <em>Balthisar Tidy</em> in virtually
+       every standard Mac application that’s been updated for Mac OS X 10.10 or
+       newer.
 layout: template-logo-medium
 order: 3
+target:
+ - feature_supports_extensions
 ---
+
+<% if boolENV('feature_supports_extensions') %>
+
 <% content_for :relatedTopics do %>
 <%= partial "related_topics.html" %>
 <% end %>
 
+<%= current_page.data.title %>
+==============================
 
 EMPTY
-=====================================
 
-EMPTY
+
+<% end %>

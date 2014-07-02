@@ -3,25 +3,10 @@ title: Use Advanced Features of Balthisar Tidy
 layout: template-logo-large
 order: 0
 ---
-<% unless boolENV('feature_advertise_pro') %>
 
-Use Advanced Features of _Balthisar Tidy_
-=========================================
+<%= current_page.data.title %>
+==============================
 
-<% if boolENV('feature_supports_applescript') %>
-- Use AppleScript to control Tidy
-<% end %>
-<% if boolENV('feature_supports_service') %>
-- Use Tidy as a system service
-<% end %>
-<% if boolENV('feature_supports_extensions') %>
-- Use Tidy as an extension
-<% end %>
-<% if boolENV('feature_exports_config') %>
-- Use my Tidy options with command-line Tidy
-<% end %>
-<% if boolENV('feature_supports_SxS_diffs') %>
-- Compare file differences side-by-side
-<% end %>
-
-<% end %>
+<div markdown="0">
+<%= partial "table_contents" %>
+</div>

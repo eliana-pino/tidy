@@ -1,14 +1,23 @@
 ---
-title: EMPTY
+title: Use Your Tidy Options with Command Line Tidy
+blurb: You’ve finally perfected the options in order to get the output you want.
+       Now learn to use these options with the Terminal (command line) version
+       of Tidy.
 layout: template-logo-medium
 order: 4
+target:
+ - feature_exports_config
 ---
 <% content_for :relatedTopics do %>
 <%= partial "related_topics.html" %>
 <% end %>
 
+<% if boolENV('feature_exports_config') %>
+
+<%= current_page.data.title %>
+==============================
 
 EMPTY
-=====================================
 
-EMPTY
+
+<% end %>

@@ -1,14 +1,24 @@
 ---
-title: EMPTY
+title: Use AppleScript to Control Balthisar Tidy
+blurb: Learn how AppleScript can be used to automate <em>Balthisar Tidy</em>.
+       If you have dozen, hundreds, or thousdands of files to process, then
+       AppleScript can handle the job.
 layout: template-logo-medium
 order: 1
+target:
+ - feature_supports_applescript
 ---
+
+<% if boolENV('feature_supports_applescript') %>
+
 <% content_for :relatedTopics do %>
 <%= partial "related_topics.html" %>
 <% end %>
 
+<%= current_page.data.title %>
+==============================
 
 EMPTY
-=====================================
 
-EMPTY
+
+<% end %>

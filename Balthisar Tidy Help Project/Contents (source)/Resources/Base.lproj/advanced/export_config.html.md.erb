@@ -1,14 +1,23 @@
 ---
-title: EMPTY
+title: Use Your Tidy Options with Command Line Tidy
+blurb: <em>Balthisar Tidy</em> makes it easy to use its settings with the
+       traditional command line Tidy.
 layout: template-logo-medium
 order: 4
+target:
+ - feature_exports_config
 ---
+
+<% if boolENV('feature_exports_config') %>
+
 <% content_for :relatedTopics do %>
 <%= partial "related_topics.html" %>
 <% end %>
 
+<%= current_page.data.title %>
+==============================
 
 EMPTY
-=====================================
 
-EMPTY
+
+<% end %>

@@ -1,14 +1,23 @@
 ---
-title: EMPTY
+title: Use <em>Balthisar Tidy</em> as a System Service
+blurb: Learn how to use the power of <em>Balthisar Tidy</em> in virtually
+       every standard Mac application.
 layout: template-logo-medium
 order: 2
+target:
+ - feature_supports_service
 ---
+
+<% if boolENV('feature_supports_service') %>
+
 <% content_for :relatedTopics do %>
 <%= partial "related_topics.html" %>
 <% end %>
 
+<%= current_page.data.title %>
+==============================
 
 EMPTY
-=====================================
 
-EMPTY
+
+<% end %>
