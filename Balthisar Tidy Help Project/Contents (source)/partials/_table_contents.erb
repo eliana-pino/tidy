@@ -1,10 +1,10 @@
 <%
-pages = related_pages
+pages = (defined? group) ? pages_related_to(group) : related_pages
 if !pages.to_a.empty?
 %>
-    <dl>
+    <dl class="table_contents">
     <% pages.each do |p| %>
-        <dt><a href="<%= File.basename( p.url ) %>"><%= p.data.title %></a></dt>
+        <dt><a href="<%= p.metadata[:link] %>"><%= p.data.title %></a></dt>
         <% if p.data.blurb %>
         <dd><%= p.data.blurb %></dd>
         <% end %>

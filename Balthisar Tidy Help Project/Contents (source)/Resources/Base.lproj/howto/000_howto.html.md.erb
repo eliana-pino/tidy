@@ -3,8 +3,25 @@ title: How do I…?
 layout: template-logo-large
 order: 0
 ---
-<%= partial "markdown_links" %>
 
 How do I…?
 ==========
 
+This section introduces you to the power and features of _Balthisar Tidy_
+through a series of quick, single point lessons.
+
+<div markdown="0">
+
+    <h2>Work with Documents</h2>
+
+    <%= partial(:table_contents, :locals => {:group => "doc"}) %>
+
+    <h2>Use Document Window Features</h2>
+
+    <%= partial(:table_contents, :locals => {:group => "docwin"}) %>
+
+    <h2>Use the Tidy Options Panel</h2>
+
+    <%= partial(:table_contents, :locals => {:group => "options"}) %>
+
+</div>

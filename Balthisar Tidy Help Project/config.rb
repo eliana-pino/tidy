@@ -69,28 +69,35 @@ helpers do
       (ENV.key?(envVar)) && !(ENV[envVar] == 'no')
    end
 
-   # returns an array of all of the pages in the current group:
-   #  - that are HTML files
-   #  - that are in the same group
-   #  - are NOT the current page
-   #  - is not the index page beginning with 000
-   #  - have an "order" key in the frontmatter
-   #  - sorted by the "order" key.
-   #  - if frontmatter:target is used, the target or feature appears in the frontmatter
-   #  - if frontmatter:exclude is used, that target or enabled feature does NOT appear in the frontmatter.
-   def related_pages
-     pages = sitemap.resources.find_all do |p|
-       p.path.match(/\.html/) &&
-       File.basename(File.split(p.source_file)[0]) == page_group &&
-       File.basename( p.url, ".*" ) != page_name &&
-       !File.basename( p.url ).start_with?("000") &&
-       p.data.key?("order") &&
-       ( !p.data.key?("target") || (p.data["target"].include?(ENV["HelpBookTarget"]) || p.data["target"].count{ |t| boolENV(t) } > 0) ) &&
-       ( !p.data.key?("exclude") || !(p.data["exclude"].include?(ENV["HelpBookTarget"]) || p.data["exclude"].count{ |t| boolENV(t) } > 0) )
-     end
-     pages.sort_by { |p| p.data["order"] }
-   end
+    # returns an array of all of the pages in the current group:
+    def related_pages
+        pages_related_to( page_group )
+    end
 
+    # returns an array of all of the pages in the specified group:
+    #  - that are HTML files
+    #  - that are in the same group
+    #  - are NOT the current page
+    #  - is not the index page beginning with 000
+    #  - have an "order" key in the frontmatter
+    #  - sorted by the "order" key.
+    #  - if frontmatter:target is used, the target or feature appears in the frontmatter
+    #  - if frontmatter:exclude is used, that target or enabled feature does NOT appear in the frontmatter.
+    # also adds .metadata[:link] to the structure with a relative path to groups
+    # that are not the current group.
+    def pages_related_to( group )
+        pages = sitemap.resources.find_all do |p|
+        p.path.match(/\.html/) &&
+        File.basename(File.split(p.source_file)[0]) == group &&
+        File.basename( p.url, ".*" ) != page_name &&
+        !File.basename( p.url ).start_with?("000") &&
+        p.data.key?("order") &&
+        ( !p.data.key?("target") || (p.data["target"].include?(ENV["HelpBookTarget"]) || p.data["target"].count{ |t| boolENV(t) } > 0) ) &&
+        ( !p.data.key?("exclude") || !(p.data["exclude"].include?(ENV["HelpBookTarget"]) || p.data["exclude"].count{ |t| boolENV(t) } > 0) )
+    end
+    pages.sort_by { |p| p.data["order"] }
+    pages.each { |p| p.add_metadata(:link =>(group == page_group) ? File.basename(p.url) : File.join(group, File.basename(p.url) ) )}
+    end
 end
 
 
