@@ -1,14 +1,21 @@
 ---
-title: EMPTY
+title: Validate the Tidy’d HTML Document
+blurb: Learn how to use an HTML validation service to further prove that
+       <em>Balthisar Tidy</em> has ensured the perfection of your code!
 layout: template-logo-medium
 order: 12
+target:
+ - feature_supports_validation
 ---
 <% content_for :relatedTopics do %>
 <%= partial "related_topics.html" %>
 <% end %>
 
+<% if boolENV('feature_supports_validation') %>
+
+Validate the Tidy’d HTML Document
+=================================
 
 EMPTY
-=====================================
 
-EMPTY
+<% end %>

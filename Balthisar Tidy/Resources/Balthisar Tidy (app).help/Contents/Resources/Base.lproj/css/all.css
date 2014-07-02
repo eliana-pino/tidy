@@ -123,6 +123,13 @@ ul.related_topics li li {
 }
 
 /*************************************
+	lists for table_contents
+ *************************************/
+dl.table_contents {
+  margin: 1ex 0 2ex 3em;
+}
+
+/*************************************
 	layout-logo-large layout styles
  *************************************/
 div.container-logo-large {

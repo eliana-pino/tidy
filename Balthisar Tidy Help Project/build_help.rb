@@ -197,7 +197,9 @@ BEGIN {
 		ENV['feature_supports_applescript'] = (localTarget == "pro") ? "yes" : "no"
 		ENV['feature_supports_service']     = (localTarget == "pro") ? "yes" : "no"
 		ENV['feature_supports_extensions']  = (localTarget == "pro") ? "yes" : "no"
+		ENV['feature_supports_diffs']       = (localTarget == "pro") ? "yes" : "no"
 		ENV['feature_supports_SxS_diffs']   = (localTarget == "pro") ? "yes" : "no"
+		ENV['feature_supports_validation']  = (localTarget == "pro") ? "yes" : "no"
 
 
 		#--------------------------------------------
