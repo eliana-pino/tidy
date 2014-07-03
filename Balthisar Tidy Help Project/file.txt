@@ -10,7 +10,7 @@
 [diffs]:                       /Resources/Base.lproj/advanced/diffs.html                         "View Live, Side-by-Side diffs of Source and Tidy HTML"
 [export_config]:               /Resources/Base.lproj/advanced/export_config.html                 "Use Your Tidy Options with Command Line Tidy"
 [extension]:                   /Resources/Base.lproj/advanced/extension.html                     "Use Tidy as a System Extension (Mac OS X 10.10+)"
-[service]:                     /Resources/Base.lproj/advanced/service.html                       "Use Balthisar Tidy as a System Service"
+[service]:                     /Resources/Base.lproj/advanced/service.html                       "Use <em>Balthisar Tidy</em> as a System Service"
 [tidyforwork]:                 /Resources/Base.lproj/advanced/tidyforwork.html                   "Presenting Balthisar Tidy for Work"
 [000_howto]:                   /Resources/Base.lproj/howto/000_howto.html                        "How do I…?"
 [documents]:                   /Resources/Base.lproj/howto/documents.html                        "How do I Work with Documents?"
@@ -70,3 +70,47 @@
 [missingoptions]:              /Resources/Base.lproj/reference/tidyopts/missingoptions.html      "Missing Options"
 [tidyoptions]:                 /Resources/Base.lproj/reference/tidyopts/tidyoptions.html         "Tidy Options"
 [000_tutorial]:                /Resources/Base.lproj/tutorial/000_tutorial.html                  "Getting Started with Balthisar Tidy"
+[doc-error-table]:             /Resources/Base.lproj/was_pages/doc-error-table.html              "About the Tidy Messages Table"
+[doc-source]:                  /Resources/Base.lproj/was_pages/doc-source.html                   "About the Source HTML Panel"
+[doc-splitter]:                /Resources/Base.lproj/was_pages/doc-splitter.html                 "About the Document Panel Sizing Splitter"
+[doc-tidy-options]:            /Resources/Base.lproj/was_pages/doc-tidy-options.html             "About the Tidy Options Panel"
+[doc-tidyd]:                   /Resources/Base.lproj/was_pages/doc-tidyd.html                    "About the Tidy’d HTML Panel"
+[doc-window]:                  /Resources/Base.lproj/was_pages/doc-window.html                   "About the Document Window"
+[gettingstarted]:              /Resources/Base.lproj/was_pages/gettingstarted.html               "Getting Started"
+[how-create-new]:              /Resources/Base.lproj/was_pages/how-create-new.html               "Create a New, Blank Document"
+[how-file-encoding-helper]:    /Resources/Base.lproj/was_pages/how-file-encoding-helper.html     "Use the File Encoding Helper"
+[how-index]:                   /Resources/Base.lproj/was_pages/how-index.html                    "How do I…?"
+[how-open-document]:           /Resources/Base.lproj/was_pages/how-open-document.html            "Open a Document"
+[how-save-file]:               /Resources/Base.lproj/was_pages/how-save-file.html                "Save a Document"
+[how-tidy-existing]:           /Resources/Base.lproj/was_pages/how-tidy-existing.html            "Tidy an Existing Document"
+[how-view-edit-source]:        /Resources/Base.lproj/was_pages/how-view-edit-source.html         "View and Edit HTML Source"
+[how-view-error-table]:        /Resources/Base.lproj/was_pages/how-view-error-table.html         "View and Use the Tidy Messages Table"
+[how-view-tidyd]:              /Resources/Base.lproj/was_pages/how-view-tidyd.html               "View the Tidy’d Document"
+[options-choose]:              /Resources/Base.lproj/was_pages/options-choose.html               "View Descriptions of the Tidy Options"
+[options-descriptions]:        /Resources/Base.lproj/was_pages/options-descriptions.html         "View Descriptions of the Tidy Options"
+[preferences]:                 /Resources/Base.lproj/was_pages/preferences.html                  "About Balthisar Tidy Preferences"
+[prefs-default-tidy-options]:  /Resources/Base.lproj/was_pages/prefs-default-tidy-options.html   "Setting Default Tidy Options"
+[prefs-file-saving]:           /Resources/Base.lproj/was_pages/prefs-file-saving.html            "Setting File Saving Preferences"
+[prefs-miscellaneous]:         /Resources/Base.lproj/was_pages/prefs-miscellaneous.html          "Setting Miscellaneous Preferences"
+[prefs-updates]:               /Resources/Base.lproj/was_pages/prefs-updates.html                "Setting Updates Preferences"
+[reference]:                   /Resources/Base.lproj/was_pages/reference.html                    "Balthisar Tidy Reference"
+
+====================================================
+[doc_messages]:           /Resources/Base.lproj/images/doc-messages.png            
+[doc_source]:             /Resources/Base.lproj/images/doc-source.png              
+[doc_tidy_options]:       /Resources/Base.lproj/images/doc-tidy-options.png        
+[doc_tidyd]:              /Resources/Base.lproj/images/doc-tidyd.png               
+[encoding_helper]:        /Resources/Base.lproj/images/encoding-helper.png         
+[save_save_as_required]:  /Resources/Base.lproj/images/save-save-as-required.png   
+[save_save_warning]:      /Resources/Base.lproj/images/save-save-warning.png       
+[tidy_main_window]:       /Resources/Base.lproj/images/tidy-main-window.png        
+[tidy_prefs_01_ns]:       /Resources/Base.lproj/images/tidy-prefs-01-ns.png        
+[tidy_prefs_01]:          /Resources/Base.lproj/images/tidy-prefs-01.png           
+[tidy_prefs_02_ns]:       /Resources/Base.lproj/images/tidy-prefs-02-ns.png        
+[tidy_prefs_02]:          /Resources/Base.lproj/images/tidy-prefs-02.png           
+[tidy_prefs_03_ns]:       /Resources/Base.lproj/images/tidy-prefs-03-ns.png        
+[tidy_prefs_03]:          /Resources/Base.lproj/images/tidy-prefs-03.png           
+[tidy_prefs_04]:          /Resources/Base.lproj/images/tidy-prefs-04.png           
+[icon_256x256@2x]:        /Resources/shared/icon_256x256@2x.png                    
+[icon_32x32@2x]:          /Resources/shared/icon_32x32@2x.png                      
+

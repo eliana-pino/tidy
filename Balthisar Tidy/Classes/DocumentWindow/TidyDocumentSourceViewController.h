@@ -29,7 +29,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface TidyDocumentSourceViewController : NSViewController
+@interface TidyDocumentSourceViewController : NSViewController <NSTextViewDelegate>
 
 @property (assign) IBOutlet NSTextView *sourceTextView;
 

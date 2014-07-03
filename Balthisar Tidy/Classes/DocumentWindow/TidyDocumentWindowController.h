@@ -37,8 +37,7 @@
 @class JSDTableViewController;
 
 
-@interface TidyDocumentWindowController : NSWindowController <NSSplitViewDelegate, NSTextViewDelegate>
-
+@interface TidyDocumentWindowController : NSWindowController
 
 /* Split Views */
 

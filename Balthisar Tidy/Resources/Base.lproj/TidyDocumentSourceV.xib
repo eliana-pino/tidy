@@ -21,7 +21,7 @@
             <rect key="frame" x="0.0" y="0.0" width="500" height="160"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <splitView identifier="IDUIPositionsSplitter04" autosaveName="" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y6t-Ex-3lq">
+                <splitView autosaveName="" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y6t-Ex-3lq">
                     <rect key="frame" x="0.0" y="0.0" width="500" height="160"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>

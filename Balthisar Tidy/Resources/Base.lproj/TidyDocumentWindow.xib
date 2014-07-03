@@ -80,7 +80,7 @@
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="150" id="b09-LK-rnM"/>
                                         </constraints>
                                     </customView>
-                                    <customView id="0jN-hG-2u0">
+                                    <customView verticalHuggingPriority="300" id="0jN-hG-2u0">
                                         <rect key="frame" x="0.0" y="383" width="499" height="129"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <constraints>

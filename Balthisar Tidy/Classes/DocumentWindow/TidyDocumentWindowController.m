@@ -35,9 +35,9 @@
 		The Tidy processor is loosely coupled with the document controller. Most
 		interaction with it is handled via NSNotifications.
  
-		If user types text we receive a `textDidChange` delegate notification, and we will set
-		new text in [tidyProcess sourceText]. The event chain will eventually handle everything
-		else.
+		If user types text the SourceViewController receive a `textDidChange` delegate notification,
+		and we will set new text in [tidyProcess sourceText]. The event chain will eventually handle
+		everything else.
  
 		If `tidyText` changes we will receive NSNotification, and put the new `tidyText`
 		into the `tidyView`, and also update `messagesViewController`.
@@ -202,6 +202,17 @@
 											  forKeyPath:@"selection"
 												 options:(NSKeyValueObservingOptionNew)
 												 context:NULL];
+
+
+	/* Manually adjust the view sizes. For some reason automatic restoration isn't working. */
+	NSRect localRect = NSRectFromString([[NSUserDefaults standardUserDefaults] objectForKey:@"NSSplitView Subview Frames UIPositionsSplitter01"][0]);
+	[self.splitterOptions setPosition:localRect.size.width ofDividerAtIndex:0];
+
+	localRect = NSRectFromString([[NSUserDefaults standardUserDefaults] objectForKey:@"NSSplitView Subview Frames UIPositionsSplitter02"][0]);
+	if (localRect.size.height > 0.0f)
+	{
+		[self.splitterMessages setPosition:localRect.size.height ofDividerAtIndex:0];
+	}
 }
 
 /*———————————————————————————————————————————————————————————————————*

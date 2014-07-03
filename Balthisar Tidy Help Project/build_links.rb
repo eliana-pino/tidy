@@ -30,7 +30,7 @@ Dir.glob("Contents (source)/Resources/**/*.erb").each do |fileName|
     while File.extname(base_name) != "" do
         base_name = File.basename( base_name, ".*" )
     end
-    shortcut = "[#{base_name}]:".gsub("-", "_")
+    shortcut = "[#{base_name}]:" #.gsub("-", "_")
 
     # Make a fake absolute path
     path = Pathname.new(fileName).relative_path_from(Pathname.new("Contents (source)"))

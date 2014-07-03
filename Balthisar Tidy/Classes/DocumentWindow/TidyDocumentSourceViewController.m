@@ -94,7 +94,6 @@
 											forKeyPath:JSDKeyAllowMacOSTextSubstitutions
 											   options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial)
 											   context:NULL];
-
 }
 
 
@@ -195,10 +194,10 @@
 	/* Handle changes to the preferences for allowing or disallowing Mac OS X Text Substitutions */
 	if ((object == [NSUserDefaults standardUserDefaults]) && ([keyPath isEqualToString:JSDKeyAllowMacOSTextSubstitutions]))
 	{
+		[self.sourceTextView setAutomaticQuoteSubstitutionEnabled:[[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
 		[self.sourceTextView setAutomaticTextReplacementEnabled:[[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
 		[self.sourceTextView setAutomaticDashSubstitutionEnabled:[[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
 	}
-
 }
 
 
@@ -258,13 +257,10 @@
 	NSUserDefaults *localDefaults = [NSUserDefaults standardUserDefaults];
 
 	[aView setFont:[NSFont fontWithName:@"Menlo" size:[NSFont systemFontSize]]];
-	[aView setAutomaticQuoteSubstitutionEnabled:NO]; // IB setting doesn't work for this.
+	[aView setAutomaticQuoteSubstitutionEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
 	[aView setAutomaticTextReplacementEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
 	[aView setAutomaticDashSubstitutionEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
 
-	/* Provided by Category `NSTextView+JSDExtensions` */
-
-	///[aView setShowsLineNumbers:[[localDefaults valueForKey:JSDKeyShowNewDocumentLineNumbers] boolValue]];
 	[aView setWordwrapsText:NO];
 }
 
