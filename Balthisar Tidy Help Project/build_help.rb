@@ -5,6 +5,8 @@
 #   This will build a Balthisar Tidy help book using the specified build
 #   configuration.
 #
+#  - middleman output will be put into build_help.log.
+#
 # Usage:
 #    build_help web
 #    build_help app

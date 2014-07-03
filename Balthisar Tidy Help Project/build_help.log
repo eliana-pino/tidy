@@ -7,582 +7,584 @@ Loaded extensions:
 == Extension: relative_assets
 == Extension: minify_javascript
 == Extension: frontmatter
-== File Change: .idea/.name
-== File Change: .idea/cake_config_setting_v0_5.xml
-== File Change: .idea/codeStyleSettings.xml
 == File Change: .idea/encodings.xml
 == File Change: .idea/misc.xml
-== File Change: .idea/modules.xml
-== File Change: .idea/scopes/scope_settings.xml
+== File Change: .idea/cake_config_setting_v0_5.xml
 == File Change: .idea/tidy_help.iml
+== File Change: .idea/.name
 == File Change: .idea/vcs.xml
 == File Change: .idea/workspace.xml
-== File Change: build_help.log
-== File Change: build_help.rb
-== File Change: config.rb
-== File Change: Contents (build)/Info.plist
-== File Change: Contents (build)/Resources/Base.lproj/acknowledgements/000_ack.html
-== File Change: Contents (build)/Resources/Base.lproj/acknowledgements/ack_i18n.html
-== File Change: Contents (build)/Resources/Base.lproj/acknowledgements/ack_opensource.html
-== File Change: Contents (build)/Resources/Base.lproj/acknowledgements/license.html
-== File Change: Contents (build)/Resources/Base.lproj/advanced/000_advanced.html
-== File Change: Contents (build)/Resources/Base.lproj/advanced/applescript.html
-== File Change: Contents (build)/Resources/Base.lproj/advanced/diffs.html
-== File Change: Contents (build)/Resources/Base.lproj/advanced/export_config.html
-== File Change: Contents (build)/Resources/Base.lproj/advanced/extension.html
-== File Change: Contents (build)/Resources/Base.lproj/advanced/service.html
-== File Change: Contents (build)/Resources/Base.lproj/advanced/tidyforwork.html
-== File Change: Contents (build)/Resources/Base.lproj/Balthisar Tidy.helpindex
-== File Change: Contents (build)/Resources/Base.lproj/Balthisar Tidy.html
-== File Change: Contents (build)/Resources/Base.lproj/css/all.css
-== File Change: Contents (build)/Resources/Base.lproj/howto/000_howto.html
-== File Change: Contents (build)/Resources/Base.lproj/howto/doc/doc-create.html
-== File Change: Contents (build)/Resources/Base.lproj/howto/doc/doc-encoding.html
-== File Change: Contents (build)/Resources/Base.lproj/howto/doc/doc-open.html
-== File Change: Contents (build)/Resources/Base.lproj/howto/doc/doc-print.html
-== File Change: Contents (build)/Resources/Base.lproj/howto/doc/doc-save.html
-== File Change: Contents (build)/Resources/Base.lproj/howto/doc/doc-tidy.html
-== File Change: Contents (build)/Resources/Base.lproj/howto/doc/doc-view_edit.html
-== File Change: Contents (build)/Resources/Base.lproj/howto/doc/doc-view_tidyd.html
-== File Change: Contents (build)/Resources/Base.lproj/howto/documents.html
-== File Change: Contents (build)/Resources/Base.lproj/howto/docwin/docwin-chooseoptions.html
-== File Change: Contents (build)/Resources/Base.lproj/howto/docwin/docwin-diff_sidebyside.html
-== File Change: Contents (build)/Resources/Base.lproj/howto/docwin/docwin-diffs.html
-== File Change: Contents (build)/Resources/Base.lproj/howto/docwin/docwin-fullscreen.html
-== File Change: Contents (build)/Resources/Base.lproj/howto/docwin/docwin-hidetidymessages.html
+== File Change: .idea/modules.xml
+== File Change: .idea/codeStyleSettings.xml
+== File Change: .idea/scopes/scope_settings.xml
+== File Change: README.md
 == File Change: Contents (build)/Resources/Base.lproj/howto/docwin/docwin-hidetidyoptions.html
-== File Change: Contents (build)/Resources/Base.lproj/howto/docwin/docwin-messages.html
 == File Change: Contents (build)/Resources/Base.lproj/howto/docwin/docwin-orientation.html
-== File Change: Contents (build)/Resources/Base.lproj/howto/docwin/docwin-preview.html
+== File Change: Contents (build)/Resources/Base.lproj/howto/docwin/docwin-validate.html
 == File Change: Contents (build)/Resources/Base.lproj/howto/docwin/docwin-quicktutorial.html
 == File Change: Contents (build)/Resources/Base.lproj/howto/docwin/docwin-splitter.html
+== File Change: Contents (build)/Resources/Base.lproj/howto/docwin/docwin-preview.html
+== File Change: Contents (build)/Resources/Base.lproj/howto/docwin/docwin-messages.html
+== File Change: Contents (build)/Resources/Base.lproj/howto/docwin/docwin-hidetidymessages.html
+== File Change: Contents (build)/Resources/Base.lproj/howto/docwin/docwin-chooseoptions.html
+== File Change: Contents (build)/Resources/Base.lproj/howto/docwin/docwin-diffs.html
+== File Change: Contents (build)/Resources/Base.lproj/howto/docwin/docwin-diff_sidebyside.html
+== File Change: Contents (build)/Resources/Base.lproj/howto/docwin/docwin-fullscreen.html
 == File Change: Contents (build)/Resources/Base.lproj/howto/docwin/docwin-toolbarcustomize.html
-== File Change: Contents (build)/Resources/Base.lproj/howto/docwin/docwin-validate.html
-== File Change: Contents (build)/Resources/Base.lproj/howto/docwindow.html
-== File Change: Contents (build)/Resources/Base.lproj/howto/options/options-appearance.html
-== File Change: Contents (build)/Resources/Base.lproj/howto/options/options-commandlinetidy.html
-== File Change: Contents (build)/Resources/Base.lproj/howto/options/options-descriptions.html
-== File Change: Contents (build)/Resources/Base.lproj/howto/options/options-group.html
-== File Change: Contents (build)/Resources/Base.lproj/howto/options/options-makedefault.html
-== File Change: Contents (build)/Resources/Base.lproj/howto/options/options-revertbuiltin.html
-== File Change: Contents (build)/Resources/Base.lproj/howto/options/options-revertdefault.html
 == File Change: Contents (build)/Resources/Base.lproj/howto/optionspanel.html
-== File Change: Contents (build)/Resources/Base.lproj/images/doc-messages.png
-== File Change: Contents (build)/Resources/Base.lproj/images/doc-source.png
-== File Change: Contents (build)/Resources/Base.lproj/images/doc-tidy-options.png
-== File Change: Contents (build)/Resources/Base.lproj/images/doc-tidyd.png
-== File Change: Contents (build)/Resources/Base.lproj/images/encoding-helper.png
-== File Change: Contents (build)/Resources/Base.lproj/images/save-save-as-required.png
-== File Change: Contents (build)/Resources/Base.lproj/images/save-save-warning.png
-== File Change: Contents (build)/Resources/Base.lproj/images/tidy-main-window.png
-== File Change: Contents (build)/Resources/Base.lproj/images/tidy-prefs-01-ns.png
-== File Change: Contents (build)/Resources/Base.lproj/images/tidy-prefs-01.png
-== File Change: Contents (build)/Resources/Base.lproj/images/tidy-prefs-02-ns.png
-== File Change: Contents (build)/Resources/Base.lproj/images/tidy-prefs-02.png
-== File Change: Contents (build)/Resources/Base.lproj/images/tidy-prefs-03-ns.png
-== File Change: Contents (build)/Resources/Base.lproj/images/tidy-prefs-03.png
-== File Change: Contents (build)/Resources/Base.lproj/images/tidy-prefs-04.png
-== File Change: Contents (build)/Resources/Base.lproj/InfoPlist.strings
+== File Change: Contents (build)/Resources/Base.lproj/howto/docwindow.html
+== File Change: Contents (build)/Resources/Base.lproj/howto/documents.html
+== File Change: Contents (build)/Resources/Base.lproj/howto/000_howto.html
+== File Change: Contents (build)/Resources/Base.lproj/howto/options/options-makedefault.html
+== File Change: Contents (build)/Resources/Base.lproj/howto/options/options-revertdefault.html
+== File Change: Contents (build)/Resources/Base.lproj/howto/options/options-revertbuiltin.html
+== File Change: Contents (build)/Resources/Base.lproj/howto/options/options-commandlinetidy.html
+== File Change: Contents (build)/Resources/Base.lproj/howto/options/options-appearance.html
+== File Change: Contents (build)/Resources/Base.lproj/howto/options/options-group.html
+== File Change: Contents (build)/Resources/Base.lproj/howto/options/options-descriptions.html
+== File Change: Contents (build)/Resources/Base.lproj/howto/doc/doc-view_edit.html
+== File Change: Contents (build)/Resources/Base.lproj/howto/doc/doc-open.html
+== File Change: Contents (build)/Resources/Base.lproj/howto/doc/doc-create.html
+== File Change: Contents (build)/Resources/Base.lproj/howto/doc/doc-print.html
+== File Change: Contents (build)/Resources/Base.lproj/howto/doc/doc-encoding.html
+== File Change: Contents (build)/Resources/Base.lproj/howto/doc/doc-tidy.html
+== File Change: Contents (build)/Resources/Base.lproj/howto/doc/doc-save.html
+== File Change: Contents (build)/Resources/Base.lproj/howto/doc/doc-view_tidyd.html
+== File Change: Contents (build)/Resources/Base.lproj/advanced/000_advanced.html
+== File Change: Contents (build)/Resources/Base.lproj/advanced/service.html
+== File Change: Contents (build)/Resources/Base.lproj/advanced/export_config.html
+== File Change: Contents (build)/Resources/Base.lproj/advanced/applescript.html
+== File Change: Contents (build)/Resources/Base.lproj/advanced/tidyforwork.html
+== File Change: Contents (build)/Resources/Base.lproj/advanced/extension.html
+== File Change: Contents (build)/Resources/Base.lproj/advanced/diffs.html
+== File Change: Contents (build)/Resources/Base.lproj/tutorial/000_tutorial.html
 == File Change: Contents (build)/Resources/Base.lproj/javascript/all.js
+== File Change: Contents (build)/Resources/Base.lproj/Balthisar Tidy.html
+== File Change: Contents (build)/Resources/Base.lproj/was_pages/how-file-encoding-helper.html
+== File Change: Contents (build)/Resources/Base.lproj/was_pages/preferences.html
+== File Change: Contents (build)/Resources/Base.lproj/was_pages/prefs-miscellaneous.html
+== File Change: Contents (build)/Resources/Base.lproj/was_pages/options-choose.html
+== File Change: Contents (build)/Resources/Base.lproj/was_pages/how-open-document.html
+== File Change: Contents (build)/Resources/Base.lproj/was_pages/doc-window.html
+== File Change: Contents (build)/Resources/Base.lproj/was_pages/how-save-file.html
+== File Change: Contents (build)/Resources/Base.lproj/was_pages/gettingstarted.html
+== File Change: Contents (build)/Resources/Base.lproj/was_pages/how-tidy-existing.html
+== File Change: Contents (build)/Resources/Base.lproj/was_pages/doc-error-table.html
+== File Change: Contents (build)/Resources/Base.lproj/was_pages/how-index.html
+== File Change: Contents (build)/Resources/Base.lproj/was_pages/how-view-tidyd.html
+== File Change: Contents (build)/Resources/Base.lproj/was_pages/how-view-error-table.html
+== File Change: Contents (build)/Resources/Base.lproj/was_pages/doc-tidy-options.html
+== File Change: Contents (build)/Resources/Base.lproj/was_pages/prefs-default-tidy-options.html
+== File Change: Contents (build)/Resources/Base.lproj/was_pages/how-view-edit-source.html
+== File Change: Contents (build)/Resources/Base.lproj/was_pages/doc-tidyd.html
+== File Change: Contents (build)/Resources/Base.lproj/was_pages/prefs-file-saving.html
+== File Change: Contents (build)/Resources/Base.lproj/was_pages/options-descriptions.html
+== File Change: Contents (build)/Resources/Base.lproj/was_pages/reference.html
+== File Change: Contents (build)/Resources/Base.lproj/was_pages/doc-splitter.html
+== File Change: Contents (build)/Resources/Base.lproj/was_pages/prefs-updates.html
+== File Change: Contents (build)/Resources/Base.lproj/was_pages/how-create-new.html
+== File Change: Contents (build)/Resources/Base.lproj/was_pages/doc-source.html
+== File Change: Contents (build)/Resources/Base.lproj/test.html
+== File Change: Contents (build)/Resources/Base.lproj/InfoPlist.strings
+== File Change: Contents (build)/Resources/Base.lproj/images/save-save-warning.png
+== File Change: Contents (build)/Resources/Base.lproj/images/save-save-as-required.png
+== File Change: Contents (build)/Resources/Base.lproj/images/tidy-prefs-02.png
+== File Change: Contents (build)/Resources/Base.lproj/images/tidy-prefs-01.png
+== File Change: Contents (build)/Resources/Base.lproj/images/tidy-prefs-03.png
+== File Change: Contents (build)/Resources/Base.lproj/images/doc-messages.png
+== File Change: Contents (build)/Resources/Base.lproj/images/tidy-prefs-03-ns.png
+== File Change: Contents (build)/Resources/Base.lproj/images/doc-tidyd.png
+== File Change: Contents (build)/Resources/Base.lproj/images/doc-tidy-options.png
+== File Change: Contents (build)/Resources/Base.lproj/images/encoding-helper.png
+== File Change: Contents (build)/Resources/Base.lproj/images/tidy-prefs-01-ns.png
+== File Change: Contents (build)/Resources/Base.lproj/images/doc-source.png
+== File Change: Contents (build)/Resources/Base.lproj/images/tidy-prefs-02-ns.png
+== File Change: Contents (build)/Resources/Base.lproj/images/tidy-prefs-04.png
+== File Change: Contents (build)/Resources/Base.lproj/images/tidy-main-window.png
+== File Change: Contents (build)/Resources/Base.lproj/css/all.css
+== File Change: Contents (build)/Resources/Base.lproj/acknowledgements/ack_i18n.html
+== File Change: Contents (build)/Resources/Base.lproj/acknowledgements/ack_opensource.html
+== File Change: Contents (build)/Resources/Base.lproj/acknowledgements/000_ack.html
+== File Change: Contents (build)/Resources/Base.lproj/acknowledgements/license.html
+== File Change: Contents (build)/Resources/Base.lproj/reference/menu/menu-edit.html
+== File Change: Contents (build)/Resources/Base.lproj/reference/menu/menu-window.html
+== File Change: Contents (build)/Resources/Base.lproj/reference/menu/menu-help.html
+== File Change: Contents (build)/Resources/Base.lproj/reference/menu/menu-file.html
+== File Change: Contents (build)/Resources/Base.lproj/reference/menu/menu-application.html
+== File Change: Contents (build)/Resources/Base.lproj/reference/menu/menu-view.html
 == File Change: Contents (build)/Resources/Base.lproj/reference/000_reference.html
+== File Change: Contents (build)/Resources/Base.lproj/reference/tidyopts/tidyoptions.html
+== File Change: Contents (build)/Resources/Base.lproj/reference/tidyopts/missingoptions.html
+== File Change: Contents (build)/Resources/Base.lproj/reference/prefs.html
+== File Change: Contents (build)/Resources/Base.lproj/reference/menu.html
+== File Change: Contents (build)/Resources/Base.lproj/reference/docu/docu-sourcearea.html
+== File Change: Contents (build)/Resources/Base.lproj/reference/docu/docu-splitters.html
 == File Change: Contents (build)/Resources/Base.lproj/reference/docu/docu-fullscreen.html
 == File Change: Contents (build)/Resources/Base.lproj/reference/docu/docu-messages.html
 == File Change: Contents (build)/Resources/Base.lproj/reference/docu/docu-options.html
-== File Change: Contents (build)/Resources/Base.lproj/reference/docu/docu-sourcearea.html
-== File Change: Contents (build)/Resources/Base.lproj/reference/docu/docu-splitters.html
 == File Change: Contents (build)/Resources/Base.lproj/reference/docu/docu-toolbar.html
 == File Change: Contents (build)/Resources/Base.lproj/reference/docu.html
-== File Change: Contents (build)/Resources/Base.lproj/reference/menu/menu-application.html
-== File Change: Contents (build)/Resources/Base.lproj/reference/menu/menu-edit.html
-== File Change: Contents (build)/Resources/Base.lproj/reference/menu/menu-file.html
-== File Change: Contents (build)/Resources/Base.lproj/reference/menu/menu-help.html
-== File Change: Contents (build)/Resources/Base.lproj/reference/menu/menu-view.html
-== File Change: Contents (build)/Resources/Base.lproj/reference/menu/menu-window.html
-== File Change: Contents (build)/Resources/Base.lproj/reference/menu.html
-== File Change: Contents (build)/Resources/Base.lproj/reference/prefs/prefs-docappearance.html
-== File Change: Contents (build)/Resources/Base.lproj/reference/prefs/prefs-filesaving.html
-== File Change: Contents (build)/Resources/Base.lproj/reference/prefs/prefs-misc.html
 == File Change: Contents (build)/Resources/Base.lproj/reference/prefs/prefs-tidyappearance.html
+== File Change: Contents (build)/Resources/Base.lproj/reference/prefs/prefs-filesaving.html
 == File Change: Contents (build)/Resources/Base.lproj/reference/prefs/prefs-tidyoptions.html
+== File Change: Contents (build)/Resources/Base.lproj/reference/prefs/prefs-docappearance.html
+== File Change: Contents (build)/Resources/Base.lproj/reference/prefs/prefs-misc.html
 == File Change: Contents (build)/Resources/Base.lproj/reference/prefs/prefs-updates.html
-== File Change: Contents (build)/Resources/Base.lproj/reference/prefs.html
-== File Change: Contents (build)/Resources/Base.lproj/reference/tidyopts/missingoptions.html
-== File Change: Contents (build)/Resources/Base.lproj/reference/tidyopts/tidyoptions.html
 == File Change: Contents (build)/Resources/Base.lproj/reference/tidyopts.html
-== File Change: Contents (build)/Resources/Base.lproj/test.html
-== File Change: Contents (build)/Resources/Base.lproj/tutorial/000_tutorial.html
-== File Change: Contents (build)/Resources/Base.lproj/was_pages/doc-error-table.html
-== File Change: Contents (build)/Resources/Base.lproj/was_pages/doc-source.html
-== File Change: Contents (build)/Resources/Base.lproj/was_pages/doc-splitter.html
-== File Change: Contents (build)/Resources/Base.lproj/was_pages/doc-tidy-options.html
-== File Change: Contents (build)/Resources/Base.lproj/was_pages/doc-tidyd.html
-== File Change: Contents (build)/Resources/Base.lproj/was_pages/doc-window.html
-== File Change: Contents (build)/Resources/Base.lproj/was_pages/gettingstarted.html
-== File Change: Contents (build)/Resources/Base.lproj/was_pages/how-create-new.html
-== File Change: Contents (build)/Resources/Base.lproj/was_pages/how-file-encoding-helper.html
-== File Change: Contents (build)/Resources/Base.lproj/was_pages/how-index.html
-== File Change: Contents (build)/Resources/Base.lproj/was_pages/how-open-document.html
-== File Change: Contents (build)/Resources/Base.lproj/was_pages/how-save-file.html
-== File Change: Contents (build)/Resources/Base.lproj/was_pages/how-tidy-existing.html
-== File Change: Contents (build)/Resources/Base.lproj/was_pages/how-view-edit-source.html
-== File Change: Contents (build)/Resources/Base.lproj/was_pages/how-view-error-table.html
-== File Change: Contents (build)/Resources/Base.lproj/was_pages/how-view-tidyd.html
-== File Change: Contents (build)/Resources/Base.lproj/was_pages/options-choose.html
-== File Change: Contents (build)/Resources/Base.lproj/was_pages/options-descriptions.html
-== File Change: Contents (build)/Resources/Base.lproj/was_pages/preferences.html
-== File Change: Contents (build)/Resources/Base.lproj/was_pages/prefs-default-tidy-options.html
-== File Change: Contents (build)/Resources/Base.lproj/was_pages/prefs-file-saving.html
-== File Change: Contents (build)/Resources/Base.lproj/was_pages/prefs-miscellaneous.html
-== File Change: Contents (build)/Resources/Base.lproj/was_pages/prefs-updates.html
-== File Change: Contents (build)/Resources/Base.lproj/was_pages/reference.html
-== File Change: Contents (build)/Resources/shared/icon_256x256@2x.png
 == File Change: Contents (build)/Resources/shared/icon_32x32@2x.png
-== File Change: Contents (source)/_Info.plist
-== File Change: Contents (source)/data/globals.yml
-== File Change: Contents (source)/Info.plist
-== File Change: Contents (source)/layouts/_README.md
-== File Change: Contents (source)/layouts/layout-apple_main.erb
-== File Change: Contents (source)/layouts/layout-html4.erb
-== File Change: Contents (source)/layouts/layout.erb
-== File Change: Contents (source)/layouts/template-logo-large.erb
-== File Change: Contents (source)/layouts/template-logo-medium.erb
-== File Change: Contents (source)/layouts/template-logo-small.erb
+== File Change: Contents (build)/Resources/shared/icon_256x256@2x.png
+== File Change: Contents (build)/Info.plist
+== File Change: build_links.rb
+== File Change: files.txt
+== File Change: build_help.log
+== File Change: config.rb
+== File Change: Contents (source)/Resources/Base.lproj/howto/docwin/docwin-hidetidymessages.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/howto/docwin/docwin-fullscreen.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/howto/docwin/docwin-validate.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/howto/docwin/docwin-splitter.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/howto/docwin/docwin-toolbarcustomize.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/howto/docwin/docwin-diffs.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/howto/docwin/docwin-preview.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/howto/docwin/docwin-chooseoptions.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/howto/docwin/docwin-quicktutorial.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/howto/docwin/docwin-diff_sidebyside.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/howto/docwin/docwin-orientation.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/howto/docwin/docwin-hidetidyoptions.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/howto/docwin/docwin-messages.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/howto/optionspanel.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/howto/documents.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/howto/docwindow.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/howto/000_howto.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/howto/options/options-descriptions.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/howto/options/options-group.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/howto/options/options-revertdefault.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/howto/options/options-makedefault.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/howto/options/options-revertbuiltin.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/howto/options/options-commandlinetidy.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/howto/options/options-appearance.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/howto/doc/doc-create.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/howto/doc/doc-view_edit.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/howto/doc/doc-print.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/howto/doc/doc-tidy.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/howto/doc/doc-open.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/howto/doc/doc-save.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/howto/doc/doc-view_tidyd.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/howto/doc/doc-encoding.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/advanced/service.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/advanced/export_config.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/advanced/diffs.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/advanced/tidyforwork.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/advanced/000_advanced.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/advanced/applescript.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/advanced/extension.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/tutorial/000_tutorial.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/javascript/all.js
+== File Change: Contents (source)/Resources/Base.lproj/was_pages/prefs-default-tidy-options.html.erb
+== File Change: Contents (source)/Resources/Base.lproj/was_pages/how-tidy-existing.html.erb
+== File Change: Contents (source)/Resources/Base.lproj/was_pages/how-open-document.html.erb
+== File Change: Contents (source)/Resources/Base.lproj/was_pages/how-view-error-table.html.erb
+== File Change: Contents (source)/Resources/Base.lproj/was_pages/doc-splitter.html.erb
+== File Change: Contents (source)/Resources/Base.lproj/was_pages/doc-error-table.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/was_pages/gettingstarted.html.erb
+== File Change: Contents (source)/Resources/Base.lproj/was_pages/doc-tidy-options.html.erb
+== File Change: Contents (source)/Resources/Base.lproj/was_pages/options-descriptions.html.erb
+== File Change: Contents (source)/Resources/Base.lproj/was_pages/how-save-file.html.erb
+== File Change: Contents (source)/Resources/Base.lproj/was_pages/how-view-edit-source.html.erb
+== File Change: Contents (source)/Resources/Base.lproj/was_pages/prefs-updates.html.erb
+== File Change: Contents (source)/Resources/Base.lproj/was_pages/reference.html.erb
+== File Change: Contents (source)/Resources/Base.lproj/was_pages/how-index.html.erb
+== File Change: Contents (source)/Resources/Base.lproj/was_pages/prefs-miscellaneous.html.erb
+== File Change: Contents (source)/Resources/Base.lproj/was_pages/how-create-new.html.erb
+== File Change: Contents (source)/Resources/Base.lproj/was_pages/how-view-tidyd.html.erb
+== File Change: Contents (source)/Resources/Base.lproj/was_pages/prefs-file-saving.html.erb
+== File Change: Contents (source)/Resources/Base.lproj/was_pages/how-file-encoding-helper.html.erb
+== File Change: Contents (source)/Resources/Base.lproj/was_pages/options-choose.html.erb
+== File Change: Contents (source)/Resources/Base.lproj/was_pages/preferences.html.erb
+== File Change: Contents (source)/Resources/Base.lproj/was_pages/doc-tidyd.html.erb
+== File Change: Contents (source)/Resources/Base.lproj/was_pages/doc-source.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/was_pages/doc-window.html.erb
+== File Change: Contents (source)/Resources/Base.lproj/Balthisar Tidy.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/InfoPlist.strings
+== File Change: Contents (source)/Resources/Base.lproj/test.html.erb
+== File Change: Contents (source)/Resources/Base.lproj/_title_page.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/_title_page.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/images/save-save-warning.png
+== File Change: Contents (source)/Resources/Base.lproj/images/save-save-as-required.png
+== File Change: Contents (source)/Resources/Base.lproj/images/tidy-prefs-02.png
+== File Change: Contents (source)/Resources/Base.lproj/images/tidy-prefs-01.png
+== File Change: Contents (source)/Resources/Base.lproj/images/tidy-prefs-03.png
+== File Change: Contents (source)/Resources/Base.lproj/images/doc-messages.png
+== File Change: Contents (source)/Resources/Base.lproj/images/tidy-prefs-03-ns.png
+== File Change: Contents (source)/Resources/Base.lproj/images/doc-tidyd.png
+== File Change: Contents (source)/Resources/Base.lproj/images/doc-tidy-options.png
+== File Change: Contents (source)/Resources/Base.lproj/images/encoding-helper.png
+== File Change: Contents (source)/Resources/Base.lproj/images/tidy-prefs-01-ns.png
+== File Change: Contents (source)/Resources/Base.lproj/images/doc-source.png
+== File Change: Contents (source)/Resources/Base.lproj/images/tidy-prefs-02-ns.png
+== File Change: Contents (source)/Resources/Base.lproj/images/tidy-prefs-04.png
+== File Change: Contents (source)/Resources/Base.lproj/images/tidy-main-window.png
+== File Change: Contents (source)/Resources/Base.lproj/css/all.css.scss
+== File Change: Contents (source)/Resources/Base.lproj/css/_apple_helpbook.scss
+== File Change: Contents (source)/Resources/Base.lproj/css/_normalize.scss
+== File Change: Contents (source)/Resources/Base.lproj/_InfoPlist.strings
+== File Change: Contents (source)/Resources/Base.lproj/acknowledgements/ack_opensource.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/acknowledgements/license.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/acknowledgements/ack_i18n.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/acknowledgements/000_ack.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/reference/menu/menu-window.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/reference/menu/menu-file.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/reference/menu/menu-view.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/reference/menu/menu-application.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/reference/menu/menu-help.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/reference/menu/menu-edit.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/reference/prefs.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/reference/tidyopts/tidyoptions.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/reference/tidyopts/missingoptions.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/reference/tidyopts.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/reference/docu/docu-messages.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/reference/docu/docu-sourcearea.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/reference/docu/docu-options.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/reference/docu/docu-toolbar.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/reference/docu/docu-fullscreen.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/reference/docu/docu-splitters.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/reference/000_reference.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/reference/docu.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/reference/prefs/prefs-filesaving.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/reference/prefs/prefs-tidyappearance.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/reference/prefs/prefs-tidyoptions.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/reference/prefs/prefs-docappearance.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/reference/prefs/prefs-updates.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/reference/prefs/prefs-misc.html.md.erb
+== File Change: Contents (source)/Resources/Base.lproj/reference/menu.html.md.erb
+== File Change: Contents (source)/Resources/shared/icon_32x32@2x.png
+== File Change: Contents (source)/Resources/shared/icon_256x256@2x.png
+== File Change: Contents (source)/partials/_markdown-links.erb
+== File Change: Contents (source)/partials/_markdown-images.erb
 == File Change: Contents (source)/partials/_markdown_images_links.erb
 == File Change: Contents (source)/partials/_related_topics.html.erb
 == File Change: Contents (source)/partials/_table_contents.erb
-== File Change: Contents (source)/Resources/Base.lproj/_InfoPlist.strings
-== File Change: Contents (source)/Resources/Base.lproj/_title_page.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/_title_page.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/acknowledgements/000_ack.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/acknowledgements/ack_i18n.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/acknowledgements/ack_opensource.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/acknowledgements/license.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/advanced/000_advanced.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/advanced/applescript.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/advanced/diffs.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/advanced/export_config.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/advanced/extension.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/advanced/service.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/advanced/tidyforwork.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/Balthisar Tidy.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/css/_apple_helpbook.scss
-== File Change: Contents (source)/Resources/Base.lproj/css/_normalize.scss
-== File Change: Contents (source)/Resources/Base.lproj/css/all.css.scss
-== File Change: Contents (source)/Resources/Base.lproj/howto/000_howto.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/howto/doc/doc-create.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/howto/doc/doc-encoding.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/howto/doc/doc-open.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/howto/doc/doc-print.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/howto/doc/doc-save.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/howto/doc/doc-tidy.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/howto/doc/doc-view_edit.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/howto/doc/doc-view_tidyd.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/howto/documents.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/howto/docwin/docwin-chooseoptions.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/howto/docwin/docwin-diff_sidebyside.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/howto/docwin/docwin-diffs.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/howto/docwin/docwin-fullscreen.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/howto/docwin/docwin-hidetidymessages.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/howto/docwin/docwin-hidetidyoptions.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/howto/docwin/docwin-messages.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/howto/docwin/docwin-orientation.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/howto/docwin/docwin-preview.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/howto/docwin/docwin-quicktutorial.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/howto/docwin/docwin-splitter.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/howto/docwin/docwin-toolbarcustomize.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/howto/docwin/docwin-validate.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/howto/docwindow.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/howto/options/options-appearance.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/howto/options/options-commandlinetidy.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/howto/options/options-descriptions.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/howto/options/options-group.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/howto/options/options-makedefault.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/howto/options/options-revertbuiltin.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/howto/options/options-revertdefault.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/howto/optionspanel.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/images/doc-messages.png
-== File Change: Contents (source)/Resources/Base.lproj/images/doc-source.png
-== File Change: Contents (source)/Resources/Base.lproj/images/doc-tidy-options.png
-== File Change: Contents (source)/Resources/Base.lproj/images/doc-tidyd.png
-== File Change: Contents (source)/Resources/Base.lproj/images/encoding-helper.png
-== File Change: Contents (source)/Resources/Base.lproj/images/save-save-as-required.png
-== File Change: Contents (source)/Resources/Base.lproj/images/save-save-warning.png
-== File Change: Contents (source)/Resources/Base.lproj/images/tidy-main-window.png
-== File Change: Contents (source)/Resources/Base.lproj/images/tidy-prefs-01-ns.png
-== File Change: Contents (source)/Resources/Base.lproj/images/tidy-prefs-01.png
-== File Change: Contents (source)/Resources/Base.lproj/images/tidy-prefs-02-ns.png
-== File Change: Contents (source)/Resources/Base.lproj/images/tidy-prefs-02.png
-== File Change: Contents (source)/Resources/Base.lproj/images/tidy-prefs-03-ns.png
-== File Change: Contents (source)/Resources/Base.lproj/images/tidy-prefs-03.png
-== File Change: Contents (source)/Resources/Base.lproj/images/tidy-prefs-04.png
-== File Change: Contents (source)/Resources/Base.lproj/InfoPlist.strings
-== File Change: Contents (source)/Resources/Base.lproj/javascript/all.js
-== File Change: Contents (source)/Resources/Base.lproj/reference/000_reference.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/reference/docu/docu-fullscreen.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/reference/docu/docu-messages.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/reference/docu/docu-options.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/reference/docu/docu-sourcearea.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/reference/docu/docu-splitters.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/reference/docu/docu-toolbar.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/reference/docu.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/reference/menu/menu-application.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/reference/menu/menu-edit.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/reference/menu/menu-file.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/reference/menu/menu-help.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/reference/menu/menu-view.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/reference/menu/menu-window.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/reference/menu.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/reference/prefs/prefs-docappearance.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/reference/prefs/prefs-filesaving.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/reference/prefs/prefs-misc.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/reference/prefs/prefs-tidyappearance.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/reference/prefs/prefs-tidyoptions.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/reference/prefs/prefs-updates.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/reference/prefs.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/reference/tidyopts/missingoptions.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/reference/tidyopts/tidyoptions.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/reference/tidyopts.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/test.html.erb
-== File Change: Contents (source)/Resources/Base.lproj/tutorial/000_tutorial.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/was_pages/doc-error-table.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/was_pages/doc-source.html.md.erb
-== File Change: Contents (source)/Resources/Base.lproj/was_pages/doc-splitter.html.erb
-== File Change: Contents (source)/Resources/Base.lproj/was_pages/doc-tidy-options.html.erb
-== File Change: Contents (source)/Resources/Base.lproj/was_pages/doc-tidyd.html.erb
-== File Change: Contents (source)/Resources/Base.lproj/was_pages/doc-window.html.erb
-== File Change: Contents (source)/Resources/Base.lproj/was_pages/gettingstarted.html.erb
-== File Change: Contents (source)/Resources/Base.lproj/was_pages/how-create-new.html.erb
-== File Change: Contents (source)/Resources/Base.lproj/was_pages/how-file-encoding-helper.html.erb
-== File Change: Contents (source)/Resources/Base.lproj/was_pages/how-index.html.erb
-== File Change: Contents (source)/Resources/Base.lproj/was_pages/how-open-document.html.erb
-== File Change: Contents (source)/Resources/Base.lproj/was_pages/how-save-file.html.erb
-== File Change: Contents (source)/Resources/Base.lproj/was_pages/how-tidy-existing.html.erb
-== File Change: Contents (source)/Resources/Base.lproj/was_pages/how-view-edit-source.html.erb
-== File Change: Contents (source)/Resources/Base.lproj/was_pages/how-view-error-table.html.erb
-== File Change: Contents (source)/Resources/Base.lproj/was_pages/how-view-tidyd.html.erb
-== File Change: Contents (source)/Resources/Base.lproj/was_pages/options-choose.html.erb
-== File Change: Contents (source)/Resources/Base.lproj/was_pages/options-descriptions.html.erb
-== File Change: Contents (source)/Resources/Base.lproj/was_pages/preferences.html.erb
-== File Change: Contents (source)/Resources/Base.lproj/was_pages/prefs-default-tidy-options.html.erb
-== File Change: Contents (source)/Resources/Base.lproj/was_pages/prefs-file-saving.html.erb
-== File Change: Contents (source)/Resources/Base.lproj/was_pages/prefs-miscellaneous.html.erb
-== File Change: Contents (source)/Resources/Base.lproj/was_pages/prefs-updates.html.erb
-== File Change: Contents (source)/Resources/Base.lproj/was_pages/reference.html.erb
-== File Change: Contents (source)/Resources/shared/icon_256x256@2x.png
-== File Change: Contents (source)/Resources/shared/icon_32x32@2x.png
-== File Change: README.md
+== File Change: Contents (source)/data/globals.yml
+== File Change: Contents (source)/layouts/template-logo-large.erb
+== File Change: Contents (source)/layouts/layout-apple_main.erb
+== File Change: Contents (source)/layouts/_README.md
+== File Change: Contents (source)/layouts/template-logo-medium.erb
+== File Change: Contents (source)/layouts/layout.erb
+== File Change: Contents (source)/layouts/template-logo-small.erb
+== File Change: Contents (source)/layouts/layout-html4.erb
+== File Change: Contents (source)/_Info.plist
+== File Change: Contents (source)/Info.plist
+== File Change: build_help.rb
 == Rebuilding resource list
 == Prerendering CSS
    identical  Contents (build)/Resources/Base.lproj/css/all.css
 == Checking for Compass sprites
 == Building files
-   identical  Contents (build)/Resources/shared/icon_32x32@2x.png
-   identical  Contents (build)/Resources/shared/icon_256x256@2x.png
-   identical  Contents (build)/Resources/Base.lproj/images/doc-messages.png
-   identical  Contents (build)/Resources/Base.lproj/images/tidy-prefs-04.png
-   identical  Contents (build)/Resources/Base.lproj/images/tidy-prefs-03.png
-   identical  Contents (build)/Resources/Base.lproj/images/tidy-prefs-03-ns.png
-   identical  Contents (build)/Resources/Base.lproj/images/tidy-prefs-02.png
-   identical  Contents (build)/Resources/Base.lproj/images/tidy-prefs-02-ns.png
-   identical  Contents (build)/Resources/Base.lproj/images/tidy-prefs-01.png
-   identical  Contents (build)/Resources/Base.lproj/images/doc-tidy-options.png
-   identical  Contents (build)/Resources/Base.lproj/images/tidy-main-window.png
    identical  Contents (build)/Resources/Base.lproj/images/save-save-warning.png
+   identical  Contents (build)/Resources/shared/icon_256x256@2x.png
+   identical  Contents (build)/Resources/shared/icon_32x32@2x.png
    identical  Contents (build)/Resources/Base.lproj/images/save-save-as-required.png
+   identical  Contents (build)/Resources/Base.lproj/images/tidy-main-window.png
+   identical  Contents (build)/Resources/Base.lproj/images/tidy-prefs-04.png
+   identical  Contents (build)/Resources/Base.lproj/images/tidy-prefs-02-ns.png
    identical  Contents (build)/Resources/Base.lproj/images/doc-source.png
-   identical  Contents (build)/Resources/Base.lproj/images/encoding-helper.png
-   identical  Contents (build)/Resources/Base.lproj/images/doc-tidyd.png
    identical  Contents (build)/Resources/Base.lproj/images/tidy-prefs-01-ns.png
+   identical  Contents (build)/Resources/Base.lproj/images/tidy-prefs-02.png
+   identical  Contents (build)/Resources/Base.lproj/images/doc-tidy-options.png
+   identical  Contents (build)/Resources/Base.lproj/images/doc-tidyd.png
+   identical  Contents (build)/Resources/Base.lproj/images/tidy-prefs-03-ns.png
+   identical  Contents (build)/Resources/Base.lproj/images/doc-messages.png
+   identical  Contents (build)/Resources/Base.lproj/images/tidy-prefs-03.png
+   identical  Contents (build)/Resources/Base.lproj/images/tidy-prefs-01.png
+   identical  Contents (build)/Resources/Base.lproj/images/encoding-helper.png
    identical  Contents (build)/Resources/Base.lproj/javascript/all.js
-== Request: /Resources/Base.lproj/reference/tidyopts.html
-== Finishing Request: Resources/Base.lproj/reference/tidyopts.html (0.03s)
-   identical  Contents (build)/Resources/Base.lproj/reference/tidyopts.html
-== Request: /Resources/Base.lproj/howto/doc/doc-tidy.html
-== Finishing Request: Resources/Base.lproj/howto/doc/doc-tidy.html (0.01s)
-   identical  Contents (build)/Resources/Base.lproj/howto/doc/doc-tidy.html
+== Request: /Resources/Base.lproj/acknowledgements/000_ack.html
+== Finishing Request: Resources/Base.lproj/acknowledgements/000_ack.html (0.07s)
+   identical  Contents (build)/Resources/Base.lproj/acknowledgements/000_ack.html
+== Request: /Resources/Base.lproj/howto/options/options-makedefault.html
+== Finishing Request: Resources/Base.lproj/howto/options/options-makedefault.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/howto/options/options-makedefault.html
+== Request: /Resources/Base.lproj/howto/options/options-revertbuiltin.html
+== Finishing Request: Resources/Base.lproj/howto/options/options-revertbuiltin.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/howto/options/options-revertbuiltin.html
+== Request: /Resources/Base.lproj/howto/options/options-commandlinetidy.html
+== Finishing Request: Resources/Base.lproj/howto/options/options-commandlinetidy.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/howto/options/options-commandlinetidy.html
+== Request: /Resources/Base.lproj/howto/options/options-appearance.html
+== Finishing Request: Resources/Base.lproj/howto/options/options-appearance.html (0.02s)
+   identical  Contents (build)/Resources/Base.lproj/howto/options/options-appearance.html
+== Request: /Resources/Base.lproj/howto/doc/doc-create.html
+== Finishing Request: Resources/Base.lproj/howto/doc/doc-create.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/howto/doc/doc-create.html
 == Request: /Resources/Base.lproj/howto/doc/doc-view_edit.html
 == Finishing Request: Resources/Base.lproj/howto/doc/doc-view_edit.html (0.01s)
    identical  Contents (build)/Resources/Base.lproj/howto/doc/doc-view_edit.html
-== Request: /Resources/Base.lproj/howto/doc/doc-view_tidyd.html
-== Finishing Request: Resources/Base.lproj/howto/doc/doc-view_tidyd.html (0.01s)
-   identical  Contents (build)/Resources/Base.lproj/howto/doc/doc-view_tidyd.html
-== Request: /Resources/Base.lproj/howto/documents.html
-== Finishing Request: Resources/Base.lproj/howto/documents.html (0.01s)
-   identical  Contents (build)/Resources/Base.lproj/howto/documents.html
-== Request: /Resources/Base.lproj/howto/docwin/docwin-chooseoptions.html
-== Finishing Request: Resources/Base.lproj/howto/docwin/docwin-chooseoptions.html (0.01s)
-      update  Contents (build)/Resources/Base.lproj/howto/docwin/docwin-chooseoptions.html
-== Request: /Resources/Base.lproj/howto/docwin/docwin-diff_sidebyside.html
-== Finishing Request: Resources/Base.lproj/howto/docwin/docwin-diff_sidebyside.html (0.02s)
-      update  Contents (build)/Resources/Base.lproj/howto/docwin/docwin-diff_sidebyside.html
-== Request: /Resources/Base.lproj/howto/docwin/docwin-diffs.html
-== Finishing Request: Resources/Base.lproj/howto/docwin/docwin-diffs.html (0.01s)
-      update  Contents (build)/Resources/Base.lproj/howto/docwin/docwin-diffs.html
-== Request: /Resources/Base.lproj/howto/docwin/docwin-fullscreen.html
-== Finishing Request: Resources/Base.lproj/howto/docwin/docwin-fullscreen.html (0.01s)
-      update  Contents (build)/Resources/Base.lproj/howto/docwin/docwin-fullscreen.html
-== Request: /Resources/Base.lproj/howto/docwin/docwin-hidetidymessages.html
-== Finishing Request: Resources/Base.lproj/howto/docwin/docwin-hidetidymessages.html (0.01s)
-      update  Contents (build)/Resources/Base.lproj/howto/docwin/docwin-hidetidymessages.html
-== Request: /Resources/Base.lproj/howto/docwin/docwin-hidetidyoptions.html
-== Finishing Request: Resources/Base.lproj/howto/docwin/docwin-hidetidyoptions.html (0.01s)
-      update  Contents (build)/Resources/Base.lproj/howto/docwin/docwin-hidetidyoptions.html
-== Request: /Resources/Base.lproj/howto/docwin/docwin-messages.html
-== Finishing Request: Resources/Base.lproj/howto/docwin/docwin-messages.html (0.01s)
-      update  Contents (build)/Resources/Base.lproj/howto/docwin/docwin-messages.html
-== Request: /Resources/Base.lproj/howto/docwin/docwin-orientation.html
-== Finishing Request: Resources/Base.lproj/howto/docwin/docwin-orientation.html (0.01s)
-      update  Contents (build)/Resources/Base.lproj/howto/docwin/docwin-orientation.html
-== Request: /Resources/Base.lproj/howto/docwin/docwin-preview.html
-== Finishing Request: Resources/Base.lproj/howto/docwin/docwin-preview.html (0.01s)
-      update  Contents (build)/Resources/Base.lproj/howto/docwin/docwin-preview.html
-== Request: /Resources/Base.lproj/howto/docwin/docwin-quicktutorial.html
-== Finishing Request: Resources/Base.lproj/howto/docwin/docwin-quicktutorial.html (0.01s)
-      update  Contents (build)/Resources/Base.lproj/howto/docwin/docwin-quicktutorial.html
-== Request: /Resources/Base.lproj/howto/docwin/docwin-splitter.html
-== Finishing Request: Resources/Base.lproj/howto/docwin/docwin-splitter.html (0.01s)
-      update  Contents (build)/Resources/Base.lproj/howto/docwin/docwin-splitter.html
-== Request: /Resources/Base.lproj/howto/docwin/docwin-toolbarcustomize.html
-== Finishing Request: Resources/Base.lproj/howto/docwin/docwin-toolbarcustomize.html (0.01s)
-      update  Contents (build)/Resources/Base.lproj/howto/docwin/docwin-toolbarcustomize.html
-== Request: /Resources/Base.lproj/howto/docwin/docwin-validate.html
-== Finishing Request: Resources/Base.lproj/howto/docwin/docwin-validate.html (0.01s)
-      update  Contents (build)/Resources/Base.lproj/howto/docwin/docwin-validate.html
-== Request: /Resources/Base.lproj/howto/docwindow.html
-== Finishing Request: Resources/Base.lproj/howto/docwindow.html (0.01s)
-      update  Contents (build)/Resources/Base.lproj/howto/docwindow.html
-== Request: /Resources/Base.lproj/howto/options/options-appearance.html
-== Finishing Request: Resources/Base.lproj/howto/options/options-appearance.html (0.01s)
-      update  Contents (build)/Resources/Base.lproj/howto/options/options-appearance.html
-== Request: /Resources/Base.lproj/howto/options/options-commandlinetidy.html
-== Finishing Request: Resources/Base.lproj/howto/options/options-commandlinetidy.html (0.02s)
-      update  Contents (build)/Resources/Base.lproj/howto/options/options-commandlinetidy.html
-== Request: /Resources/Base.lproj/howto/options/options-descriptions.html
-== Finishing Request: Resources/Base.lproj/howto/options/options-descriptions.html (0.01s)
-      update  Contents (build)/Resources/Base.lproj/howto/options/options-descriptions.html
-== Request: /Resources/Base.lproj/howto/options/options-group.html
-== Finishing Request: Resources/Base.lproj/howto/options/options-group.html (0.01s)
-      update  Contents (build)/Resources/Base.lproj/howto/options/options-group.html
-== Request: /Resources/Base.lproj/howto/options/options-makedefault.html
-== Finishing Request: Resources/Base.lproj/howto/options/options-makedefault.html (0.01s)
-      update  Contents (build)/Resources/Base.lproj/howto/options/options-makedefault.html
-== Request: /Resources/Base.lproj/howto/options/options-revertbuiltin.html
-== Finishing Request: Resources/Base.lproj/howto/options/options-revertbuiltin.html (0.01s)
-      update  Contents (build)/Resources/Base.lproj/howto/options/options-revertbuiltin.html
-== Request: /Resources/Base.lproj/howto/options/options-revertdefault.html
-== Finishing Request: Resources/Base.lproj/howto/options/options-revertdefault.html (0.01s)
-      update  Contents (build)/Resources/Base.lproj/howto/options/options-revertdefault.html
-== Request: /Resources/Base.lproj/howto/optionspanel.html
-== Finishing Request: Resources/Base.lproj/howto/optionspanel.html (0.01s)
-      update  Contents (build)/Resources/Base.lproj/howto/optionspanel.html
 == Request: /Resources/Base.lproj/howto/doc/doc-print.html
 == Finishing Request: Resources/Base.lproj/howto/doc/doc-print.html (0.01s)
    identical  Contents (build)/Resources/Base.lproj/howto/doc/doc-print.html
+== Request: /Resources/Base.lproj/howto/doc/doc-tidy.html
+== Finishing Request: Resources/Base.lproj/howto/doc/doc-tidy.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/howto/doc/doc-tidy.html
 == Request: /Resources/Base.lproj/howto/doc/doc-open.html
 == Finishing Request: Resources/Base.lproj/howto/doc/doc-open.html (0.01s)
    identical  Contents (build)/Resources/Base.lproj/howto/doc/doc-open.html
-== Request: /Resources/Base.lproj/howto/doc/doc-encoding.html
-== Finishing Request: Resources/Base.lproj/howto/doc/doc-encoding.html (0.01s)
-   identical  Contents (build)/Resources/Base.lproj/howto/doc/doc-encoding.html
-== Request: /Resources/Base.lproj/howto/doc/doc-create.html
-== Finishing Request: Resources/Base.lproj/howto/doc/doc-create.html (0.02s)
-   identical  Contents (build)/Resources/Base.lproj/howto/doc/doc-create.html
-== Request: /Resources/Base.lproj/howto/000_howto.html
-== Finishing Request: Resources/Base.lproj/howto/000_howto.html (0.01s)
-   identical  Contents (build)/Resources/Base.lproj/howto/000_howto.html
-== Request: /Resources/Base.lproj/Balthisar%2520Tidy.html
-== Finishing Request: Resources/Base.lproj/Balthisar%20Tidy.html (0.01s)
-      update  Contents (build)/Resources/Base.lproj/Balthisar Tidy.html
-== Request: /Resources/Base.lproj/advanced/tidyforwork.html
-== Finishing Request: Resources/Base.lproj/advanced/tidyforwork.html (0.0s)
-      update  Contents (build)/Resources/Base.lproj/advanced/tidyforwork.html
-== Request: /Resources/Base.lproj/advanced/service.html
-== Finishing Request: Resources/Base.lproj/advanced/service.html (0.03s)
-      update  Contents (build)/Resources/Base.lproj/advanced/service.html
-== Request: /Resources/Base.lproj/advanced/extension.html
-== Finishing Request: Resources/Base.lproj/advanced/extension.html (0.01s)
-      update  Contents (build)/Resources/Base.lproj/advanced/extension.html
-== Request: /Resources/Base.lproj/advanced/export_config.html
-== Finishing Request: Resources/Base.lproj/advanced/export_config.html (0.01s)
-      update  Contents (build)/Resources/Base.lproj/advanced/export_config.html
-== Request: /Resources/Base.lproj/advanced/diffs.html
-== Finishing Request: Resources/Base.lproj/advanced/diffs.html (0.01s)
-      update  Contents (build)/Resources/Base.lproj/advanced/diffs.html
-== Request: /Resources/Base.lproj/advanced/applescript.html
-== Finishing Request: Resources/Base.lproj/advanced/applescript.html (0.01s)
-      update  Contents (build)/Resources/Base.lproj/advanced/applescript.html
-== Request: /Resources/Base.lproj/advanced/000_advanced.html
-== Finishing Request: Resources/Base.lproj/advanced/000_advanced.html (0.01s)
-      update  Contents (build)/Resources/Base.lproj/advanced/000_advanced.html
-== Request: /Resources/Base.lproj/acknowledgements/license.html
-== Finishing Request: Resources/Base.lproj/acknowledgements/license.html (0.01s)
-   identical  Contents (build)/Resources/Base.lproj/acknowledgements/license.html
-== Request: /Resources/Base.lproj/acknowledgements/ack_opensource.html
-== Finishing Request: Resources/Base.lproj/acknowledgements/ack_opensource.html (0.02s)
-   identical  Contents (build)/Resources/Base.lproj/acknowledgements/ack_opensource.html
-== Request: /Resources/Base.lproj/InfoPlist.strings
-== Finishing Request: Resources/Base.lproj/InfoPlist.strings (0.0s)
-   identical  Contents (build)/Resources/Base.lproj/InfoPlist.strings
-== Request: /Resources/Base.lproj/acknowledgements/ack_i18n.html
-== Finishing Request: Resources/Base.lproj/acknowledgements/ack_i18n.html (0.02s)
-   identical  Contents (build)/Resources/Base.lproj/acknowledgements/ack_i18n.html
-== Request: /Resources/Base.lproj/reference/000_reference.html
-== Finishing Request: Resources/Base.lproj/reference/000_reference.html (0.01s)
-   identical  Contents (build)/Resources/Base.lproj/reference/000_reference.html
-== Request: /Resources/Base.lproj/reference/docu/docu-fullscreen.html
-== Finishing Request: Resources/Base.lproj/reference/docu/docu-fullscreen.html (0.01s)
-   identical  Contents (build)/Resources/Base.lproj/reference/docu/docu-fullscreen.html
-== Request: /Resources/Base.lproj/reference/docu/docu-messages.html
-== Finishing Request: Resources/Base.lproj/reference/docu/docu-messages.html (0.01s)
-   identical  Contents (build)/Resources/Base.lproj/reference/docu/docu-messages.html
-== Request: /Resources/Base.lproj/reference/docu/docu-options.html
-== Finishing Request: Resources/Base.lproj/reference/docu/docu-options.html (0.01s)
-   identical  Contents (build)/Resources/Base.lproj/reference/docu/docu-options.html
-== Request: /Resources/Base.lproj/reference/docu/docu-sourcearea.html
-== Finishing Request: Resources/Base.lproj/reference/docu/docu-sourcearea.html (0.01s)
-   identical  Contents (build)/Resources/Base.lproj/reference/docu/docu-sourcearea.html
-== Request: /Resources/Base.lproj/reference/docu/docu-splitters.html
-== Finishing Request: Resources/Base.lproj/reference/docu/docu-splitters.html (0.01s)
-   identical  Contents (build)/Resources/Base.lproj/reference/docu/docu-splitters.html
-== Request: /Resources/Base.lproj/reference/docu/docu-toolbar.html
-== Finishing Request: Resources/Base.lproj/reference/docu/docu-toolbar.html (0.01s)
-   identical  Contents (build)/Resources/Base.lproj/reference/docu/docu-toolbar.html
-== Request: /Resources/Base.lproj/reference/docu.html
-== Finishing Request: Resources/Base.lproj/reference/docu.html (0.01s)
-   identical  Contents (build)/Resources/Base.lproj/reference/docu.html
-== Request: /Resources/Base.lproj/reference/menu/menu-application.html
-== Finishing Request: Resources/Base.lproj/reference/menu/menu-application.html (0.01s)
-   identical  Contents (build)/Resources/Base.lproj/reference/menu/menu-application.html
-== Request: /Resources/Base.lproj/reference/menu/menu-edit.html
-== Finishing Request: Resources/Base.lproj/reference/menu/menu-edit.html (0.02s)
-   identical  Contents (build)/Resources/Base.lproj/reference/menu/menu-edit.html
-== Request: /Resources/Base.lproj/reference/menu/menu-file.html
-== Finishing Request: Resources/Base.lproj/reference/menu/menu-file.html (0.01s)
-   identical  Contents (build)/Resources/Base.lproj/reference/menu/menu-file.html
-== Request: /Resources/Base.lproj/reference/menu/menu-help.html
-== Finishing Request: Resources/Base.lproj/reference/menu/menu-help.html (0.01s)
-   identical  Contents (build)/Resources/Base.lproj/reference/menu/menu-help.html
-== Request: /Resources/Base.lproj/reference/menu/menu-view.html
-== Finishing Request: Resources/Base.lproj/reference/menu/menu-view.html (0.01s)
-   identical  Contents (build)/Resources/Base.lproj/reference/menu/menu-view.html
-== Request: /Resources/Base.lproj/reference/menu/menu-window.html
-== Finishing Request: Resources/Base.lproj/reference/menu/menu-window.html (0.03s)
-   identical  Contents (build)/Resources/Base.lproj/reference/menu/menu-window.html
-== Request: /Resources/Base.lproj/reference/menu.html
-== Finishing Request: Resources/Base.lproj/reference/menu.html (0.01s)
-   identical  Contents (build)/Resources/Base.lproj/reference/menu.html
-== Request: /Resources/Base.lproj/reference/prefs/prefs-docappearance.html
-== Finishing Request: Resources/Base.lproj/reference/prefs/prefs-docappearance.html (0.01s)
-   identical  Contents (build)/Resources/Base.lproj/reference/prefs/prefs-docappearance.html
-== Request: /Resources/Base.lproj/reference/prefs/prefs-filesaving.html
-== Finishing Request: Resources/Base.lproj/reference/prefs/prefs-filesaving.html (0.01s)
-   identical  Contents (build)/Resources/Base.lproj/reference/prefs/prefs-filesaving.html
-== Request: /Resources/Base.lproj/reference/prefs/prefs-misc.html
-== Finishing Request: Resources/Base.lproj/reference/prefs/prefs-misc.html (0.01s)
-   identical  Contents (build)/Resources/Base.lproj/reference/prefs/prefs-misc.html
-== Request: /Resources/Base.lproj/reference/prefs/prefs-tidyappearance.html
-== Finishing Request: Resources/Base.lproj/reference/prefs/prefs-tidyappearance.html (0.01s)
-   identical  Contents (build)/Resources/Base.lproj/reference/prefs/prefs-tidyappearance.html
-== Request: /Resources/Base.lproj/reference/prefs/prefs-tidyoptions.html
-== Finishing Request: Resources/Base.lproj/reference/prefs/prefs-tidyoptions.html (0.0s)
-   identical  Contents (build)/Resources/Base.lproj/reference/prefs/prefs-tidyoptions.html
-== Request: /Resources/Base.lproj/reference/prefs/prefs-updates.html
-== Finishing Request: Resources/Base.lproj/reference/prefs/prefs-updates.html (0.0s)
-   identical  Contents (build)/Resources/Base.lproj/reference/prefs/prefs-updates.html
-== Request: /Resources/Base.lproj/reference/prefs.html
-== Finishing Request: Resources/Base.lproj/reference/prefs.html (0.02s)
-   identical  Contents (build)/Resources/Base.lproj/reference/prefs.html
-== Request: /Resources/Base.lproj/reference/tidyopts/missingoptions.html
-== Finishing Request: Resources/Base.lproj/reference/tidyopts/missingoptions.html (0.01s)
-   identical  Contents (build)/Resources/Base.lproj/reference/tidyopts/missingoptions.html
-== Request: /Resources/Base.lproj/reference/tidyopts/tidyoptions.html
-== Finishing Request: Resources/Base.lproj/reference/tidyopts/tidyoptions.html (0.02s)
-   identical  Contents (build)/Resources/Base.lproj/reference/tidyopts/tidyoptions.html
 == Request: /Resources/Base.lproj/howto/doc/doc-save.html
 == Finishing Request: Resources/Base.lproj/howto/doc/doc-save.html (0.01s)
    identical  Contents (build)/Resources/Base.lproj/howto/doc/doc-save.html
-== Request: /Resources/Base.lproj/test.html
-== Finishing Request: Resources/Base.lproj/test.html (0.01s)
-   identical  Contents (build)/Resources/Base.lproj/test.html
+== Request: /Resources/Base.lproj/howto/doc/doc-view_tidyd.html
+== Finishing Request: Resources/Base.lproj/howto/doc/doc-view_tidyd.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/howto/doc/doc-view_tidyd.html
+== Request: /Resources/Base.lproj/howto/doc/doc-encoding.html
+== Finishing Request: Resources/Base.lproj/howto/doc/doc-encoding.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/howto/doc/doc-encoding.html
+== Request: /Resources/Base.lproj/advanced/service.html
+== Finishing Request: Resources/Base.lproj/advanced/service.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/advanced/service.html
+== Request: /Resources/Base.lproj/advanced/export_config.html
+== Finishing Request: Resources/Base.lproj/advanced/export_config.html (0.0s)
+   identical  Contents (build)/Resources/Base.lproj/advanced/export_config.html
+== Request: /Resources/Base.lproj/advanced/diffs.html
+== Finishing Request: Resources/Base.lproj/advanced/diffs.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/advanced/diffs.html
+== Request: /Resources/Base.lproj/advanced/tidyforwork.html
+== Finishing Request: Resources/Base.lproj/advanced/tidyforwork.html (0.0s)
+   identical  Contents (build)/Resources/Base.lproj/advanced/tidyforwork.html
+== Request: /Resources/Base.lproj/advanced/000_advanced.html
+== Finishing Request: Resources/Base.lproj/advanced/000_advanced.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/advanced/000_advanced.html
+== Request: /Resources/Base.lproj/advanced/applescript.html
+== Finishing Request: Resources/Base.lproj/advanced/applescript.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/advanced/applescript.html
+== Request: /Resources/Base.lproj/advanced/extension.html
+== Finishing Request: Resources/Base.lproj/advanced/extension.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/advanced/extension.html
 == Request: /Resources/Base.lproj/tutorial/000_tutorial.html
-== Finishing Request: Resources/Base.lproj/tutorial/000_tutorial.html (0.0s)
-   identical  Contents (build)/Resources/Base.lproj/tutorial/000_tutorial.html
-== Request: /Resources/Base.lproj/was_pages/doc-error-table.html
-== Finishing Request: Resources/Base.lproj/was_pages/doc-error-table.html (0.01s)
-   identical  Contents (build)/Resources/Base.lproj/was_pages/doc-error-table.html
-== Request: /Resources/Base.lproj/was_pages/doc-source.html
-== Finishing Request: Resources/Base.lproj/was_pages/doc-source.html (0.01s)
-   identical  Contents (build)/Resources/Base.lproj/was_pages/doc-source.html
-== Request: /Resources/Base.lproj/was_pages/doc-splitter.html
-== Finishing Request: Resources/Base.lproj/was_pages/doc-splitter.html (0.0s)
-   identical  Contents (build)/Resources/Base.lproj/was_pages/doc-splitter.html
-== Request: /Resources/Base.lproj/was_pages/doc-tidy-options.html
-== Finishing Request: Resources/Base.lproj/was_pages/doc-tidy-options.html (0.0s)
-   identical  Contents (build)/Resources/Base.lproj/was_pages/doc-tidy-options.html
-== Request: /Resources/Base.lproj/was_pages/doc-tidyd.html
-== Finishing Request: Resources/Base.lproj/was_pages/doc-tidyd.html (0.0s)
-   identical  Contents (build)/Resources/Base.lproj/was_pages/doc-tidyd.html
-== Request: /Resources/Base.lproj/was_pages/doc-window.html
-== Finishing Request: Resources/Base.lproj/was_pages/doc-window.html (0.0s)
-   identical  Contents (build)/Resources/Base.lproj/was_pages/doc-window.html
-== Request: /Resources/Base.lproj/was_pages/gettingstarted.html
-== Finishing Request: Resources/Base.lproj/was_pages/gettingstarted.html (0.02s)
-   identical  Contents (build)/Resources/Base.lproj/was_pages/gettingstarted.html
-== Request: /Resources/Base.lproj/was_pages/how-create-new.html
-== Finishing Request: Resources/Base.lproj/was_pages/how-create-new.html (0.0s)
-   identical  Contents (build)/Resources/Base.lproj/was_pages/how-create-new.html
-== Request: /Resources/Base.lproj/was_pages/how-file-encoding-helper.html
-== Finishing Request: Resources/Base.lproj/was_pages/how-file-encoding-helper.html (0.0s)
-   identical  Contents (build)/Resources/Base.lproj/was_pages/how-file-encoding-helper.html
-== Request: /Resources/Base.lproj/was_pages/how-index.html
-== Finishing Request: Resources/Base.lproj/was_pages/how-index.html (0.0s)
-   identical  Contents (build)/Resources/Base.lproj/was_pages/how-index.html
-== Request: /Resources/Base.lproj/was_pages/how-open-document.html
-== Finishing Request: Resources/Base.lproj/was_pages/how-open-document.html (0.0s)
-   identical  Contents (build)/Resources/Base.lproj/was_pages/how-open-document.html
-== Request: /Resources/Base.lproj/was_pages/how-save-file.html
-== Finishing Request: Resources/Base.lproj/was_pages/how-save-file.html (0.0s)
-   identical  Contents (build)/Resources/Base.lproj/was_pages/how-save-file.html
-== Request: /Resources/Base.lproj/was_pages/how-tidy-existing.html
-== Finishing Request: Resources/Base.lproj/was_pages/how-tidy-existing.html (0.0s)
-   identical  Contents (build)/Resources/Base.lproj/was_pages/how-tidy-existing.html
-== Request: /Resources/Base.lproj/was_pages/how-view-edit-source.html
-== Finishing Request: Resources/Base.lproj/was_pages/how-view-edit-source.html (0.0s)
-   identical  Contents (build)/Resources/Base.lproj/was_pages/how-view-edit-source.html
-== Request: /Resources/Base.lproj/was_pages/how-view-error-table.html
-== Finishing Request: Resources/Base.lproj/was_pages/how-view-error-table.html (0.0s)
-   identical  Contents (build)/Resources/Base.lproj/was_pages/how-view-error-table.html
-== Request: /Resources/Base.lproj/was_pages/how-view-tidyd.html
-== Finishing Request: Resources/Base.lproj/was_pages/how-view-tidyd.html (0.0s)
-   identical  Contents (build)/Resources/Base.lproj/was_pages/how-view-tidyd.html
-== Request: /Resources/Base.lproj/was_pages/options-choose.html
-== Finishing Request: Resources/Base.lproj/was_pages/options-choose.html (0.0s)
-   identical  Contents (build)/Resources/Base.lproj/was_pages/options-choose.html
-== Request: /Resources/Base.lproj/was_pages/options-descriptions.html
-== Finishing Request: Resources/Base.lproj/was_pages/options-descriptions.html (0.0s)
-   identical  Contents (build)/Resources/Base.lproj/was_pages/options-descriptions.html
-== Request: /Resources/Base.lproj/was_pages/preferences.html
-== Finishing Request: Resources/Base.lproj/was_pages/preferences.html (0.0s)
-   identical  Contents (build)/Resources/Base.lproj/was_pages/preferences.html
+== Finishing Request: Resources/Base.lproj/tutorial/000_tutorial.html (0.04s)
+      update  Contents (build)/Resources/Base.lproj/tutorial/000_tutorial.html
+== Request: /Resources/Base.lproj/howto/docwin/docwin-hidetidymessages.html
+== Finishing Request: Resources/Base.lproj/howto/docwin/docwin-hidetidymessages.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/howto/docwin/docwin-hidetidymessages.html
 == Request: /Resources/Base.lproj/was_pages/prefs-default-tidy-options.html
 == Finishing Request: Resources/Base.lproj/was_pages/prefs-default-tidy-options.html (0.0s)
    identical  Contents (build)/Resources/Base.lproj/was_pages/prefs-default-tidy-options.html
-== Request: /Resources/Base.lproj/was_pages/prefs-file-saving.html
-== Finishing Request: Resources/Base.lproj/was_pages/prefs-file-saving.html (0.0s)
-   identical  Contents (build)/Resources/Base.lproj/was_pages/prefs-file-saving.html
-== Request: /Resources/Base.lproj/was_pages/prefs-miscellaneous.html
-== Finishing Request: Resources/Base.lproj/was_pages/prefs-miscellaneous.html (0.0s)
-   identical  Contents (build)/Resources/Base.lproj/was_pages/prefs-miscellaneous.html
+== Request: /Resources/Base.lproj/was_pages/how-tidy-existing.html
+== Finishing Request: Resources/Base.lproj/was_pages/how-tidy-existing.html (0.0s)
+   identical  Contents (build)/Resources/Base.lproj/was_pages/how-tidy-existing.html
+== Request: /Resources/Base.lproj/was_pages/how-open-document.html
+== Finishing Request: Resources/Base.lproj/was_pages/how-open-document.html (0.0s)
+   identical  Contents (build)/Resources/Base.lproj/was_pages/how-open-document.html
+== Request: /Resources/Base.lproj/was_pages/how-view-error-table.html
+== Finishing Request: Resources/Base.lproj/was_pages/how-view-error-table.html (0.0s)
+   identical  Contents (build)/Resources/Base.lproj/was_pages/how-view-error-table.html
+== Request: /Resources/Base.lproj/was_pages/doc-splitter.html
+== Finishing Request: Resources/Base.lproj/was_pages/doc-splitter.html (0.0s)
+   identical  Contents (build)/Resources/Base.lproj/was_pages/doc-splitter.html
+== Request: /Resources/Base.lproj/was_pages/doc-error-table.html
+== Finishing Request: Resources/Base.lproj/was_pages/doc-error-table.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/was_pages/doc-error-table.html
+== Request: /Resources/Base.lproj/was_pages/gettingstarted.html
+== Finishing Request: Resources/Base.lproj/was_pages/gettingstarted.html (0.0s)
+   identical  Contents (build)/Resources/Base.lproj/was_pages/gettingstarted.html
+== Request: /Resources/Base.lproj/was_pages/doc-tidy-options.html
+== Finishing Request: Resources/Base.lproj/was_pages/doc-tidy-options.html (0.0s)
+   identical  Contents (build)/Resources/Base.lproj/was_pages/doc-tidy-options.html
+== Request: /Resources/Base.lproj/was_pages/options-descriptions.html
+== Finishing Request: Resources/Base.lproj/was_pages/options-descriptions.html (0.0s)
+   identical  Contents (build)/Resources/Base.lproj/was_pages/options-descriptions.html
+== Request: /Resources/Base.lproj/was_pages/how-save-file.html
+== Finishing Request: Resources/Base.lproj/was_pages/how-save-file.html (0.0s)
+   identical  Contents (build)/Resources/Base.lproj/was_pages/how-save-file.html
+== Request: /Resources/Base.lproj/was_pages/how-view-edit-source.html
+== Finishing Request: Resources/Base.lproj/was_pages/how-view-edit-source.html (0.0s)
+   identical  Contents (build)/Resources/Base.lproj/was_pages/how-view-edit-source.html
 == Request: /Resources/Base.lproj/was_pages/prefs-updates.html
 == Finishing Request: Resources/Base.lproj/was_pages/prefs-updates.html (0.0s)
    identical  Contents (build)/Resources/Base.lproj/was_pages/prefs-updates.html
 == Request: /Resources/Base.lproj/was_pages/reference.html
 == Finishing Request: Resources/Base.lproj/was_pages/reference.html (0.0s)
    identical  Contents (build)/Resources/Base.lproj/was_pages/reference.html
-== Request: /Resources/Base.lproj/acknowledgements/000_ack.html
-== Finishing Request: Resources/Base.lproj/acknowledgements/000_ack.html (0.01s)
-   identical  Contents (build)/Resources/Base.lproj/acknowledgements/000_ack.html
+== Request: /Resources/Base.lproj/was_pages/how-index.html
+== Finishing Request: Resources/Base.lproj/was_pages/how-index.html (0.0s)
+   identical  Contents (build)/Resources/Base.lproj/was_pages/how-index.html
+== Request: /Resources/Base.lproj/was_pages/prefs-miscellaneous.html
+== Finishing Request: Resources/Base.lproj/was_pages/prefs-miscellaneous.html (0.0s)
+   identical  Contents (build)/Resources/Base.lproj/was_pages/prefs-miscellaneous.html
+== Request: /Resources/Base.lproj/was_pages/how-create-new.html
+== Finishing Request: Resources/Base.lproj/was_pages/how-create-new.html (0.0s)
+   identical  Contents (build)/Resources/Base.lproj/was_pages/how-create-new.html
+== Request: /Resources/Base.lproj/was_pages/how-view-tidyd.html
+== Finishing Request: Resources/Base.lproj/was_pages/how-view-tidyd.html (0.0s)
+   identical  Contents (build)/Resources/Base.lproj/was_pages/how-view-tidyd.html
+== Request: /Resources/Base.lproj/was_pages/prefs-file-saving.html
+== Finishing Request: Resources/Base.lproj/was_pages/prefs-file-saving.html (0.0s)
+   identical  Contents (build)/Resources/Base.lproj/was_pages/prefs-file-saving.html
+== Request: /Resources/Base.lproj/was_pages/how-file-encoding-helper.html
+== Finishing Request: Resources/Base.lproj/was_pages/how-file-encoding-helper.html (0.0s)
+   identical  Contents (build)/Resources/Base.lproj/was_pages/how-file-encoding-helper.html
+== Request: /Resources/Base.lproj/was_pages/options-choose.html
+== Finishing Request: Resources/Base.lproj/was_pages/options-choose.html (0.0s)
+   identical  Contents (build)/Resources/Base.lproj/was_pages/options-choose.html
+== Request: /Resources/Base.lproj/was_pages/preferences.html
+== Finishing Request: Resources/Base.lproj/was_pages/preferences.html (0.0s)
+   identical  Contents (build)/Resources/Base.lproj/was_pages/preferences.html
+== Request: /Resources/Base.lproj/was_pages/doc-tidyd.html
+== Finishing Request: Resources/Base.lproj/was_pages/doc-tidyd.html (0.0s)
+   identical  Contents (build)/Resources/Base.lproj/was_pages/doc-tidyd.html
+== Request: /Resources/Base.lproj/was_pages/doc-source.html
+== Finishing Request: Resources/Base.lproj/was_pages/doc-source.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/was_pages/doc-source.html
+== Request: /Resources/Base.lproj/was_pages/doc-window.html
+== Finishing Request: Resources/Base.lproj/was_pages/doc-window.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/was_pages/doc-window.html
+== Request: /Resources/Base.lproj/Balthisar%2520Tidy.html
+== Finishing Request: Resources/Base.lproj/Balthisar%20Tidy.html (0.04s)
+   identical  Contents (build)/Resources/Base.lproj/Balthisar Tidy.html
+== Request: /Resources/Base.lproj/InfoPlist.strings
+== Finishing Request: Resources/Base.lproj/InfoPlist.strings (0.0s)
+   identical  Contents (build)/Resources/Base.lproj/InfoPlist.strings
+== Request: /Resources/Base.lproj/test.html
+== Finishing Request: Resources/Base.lproj/test.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/test.html
+== Request: /Resources/Base.lproj/howto/options/options-group.html
+== Finishing Request: Resources/Base.lproj/howto/options/options-group.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/howto/options/options-group.html
+== Request: /Resources/Base.lproj/howto/options/options-descriptions.html
+== Finishing Request: Resources/Base.lproj/howto/options/options-descriptions.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/howto/options/options-descriptions.html
+== Request: /Resources/Base.lproj/howto/000_howto.html
+== Finishing Request: Resources/Base.lproj/howto/000_howto.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/howto/000_howto.html
+== Request: /Resources/Base.lproj/howto/docwindow.html
+== Finishing Request: Resources/Base.lproj/howto/docwindow.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/howto/docwindow.html
+== Request: /Resources/Base.lproj/howto/documents.html
+== Finishing Request: Resources/Base.lproj/howto/documents.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/howto/documents.html
+== Request: /Resources/Base.lproj/howto/optionspanel.html
+== Finishing Request: Resources/Base.lproj/howto/optionspanel.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/howto/optionspanel.html
+== Request: /Resources/Base.lproj/howto/docwin/docwin-messages.html
+== Finishing Request: Resources/Base.lproj/howto/docwin/docwin-messages.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/howto/docwin/docwin-messages.html
+== Request: /Resources/Base.lproj/howto/docwin/docwin-hidetidyoptions.html
+== Finishing Request: Resources/Base.lproj/howto/docwin/docwin-hidetidyoptions.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/howto/docwin/docwin-hidetidyoptions.html
+== Request: /Resources/Base.lproj/howto/docwin/docwin-orientation.html
+== Finishing Request: Resources/Base.lproj/howto/docwin/docwin-orientation.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/howto/docwin/docwin-orientation.html
+== Request: /Resources/Base.lproj/howto/docwin/docwin-diff_sidebyside.html
+== Finishing Request: Resources/Base.lproj/howto/docwin/docwin-diff_sidebyside.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/howto/docwin/docwin-diff_sidebyside.html
+== Request: /Resources/Base.lproj/howto/docwin/docwin-quicktutorial.html
+== Finishing Request: Resources/Base.lproj/howto/docwin/docwin-quicktutorial.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/howto/docwin/docwin-quicktutorial.html
+== Request: /Resources/Base.lproj/howto/docwin/docwin-chooseoptions.html
+== Finishing Request: Resources/Base.lproj/howto/docwin/docwin-chooseoptions.html (0.03s)
+   identical  Contents (build)/Resources/Base.lproj/howto/docwin/docwin-chooseoptions.html
+== Request: /Resources/Base.lproj/howto/docwin/docwin-preview.html
+== Finishing Request: Resources/Base.lproj/howto/docwin/docwin-preview.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/howto/docwin/docwin-preview.html
+== Request: /Resources/Base.lproj/howto/docwin/docwin-diffs.html
+== Finishing Request: Resources/Base.lproj/howto/docwin/docwin-diffs.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/howto/docwin/docwin-diffs.html
+== Request: /Resources/Base.lproj/howto/docwin/docwin-toolbarcustomize.html
+== Finishing Request: Resources/Base.lproj/howto/docwin/docwin-toolbarcustomize.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/howto/docwin/docwin-toolbarcustomize.html
+== Request: /Resources/Base.lproj/howto/docwin/docwin-splitter.html
+== Finishing Request: Resources/Base.lproj/howto/docwin/docwin-splitter.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/howto/docwin/docwin-splitter.html
+== Request: /Resources/Base.lproj/acknowledgements/ack_opensource.html
+== Finishing Request: Resources/Base.lproj/acknowledgements/ack_opensource.html (0.02s)
+   identical  Contents (build)/Resources/Base.lproj/acknowledgements/ack_opensource.html
+== Request: /Resources/Base.lproj/acknowledgements/license.html
+== Finishing Request: Resources/Base.lproj/acknowledgements/license.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/acknowledgements/license.html
+== Request: /Resources/Base.lproj/acknowledgements/ack_i18n.html
+== Finishing Request: Resources/Base.lproj/acknowledgements/ack_i18n.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/acknowledgements/ack_i18n.html
+== Request: /Resources/Base.lproj/howto/options/options-revertdefault.html
+== Finishing Request: Resources/Base.lproj/howto/options/options-revertdefault.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/howto/options/options-revertdefault.html
+== Request: /Resources/Base.lproj/reference/menu/menu-window.html
+== Finishing Request: Resources/Base.lproj/reference/menu/menu-window.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/reference/menu/menu-window.html
+== Request: /Resources/Base.lproj/reference/menu/menu-file.html
+== Finishing Request: Resources/Base.lproj/reference/menu/menu-file.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/reference/menu/menu-file.html
+== Request: /Resources/Base.lproj/reference/menu/menu-view.html
+== Finishing Request: Resources/Base.lproj/reference/menu/menu-view.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/reference/menu/menu-view.html
+== Request: /Resources/Base.lproj/reference/menu/menu-application.html
+== Finishing Request: Resources/Base.lproj/reference/menu/menu-application.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/reference/menu/menu-application.html
+== Request: /Resources/Base.lproj/reference/menu/menu-help.html
+== Finishing Request: Resources/Base.lproj/reference/menu/menu-help.html (0.03s)
+   identical  Contents (build)/Resources/Base.lproj/reference/menu/menu-help.html
+== Request: /Resources/Base.lproj/reference/menu/menu-edit.html
+== Finishing Request: Resources/Base.lproj/reference/menu/menu-edit.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/reference/menu/menu-edit.html
+== Request: /Resources/Base.lproj/reference/prefs.html
+== Finishing Request: Resources/Base.lproj/reference/prefs.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/reference/prefs.html
+== Request: /Resources/Base.lproj/reference/tidyopts/tidyoptions.html
+== Finishing Request: Resources/Base.lproj/reference/tidyopts/tidyoptions.html (0.0s)
+   identical  Contents (build)/Resources/Base.lproj/reference/tidyopts/tidyoptions.html
+== Request: /Resources/Base.lproj/reference/tidyopts/missingoptions.html
+== Finishing Request: Resources/Base.lproj/reference/tidyopts/missingoptions.html (0.0s)
+   identical  Contents (build)/Resources/Base.lproj/reference/tidyopts/missingoptions.html
+== Request: /Resources/Base.lproj/reference/tidyopts.html
+== Finishing Request: Resources/Base.lproj/reference/tidyopts.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/reference/tidyopts.html
+== Request: /Resources/Base.lproj/reference/docu/docu-messages.html
+== Finishing Request: Resources/Base.lproj/reference/docu/docu-messages.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/reference/docu/docu-messages.html
+== Request: /Resources/Base.lproj/reference/docu/docu-sourcearea.html
+== Finishing Request: Resources/Base.lproj/reference/docu/docu-sourcearea.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/reference/docu/docu-sourcearea.html
+== Request: /Resources/Base.lproj/reference/docu/docu-options.html
+== Finishing Request: Resources/Base.lproj/reference/docu/docu-options.html (0.0s)
+   identical  Contents (build)/Resources/Base.lproj/reference/docu/docu-options.html
+== Request: /Resources/Base.lproj/reference/docu/docu-toolbar.html
+== Finishing Request: Resources/Base.lproj/reference/docu/docu-toolbar.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/reference/docu/docu-toolbar.html
+== Request: /Resources/Base.lproj/reference/docu/docu-fullscreen.html
+== Finishing Request: Resources/Base.lproj/reference/docu/docu-fullscreen.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/reference/docu/docu-fullscreen.html
+== Request: /Resources/Base.lproj/reference/docu/docu-splitters.html
+== Finishing Request: Resources/Base.lproj/reference/docu/docu-splitters.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/reference/docu/docu-splitters.html
+== Request: /Resources/Base.lproj/reference/000_reference.html
+== Finishing Request: Resources/Base.lproj/reference/000_reference.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/reference/000_reference.html
+== Request: /Resources/Base.lproj/reference/docu.html
+== Finishing Request: Resources/Base.lproj/reference/docu.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/reference/docu.html
+== Request: /Resources/Base.lproj/reference/prefs/prefs-filesaving.html
+== Finishing Request: Resources/Base.lproj/reference/prefs/prefs-filesaving.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/reference/prefs/prefs-filesaving.html
+== Request: /Resources/Base.lproj/reference/prefs/prefs-tidyappearance.html
+== Finishing Request: Resources/Base.lproj/reference/prefs/prefs-tidyappearance.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/reference/prefs/prefs-tidyappearance.html
+== Request: /Resources/Base.lproj/reference/prefs/prefs-tidyoptions.html
+== Finishing Request: Resources/Base.lproj/reference/prefs/prefs-tidyoptions.html (0.03s)
+   identical  Contents (build)/Resources/Base.lproj/reference/prefs/prefs-tidyoptions.html
+== Request: /Resources/Base.lproj/reference/prefs/prefs-docappearance.html
+== Finishing Request: Resources/Base.lproj/reference/prefs/prefs-docappearance.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/reference/prefs/prefs-docappearance.html
+== Request: /Resources/Base.lproj/reference/prefs/prefs-updates.html
+== Finishing Request: Resources/Base.lproj/reference/prefs/prefs-updates.html (0.0s)
+   identical  Contents (build)/Resources/Base.lproj/reference/prefs/prefs-updates.html
+== Request: /Resources/Base.lproj/reference/prefs/prefs-misc.html
+== Finishing Request: Resources/Base.lproj/reference/prefs/prefs-misc.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/reference/prefs/prefs-misc.html
+== Request: /Resources/Base.lproj/reference/menu.html
+== Finishing Request: Resources/Base.lproj/reference/menu.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/reference/menu.html
+== Request: /Resources/Base.lproj/howto/docwin/docwin-validate.html
+== Finishing Request: Resources/Base.lproj/howto/docwin/docwin-validate.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/howto/docwin/docwin-validate.html
+== Request: /Resources/Base.lproj/howto/docwin/docwin-fullscreen.html
+== Finishing Request: Resources/Base.lproj/howto/docwin/docwin-fullscreen.html (0.01s)
+   identical  Contents (build)/Resources/Base.lproj/howto/docwin/docwin-fullscreen.html
 == Request: /Info.plist
 == Finishing Request: Info.plist (0.0s)
-      update  Contents (build)/Info.plist
-      remove  Contents (build)/Resources/Base.lproj/Balthisar Tidy.helpindex
+   identical  Contents (build)/Info.plist
