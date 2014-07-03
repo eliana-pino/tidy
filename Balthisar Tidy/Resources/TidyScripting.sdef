@@ -46,7 +46,6 @@
 
 
 		<class name="preferences" code="pref" description="The Balthisar Tidy preferences class.">
-
 			<cocoa class="PreferenceController"/>
 
 		</class>

@@ -31,6 +31,7 @@
 
 @implementation NSApplication (TidyApplication)
 
+#ifdef FEATURE_SUPPORTS_APPLESCRIPT
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	 preferencesWindowIsVisible
@@ -92,5 +93,6 @@
 	return [[[PreferenceController sharedPreferences] viewControllers] count];
 }
 
+#endif
 
 @end

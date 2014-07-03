@@ -27,9 +27,11 @@
  **************************************************************************************************/
 
 #import <Cocoa/Cocoa.h>
-
+#import "PreferencesDefinitions.h"
 
 @interface NSApplication (TidyApplication)
+
+#ifdef FEATURE_SUPPORTS_APPLESCRIPT
 
 @property (nonatomic, assign) BOOL preferencesWindowIsVisible;                // Handles AppleScripts preferencesWindowIsVisible property.
 
@@ -37,5 +39,6 @@
 
 @property (nonatomic, assign) NSInteger indexOfVisiblePrefsWindowPanel;       // Handles AppleScripts indexOfVisiblePrefsWindowPanel property.
 
+#endif
 
 @end
