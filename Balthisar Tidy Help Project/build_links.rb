@@ -76,7 +76,7 @@ Dir.glob("Contents (source)/Resources/**/*.{jpg,png,gif}").each do |fileName|
     while File.extname(base_name) != "" do
         base_name = File.basename( base_name, ".*" )
     end
-    shortcut = "[#{base_name}]:".gsub("-", "_")
+    shortcut = "[#{base_name}]:" # .gsub("-", "_")
 
     # Make a fake absolute path
     path = File::SEPARATOR + Pathname.new(fileName).relative_path_from(Pathname.new("Contents (source)")).to_s

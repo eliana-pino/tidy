@@ -204,10 +204,16 @@ div.container-logo-medium > div:first-child {
   padding-bottom: 0;
   border-right: 1px solid #bfbfbf;
   min-height: 100%;
+  /* other images in the div, after the first-child */
 }
 div.container-logo-medium > div:first-child h1 {
   padding-top: 1em;
   margin-top: 0;
+}
+div.container-logo-medium > div:first-child img {
+  display: block;
+  margin: 3ex auto 3ex auto;
+  width: 90%;
 }
 div.container-logo-medium > div:first-child + div {
   width: 130pt;
@@ -328,6 +334,13 @@ div.steps ol li {
   width: 100%;
 }
 
+.note {
+  margin: 1em;
+  padding: 1em;
+  background-color: #e6edff;
+  border: 1px solid #eaeaea;
+}
+
 /*
 
 ORIGINAL
@@ -344,15 +357,6 @@ code {
 	height: 1.8em;
 	font-size: 9pt;
 	font-family: Verdana, Courier, sans-serif;;
-}
-
-.note {
-	background-color: #e6edff;
-	margin-left: 20px;
-	margin-right: 20px;
-	padding: 0px 15px 15px 15px;
-	margin-bottom: -15px;
-	border: 1px solid #eaeaea;
 }
 
 #banner {

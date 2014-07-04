@@ -9,8 +9,20 @@ order: 4
 <% content_for :relatedTopics do %>
 <%= partial "related_topics.html" %>
 <% end %>
+<%= partial 'markdown-links' %>
+<%= partial 'markdown-images' %>
 
 <%= current_page.data.title %>
 ==============================
 
-EMPTY
+<div class="steps" markdown="1">
+
+By default, _Balthisar Tidy_ automatically creates a new, blank document
+when it starts.
+
+You can also create a new document by selecting **New** in the	**File** menu.
+
+New documents’ [Tidy options][docwin-chooseoptions] will automatically
+be set to those in [Preferences][prefs-tidyoptions].
+
+</div>

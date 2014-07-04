@@ -7,8 +7,19 @@ order: 7
 <% content_for :relatedTopics do %>
 <%= partial "related_topics.html" %>
 <% end %>
+<%= partial 'markdown-links' %>
+<%= partial 'markdown-images' %>
 
 <%= current_page.data.title %>
 ==============================
 
-EMPTY
+To print your Tidy’d source code, Use the **Open…** menu item in the **File**
+menu. You will have access to all of the standard Mac OS X features for your
+particular printer, including the ability to save as a PDF.
+
+***Note***: _Balthisar Tidy_ will honor all of your Tidy options, including
+settings such as `wrap`. If you have very long lines and `wrap` is 0 (meaning no
+wrap at all) or is set to a very high value, then _Balthisar Tidy_ will shrink
+the output in order to accomodate the page size. This may result in very tiny
+text.
+{: .note}

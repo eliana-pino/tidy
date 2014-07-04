@@ -12,8 +12,21 @@ order: 5
 <li><a href="../../reference/prefs/prefs-docappearance.html">Reference: Document Appearance</a></li>
 </ul>
 <% end %>
+<%= partial 'markdown-links' %>
+<%= partial 'markdown-images' %>
 
 <%= current_page.data.title %>
 ==============================
 
-EMPTY
+<div class="steps" markdown="1">
+
+1.  Make the [HTML Source][docu-source-source] view active by clicking within
+    it or pressing the <kbd>Tab</kbd> key until it is selected.
+
+2.  The HTML Source pane is a standard Mac OS X text editor.
+
+3.  You can observe the effects of your edits to the Tidy’d document in the
+    [Tidy’d HTML pane][doc-view_tidyd] and in the
+    [Tidy Messages][docwin-messages] table.
+
+</div>

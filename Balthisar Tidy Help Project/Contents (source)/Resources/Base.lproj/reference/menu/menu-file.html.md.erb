@@ -7,6 +7,8 @@ order: 2
 <% content_for :relatedTopics do %>
 <%= partial "related_topics.html" %>
 <% end %>
+<%= partial 'markdown-links' %>
+<%= partial 'markdown-images' %>
 
 <%= current_page.data.title %>
 ==============================

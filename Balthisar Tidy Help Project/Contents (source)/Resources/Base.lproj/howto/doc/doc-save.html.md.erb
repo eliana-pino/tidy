@@ -11,8 +11,30 @@ order: 8
 <li><a href="../../reference/prefs/prefs-filesaving.html">Reference: File Saving Preferences</a></li>
 </ul>
 <% end %>
+<%= partial 'markdown-links' %>
+<%= partial 'markdown-images' %>
 
 <%= current_page.data.title %>
 ==============================
 
-EMPTY
+Use the **Save** or **Save As…** menu item in the **File** menu to save your
+document using the Tidy’d text.
+
+Saving your document will replace the original document, and so, depending on
+the behavior set in [Preferences][prefs-filesaving], you may have to use the
+**Save As…** menu item in the **File** menu to save your document. If
+you attempt to save a document and see the message below:
+
+![alert window][save-save-as-required]{: .maxW420px }
+
+Or this message, below:
+
+![alert window][save-save-warning]{: .maxW420px }
+
+…then you can be sure that *Balthisar Tidy* is set to ensure against any
+possible data loss as a result of its work.
+
+Data loss is very unlikely, but as Tidy is very, very strict it’s possible that
+it will remove content that it thinks is garbage. For this reason it’s always
+important to [review the Tidy Messages table][docwin-messages].
+{: .note}
