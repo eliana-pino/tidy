@@ -8,14 +8,16 @@
 				<a href="http://www.balthisar.com/software/tidy">www.balthisar.com/software/tidy</a>
 			</div>
         	<% if content_for?(:relatedTopics) %>
-			<div>
+			<div class="related_topics">
 				<%= yield_content :relatedTopics %>
 			</div>
 		    <% end %>
 		</div>
 
 		<div>
-	        <%= yield %>
+		    <div>
+	            <%= yield %>
+	        </div>
 		</div>
 	</div>
 

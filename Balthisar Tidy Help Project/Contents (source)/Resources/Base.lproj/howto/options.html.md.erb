@@ -1,9 +1,9 @@
 ---
-title: How do I Work with Documents?
-blurb: This series of lessons will introduce you to basic document workflow. You
-       will be Tidy’ing documents like a pro in no time!
+title: How do I work with the Tidy Options Panel?
+blurb: In this section you will have a more in depth introduction to all of the
+       power and features of the Tidy Options panel.
 layout: template-logo-large
-order: 1
+order: 3
 ---
 <% content_for :relatedTopics do %>
 <%= partial "related_topics.html" %>
@@ -16,6 +16,4 @@ order: 1
 
 <%= current_page.data.blurb %>
 
-<div markdown="0">
-    <%= partial(:table_contents, :locals => {:group => "doc"}) %>
-</div>
+<%= partial(:table_contents, :locals => {:group => "options"}) %>

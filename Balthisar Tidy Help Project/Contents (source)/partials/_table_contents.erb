@@ -2,7 +2,8 @@
 pages = (defined? group) ? pages_related_to(group) : related_pages
 if !pages.to_a.empty?
 %>
-    <dl class="table_contents">
+<div class="table_contents" markdown="0">
+    <dl>
     <% pages.each do |p| %>
         <dt><a href="<%= p.metadata[:link] %>"><%= p.data.title %></a></dt>
         <% if p.data.blurb %>
@@ -10,4 +11,5 @@ if !pages.to_a.empty?
         <% end %>
     <% end %>
     </dl>
+</end>
 <% end %>

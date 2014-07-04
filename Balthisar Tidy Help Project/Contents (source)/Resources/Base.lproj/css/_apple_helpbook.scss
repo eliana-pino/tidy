@@ -1,53 +1,67 @@
 /*****************************************************************************
-	A set of styles that bring an Apple-like look to your applications' help
-	files.
+	Styles that bring an Apple-like look to your applications' help	files.
+
+	* Used in conjunction with normalize.css to establish sane defaults.
+	* We have *structural* containers and *styling* containers.
+	* There's no such thing as padding and margins on anything unless they're
+	  part of a styling container, or inside of a styling container that
+	  sets them for them.
+	* Structural containers only have size and position and visibility.
+	* Styling containers set styles for elements inside of them.
  *****************************************************************************/
 
 
 /*************************************
-	GENERAL STYLES
+  GENERAL STYLES
  *************************************/
 
 $interMargins: 1.5ex;
+$linkColor: rgb(99,136,193);
+$standard_border: 1px solid #bfbfbf;
 
-* { padding: 0; margin: 0;}
+*
+{
+	margin: 0;
+	padding: 0;
+}
 
-html {
+html
+{
+	font-size: 11pt;
 	height: 100%;
 }
 
-body {
+body
+{
 	font-family: "Helvetica Neue", Arial, sans-serif;
-	font-size: 11pt;
-	min-width: 600px;
 	height: 100%;
+	min-width: 600px;
 }
 
-h1 {
-	font-size: 16pt;
-	margin-top: $interMargins;
-	margin-bottom: $interMargins;
+h1
+{
+	font-size: 1.6em;
 }
 
 
-h2 {
-	font-size: 14pt;
+h2
+{
+	font-size: 1.5em;
 }
 
-h3 {
-	font-size: 12pt;
-	font-weight: bold;
+h3
+{
+	font-size: 1.3em;
 }
 
-p {
-	font-size: 11pt;
-	line-height: 15pt;
-	margin-top: $interMargins;
-	margin-bottom: $interMargins;
+p
+{
+	font-size: 1.0em;
+	line-height: 1.6em;
 }
 
-a {
-	$linkColor: rgb(99,136,193);
+a
+{
 	text-decoration: none;
 	font-weight: bold;
 	font-size: 1.05em;
@@ -62,38 +76,68 @@ a {
 	}
 }
 
-hr {
+hr
+{
 	text-decoration: none;
 	border: none;
-	border-bottom: 1px solid #bfbfbf;
-	margin-top: $interMargins * 2;
-	margin-bottom: $interMargins * 2;
-	margin-right: 10%;
-	margin-left: 10%;
+	border-bottom: $standard_border;
+	margin: ($interMargins * 2) 10% ($interMargins * 2) 10%;
 }
 
-dl dd
+/*
+	"standard" img should always be a block and centered
+	and assume 100% width. Can set max-width to prevent
+	oversized images in another class.
+ */
+img
 {
-	padding-top: 1ex;
-	padding-bottom: 2ex;
-	padding-left: 3em;
+	display: block;
+	width: 100%;
+	margin: 0 auto 0 auto;
+
 }
 
-ul {
-	list-style: square;
-	list-style-position: outside;
-	margin: 2ex 0 2ex 0;
-
-	li
+/*
+	"standard" dl only spaces the items. Set the <dl> in
+	a styling container if you want padding or margins.
+ */
+dl
+{
+	dd
 	{
-		margin: 1ex 2em 1ex 2em;
+		margin: 0.8ex 0 0.8ex 3em;
 	}
 }
 
+/*
+	"standard" ul has no margins or padding.
+ */
+ul
+{
+	list-style: square;
+	list-style-position: outside;
+}
+
+/*
+	"standard" li only spaces the items. Set the <ul> or <ol>
+	in a styling container if you want padding or margins.
+	The default aligns the left of the text with the body
+	left text, meaning the bullets or counters will stick out
+	to the left.
+ */
+li
+{
+	margin: 0.8ex 0 0.8ex 0;
+}
 
 
 /*************************************
-	image constraints
+  IMAGE CONSTRAINTS
+	We use a lot of 100% width images
+	in order to have them fit their
+	containers, but we also want to
+	restrain them from exceeding
+	their actual sizes.
  *************************************/
 
 img.maxW420px { max-width: 420px; }
@@ -105,30 +149,27 @@ img.maxW2304px { max-width: 2304px; }
 
 
 /*************************************
-	lists for related_topics
+	related_topics
  *************************************/
-ul.related_topics
+div.related_topics
 {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-
-	li,
-	li li
+	ul
 	{
-		padding: 0 0 0 1em;
-		margin: 10px 0 10px 0;
+		list-style: none;
+		margin-left: 1em;
 	}
-
 }
 
 
 /*************************************
-	lists for table_contents
+	table_contents
  *************************************/
-dl.table_contents
+div.table_contents
 {
-	margin: 1ex 0 2ex 3em;
+	dl
+	{
+		margin: 1em;
+	}
 }
 
 
@@ -138,7 +179,6 @@ dl.table_contents
 
 div.container-logo-large
 {
-
 	$logowidth: 200pt;
 
 	position: relative;
@@ -147,67 +187,61 @@ div.container-logo-large
 	width: 100%;
 	height: 100%;
 
-		/* left block */
+		/* left block, template content area. */
 	 	> div:first-child
 		{
-			width: $logowidth;
 			position: absolute;
 			top: 0;
 			left: 0;
-			padding-top: 1em;
-			padding-right: 1em;
+			width: $logowidth;
 			text-align: center;
+			font-size: 0.9em;
 
-			/* top of left block, where image lives */
+			/*
+			  top of left block, where image,
+			  headline, and link all live.
+			 */
 			> div:first-child
 			{
+				margin-top: 1em;
 
 				> img
 				{
 					display: block;
 					width: 80%;
-					margin: 0 auto;
-				}
-
-				> h1
-				{
-					margin-bottom: 0;
+					margin: 0 auto 1em auto;
 				}
 			}
 
 			/* bottom of left block, for related topics */
 			> div:first-child + div
 			{
-				padding: 2em 1em 1em 3em;
+				font-size: 0.9em;
+				margin: 2em 1em 0 3em;
 				text-align: left;
 
-					> h1
-					{
-						margin: 0 0 ($interMargins/2) 0;
-						font-size: 13pt;
-					}
-
-					li
-					{
-						margin: 0.5ex;
-					}
+				h1
+				{
+					font-size: 1.3em;
+				}
 			}
 		}
 
-		/* right block */
+		/*
+		  right block, the structure block. We will
+		  perform divider styling here, despite my no-styling rule,
+		  so that we can ensure it extends to the whole content.
+		 */
 		> div:first-child + div
 		{
 			margin-left: $logowidth;
-			padding-top: 0;
-			padding-left: 1em;
-			padding-right: 1em;
-			border-left: 1px solid #bfbfbf;
+			border-left: $standard_border;
 			min-height: 100%;
 
-			h1
+			/* finally the user's block with a nice padding */
+			> div:first-child
 			{
-				padding-top:  1em;
-				margin-top: 0;
+				padding: 2em;
 			}
 		}
 }
@@ -217,8 +251,8 @@ div.container-logo-large
 	layout-logo-medium styles
  *************************************/
 
-div.container-logo-medium {
-
+div.container-logo-medium
+{
 	$logowidth: 130pt;
 
 	position: relative;
@@ -227,119 +261,105 @@ div.container-logo-medium {
 	width: 100%;
 	height: 100%;
 
-		/* left block */
-		> div:first-child {
+		/*
+		  left block, the structure block. We will
+		  perform divider styling here, despite my no-styling rule,
+		  so that we can ensure it extends to the whole content.
+		 */
+		> div:first-child
+		{
 			margin-right: $logowidth;
-			padding-top: 0;
-			padding-left: 1em;
-			padding-right: 1em;
-			padding-bottom: 0;
-			border-right: 1px solid #bfbfbf;
+			border-right: $standard_border;
 			min-height: 100%;
-
-			h1
-			{
-				padding-top: 1em;
-				margin-top: 0;
-			}
 
 			/* other images in the div, after the first-child */
 			img
 			{
-				display: block;
-				margin: 3ex auto 3ex auto;
+				margin: 0 auto 1em auto;
 				width: 90%;
 			}
 
+			/* finally the user's block with a nice padding */
+			> div:first-child
+			{
+				padding: 2em;
+			}
 		}
 
-		/* right block */
-	 	> div:first-child + div {
-			width: $logowidth;
+		/* right block, template content area. */
+	 	> div:first-child + div
+		{
 			position: absolute;
 			top: 0;
 			right: 0;
-			padding: 0 0 0 0;
-			margin: 0;
+			width: $logowidth;
 
 			/* top of right block, where image lives */
-			> div:first-child {
-
+			> div:first-child
+			{
 				padding-top: 1em;
 
-				> img {
+				> img
+				{
 					display: block;
 					width: 80%;
-					margin: 0 auto;
+					margin: 0 auto 1em auto;
 				  }
 			}
 
 			/* bottom of left block, for related topics */
-			> div:first-child + div {
-				padding: 1em 0.5em 1em 0.5em;
+			> div:first-child + div
+			{
+				font-size: 0.8em;
+				margin: 2em 1em 0 1em;
 				text-align: left;
 
-					> h1 {
-						margin: 0 0 ($interMargins/2) 0;
-						font-size: 12pt;
-					}
-
-					li {
-						margin: 1ex 0;
-						font-size: 9pt;
-					}
+				h1
+				{
+					font-size: 1.3em;
+				}
 			}
-	}
+		}
 }
 
 
 /*************************************
-	layout-logo-small
+	layout-logo-small styles
  *************************************/
 
 div.container-logo-small
 {
+	$bannerHeight: 36pt;
+	padding: 1em 2em 0 2em;
 
-	padding-left: 1.5em;
-	padding-right: 1.5em;
-	padding-bottom: 1.5em;
-
-	img.logo
+	/* banner AND body text */
+	> div:first-child
 	{
-		height: 36pt;
-		width: auto;
-		padding: 0 1em 0 0;
-		float: left;
-	}
+		> img:first-child
+		{
+			height: $bannerHeight;
+			width: auto;
+			padding: 0 1em 0 0;
+			float: left;
 
-	/* just the first headline */
-	img.logo + h1
-	{
-		line-height: 36pt;
-	}
-
-	/* other images in the div, after the first-child */
-	img:not(logo)
-	{
-		display: block;
-		margin-left: auto;
-		margin-right: auto;
-		width: 100%;
+			+ h1
+			{
+				line-height: $bannerHeight;
+				margin-bottom: 1ex;
+			}
+		}
 	}
 
 	/* This will be the related topics div */
-	~ div {
-		padding: 0 1em 1em 3em;
-		text-align: left;
+	> div:first-child ~ div
+	{
+		font-size: 0.8em;
+		padding-bottom: 1em;
 
-			> h1 {
-				margin: 0 0 ($interMargins/2) 0;
-				font-size: 13pt;
-			}
-
-			li {
-				margin: 0.5ex;
-			}
+		h1
+		{
+			font-size: 1.3em;
+		}
 	}
 }
 
@@ -365,7 +385,7 @@ pre {
 
 div.steps
 {
-	padding: 1em 2em;
+	padding: 1em 2em 1em 2em;
 	margin-top: 10px;
 	margin-right: 3em;
 	margin-left: 3em;
@@ -401,6 +421,33 @@ div.steps
 			width: 100%;
 		}
 	}
+
+}
+
+.split_steps_article
+{
+	box-sizing: border-box;
+
+	> div
+	{
+		float: left;
+		box-sizing: border-box;
+		padding: 1em;
+		width: 45%;
+
+		img {
+			display: block;
+			margin: 0;
+			float: right;
+			width: 100%;
+		}
+	}
+	> div + div
+	{
+		border: 1px solid #bfbfbf;
+		border-radius: 10px;
+	}
+
 }
 
 .note

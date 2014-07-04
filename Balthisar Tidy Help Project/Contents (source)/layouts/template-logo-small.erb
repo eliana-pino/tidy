@@ -1,13 +1,16 @@
 <% wrap_layout :"layout-html4" do %>
 
 	<div class="container-logo-small">
-		<%= image_tag '/Resources/shared/icon_256x256@2x.png', :alt => "logo", :class => "logo" %>
-	    <%= yield %>
+        <div>
+<%= image_tag '/Resources/shared/icon_256x256@2x.png', :alt => "logo" %>
+<%= yield %>
+	    </div>
+        <% if content_for?(:relatedTopics) %>
+        <div class="related_topics">
+            <hr/>
+<%= yield_content :relatedTopics %>
+        </div>
+        <% end %>
 	</div>
-	<% if content_for?(:relatedTopics) %>
-	<div>
-		<%= yield_content :relatedTopics %>
-	</div>
-	<% end %>
 
 <% end %>
