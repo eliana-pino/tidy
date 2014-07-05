@@ -120,6 +120,9 @@
 	#define FEATURE_SUPPORTS_SXS_DIFFS
 #endif
 
+/* FAKE Sparkle so Pro Version can use Applescript to take screenshots. */
+//#define FEATURE_FAKE_SPARKLE
+
 
 #pragma mark - Other Definitions
 

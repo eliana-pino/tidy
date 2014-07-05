@@ -161,6 +161,24 @@
 }
 
 
+#pragma mark - App Name Accessors
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	menuQuitTitle
+		Hard-compiled determiner.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (NSString*)menuQuitTitle
+{
+#ifdef TARGET_PRO
+	return NSLocalizedString(@"Quit Balthisar Tidy for Work", nil);
+#else
+	return NSLocalizedString(@"Quit Balthisar Tidy", nil);
+#endif
+}
+
+
+
 #pragma mark - Feature Accessors
 
 

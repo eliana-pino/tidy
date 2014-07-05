@@ -55,3 +55,7 @@
 "File Saving"            = "Saving";
 "Miscellaneous"          = "Advanced";
 "Software Updates"       = "Updates";
+
+/* App Title for Menus */
+"Quit Balthisar Tidy"          = "Quit Balthisar Tidy";
+"Quit Balthisar Tidy for Work" = "Quit Balthisar Tidy for Work";

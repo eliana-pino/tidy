@@ -251,7 +251,7 @@
 	NSViewController *savingOptionsViewController = [[SavingOptionsViewController alloc] init];
 	NSViewController *miscOptionsViewController = [[MiscOptionsViewController alloc] init];
 
-#ifdef FEATURE_SPARKLE
+#if defined(FEATURE_SPARKLE) || defined(FEATURE_FAKE_SPARKLE)
 
 	NSViewController *updaterOptionsViewController = [[UpdaterOptionsViewController alloc] init];
 

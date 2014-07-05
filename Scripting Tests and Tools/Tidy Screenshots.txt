@@ -7,7 +7,7 @@
 --	Created by: Jim Derry
 --	Created on: 04/12/14 13:41:11
 --
---	Copyright © 2014 Jim Derry
+--	Copyright  2014 Jim Derry
 --	All Rights Reserved
 --
 
@@ -43,11 +43,12 @@ on run
 	set the_window_id to set_document_window_size(1152, 720)
 	
 	tell application "System Events"
-		tell process "Balthisar Tidy"
+		tell process "Balthisar Tidy for Work"
 			tell window named "Sample Dirty Document.html"
-				tell table 1 of scroll area 1 of group 3 of splitter group 1 of splitter group 1
+				tell table 1 of scroll area 1 of splitter group 1 of splitter group 1
+					UI elements
 					set focused to true
-					tell row 1 to set selected to true
+					tell row 2 to set selected to true
 				end tell
 			end tell
 		end tell
@@ -59,11 +60,11 @@ on run
 	-----------------------------
 	-- Preferences
 	-----------------------------
-	tell application "Balthisar Tidy"
+	tell application "Balthisar Tidy for Work"
 		
 		set preferencesWindowIsVisible to yes
 		
-		set the_window_id to id of (window named "Balthisar Tidy Preferences")
+		set the_window_id to id of (front window)
 		
 		repeat with i from 1 to countOfPrefsWindowPanels
 			
@@ -71,7 +72,7 @@ on run
 			
 			set theFileName to theBasePath & thePrefsWindowFilename & i
 			
-			if (countOfPrefsWindowPanels < 4) then
+			if (countOfPrefsWindowPanels < 6) then
 				set theFileName to theFileName & thePrefsFilenameSuffixNoSparkle
 			end if
 			
@@ -119,7 +120,7 @@ on set_document_window_size(winWidth, winHeight)
 		set theSampleFile to (scriptPath & "Sample Dirty Document.html") as string
 	end tell
 	
-	tell application "Balthisar Tidy"
+	tell application "Balthisar Tidy for Work"
 		set theOpenDocument to (open theSampleFile)
 		set the bounds of the first window to {xAxis, yAxis, winWidth + xAxis, winHeight + yAxis}
 		return id of window 1
@@ -158,7 +159,7 @@ on take_screenshot_window(the_window_id, a_file_path, options)
 	---------------------------------------------------------
 	-- Pop it to the front and execute the command.
 	---------------------------------------------------------
-	tell application "System Events" to set frontmost of process "Balthisar Tidy" to true
+	tell application "System Events" to set frontmost of process "Balthisar Tidy for Work" to true
 	delay 1
 	do shell script shell_command
 	
