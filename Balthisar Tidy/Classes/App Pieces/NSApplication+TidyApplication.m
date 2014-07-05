@@ -93,6 +93,35 @@
 	return [[[PreferenceController sharedPreferences] viewControllers] count];
 }
 
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	saveAsDestination
+	- Sandboxed we can't let AppleScript choose destination
+      directories, so we have to do it within the application in
+      order to allow, e.g., batch AppleScripts to work. Once the
+	  user has manually chosen access to a folder, sandbox will
+	  allow access to it until the application quits.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (NSString*)saveAsDestination
+{
+    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+
+	[openPanel setCanChooseDirectories:YES];
+	[openPanel setCanChooseFiles:NO];
+	[openPanel setCanCreateDirectories:YES];
+	[openPanel setAllowsMultipleSelection:NO];
+	[openPanel setTitle:NSLocalizedString(@"Select Destination", nil)];
+	[openPanel setMessage:NSLocalizedString(@"ChooseFolderMessage", nil)];
+
+	if ([openPanel runModal] == NSFileHandlingPanelOKButton)
+	{
+		return [[openPanel URLs][0] path];
+	}
+	else
+	{
+		return @"";
+	}
+}
 #endif
 
 @end

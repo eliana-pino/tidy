@@ -1095,6 +1095,11 @@
 					};
 					D0BB67B6193C820A007A3EB0 = {
 						DevelopmentTeam = 9PN2JXXG7Y;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};

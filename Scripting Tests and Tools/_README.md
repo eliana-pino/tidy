@@ -25,7 +25,7 @@ Each of the scripts is available in a few formats:
 Some of the scripts expect to find an HTML document named `Sample Dirty Document.html`
 in the same folder location as the script, so it's a good idea to leave this file alone.
 
-The `Sample Dirty Document (original).html` isn’t used by any of the scripts, but
+The `_Sample Dirty Document (original).html` isn’t used by any of the scripts, but
 I leave it in this directory in case I accidentally overwrite the sample document.
 
 
@@ -56,7 +56,7 @@ demonstrates how to implement them.
 It requires `Sample Dirty Document.html` to be present in the same directory as the script.
 
 
-### Generate Tidy Screenshots
+### Tidy Screenshots
 
 This script uses _Balthisar Tidy_’s developer suite and also Mac OS X UI Scripting
 features to take screen shots of a document window and each of the preferences window

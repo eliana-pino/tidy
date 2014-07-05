@@ -33,11 +33,13 @@
 
 #ifdef FEATURE_SUPPORTS_APPLESCRIPT
 
-@property (nonatomic, assign) BOOL preferencesWindowIsVisible;                // Handles AppleScripts preferencesWindowIsVisible property.
+@property (nonatomic, assign) BOOL preferencesWindowIsVisible;                // Handles AppleScript preferencesWindowIsVisible property.
 
 @property (nonatomic, readonly, assign) NSInteger countOfPrefsWindowPanels;   // Handles AppleScript countOfPrefsWindowPanels property.
 
-@property (nonatomic, assign) NSInteger indexOfVisiblePrefsWindowPanel;       // Handles AppleScripts indexOfVisiblePrefsWindowPanel property.
+@property (nonatomic, assign) NSInteger indexOfVisiblePrefsWindowPanel;       // Handles AppleScript indexOfVisiblePrefsWindowPanel property.
+
+@property (nonatomic, readonly) NSString *saveAsDestination;                  // Handles AppleScript saveAsDestination property.
 
 #endif
 
