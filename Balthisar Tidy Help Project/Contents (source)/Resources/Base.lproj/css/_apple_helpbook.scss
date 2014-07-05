@@ -170,6 +170,10 @@ div.table_contents
 	{
 		margin: 1em;
 	}
+	dt
+	{
+		margin-top: $interMargins * 2;
+	}
 }
 
 
@@ -330,7 +334,7 @@ div.container-logo-medium
 div.container-logo-small
 {
 	$bannerHeight: 36pt;
-	padding: 1em 2em 0 2em;
+	padding: 1em 2em 1em 2em;
 
 	/* banner AND body text */
 	> div:first-child

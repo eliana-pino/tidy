@@ -499,6 +499,9 @@ div.related_topics ul {
 div.table_contents dl {
   margin: 1em;
 }
+div.table_contents dt {
+  margin-top: 3ex;
+}
 
 /*************************************
 	layout-logo-large layout styles
@@ -614,7 +617,7 @@ div.container-logo-medium > div:first-child + div > div:first-child + div h1 {
 	layout-logo-small styles
  *************************************/
 div.container-logo-small {
-  padding: 1em 2em 0 2em;
+  padding: 1em 2em 1em 2em;
   /* banner AND body text */
   /* This will be the related topics div */
 }

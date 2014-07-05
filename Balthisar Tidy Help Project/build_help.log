@@ -302,7 +302,7 @@ Loaded extensions:
 == Finishing Request: Resources/Base.lproj/howto/doc/doc-view_edit.html (0.04s)
    identical  Contents (build)/Resources/Base.lproj/howto/doc/doc-view_edit.html
 == Request: /Resources/Base.lproj/howto/doc/doc-view_tidyd.html
-== Finishing Request: Resources/Base.lproj/howto/doc/doc-view_tidyd.html (0.01s)
+== Finishing Request: Resources/Base.lproj/howto/doc/doc-view_tidyd.html (0.02s)
    identical  Contents (build)/Resources/Base.lproj/howto/doc/doc-view_tidyd.html
 == Request: /Resources/Base.lproj/howto/doc.html
 == Finishing Request: Resources/Base.lproj/howto/doc.html (0.02s)
@@ -377,7 +377,7 @@ Loaded extensions:
 == Finishing Request: Resources/Base.lproj/howto/doc/doc-print.html (0.01s)
    identical  Contents (build)/Resources/Base.lproj/howto/doc/doc-print.html
 == Request: /Resources/Base.lproj/howto/doc/doc-open.html
-== Finishing Request: Resources/Base.lproj/howto/doc/doc-open.html (0.01s)
+== Finishing Request: Resources/Base.lproj/howto/doc/doc-open.html (0.02s)
    identical  Contents (build)/Resources/Base.lproj/howto/doc/doc-open.html
 == Request: /Resources/Base.lproj/howto/doc/doc-encoding.html
 == Finishing Request: Resources/Base.lproj/howto/doc/doc-encoding.html (0.02s)
@@ -401,13 +401,13 @@ Loaded extensions:
 == Finishing Request: Resources/Base.lproj/advanced/extension.html (0.01s)
    identical  Contents (build)/Resources/Base.lproj/advanced/extension.html
 == Request: /Resources/Base.lproj/advanced/export_config.html
-== Finishing Request: Resources/Base.lproj/advanced/export_config.html (0.0s)
+== Finishing Request: Resources/Base.lproj/advanced/export_config.html (0.01s)
    identical  Contents (build)/Resources/Base.lproj/advanced/export_config.html
 == Request: /Resources/Base.lproj/advanced/diffs.html
-== Finishing Request: Resources/Base.lproj/advanced/diffs.html (0.0s)
+== Finishing Request: Resources/Base.lproj/advanced/diffs.html (0.01s)
    identical  Contents (build)/Resources/Base.lproj/advanced/diffs.html
 == Request: /Resources/Base.lproj/advanced/applescript.html
-== Finishing Request: Resources/Base.lproj/advanced/applescript.html (0.0s)
+== Finishing Request: Resources/Base.lproj/advanced/applescript.html (0.01s)
    identical  Contents (build)/Resources/Base.lproj/advanced/applescript.html
 == Request: /Resources/Base.lproj/advanced/000_advanced.html
 == Finishing Request: Resources/Base.lproj/advanced/000_advanced.html (0.01s)
@@ -464,7 +464,7 @@ Loaded extensions:
 == Finishing Request: Resources/Base.lproj/reference/menu/menu-file.html (0.01s)
    identical  Contents (build)/Resources/Base.lproj/reference/menu/menu-file.html
 == Request: /Resources/Base.lproj/reference/menu/menu-help.html
-== Finishing Request: Resources/Base.lproj/reference/menu/menu-help.html (0.02s)
+== Finishing Request: Resources/Base.lproj/reference/menu/menu-help.html (0.01s)
    identical  Contents (build)/Resources/Base.lproj/reference/menu/menu-help.html
 == Request: /Resources/Base.lproj/reference/menu/menu-view.html
 == Finishing Request: Resources/Base.lproj/reference/menu/menu-view.html (0.01s)
@@ -494,7 +494,7 @@ Loaded extensions:
 == Finishing Request: Resources/Base.lproj/reference/prefs/prefs-updates.html (0.0s)
    identical  Contents (build)/Resources/Base.lproj/reference/prefs/prefs-updates.html
 == Request: /Resources/Base.lproj/reference/prefs.html
-== Finishing Request: Resources/Base.lproj/reference/prefs.html (0.01s)
+== Finishing Request: Resources/Base.lproj/reference/prefs.html (0.02s)
    identical  Contents (build)/Resources/Base.lproj/reference/prefs.html
 == Request: /Resources/Base.lproj/reference/tidyopts/missingoptions.html
 == Finishing Request: Resources/Base.lproj/reference/tidyopts/missingoptions.html (0.01s)
