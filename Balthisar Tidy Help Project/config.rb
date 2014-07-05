@@ -31,6 +31,10 @@ activate :relative_assets
 ###
 page "Resources/Base.lproj/*", :layout => :'layout-html4'
 
+###
+# Add-on features
+###
+activate :syntax
 
 ###
 # Helpers
