@@ -271,11 +271,11 @@ Loaded extensions:
 == Rebuilding resource list
 == Prerendering CSS
    identical  Contents (build)/Resources/Base.lproj/css/github.css
-      update  Contents (build)/Resources/Base.lproj/css/style.css
+   identical  Contents (build)/Resources/Base.lproj/css/style.css
 == Checking for Compass sprites
 == Building files
-   identical  Contents (build)/Resources/shared/icon_32x32@2x.png
-   identical  Contents (build)/Resources/shared/icon_256x256@2x.png
+      update  Contents (build)/Resources/shared/icon_32x32@2x.png
+      update  Contents (build)/Resources/shared/icon_256x256@2x.png
    identical  Contents (build)/Resources/Base.lproj/images/doc-messages.png
    identical  Contents (build)/Resources/Base.lproj/images/tidy-prefs-04.png
    identical  Contents (build)/Resources/Base.lproj/images/tidy-prefs-03.png
@@ -293,16 +293,16 @@ Loaded extensions:
    identical  Contents (build)/Resources/Base.lproj/images/tidy-main-window.png
    identical  Contents (build)/Resources/Base.lproj/javascript/all.js
 == Request: /Resources/Base.lproj/reference/prefs/prefs-filesaving.html
-== Finishing Request: Resources/Base.lproj/reference/prefs/prefs-filesaving.html (0.04s)
+== Finishing Request: Resources/Base.lproj/reference/prefs/prefs-filesaving.html (0.15s)
    identical  Contents (build)/Resources/Base.lproj/reference/prefs/prefs-filesaving.html
 == Request: /Resources/Base.lproj/howto/doc/doc-tidy.html
 == Finishing Request: Resources/Base.lproj/howto/doc/doc-tidy.html (0.02s)
    identical  Contents (build)/Resources/Base.lproj/howto/doc/doc-tidy.html
 == Request: /Resources/Base.lproj/howto/doc/doc-view_edit.html
-== Finishing Request: Resources/Base.lproj/howto/doc/doc-view_edit.html (0.04s)
+== Finishing Request: Resources/Base.lproj/howto/doc/doc-view_edit.html (0.02s)
    identical  Contents (build)/Resources/Base.lproj/howto/doc/doc-view_edit.html
 == Request: /Resources/Base.lproj/howto/doc/doc-view_tidyd.html
-== Finishing Request: Resources/Base.lproj/howto/doc/doc-view_tidyd.html (0.02s)
+== Finishing Request: Resources/Base.lproj/howto/doc/doc-view_tidyd.html (0.01s)
    identical  Contents (build)/Resources/Base.lproj/howto/doc/doc-view_tidyd.html
 == Request: /Resources/Base.lproj/howto/doc.html
 == Finishing Request: Resources/Base.lproj/howto/doc.html (0.02s)
@@ -335,7 +335,7 @@ Loaded extensions:
 == Finishing Request: Resources/Base.lproj/howto/docwin/docwin-preview.html (0.01s)
    identical  Contents (build)/Resources/Base.lproj/howto/docwin/docwin-preview.html
 == Request: /Resources/Base.lproj/howto/docwin/docwin-quicktutorial.html
-== Finishing Request: Resources/Base.lproj/howto/docwin/docwin-quicktutorial.html (0.04s)
+== Finishing Request: Resources/Base.lproj/howto/docwin/docwin-quicktutorial.html (0.01s)
    identical  Contents (build)/Resources/Base.lproj/howto/docwin/docwin-quicktutorial.html
 == Request: /Resources/Base.lproj/howto/docwin/docwin-splitter.html
 == Finishing Request: Resources/Base.lproj/howto/docwin/docwin-splitter.html (0.01s)
@@ -347,7 +347,7 @@ Loaded extensions:
 == Finishing Request: Resources/Base.lproj/howto/docwin/docwin-validate.html (0.01s)
    identical  Contents (build)/Resources/Base.lproj/howto/docwin/docwin-validate.html
 == Request: /Resources/Base.lproj/howto/docwin.html
-== Finishing Request: Resources/Base.lproj/howto/docwin.html (0.02s)
+== Finishing Request: Resources/Base.lproj/howto/docwin.html (0.04s)
    identical  Contents (build)/Resources/Base.lproj/howto/docwin.html
 == Request: /Resources/Base.lproj/howto/options/options-appearance.html
 == Finishing Request: Resources/Base.lproj/howto/options/options-appearance.html (0.01s)
@@ -377,13 +377,13 @@ Loaded extensions:
 == Finishing Request: Resources/Base.lproj/howto/doc/doc-print.html (0.01s)
    identical  Contents (build)/Resources/Base.lproj/howto/doc/doc-print.html
 == Request: /Resources/Base.lproj/howto/doc/doc-open.html
-== Finishing Request: Resources/Base.lproj/howto/doc/doc-open.html (0.02s)
+== Finishing Request: Resources/Base.lproj/howto/doc/doc-open.html (0.01s)
    identical  Contents (build)/Resources/Base.lproj/howto/doc/doc-open.html
 == Request: /Resources/Base.lproj/howto/doc/doc-encoding.html
-== Finishing Request: Resources/Base.lproj/howto/doc/doc-encoding.html (0.02s)
+== Finishing Request: Resources/Base.lproj/howto/doc/doc-encoding.html (0.01s)
    identical  Contents (build)/Resources/Base.lproj/howto/doc/doc-encoding.html
 == Request: /Resources/Base.lproj/howto/doc/doc-create.html
-== Finishing Request: Resources/Base.lproj/howto/doc/doc-create.html (0.01s)
+== Finishing Request: Resources/Base.lproj/howto/doc/doc-create.html (0.04s)
    identical  Contents (build)/Resources/Base.lproj/howto/doc/doc-create.html
 == Request: /Resources/Base.lproj/howto/000_howto.html
 == Finishing Request: Resources/Base.lproj/howto/000_howto.html (0.01s)
@@ -398,16 +398,16 @@ Loaded extensions:
 == Finishing Request: Resources/Base.lproj/advanced/service.html (0.01s)
    identical  Contents (build)/Resources/Base.lproj/advanced/service.html
 == Request: /Resources/Base.lproj/advanced/extension.html
-== Finishing Request: Resources/Base.lproj/advanced/extension.html (0.01s)
+== Finishing Request: Resources/Base.lproj/advanced/extension.html (0.0s)
    identical  Contents (build)/Resources/Base.lproj/advanced/extension.html
 == Request: /Resources/Base.lproj/advanced/export_config.html
-== Finishing Request: Resources/Base.lproj/advanced/export_config.html (0.01s)
+== Finishing Request: Resources/Base.lproj/advanced/export_config.html (0.0s)
    identical  Contents (build)/Resources/Base.lproj/advanced/export_config.html
 == Request: /Resources/Base.lproj/advanced/diffs.html
-== Finishing Request: Resources/Base.lproj/advanced/diffs.html (0.01s)
+== Finishing Request: Resources/Base.lproj/advanced/diffs.html (0.0s)
    identical  Contents (build)/Resources/Base.lproj/advanced/diffs.html
 == Request: /Resources/Base.lproj/advanced/applescript.html
-== Finishing Request: Resources/Base.lproj/advanced/applescript.html (0.01s)
+== Finishing Request: Resources/Base.lproj/advanced/applescript.html (0.0s)
    identical  Contents (build)/Resources/Base.lproj/advanced/applescript.html
 == Request: /Resources/Base.lproj/advanced/000_advanced.html
 == Finishing Request: Resources/Base.lproj/advanced/000_advanced.html (0.01s)
@@ -416,7 +416,7 @@ Loaded extensions:
 == Finishing Request: Resources/Base.lproj/acknowledgements/license.html (0.01s)
    identical  Contents (build)/Resources/Base.lproj/acknowledgements/license.html
 == Request: /Resources/Base.lproj/acknowledgements/ack_opensource.html
-== Finishing Request: Resources/Base.lproj/acknowledgements/ack_opensource.html (0.04s)
+== Finishing Request: Resources/Base.lproj/acknowledgements/ack_opensource.html (0.02s)
    identical  Contents (build)/Resources/Base.lproj/acknowledgements/ack_opensource.html
 == Request: /Resources/Base.lproj/InfoPlist.strings
 == Finishing Request: Resources/Base.lproj/InfoPlist.strings (0.0s)
@@ -434,7 +434,7 @@ Loaded extensions:
 == Finishing Request: Resources/Base.lproj/reference/docu/docu-messages.html (0.01s)
    identical  Contents (build)/Resources/Base.lproj/reference/docu/docu-messages.html
 == Request: /Resources/Base.lproj/reference/docu/docu-options.html
-== Finishing Request: Resources/Base.lproj/reference/docu/docu-options.html (0.02s)
+== Finishing Request: Resources/Base.lproj/reference/docu/docu-options.html (0.04s)
    identical  Contents (build)/Resources/Base.lproj/reference/docu/docu-options.html
 == Request: /Resources/Base.lproj/reference/docu/docu-source-source.html
 == Finishing Request: Resources/Base.lproj/reference/docu/docu-source-source.html (0.01s)
@@ -452,10 +452,10 @@ Loaded extensions:
 == Finishing Request: Resources/Base.lproj/reference/docu/docu-toolbar.html (0.01s)
    identical  Contents (build)/Resources/Base.lproj/reference/docu/docu-toolbar.html
 == Request: /Resources/Base.lproj/reference/docu.html
-== Finishing Request: Resources/Base.lproj/reference/docu.html (0.02s)
+== Finishing Request: Resources/Base.lproj/reference/docu.html (0.01s)
    identical  Contents (build)/Resources/Base.lproj/reference/docu.html
 == Request: /Resources/Base.lproj/reference/menu/menu-application.html
-== Finishing Request: Resources/Base.lproj/reference/menu/menu-application.html (0.04s)
+== Finishing Request: Resources/Base.lproj/reference/menu/menu-application.html (0.01s)
    identical  Contents (build)/Resources/Base.lproj/reference/menu/menu-application.html
 == Request: /Resources/Base.lproj/reference/menu/menu-edit.html
 == Finishing Request: Resources/Base.lproj/reference/menu/menu-edit.html (0.01s)
@@ -476,10 +476,10 @@ Loaded extensions:
 == Finishing Request: Resources/Base.lproj/reference/menu.html (0.01s)
    identical  Contents (build)/Resources/Base.lproj/reference/menu.html
 == Request: /Resources/Base.lproj/reference/prefs/prefs-docappearance.html
-== Finishing Request: Resources/Base.lproj/reference/prefs/prefs-docappearance.html (0.01s)
+== Finishing Request: Resources/Base.lproj/reference/prefs/prefs-docappearance.html (0.03s)
    identical  Contents (build)/Resources/Base.lproj/reference/prefs/prefs-docappearance.html
 == Request: /Resources/Base.lproj/howto/doc/doc-save.html
-== Finishing Request: Resources/Base.lproj/howto/doc/doc-save.html (0.02s)
+== Finishing Request: Resources/Base.lproj/howto/doc/doc-save.html (0.01s)
    identical  Contents (build)/Resources/Base.lproj/howto/doc/doc-save.html
 == Request: /Resources/Base.lproj/reference/prefs/prefs-misc.html
 == Finishing Request: Resources/Base.lproj/reference/prefs/prefs-misc.html (0.01s)
@@ -494,13 +494,13 @@ Loaded extensions:
 == Finishing Request: Resources/Base.lproj/reference/prefs/prefs-updates.html (0.0s)
    identical  Contents (build)/Resources/Base.lproj/reference/prefs/prefs-updates.html
 == Request: /Resources/Base.lproj/reference/prefs.html
-== Finishing Request: Resources/Base.lproj/reference/prefs.html (0.02s)
+== Finishing Request: Resources/Base.lproj/reference/prefs.html (0.01s)
    identical  Contents (build)/Resources/Base.lproj/reference/prefs.html
 == Request: /Resources/Base.lproj/reference/tidyopts/missingoptions.html
 == Finishing Request: Resources/Base.lproj/reference/tidyopts/missingoptions.html (0.01s)
    identical  Contents (build)/Resources/Base.lproj/reference/tidyopts/missingoptions.html
 == Request: /Resources/Base.lproj/reference/tidyopts/tidyoptions.html
-== Finishing Request: Resources/Base.lproj/reference/tidyopts/tidyoptions.html (0.04s)
+== Finishing Request: Resources/Base.lproj/reference/tidyopts/tidyoptions.html (0.01s)
    identical  Contents (build)/Resources/Base.lproj/reference/tidyopts/tidyoptions.html
 == Request: /Resources/Base.lproj/reference/tidyopts.html
 == Finishing Request: Resources/Base.lproj/reference/tidyopts.html (0.01s)
@@ -518,7 +518,7 @@ Loaded extensions:
 == Finishing Request: Resources/Base.lproj/was_pages/doc-splitter.html (0.0s)
    identical  Contents (build)/Resources/Base.lproj/was_pages/doc-splitter.html
 == Request: /Resources/Base.lproj/was_pages/doc-tidy-options.html
-== Finishing Request: Resources/Base.lproj/was_pages/doc-tidy-options.html (0.0s)
+== Finishing Request: Resources/Base.lproj/was_pages/doc-tidy-options.html (0.03s)
    identical  Contents (build)/Resources/Base.lproj/was_pages/doc-tidy-options.html
 == Request: /Resources/Base.lproj/was_pages/doc-tidyd.html
 == Finishing Request: Resources/Base.lproj/was_pages/doc-tidyd.html (0.0s)
