@@ -272,7 +272,9 @@
 	if (![[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyIgnoreInputEncodingWhenOpening] boolValue])
 	{
 		self.encodingHelper = [[EncodingHelperController alloc] initWithNote:note fromDocument:self.document forView:self.sourceController.sourceTextView];
-
+#ifdef FEATURE_EMPHASIZE_HELPER
+		[self.window setAlphaValue:0.0f];
+#endif
 		[self.encodingHelper startHelper];
 	}
 }
@@ -666,6 +668,9 @@
 	{
 		self.messagesPanelIsVisible = YES;
 	}
+#ifdef FEATURE_EMPHASIZE_HELPER
+		[self.window setAlphaValue:0.0f];
+#endif
 	
 	[self.firstRunHelper beginFirstRunSequence];
 }

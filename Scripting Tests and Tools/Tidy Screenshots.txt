@@ -4,10 +4,6 @@
 --	Mac OS X UI Scripting capabilities in order to quickly and efficiently
 --	generate screenshots for the website, App Store, and help file.
 --
--- To get the "sparkle" versions of the Preferences, build
--- the pro target with FEATURE_FAKE_SPARKLE defined in
--- PreferencesDefinitions.h
---
 --	Created by: Jim Derry
 --	Created on: 04/12/14 13:41:11
 --
@@ -36,93 +32,61 @@ on run
 	------------------------
 	-- Get Saving Path
 	------------------------
-	-- try
-	-- set theBasePath to (POSIX path of (choose folder))
-	-- end try
-	
+	try
+		set theBasePath to (POSIX path of (choose folder))
+	end try
 	
 	
 	-----------------------------
-	-- Menus
-	-----------------------------
+	-- Document Window
+	-----------------------------	
+	set the_window_id to set_document_window_size(1152, 643)
 	
+	tell application "System Events"
+		tell process "Balthisar Tidy for Work"
+			tell window named "Sample Dirty Document.html"
+				tell table 1 of scroll area 1 of splitter group 1 of splitter group 1
+					UI elements
+					set focused to true
+					tell row 2 to set selected to true
+				end tell
+			end tell
+		end tell
+	end tell
+	
+	take_screenshot_window(the_window_id, (theBasePath & theMainWindowFilename), imageoptions)
+	
+	
+	-----------------------------
+	-- Preferences
+	-----------------------------
 	tell application "Balthisar Tidy for Work"
 		
-		activate
+		set preferencesWindowIsVisible to yes
 		
-		tell application "System Events"
-			keystroke "4" using {command down, shift down}
-			keystroke " "
-		end tell
+		set the_window_id to id of (front window)
 		
-		tell application "System Events"
-			tell process "Balthisar Tidy for Work"
-				tell menu bar 1
-					tell menu bar item "Balthisar Tidy for Work"
-						click
-					end tell
-				end tell
-			end tell
-		end tell
+		repeat with i from 1 to countOfPrefsWindowPanels
+			
+			set indexOfVisiblePrefsWindowPanel to i
+			
+			set theFileName to theBasePath & thePrefsWindowFilename & i
+			
+			if (countOfPrefsWindowPanels < 6) then
+				set theFileName to theFileName & thePrefsFilenameSuffixNoSparkle
+			end if
+			
+			set theFileName to theFileName & "." & (imagetype of imageoptions)
+			
+			tell me to take_screenshot_window(the_window_id, theFileName, imageoptions)
+			
+		end repeat
+		
+		set preferencesWindowIsVisible to no
 		
 	end tell
-	--do_menu("Balthisar Tidy for Work", "Balthisar Tidy for Work", "Quit Balthisar Tidy for Work")
-	
-	
 	
 end run
-
-
-on do_menu(app_name, menu_name, menu_item)
-	try
-		-- bring the target application to the front
-		tell application app_name
-			activate
-		end tell
-		tell application "System Events"
-			tell process app_name
-				tell menu bar 1
-					tell menu bar item menu_name
-						tell menu menu_name
-							click menu item menu_item
-						end tell
-					end tell
-				end tell
-			end tell
-		end tell
-		return true
-	on error error_message
-		return false
-	end try
-end do_menu
-
-on do_submenu(app_name, menu_name, menu_item, submenu_item)
-	try
-		-- bring the target application to the front
-		tell application app_name
-			activate
-		end tell
-		tell application "System Events"
-			tell process app_name
-				tell menu bar 1
-					tell menu bar item menu_name
-						tell menu menu_name
-							tell menu item menu_item
-								tell menu menu_item
-									click menu item submenu_item
-								end tell
-							end tell
-						end tell
-					end tell
-				end tell
-			end tell
-		end tell
-		return true
-	on error error_message
-		return false
-	end try
-end do_submenu
-
 
 
 ----------------------------------------------------------------

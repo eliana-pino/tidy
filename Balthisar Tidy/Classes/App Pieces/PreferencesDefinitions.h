@@ -120,8 +120,16 @@
 	#define FEATURE_SUPPORTS_SXS_DIFFS
 #endif
 
+
+/*
+	DEVELOPMENT definitions USED FOR SPECIAL DEVELOPMENT TASKS.
+ */
+
 /* FAKE Sparkle so Pro Version can use Applescript to take screenshots. */
 //#define FEATURE_FAKE_SPARKLE
+
+/* Make the document window transparent when the encoding helper starts. */
+//#define FEATURE_EMPHASIZE_HELPER
 
 
 #pragma mark - Other Definitions
