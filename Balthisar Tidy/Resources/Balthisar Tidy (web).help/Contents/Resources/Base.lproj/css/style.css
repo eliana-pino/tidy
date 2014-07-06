@@ -5,6 +5,7 @@
 /*
  * Corrects `block` display not defined in IE 8/9.
  */
+@import url(github.css);
 article,
 aside,
 details,
@@ -460,27 +461,27 @@ li {
 	restrain them from exceeding
 	their actual sizes.
  *************************************/
-img.maxW420px {
+.maxW420px {
   max-width: 420px;
 }
 
-img.maxW592px {
+.maxW592px {
   max-width: 592px;
 }
 
-img.maxW644px {
+.maxW644px {
   max-width: 644px;
 }
 
-img.maxW840px {
+.maxW840px {
   max-width: 840px;
 }
 
-img.maxW1660px {
+.maxW1660px {
   max-width: 1660px;
 }
 
-img.maxW2304px {
+.maxW2304px {
   max-width: 2304px;
 }
 
@@ -497,6 +498,9 @@ div.related_topics ul {
  *************************************/
 div.table_contents dl {
   margin: 1em;
+}
+div.table_contents dt {
+  margin-top: 3ex;
 }
 
 /*************************************
@@ -578,8 +582,8 @@ div.container-logo-medium > div:first-child {
   /* finally the user's block with a nice padding */
 }
 div.container-logo-medium > div:first-child img {
-  margin: 0 auto 1em auto;
-  width: 90%;
+  margin: 1.5ex auto 1.5ex auto;
+  width: 100%;
 }
 div.container-logo-medium > div:first-child > div:first-child {
   padding: 2em;
@@ -613,7 +617,7 @@ div.container-logo-medium > div:first-child + div > div:first-child + div h1 {
 	layout-logo-small styles
  *************************************/
 div.container-logo-small {
-  padding: 1em 2em 0 2em;
+  padding: 1em 2em 1em 2em;
   /* banner AND body text */
   /* This will be the related topics div */
 }
@@ -638,73 +642,16 @@ div.container-logo-small > div:first-child ~ div h1 {
 /*************************************
 	Other Block Level Elements
  *************************************/
+/* for displaying source code */
 pre {
   background-color: #eeeeee;
-  color: black;
   display: block;
-  padding-left: 20px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  margin-top: 10px;
-  margin-left: 2em;
-  margin-right: 2em;
-  font-size: 9pt;
+  margin: 2ex 2em 2ex 2em;
+  padding: 1em;
   font-family: Menlo, Courier, monospace;
 }
 
-div.steps {
-  padding: 1em 2em 1em 2em;
-  margin-top: 10px;
-  margin-right: 3em;
-  margin-left: 3em;
-  margin-bottom: 20px;
-  border: 1px solid #bfbfbf;
-  border-radius: 10px;
-}
-div.steps ul,
-div.steps ol {
-  padding-left: 1em;
-}
-div.steps ul li,
-div.steps ol li {
-  margin-bottom: 20px;
-}
-
-.split_article {
-  box-sizing: border-box;
-}
-.split_article > div {
-  float: left;
-  box-sizing: border-box;
-  padding: 1em;
-  width: 45%;
-}
-.split_article > div img {
-  display: block;
-  float: right;
-  width: 100%;
-}
-
-.split_steps_article {
-  box-sizing: border-box;
-}
-.split_steps_article > div {
-  float: left;
-  box-sizing: border-box;
-  padding: 1em;
-  width: 45%;
-}
-.split_steps_article > div img {
-  display: block;
-  margin: 0;
-  float: right;
-  width: 100%;
-}
-.split_steps_article > div + div {
-  border: 1px solid #bfbfbf;
-  border-radius: 10px;
-}
-
+/* for highlighting important information */
 .note {
   margin: 1em;
   padding: 1em;
@@ -712,266 +659,47 @@ div.steps ol li {
   border: 1px solid #eaeaea;
 }
 
-/*
-
-ORIGINAL
-
-
-code {
-	background-color: #eeeeee;
-	color: black;
-	display: block;
-	padding-left: 20px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	margin-top: 10px;
-	height: 1.8em;
-	font-size: 9pt;
-	font-family: Verdana, Courier, sans-serif;;
+/* a rounded container for showing things that are done step by step */
+div.steps {
+  margin: 0 0 3ex 0;
+  padding: 1em 2em 1em 2em;
+  border: 1px solid #bfbfbf;
+  border-radius: 10px;
+}
+div.steps ul,
+div.steps ol {
+  margin-left: 2em;
+}
+div.steps ul:first-child,
+div.steps ol:first-child {
+  margin-left: 1em;
 }
 
-#banner {
-	background-color: #f2f2f2;
-	background-repeat: no-repeat;
-	position: fixed;
-	top: 0;
-	left: 0;
-	min-width: 600px;
-	width: 100%;
-	height: 25px;
-	border-bottom: solid 1px #bfbfbf;
-	white-space: nowrap;
+/* indented left and right version of the container */
+div.steps.narrow {
+  margin-left: 3em;
+  margin-right: 3em;
 }
 
-#banner div {
-	font-size: 8pt;
-	float: left;
-	width: auto;
-	height: 20px;
-	padding-top: 5px;
-	padding-left: 15px;
-	padding-right: 15px;
-	border-right: solid 1px #bfbfbf;
-	white-space: nowrap;
+/* image_article */
+div.image_article {
+  margin-top: 1.5ex;
+}
+div.image_article > div:first-child {
+  float: left;
+  width: 45%;
+  margin: 0 1em 0 0;
+}
+div.image_article > div:first-child > img {
+  margin-top: 0 !important;
+}
+div.image_article ul,
+div.image_article ol {
+  list-style-position: inside;
 }
 
-#banner div + div:last-child {
-	float: right;
-	border-right: 0;
-	border-left: solid 1px #bfbfbf;
+div.image_article:after {
+  content: "";
+  display: table;
+  clear: both;
 }
-
-#breadcrumb {
-	width: 100%;
-	background: #eee none;
-}
-
-#breadcrumb ul {
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
-}
-
-#breadcrumb li {
-	margin: 0;
-	padding-right: 1em;
-	float: left;
-	}
-
-#breadcrumb li:before {
-	content: ">";
-}
-
-#container {
-	margin-top: 40px;
-	min-height: 200px;
-	padding-right: 6px;
-}
-
-#logo {
-	margin-top: 3px;
-	margin-bottom: 15px;
-	margin-right: 10px;
-	float: left;
-}
-
-#title {
-	margin-left: 10px;
-	float: left;
-}
-
-#title h1 {
-	margin-left: 50px;
-	margin-top: 0px;
-	padding-left: 10px;
-}
-
-#content {
-	clear: left;
-}
-
-#seealso h2 {
-	margin-top: 10px;
-	margin-bottom: 10px;
-	color: #5c5c5c;
-	text-decoration: none;
-}
-
-#seealso a {
-	display: block;
-	margin-left: 20px;
-	height: 1.2em;
-}
-
-
-#footer {
-	float: left;
-	clear: both;
-	width: 100%;
-	margin-top: 20px;
-	border-top: solid 1px #bfbfbf;
-}
-
-#footer p {
-	text-align: center;
-	font-size: 8pt;
-}
-
-
-
-
-a
-{
-	text-decoration: none;
-	font-weight: bold;
-	font-size: 1.05em;
-	color: rgb(99,136,193);
-}
-
-a:visited
-{
-	color: rgb(151,145,186);
-}
-
-a:hover
-{
-	text-decoration: underline;
-}
-
-hr
-{
-	text-decoration: none;
-	border: none;
-	border-bottom: 1px solid #bfbfbf;
-}
-
-
-
-div#start-logo-area
-{
-	box-sizing: border-box;
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 22em;
-	margin: 0;
-	padding: 1em 0 0 0;
-}
-
-div#start-logo-area > div
-{
-	width: 100%;
-	margin: 0;
-	padding: 0;
-	text-align: center;
-}
-
-div#start-logo-area > div > img
-{
-	width: 75%;
-	margin: 0 auto;
-}
-
-
-div#start-content-area
-{
-	box-sizing: border-box;
-	padding-top: 1em;
-	padding-right: 1em;
-	padding-left: 1em;
-	position: absolute;
-	top: 0;
-	left: 22em;
-	border-left: 1px solid #bfbfbf;
-}
-
-dl dd
-{
-	padding-top: 1ex;
-	padding-bottom: 2ex;
-}
-
-
-
-div.topics_lists ul
-{
-	list-style: none;
-	padding-left: 1em;
-}
-
-div.topics_lists ul li
-{
-	margin-bottom: 10px;
-	margin-top: 10px;
-}
-
-
-div.center-content
-{
-	overflow: hidden;
-}
-
-div.center-content:after
-{
-	visibility: hidden;
-	display: block;
-	font-size: 0;
-	content: " ";
-	clear: both;
-	height: 0;
-}
-
-div.center-content > div
-{
-	float: left;
-	position: relative;
-	left: 50%;
-}
-
-div.center-content > div > div
-{
-	float: left;
-	position: relative;
-	left: -50%;
-}
-
-div.center-content > div > div > img
-{
-	max-width: 100%;
-}
-
-
-img.top-adorn
-{
-	width: 100px;
-	float: right;
-}
-
-img.top-icon
-{
-	width: 24px;
-	padding: 0 1em 0 0;
-	float: left;
-}
-
-*/
