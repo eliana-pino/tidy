@@ -197,11 +197,12 @@ BEGIN {
 		ENV['feature_sparkle']              = (localTarget == "web") ? "yes" : "no"
 		ENV['feature_exports_config']       = (localTarget == "pro") ? "yes" : "no"
 		ENV['feature_supports_applescript'] = (localTarget == "pro") ? "yes" : "no"
-		ENV['feature_supports_service']     = (localTarget == "pro") ? "yes" : "no"
-		ENV['feature_supports_extensions']  = (localTarget == "pro") ? "yes" : "no"
-		ENV['feature_supports_diffs']       = (localTarget == "pro") ? "yes" : "no"
-		ENV['feature_supports_SxS_diffs']   = (localTarget == "pro") ? "yes" : "no"
-		ENV['feature_supports_validation']  = (localTarget == "pro") ? "yes" : "no"
+		ENV['feature_supports_diffs']       = "no" # will be implemented for ALL
+		ENV['feature_supports_preview']     = "no" # will be implemented for ALL
+		ENV['feature_supports_extensions']  = "no" # (localTarget == "pro") ? "yes" : "no"
+		ENV['feature_supports_service']     = "no" # (localTarget == "pro") ? "yes" : "no"
+		ENV['feature_supports_SxS_diffs']   = "no" # (localTarget == "pro") ? "yes" : "no"
+		ENV['feature_supports_validation']  = "no" # (localTarget == "pro") ? "yes" : "no"
 
 
 		#--------------------------------------------

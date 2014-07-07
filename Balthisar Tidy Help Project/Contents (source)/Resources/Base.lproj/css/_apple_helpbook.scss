@@ -130,6 +130,10 @@ li
 	margin: 0.8ex 0 0.8ex 0;
 }
 
+/* fix for FireFox, apparently */
+li p { display: inline; }
+
+
 
 /*************************************
   IMAGE CONSTRAINTS
@@ -140,10 +144,17 @@ li
 	their actual sizes.
  *************************************/
 
+.maxW64px { max-width: 64px; }
+.maxW214px { max-width: 214px; }
+.maxW215px { max-width: 215px; }
+.maxW235px { max-width: 235px; }
+.maxW301px { max-width: 301px; }
 .maxW420px { max-width: 420px; }
 .maxW592px { max-width: 592px; }
 .maxW644px { max-width: 644px; }
 .maxW840px { max-width: 840px; }
+.maxW851px { max-width: 851px; }
+.maxW1152px { max-width: 1152px; }
 .maxW1660px { max-width: 1660px; }
 .maxW2304px { max-width: 2304px; }
 
@@ -173,6 +184,29 @@ div.table_contents
 	dt
 	{
 		margin-top: $interMargins * 2;
+	}
+}
+
+/*************************************
+	yield-content settings
+ *************************************/
+div.yield-content
+{
+	h1,
+	{
+		margin-bottom: $interMargins;
+	}
+
+	h2,
+	h3,
+	{
+		margin-top: ($interMargins / 1);
+		margin-bottom: ($interMargins / 2);
+	}
+	p
+	{
+		margin-top: ($interMargins / 2);
+		margin-bottom: ($interMargins / 2);
 	}
 }
 

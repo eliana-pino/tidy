@@ -4,6 +4,8 @@ blurb: Read this quick lesson to learn how <em>Balthisar Tidy</em> can show you
        a preview of the Tidy’d version of your document.
 layout: template-logo-medium
 order: 11
+target:
+ - feature_supports_preview
 ---
 <% content_for :relatedTopics do %>
 <%= partial "related_topics.html" %>
@@ -11,7 +13,11 @@ order: 11
 <%= partial 'markdown-links' %>
 <%= partial 'markdown-images' %>
 
+<% if boolENV('feature_supports_preview') %>
+
 <%= current_page.data.title %>
 ==============================
 
 EMPTY
+
+<% end %>
