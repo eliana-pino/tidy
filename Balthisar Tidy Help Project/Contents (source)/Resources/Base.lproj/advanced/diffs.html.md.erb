@@ -7,12 +7,10 @@ order: 5
 target:
  - feature_supports_SxS_diffs
 ---
+<%= partial 'markdown-links' %>
+<%= partial 'markdown-images' %>
 
 <% if boolENV('feature_supports_SxS_diffs') %>
-
-<% content_for :relatedTopics do %>
-<%= partial "related_topics.html" %>
-<% end %>
 
 <%= current_page.data.title %>
 ==============================

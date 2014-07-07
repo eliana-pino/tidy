@@ -18,11 +18,12 @@
 				<h1>Balthisar Tidy Help</h1>
 				<a href="http://www.balthisar.com/software/tidy">www.balthisar.com/software/tidy</a>
 			</div>
-        	<% if content_for?(:relatedTopics) %>
+        	<% if content_for?(:seeAlso) %>
 			<div class="related_topics">
-				<%= yield_content :relatedTopics %>
+    			<h1>See Also</h1>
+				<%= yield_content :seeAlso %>
 			</div>
-		    <% end %>
+			<% end %>
 		</div>
 
 		<div>

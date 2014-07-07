@@ -486,6 +486,14 @@ li p {
   max-width: 301px;
 }
 
+.maxW350px {
+  max-width: 350px;
+}
+
+.maxW384px {
+  max-width: 384px;
+}
+
 .maxW420px {
   max-width: 420px;
 }
@@ -508,6 +516,10 @@ li p {
 
 .maxW1152px {
   max-width: 1152px;
+}
+
+.maxW1266px {
+  max-width: 1266px;
 }
 
 .maxW1660px {

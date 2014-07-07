@@ -1,7 +1,5 @@
-<%
-pages = (defined? group) ? pages_related_to(group) : related_pages
-if !pages.to_a.empty?
-%>
+<% pages = (defined? group) ? pages_related_to(group) : related_pages %>
+<% if !pages.to_a.empty? %>
 <div class="table_contents" markdown="0">
     <dl>
     <% pages.each do |p| %>

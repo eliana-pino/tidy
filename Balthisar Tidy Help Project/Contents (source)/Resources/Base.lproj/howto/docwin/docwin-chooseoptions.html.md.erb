@@ -5,16 +5,15 @@ blurb: There are hundreds of different ways to fix and Tidy your files. Learn
 layout: template-logo-medium
 order: 01
 ---
-<% content_for :relatedTopics do %>
-<%= partial "related_topics.html" %>
-<h1>See also</h1>
-<ul class="related_topics">
-<li><a href="../../reference/prefs/prefs-tidyoptions.html">Reference: Default Tidy Options</a></li>
-</ul>
-<% end %>
 <%= partial 'markdown-links' %>
 <%= partial 'markdown-images' %>
 
+<% content_for :seeAlso do %>
+<ul>
+    <li><a href="../../reference/prefs/prefs-tidyoptions.html">Reference: Default Tidy Options</a></li>
+    <li><a href="../options.html">How do I work with the Tidy Options Panel?</a></li>
+</ul>
+<% end %>
 
 <%= current_page.data.title %>
 ==============================

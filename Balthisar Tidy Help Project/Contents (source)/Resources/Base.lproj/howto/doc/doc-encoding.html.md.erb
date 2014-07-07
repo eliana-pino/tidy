@@ -5,16 +5,13 @@ blurb: You may be surprised by the file encoding helper. You won’t be afraid
 layout: template-logo-medium
 order: 3
 ---
-<% content_for :relatedTopics do %>
-<%= partial "related_topics.html" %>
-<% end %>
 <%= partial 'markdown-links' %>
 <%= partial 'markdown-images' %>
 
 <%= current_page.data.title %>
 ==============================
 
-When *Balthisar Tidy* opens a document, it tries to use the Tidy option
+When _Balthisar Tidy_ opens a document, it tries to use the Tidy option
 `input-encoding` in [Preferences][prefs-tidyoptions]. The typical
 modern practice is to use UTF-8 encoding for all files, however there are many
 legacy file encoding formats from different countries and different

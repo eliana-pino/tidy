@@ -8,12 +8,10 @@ order: 3
 target:
  - feature_supports_extensions
 ---
+<%= partial 'markdown-links' %>
+<%= partial 'markdown-images' %>
 
 <% if boolENV('feature_supports_extensions') %>
-
-<% content_for :relatedTopics do %>
-<%= partial "related_topics.html" %>
-<% end %>
 
 <%= current_page.data.title %>
 ==============================

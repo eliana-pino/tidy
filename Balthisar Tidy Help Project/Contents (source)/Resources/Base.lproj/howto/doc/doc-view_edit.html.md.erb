@@ -4,16 +4,15 @@ blurb: Learn the basics of viewing and editing the Source HTML in this lesson.
 layout: template-logo-medium
 order: 5
 ---
-<% content_for :relatedTopics do %>
-<%= partial "related_topics.html" %>
-<h1>See also</h1>
-<ul>
-<li><a href="../../reference/docu/docu-sourcearea.html">Reference: Source Area</a></li>
-<li><a href="../../reference/prefs/prefs-docappearance.html">Reference: Document Appearance</a></li>
-</ul>
-<% end %>
 <%= partial 'markdown-links' %>
 <%= partial 'markdown-images' %>
+
+<% content_for :seeAlso do %>
+<ul>
+    <li><a href="../../reference/docu/docu-sourcearea.html">Reference: Source Area</a></li>
+    <li><a href="../../reference/prefs/prefs-docappearance.html">Reference: Document Appearance</a></li>
+</ul>
+<% end %>
 
 <%= current_page.data.title %>
 ==============================

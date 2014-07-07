@@ -7,12 +7,10 @@ order: 4
 target:
  - feature_exports_config
 ---
+<%= partial 'markdown-links' %>
+<%= partial 'markdown-images' %>
 
 <% if boolENV('feature_exports_config') %>
-
-<% content_for :relatedTopics do %>
-<%= partial "related_topics.html" %>
-<% end %>
 
 <%= current_page.data.title %>
 ==============================

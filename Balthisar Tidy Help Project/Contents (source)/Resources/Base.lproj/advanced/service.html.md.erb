@@ -7,12 +7,10 @@ order: 2
 target:
  - feature_supports_service
 ---
+<%= partial 'markdown-links' %>
+<%= partial 'markdown-images' %>
 
 <% if boolENV('feature_supports_service') %>
-
-<% content_for :relatedTopics do %>
-<%= partial "related_topics.html" %>
-<% end %>
 
 <%= current_page.data.title %>
 ==============================

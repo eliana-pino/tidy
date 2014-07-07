@@ -6,9 +6,8 @@ blurb: <em>Balthisar Tidy</em>em is open source, and you can help its
 layout: template-logo-medium
 order: 3
 ---
-<% content_for :relatedTopics do %>
-<%= partial "related_topics.html" %>
-<% end %>
+<%= partial 'markdown-links' %>
+<%= partial 'markdown-images' %>
 
 <%= current_page.data.title %>
 ==============================

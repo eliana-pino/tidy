@@ -4,15 +4,14 @@ blurb: Learn how to save a file with this lesson. You may be surprised!
 layout: template-logo-medium
 order: 8
 ---
-<% content_for :relatedTopics do %>
-<%= partial "related_topics.html" %>
-<h1>See also</h1>
-<ul>
-<li><a href="../../reference/prefs/prefs-filesaving.html">Reference: File Saving Preferences</a></li>
-</ul>
-<% end %>
 <%= partial 'markdown-links' %>
 <%= partial 'markdown-images' %>
+
+<% content_for :seeAlso do %>
+<ul>
+    <li><a href="../../reference/prefs/prefs-filesaving.html">Reference: File Saving Preferences</a></li>
+</ul>
+<% end %>
 
 <%= current_page.data.title %>
 ==============================
