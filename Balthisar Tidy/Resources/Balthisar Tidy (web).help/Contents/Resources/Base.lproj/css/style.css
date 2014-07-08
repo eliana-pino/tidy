@@ -459,14 +459,6 @@ li p {
 }
 
 /*************************************
-  IMAGE CONSTRAINTS
-	We use a lot of 100% width images
-	in order to have them fit their
-	containers, but we also want to
-	restrain them from exceeding
-	their actual sizes.
- *************************************/
-/*************************************
 	related_topics
  *************************************/
 div.related_topics ul {
