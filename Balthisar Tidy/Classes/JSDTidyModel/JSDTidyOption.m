@@ -35,11 +35,20 @@
 
 @implementation JSDTidyOption
 
+#pragma mark - iVars
+
+BOOL initedBuiltInCategory; /* speed optimization for one-time loading */
 
 #pragma mark - iVar Synthesis
 
 @synthesize name        = _name;
 @synthesize optionValue = _optionValue;
+
+/* One-time loading of these */
+@synthesize localizedHumanReadableName = _localizedHumanReadableName;
+@synthesize localizedHumanReadableDescription = _localizedHumanReadableDescription;
+@synthesize localizedHumanReadableCategory = _localizedHumanReadableCategory;
+@synthesize builtInCategory = _builtInCategory;
 
 #pragma mark - Initialization and Deallocation
 
@@ -76,6 +85,7 @@
 		_name               = name;
 		_optionIsHeader     = NO;
 		_optionIsSuppressed = NO;
+		initedBuiltInCategory = NO;
 
 		if (self.optionId == TidyUnknownOption)
 		{
@@ -241,7 +251,11 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSString*)localizedHumanReadableName
 {
-	return NSLocalizedStringFromTable(([NSString stringWithFormat:@"tag-%@", _name]), @"JSDTidyModel" ,nil);
+	if (!_localizedHumanReadableName)
+	{
+		_localizedHumanReadableName = NSLocalizedStringFromTable(([NSString stringWithFormat:@"tag-%@", _name]), @"JSDTidyModel" ,nil);
+	}
+	return _localizedHumanReadableName;
 }
 
 
@@ -250,37 +264,38 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSAttributedString*)localizedHumanReadableDescription
 {
-	// parentheses around brackets required lest preprocessor get confused.
-	NSString *rawString = NSLocalizedStringFromTable(([NSString stringWithFormat:@"description-%@", _name]), @"JSDTidyModel", nil);
-	
-	NSAttributedString *outString;
-	
-	/*
-		RTF can be a little complex due to legacy string encoding issues.
-		When JSDTidy is internationalized, RTF might not play nicely with
-		non-Mac character encodings. Prefixing the .plist strings with an
-		asterisk will cause the automatic conversion to and from RTF,
-		otherwise the strings will be treated normally (this maintains
-		string compatability with `NSLocalizedString`).
-	 */
-	if ([rawString hasPrefix:@"*"])
+	if (!_localizedHumanReadableDescription)
 	{
-		/* Make into RTF string. */
+		// parentheses around brackets required lest preprocessor get confused.
+		NSString *rawString = NSLocalizedStringFromTable(([NSString stringWithFormat:@"description-%@", _name]), @"JSDTidyModel", nil);
+		
+		/*
+			RTF can be a little complex due to legacy string encoding issues.
+			When JSDTidy is internationalized, RTF might not play nicely with
+			non-Mac character encodings. Prefixing the .plist strings with an
+			asterisk will cause the automatic conversion to and from RTF,
+			otherwise the strings will be treated normally (this maintains
+			string compatability with `NSLocalizedString`).
+		 */
+		if ([rawString hasPrefix:@"*"])
+		{
+			/* Make into RTF string. */
 
-		rawString = [[@"{\\rtf1\\mac\\deff0{\\fonttbl{\\f0 Consolas;}{\\f1 Lucida Grande;}}\\f1\\fs22\\qj\\sa100" stringByAppendingString:[rawString substringFromIndex:1]] stringByAppendingString:@"}"];
+			rawString = [[@"{\\rtf1\\mac\\deff0{\\fonttbl{\\f0 Consolas;}{\\f1 Lucida Grande;}}\\f1\\fs22\\qj\\sa100" stringByAppendingString:[rawString substringFromIndex:1]] stringByAppendingString:@"}"];
 
-		NSData *rawData = [rawString dataUsingEncoding:NSMacOSRomanStringEncoding];
+			NSData *rawData = [rawString dataUsingEncoding:NSMacOSRomanStringEncoding];
 
-		outString = [[NSAttributedString alloc] initWithRTF:rawData documentAttributes:nil];
+			_localizedHumanReadableDescription = [[NSAttributedString alloc] initWithRTF:rawData documentAttributes:nil];
+		}
+		else
+		{
+			/* Use the string as-is. */
+
+			_localizedHumanReadableDescription = [[NSAttributedString alloc] initWithString:rawString];
+		}
 	}
-	else
-	{
-		/* Use the string as-is. */
 
-		outString = [[NSAttributedString alloc] initWithString:rawString];
-	}
-	
-	return outString;
+	return _localizedHumanReadableDescription;
 }
 
 
@@ -289,7 +304,11 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSString*)localizedHumanReadableCategory
 {
-	return NSLocalizedStringFromTable(([NSString stringWithFormat:@"category-%u", self.builtInCategory]), @"JSDTidyModel", nil);
+	if (!_localizedHumanReadableCategory)
+	{
+		_localizedHumanReadableCategory = NSLocalizedStringFromTable(([NSString stringWithFormat:@"category-%u", self.builtInCategory]), @"JSDTidyModel", nil);
+	}
+	return _localizedHumanReadableCategory;
 }
 
 
@@ -551,7 +570,13 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (TidyConfigCategory)builtInCategory
 {
-	return tidyOptGetCategory( [self createTidyOptionInstance:self.optionId] );
+	if ( !initedBuiltInCategory )
+	{
+		_builtInCategory = tidyOptGetCategory( [self createTidyOptionInstance:self.optionId] );
+		initedBuiltInCategory = YES;
+	}
+	
+	return _builtInCategory;
 }
 
 

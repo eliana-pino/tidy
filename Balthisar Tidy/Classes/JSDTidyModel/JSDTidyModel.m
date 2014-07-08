@@ -819,6 +819,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	{
 		if (_optionsInUse)
 		{
+			/* Supress the items in tidyOptions that are not in _optionsInUse */
 			localOption.optionIsSuppressed = [@([_optionsInUse indexOfObject:localOption.name] == NSNotFound) boolValue];
 		}
 		else
