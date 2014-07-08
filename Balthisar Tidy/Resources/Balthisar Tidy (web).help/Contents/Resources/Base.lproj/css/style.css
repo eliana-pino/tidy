@@ -466,8 +466,20 @@ li p {
 	restrain them from exceeding
 	their actual sizes.
  *************************************/
+.maxW21px {
+  max-width: 21px;
+}
+
+.maxW24px {
+  max-width: 24px;
+}
+
 .maxW64px {
   max-width: 64px;
+}
+
+.maxW72px {
+  max-width: 72px;
 }
 
 .maxW214px {
@@ -478,12 +490,24 @@ li p {
   max-width: 215px;
 }
 
+.maxW216px {
+  max-width: 216px;
+}
+
 .maxW235px {
   max-width: 235px;
 }
 
+.maxW292px {
+  max-width: 292px;
+}
+
 .maxW301px {
   max-width: 301px;
+}
+
+.maxW314px {
+  max-width: 314px;
 }
 
 .maxW350px {
@@ -492,6 +516,10 @@ li p {
 
 .maxW384px {
   max-width: 384px;
+}
+
+.maxW390px {
+  max-width: 390px;
 }
 
 .maxW420px {

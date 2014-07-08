@@ -11,4 +11,28 @@ order: 3
 <%= current_page.data.title %>
 ==============================
 
-EMPTY
+_Balthisar Tidy_ lets you choose several options to help you balance its
+beautiful appearance with your productivity. Follow this series of steps to
+discover some ways you can change the appearance of the **Tidy Options** panel.
+
+<div class="steps" markdown="1">
+
+1. You can choose **Show friendly option names** and choose **Show options in
+   groups** using the menu at the bottom of the **Tidy Options** panel.
+   <% if boolENV('feature_exports_config') %>
+   ![menu][context-options-pro]{: .maxW314px }
+   <% else %>
+   ![menu][context-options]{: .maxW292px }
+   <% end %>
+   Choosing these options affects only the current window.
+
+2. You can choose default behaviour for new windows in [Preferences][prefs-tidyappearance].
+   In addition to the options above, Preferences gives you control over the
+   hover effect used in the **Tidy Options** list, the row appearance, and more.
+   <% if boolENV('feature_sparkle') %>
+   ![prefs][tidy-prefs-02]{: .maxW390px }
+   <% else %>
+   ![prefs][tidy-prefs-02-ns]{: .maxW390px }
+   <% end %>
+
+</div>

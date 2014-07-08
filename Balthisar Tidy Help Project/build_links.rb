@@ -4,18 +4,10 @@
 # build_links.rb
 #   This will look for .erb files in the Contents (source)/Resources
 #   directory and dump it to standard out.
-#
-#
-# Usage:
-#    build_help web
-#    build_help app
-#    build_help pro
-#    build_help all
 ###############################################################################
 
 require 'fileutils'
 require 'pathname'
-require 'yaml'
 
 filesArray = []
 longestShortcut = 0
