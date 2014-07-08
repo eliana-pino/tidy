@@ -13,49 +13,53 @@ order: 4
 ==============================
 
 _Balthisar Tidy_ Tidy’s the text according to a broad set of options which are
-found in the ”Tidy Options” pane.
+found in the **Tidy Options** panel. These options affect how Tidy cleans,
+corrects errors, formats, and identifies accessability issues in your code.
 
-<div class="split_article" markdown="1">
+<div class="image_article" markdown="1">
 
-![tidy options panel][doc-tidy-options]
-
-Tidy offers several options for cleaning HTML, correcting errors,
-identifying accessibility issues, and more.
+<div markdown="span">![tidy options panel][docpart-tidyoptions]</div>
 
 If you select any of the Tidy options, a description of that option
-appears at the bottom of the Tidy Options panel.
+appears at the bottom of the **Tidy Options** panel.
 
-If you don’t care to see the description for any of the options, you can
-hide it completely using the show and hide button at the bottom left
+If you prefer not to see the description (e.g., to save screen space) then
+you can hide it completely using the show and hide button at the bottom left
 hand side of the list.
 
 Finally, at the bottom of the options panel is an action button with
 several choices that can help you work more effectively with Tidy’s
 options.
 
-**Reset options to defaults in Preferences…**
-:   This action is available in Tidy document windows, and when used it
-    will change all of the Tidy options in the current document back to
-    the settings that are stored in Preferences. This may be helpful if
-    you’ve been making many options changes and simply want to revert
-    back to the defaults.
-**Save these option settings to Preferences…**
-:   This action is available in Tidy document windows, and when used it
-    will set the Tidy options in Preferences for you. This may be
-    helpful when you’ve been making many options changes in pursuit of
-    the “perfect settings.” Once you’re happy with the results, you can
-    store them in Preferences very, very easily.
-**Reset options to factory defaults…**
-:   This action is available in the Tidy Preferences window, and will
-    restore all of the Preferences options settings back to whatever the
-    factory default values happened to be. You may want to use this
-    option in order to return to a clean slate after experimenting with
-    features.
-**Show friendly option names**
-:   This action is available in Tidy document windows and in the Tidy
-    preferences window. Normally *Balthisar Tidy* displays the Unix Tidy
-    option names so that experienced Tidy users can identify their
-    favorite options right away. When friendly names are enabled,
-    *Balthisar Tidy* shows more human-friendly names for the options.
-    This is particularly useful if you’re using a non-English version of
-    *Balthisar Tidy* because the Unix names are English only.</div>
+<% if boolENV('feature_exports_config') %>
+![context menu][context-options-pro]
+<% else %>
+![context menu][context-options]
+<% end %>
+
+
+[Reset options to defaults in Preferences][options-revertdefault]
+ : This  will change all of the Tidy options in the current document back to
+   the settings that are stored in Preferences.
+
+[Save these option settings to Preferences][options-makedefault]
+ : This action will set the Tidy options in Preferences for you.
+
+[Show friendly option names][options-appearance]
+ : This action will toggle the use of friendly option names on and off. Normally
+   *Balthisar Tidy* displays the Unix Tidy option names so that experienced Tidy
+   users can identify their favorite options right away. When friendly names are
+   enabled, *Balthisar Tidy* shows more human-friendly names for the options.
+   This is particularly useful if you’re using a non-English version of
+   *Balthisar Tidy* because the Unix names are English only.
+
+[Show options in groups][options-group]
+ : This action toggles between showing Tidy options organized into logical
+   groups or Tidy options sorted in your language’s natural order.
+
+<% if boolENV('feature_exports_config') %>
+[Export a Unix config file with these options…][export_config]
+ : Use this action to export the options in the current window into a file
+   suitable for use with command line Tidy.
+
+<% end %>

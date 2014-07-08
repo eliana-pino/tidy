@@ -15,8 +15,36 @@
 	            
 <h1 id="the-tidy-messages-table">The Tidy Messages Table</h1>
 
-<p>EMPTY</p>
+<p>The <strong>Tidy Messages</strong> table is your best resource for understanding the actions
+that <em>Balthisar Tidy</em> performed on your document. As shown below, it consists of
+one or more rows of information, divided into multiple columns of data. As a
+standard Mac OS X table, the columns can be sorted, repositioned, and resized.</p>
 
+<p><img alt="messages" src="../../images/docpart-messages.png" /></p>
+
+<dl>
+  <dt><strong>Severity</strong></dt>
+  <dd>The severity indicates the general type of condition that <em>Balthisar Tidy</em>
+encountered, and can be one of the following types.
+
+    <ul>
+      <li><em>Information</em> presents general information.</li>
+      <li><em>Warning</em> indicates that something isn’t an error, but most likely a serious problem anyway.</li>
+      <li><em>Configuration</em> indicates a configuration problem, and should be very rare in <em>Balthisar Tidy</em>.</li>
+      <li><em>Access</em> messages are given when accessability issues are discovered.</li>
+      <li><em>Error</em> messages indicate that the source violates a specification or uses unsupported features.</li>
+      <li><em>Document</em> indicates that the issue is related to something in the document structure.</li>
+      <li><em>PANIC!</em> indicates the Tidy had an internal error, and you should file a bug report if encountered.</li>
+    </ul>
+  </dd>
+  <dt><strong>Location</strong></dt>
+  <dd>The location, if present, indicates the row and column position in the Source
+HTML of the cause of the message. Selecting a row in the table will move the
+Source HTML editor to this location automatically, and highlight the location
+for you.</dd>
+  <dt><strong>Message Description</strong></dt>
+  <dd>The description describes the condition that was found.</dd>
+</dl>
 
 	        </div>
 		</div>
