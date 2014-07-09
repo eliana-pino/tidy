@@ -682,6 +682,9 @@ div.image_article > div:first-child {
 div.image_article > div:first-child > img {
   margin-top: 0 !important;
 }
+div.image_article.narrow > div:first-child {
+  width: 10%;
+}
 div.image_article ul,
 div.image_article ol {
   list-style-position: inside;
@@ -707,6 +710,10 @@ img[src$='tidy-prefs-02@2x.png'] {
 
 img[src$='save-save-warning.png'] {
   max-width: 512px;
+}
+
+img[src$='tbb-defaultset.png'] {
+  max-width: 548px;
 }
 
 img[src$='tidy-prefs-02-ns@2x.png'] {
@@ -745,6 +752,14 @@ img[src$='tidy-prefs-04-ns@2x.png'] {
   max-width: 780px;
 }
 
+img[src$='tbb-flexspace.png'] {
+  max-width: 106px;
+}
+
+img[src$='tbb-space.png'] {
+  max-width: 106px;
+}
+
 img[src$='tidy-prefs-02.png'] {
   max-width: 390px;
 }
@@ -755,6 +770,10 @@ img[src$='menu-main-root-pro.png'] {
 
 img[src$='context-options-pro.png'] {
   max-width: 314px;
+}
+
+img[src$='tbb-defaultset@2x.png'] {
+  max-width: 1094px;
 }
 
 img[src$='context-options-prefs.png'] {
@@ -769,12 +788,24 @@ img[src$='menu-view@2x.png'] {
   max-width: 470px;
 }
 
+img[src$='tbb-print.png'] {
+  max-width: 106px;
+}
+
 img[src$='tidy-prefs-01.png'] {
   max-width: 390px;
 }
 
+img[src$='tbb-help.png'] {
+  max-width: 54px;
+}
+
 img[src$='tidy-prefs-06@2x.png'] {
   max-width: 780px;
+}
+
+img[src$='tbb-options@2x.png'] {
+  max-width: 212px;
 }
 
 img[src$='tidy-prefs-03.png'] {
@@ -789,8 +820,24 @@ img[src$='save-save-warning@2x.png'] {
   max-width: 1024px;
 }
 
+img[src$='tbb-print@2x.png'] {
+  max-width: 212px;
+}
+
+img[src$='tbb-flexspace@2x.png'] {
+  max-width: 212px;
+}
+
 img[src$='menu-window.png'] {
   max-width: 205px;
+}
+
+img[src$='tbb-messages.png'] {
+  max-width: 106px;
+}
+
+img[src$='tbb-prefs@2x.png'] {
+  max-width: 212px;
 }
 
 img[src$='menu-window@2x.png'] {
@@ -807,6 +854,10 @@ img[src$='tidy-prefs-03-ns.png'] {
 
 img[src$='context-options-prefs-pro@2x.png'] {
   max-width: 628px;
+}
+
+img[src$='tbb-orient@2x.png'] {
+  max-width: 212px;
 }
 
 img[src$='menu-main-root-pro@2x.png'] {
@@ -837,6 +888,14 @@ img[src$='tidy-prefs-05.png'] {
   max-width: 390px;
 }
 
+img[src$='tbb-orient.png'] {
+  max-width: 106px;
+}
+
+img[src$='tbb-options.png'] {
+  max-width: 106px;
+}
+
 img[src$='menu-application@2x.png'] {
   max-width: 474px;
 }
@@ -853,12 +912,20 @@ img[src$='encoding-helper.png'] {
   max-width: 608px;
 }
 
+img[src$='tbb-prefs.png'] {
+  max-width: 106px;
+}
+
 img[src$='context-toolbar@2x.png'] {
   max-width: 432px;
 }
 
 img[src$='tidy-prefs-05@2x.png'] {
   max-width: 780px;
+}
+
+img[src$='tbb-space@2x.png'] {
+  max-width: 212px;
 }
 
 img[src$='context-toolbar.png'] {
@@ -905,6 +972,10 @@ img[src$='tidy-prefs-03@2x.png'] {
   max-width: 780px;
 }
 
+img[src$='tbb-help@2x.png'] {
+  max-width: 108px;
+}
+
 img[src$='tidy-prefs-05-ns@2x.png'] {
   max-width: 780px;
 }
@@ -921,6 +992,10 @@ img[src$='context-options-prefs-pro.png'] {
   max-width: 314px;
 }
 
+img[src$='tbb-messages@2x.png'] {
+  max-width: 212px;
+}
+
 img[src$='menu-view.png'] {
   max-width: 235px;
 }
@@ -931,6 +1006,10 @@ img[src$='tidy-main-window@2x.png'] {
 
 img[src$='tidy-prefs-01@2x.png'] {
   max-width: 780px;
+}
+
+img[src$='tbb-tutorial@2x.png'] {
+  max-width: 212px;
 }
 
 img[src$='tidy-prefs-01-ns@2x.png'] {
@@ -995,6 +1074,10 @@ img[src$='toolbar-customize.png'] {
 
 img[src$='docpart-tidyd.png'] {
   max-width: 851px;
+}
+
+img[src$='tbb-tutorial.png'] {
+  max-width: 106px;
 }
 
 img[src$='tidy-main-window.png'] {

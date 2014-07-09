@@ -436,7 +436,7 @@ div.image_article
 {
 	margin-top: $interMargins;
 
-	> div:first-child
+	> div:first-child,
 	{
 		float: left;
 		width:  45%;
@@ -447,6 +447,12 @@ div.image_article
 			margin-top: 0 !important;
 		}
 	}
+
+	&.narrow > div:first-child
+	{
+		width: 10%;
+	}
+
 
 	ul,
 	ol

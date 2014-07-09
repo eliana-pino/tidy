@@ -8,6 +8,7 @@
 
 require 'fileutils'
 require 'pathname'
+require 'yaml'
 
 filesArray = []
 longestShortcut = 0
