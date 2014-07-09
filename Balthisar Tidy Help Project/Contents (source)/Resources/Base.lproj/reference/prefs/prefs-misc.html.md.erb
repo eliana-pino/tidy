@@ -11,5 +11,11 @@ order: 5
 <%= current_page.data.title %>
 ==============================
 
-EMPTY
+The **Advanced** Preferences panel controls some of the advanced behaviors of
+_Balthisar Tidy_.
 
+<% if boolENV('feature_sparkle') %>
+![tidy prefs panel][tidy-prefs-05]
+<% else %>
+![tidy prefs panel][tidy-prefs-05-ns]
+<% end %>

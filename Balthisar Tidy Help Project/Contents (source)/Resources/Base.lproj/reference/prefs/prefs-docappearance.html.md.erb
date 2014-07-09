@@ -10,5 +10,11 @@ order: 3
 <%= current_page.data.title %>
 ==============================
 
-EMPTY
+The **Document** Preferences panel controls the default appearance and behavior
+of newly opened document windows.
 
+<% if boolENV('feature_sparkle') %>
+![tidy prefs panel][tidy-prefs-03]
+<% else %>
+![tidy prefs panel][tidy-prefs-03-ns]
+<% end %>

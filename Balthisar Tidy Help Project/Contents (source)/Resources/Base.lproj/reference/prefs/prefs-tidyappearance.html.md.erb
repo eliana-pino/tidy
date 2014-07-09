@@ -11,5 +11,13 @@ order: 2
 <%= current_page.data.title %>
 ==============================
 
-EMPTY
+The **Options** Preferences panel sets defaults options for the appearance of
+the **Tidy Options** panel next time a document window is opened, and also
+changes the global appearance of the **Tidy Options** panel.
+
+<% if boolENV('feature_sparkle') %>
+![tidy prefs panel][tidy-prefs-02]
+<% else %>
+![tidy prefs panel][tidy-prefs-02-ns]
+<% end %>
 
