@@ -134,6 +134,15 @@ li
 li p { display: inline; }
 
 
+/* tidyoptions dl */
+body.tidyoptions
+{
+	dt
+	{
+		margin-top: $interMargins * 2;
+	}
+}
+
 /*************************************
 	related_topics
  *************************************/
