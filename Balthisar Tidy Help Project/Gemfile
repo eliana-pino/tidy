@@ -1,3 +1,5 @@
+# `(sudo) bundle install` will ensure these are present.
+
 # If you have OpenSSL installed, we recommend updating
 # the following line to use "https"
 source 'http://rubygems.org'
@@ -15,3 +17,9 @@ gem "tzinfo-data", platforms: [:mswin, :mingw]
 
 # Syntax Highlighting
 gem "middleman-syntax"
+
+# Image dimensions
+gem "fastimage"
+
+# Nokigiri for XML modifications
+gem "nokogiri"

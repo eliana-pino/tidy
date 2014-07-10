@@ -1,6 +1,155 @@
-###
+################################################################################
+#  config.rb
+#    Configure Middleman to generate Apple Helpbook containers for multiple
+#    targets.
+################################################################################
+
+# 'helpbook.rb' contains the Helpbook class that will do additional lifting.
+require "helpbook_tools/helpbook"
+
+
+################################################################
+# Configuration. Change the option values to suit your needs.
+################################################################
+
+activate :Helpbook do |option|
+
+  # This value will be used for correct .plists and .strings setup, and will
+  # will determine finally .help directory name. All targets will use the
+  # same CFBundleName.
+  option.CFBundleName = 'Balthisar Tidy'
+
+  # Directory where finished .help build should go. It should be relative
+  # to this file, or make null to leave in this help project directory.
+  option.HelpOutputLocation = "../Balthisar Tidy/Resources/"
+
+  # :CFBundleID
+  # Different versions of your app must have different bundle identifiers
+  # so that the correct version of your help files stays related to your app.
+  # This is *not* the CFBundleID of the application. However your application's
+  # Info.plist `CFBundleHelpBookName` must match the value you specify.
+
+  # :ProductName
+  # You can specify different product names for each build target. The product
+  # name for the current target will be available via the product_name helper.
+
+  # :Features
+  # A hash of features that a particular target supports or doesn't support.
+  # The has_feature function and several helpers will use the true/false value
+  # of these features in order to conditionally include content. This is given
+  # as a hash of true/false instead of an array of symbols in order to make it
+  # easier to enable/disable features for each target.
+
+  # Define your targets here.
+  option.Targets =
+  {
+    'web' =>
+    {
+      :CFBundleID  => 'com.balthisar.web.free.balthisar-tidy.help',
+      :ProductName => 'Balthisar Tidy',
+      :Features =>
+      {
+        :feature_advertise_pro        => true,
+        :feature_sparkle              => true,
+        :feature_exports_config       => false,
+        :feature_supports_applescript => false,
+        :feature_supports_diffs       => false, # eventually.
+        :feature_supports_preview     => false, # eventually.
+        :feature_supports_extensions  => false,
+        :feature_supports_service     => false,
+        :feature_supports_SxS_diffs   => false,
+        :feature_supports_validation  => false,
+      }
+    },
+
+    'app' =>
+    {
+      :CFBundleID  => 'com.balthisar.Balthisar-Tidy.help',
+      :ProductName => 'Balthisar Tidy',
+      :Features =>
+      {
+        :feature_advertise_pro        => true,
+        :feature_sparkle              => false,
+        :feature_exports_config       => false,
+        :feature_supports_applescript => false,
+        :feature_supports_diffs       => false, # eventually.
+        :feature_supports_preview     => false, # eventually.
+        :feature_supports_extensions  => false,
+        :feature_supports_service     => false,
+        :feature_supports_SxS_diffs   => false,
+        :feature_supports_validation  => false,
+      }
+    },
+
+    'pro' =>
+    {
+      :CFBundleID  => 'com.balthisar.Balthisar-Tidy.pro.help',
+      :ProductName => 'Balthisar Tidy for Work',
+      :Features =>
+      {
+        :feature_advertise_pro        => false,
+        :feature_sparkle              => false,
+        :feature_exports_config       => true,
+        :feature_supports_applescript => true,
+        :feature_supports_diffs       => false, # eventually.
+        :feature_supports_preview     => false, # eventually.
+        :feature_supports_extensions  => false, # eventually.
+        :feature_supports_service     => false, # eventually.
+        :feature_supports_SxS_diffs   => false, # eventually.
+        :feature_supports_validation  => false, # eventually.
+      }
+    },
+
+    'test' =>
+    {
+      :CFBundleID  => 'com.balthisar.Balthisar-Tidy.test.help',
+      :ProductName => 'Balthisar Tidy Test',
+      :Features =>
+      {
+        :feature_advertise_pro        => true,
+        :feature_sparkle              => true,
+        :feature_exports_config       => true,
+        :feature_supports_applescript => true,
+        :feature_supports_diffs       => true,
+        :feature_supports_preview     => true,
+        :feature_supports_extensions  => true,
+        :feature_supports_service     => true,
+        :feature_supports_SxS_diffs   => true,
+        :feature_supports_validation  => true,
+      }
+    },
+
+  }
+
+  # Build #{:partials_dir}/_markdown-links.erb file? This enables easy-to-use
+  # markdown links in all markdown files, and is kept up to date.
+  option.build_markdown_links = true
+
+  # Build #{:partials_dir}/_markdown-images.erb file? This enables easy-to-use
+  # markdown links to images in all markdown files, and is kept up to date.
+  option.build_markdown_images = true
+
+  # Build #{:css_dir}/_image_widths.scss? This will enable a max-width of
+  # all images the reflect the image size. Images that are @2x will use
+  # proper retina image width.
+  option.build_image_width_css = true
+
+  # Should we ignore the @2x images that are found?
+  build_ignore_at2x_images = true
+
+
+end #activate
+
+
+################################################################################
+# STOP! There's nothing below here that you should have to
+# change. Just follow the conventions and framework provided.
+################################################################################
+
+
+#===============================================================
 # Setup directories to mirror Help Book directory layout.
-###
+#===============================================================
 set :source,       'Contents (source)'
 set :build_dir,    'Contents (build)'
 
@@ -13,105 +162,58 @@ set :layouts_dir,  'layouts'
 set :data_dir,     'Contents (source)/data'
 
 
-###
+#===============================================================
 # Ignore items we don't want copied to the destination
-###
+#===============================================================
 ignore 'data/*'
 
 
-###
-# All of our links and assets must be relative
-# to the file location, and never absolute.
-###
+#===============================================================
+# All of our links and assets must be relative to the file
+# location, and never absolute. However we will *use* absolute
+# paths with root being the source directory; they will be
+# converted to relative paths at build.
+#===============================================================
 set :relative_links, true
 activate :relative_assets
 
-###
-# Everything in will default to Apple-recommended HTML 4.01 layout.
-###
+
+#===============================================================
+# Default to Apple-recommended HTML 4.01 layout.
+#===============================================================
 page "Resources/Base.lproj/*", :layout => :'layout-html4'
 
-###
+
+#===============================================================
 # Add-on features
-###
+#===============================================================
 activate :syntax
 
-###
+
+################################################################################
 # Helpers
-###
+################################################################################
 
-# Automatic image dimensions on image_tag helper
-# activate :automatic_image_sizes
 
-# Methods defined in the helpers block are available in templates
+#===============================================================
+# Methods defined in this helpers block are available in
+# templates.
+#===============================================================
 helpers do
 
-   # make page_name available for each page
-   # this is the file name - useful for assigning classes, etc.
-   def page_name
-     File.basename( current_page.url, ".*" )
-   end
+  # no helpers here, but the Helpbook class offers quite a few.
 
-   # make page+group available for each page.
-   # this is the source containing directory (not the request path)
-   # useful for for assigning classes, and/or group conditionals.
-   def page_group
-     File.basename(File.split(current_page.source_file)[0])
-   end
-
-   # returns an array of all of the pages in the current group, i.e.,
-   # pages in the same source subdirectory that are HTML files.
-   def current_group_pages
-     sitemap.resources.find_all do |p|
-       p.path.match(/\.html/) &&
-       File.basename(File.split(p.source_file)[0]) == page_group
-     end
-   end
-
-   # treat an environment variable as a bool
-   def boolENV(envVar)
-      (ENV.key?(envVar)) && !(ENV[envVar] == 'no')
-   end
-
-    # returns an array of all of the pages in the current group:
-    def related_pages
-        pages_related_to( page_group )
-    end
-
-    # returns an array of all of the pages in the specified group:
-    #  - that are HTML files
-    #  - that are in the same group
-    #  - are NOT the current page
-    #  - is not the index page beginning with 000
-    #  - have an "order" key in the frontmatter
-    #  - sorted by the "order" key.
-    #  - if frontmatter:target is used, the target or feature appears in the frontmatter
-    #  - if frontmatter:exclude is used, that target or enabled feature does NOT appear in the frontmatter.
-    # also adds .metadata[:link] to the structure with a relative path to groups
-    # that are not the current group.
-    def pages_related_to( group )
-        pages = sitemap.resources.find_all do |p|
-        p.path.match(/\.html/) &&
-        File.basename(File.split(p.source_file)[0]) == group &&
-        File.basename( p.url, ".*" ) != page_name &&
-        !File.basename( p.url ).start_with?("000") &&
-        p.data.key?("order") &&
-        ( !p.data.key?("target") || (p.data["target"].include?(ENV["HelpBookTarget"]) || p.data["target"].count{ |t| boolENV(t) } > 0) ) &&
-        ( !p.data.key?("exclude") || !(p.data["exclude"].include?(ENV["HelpBookTarget"]) || p.data["exclude"].count{ |t| boolENV(t) } > 0) )
-    end
-    pages.each { |p| p.add_metadata(:link =>(group == page_group) ? File.basename(p.url) : File.join(group, File.basename(p.url) ) )}
-    pages.sort_by { |p| p.data["order"].to_i }
-    end
-end
+end #helpers
 
 
-###
+################################################################################
 # Build-specific configurations
-# - development: whenever the server is running and watching files.
-# - build: when build is executed specifically.
-###
+################################################################################
 
 
+#===============================================================
+# :development - the server is running and watching files.
+#===============================================================
 configure :development do
 
   # Reload the browser automatically whenever files change
@@ -122,8 +224,12 @@ configure :development do
     config.sass_options = { :line_comments => true }
   end
 
-end
+end #configure
 
+
+#===============================================================
+# :build - build is executed specifically.
+#===============================================================
 configure :build do
 
   # Compass
@@ -135,4 +241,4 @@ configure :build do
   # Minify js
   activate :minify_javascript
 
-end
+end #configure
