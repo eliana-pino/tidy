@@ -134,8 +134,16 @@ helpers do
   #   Return the current build target.
   #--------------------------------------------------------
   def target_name
-    options = extensions[:Helpbook].options
-    options.target
+    extensions[:Helpbook].options.target
+  end
+
+
+  #--------------------------------------------------------
+  # target_name?
+  #   Return the current build target.
+  #--------------------------------------------------------
+  def target_name?(proposal)
+    options = extensions[:Helpbook].options.target == proposal
   end
 
 
