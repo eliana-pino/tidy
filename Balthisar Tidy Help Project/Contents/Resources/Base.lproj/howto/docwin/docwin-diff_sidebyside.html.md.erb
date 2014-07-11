@@ -5,12 +5,12 @@ blurb: Learn to use this advanced diff tool to see line-by-line changes that
 layout: template-logo-medium
 order: 10
 target:
- - feature_supports_SxS_diffs
+ - :feature_supports_SxS_diffs
 ---
 <%= partial 'markdown-links' %>
 <%= partial 'markdown-images' %>
 
-<% if boolENV('feature_supports_SxS_diffs') %>
+<% if target_feature?(:feature_supports_SxS_diffs) %>
 
 <%= current_page.data.title %>
 ==============================

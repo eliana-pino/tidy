@@ -19,7 +19,7 @@ discover some ways you can change the appearance of the **Tidy Options** panel.
 
 1. You can choose **Show friendly option names** and choose **Show options in
    groups** using the menu at the bottom of the **Tidy Options** panel.
-   <% if boolENV('feature_exports_config') %>
+   <% if target_feature?(:feature_exports_config) %>
    ![menu][context-options-pro]
    <% else %>
    ![menu][context-options]
@@ -29,7 +29,7 @@ discover some ways you can change the appearance of the **Tidy Options** panel.
 2. You can choose default behaviour for new windows in [Preferences][prefs-tidyappearance].
    In addition to the options above, Preferences gives you control over the
    hover effect used in the **Tidy Options** list, the row appearance, and more.
-   <% if boolENV('feature_sparkle') %>
+   <% if target_feature?(:feature_sparkle) %>
    ![prefs][tidy-prefs-02]
    <% else %>
    ![prefs][tidy-prefs-02-ns]

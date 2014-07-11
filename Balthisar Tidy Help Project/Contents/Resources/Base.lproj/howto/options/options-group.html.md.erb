@@ -24,7 +24,7 @@ To learn how to change these settings, please read these few simple steps.
 
 1. You can choose **Show friendly option names** and choose **Show options in
    groups** using the menu at the bottom of the **Tidy Options** panel.
-   <% if boolENV('feature_exports_config') %>
+   <% if target_feature?(:feature_exports_config) %>
    ![menu][context-options-pro]
    <% else %>
    ![menu][context-options]

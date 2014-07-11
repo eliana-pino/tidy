@@ -9,7 +9,7 @@ a more flexible build system for its help files is necessary, too.
 
 If you're working on your own forks of _Balthisar Tidy_ and don’t wish to
 depend on an external build system for help file, you can still modify the
-built help files in the `Balthisar Tidy.help` bundle. On the other hand if you
+built help files in the `Balthisar Tidy.help` bundles. On the other hand if you
 wish to participate in the development of _Balthisar Tidy_ and issue pull
 requests, please make changes to the source files in the build system in this
 directory, in `source`.
@@ -33,35 +33,35 @@ the there are multiple build configurations for Tidy help, too. This avoids,
 for example, any mention of the Sparkle Update Framework for versions that
 appear in the App Store.
 
-It's important to use the included `build_help` script when getting ready
-for deployment, as it will ensure that `.plists` and `.strings` are properly
-set and will create the correct folder hierarchy.
+`middleman build` will build the “pro” target by default. Because middleman
+won't accept CLI parameters, we have to pass targets to it in an environment
+variable, e.g.,
 
-Execute `build_help` without any parameters to see the currently supported
-builds.
+`HBTARGET=pro middleman build`
+
+Current valid targets are
+ - web
+ - app
+ - pro
 
 
 Editing the Title Page / Landing Page
 -------------------------------------
 Note that the standard Apple Help Book “title page” content should only be
-edited in `_title_page.erb`, and if you want to set the page title, you
-should modify `layouts/layout-title_page.erb`. Apple Help requires that the
+edited in `_title_page.md.erb`, and if you want to set the page title, you
+should modify `layouts/layout-apple_main.erb`. Apple Help requires that the
 main title page be and XHTML file, while the remaining files are HTML 4.0.1
 (this the purpose of having two layout files).
 
-Additionally, by modifying only `_title_page.erb`, the build system can
+Additionally, by modifying only `_title_page.html.md.erb`, the build system can
 properly manage the name of the file for the title page (it just makes a
-duplicate of `_title_page.html.erb`, which includes `_title_page.erb` as a
-partial. This allows you to execute `middleman build` during development
-without having to run the whole of `build_help` all the time.
+duplicate of `_title_page.html.md.erb`).
+
 
 Dependencies
 ------------
-Middleman itself should work without any external dependencies, i.e., after
-installing the Ruby Gem, everything should "just work." However the build
-script uses Nokogiri to manipulate the plists in order to allow the script
-to run on non-Mac platforms where PlistBuddy is not available. A simple
-`(sudo) gem install nokogiri` should work on any platform.
+Executing `bundle install` from the project directory should take care of any
+dependencies.
 
 
 Front Matter Content
@@ -70,14 +70,13 @@ Front Matter Content
 ---
 
 title: Page title
+blurb: A sentence or short paragraph that will be included in TOC's.
 layout: layout to use
 order: local sort order (if missing, won't be included)
-toc_description: a description to appear in TOC.
 targets:
- - array
- - this item will only appear if the current ENV['HelpBookTarget']
- - is found in this array, OR any of the ENV['feature_xxx'] = 'yes'
- - are found in the array.
+ - array of
+ - targets, or
+ - features that are true
 exclude:
  - array
  - same as above, but will exclude items that equal yes.

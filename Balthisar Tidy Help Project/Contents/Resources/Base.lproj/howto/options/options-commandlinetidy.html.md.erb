@@ -6,12 +6,12 @@ blurb: You’ve finally perfected the options in order to get the output you wan
 layout: template-logo-medium
 order: 4
 target:
- - feature_exports_config
+ - :feature_exports_config
 ---
 <%= partial 'markdown-links' %>
 <%= partial 'markdown-images' %>
 
-<% if boolENV('feature_exports_config') %>
+<% if target_feature?(:feature_exports_config) %>
 
 <% content_for :seeAlso do %>
 <ul>

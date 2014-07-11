@@ -36,7 +36,7 @@ option :build_image_width_css, true, 'Whether or not to generate `_image_widths.
 option :file_mdimages, '_markdown-images.erb', 'Filename for the generated images markdown file.'
 option :file_mdlinks,  '_markdown-links.erb',  'Filename for the generated links markdown file.'
 option :file_imagecss, '_image_widths.scss', 'Filename for the generated image width css file.'
-option :file_titlepage_template, '_title_page.md.erb', 'Filename of the template for the title page.'
+option :file_titlepage_template, '_title_page.html.md.erb', 'Filename of the template for the title page.'
 
 
 #===============================================================
@@ -130,13 +130,44 @@ end
 helpers do
 
   #--------------------------------------------------------
+  # target_name
+  #   Return the current build target.
+  #--------------------------------------------------------
+  def target_name
+    options = extensions[:Helpbook].options
+    options.target
+  end
+
+
+  #--------------------------------------------------------
+  # target_has_feature?
+  #   Does the target have the feature `feature`?
+  #--------------------------------------------------------
+  def target_feature?(feature)
+    options = extensions[:Helpbook].options
+    features = options.Targets[options.target][:Features]
+    result = features.key?(feature) && features[feature]
+  end
+
+
+  #--------------------------------------------------------
+  # product_name
+  #   Returns the product name for the current target
+  #--------------------------------------------------------
+  def product_name
+    options = extensions[:Helpbook].options
+    options.Targets[options.target][:ProductName]
+  end
+
+
+  #--------------------------------------------------------
   # boolENV
   #   Treat an environment variable with the value 'yes' or
   #   'no' as a bool. Undefined ENV are no, and anything
   #   that's not 'yes' is no.
   #--------------------------------------------------------
   def boolENV(envVar)
-     (ENV.key?(envVar)) && !(ENV[envVar].downcase == 'no')
+     (ENV.key?(envVar)) && !((ENV[envVar].downcase == 'no') || (ENV[envVar].downcase == 'false'))
   end
 
 
@@ -213,8 +244,8 @@ helpers do
       File.basename( p.url, ".*" ) != page_name &&
       !File.basename( p.url ).start_with?("00") &&
       p.data.key?("order") &&
-      ( !p.data.key?("target") || (p.data["target"].include?(ENV["HelpBookTarget"]) || p.data["target"].count{ |t| boolENV(t) } > 0) ) &&
-      ( !p.data.key?("exclude") || !(p.data["exclude"].include?(ENV["HelpBookTarget"]) || p.data["exclude"].count{ |t| boolENV(t) } > 0) )
+      ( !p.data.key?("target") || (p.data["target"].include?(target_name) || p.data["target"].count{ |t| target_feature?(t) } > 0) ) &&
+      ( !p.data.key?("exclude") || !(p.data["exclude"].include?(target_name) || p.data["exclude"].count{ |t| target_feature(t) } > 0) )
     end
     pages.each { |p| p.add_metadata(:link =>(group == page_group) ? File.basename(p.url) : File.join(group, File.basename(p.url) ) )}
     pages.sort_by { |p| p.data["order"].to_i }
@@ -414,7 +445,7 @@ end #helpers
 
       `hiutil -Cf "#{$indexDst}" "#{$indexDir}"`
     else
-      STDOUT.puts "NOTE: `hituil` is not on path or not installed. A new help index will NOT be generated for target '#{options.target}'."
+      STDOUT.puts "NOTE: `hituil` is not on path or not installed. No index will exist for target '#{options.target}'."
     end
   end #def
 

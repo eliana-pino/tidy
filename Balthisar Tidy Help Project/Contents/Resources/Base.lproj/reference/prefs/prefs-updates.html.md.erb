@@ -4,12 +4,12 @@ blurb: Learn about the <em>Balthisar Tidy’s</em> options for self-updates.
 layout: template-logo-medium
 order: 6
 target:
- - feature_sparkle
+ - :feature_sparkle
 ---
 <%= partial 'markdown-links' %>
 <%= partial 'markdown-images' %>
 
-<% if boolENV('feature_sparkle') %>
+<% if target_feature?(:feature_sparkle) %>
 
 <%= current_page.data.title %>
 ==============================

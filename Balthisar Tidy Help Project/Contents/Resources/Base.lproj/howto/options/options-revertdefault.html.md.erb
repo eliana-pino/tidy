@@ -21,7 +21,7 @@ options back to the Preferences defaults in just three quick steps.
 
 1. Access the menu at the bottom of the **Tidy Options** panel in the document
    that you want to reset.
-   <% if boolENV('feature_exports_config') %>
+   <% if target_feature?(:feature_exports_config) %>
    ![options context menu][context-options-pro]
    <% else %>
    ![options context menu][context-options]

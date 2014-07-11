@@ -10,7 +10,7 @@ target:
 <%= partial 'markdown-links' %>
 <%= partial 'markdown-images' %>
 
-<% if boolENV('feature_supports_preview') %>
+<% if target_feature?(:feature_supports_preview) %>
 
 <%= current_page.data.title %>
 ==============================

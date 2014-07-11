@@ -14,7 +14,7 @@ The **Saving** Preferences panel controls whether files are saved normally,
 saved normally after a one-time warning, or require you to **Save As…** before
 saving an opened file the first time.
 
-<% if boolENV('feature_sparkle') %>
+<% if target_feature?(:feature_sparkle) %>
 ![tidy prefs panel][tidy-prefs-04]
 <% else %>
 ![tidy prefs panel][tidy-prefs-04-ns]

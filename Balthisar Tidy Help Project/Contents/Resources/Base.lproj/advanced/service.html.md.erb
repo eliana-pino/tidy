@@ -5,12 +5,12 @@ blurb: Learn how to use the power of <em>Balthisar Tidy</em> in virtually
 layout: template-logo-medium
 order: 2
 target:
- - feature_supports_service
+ - :feature_supports_service
 ---
 <%= partial 'markdown-links' %>
 <%= partial 'markdown-images' %>
 
-<% if boolENV('feature_supports_service') %>
+<% if target_feature?(:feature_supports_service) %>
 
 <%= current_page.data.title %>
 ==============================

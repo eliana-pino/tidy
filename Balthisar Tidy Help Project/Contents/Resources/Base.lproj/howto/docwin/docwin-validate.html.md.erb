@@ -5,12 +5,12 @@ blurb: Learn how to use an HTML validation service to further prove that
 layout: template-logo-medium
 order: 12
 target:
- - feature_supports_validation
+ - :feature_supports_validation
 ---
 <%= partial 'markdown-links' %>
 <%= partial 'markdown-images' %>
 
-<% if boolENV('feature_supports_validation') %>
+<% if target_feature?(:feature_supports_validation) %>
 
 <%= current_page.data.title %>
 ==============================

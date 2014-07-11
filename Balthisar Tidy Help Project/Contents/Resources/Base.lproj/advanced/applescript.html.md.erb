@@ -1,17 +1,17 @@
 ---
-title: Use AppleScript to Control Balthisar Tidy
+title: Use AppleScript to Control <em>Balthisar Tidy</em>
 blurb: Learn how AppleScript can be used to automate <em>Balthisar Tidy</em>.
        If you have dozen, hundreds, or thousdands of files to process, then
        AppleScript can handle the job.
 layout: template-logo-medium
 order: 1
 target:
- - feature_supports_applescript
+ - :feature_supports_applescript
 ---
 <%= partial 'markdown-links' %>
 <%= partial 'markdown-images' %>
 
-<% if boolENV('feature_supports_applescript') %>
+<% if target_feature?(:feature_supports_applescript) %>
 
 <% content_for :seeAlso do %>
 <ul>

@@ -19,7 +19,7 @@ simple steps, below.
 
 2. Drag a file in Finder to _Balthisar Tidy_’s icon in the Dock. ![dock icon][icon_32x32@2x]
 
-<% if boolENV('feature_supports_applescript') %>
+<% if target_feature?(:feature_supports_applescript) %>
 3. [Create an AppleScript program][applescript] to tell Finder to open a file with
    _Balthisar Tidy_.
 <% end %>

@@ -31,7 +31,7 @@ Finally, at the bottom of the options panel is an action button with
 several choices that can help you work more effectively with Tidy’s
 options.
 
-<% if boolENV('feature_exports_config') %>
+<% if target_feature?(:feature_exports_config) %>
 ![context menu][context-options-pro]
 <% else %>
 ![context menu][context-options]
@@ -57,7 +57,7 @@ options.
  : This action toggles between showing Tidy options organized into logical
    groups or Tidy options sorted in your language’s natural order.
 
-<% if boolENV('feature_exports_config') %>
+<% if target_feature?(:feature_exports_config) %>
 [Export a Unix config file with these options…][export_config]
  : Use this action to export the options in the current window into a file
    suitable for use with command line Tidy.

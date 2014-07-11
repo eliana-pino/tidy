@@ -5,12 +5,12 @@ blurb: Learn to clearly spot the changes that <em>Balthisar Tidy</em> made to
 layout: template-logo-medium
 order: 09
 target:
- - feature_supports_diffs
+ - :feature_supports_diffs
 ---
 <%= partial 'markdown-links' %>
 <%= partial 'markdown-images' %>
 
-<% if boolENV('feature_supports_diffs') %>
+<% if target_feature?(:feature_supports_diffs) %>
 
 <%= current_page.data.title %>
 ==============================

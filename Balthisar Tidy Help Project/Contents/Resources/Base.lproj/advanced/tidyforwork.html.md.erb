@@ -5,12 +5,12 @@ blurb: <em>Balthisar Tidy for Work</em> adds advanced capabilities to
 layout: template-logo-small
 order: 7
 target:
- - feature_advertise_pro
+ - :feature_advertise_pro
 ---
 <%= partial 'markdown-links' %>
 <%= partial 'markdown-images' %>
 
-<% if boolENV('feature_advertise_pro') %>
+<% if target_feature?(:feature_advertise_pro) %>
 
 <%= current_page.data.title %>
 ==============================
