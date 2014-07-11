@@ -14,13 +14,18 @@ require "helpbook_tools/helpbook"
 
 activate :Helpbook do |option|
 
+  # You should only change the default, fall-back target here. This is the
+  # target that will be processed if no ENVironment variable is used.
+  option.target = ENV['HBTARGET'] || 'pro'
+
   # This value will be used for correct .plists and .strings setup, and will
   # will determine finally .help directory name. All targets will use the
   # same CFBundleName.
   option.CFBundleName = 'Balthisar Tidy'
 
   # Directory where finished .help build should go. It should be relative
-  # to this file, or make null to leave in this help project directory.
+  # to this file, or make null to leave in this help project directory. The
+  # *actual* output directory will be an Apple Help bundle at this location.
   option.HelpOutputLocation = "../Balthisar Tidy/Resources/"
 
   # :CFBundleID
@@ -133,10 +138,6 @@ activate :Helpbook do |option|
   # all images the reflect the image size. Images that are @2x will use
   # proper retina image width.
   option.build_image_width_css = true
-
-  # Should we ignore the @2x images that are found?
-  build_ignore_at2x_images = true
-
 
 end #activate
 

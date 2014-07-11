@@ -25,60 +25,99 @@ class Helpbook < Middleman::Extension
 #  Configuration options
 #===============================================================
 
+option :target, 'default', 'The default target to process if not specified.'
 option :CFBundleName, nil, 'The CFBundleName key; will be used in a lot of places.'
 option :HelpOutputLocation, nil, 'Directory to place the built helpbook.'
 option :Targets, nil, 'A data structure that defines many characteristics of the target.'
 option :build_markdown_links, true, 'Whether or not to generate `_markdown-links.erb`'
 option :build_markdown_images, true, 'Whether or not to generate `_markdown-images.erb`'
 option :build_image_width_css, true, 'Whether or not to generate `_image_widths.scss`'
-option :build_ignore_at2x_images, true, 'Whether or not to ignore @2x images.'
+
+option :file_mdimages, '_markdown-images.erb', 'Filename for the generated images markdown file.'
+option :file_mdlinks,  '_markdown-links.erb',  'Filename for the generated links markdown file.'
+option :file_imagecss, '_image_widths.scss', 'Filename for the generated image width css file.'
+option :file_titlepage_template, '_title_page.md.erb', 'Filename of the template for the title page.'
+
 
 #===============================================================
 #  initializer
 #===============================================================
 def initialize(app, options_hash={}, &block)
   super
+  app.extend ClassMethods
 
-  #--------------------------------------------------------
-  #  callback occurs just before before_build.
-  #--------------------------------------------------------
-  app.ready do |builder|
-    #STDOUT.puts "READY occurs before before_build."
+  # ensure target exists
+  unless options.Targets.key?(options.target)
+    STDOUT.puts "`#{options.target}` is not a valid target. Choose from one of:"
+    options.Targets.each do |k,v|
+      STDOUT.puts "  #{k}"
+    end
+    STDOUT.puts "Or use nothing for the default target."
+    exit 1
+  else
+    STDOUT.puts "Using target `#{options.target}`"
   end
 
-
-  #--------------------------------------------------------
-  #  callback occurs one time before the build starts.
-  #--------------------------------------------------------
-  app.before_build do |builder|
-    #STDOUT.puts "BEFORE_BUILD"
-  end
-
-
-  #--------------------------------------------------------
-  #  callback occurs before every page.
-  #--------------------------------------------------------
-  app.before do
-    #puts "APPEARS FOR EVERY PAGE"
-    true
-  end
-
-
-  #--------------------------------------------------------
-  #  callback occurs after Middleman is done building.
-  #--------------------------------------------------------
-  app.after_build do |builder|
-    #STDOUT.puts "ONLY APPEARS ONCE AT END"
-  end
+  @path_content = nil; # string will be initialized in after_configuration.
 
 end #initialize
 
 
 #===============================================================
-#  callback occurs before before_build.
+#  after_configuration
+#    Callback occurs before before_build.
+#    Here we will adapt the middleman config.rb settings to the
+#    current target settings. This is also our only chance to
+#    create files that will be processed (by time we get to
+#    before_build, middleman already has its manifest).
 #===============================================================
 def after_configuration
-  #STDOUT.puts "AFTER_CONFIGURATION THIS SHOULD ONLY APPEAR ONCE AT START."
+
+  # Setup some instance variables
+  @path_content = File.join( app.source, "Resources/", "Base.lproj/" )
+
+
+  # Set the correct :build_dir based on the options.
+  app.set :build_dir, File.join(options.HelpOutputLocation, "#{options.CFBundleName} (#{options.target}).help")
+
+
+  # Set the destinations for generated markdown partials and css.
+  options.file_mdimages = File.join(app.source, app.partials_dir, options.file_mdimages)
+  options.file_mdlinks  = File.join(app.source, app.partials_dir, options.file_mdlinks)
+  options.file_imagecss = File.join(app.source, app.css_dir, options.file_imagecss)
+
+
+  # make the title page
+  srcFile = File.join(@path_content, options.file_titlepage_template)
+  dstFile = File.join(@path_content, "#{options.CFBundleName}.html.md.erb")
+  FileUtils.cp(srcFile, dstFile)
+
+
+  # create all other necessary files
+  process_plists
+  build_mdimages
+  build_mdlinks
+  build_imagecss
+
+end #def
+
+
+#===============================================================
+#  before_build
+#    Callback occurs one time before the build starts.
+#    We will peform all of the required pre-work.
+#===============================================================
+def before_build
+
+end
+
+#===============================================================
+#  after_build
+#    Callback occurs one time after the build.
+#    We will peform all of the finishing touches.
+#===============================================================
+def after_build
+    run_help_indexer
 end
 
 
@@ -185,20 +224,206 @@ end #helpers
 
 
 #===============================================================
-#  ClassMethods
+#  Instance Methods
 #===============================================================
 
 
-module ClassMethods
-
-
   #--------------------------------------------------------
-  #  say_hello
+  #  build_mdimages
+  #    Will build a markdown file with shortcuts to links
+  #    for every image found in the project.
   #--------------------------------------------------------
-  def say_hello
-    puts "Hello"
+  def build_mdimages
+
+    return unless options.build_markdown_images
+
+    STDOUT.puts "Helpbook is creating `#{options.file_mdimages}`."
+
+    files_array = []
+    out_array = []
+    longest_shortcut = 0
+    longest_path = 0
+
+    Dir.glob("#{app.source}/Resources/**/*.{jpg,png,gif}").each do |fileName|
+
+        # Remove all file extensions and make a shortcut
+        base_name = fileName
+        while File.extname(base_name) != "" do
+            base_name = File.basename( base_name, ".*" )
+        end
+        next if base_name.start_with?('_')
+        shortcut = "[#{base_name}]:"
+
+        # Make a fake absolute path
+        path = File::SEPARATOR + Pathname.new(fileName).relative_path_from(Pathname.new(app.source)).to_s
+
+        files_array << { :shortcut => shortcut, :path => path }
+
+        longest_shortcut = shortcut.length if shortcut.length > longest_shortcut
+        longest_path = path.length if path.length > longest_path
+
+    end
+
+    files_array = files_array.sort_by { |key| [File.split(key[:path])[0], key[:path]] }
+    files_array.uniq.each do |item|
+        item[:shortcut] = "%-#{longest_shortcut}.#{longest_shortcut}s" % item[:shortcut]
+        item[:path] = "%-#{longest_path}.#{longest_path}s" % item[:path]
+        out_array << "#{item[:shortcut]}  #{item[:path]}   "
+    end
+
+    File.open(options.file_mdimages, 'w') { |f| out_array.each { |line| f.puts(line) } }
+
   end #def
 
+
+  #--------------------------------------------------------
+  #  build_mdlinks
+  #    Will build a markdown file with shortcuts to links
+  #    for every HTML file found in the project.
+  #--------------------------------------------------------
+  def build_mdlinks
+    return unless options.build_markdown_links
+
+    STDOUT.puts "Helpbook is creating `#{options.file_mdlinks}`."
+
+    files_array = []
+    out_array = []
+    longest_shortcut = 0
+    longest_path = 0
+
+    Dir.glob("#{app.source}/Resources/**/*.erb").each do |fileName|
+
+        # Remove all file extensions and make a shortcut
+        base_name = fileName
+        while File.extname(base_name) != "" do
+            base_name = File.basename( base_name, ".*" )
+        end
+        next if base_name.start_with?('_')
+
+        shortcut = "[#{base_name}]:"
+
+        # Make a fake absolute path
+        path = Pathname.new(fileName).relative_path_from(Pathname.new(app.source))
+        path = File::SEPARATOR + File.join(File.dirname(path), base_name) + ".html"
+
+        # Get the title, if any
+        metadata = YAML.load_file(fileName)
+        title = (metadata.is_a?(Hash) && metadata.key?("title")) ? metadata["title"] : ""
+
+        files_array << { :shortcut => shortcut, :path => path, :title => title }
+
+        longest_shortcut = shortcut.length if shortcut.length > longest_shortcut
+        longest_path = path.length if path.length > longest_path
+
+    end
+
+    files_array = files_array.sort_by { |key| [File.split(key[:path])[0], key[:path]] }
+    files_array.uniq.each do |item|
+        item[:shortcut] = "%-#{longest_shortcut}.#{longest_shortcut}s" % item[:shortcut]
+
+        if item[:title].length == 0
+            out_array << "#{item[:shortcut]}  #{item[:path]}"
+        else
+            item[:path] = "%-#{longest_path}.#{longest_path}s" % item[:path]
+            out_array << "#{item[:shortcut]}  #{item[:path]}  \"#{item[:title]}\""
+        end
+    end
+
+    File.open(options.file_mdlinks, 'w') { |f| out_array.each { |line| f.puts(line) } }
+
+  end #def
+
+
+  #--------------------------------------------------------
+  #  build_imagecss
+  #    Builds a css file containing an max-width for every
+  #    image in the project.
+  #--------------------------------------------------------
+  def build_imagecss
+    return unless options.build_image_width_css
+
+    STDOUT.puts "Helpbook is creating `#{options.file_imagecss}`."
+
+    out_array = []
+
+    Dir.glob("#{app.source}/Resources/**/*.{jpg,png,gif}").each do |fileName|
+        # fileName contains complete path relative to this script.
+        # Get just the name and extension.
+        base_name = File.basename(fileName)
+
+        # width
+        if File.basename(base_name, '.*').end_with?("@2x")
+          width = (FastImage.size(fileName)[0] / 2).to_i.to_s
+        else
+          width = FastImage.size(fileName)[0].to_s;
+        end
+
+        # proposed css
+        out_array << "img[src$='#{base_name}'] { max-width: #{width}px; }"
+    end
+
+    File.open(options.file_imagecss, 'w') { |f| out_array.each { |line| f.puts(line) } }
+
+  end #def
+
+
+  #--------------------------------------------------------
+  #  process_plists
+  #    Performs substitutions in all _*.plist and
+  #    _*.strings files in the project.
+  #--------------------------------------------------------
+  def process_plists
+
+    Dir.glob("#{app.source}/**/_*.{plist,strings}").each do |fileName|
+
+      STDOUT.puts "Helpbook is processing plist file #{fileName}."
+
+        file = File.open(fileName)
+        doc = Nokogiri.XML(file)
+        file.close
+
+        doc.traverse do |node|
+          if node.text?
+            node.content = node.content.gsub('{$CFBundleIdentifier}', options.Targets[options.target][:CFBundleID])
+            node.content = node.content.gsub('{$CFBundleName}', options.CFBundleName)
+          end
+        end
+
+        dst_path = File.dirname(fileName)
+        dst_file = File.basename(fileName)[1..-1]
+
+        File.open(File.join(dst_path, dst_file),'w') {|f| doc.write_xml_to f}
+
+    end
+  end #def
+
+
+  #--------------------------------------------------------
+  #  run_help_indexer
+  #--------------------------------------------------------
+  def run_help_indexer
+
+    # see whether a help indexer is available.
+    `command -v hiutil > /dev/null`
+    if $?.success?
+
+      indexDir = File.join(app.build_dir, "Resources/", "Base.lproj/" )
+      indexDst = File.join(indexDir, "#{options.CFBundleName}.helpindex")
+
+      STDOUT.puts "Help Indexer is indexing '#{indexDir}' and index will be placed in '#{indexDst}'."
+
+      `hiutil -Cf "#{$indexDst}" "#{$indexDir}"`
+    else
+      STDOUT.puts "NOTE: `hituil` is not on path or not installed. A new help index will NOT be generated for target '#{options.target}'."
+    end
+  end #def
+
+
+#===============================================================
+#  ClassMethods
+#===============================================================
+
+module ClassMethods
 
 end #module
 

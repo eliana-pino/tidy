@@ -166,7 +166,7 @@ BEGIN {
 	def processOneTarget(localTarget)
 
 		#--------------------------------------------
-		# Define Remaning Variables. Note that the
+		# Define Remaining Variables. Note that the
 		# ENV variables are available within your
 		# middleman documents.
 		#--------------------------------------------
