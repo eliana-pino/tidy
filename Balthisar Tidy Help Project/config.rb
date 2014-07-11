@@ -5,7 +5,7 @@
 ################################################################################
 
 # 'helpbook.rb' contains the Helpbook class that will do additional lifting.
-require "helpbook_tools/helpbook"
+require "helpbook"
 
 
 ################################################################
@@ -151,8 +151,8 @@ end #activate
 #===============================================================
 # Setup directories to mirror Help Book directory layout.
 #===============================================================
-set :source,       'Contents (source)'
-set :build_dir,    'Contents (build)'
+set :source,       'Contents'
+set :build_dir,    'Contents (build)'   # Will be overriden by Helpbook.
 
 set :css_dir,      'Resources/Base.lproj/css'
 set :js_dir,       'Resources/Base.lproj/javascript'
