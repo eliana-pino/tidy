@@ -148,7 +148,7 @@ helpers do
 
 
   #--------------------------------------------------------
-  # target_has_feature?
+  # target_feature?
   #   Does the target have the feature `feature`?
   #--------------------------------------------------------
   def target_feature?(feature)
