@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D008F0191930D9D700559F3B /* JSDAllCapsValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D008F0181930D9D700559F3B /* JSDAllCapsValueTransformer.m */; };
 		D008F01A1930D9D700559F3B /* JSDAllCapsValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D008F0181930D9D700559F3B /* JSDAllCapsValueTransformer.m */; };
+		D0097B0B19712F68001CCF94 /* Balthisar Tidy (pro).help in Resources */ = {isa = PBXBuildFile; fileRef = D04E8FAD195D964F00D1CEDC /* Balthisar Tidy (pro).help */; };
 		D016A92A182FD80700712C60 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D016A929182FD80700712C60 /* Cocoa.framework */; };
 		D016A936182FD80700712C60 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D016A935182FD80700712C60 /* main.m */; };
 		D01AAC9F193DE2DA00C4E5B2 /* messagesConfig.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE6B1911E88000B49779 /* messagesConfig.icns */; };
@@ -66,7 +67,6 @@
 		D04D5F991902459500F77901 /* NSApplication+TidyApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = D04D5F981902459500F77901 /* NSApplication+TidyApplication.m */; };
 		D04D5F9A1902459500F77901 /* NSApplication+TidyApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = D04D5F981902459500F77901 /* NSApplication+TidyApplication.m */; };
 		D04E8FB0195D964F00D1CEDC /* Balthisar Tidy (app).help in Resources */ = {isa = PBXBuildFile; fileRef = D04E8FAC195D964F00D1CEDC /* Balthisar Tidy (app).help */; };
-		D04E8FB4195D964F00D1CEDC /* Balthisar Tidy (pro).help in Resources */ = {isa = PBXBuildFile; fileRef = D04E8FAD195D964F00D1CEDC /* Balthisar Tidy (pro).help */; };
 		D04E8FB5195D964F00D1CEDC /* Balthisar Tidy (web).help in Resources */ = {isa = PBXBuildFile; fileRef = D04E8FAE195D964F00D1CEDC /* Balthisar Tidy (web).help */; };
 		D04E8FB8195DAA9400D1CEDC /* DiffViewTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D03B89D91955474700E9B4D5 /* DiffViewTemplate.png */; };
 		D04E8FB9195DAA9400D1CEDC /* DiffsTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D03B89D319553E5D00E9B4D5 /* DiffsTemplate.png */; };
@@ -1273,7 +1273,6 @@
 				D06C9A5D195FB997004D6C27 /* OptionListAppearanceViewController.xib in Resources */,
 				D0BB67EF193C820A007A3EB0 /* PHP.icns in Resources */,
 				D074B7AC1944035800F2E6F1 /* TidyDocumentMessagesView.xib in Resources */,
-				D04E8FB4195D964F00D1CEDC /* Balthisar Tidy (pro).help in Resources */,
 				D06C9A66195FB9D0004D6C27 /* DocumentAppearanceViewController.xib in Resources */,
 				D01BA7BD1967DD3700843C69 /* TidyScripting.sdef in Resources */,
 				D0CA8F701953280700BBD54C /* LayoutBottomPaneTemplate.png in Resources */,
@@ -1283,6 +1282,7 @@
 				D06C9A94195FE854004D6C27 /* prefsTidy.png in Resources */,
 				D0CA8F791953280700BBD54C /* LayoutSourceVTemplate.png in Resources */,
 				D01AACB9193DE56000C4E5B2 /* ShowDescriptionTemplate.pdf in Resources */,
+				D0097B0B19712F68001CCF94 /* Balthisar Tidy (pro).help in Resources */,
 				D06C9A91195FE854004D6C27 /* prefsSave@2x.png in Resources */,
 				D06C9A78195FBA0F004D6C27 /* MiscOptionsViewController.xib in Resources */,
 				D06C9A6F195FB9F2004D6C27 /* SavingOptionsViewController.xib in Resources */,

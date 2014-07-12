@@ -6,7 +6,7 @@
 #if defined TARGET_WEB
 #define TIDY_BUNDLE_IDENTIFIER com.balthisar.web.free.balthisar-tidy
 #define TIDY_HELP_BOOK_FOLDER Balthisar Tidy (web).help
-#define TIDY_HELP_BOOK_KEY com.balthisar.web.free.balthisar-tidy.help
+#define TIDY_HELP_BOOK_KEY com.balthisar.Balthisar-Tidy.web.help
 #define JSD_APPLESCRIPT_VALUE no
 #elif defined TARGET_APP
 #define TIDY_BUNDLE_IDENTIFIER com.balthisar.Balthisar-Tidy

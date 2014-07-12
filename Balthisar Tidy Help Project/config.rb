@@ -50,7 +50,7 @@ activate :Helpbook do |options|
   {
     'web' =>
     {
-      :CFBundleID  => 'com.balthisar.web.free.balthisar-tidy.help',
+      :CFBundleID  => 'com.balthisar.Balthisar-Tidy.web.help',
       :ProductName => 'Balthisar Tidy',
       :Features =>
       {

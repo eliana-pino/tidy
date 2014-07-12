@@ -78,7 +78,7 @@ def after_configuration
 
 
   # Set the correct :build_dir based on the options.
-  app.set :build_dir, File.join(options.HelpOutputLocation, "#{options.CFBundleName} (#{options.target}).help")
+  app.set :build_dir, File.join(options.HelpOutputLocation, "#{options.CFBundleName} (#{options.target}).help", "Contents")
 
 
   # Set the destinations for generated markdown partials and css.
