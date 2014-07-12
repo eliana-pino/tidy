@@ -446,12 +446,13 @@ end #helpers
     `command -v hiutil > /dev/null`
     if $?.success?
 
-      indexDir = File.join(app.build_dir, "Resources/", "Base.lproj/" )
-      indexDst = File.join(indexDir, "#{options.CFBundleName}.helpindex")
+      indexDir = File.expand_path(File.join(app.build_dir, "Resources/", "Base.lproj/" ))
+      indexDst = File.expand_path(File.join(indexDir, "#{options.CFBundleName}.helpindex"))
 
-      STDOUT.puts "Help Indexer is indexing '#{indexDir}' and index will be placed in '#{indexDst}'."
+      STDOUT.puts "'#{indexDir}/' (indexing)"
+      STDOUT.puts "'#{indexDst}' (final file)"
 
-      `hiutil -Cf "#{$indexDst}" "#{$indexDir}"`
+      `hiutil -Cf '#{$indexDst}' '#{$indexDir}/'`
     else
       STDOUT.puts "NOTE: `hituil` is not on path or not installed. No index will exist for target '#{options.target}'."
     end
