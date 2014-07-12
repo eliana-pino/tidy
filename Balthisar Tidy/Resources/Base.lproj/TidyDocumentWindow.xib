@@ -197,14 +197,14 @@
                             </binding>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="EE9E1AC7-3387-4E05-AEC7-7B0838925C75" label="Preferences" paletteLabel="Preferences" image="NSAdvanced" id="GCC-l2-uGf">
+                    <toolbarItem implicitItemIdentifier="EE9E1AC7-3387-4E05-AEC7-7B0838925C75" label="Preferences" paletteLabel="Preferences" image="JDAdvanced" id="GCC-l2-uGf">
                         <nil key="toolTip"/>
                         <size key="minSize" width="22" height="22"/>
                         <size key="maxSize" width="22" height="22"/>
                         <button key="view" verticalHuggingPriority="750" id="Ug9-Ch-bdh">
                             <rect key="frame" x="24" y="14" width="22" height="22"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="NSAdvanced" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="fqr-nr-b8o">
+                            <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="JDAdvanced" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="fqr-nr-b8o">
                                 <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
@@ -213,14 +213,14 @@
                             <action selector="showPreferences:" target="-1" id="yMi-Gl-qzd"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="8D5C10CF-777C-4E40-B1CD-78A6C6CDAED2" label="Tutorial" paletteLabel="Quick Tutorial" image="NSInfo" id="4rs-PQ-6mk">
+                    <toolbarItem implicitItemIdentifier="8D5C10CF-777C-4E40-B1CD-78A6C6CDAED2" label="Tutorial" paletteLabel="Quick Tutorial" image="JDInfo" id="4rs-PQ-6mk">
                         <nil key="toolTip"/>
                         <size key="minSize" width="22" height="22"/>
                         <size key="maxSize" width="22" height="22"/>
                         <button key="view" verticalHuggingPriority="750" id="TIN-cK-8Ab">
                             <rect key="frame" x="30" y="14" width="22" height="22"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="NSInfo" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="HK0-4E-rP7">
+                            <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="JDInfo" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="HK0-4E-rP7">
                                 <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
@@ -337,12 +337,12 @@
     <resources>
         <image name="DiffViewTemplate" width="64" height="64"/>
         <image name="DiffsTemplate" width="64" height="64"/>
+        <image name="JDAdvanced" width="21" height="21"/>
+        <image name="JDInfo" width="21" height="21"/>
         <image name="LayoutBottomPaneTemplate" width="21" height="21"/>
         <image name="LayoutLeftPaneTemplate" width="21" height="21"/>
         <image name="LayoutSourceHTemplate" width="21" height="21"/>
         <image name="LayoutSourceVTemplate" width="21" height="21"/>
-        <image name="NSAdvanced" width="32" height="32"/>
-        <image name="NSInfo" width="32" height="32"/>
         <image name="NSQuickLookTemplate" width="21" height="16"/>
         <image name="PaneTopShadow" width="117" height="5"/>
         <image name="ScrollLockTemplate" width="64" height="64"/>

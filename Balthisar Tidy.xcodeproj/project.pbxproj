@@ -10,6 +10,8 @@
 		D008F0191930D9D700559F3B /* JSDAllCapsValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D008F0181930D9D700559F3B /* JSDAllCapsValueTransformer.m */; };
 		D008F01A1930D9D700559F3B /* JSDAllCapsValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D008F0181930D9D700559F3B /* JSDAllCapsValueTransformer.m */; };
 		D0097B0B19712F68001CCF94 /* Balthisar Tidy (pro).help in Resources */ = {isa = PBXBuildFile; fileRef = D04E8FAD195D964F00D1CEDC /* Balthisar Tidy (pro).help */; };
+		D0097B0E197137EC001CCF94 /* JDAdvanced.png in Resources */ = {isa = PBXBuildFile; fileRef = D0097B0C197137EC001CCF94 /* JDAdvanced.png */; };
+		D0097B0F197137EC001CCF94 /* JDInfo.png in Resources */ = {isa = PBXBuildFile; fileRef = D0097B0D197137EC001CCF94 /* JDInfo.png */; };
 		D016A92A182FD80700712C60 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D016A929182FD80700712C60 /* Cocoa.framework */; };
 		D016A936182FD80700712C60 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D016A935182FD80700712C60 /* main.m */; };
 		D01AAC9F193DE2DA00C4E5B2 /* messagesConfig.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE6B1911E88000B49779 /* messagesConfig.icns */; };
@@ -377,6 +379,8 @@
 /* Begin PBXFileReference section */
 		D008F0171930D9D700559F3B /* JSDAllCapsValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSDAllCapsValueTransformer.h; sourceTree = "<group>"; };
 		D008F0181930D9D700559F3B /* JSDAllCapsValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSDAllCapsValueTransformer.m; sourceTree = "<group>"; };
+		D0097B0C197137EC001CCF94 /* JDAdvanced.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = JDAdvanced.png; path = "Images for Toolbar/JDAdvanced.png"; sourceTree = "<group>"; };
+		D0097B0D197137EC001CCF94 /* JDInfo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = JDInfo.png; path = "Images for Toolbar/JDInfo.png"; sourceTree = "<group>"; };
 		D016A926182FD80700712C60 /* Balthisar Tidy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Balthisar Tidy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D016A929182FD80700712C60 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D016A92C182FD80700712C60 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -849,6 +853,8 @@
 		D0CA8F091953168500BBD54C /* Images for Toolbar */ = {
 			isa = PBXGroup;
 			children = (
+				D0097B0C197137EC001CCF94 /* JDAdvanced.png */,
+				D0097B0D197137EC001CCF94 /* JDInfo.png */,
 				D03B89D91955474700E9B4D5 /* DiffViewTemplate.png */,
 				D03B89D319553E5D00E9B4D5 /* DiffsTemplate.png */,
 				D03B89D71955457500E9B4D5 /* ScrollLockTemplate.png */,
@@ -1141,6 +1147,7 @@
 				D0E6AE741911E88000B49779 /* messagesInfo.icns in Resources */,
 				D03B89D419553E5D00E9B4D5 /* DiffsTemplate.png in Resources */,
 				D0E6AE751911E88000B49779 /* messagesPanic.icns in Resources */,
+				D0097B0F197137EC001CCF94 /* JDInfo.png in Resources */,
 				D0E6AE761911E88000B49779 /* messagesWarning.icns in Resources */,
 				D06C9AA1195FE854004D6C27 /* prefsUpdate@2x.png in Resources */,
 				D036E20D18F3D2F20009A9D4 /* Application.icns in Resources */,
@@ -1165,6 +1172,7 @@
 				D036E1EC18F3D25E0009A9D4 /* InfoPlist.strings in Resources */,
 				D0E6AE24190CDAA200B49779 /* JSDTidyModel.strings in Resources */,
 				D06C9A9E195FE854004D6C27 /* prefsUpdate.png in Resources */,
+				D0097B0E197137EC001CCF94 /* JDAdvanced.png in Resources */,
 				D06C9AA9195FEC11004D6C27 /* prefsDoc@2x.png in Resources */,
 				D036E1EE18F3D25E0009A9D4 /* Localizable.strings in Resources */,
 				D0E6AE20190CB34500B49779 /* PaneBottomShadow.tiff in Resources */,
