@@ -169,6 +169,27 @@ helpers do
 
 
   #--------------------------------------------------------
+  # cfBundleName
+  #   Returns the product CFBundleName for the current
+  #   target
+  #--------------------------------------------------------
+  def cfBundleName
+    extensions[:Helpbook].options.CFBundleName
+  end
+
+
+  #--------------------------------------------------------
+  # cfBundleIdentifier
+  #   Returns the product CFBundleIdentifier for the
+  #   current target
+  #--------------------------------------------------------
+  def cfBundleIdentifier
+    options = extensions[:Helpbook].options
+    options.Targets[options.target][:CFBundleID]
+  end
+
+
+  #--------------------------------------------------------
   # boolENV
   #   Treat an environment variable with the value 'yes' or
   #   'no' as a bool. Undefined ENV are no, and anything
@@ -449,10 +470,10 @@ end #helpers
       indexDir = File.expand_path(File.join(app.build_dir, "Resources/", "Base.lproj/" ))
       indexDst = File.expand_path(File.join(indexDir, "#{options.CFBundleName}.helpindex"))
 
-      STDOUT.puts "'#{indexDir}/' (indexing)"
+      STDOUT.puts "'#{indexDir}' (indexing)"
       STDOUT.puts "'#{indexDst}' (final file)"
 
-      `hiutil -Cf '#{$indexDst}' '#{$indexDir}/'`
+      `hiutil -Cf "#{indexDst}" "#{indexDir}"`
     else
       STDOUT.puts "NOTE: `hituil` is not on path or not installed. No index will exist for target '#{options.target}'."
     end
