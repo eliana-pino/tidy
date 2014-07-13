@@ -34,10 +34,10 @@
 
 
 @implementation JSDTidyOption
+{
+	BOOL _builtInTouched;  // Flag to indicate property has been read once.
 
-#pragma mark - iVars
-
-BOOL initedBuiltInCategory; /* speed optimization for one-time loading */
+}
 
 #pragma mark - iVar Synthesis
 
@@ -85,7 +85,7 @@ BOOL initedBuiltInCategory; /* speed optimization for one-time loading */
 		_name               = name;
 		_optionIsHeader     = NO;
 		_optionIsSuppressed = NO;
-		initedBuiltInCategory = NO;
+		_builtInTouched     = NO;
 
 		if (self.optionId == TidyUnknownOption)
 		{
@@ -570,10 +570,10 @@ BOOL initedBuiltInCategory; /* speed optimization for one-time loading */
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (TidyConfigCategory)builtInCategory
 {
-	if ( !initedBuiltInCategory )
+	if ( !_builtInTouched)
 	{
 		_builtInCategory = tidyOptGetCategory( [self createTidyOptionInstance:self.optionId] );
-		initedBuiltInCategory = YES;
+		_builtInTouched = YES;
 	}
 	
 	return _builtInCategory;
