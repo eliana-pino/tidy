@@ -74,6 +74,10 @@
 
 
 @implementation TidyDocumentWindowController
+{
+	CGFloat _savedPositionWidth;   // "static" for saving options width.
+	CGFloat _savedPositionHeight;  // "static" for saving messages height,
+}
 
 
 @synthesize sourcePaneLineNumbersAreVisible = _sourcePaneLineNumbersAreVisible;
@@ -202,8 +206,8 @@
 											  forKeyPath:@"selection"
 												 options:(NSKeyValueObservingOptionNew)
 												 context:NULL];
-
-
+	
+	
 	/* Manually adjust the view sizes. For some reason automatic restoration isn't working. */
 	NSRect localRect = NSRectFromString([[NSUserDefaults standardUserDefaults] objectForKey:@"NSSplitView Subview Frames UIPositionsSplitter01"][0]);
 	[self.splitterOptions setPosition:localRect.size.width ofDividerAtIndex:0];
@@ -214,6 +218,7 @@
 		[self.splitterMessages setPosition:localRect.size.height ofDividerAtIndex:0];
 	}
 }
+
 
 /*———————————————————————————————————————————————————————————————————*
 	windowDidLoad
@@ -390,6 +395,11 @@
 /*———————————————————————————————————————————————————————————————————*
 	optionsPaneIsVisible
  *———————————————————————————————————————————————————————————————————*/
++ (NSSet*)keyPathsForValuesAffectingOptionsPanelIsVisible
+{
+	return [NSSet setWithObject:@"self.optionPaneContainer.hidden"];
+}
+
 - (BOOL)optionsPanelIsVisible
 {
 	NSView *viewOfInterest = [[self.splitterOptions subviews] objectAtIndex:0];
@@ -401,27 +411,25 @@
 
 - (void)setOptionsPanelIsVisible:(BOOL)optionsPanelIsVisible
 {
-	static CGFloat savedPositionWidth = 0.0f;
-
 	/*
 		If the savedPosition is zero, this is the first time we've been here. In that
 		case let's get the value from the actual pane, which should be either the
 		IB default or whatever came in from user defaults.
 	 */
 
-	if (savedPositionWidth == 0.0f)
+	if (_savedPositionWidth == 0.0f)
 	{
-		savedPositionWidth = ((NSView*)[[self.splitterOptions subviews] objectAtIndex:0]).frame.size.width;
+		_savedPositionWidth = ((NSView*)[[self.splitterOptions subviews] objectAtIndex:0]).frame.size.width;
 	}
 
 
     if (optionsPanelIsVisible)
 	{
-		[self.splitterOptions setPosition:savedPositionWidth ofDividerAtIndex:0];
+		[self.splitterOptions setPosition:_savedPositionWidth ofDividerAtIndex:0];
     }
 	else
 	{
-		savedPositionWidth = ((NSView*)[[self.splitterOptions subviews] objectAtIndex:0]).frame.size.width;
+		_savedPositionWidth = ((NSView*)[[self.splitterOptions subviews] objectAtIndex:0]).frame.size.width;
 		[self.splitterOptions setPosition:0.0f ofDividerAtIndex:0];
     }
 }
@@ -430,6 +438,11 @@
 /*———————————————————————————————————————————————————————————————————*
 	messagesPanelIsVisible
  *———————————————————————————————————————————————————————————————————*/
++ (NSSet*)keyPathsForValuesAffectingMessagesPanelIsVisible
+{
+	return [NSSet setWithObject:@"self.messagesPane.hidden"];
+}
+
 - (BOOL)messagesPanelIsVisible
 {
 	NSView *viewOfInterest = [[self.splitterMessages subviews] objectAtIndex:1];
@@ -441,28 +454,26 @@
 
 - (void)setMessagesPanelIsVisible:(BOOL)messagesPanelIsVisible
 {
-	static CGFloat savedPositionHeight = 0.0f;
-
 	/*
 	 If the savedPosition is zero, this is the first time we've been here. In that
 	 case let's get the value from the actual pane, which should be either the
 	 IB default or whatever came in from user defaults.
 	 */
 
-	if (savedPositionHeight == 0.0f)
+	if (_savedPositionHeight == 0.0f)
 	{
-		savedPositionHeight = ((NSView*)[[self.splitterMessages subviews] objectAtIndex:1]).frame.size.height;
+		_savedPositionHeight = ((NSView*)[[self.splitterMessages subviews] objectAtIndex:1]).frame.size.height;
 	}
 
 
     if (messagesPanelIsVisible)
 	{
 		CGFloat splitterHeight = self.splitterMessages.frame.size.height;
-		[self.splitterMessages setPosition:(splitterHeight - savedPositionHeight) ofDividerAtIndex:0];
+		[self.splitterMessages setPosition:(splitterHeight - _savedPositionHeight) ofDividerAtIndex:0];
     }
 	else
 	{
-		savedPositionHeight = ((NSView*)[[self.splitterMessages subviews] objectAtIndex:1]).frame.size.height;
+		_savedPositionHeight = ((NSView*)[[self.splitterMessages subviews] objectAtIndex:1]).frame.size.height;
 		[self.splitterMessages setPosition:self.splitterMessages.frame.size.height ofDividerAtIndex:0];
     }
 }
@@ -583,11 +594,11 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
-	togleSyncronizedDiffs:
+	toggleSyncronizedDiffs:
 		Toggle the display of the diff highlighter.
 		Yes, this is a typo but will be replaced with a property.
  *———————————————————————————————————————————————————————————————————*/
-- (IBAction)togleSyncronizedDiffs:(id)sender
+- (IBAction)toggleSyncronizedDiffs:(id)sender
 {
 	NSLog(@"%@", @"Here we will toggle sync'd diffs.");
 }

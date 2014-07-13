@@ -12,6 +12,10 @@
 		D0097B0B19712F68001CCF94 /* Balthisar Tidy (pro).help in Resources */ = {isa = PBXBuildFile; fileRef = D04E8FAD195D964F00D1CEDC /* Balthisar Tidy (pro).help */; };
 		D0097B0E197137EC001CCF94 /* JDAdvanced.png in Resources */ = {isa = PBXBuildFile; fileRef = D0097B0C197137EC001CCF94 /* JDAdvanced.png */; };
 		D0097B0F197137EC001CCF94 /* JDInfo.png in Resources */ = {isa = PBXBuildFile; fileRef = D0097B0D197137EC001CCF94 /* JDInfo.png */; };
+		D00F82CB19723B8B00C1FFC2 /* JDAdvanced.png in Resources */ = {isa = PBXBuildFile; fileRef = D0097B0C197137EC001CCF94 /* JDAdvanced.png */; };
+		D00F82CC19723B8B00C1FFC2 /* JDInfo.png in Resources */ = {isa = PBXBuildFile; fileRef = D0097B0D197137EC001CCF94 /* JDInfo.png */; };
+		D00F82CD19723B8C00C1FFC2 /* JDAdvanced.png in Resources */ = {isa = PBXBuildFile; fileRef = D0097B0C197137EC001CCF94 /* JDAdvanced.png */; };
+		D00F82CE19723B8C00C1FFC2 /* JDInfo.png in Resources */ = {isa = PBXBuildFile; fileRef = D0097B0D197137EC001CCF94 /* JDInfo.png */; };
 		D016A92A182FD80700712C60 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D016A929182FD80700712C60 /* Cocoa.framework */; };
 		D016A936182FD80700712C60 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D016A935182FD80700712C60 /* main.m */; };
 		D01AAC9F193DE2DA00C4E5B2 /* messagesConfig.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE6B1911E88000B49779 /* messagesConfig.icns */; };
@@ -1211,6 +1215,7 @@
 				D01AACA0193DE2DA00C4E5B2 /* messagesDocument.icns in Resources */,
 				D025BD5F195856C0006D7356 /* Acknowledgments.rtf in Resources */,
 				D01AACA1193DE2DA00C4E5B2 /* messagesError.icns in Resources */,
+				D00F82CC19723B8B00C1FFC2 /* JDInfo.png in Resources */,
 				D01AACA2193DE2DA00C4E5B2 /* messagesInfo.icns in Resources */,
 				D06C9AA2195FE854004D6C27 /* prefsUpdate@2x.png in Resources */,
 				D01AACA3193DE2DA00C4E5B2 /* messagesPanic.icns in Resources */,
@@ -1235,6 +1240,7 @@
 				D036E1E918F3D25E0009A9D4 /* Credits.rtf in Resources */,
 				D086893B1948439700BDAD72 /* TidyDocumentSourceV.xib in Resources */,
 				D06C9A9F195FE854004D6C27 /* prefsUpdate.png in Resources */,
+				D00F82CB19723B8B00C1FFC2 /* JDAdvanced.png in Resources */,
 				D06C9AAA195FEC11004D6C27 /* prefsDoc@2x.png in Resources */,
 				D074B78C1942BEE200F2E6F1 /* TidyEncodingHelper.xib in Resources */,
 				D0CA8F6F1953280700BBD54C /* LayoutBottomPaneTemplate.png in Resources */,
@@ -1299,6 +1305,7 @@
 				D06C9AA3195FE854004D6C27 /* prefsUpdate@2x.png in Resources */,
 				D06C9A9A195FE854004D6C27 /* prefsTidyAppearance.png in Resources */,
 				D0BB67F5193C820A007A3EB0 /* Credits.rtf in Resources */,
+				D00F82CE19723B8C00C1FFC2 /* JDInfo.png in Resources */,
 				D086893C1948439700BDAD72 /* TidyDocumentSourceV.xib in Resources */,
 				D0BB67F9193C820A007A3EB0 /* InfoPlist.strings in Resources */,
 				D0BB67EC193C820A007A3EB0 /* JSDTidyModel.strings in Resources */,
@@ -1314,6 +1321,7 @@
 				D06C9A54195FB955004D6C27 /* OptionListViewController.xib in Resources */,
 				D06C9AA8195FEC11004D6C27 /* prefsDoc.png in Resources */,
 				D0BB67F6193C820A007A3EB0 /* TidyDocumentWindow.xib in Resources */,
+				D00F82CD19723B8C00C1FFC2 /* JDAdvanced.png in Resources */,
 				D04E8FBD195DAA9500D1CEDC /* ScrollLockTemplate.png in Resources */,
 				D06C9AA0195FE854004D6C27 /* prefsUpdate.png in Resources */,
 			);

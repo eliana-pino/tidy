@@ -50,7 +50,9 @@
 
 @property (assign) IBOutlet NSView *optionPane;     // Empty pane in NIB where optionController's view will live.
 
-@property OptionPaneController *optionController;   // An OptionPaneController.
+@property (assign) IBOutlet NSView *optionPaneContainer; 
+
+@property OptionPaneController *optionController;
 
 
 /* Messages Controller */
@@ -108,7 +110,7 @@
 
 - (IBAction)handleShowDiffView:(id)sender;
 
-- (IBAction)togleSyncronizedDiffs:(id)sender;
+- (IBAction)toggleSyncronizedDiffs:(id)sender;
 
 - (IBAction)toggleSynchronizedScrolling:(id)sender;
 

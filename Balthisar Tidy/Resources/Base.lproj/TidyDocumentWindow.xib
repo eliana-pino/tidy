@@ -10,7 +10,7 @@
                 <outlet property="handleShowDiffView" destination="OpE-g2-h34" id="N6d-Sq-ics"/>
                 <outlet property="messagesPane" destination="0jN-hG-2u0" id="wfo-Fn-P0t"/>
                 <outlet property="optionPane" destination="kOf-B8-B6Q" id="4hO-cc-Qi1"/>
-                <outlet property="optionPaneContainer" destination="384" id="UR5-LP-581"/>
+                <outlet property="optionPaneContainer" destination="384" id="pDs-sQ-VLR"/>
                 <outlet property="sourcePane" destination="2BO-Mf-Rqb" id="Ddh-xA-bJd"/>
                 <outlet property="splitterMessages" destination="244" id="vqE-KC-XgE"/>
                 <outlet property="splitterOptions" destination="385" id="JIN-he-4Sn"/>
@@ -23,7 +23,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES"/>
             <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
             <rect key="contentRect" x="52" y="0.0" width="800" height="512"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1440"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
             <value key="minSize" type="size" width="512" height="384"/>
             <view key="contentView" focusRingType="none" id="6" userLabel="Back View">
                 <rect key="frame" x="0.0" y="0.0" width="800" height="512"/>
