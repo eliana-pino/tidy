@@ -10,6 +10,7 @@
                 <outlet property="handleShowDiffView" destination="OpE-g2-h34" id="N6d-Sq-ics"/>
                 <outlet property="messagesPane" destination="0jN-hG-2u0" id="wfo-Fn-P0t"/>
                 <outlet property="optionPane" destination="kOf-B8-B6Q" id="4hO-cc-Qi1"/>
+                <outlet property="optionPaneContainer" destination="384" id="UR5-LP-581"/>
                 <outlet property="sourcePane" destination="2BO-Mf-Rqb" id="Ddh-xA-bJd"/>
                 <outlet property="splitterMessages" destination="244" id="vqE-KC-XgE"/>
                 <outlet property="splitterOptions" destination="385" id="JIN-he-4Sn"/>
@@ -297,7 +298,7 @@
                 </buttonCell>
             </button>
             <connections>
-                <action selector="togleSyncronizedDiffs:" target="-2" id="ffA-RY-R1l"/>
+                <action selector="toggleSyncronizedDiffs:" target="-2" id="HgJ-w5-XZb"/>
                 <binding destination="-2" name="enabled" keyPath="self.sourcePanelIsVertical" id="8Na-p5-9CY"/>
             </connections>
         </toolbarItem>
