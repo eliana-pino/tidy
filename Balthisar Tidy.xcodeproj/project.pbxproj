@@ -10,12 +10,6 @@
 		D008F0191930D9D700559F3B /* JSDAllCapsValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D008F0181930D9D700559F3B /* JSDAllCapsValueTransformer.m */; };
 		D008F01A1930D9D700559F3B /* JSDAllCapsValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D008F0181930D9D700559F3B /* JSDAllCapsValueTransformer.m */; };
 		D0097B0B19712F68001CCF94 /* Balthisar Tidy (pro).help in Resources */ = {isa = PBXBuildFile; fileRef = D04E8FAD195D964F00D1CEDC /* Balthisar Tidy (pro).help */; };
-		D0097B0E197137EC001CCF94 /* JDAdvanced.png in Resources */ = {isa = PBXBuildFile; fileRef = D0097B0C197137EC001CCF94 /* JDAdvanced.png */; };
-		D0097B0F197137EC001CCF94 /* JDInfo.png in Resources */ = {isa = PBXBuildFile; fileRef = D0097B0D197137EC001CCF94 /* JDInfo.png */; };
-		D00F82CB19723B8B00C1FFC2 /* JDAdvanced.png in Resources */ = {isa = PBXBuildFile; fileRef = D0097B0C197137EC001CCF94 /* JDAdvanced.png */; };
-		D00F82CC19723B8B00C1FFC2 /* JDInfo.png in Resources */ = {isa = PBXBuildFile; fileRef = D0097B0D197137EC001CCF94 /* JDInfo.png */; };
-		D00F82CD19723B8C00C1FFC2 /* JDAdvanced.png in Resources */ = {isa = PBXBuildFile; fileRef = D0097B0C197137EC001CCF94 /* JDAdvanced.png */; };
-		D00F82CE19723B8C00C1FFC2 /* JDInfo.png in Resources */ = {isa = PBXBuildFile; fileRef = D0097B0D197137EC001CCF94 /* JDInfo.png */; };
 		D016A92A182FD80700712C60 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D016A929182FD80700712C60 /* Cocoa.framework */; };
 		D016A936182FD80700712C60 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D016A935182FD80700712C60 /* main.m */; };
 		D01AAC9F193DE2DA00C4E5B2 /* messagesConfig.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE6B1911E88000B49779 /* messagesConfig.icns */; };
@@ -191,6 +185,12 @@
 		D086893C1948439700BDAD72 /* TidyDocumentSourceV.xib in Resources */ = {isa = PBXBuildFile; fileRef = D08689351948439700BDAD72 /* TidyDocumentSourceV.xib */; };
 		D0913CAF18B0AC06005DB2E4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D016A935182FD80700712C60 /* main.m */; };
 		D0913CC918B0AC06005DB2E4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D016A929182FD80700712C60 /* Cocoa.framework */; };
+		D0A2E1F8197548D20015F667 /* ToolbarAdvanced.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0A2E1F6197548D20015F667 /* ToolbarAdvanced.tiff */; };
+		D0A2E1F9197548D20015F667 /* ToolbarAdvanced.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0A2E1F6197548D20015F667 /* ToolbarAdvanced.tiff */; };
+		D0A2E1FA197548D20015F667 /* ToolbarAdvanced.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0A2E1F6197548D20015F667 /* ToolbarAdvanced.tiff */; };
+		D0A2E1FB197548D20015F667 /* ToolbarInfo.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0A2E1F7197548D20015F667 /* ToolbarInfo.tiff */; };
+		D0A2E1FC197548D20015F667 /* ToolbarInfo.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0A2E1F7197548D20015F667 /* ToolbarInfo.tiff */; };
+		D0A2E1FD197548D20015F667 /* ToolbarInfo.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0A2E1F7197548D20015F667 /* ToolbarInfo.tiff */; };
 		D0B9F0F119585010008864D6 /* DCOAboutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0B9F0EE19585010008864D6 /* DCOAboutWindow.xib */; };
 		D0B9F0F219585010008864D6 /* DCOAboutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0B9F0EE19585010008864D6 /* DCOAboutWindow.xib */; };
 		D0B9F0F319585010008864D6 /* DCOAboutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0B9F0EE19585010008864D6 /* DCOAboutWindow.xib */; };
@@ -383,8 +383,6 @@
 /* Begin PBXFileReference section */
 		D008F0171930D9D700559F3B /* JSDAllCapsValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSDAllCapsValueTransformer.h; sourceTree = "<group>"; };
 		D008F0181930D9D700559F3B /* JSDAllCapsValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSDAllCapsValueTransformer.m; sourceTree = "<group>"; };
-		D0097B0C197137EC001CCF94 /* JDAdvanced.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = JDAdvanced.png; path = "Images for Toolbar/JDAdvanced.png"; sourceTree = "<group>"; };
-		D0097B0D197137EC001CCF94 /* JDInfo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = JDInfo.png; path = "Images for Toolbar/JDInfo.png"; sourceTree = "<group>"; };
 		D016A926182FD80700712C60 /* Balthisar Tidy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Balthisar Tidy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D016A929182FD80700712C60 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D016A92C182FD80700712C60 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -475,6 +473,8 @@
 		D08689361948439700BDAD72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TidyDocumentSourceV.xib; sourceTree = "<group>"; };
 		D0913CDE18B0AC06005DB2E4 /* Balthisar Tidy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Balthisar Tidy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D091D067191A514700317409 /* InfoPlist-preprocessor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "InfoPlist-preprocessor.h"; path = "Balthisar Tidy/InfoPlist-preprocessor.h"; sourceTree = "<group>"; };
+		D0A2E1F6197548D20015F667 /* ToolbarAdvanced.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = ToolbarAdvanced.tiff; path = "Images for Toolbar/ToolbarAdvanced.tiff"; sourceTree = "<group>"; };
+		D0A2E1F7197548D20015F667 /* ToolbarInfo.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = ToolbarInfo.tiff; path = "Images for Toolbar/ToolbarInfo.tiff"; sourceTree = "<group>"; };
 		D0B9F0EE19585010008864D6 /* DCOAboutWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DCOAboutWindow.xib; path = DCOAboutWindow/DCOAboutWindow/DCOAboutWindow.xib; sourceTree = "<group>"; };
 		D0B9F0EF19585010008864D6 /* DCOAboutWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCOAboutWindowController.h; path = DCOAboutWindow/DCOAboutWindow/DCOAboutWindowController.h; sourceTree = "<group>"; };
 		D0B9F0F019585010008864D6 /* DCOAboutWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCOAboutWindowController.m; path = DCOAboutWindow/DCOAboutWindow/DCOAboutWindowController.m; sourceTree = "<group>"; };
@@ -857,8 +857,8 @@
 		D0CA8F091953168500BBD54C /* Images for Toolbar */ = {
 			isa = PBXGroup;
 			children = (
-				D0097B0C197137EC001CCF94 /* JDAdvanced.png */,
-				D0097B0D197137EC001CCF94 /* JDInfo.png */,
+				D0A2E1F6197548D20015F667 /* ToolbarAdvanced.tiff */,
+				D0A2E1F7197548D20015F667 /* ToolbarInfo.tiff */,
 				D03B89D91955474700E9B4D5 /* DiffViewTemplate.png */,
 				D03B89D319553E5D00E9B4D5 /* DiffsTemplate.png */,
 				D03B89D71955457500E9B4D5 /* ScrollLockTemplate.png */,
@@ -1150,8 +1150,8 @@
 				D06C9A98195FE854004D6C27 /* prefsTidyAppearance.png in Resources */,
 				D0E6AE741911E88000B49779 /* messagesInfo.icns in Resources */,
 				D03B89D419553E5D00E9B4D5 /* DiffsTemplate.png in Resources */,
+				D0A2E1FB197548D20015F667 /* ToolbarInfo.tiff in Resources */,
 				D0E6AE751911E88000B49779 /* messagesPanic.icns in Resources */,
-				D0097B0F197137EC001CCF94 /* JDInfo.png in Resources */,
 				D0E6AE761911E88000B49779 /* messagesWarning.icns in Resources */,
 				D06C9AA1195FE854004D6C27 /* prefsUpdate@2x.png in Resources */,
 				D036E20D18F3D2F20009A9D4 /* Application.icns in Resources */,
@@ -1167,6 +1167,7 @@
 				D0E6AE1A190C9FAC00B49779 /* ShowDescriptionTemplate.pdf in Resources */,
 				D036E1E818F3D25E0009A9D4 /* Credits.rtf in Resources */,
 				D086893A1948439700BDAD72 /* TidyDocumentSourceV.xib in Resources */,
+				D0A2E1F8197548D20015F667 /* ToolbarAdvanced.tiff in Resources */,
 				D06C9AA6195FEC11004D6C27 /* prefsDoc.png in Resources */,
 				D06C9A43195FB4A4004D6C27 /* MASPreferencesWindow.xib in Resources */,
 				D06C9A9B195FE854004D6C27 /* prefsTidyAppearance@2x.png in Resources */,
@@ -1176,7 +1177,6 @@
 				D036E1EC18F3D25E0009A9D4 /* InfoPlist.strings in Resources */,
 				D0E6AE24190CDAA200B49779 /* JSDTidyModel.strings in Resources */,
 				D06C9A9E195FE854004D6C27 /* prefsUpdate.png in Resources */,
-				D0097B0E197137EC001CCF94 /* JDAdvanced.png in Resources */,
 				D06C9AA9195FEC11004D6C27 /* prefsDoc@2x.png in Resources */,
 				D036E1EE18F3D25E0009A9D4 /* Localizable.strings in Resources */,
 				D0E6AE20190CB34500B49779 /* PaneBottomShadow.tiff in Resources */,
@@ -1214,8 +1214,8 @@
 				D06C9A99195FE854004D6C27 /* prefsTidyAppearance.png in Resources */,
 				D01AACA0193DE2DA00C4E5B2 /* messagesDocument.icns in Resources */,
 				D025BD5F195856C0006D7356 /* Acknowledgments.rtf in Resources */,
+				D0A2E1FC197548D20015F667 /* ToolbarInfo.tiff in Resources */,
 				D01AACA1193DE2DA00C4E5B2 /* messagesError.icns in Resources */,
-				D00F82CC19723B8B00C1FFC2 /* JDInfo.png in Resources */,
 				D01AACA2193DE2DA00C4E5B2 /* messagesInfo.icns in Resources */,
 				D06C9AA2195FE854004D6C27 /* prefsUpdate@2x.png in Resources */,
 				D01AACA3193DE2DA00C4E5B2 /* messagesPanic.icns in Resources */,
@@ -1231,6 +1231,7 @@
 				D036E21418F3D2F20009A9D4 /* Tidy.icns in Resources */,
 				D036E21618F3D2F20009A9D4 /* XML.icns in Resources */,
 				D0CA8F751953280700BBD54C /* LayoutSourceHTemplate.png in Resources */,
+				D0A2E1F9197548D20015F667 /* ToolbarAdvanced.tiff in Resources */,
 				D06C9AA7195FEC11004D6C27 /* prefsDoc.png in Resources */,
 				D06C9A44195FB4A4004D6C27 /* MASPreferencesWindow.xib in Resources */,
 				D06C9A9C195FE854004D6C27 /* prefsTidyAppearance@2x.png in Resources */,
@@ -1240,7 +1241,6 @@
 				D036E1E918F3D25E0009A9D4 /* Credits.rtf in Resources */,
 				D086893B1948439700BDAD72 /* TidyDocumentSourceV.xib in Resources */,
 				D06C9A9F195FE854004D6C27 /* prefsUpdate.png in Resources */,
-				D00F82CB19723B8B00C1FFC2 /* JDAdvanced.png in Resources */,
 				D06C9AAA195FEC11004D6C27 /* prefsDoc@2x.png in Resources */,
 				D074B78C1942BEE200F2E6F1 /* TidyEncodingHelper.xib in Resources */,
 				D0CA8F6F1953280700BBD54C /* LayoutBottomPaneTemplate.png in Resources */,
@@ -1284,6 +1284,7 @@
 				D06C9A8E195FE854004D6C27 /* prefsSave.png in Resources */,
 				D0CA8F761953280700BBD54C /* LayoutSourceHTemplate.png in Resources */,
 				D04E8FBC195DAA9500D1CEDC /* DiffsTemplate.png in Resources */,
+				D0A2E1FA197548D20015F667 /* ToolbarAdvanced.tiff in Resources */,
 				D06C9A5D195FB997004D6C27 /* OptionListAppearanceViewController.xib in Resources */,
 				D0BB67EF193C820A007A3EB0 /* PHP.icns in Resources */,
 				D074B7AC1944035800F2E6F1 /* TidyDocumentMessagesView.xib in Resources */,
@@ -1291,6 +1292,7 @@
 				D01BA7BD1967DD3700843C69 /* TidyScripting.sdef in Resources */,
 				D0CA8F701953280700BBD54C /* LayoutBottomPaneTemplate.png in Resources */,
 				D0BB67F7193C820A007A3EB0 /* Tidy.icns in Resources */,
+				D0A2E1FD197548D20015F667 /* ToolbarInfo.tiff in Resources */,
 				D0BB67F0193C820A007A3EB0 /* XML.icns in Resources */,
 				D01AACB8193DE56000C4E5B2 /* HideDescriptionTemplate.pdf in Resources */,
 				D06C9A94195FE854004D6C27 /* prefsTidy.png in Resources */,
@@ -1305,7 +1307,6 @@
 				D06C9AA3195FE854004D6C27 /* prefsUpdate@2x.png in Resources */,
 				D06C9A9A195FE854004D6C27 /* prefsTidyAppearance.png in Resources */,
 				D0BB67F5193C820A007A3EB0 /* Credits.rtf in Resources */,
-				D00F82CE19723B8C00C1FFC2 /* JDInfo.png in Resources */,
 				D086893C1948439700BDAD72 /* TidyDocumentSourceV.xib in Resources */,
 				D0BB67F9193C820A007A3EB0 /* InfoPlist.strings in Resources */,
 				D0BB67EC193C820A007A3EB0 /* JSDTidyModel.strings in Resources */,
@@ -1321,7 +1322,6 @@
 				D06C9A54195FB955004D6C27 /* OptionListViewController.xib in Resources */,
 				D06C9AA8195FEC11004D6C27 /* prefsDoc.png in Resources */,
 				D0BB67F6193C820A007A3EB0 /* TidyDocumentWindow.xib in Resources */,
-				D00F82CD19723B8C00C1FFC2 /* JDAdvanced.png in Resources */,
 				D04E8FBD195DAA9500D1CEDC /* ScrollLockTemplate.png in Resources */,
 				D06C9AA0195FE854004D6C27 /* prefsUpdate.png in Resources */,
 			);
