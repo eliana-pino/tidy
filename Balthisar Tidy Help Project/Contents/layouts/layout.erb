@@ -7,13 +7,13 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     
     <!-- Use title if it is in the page YAML frontmatter -->
-    <title><%= current_page.data.title || "The Middleman" %></title>
+    <title><%= current_page.data.title || 'The Middleman' %></title>
     
-    <%= stylesheet_link_tag "style" %>
-    <%= javascript_include_tag  "all" %>
+    <%= stylesheet_link_tag 'style' %>
+    <%= javascript_include_tag  'all' %>
   </head>
   
-  <body class="<%= page_group %> <%= page_name %>"">
+  <body class="<%= page_group %> <%= page_name %>">
     <%= yield %>
   </body>
 </html>

@@ -1,17 +1,17 @@
-<% wrap_layout :"layout-html4" do %>
-	<div class="container-logo-medium">
+<% wrap_layout :'layout-html4' do %>
+	<div class='container-logo-medium'>
 		<div>
-		    <div class="yield-content">
+		    <div class='yield-content'>
 	            <%= yield %>
 	        </div>
 		</div>
 		<div>
 			<div>
-				<%= image_tag '/Resources/shared/icon_256x256@2x.png', :alt => "logo" %>
+				<%= image_tag '/Resources/shared/icon_256x256@2x.png', :alt => 'logo' %>
 			</div>
 
             <div class="related_topics">
-            <% if !related_pages.to_a.empty? %>
+            <% unless related_pages.to_a.empty? %>
                 <h1>Related Topics</h1>
                 <ul>
                 <% related_pages.each do |p| %>
@@ -27,5 +27,4 @@
 
 		</div>
 	</div>
-
 <% end %>

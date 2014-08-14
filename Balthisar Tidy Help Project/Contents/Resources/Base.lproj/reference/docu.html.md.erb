@@ -11,6 +11,6 @@ order: 1
 <%= current_page.data.title %>
 ==============================
 
-<%= current_page.data.blurb %>
+<%= current_page.data[:blurb] %>
 
-<%= partial(:table_contents, :locals => {:group => "docu"}) %>
+<%= partial(:table_contents, :locals => {:group => 'docu'}) %>
