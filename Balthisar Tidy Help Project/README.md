@@ -14,7 +14,7 @@ wish to participate in the development of _Balthisar Tidy_ and issue pull
 requests, please make changes to the source files in the build system in this
 directory, in `source`.
 
-The build system is [middleman](http://middlemanapp.com/) and is a well-known
+The build system is [Middleman](http://middlemanapp.com/) and is a well-known
 static website development tool that's available for all platforms that can
 run Ruby. The templating system depends on very basic Ruby knowledge, but the
 learning curve is quite small.

@@ -47,18 +47,19 @@ def initialize(app, options_hash={}, &block)
   app.extend ClassMethods
 
   # ensure target exists
-  unless options.Targets.key?(options.target)
+  if options[:Targets].key?(options.target)
+    STDOUT.puts "Using target `#{options.target}`"
+  else
     STDOUT.puts "`#{options.target}` is not a valid target. Choose from one of:"
-    options.Targets.each do |k,v|
+    options[:Targets].each do |k,v|
       STDOUT.puts "  #{k}"
     end
-    STDOUT.puts "Or use nothing for the default target."
+    STDOUT.puts 'Or use nothing for the default target.'
+    STDOUT.puts 'Usage reminder: HBTARGET=target middleman build'
     exit 1
-  else
-    STDOUT.puts "Using target `#{options.target}`"
   end
 
-  @path_content = nil; # string will be initialized in after_configuration.
+  @path_content = nil # string will be initialized in after_configuration.
 
 end #initialize
 
@@ -74,11 +75,11 @@ end #initialize
 def after_configuration
 
   # Setup some instance variables
-  @path_content = File.join( app.source, "Resources/", "Base.lproj/" )
+  @path_content = File.join( app.source, 'Resources/', 'Base.lproj/' )
 
 
   # Set the correct :build_dir based on the options.
-  app.set :build_dir, File.join(options.HelpOutputLocation, "#{options.CFBundleName} (#{options.target}).help", "Contents")
+  app.set :build_dir, File.join(options.HelpOutputLocation, "#{options.CFBundleName} (#{options.target}).help", 'Contents')
 
 
   # Set the destinations for generated markdown partials and css.
@@ -88,9 +89,9 @@ def after_configuration
 
 
   # make the title page
-  srcFile = File.join(@path_content, options.file_titlepage_template)
-  dstFile = File.join(@path_content, "#{options.CFBundleName}.html.md.erb")
-  FileUtils.cp(srcFile, dstFile)
+  src_file = File.join(@path_content, options.file_titlepage_template)
+  dst_file = File.join(@path_content, "#{options.CFBundleName}.html.md.erb")
+  FileUtils.cp(src_file, dst_file)
 
 
   # create all other necessary files
@@ -105,7 +106,7 @@ end #def
 #===============================================================
 #  before_build
 #    Callback occurs one time before the build starts.
-#    We will peform all of the required pre-work.
+#    We will perform all of the required pre-work.
 #===============================================================
 def before_build
 
@@ -114,7 +115,7 @@ end
 #===============================================================
 #  after_build
 #    Callback occurs one time after the build.
-#    We will peform all of the finishing touches.
+#    We will perform all of the finishing touches.
 #===============================================================
 def after_build
     run_help_indexer
@@ -143,7 +144,7 @@ helpers do
   #   Return the current build target.
   #--------------------------------------------------------
   def target_name?(proposal)
-    options = extensions[:Helpbook].options.target == proposal
+    extensions[:Helpbook].options.target == proposal
   end
 
 
@@ -154,7 +155,7 @@ helpers do
   def target_feature?(feature)
     options = extensions[:Helpbook].options
     features = options.Targets[options.target][:Features]
-    result = features.key?(feature) && features[feature]
+    features.key?(feature) && features[feature]
   end
 
 
@@ -190,13 +191,13 @@ helpers do
 
 
   #--------------------------------------------------------
-  # boolENV
+  # bool_env
   #   Treat an environment variable with the value 'yes' or
   #   'no' as a bool. Undefined ENV are no, and anything
   #   that's not 'yes' is no.
   #--------------------------------------------------------
-  def boolENV(envVar)
-     (ENV.key?(envVar)) && !((ENV[envVar].downcase == 'no') || (ENV[envVar].downcase == 'false'))
+  def bool_env(env_var)
+     (ENV.key?(env_var)) && !((ENV[env_var].downcase == 'no') || (ENV[env_var].downcase == 'false'))
   end
 
 
@@ -206,7 +207,7 @@ helpers do
   #    file base name. Useful for assigning classes, etc.
   #--------------------------------------------------------
   def page_name
-    File.basename( current_page.url, ".*" )
+    File.basename( current_page.url, '.*' )
   end
 
 
@@ -231,7 +232,7 @@ helpers do
   def current_group_pages
     sitemap.resources.find_all do |p|
       p.path.match(/\.html/) &&
-      File.basename(File.split(p.source_file)[0]) == page_group
+          File.basename(File.split(p.source_file)[0]) == page_group
     end
   end
 
@@ -241,9 +242,9 @@ helpers do
   #    Returns an array of all of the pages related to the
   #    current page's group. See pages_related_to.
   #--------------------------------------------------------
-   def related_pages
-       pages_related_to( page_group )
-   end
+  def related_pages
+    pages_related_to( page_group )
+  end
 
 
   #--------------------------------------------------------
@@ -267,17 +268,17 @@ helpers do
   # relative path to groups that are not the current group.
   #--------------------------------------------------------
   def pages_related_to( group )
-     pages = sitemap.resources.find_all do |p|
+    pages = sitemap.resources.find_all do |p|
       p.path.match(/\.html/) &&
-      File.basename(File.split(p.source_file)[0]) == group &&
-      File.basename( p.url, ".*" ) != page_name &&
-      !File.basename( p.url ).start_with?("00") &&
-      p.data.key?("order") &&
-      ( !p.data.key?("target") || (p.data["target"].include?(target_name) || p.data["target"].count{ |t| target_feature?(t) } > 0) ) &&
-      ( !p.data.key?("exclude") || !(p.data["exclude"].include?(target_name) || p.data["exclude"].count{ |t| target_feature(t) } > 0) )
+          File.basename(File.split(p.source_file)[0]) == group &&
+          File.basename( p.url, '.*') != page_name &&
+          !File.basename( p.url ).start_with?('00') &&
+          p.data.key?('order') &&
+          ( !p.data.key?('target') || (p.data['target'].include?(target_name) || p.data['target'].count{ |t| target_feature?(t) } > 0) ) &&
+          ( !p.data.key?('exclude') || !(p.data['exclude'].include?(target_name) || p.data['exclude'].count{ |t| target_feature(t) } > 0) )
     end
     pages.each { |p| p.add_metadata(:link =>(group == page_group) ? File.basename(p.url) : File.join(group, File.basename(p.url) ) )}
-    pages.sort_by { |p| p.data["order"].to_i }
+    pages.sort_by { |p| p.data['order'].to_i }
   end
 
 end #helpers
@@ -306,29 +307,29 @@ end #helpers
 
     Dir.glob("#{app.source}/Resources/**/*.{jpg,png,gif}").each do |fileName|
 
-        # Remove all file extensions and make a shortcut
-        base_name = fileName
-        while File.extname(base_name) != "" do
-            base_name = File.basename( base_name, ".*" )
-        end
-        next if base_name.start_with?('_')
-        shortcut = "[#{base_name}]:"
+      # Remove all file extensions and make a shortcut
+      base_name = fileName
+      while File.extname(base_name) != '' do
+        base_name = File.basename( base_name, '.*' )
+      end
+      next if base_name.start_with?('_')
+      shortcut = "[#{base_name}]:"
 
-        # Make a fake absolute path
-        path = File::SEPARATOR + Pathname.new(fileName).relative_path_from(Pathname.new(app.source)).to_s
+      # Make a fake absolute path
+      path = File::SEPARATOR + Pathname.new(fileName).relative_path_from(Pathname.new(app.source)).to_s
 
-        files_array << { :shortcut => shortcut, :path => path }
+      files_array << { :shortcut => shortcut, :path => path }
 
-        longest_shortcut = shortcut.length if shortcut.length > longest_shortcut
-        longest_path = path.length if path.length > longest_path
+      longest_shortcut = shortcut.length if shortcut.length > longest_shortcut
+      longest_path = path.length if path.length > longest_path
 
     end
 
     files_array = files_array.sort_by { |key| [File.split(key[:path])[0], key[:path]] }
     files_array.uniq.each do |item|
-        item[:shortcut] = "%-#{longest_shortcut}.#{longest_shortcut}s" % item[:shortcut]
-        item[:path] = "%-#{longest_path}.#{longest_path}s" % item[:path]
-        out_array << "#{item[:shortcut]}  #{item[:path]}   "
+      item[:shortcut] = "%-#{longest_shortcut}.#{longest_shortcut}s" % item[:shortcut]
+      item[:path] = "%-#{longest_path}.#{longest_path}s" % item[:path]
+      out_array << "#{item[:shortcut]}  #{item[:path]}   "
     end
 
     File.open(options.file_mdimages, 'w') { |f| out_array.each { |line| f.puts(line) } }
@@ -355,8 +356,8 @@ end #helpers
 
         # Remove all file extensions and make a shortcut
         base_name = fileName
-        while File.extname(base_name) != "" do
-            base_name = File.basename( base_name, ".*" )
+        while File.extname(base_name) != '' do
+            base_name = File.basename( base_name, '.*' )
         end
         next if base_name.start_with?('_')
 
@@ -364,11 +365,11 @@ end #helpers
 
         # Make a fake absolute path
         path = Pathname.new(fileName).relative_path_from(Pathname.new(app.source))
-        path = File::SEPARATOR + File.join(File.dirname(path), base_name) + ".html"
+        path = File::SEPARATOR + File.join(File.dirname(path), base_name) + '.html'
 
         # Get the title, if any
         metadata = YAML.load_file(fileName)
-        title = (metadata.is_a?(Hash) && metadata.key?("title")) ? metadata["title"] : ""
+        title = (metadata.is_a?(Hash) && metadata.key?('title')) ? metadata['title'] : ''
 
         files_array << { :shortcut => shortcut, :path => path, :title => title }
 
@@ -412,7 +413,7 @@ end #helpers
         base_name = File.basename(fileName)
 
         # width
-        if File.basename(base_name, '.*').end_with?("@2x")
+        if File.basename(base_name, '.*').end_with?('@2x')
           width = (FastImage.size(fileName)[0] / 2).to_i.to_s
         else
           width = FastImage.size(fileName)[0].to_s;
@@ -467,13 +468,13 @@ end #helpers
     `command -v hiutil > /dev/null`
     if $?.success?
 
-      indexDir = File.expand_path(File.join(app.build_dir, "Resources/", "Base.lproj/" ))
-      indexDst = File.expand_path(File.join(indexDir, "#{options.CFBundleName}.helpindex"))
+      index_dir = File.expand_path(File.join(app.build_dir, 'Resources/', 'Base.lproj/' ))
+      index_dst = File.expand_path(File.join(index_dir, "#{options.CFBundleName}.helpindex"))
 
-      STDOUT.puts "'#{indexDir}' (indexing)"
-      STDOUT.puts "'#{indexDst}' (final file)"
+      STDOUT.puts "'#{index_dir}' (indexing)"
+      STDOUT.puts "'#{index_dst}' (final file)"
 
-      `hiutil -Cf "#{indexDst}" "#{indexDir}"`
+      `hiutil -Cf "#{index_dst}" "#{index_dir}"`
     else
       STDOUT.puts "NOTE: `hituil` is not on path or not installed. No index will exist for target '#{options.target}'."
     end

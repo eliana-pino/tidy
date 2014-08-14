@@ -5,7 +5,7 @@
 ################################################################################
 
 # 'helpbook.rb' contains the Helpbook class that will do additional lifting.
-require "helpbook"
+require 'helpbook'
 
 
 ################################################################
@@ -16,7 +16,7 @@ activate :Helpbook do |options|
 
   # You should only change the default, fall-back target here. This is the
   # target that will be processed if no ENVironment variable is used.
-  options.target = ENV['HBTARGET'] || 'pro'
+  options.target = ENV['HBTARGET'] ? ENV['HBTARGET'].to_sym : :pro
 
   # This value will be used for correct .plists and .strings setup, and will
   # will determine finally .help directory name. All targets will use the
@@ -26,7 +26,7 @@ activate :Helpbook do |options|
   # Directory where finished .help build should go. It should be relative
   # to this file, or make null to leave in this help project directory. The
   # *actual* output directory will be an Apple Help bundle at this location.
-  options.HelpOutputLocation = "../Balthisar Tidy/Resources/"
+  options.HelpOutputLocation = '../Balthisar Tidy/Resources/'
 
   # :CFBundleID
   # Different versions of your app must have different bundle identifiers
@@ -48,7 +48,7 @@ activate :Helpbook do |options|
   # Define your targets here.
   options.Targets =
   {
-    'web' =>
+    :web =>
     {
       :CFBundleID  => 'com.balthisar.Balthisar-Tidy.web.help',
       :ProductName => 'Balthisar Tidy',
@@ -67,7 +67,7 @@ activate :Helpbook do |options|
       }
     },
 
-    'app' =>
+    :app =>
     {
       :CFBundleID  => 'com.balthisar.Balthisar-Tidy.help',
       :ProductName => 'Balthisar Tidy',
@@ -86,7 +86,7 @@ activate :Helpbook do |options|
       }
     },
 
-    'pro' =>
+    :pro =>
     {
       :CFBundleID  => 'com.balthisar.Balthisar-Tidy.pro.help',
       :ProductName => 'Balthisar Tidy for Work',
@@ -105,7 +105,7 @@ activate :Helpbook do |options|
       }
     },
 
-    'test' =>
+    :test =>
     {
       :CFBundleID  => 'com.balthisar.Balthisar-Tidy.test.help',
       :ProductName => 'Balthisar Tidy Test',
@@ -152,7 +152,7 @@ end #activate
 # Setup directories to mirror Help Book directory layout.
 #===============================================================
 set :source,       'Contents'
-set :build_dir,    'Contents (build)'   # Will be overriden by Helpbook.
+set :build_dir,    'Contents (build)'   # Will be overridden by Helpbook.
 
 set :css_dir,      'Resources/Base.lproj/css'
 set :js_dir,       'Resources/Base.lproj/javascript'
@@ -182,7 +182,7 @@ activate :relative_assets
 #===============================================================
 # Default to Apple-recommended HTML 4.01 layout.
 #===============================================================
-page "Resources/Base.lproj/*", :layout => :'layout-html4'
+page 'Resources/Base.lproj/*', :layout => :'layout-html4'
 
 
 #===============================================================
@@ -218,7 +218,7 @@ end #helpers
 configure :development do
 
   # Reload the browser automatically whenever files change
-  activate :livereload, :host => "127.0.0.1"
+  activate :livereload, :host => '127.0.0.1'
 
   compass_config do |config|
     config.output_style = :expanded
