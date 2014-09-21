@@ -6,6 +6,16 @@ Copyright © 2003-2014 by Jim Derry. All rights reserved.
 See “Legal Stuff” below for license details.
 
 
+Development Branch
+------------------
+**This is the development branch of Balthisar Tidy**.
+
+
+XCode 6 Move
+------------
+**Note:** This branch will convert to an XCode 6 project. When a new
+release is publically made, the main branch will be updated as well.
+
 About
 -----
 
