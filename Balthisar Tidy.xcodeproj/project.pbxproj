@@ -1722,13 +1722,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/jderry/Dropbox/Development/Balthisar,
-					Tidy,
-					/Users/jderry/Dropbox/Development/Balthisar,
-					Tidy/Balthisar,
-					Tidy/Frameworks,
-					"$(PROJECT_DIR)/Balthisar",
-					Tidy/Frameworks,
+					"$(PROJECT_DIR)/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Balthisar Tidy/Balthisar Tidy-Prefix.pch";
@@ -1764,13 +1758,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/jderry/Dropbox/Development/Balthisar,
-					Tidy,
-					/Users/jderry/Dropbox/Development/Balthisar,
-					Tidy/Balthisar,
-					Tidy/Frameworks,
-					"$(PROJECT_DIR)/Balthisar",
-					Tidy/Frameworks,
+					"$(PROJECT_DIR)/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Balthisar Tidy/Balthisar Tidy-Prefix.pch";
