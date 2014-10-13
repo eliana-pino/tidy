@@ -137,7 +137,8 @@ if __FILE__ == $0
 
     unless result
       puts_red "** NOTE: `middleman` did not exit cleanly for target '#{target}'. Build process will stop now."
-      puts_red "The error reported was #{$?}."
+      puts_red "   Consider using the --verbose flag to identify the source of the error. The error reported was:"
+      puts_red "   #{$?}"
       exit 1
     end
   end
