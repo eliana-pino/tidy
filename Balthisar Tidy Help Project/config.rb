@@ -4,8 +4,8 @@
 #    targets.
 ################################################################################
 
-# 'helpbook.rb' contains the Helpbook class that will do additional lifting.
-require "helpbook"
+# 'HelpBook.rb' contains the Helpbook class that will do additional lifting.
+require 'HelpBook'
 
 
 ################################################################
@@ -15,18 +15,21 @@ require "helpbook"
 activate :Helpbook do |options|
 
   # You should only change the default, fall-back target here. This is the
-  # target that will be processed if no ENVironment variable is used.
+  # target that will be processed if no ENVironment variable is used,
+  # e.g., if you run `middleman build` directly. In general you should
+  # not invoke middleman directly, but use `middlemac` instead.
   options.target = ENV['HBTARGET'] || 'pro'
 
   # This value will be used for correct .plists and .strings setup, and will
-  # will determine finally .help directory name. All targets will use the
+  # will determine final .help directory name. All targets will use the
   # same CFBundleName.
   options.CFBundleName = 'Balthisar Tidy'
 
   # Directory where finished .help build should go. It should be relative
   # to this file, or make null to leave in this help project directory. The
   # *actual* output directory will be an Apple Help bundle at this location.
-  options.HelpOutputLocation = "../Balthisar Tidy/Resources/"
+
+  options.HelpOutputLocation = '../Balthisar Tidy/Resources/'
 
   # :CFBundleID
   # Different versions of your app must have different bundle identifiers

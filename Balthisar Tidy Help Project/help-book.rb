@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 ################################################################################
 #  helpbook.rb
 #    Consists of the Helpbook class which performs additional functions for
@@ -16,6 +17,13 @@ require 'fileutils'
 require 'nokogiri'
 require 'pathname'
 require 'yaml'
+
+
+puts self
+if __FILE__ == $0
+  exit 0
+end
+
 
 
 class Helpbook < Middleman::Extension
