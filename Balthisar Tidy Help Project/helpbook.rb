@@ -603,7 +603,7 @@ end #helpers
 
       `hiutil -Cf "#{index_dst}" "#{index_dir}"`
     else
-      puts "#{A_RED}NOTE: `hituil` is not on path or not installed. No index will exist for target '#{options.Target}'.#{A_RESET}"
+      puts "#{A_RED}NOTE: `hiutil` is not on path or not installed. No index will exist for target '#{options.Target}'.#{A_RESET}"
     end
   end #def
 

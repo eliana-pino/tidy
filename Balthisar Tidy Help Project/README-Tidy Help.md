@@ -78,8 +78,14 @@ properly manage the name of the file for the title page (it just makes a
 duplicate of `_title_page.html.md.erb`).
 
 
-Editing the InfoPlist.strings file
-----------------------------------
+Editing the Info.plist and InfoPlist.strings files
+--------------------------------------------------
+The build system will generate a proper `Info.plist` file using the
+configured data, so don't modify this file. Instead modify its template file
+`_Info.plist` whenever you want to ensure that some new item is
+included. If you're contributing to _Balthisar Tidy_ there should be no need
+for this.
+
 The build system will generate a proper `InfoPlist.strings` file using the
 configured data, so don't modify this file. Instead modify its template file
 `_InfoPlist.strings` whenever you want to ensure that some new item is

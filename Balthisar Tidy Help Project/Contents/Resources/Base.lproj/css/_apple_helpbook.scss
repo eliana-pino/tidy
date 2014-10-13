@@ -201,7 +201,7 @@ div.yield-content
 
 div.container-logo-large
 {
-	$logowidth: 200pt;
+	$logo-width: 200pt;
 
 	position: relative;
 	left: 0;
@@ -215,7 +215,7 @@ div.container-logo-large
 			position: absolute;
 			top: 0;
 			left: 0;
-			width: $logowidth;
+			width: $logo-width;
 			text-align: center;
 			font-size: 0.9em;
 
@@ -256,7 +256,7 @@ div.container-logo-large
 		 */
 		> div:first-child + div
 		{
-			margin-left: $logowidth;
+			margin-left: $logo-width;
 			border-left: $standard_border;
 			min-height: 100%;
 
@@ -275,7 +275,7 @@ div.container-logo-large
 
 div.container-logo-medium
 {
-	$logowidth: 130pt;
+	$logo-width: 130pt;
 
 	position: relative;
 	left: 0;
@@ -290,7 +290,7 @@ div.container-logo-medium
 		 */
 		> div:first-child
 		{
-			margin-right: $logowidth;
+			margin-right: $logo-width;
 			border-right: $standard_border;
 			min-height: 100%;
 
@@ -314,7 +314,7 @@ div.container-logo-medium
 			position: absolute;
 			top: 0;
 			right: 0;
-			width: $logowidth;
+			width: $logo-width;
 
 			/* top of right block, where image lives */
 			> div:first-child

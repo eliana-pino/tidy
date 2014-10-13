@@ -15,7 +15,7 @@ require 'helpbook'
 activate :Helpbook do |options|
 
   # You should only change the default, fall-back target here. This is the
-  # target that will be processed if no ENVironment variable is used,
+  # target that will be processed if no environment variable is used,
   # e.g., if you run `middleman build` directly.
   options.Target = (ENV['HBTARGET'] || :pro).to_sym
 

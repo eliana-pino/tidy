@@ -1,8 +1,7 @@
-<% wrap_layout :"layout-html4" do %>
-
+<% wrap_layout :'layout-html4' do %>
 	<div class="container-logo-small">
         <div class="yield-content">
-<%= image_tag '/Resources/shared/icon_256x256@2x.png', :alt => "logo" %>
+<%= image_tag '/Resources/shared/icon_256x256@2x.png', :alt => 'logo' %>
 <%= yield %>
 	    </div>
 
@@ -11,7 +10,7 @@
         <% end %>
 
         <div class="related_topics">
-        <% if !related_pages.to_a.empty? %>
+        <% unless related_pages.to_a.empty? %>
             <h1>Related Topics</h1>
             <ul>
             <% related_pages.each do |p| %>
@@ -26,5 +25,4 @@
         </div>
 
 	</div>
-
 <% end %>

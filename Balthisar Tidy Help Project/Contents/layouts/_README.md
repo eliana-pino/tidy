@@ -9,12 +9,12 @@ Files
 -----
 
 None of these files become standalone HTML documents, and as such should have
-a single `.erb` extension and should use HTML and embedded Ruby exclusively.
+a single `.erb` or `.haml` extension.
 
 For organization, the convention is to name HTML containers with a `layout`
 prefix and visual templates with a `template` prefix.
 
- - `layout.erb` - This is Middleman's default HTML5 template, and should be
+ - `layout.haml` - This is Middleman's default HTML5 template, and should be
    left alone as a fallback. Nothing in this project uses it.
 
  - `layout-apple_main.erb` - Apple's help landing page (the main page) is
