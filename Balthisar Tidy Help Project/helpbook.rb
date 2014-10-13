@@ -1,16 +1,31 @@
 #!/usr/bin/env ruby
-################################################################################
+###############################################################################
 #  helpbook.rb
-#    Consists of the Helpbook class which performs additional functions for
-#    generating Apple Helpbooks with Middleman.
 #
+#    Consists of both:
+#    - the `helpbook` command-line tool for invoking Middleman with multiple
+#      targets, as well as some basic utilities, and
+#
+#    - the `Helpbook` class that Middleman requires to perform additional
+#      functions related to generating Apple Helpbooks.
+#
+#    Together, they will:
 #    - Build automatic CSS max-width for all images.
 #    - Build a partial containing markdown links to all html file.
 #    - Build a partial containing markdown links to all images.
 #    - Process *.plist files with data for building a helpbook.
-#    - Provides helpers for determining build targets.
-#    - Provides functions for simplifying dealing with the sitemap.
-################################################################################
+#    - Provide helpers for determining build targets.
+#    - Provide functions for simplifying dealing with the sitemap.
+#
+#    Building:
+#    - (recommended) helpbook --build target-1 target-2 target-n
+#    - (not recommended) HBTARGET=target middleman build
+#    - (not recommended) HBTARGET=target bundle exec middleman build
+#
+#    Note:
+#     In a better world this file would be split up, of course. For end-user
+#     convenience and ease of distribution, this single file script is used.
+###############################################################################
 
 require 'fastimage'
 require 'fileutils'
@@ -19,32 +34,41 @@ require 'pathname'
 require 'yaml'
 
 
-puts self
+##########################################################################
+#  Command-Line Script
+##########################################################################
 if __FILE__ == $0
+
+
   exit 0
 end
 
 
+##########################################################################
+#  Helpbook Class
+##########################################################################
 
 class Helpbook < Middleman::Extension
 
 
 #===============================================================
 #  Configuration options
+#   You do NOT have to change any of these. These are part of
+#   the class. These options must be configured in config.rb.
 #===============================================================
 
-option :target, 'default', 'The default target to process if not specified.'
+option :Target, 'default', 'The default target to process if not specified.'
 option :CFBundleName, nil, 'The CFBundleName key; will be used in a lot of places.'
-option :HelpOutputLocation, nil, 'Directory to place the built helpbook.'
+option :Help_Output_Location, nil, 'Directory to place the built helpbook.'
 option :Targets, nil, 'A data structure that defines many characteristics of the target.'
-option :build_markdown_links, true, 'Whether or not to generate `_markdown-links.erb`'
-option :build_markdown_images, true, 'Whether or not to generate `_markdown-images.erb`'
-option :build_image_width_css, true, 'Whether or not to generate `_image_widths.scss`'
+option :Build_Markdown_Links, true, 'Whether or not to generate `_markdown-links.erb`'
+option :Build_Markdown_Images, true, 'Whether or not to generate `_markdown-images.erb`'
+option :Build_Image_Width_Css, true, 'Whether or not to generate `_image_widths.scss`'
 
-option :file_mdimages, '_markdown-images.erb', 'Filename for the generated images markdown file.'
-option :file_mdlinks,  '_markdown-links.erb',  'Filename for the generated links markdown file.'
-option :file_imagecss, '_image_widths.scss', 'Filename for the generated image width css file.'
-option :file_titlepage_template, '_title_page.html.md.erb', 'Filename of the template for the title page.'
+option :File_Markdown_Images, '_markdown-images.erb', 'Filename for the generated images markdown file.'
+option :File_Markdown_Links,  '_markdown-links.erb',  'Filename for the generated links markdown file.'
+option :File_Image_Width_Css, '_image_widths.scss', 'Filename for the generated image width css file.'
+option :File_Titlepage_Template, '_title_page.html.md.erb', 'Filename of the template for the title page.'
 
 
 #===============================================================
@@ -54,19 +78,20 @@ def initialize(app, options_hash={}, &block)
   super
   app.extend ClassMethods
 
-  # ensure target exists
-  unless options.Targets.key?(options.target)
-    STDOUT.puts "`#{options.target}` is not a valid target. Choose from one of:"
+  # Ensure target exists. Value `options.Target` is supplied to middleman
+  # via the HBTARGET environment variable, or the default set in config.rb.
+  if options.Targets.key?(options.Target)
+    STDOUT.puts "Using target `#{options.Target}`"
+  else
+    STDOUT.puts "`#{options.Target}` is not a valid target. Choose from one of:"
     options.Targets.each do |k,v|
       STDOUT.puts "  #{k}"
     end
-    STDOUT.puts "Or use nothing for the default target."
+    STDOUT.puts 'Or use nothing for the default target.'
     exit 1
-  else
-    STDOUT.puts "Using target `#{options.target}`"
   end
 
-  @path_content = nil; # string will be initialized in after_configuration.
+  @path_content = nil # string will be initialized in after_configuration.
 
 end #initialize
 
@@ -86,17 +111,17 @@ def after_configuration
 
 
   # Set the correct :build_dir based on the options.
-  app.set :build_dir, File.join(options.HelpOutputLocation, "#{options.CFBundleName} (#{options.target}).help", "Contents")
+  app.set :build_dir, File.join(options.Help_Output_Location, "#{options.CFBundleName} (#{options.Target}).help", "Contents")
 
 
   # Set the destinations for generated markdown partials and css.
-  options.file_mdimages = File.join(app.source, app.partials_dir, options.file_mdimages)
-  options.file_mdlinks  = File.join(app.source, app.partials_dir, options.file_mdlinks)
-  options.file_imagecss = File.join(app.source, app.css_dir, options.file_imagecss)
+  options.File_Markdown_Images = File.join(app.source, app.partials_dir, options.File_Markdown_Images)
+  options.File_Markdown_Links  = File.join(app.source, app.partials_dir, options.File_Markdown_Links)
+  options.File_Image_Width_Css = File.join(app.source, app.css_dir, options.File_Image_Width_Css)
 
 
   # make the title page
-  srcFile = File.join(@path_content, options.file_titlepage_template)
+  srcFile = File.join(@path_content, options.File_Titlepage_Template)
   dstFile = File.join(@path_content, "#{options.CFBundleName}.html.md.erb")
   FileUtils.cp(srcFile, dstFile)
 
@@ -142,7 +167,7 @@ helpers do
   #   Return the current build target.
   #--------------------------------------------------------
   def target_name
-    extensions[:Helpbook].options.target
+    extensions[:Helpbook].options.Target
   end
 
 
@@ -151,7 +176,7 @@ helpers do
   #   Return the current build target.
   #--------------------------------------------------------
   def target_name?(proposal)
-    options = extensions[:Helpbook].options.target == proposal
+    options = extensions[:Helpbook].options.Target == proposal
   end
 
 
@@ -161,7 +186,7 @@ helpers do
   #--------------------------------------------------------
   def target_feature?(feature)
     options = extensions[:Helpbook].options
-    features = options.Targets[options.target][:Features]
+    features = options.Targets[options.Target][:Features]
     result = features.key?(feature) && features[feature]
   end
 
@@ -172,7 +197,7 @@ helpers do
   #--------------------------------------------------------
   def product_name
     options = extensions[:Helpbook].options
-    options.Targets[options.target][:ProductName]
+    options.Targets[options.Target][:ProductName]
   end
 
 
@@ -193,7 +218,7 @@ helpers do
   #--------------------------------------------------------
   def cfBundleIdentifier
     options = extensions[:Helpbook].options
-    options.Targets[options.target][:CFBundleID]
+    options.Targets[options.Target][:CFBundleID]
   end
 
 
@@ -303,9 +328,9 @@ end #helpers
   #--------------------------------------------------------
   def build_mdimages
 
-    return unless options.build_markdown_images
+    return unless options.Build_Markdown_Images
 
-    STDOUT.puts "Helpbook is creating `#{options.file_mdimages}`."
+    STDOUT.puts "Helpbook is creating `#{options.File_Markdown_Images}`."
 
     files_array = []
     out_array = []
@@ -339,7 +364,7 @@ end #helpers
         out_array << "#{item[:shortcut]}  #{item[:path]}   "
     end
 
-    File.open(options.file_mdimages, 'w') { |f| out_array.each { |line| f.puts(line) } }
+    File.open(options.File_Markdown_Images, 'w') { |f| out_array.each { |line| f.puts(line) } }
 
   end #def
 
@@ -350,9 +375,9 @@ end #helpers
   #    for every HTML file found in the project.
   #--------------------------------------------------------
   def build_mdlinks
-    return unless options.build_markdown_links
+    return unless options.Build_Markdown_Links
 
-    STDOUT.puts "Helpbook is creating `#{options.file_mdlinks}`."
+    STDOUT.puts "Helpbook is creating `#{options.File_Markdown_Links}`."
 
     files_array = []
     out_array = []
@@ -397,7 +422,7 @@ end #helpers
         end
     end
 
-    File.open(options.file_mdlinks, 'w') { |f| out_array.each { |line| f.puts(line) } }
+    File.open(options.File_Markdown_Links, 'w') { |f| out_array.each { |line| f.puts(line) } }
 
   end #def
 
@@ -408,9 +433,9 @@ end #helpers
   #    image in the project.
   #--------------------------------------------------------
   def build_imagecss
-    return unless options.build_image_width_css
+    return unless options.Build_Image_Width_Css
 
-    STDOUT.puts "Helpbook is creating `#{options.file_imagecss}`."
+    STDOUT.puts "Helpbook is creating `#{options.File_Image_Width_Css}`."
 
     out_array = []
 
@@ -430,7 +455,7 @@ end #helpers
         out_array << "img[src$='#{base_name}'] { max-width: #{width}px; }"
     end
 
-    File.open(options.file_imagecss, 'w') { |f| out_array.each { |line| f.puts(line) } }
+    File.open(options.File_Image_Width_Css, 'w') { |f| out_array.each { |line| f.puts(line) } }
 
   end #def
 
@@ -452,7 +477,7 @@ end #helpers
 
         doc.traverse do |node|
           if node.text?
-            node.content = node.content.gsub('{$CFBundleIdentifier}', options.Targets[options.target][:CFBundleID])
+            node.content = node.content.gsub('{$CFBundleIdentifier}', options.Targets[options.Target][:CFBundleID])
             node.content = node.content.gsub('{$CFBundleName}', options.CFBundleName)
           end
         end
@@ -483,7 +508,7 @@ end #helpers
 
       `hiutil -Cf "#{indexDst}" "#{indexDir}"`
     else
-      STDOUT.puts "NOTE: `hituil` is not on path or not installed. No index will exist for target '#{options.target}'."
+      STDOUT.puts "NOTE: `hituil` is not on path or not installed. No index will exist for target '#{options.Target}'."
     end
   end #def
 

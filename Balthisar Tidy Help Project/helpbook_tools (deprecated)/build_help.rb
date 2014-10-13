@@ -122,7 +122,7 @@ end
 # Process the build targets.
 ################################################################
 
-if $targets.include? "all"
+if $targets.include? 'all'
 	$CFBundleIDs.each { |key, value| processOneTarget key }
 else
 	$targets.each { |key| processOneTarget key }
@@ -209,7 +209,7 @@ BEGIN {
 		# Process the .plist and .strings.
 		#--------------------------------------------
 
-		# open and check existance of files.
+		# open and check existence of files.
 		unless File::exists?($plist_template)
 			outpRed "\n   * Expected to find the .plist template: #{$plist_template}, but didn't. Exiting.\n\n"
 			exit 1
@@ -239,7 +239,7 @@ BEGIN {
 
 
 		# Process the .strings
-		outpCyan "Processing the .strings..."
+		outpCyan 'Processing the .strings...'
 		$file = File.open($strings_template)
 		$doc = Nokogiri.XML($file)
 		$file.close
@@ -265,8 +265,9 @@ BEGIN {
 		# Run middleman.
 		#--------------------------------------------
 
-		outpCyan "Building content with middleman..."
+		outpCyan 'Building content with middleman...'
 
+    # reminder: 2>&1 ensures all output is captured in the build_help.log file.
 		`bundle exec middleman build --verbose 2>&1 >build_help.log`
 		unless $?.success?
 			outpRed "\n   * NOTE: `middleman` did not exit cleanly for target '#{localTarget}'. Build process will stop now.\n\n"

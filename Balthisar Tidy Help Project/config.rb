@@ -4,8 +4,8 @@
 #    targets.
 ################################################################################
 
-# 'HelpBook.rb' contains the Helpbook class that will do additional lifting.
-require 'HelpBook'
+# 'helpbook.rb' contains the Helpbook class that will do additional work.
+require 'helpbook'
 
 
 ################################################################
@@ -17,41 +17,44 @@ activate :Helpbook do |options|
   # You should only change the default, fall-back target here. This is the
   # target that will be processed if no ENVironment variable is used,
   # e.g., if you run `middleman build` directly. In general you should
-  # not invoke middleman directly, but use `middlemac` instead.
-  options.target = ENV['HBTARGET'] || 'pro'
+  # not invoke middleman directly, but use `helpbook` instead.
+  options.Target = (ENV['HBTARGET'] || :pro).to_sym
 
   # This value will be used for correct .plists and .strings setup, and will
   # will determine final .help directory name. All targets will use the
-  # same CFBundleName.
+  # same `CFBundleName`. Built targets will end up in `Help_Output_Location`
+  # with the name `CFBundleName (target)`.
   options.CFBundleName = 'Balthisar Tidy'
 
-  # Directory where finished .help build should go. It should be relative
+  # Directory where finished .help bundle should go. It should be relative
   # to this file, or make null to leave in this help project directory. The
   # *actual* output directory will be an Apple Help bundle at this location.
+  options.Help_Output_Location = '../Balthisar Tidy/Resources/'
 
-  options.HelpOutputLocation = '../Balthisar Tidy/Resources/'
+  # Targets
 
-  # :CFBundleID
-  # Different versions of your app must have different bundle identifiers
-  # so that the correct version of your help files stays related to your app.
-  # This is *not* the CFBundleID of the application. However your application's
-  # Info.plist `CFBundleHelpBookName` must match the value you specify.
+    # :CFBundleID
+    # Just as different versions of your app must have different bundle identifiers
+    # so the OS can distinguish them, their help files must have unique bundle IDs,
+    # too. Your application specifies the help file `CFBundleID` in its
+    # `CFBundleHelpBookName` entry. Therefore for each target, ensure that your
+    # application has a `CFBundleHelpBookName` that matches the `CFBundleID` that
+    # you will set here.
 
-  # :ProductName
-  # You can specify different product names for each build target. The product
-  # name for the current target will be available via the product_name helper.
+    # :ProductName
+    # You can specify different product names for each build target. The product
+    # name for the current target will be available via the `product_name` helper.
 
-  # :Features
-  # A hash of features that a particular target supports or doesn't support.
-  # The has_feature function and several helpers will use the true/false value
-  # of these features in order to conditionally include content. This is given
-  # as a hash of true/false instead of an array of symbols in order to make it
-  # easier to enable/disable features for each target.
+      # :Features
+      # A hash of features that a particular target supports or doesn't support.
+      # The `has_feature` function and several helpers will use the true/false value
+      # of these features in order to conditionally include content. This is given
+      # as a hash of true/false instead of an array of symbols in order to make it
+      # easier to enable/disable features for each target.
 
-  # Define your targets here.
   options.Targets =
   {
-    'web' =>
+    :web=>
     {
       :CFBundleID  => 'com.balthisar.Balthisar-Tidy.web.help',
       :ProductName => 'Balthisar Tidy',
@@ -70,7 +73,7 @@ activate :Helpbook do |options|
       }
     },
 
-    'app' =>
+    :app =>
     {
       :CFBundleID  => 'com.balthisar.Balthisar-Tidy.help',
       :ProductName => 'Balthisar Tidy',
@@ -89,7 +92,7 @@ activate :Helpbook do |options|
       }
     },
 
-    'pro' =>
+    :pro =>
     {
       :CFBundleID  => 'com.balthisar.Balthisar-Tidy.pro.help',
       :ProductName => 'Balthisar Tidy for Work',
@@ -108,7 +111,7 @@ activate :Helpbook do |options|
       }
     },
 
-    'test' =>
+    :test =>
     {
       :CFBundleID  => 'com.balthisar.Balthisar-Tidy.test.help',
       :ProductName => 'Balthisar Tidy Test',
@@ -131,16 +134,31 @@ activate :Helpbook do |options|
 
   # Build #{:partials_dir}/_markdown-links.erb file? This enables easy-to-use
   # markdown links in all markdown files, and is kept up to date.
-  options.build_markdown_links = true
+  options.Build_Markdown_Links = true
 
   # Build #{:partials_dir}/_markdown-images.erb file? This enables easy-to-use
   # markdown links to images in all markdown files, and is kept up to date.
-  options.build_markdown_images = true
+  options.Build_Markdown_Images = true
 
   # Build #{:css_dir}/_image_widths.scss? This will enable a max-width of
   # all images the reflect the image size. Images that are @2x will use
   # proper retina image width.
-  options.build_image_width_css = true
+  options.Build_Image_Width_Css = true
+
+  # These options are available but you should not change any of them if you
+  # follow the conventions for helpbook. Defaults are shown for reference.
+
+  # Filename for the generated images markdown file.
+  #options.File_Markdown_Images = '_markdown-images.erb'
+
+  # Filename for the generated links markdown file.
+  #options.File_Markdown_Links = '_markdown-links.erb'
+
+  # Filename for the generated image width css file.
+  #options.File_Image_Width_Css = '_image_widths.scss'
+
+  # Filename of the template for the title page.
+  #options.File_Titlepage_Template = '_title_page.html.md.erb'
 
 end #activate
 
@@ -155,7 +173,7 @@ end #activate
 # Setup directories to mirror Help Book directory layout.
 #===============================================================
 set :source,       'Contents'
-set :build_dir,    'Contents (build)'   # Will be overriden by Helpbook.
+set :build_dir,    'Contents (build)'   # Will be overridden by Helpbook.
 
 set :css_dir,      'Resources/Base.lproj/css'
 set :js_dir,       'Resources/Base.lproj/javascript'
@@ -185,7 +203,7 @@ activate :relative_assets
 #===============================================================
 # Default to Apple-recommended HTML 4.01 layout.
 #===============================================================
-page "Resources/Base.lproj/*", :layout => :'layout-html4'
+page 'Resources/Base.lproj/*', :layout => :'layout-html4'
 
 
 #===============================================================
@@ -221,7 +239,7 @@ end #helpers
 configure :development do
 
   # Reload the browser automatically whenever files change
-  activate :livereload, :host => "127.0.0.1"
+  activate :livereload, :host => '127.0.0.1'
 
   compass_config do |config|
     config.output_style = :expanded
