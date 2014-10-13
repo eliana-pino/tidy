@@ -18,9 +18,9 @@
 #    - Provide functions for simplifying dealing with the sitemap.
 #
 #    Building:
-#    - (recommended) helpbook --build target-1 target-2 target-n
-#    - (not recommended) HBTARGET=target middleman build
-#    - (not recommended) HBTARGET=target bundle exec middleman build
+#    - ./helpbook target-1 target-2 target-n || all
+#    - HBTARGET=target middleman build
+#    - HBTARGET=target bundle exec middleman build
 #
 #    Note:
 #     In a better world this file would be split up, of course. For end-user
@@ -34,14 +34,119 @@ require 'pathname'
 require 'yaml'
 
 
+#---------------------------------------------------------------
+# ANSI terminal codes for use in documentation strings.
+#---------------------------------------------------------------
+A_BLUE      = "\033[34m"
+A_CYAN      = "\033[36m"
+A_GREEN     = "\033[32m"
+A_RED       = "\033[31m"
+A_RESET     = "\033[0m"
+A_UNDERLINE = "\033[4m"
+
+
+#---------------------------------------------------------------
+# Output in color and abstract standard out.
+#---------------------------------------------------------------
+def puts_blue(string)
+  puts "\033[34m" + string + "\033[0m"
+end
+def puts_cyan(string)
+  puts "\033[36m" + string + "\033[0m"
+end
+def puts_green(string)
+  puts "\033[32m" + string + "\033[0m"
+end
+def puts_red(string)
+  puts "\033[31m" + string + "\033[0m"
+end
+def puts_yellow(string)
+  puts "\033[33m" + string + "\033[0m" # really ANSI brown
+end
+
+
+#---------------------------------------------------------------
+# Command-Line documentation.
+#---------------------------------------------------------------
+def documentation(targets_array)
+<<-HEREDOC
+#{A_CYAN}This tool generates a complete Apple Help Book using Middleman as
+a static generator, and supports multiple build targets. It is
+necessary to specify one or more build targets.
+
+  #{A_UNDERLINE}Use:#{A_RESET}#{A_CYAN}
+#{targets_array.sort.collect { |item| "    helpbook #{item}"}.join("\n")}
+    helpbook all
+
+Also, any combination of #{targets_array.join(', ')} or all can be used to build
+multiple targets at the same time.
+
+  #{A_UNDERLINE}Switches:#{A_RESET}#{A_CYAN}
+    -v, --verbose    Executes Middleman in verbose mode for each build target.
+    -q, --quiet      Silences Middleman output, even if --verbose is specified.#{A_RESET}
+
+HEREDOC
+end
+
+
+
 ##########################################################################
 #  Command-Line Script
+#    Slow to use for a single target, because we run Middleman once in
+#    order to get a list of the valid targets. However it's useful for
+#    building multiple targets, if desired.
 ##########################################################################
 if __FILE__ == $0
 
+  # Lower-case everything and eliminate duplicate arguments.
+  targets = ARGV.map(&:downcase).uniq
+
+  # Find out if there are any switches.
+  # can be -q, --quiet, -v, --verbose
+  BE_QUIET = targets.include?('-q') || targets.include?('--quiet')
+  BE_VERBOSE = targets.include?('-v') || targets.include?('--verbose')
+
+  # Remove switches.
+  targets.delete_if {|item| %w(-q --quiet -v --verbose).include?(item)}
+
+  # Build an array of valid targets. This is the part that slows things down.
+  puts_blue 'Determining valid targets…'
+  valid_targets = `HBTARGET=improbable_value bundle exec middleman build`.split("\n")
+
+  # Ensure each argument is valid, and fail if not.
+    if targets.count > 0
+      targets.each do |target|
+        unless valid_targets.include?(target) || target == 'all'
+          puts documentation(valid_targets)
+          exit 1
+        end
+      end
+    else
+      # No arguments isn't a failure.
+      puts documentation(valid_targets)
+      exit 0
+    end
+
+  # Build each target.
+  targets = targets.include?('all') ? valid_targets : targets
+
+  targets.each do |target|
+    puts_blue "Starting build for target '#{target}'…"
+
+    result = system("HBTARGET=#{target} bundle exec middleman build #{'--verbose' if BE_VERBOSE} #{'>/dev/null' if BE_QUIET}")
+
+    unless result
+      puts_red "** NOTE: `middleman` did not exit cleanly for target '#{target}'. Build process will stop now."
+      puts_red "The error reported was #{$?}."
+      exit 1
+    end
+  end
+
+  puts_green '** ALL TARGETS COMPLETE **'
 
   exit 0
 end
+
 
 
 ##########################################################################
@@ -71,6 +176,7 @@ option :File_Image_Width_Css, '_image_widths.scss', 'Filename for the generated 
 option :File_Titlepage_Template, '_title_page.html.md.erb', 'Filename of the template for the title page.'
 
 
+
 #===============================================================
 #  initializer
 #===============================================================
@@ -81,17 +187,16 @@ def initialize(app, options_hash={}, &block)
   # Ensure target exists. Value `options.Target` is supplied to middleman
   # via the HBTARGET environment variable, or the default set in config.rb.
   if options.Targets.key?(options.Target)
-    STDOUT.puts "Using target `#{options.Target}`"
+    puts "\n#{A_BLUE}Using target `#{options.Target}`#{A_RESET}"
+  elsif options.Target == :improbable_value
+    options.Targets.keys.each {|key| puts "#{key}"}
+    exit 0
   else
-    STDOUT.puts "`#{options.Target}` is not a valid target. Choose from one of:"
-    options.Targets.each do |k,v|
-      STDOUT.puts "  #{k}"
-    end
-    STDOUT.puts 'Or use nothing for the default target.'
+    puts "\n#{A_RED}`#{options.Target}` is not a valid target. Choose from one of:#{A_CYAN}"
+    options.Targets.keys.each {|key| puts "\t#{key}"}
+    puts "#{A_RED}Or use nothing for the default target.#{A_RESET}"
     exit 1
   end
-
-  @path_content = nil # string will be initialized in after_configuration.
 
 end #initialize
 
@@ -107,11 +212,11 @@ end #initialize
 def after_configuration
 
   # Setup some instance variables
-  @path_content = File.join( app.source, "Resources/", "Base.lproj/" )
+  path_content = File.join( app.source, 'Resources/', 'Base.lproj/' )
 
 
   # Set the correct :build_dir based on the options.
-  app.set :build_dir, File.join(options.Help_Output_Location, "#{options.CFBundleName} (#{options.Target}).help", "Contents")
+  app.set :build_dir, File.join(options.Help_Output_Location, "#{options.CFBundleName} (#{options.Target}).help", 'Contents')
 
 
   # Set the destinations for generated markdown partials and css.
@@ -121,9 +226,9 @@ def after_configuration
 
 
   # make the title page
-  srcFile = File.join(@path_content, options.File_Titlepage_Template)
-  dstFile = File.join(@path_content, "#{options.CFBundleName}.html.md.erb")
-  FileUtils.cp(srcFile, dstFile)
+  src_file = File.join(path_content, options.File_Titlepage_Template)
+  dst_file = File.join(path_content, "#{options.CFBundleName}.html.md.erb")
+  FileUtils.cp(src_file, dst_file)
 
 
   # create all other necessary files
@@ -138,7 +243,7 @@ end #def
 #===============================================================
 #  before_build
 #    Callback occurs one time before the build starts.
-#    We will peform all of the required pre-work.
+#    We will perform all of the required pre-work.
 #===============================================================
 def before_build
 
@@ -147,7 +252,7 @@ end
 #===============================================================
 #  after_build
 #    Callback occurs one time after the build.
-#    We will peform all of the finishing touches.
+#    We will perform all of the finishing touches.
 #===============================================================
 def after_build
     run_help_indexer
@@ -163,6 +268,37 @@ end
 helpers do
 
   #--------------------------------------------------------
+  # cfBundleIdentifier
+  #   Returns the product `CFBundleIdentifier` for the
+  #   current target
+  #--------------------------------------------------------
+  def cfBundleIdentifier
+    options = extensions[:Helpbook].options
+    options.Targets[options.Target][:CFBundleID]
+  end
+
+
+  #--------------------------------------------------------
+  # cfBundleName
+  #   Returns the product `CFBundleName` for the current
+  #   target
+  #--------------------------------------------------------
+  def cfBundleName
+    extensions[:Helpbook].options.CFBundleName
+  end
+
+
+  #--------------------------------------------------------
+  # product_name
+  #   Returns the ProductName for the current target
+  #--------------------------------------------------------
+  def product_name
+    options = extensions[:Helpbook].options
+    options.Targets[options.Target][:ProductName]
+  end
+
+
+  #--------------------------------------------------------
   # target_name
   #   Return the current build target.
   #--------------------------------------------------------
@@ -173,10 +309,10 @@ helpers do
 
   #--------------------------------------------------------
   # target_name?
-  #   Return the current build target.
+  #   Is the current target `proposal`?
   #--------------------------------------------------------
   def target_name?(proposal)
-    options = extensions[:Helpbook].options.Target == proposal
+    extensions[:Helpbook].options.Target == proposal
   end
 
 
@@ -187,49 +323,7 @@ helpers do
   def target_feature?(feature)
     options = extensions[:Helpbook].options
     features = options.Targets[options.Target][:Features]
-    result = features.key?(feature) && features[feature]
-  end
-
-
-  #--------------------------------------------------------
-  # product_name
-  #   Returns the product name for the current target
-  #--------------------------------------------------------
-  def product_name
-    options = extensions[:Helpbook].options
-    options.Targets[options.Target][:ProductName]
-  end
-
-
-  #--------------------------------------------------------
-  # cfBundleName
-  #   Returns the product CFBundleName for the current
-  #   target
-  #--------------------------------------------------------
-  def cfBundleName
-    extensions[:Helpbook].options.CFBundleName
-  end
-
-
-  #--------------------------------------------------------
-  # cfBundleIdentifier
-  #   Returns the product CFBundleIdentifier for the
-  #   current target
-  #--------------------------------------------------------
-  def cfBundleIdentifier
-    options = extensions[:Helpbook].options
-    options.Targets[options.Target][:CFBundleID]
-  end
-
-
-  #--------------------------------------------------------
-  # boolENV
-  #   Treat an environment variable with the value 'yes' or
-  #   'no' as a bool. Undefined ENV are no, and anything
-  #   that's not 'yes' is no.
-  #--------------------------------------------------------
-  def boolENV(envVar)
-     (ENV.key?(envVar)) && !((ENV[envVar].downcase == 'no') || (ENV[envVar].downcase == 'false'))
+    features.key?(feature) && features[feature]
   end
 
 
@@ -239,7 +333,7 @@ helpers do
   #    file base name. Useful for assigning classes, etc.
   #--------------------------------------------------------
   def page_name
-    File.basename( current_page.url, ".*" )
+    File.basename( current_page.url, '.*' )
   end
 
 
@@ -287,7 +381,7 @@ helpers do
   #      - that are in the same group
   #      - are NOT the current page
   #      - is not the index page beginning with 00
-  #      - do have an "order" key in the frontmatter
+  #      - does have an "order" key in the frontmatter
   #      - if frontmatter:target is used, the target or
   #        feature appears in the frontmatter
   #      - if frontmatter:exclude is used, that target or
@@ -303,14 +397,14 @@ helpers do
      pages = sitemap.resources.find_all do |p|
       p.path.match(/\.html/) &&
       File.basename(File.split(p.source_file)[0]) == group &&
-      File.basename( p.url, ".*" ) != page_name &&
-      !File.basename( p.url ).start_with?("00") &&
-      p.data.key?("order") &&
-      ( !p.data.key?("target") || (p.data["target"].include?(target_name) || p.data["target"].count{ |t| target_feature?(t) } > 0) ) &&
-      ( !p.data.key?("exclude") || !(p.data["exclude"].include?(target_name) || p.data["exclude"].count{ |t| target_feature(t) } > 0) )
+      File.basename( p.url, '.*' ) != page_name &&
+      !File.basename( p.url ).start_with?('00') &&
+      p.data.key?('order') &&
+      ( !p.data.key?('target') || (p.data['target'].include?(target_name) || p.data['target'].count{ |t| target_feature?(t) } > 0) ) &&
+      ( !p.data.key?('exclude') || !(p.data['exclude'].include?(target_name) || p.data['exclude'].count{ |t| target_feature(t) } > 0) )
     end
     pages.each { |p| p.add_metadata(:link =>(group == page_group) ? File.basename(p.url) : File.join(group, File.basename(p.url) ) )}
-    pages.sort_by { |p| p.data["order"].to_i }
+    pages.sort_by { |p| p.data['order'].to_i }
   end
 
 end #helpers
@@ -330,7 +424,7 @@ end #helpers
 
     return unless options.Build_Markdown_Images
 
-    STDOUT.puts "Helpbook is creating `#{options.File_Markdown_Images}`."
+    puts "#{A_CYAN}Helpbook is creating `#{options.File_Markdown_Images}`.#{A_RESET}"
 
     files_array = []
     out_array = []
@@ -341,8 +435,8 @@ end #helpers
 
         # Remove all file extensions and make a shortcut
         base_name = fileName
-        while File.extname(base_name) != "" do
-            base_name = File.basename( base_name, ".*" )
+        while File.extname(base_name) != '' do
+            base_name = File.basename( base_name, '.*' )
         end
         next if base_name.start_with?('_')
         shortcut = "[#{base_name}]:"
@@ -377,7 +471,7 @@ end #helpers
   def build_mdlinks
     return unless options.Build_Markdown_Links
 
-    STDOUT.puts "Helpbook is creating `#{options.File_Markdown_Links}`."
+    puts "#{A_CYAN}Helpbook is creating `#{options.File_Markdown_Links}`.#{A_RESET}"
 
     files_array = []
     out_array = []
@@ -388,8 +482,8 @@ end #helpers
 
         # Remove all file extensions and make a shortcut
         base_name = fileName
-        while File.extname(base_name) != "" do
-            base_name = File.basename( base_name, ".*" )
+        while File.extname(base_name) != '' do
+            base_name = File.basename( base_name, '.*' )
         end
         next if base_name.start_with?('_')
 
@@ -397,11 +491,11 @@ end #helpers
 
         # Make a fake absolute path
         path = Pathname.new(fileName).relative_path_from(Pathname.new(app.source))
-        path = File::SEPARATOR + File.join(File.dirname(path), base_name) + ".html"
+        path = File::SEPARATOR + File.join(File.dirname(path), base_name) + '.html'
 
         # Get the title, if any
         metadata = YAML.load_file(fileName)
-        title = (metadata.is_a?(Hash) && metadata.key?("title")) ? metadata["title"] : ""
+        title = (metadata.is_a?(Hash) && metadata.key?('title')) ? metadata['title'] : ''
 
         files_array << { :shortcut => shortcut, :path => path, :title => title }
 
@@ -435,7 +529,7 @@ end #helpers
   def build_imagecss
     return unless options.Build_Image_Width_Css
 
-    STDOUT.puts "Helpbook is creating `#{options.File_Image_Width_Css}`."
+    puts "#{A_CYAN}Helpbook is creating `#{options.File_Image_Width_Css}`.#{A_RESET}"
 
     out_array = []
 
@@ -445,7 +539,7 @@ end #helpers
         base_name = File.basename(fileName)
 
         # width
-        if File.basename(base_name, '.*').end_with?("@2x")
+        if File.basename(base_name, '.*').end_with?('@2x')
           width = (FastImage.size(fileName)[0] / 2).to_i.to_s
         else
           width = FastImage.size(fileName)[0].to_s;
@@ -469,7 +563,7 @@ end #helpers
 
     Dir.glob("#{app.source}/**/_*.{plist,strings}").each do |fileName|
 
-      STDOUT.puts "Helpbook is processing plist file #{fileName}."
+      puts "#{A_CYAN}Helpbook is processing plist file #{fileName}.#{A_RESET}"
 
         file = File.open(fileName)
         doc = Nokogiri.XML(file)
@@ -500,15 +594,15 @@ end #helpers
     `command -v hiutil > /dev/null`
     if $?.success?
 
-      indexDir = File.expand_path(File.join(app.build_dir, "Resources/", "Base.lproj/" ))
-      indexDst = File.expand_path(File.join(indexDir, "#{options.CFBundleName}.helpindex"))
+      index_dir = File.expand_path(File.join(app.build_dir, 'Resources/', 'Base.lproj/' ))
+      index_dst = File.expand_path(File.join(index_dir, "#{options.CFBundleName}.helpindex"))
 
-      STDOUT.puts "'#{indexDir}' (indexing)"
-      STDOUT.puts "'#{indexDst}' (final file)"
+      puts "#{A_CYAN}'#{index_dir}' #{A_BLUE}(indexing)#{A_RESET}"
+      puts "#{A_CYAN}'#{index_dst}' #{A_BLUE}(final file)#{A_RESET}"
 
-      `hiutil -Cf "#{indexDst}" "#{indexDir}"`
+      `hiutil -Cf "#{index_dst}" "#{index_dir}"`
     else
-      STDOUT.puts "NOTE: `hituil` is not on path or not installed. No index will exist for target '#{options.Target}'."
+      puts "#{A_RED}NOTE: `hituil` is not on path or not installed. No index will exist for target '#{options.Target}'.#{A_RESET}"
     end
   end #def
 

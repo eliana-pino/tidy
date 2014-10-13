@@ -16,8 +16,7 @@ activate :Helpbook do |options|
 
   # You should only change the default, fall-back target here. This is the
   # target that will be processed if no ENVironment variable is used,
-  # e.g., if you run `middleman build` directly. In general you should
-  # not invoke middleman directly, but use `helpbook` instead.
+  # e.g., if you run `middleman build` directly.
   options.Target = (ENV['HBTARGET'] || :pro).to_sym
 
   # This value will be used for correct .plists and .strings setup, and will
@@ -54,7 +53,7 @@ activate :Helpbook do |options|
 
   options.Targets =
   {
-    :web=>
+    :web =>
     {
       :CFBundleID  => 'com.balthisar.Balthisar-Tidy.web.help',
       :ProductName => 'Balthisar Tidy',
