@@ -313,7 +313,7 @@ helpers do
   #   Is the current target `proposal`?
   #--------------------------------------------------------
   def target_name?(proposal)
-    extensions[:Helpbook].options.Target == proposal
+    extensions[:Helpbook].options.Target == proposal.to_sym
   end
 
 
