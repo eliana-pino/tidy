@@ -4,15 +4,15 @@
 #    targets.
 ################################################################################
 
-# 'helpbook.rb' contains the Helpbook class that will do additional work.
-require 'helpbook'
+# 'middlemac.rb' contains the Middlemac class that will do additional work.
+require 'middlemac'
 
 
 ################################################################
 # Configuration. Change the option values to suit your needs.
 ################################################################
 
-activate :Helpbook do |options|
+activate :Middlemac do |options|
 
   # You should only change the default, fall-back target here. This is the
   # target that will be processed if no environment variable is used,
@@ -22,15 +22,27 @@ activate :Helpbook do |options|
   # This value will be used for correct .plists and .strings setup, and will
   # will determine final .help directory name. All targets will use the
   # same `CFBundleName`. Built targets will end up in `Help_Output_Location`
-  # with the name `CFBundleName (target)`.
+  # with the name `CFBundleName (target)`. This is *not* intended to be a
+  # product name, which is defined individually for each target, further down.
   options.CFBundleName = 'Balthisar Tidy'
 
   # Directory where finished .help bundle should go. It should be relative
-  # to this file, or make null to leave in this help project directory. The
-  # *actual* output directory will be an Apple Help bundle at this location.
+  # to this file, or make nil to leave in this help project directory. The
+  # *actual* output directory will be an Apple Help bundle at this location
+  # named in the form `#{CFBundleName} (target).help`. You might want to target
+  # the `Resources` directory of you XCode project so that your XCode project is
+  # always up to date.
   options.Help_Output_Location = '../Balthisar Tidy/Resources/'
 
   # Targets
+
+    # NOTE: Ruby has a type of variable called a `symbol`, which are used below
+    # quite extensively and look like :this_symbol. Except hey’re not really
+    # variables; you can’t assign values to them. Their value is themselves,
+    # though they have useful string representations (:this_symbol.to_s). You
+    # can even get the symbol representation of this_string.to_sym. Because
+    # they're unique, they make excellent array/hash keys and excellent,
+    # guaranteed unique values.
 
     # :CFBundleID
     # Just as different versions of your app must have different bundle identifiers
@@ -52,84 +64,88 @@ activate :Helpbook do |options|
       # easier to enable/disable features for each target.
 
   options.Targets =
-  {
-    :web =>
-    {
-      :CFBundleID  => 'com.balthisar.Balthisar-Tidy.web.help',
-      :ProductName => 'Balthisar Tidy',
-      :Features =>
       {
-        :feature_advertise_pro        => true,
-        :feature_sparkle              => true,
-        :feature_exports_config       => false,
-        :feature_supports_applescript => false,
-        :feature_supports_diffs       => false, # eventually.
-        :feature_supports_preview     => false, # eventually.
-        :feature_supports_extensions  => false,
-        :feature_supports_service     => false,
-        :feature_supports_SxS_diffs   => false,
-        :feature_supports_validation  => false,
+          :web =>
+              {
+                  :CFBundleID  => 'com.balthisar.Balthisar-Tidy.web.help',
+                  :ProductName => 'Balthisar Tidy',
+                  :ProductURI => 'http://www.balthisar.com/',
+                  :Features =>
+                      {
+                          :feature_advertise_pro        => true,
+                          :feature_sparkle              => true,
+                          :feature_exports_config       => false,
+                          :feature_supports_applescript => false,
+                          :feature_supports_diffs       => false, # eventually.
+                          :feature_supports_preview     => false, # eventually.
+                          :feature_supports_extensions  => false,
+                          :feature_supports_service     => false,
+                          :feature_supports_SxS_diffs   => false,
+                          :feature_supports_validation  => false,
+                      }
+              },
+
+          :app =>
+              {
+                  :CFBundleID  => 'com.balthisar.Balthisar-Tidy.help',
+                  :ProductName => 'Balthisar Tidy',
+                  :ProductURI => 'http://www.balthisar.com/',
+                  :Features =>
+                      {
+                          :feature_advertise_pro        => true,
+                          :feature_sparkle              => false,
+                          :feature_exports_config       => false,
+                          :feature_supports_applescript => false,
+                          :feature_supports_diffs       => false, # eventually.
+                          :feature_supports_preview     => false, # eventually.
+                          :feature_supports_extensions  => false,
+                          :feature_supports_service     => false,
+                          :feature_supports_SxS_diffs   => false,
+                          :feature_supports_validation  => false,
+                      }
+              },
+
+          :pro =>
+              {
+                  :CFBundleID  => 'com.balthisar.Balthisar-Tidy.pro.help',
+                  :ProductName => 'Balthisar Tidy for Work',
+                  :ProductURI => 'http://www.balthisar.com/',
+                  :Features =>
+                      {
+                          :feature_advertise_pro        => false,
+                          :feature_sparkle              => false,
+                          :feature_exports_config       => true,
+                          :feature_supports_applescript => true,
+                          :feature_supports_diffs       => false, # eventually.
+                          :feature_supports_preview     => false, # eventually.
+                          :feature_supports_extensions  => false, # eventually.
+                          :feature_supports_service     => false, # eventually.
+                          :feature_supports_SxS_diffs   => false, # eventually.
+                          :feature_supports_validation  => false, # eventually.
+                      }
+              },
+
+          # :test =>
+          #     {
+          #         :CFBundleID  => 'com.balthisar.Balthisar-Tidy.test.help',
+          #         :ProductName => 'Balthisar Tidy Test',
+          #         :Features =>
+          #             {
+          #                 :feature_advertise_pro        => true,
+          #                 :feature_sparkle              => true,
+          #                 :feature_exports_config       => true,
+          #                 :feature_supports_applescript => true,
+          #                 :feature_supports_diffs       => true,
+          #                 :feature_supports_preview     => true,
+          #                 :feature_supports_extensions  => true,
+          #                 :feature_supports_service     => true,
+          #                 :feature_supports_SxS_diffs   => true,
+          #                 :feature_supports_validation  => true,
+          #             }
+          #     },
+
       }
-    },
 
-    :app =>
-    {
-      :CFBundleID  => 'com.balthisar.Balthisar-Tidy.help',
-      :ProductName => 'Balthisar Tidy',
-      :Features =>
-      {
-        :feature_advertise_pro        => true,
-        :feature_sparkle              => false,
-        :feature_exports_config       => false,
-        :feature_supports_applescript => false,
-        :feature_supports_diffs       => false, # eventually.
-        :feature_supports_preview     => false, # eventually.
-        :feature_supports_extensions  => false,
-        :feature_supports_service     => false,
-        :feature_supports_SxS_diffs   => false,
-        :feature_supports_validation  => false,
-      }
-    },
-
-    :pro =>
-    {
-      :CFBundleID  => 'com.balthisar.Balthisar-Tidy.pro.help',
-      :ProductName => 'Balthisar Tidy for Work',
-      :Features =>
-      {
-        :feature_advertise_pro        => false,
-        :feature_sparkle              => false,
-        :feature_exports_config       => true,
-        :feature_supports_applescript => true,
-        :feature_supports_diffs       => false, # eventually.
-        :feature_supports_preview     => false, # eventually.
-        :feature_supports_extensions  => false, # eventually.
-        :feature_supports_service     => false, # eventually.
-        :feature_supports_SxS_diffs   => false, # eventually.
-        :feature_supports_validation  => false, # eventually.
-      }
-    },
-
-    # :test =>
-    # {
-    #   :CFBundleID  => 'com.balthisar.Balthisar-Tidy.test.help',
-    #   :ProductName => 'Balthisar Tidy Test',
-    #   :Features =>
-    #   {
-    #     :feature_advertise_pro        => true,
-    #     :feature_sparkle              => true,
-    #     :feature_exports_config       => true,
-    #     :feature_supports_applescript => true,
-    #     :feature_supports_diffs       => true,
-    #     :feature_supports_preview     => true,
-    #     :feature_supports_extensions  => true,
-    #     :feature_supports_service     => true,
-    #     :feature_supports_SxS_diffs   => true,
-    #     :feature_supports_validation  => true,
-    #   }
-    # },
-
-  }
 
   # Build #{:partials_dir}/_markdown-links.erb file? This enables easy-to-use
   # markdown links in all markdown files, and is kept up to date.
@@ -145,7 +161,7 @@ activate :Helpbook do |options|
   options.Build_Image_Width_Css = true
 
   # These options are available but you should not change any of them if you
-  # follow the conventions for helpbook. Defaults are shown for reference.
+  # follow the conventions for Middlemac. Defaults are shown for reference.
 
   # Filename for the generated images markdown file.
   #options.File_Markdown_Images = '_markdown-images.erb'
@@ -155,9 +171,6 @@ activate :Helpbook do |options|
 
   # Filename for the generated image width css file.
   #options.File_Image_Width_Css = '_image_widths.scss'
-
-  # Filename of the template for the title page.
-  #options.File_Titlepage_Template = '_title_page.html.md.erb'
 
 end #activate
 
@@ -172,21 +185,22 @@ end #activate
 # Setup directories to mirror Help Book directory layout.
 #===============================================================
 set :source,       'Contents'
-set :build_dir,    'Contents (build)'   # Will be overridden by Helpbook.
+set :build_dir,    'Contents (build)'   # Will be overridden by MiddleMac.
 
-set :css_dir,      'Resources/Base.lproj/css'
-set :js_dir,       'Resources/Base.lproj/javascript'
-set :images_dir,   'Resources/Base.lproj/images'
+set :fonts_dir,    'Resources/Base.lproj/assets/fonts'
+set :images_dir,   'Resources/Base.lproj/assets/images'
+set :js_dir,       'Resources/Base.lproj/assets/javascripts'
+set :css_dir,      'Resources/Base.lproj/assets/stylesheets'
 
-set :partials_dir, 'partials'
-set :layouts_dir,  'layouts'
-set :data_dir,     'Contents (source)/data'
+set :partials_dir, 'Resources/Base.lproj/assets/partials'
+set :layouts_dir,  'Resources/Base.lproj/assets/_layouts'
+set :data_dir,     'Contents/Resources/Base.lproj/assets/_data'
 
 
 #===============================================================
 # Ignore items we don't want copied to the destination
 #===============================================================
-ignore 'data/*'
+#ignore 'data/*'
 
 
 #===============================================================
@@ -202,6 +216,7 @@ activate :relative_assets
 #===============================================================
 # Default to Apple-recommended HTML 4.01 layout.
 #===============================================================
+set :haml, :format => :html4
 page 'Resources/Base.lproj/*', :layout => :'layout-html4'
 
 
@@ -222,7 +237,7 @@ activate :syntax
 #===============================================================
 helpers do
 
-  # no helpers here, but the Helpbook class offers quite a few.
+  # no helpers here, but the Middlemac class offers quite a few.
 
 end #helpers
 
