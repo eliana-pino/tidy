@@ -458,6 +458,42 @@ div.yield-content p {
   margin-left: 3em;
 }
 
+nav#breadcrumbs {
+  height: 22px;
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  border-bottom: 1pt solid #7E7E7E;
+  background: url("breadcrumb-bg.png") repeat-x;
+}
+nav#breadcrumbs ul {
+  font-size: 11px;
+  line-height: 22px;
+  margin: 0;
+  padding: 0;
+}
+nav#breadcrumbs + div {
+  margin-top: 2em;
+}
+nav#breadcrumbs li {
+  list-style-type: none;
+  float: left;
+  padding: 0 0 0 10px;
+  margin: 0;
+}
+nav#breadcrumbs li a {
+  height: 22px;
+  display: block;
+  background: url("breadcrumb-separator.png") no-repeat right;
+  padding-right: 15px;
+  text-decoration: none;
+  color: #454545;
+}
+nav#breadcrumbs li:last-child a {
+  color: #353535;
+}
+
 div.container-logo-large {
   position: relative;
   left: 0;
@@ -1065,6 +1101,14 @@ img[src$='tutorial.png'] {
 
 img[src$='tutorial@2x.png'] {
   max-width: 349px;
+}
+
+img[src$='breadcrumb-bg.png'] {
+  max-width: 1px;
+}
+
+img[src$='breadcrumb-separator.png'] {
+  max-width: 7px;
 }
 
 img[src$='icon_256x256@2x.png'] {
