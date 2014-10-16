@@ -207,6 +207,57 @@ div.yield-content
 
 
 //*************************************
+//	Breadcrumbs
+//*************************************
+nav#breadcrumbs
+{
+	height: 22px;
+	width: 100%;
+	overflow: hidden;
+	position: fixed;
+	top: 0;
+	border-bottom: 1pt solid #7E7E7E;
+	background: url('breadcrumb-bg.png') repeat-x;
+
+	ul
+	{
+		font-size: 11px;
+		line-height: 22px;
+		margin: 0;
+		padding: 0;
+	}
+
+	// target the main content div for additional margin.
+	& + div
+	{
+		margin-top: 2em;
+	}
+
+	li {
+		list-style-type: none;
+		float: left;
+		padding: 0 0 0 10px;
+		margin: 0;
+
+		a {
+			height: 22px;
+			display: block;
+			background: url('breadcrumb-separator.png') no-repeat right;
+			padding-right: 15px;
+			text-decoration: none;
+			color: #454545;
+		}
+
+		&:last-child a
+		{
+			color: #353535;
+		}
+	}
+}
+
+
+
+//*************************************
 //	layout-logo-large layout styles
 //*************************************
 div.container-logo-large
