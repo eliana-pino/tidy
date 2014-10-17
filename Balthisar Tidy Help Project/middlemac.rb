@@ -432,29 +432,8 @@ helpers do
   #--------------------------------------------------------
   def breadcrumbs( page = current_page )
     hierarchy = [] << page
-    #hierarchy.unshift parent_of(hierarchy.first) while parent_of(hierarchy.first)
     hierarchy.unshift hierarchy.first.parent while hierarchy.first.parent
     hierarchy
-  end
-
-
-  #--------------------------------------------------------
-  #  parent_of
-  #    Returns a resource that is the parent of the
-  #    passed-in resource (or current page). This works
-  #    a little better than the resource.parent method
-  #    at the top of our hierarchy, where index.html at
-  #    the very top isn't recognized.
-  #--------------------------------------------------------
-  def parent_of(page = current_page)
-    parts = page.path.split('/')
-    parts.pop if page.path.include?(Middleman::Application.index_file)
-    return nil if parts.length < 1
-    parts.pop
-    parts.pop if parts.last == 'index' # special case if top level index dir!
-    parts << Middleman::Application.index_file
-    parent_path = '/' + parts.join('/')
-    sitemap.find_resource_by_destination_path(parent_path)
   end
 
 
