@@ -405,6 +405,9 @@ img {
   margin: 0 auto 0 auto;
 }
 
+dl dt code {
+  font-weight: bold;
+}
 dl dd {
   margin: 0.8ex 0 0.8ex 3em;
 }
@@ -466,32 +469,36 @@ nav#breadcrumbs {
   top: 0;
   border-bottom: 1pt solid #7E7E7E;
   background: url("breadcrumb-bg.png") repeat-x;
-}
-nav#breadcrumbs ul {
-  font-size: 11px;
-  line-height: 22px;
-  margin: 0;
-  padding: 0;
+  z-index: 10;
 }
 nav#breadcrumbs + div {
   margin-top: 2em;
 }
-nav#breadcrumbs li {
+nav#breadcrumbs ul,
+nav#breadcrumbs ul li,
+nav#breadcrumbs ul li a {
+  font-size: 11px;
+  line-height: 22px;
+  height: 22px;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+}
+nav#breadcrumbs ul li {
   list-style-type: none;
   float: left;
   padding: 0 0 0 10px;
   margin: 0;
 }
-nav#breadcrumbs li a {
-  height: 22px;
+nav#breadcrumbs ul li a {
   display: block;
   background: url("breadcrumb-separator.png") no-repeat right;
   padding-right: 15px;
   text-decoration: none;
-  color: #454545;
-}
-nav#breadcrumbs li:last-child a {
   color: #353535;
+}
+nav#breadcrumbs ul li:last-child {
+  color: #555555;
 }
 
 div.container-logo-large {
@@ -500,12 +507,6 @@ div.container-logo-large {
   right: 0;
   width: 100%;
   height: 100%;
-  /* left block, template content area. */
-  /*
-    right block, the structure block. We will
-    perform divider styling here, despite my no-styling rule,
-    so that we can ensure it extends to the whole content.
-   */
 }
 div.container-logo-large > div:first-child {
   position: absolute;
@@ -514,11 +515,6 @@ div.container-logo-large > div:first-child {
   width: 200pt;
   text-align: center;
   font-size: 0.9em;
-  /*
-    top of left block, where image,
-    headline, and link all live.
-   */
-  /* bottom of left block, for related topics */
 }
 div.container-logo-large > div:first-child > div:first-child {
   margin-top: 1em;
@@ -540,7 +536,6 @@ div.container-logo-large > div:first-child + div {
   margin-left: 200pt;
   border-left: 1px solid #bfbfbf;
   min-height: 100%;
-  /* finally the user's block with a nice padding */
 }
 div.container-logo-large > div:first-child + div > div:first-child {
   padding: 2em;
@@ -552,12 +547,6 @@ div.container-logo-medium {
   right: 0;
   width: 100%;
   height: 100%;
-  /*
-    left block, the structure block. We will
-    perform divider styling here, despite my no-styling rule,
-    so that we can ensure it extends to the whole content.
-   */
-  /* right block, template content area. */
 }
 div.container-logo-medium > div:first-child {
   margin-right: 130pt;
@@ -578,8 +567,6 @@ div.container-logo-medium > div:first-child + div {
   top: 0;
   right: 0;
   width: 130pt;
-  /* top of right block, where image lives */
-  /* bottom of left block, for related topics */
 }
 div.container-logo-medium > div:first-child + div > div:first-child {
   padding-top: 1em;
@@ -600,8 +587,6 @@ div.container-logo-medium > div:first-child + div > div:first-child + div h1 {
 
 div.container-logo-small {
   padding: 1em 2em 1em 2em;
-  /* banner AND body text */
-  /* This will be the related topics div */
 }
 div.container-logo-small > div:first-child > img:first-child {
   height: 36pt;
@@ -621,7 +606,6 @@ div.container-logo-small > div:first-child ~ div h1 {
   font-size: 1.3em;
 }
 
-/* for displaying source code */
 pre {
   background-color: #eeeeee;
   display: block;
@@ -631,7 +615,6 @@ pre {
   white-space: pre-line;
 }
 
-/* for highlighting important information */
 .note {
   margin: 1em;
   padding: 1em;
@@ -639,7 +622,6 @@ pre {
   border: 1px solid #eaeaea;
 }
 
-/* a container for showing things that are done step by step */
 div.steps {
   margin: 0 0 3ex 0;
   padding: 1em 2em 1em 2em;
@@ -655,13 +637,11 @@ div.steps ol:first-child {
   margin-left: 1em;
 }
 
-/* indented left and right version of the container */
 div.steps.narrow {
   margin-left: 3em;
   margin-right: 3em;
 }
 
-/* image_article */
 div.image_article {
   margin-top: 1.5ex;
 }
