@@ -209,6 +209,7 @@ set :data_dir,     'Contents/Resources/Base.lproj/assets/_data'
 # paths with root being the source directory; they will be
 # converted to relative paths at build.
 #===============================================================
+set :strip_index_file, false
 set :relative_links, true
 activate :relative_assets
 

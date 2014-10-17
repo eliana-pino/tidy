@@ -1,4 +1,4 @@
-@import "normalize";
-@import "apple_helpbook";
-@import "image_widths";
-@import "github";
+@import "normalize";       // keep normalize in case deployment to non Help Center.
+@import "apple_helpbook";  // basic styles.
+@import "image_widths";    // auto-generated max-width for images.
+@import "github";          // styles used for code blocks.
