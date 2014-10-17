@@ -432,7 +432,8 @@ helpers do
   #--------------------------------------------------------
   def breadcrumbs( page = current_page )
     hierarchy = [] << page
-    hierarchy.unshift parent_of(hierarchy.first) while parent_of(hierarchy.first)
+    #hierarchy.unshift parent_of(hierarchy.first) while parent_of(hierarchy.first)
+    hierarchy.unshift hierarchy.first.parent while hierarchy.first.parent
     hierarchy
   end
 
