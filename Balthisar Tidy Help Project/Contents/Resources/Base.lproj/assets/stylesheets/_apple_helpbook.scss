@@ -10,6 +10,32 @@
 //	* Styling containers set styles for elements inside of them.
 //*****************************************************************************
 
+@import "font-awesome-4.2.0/scss/variables";
+
+
+//*************************************
+//  Mixins
+//*************************************
+
+// Easily include font-awesome icons
+@mixin icon( $type: $fa-var-bug )
+{
+	content: $type;
+	font-family: 'Fontawesome';
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+// Easily include backgrounds for multiple browsers, just in case.
+// You might require Compass in your own projects, instead.
+@mixin background( $property )
+{
+	background: -o-#{$property};
+	background: -moz-#{$property};
+	background: -webkit-#{$property};
+	background: #{$property};
+}
+
 
 //*************************************
 //  GENERAL STYLES
@@ -40,7 +66,7 @@ body
 
 h1
 {
-	font-size: 1.6em;
+	font-size: 1.7em;
 }
 h2
 {
@@ -113,15 +139,11 @@ dl
 }
 
 
-//  "standard" ul has no margins or padding.
+//  "standard" ul has no margins or padding, except left margin.
 ul
 {
 	list-style: square outside;
-
-	ul
-	{
-		margin-left: 1em;
-	}
+	margin-left: 2em;
 }
 
 
@@ -209,7 +231,6 @@ div.yield-content
 //*************************************
 .help_map
 {
-	margin-left: 3em;
 }
 
 
@@ -224,7 +245,7 @@ nav#breadcrumbs
 	position: fixed;
 	top: 0;
 	border-bottom: 1pt solid #7E7E7E;
-	background: url('breadcrumb-bg.png') repeat-x;
+	@include background(linear-gradient(top, rgba(224,224,224,1) 0%,rgba(201,201,202,1) 100%));
 	z-index: 10;
 
 	// target the main content div for additional margin.
@@ -255,7 +276,7 @@ nav#breadcrumbs
 		a
 		{
 			display: block;
-			background: url('breadcrumb-separator.png') no-repeat right;
+			background: url('breadcrumb-separator-light.png') no-repeat right;
 			padding-right: 15px;
 			text-decoration: none;
 			color: #353535;
@@ -264,10 +285,93 @@ nav#breadcrumbs
 		&:last-child
 		{
 			color: #555555;
+
+			a
+			{
+				background: none;
+				cursor: default;
+			}
 		}
 	}
 }
 
+
+//*************************************
+//	Navigation Buttons
+//*************************************
+div.navigate_prev_next
+{
+	display: block;
+	width: auto;
+	margin: $interMargins auto $interMargins auto;
+	text-align: center;
+	$height: 2.5em;
+
+	a,
+	span
+	{
+		display: inline-block;
+		color: #353535;
+		@include background(linear-gradient(top, rgba(224,224,224,1) 0%,rgba(201,201,202,1) 100%));
+		border-radius: 2px;
+		font-size: 0.8em;
+		text-decoration: none;
+		font-weight: bold;
+		width: 10em;
+		height: $height;
+		line-height: $height;
+
+		// space between buttons.
+		&:first-child
+		{
+			margin-right: 1em;
+		}
+
+		&:first-child:before
+		{
+			@include icon($fa-var-chevron-left);
+			font-size: 1.5em;
+			margin: 0 0 0 10px;
+			float: left;
+			color: whitesmoke;
+		}
+
+		&:first-child + a:after,
+		&:first-child + span:after,
+		{
+			@include icon($fa-var-chevron-right);
+			font-size: 1.5em;
+			margin-right: 10px;
+			float: right;
+			color: whitesmoke;
+		}
+	}
+
+	a:hover
+	{
+		@include background(linear-gradient(top, rgba(211,211,211,1) 0%,rgba(191,191,191,1) 100%));
+
+		&:before,
+		&:after
+		{
+			color: $linkColor !important; // specificity
+		}
+	}
+
+	// override span color, as it's disabled.
+	span
+	{
+		color: #888888;
+		@include background(linear-gradient(top, rgba(234,234,234,1) 0%,rgba(244,244,244,1) 100%));
+		&:before,
+		&:after
+		{
+			color: #aaaaaa;
+		}
+	}
+
+
+}
 
 
 //*************************************
@@ -465,7 +569,15 @@ pre
 	margin: 2ex 2em 2ex 2em;
 	padding: 1em;
 	font-family: Menlo, Courier, monospace;
-	white-space: pre-line;
+	white-space: pre; //pre-line;
+	word-wrap: normal;
+	overflow: auto;
+}
+
+code
+{
+	white-space: pre;
+	word-wrap: normal;
 }
 
 

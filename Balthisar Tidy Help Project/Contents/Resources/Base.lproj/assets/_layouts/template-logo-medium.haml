@@ -2,7 +2,10 @@
   .container-logo-medium
     %div
       .yield-content
-        = yield
+        ~ yield
+        - if current_page.navigator_eligible?
+          %hr
+          = partial 'prev_next'
 
     %div
       %div

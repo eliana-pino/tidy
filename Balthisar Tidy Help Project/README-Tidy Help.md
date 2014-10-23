@@ -52,11 +52,11 @@ Middleman. For example:
 In general it’s better to use the `middlemac` tool directly, in that it offers
 a variety of shortcuts and doesn’t require the use of environment variables.
 
-`helpbook TARGET... | all  [--verbose | -v] [--quiet | -q] [--help | h] [--server | s]`
+`middlemac.rb TARGET... | all  [--verbose | -v] [--quiet | -q] [--help | h] [--server | -s]`
 
 For example:
 
-`helpbook web pro --verbose` to build these two targets and show Middleman's
+`middlemac.rb web pro --verbose` to build these two targets and show Middleman's
 verbose output, and `helpbook pro -s` to run Middleman in server mode for local
 development (including live page reload support).
 

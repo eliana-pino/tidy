@@ -13,7 +13,6 @@ require 'middlemac'
 ################################################################
 
 activate :Middlemac do |options|
-
   # You should only change the default, fall-back target here. This is the
   # target that will be processed if no environment variable is used,
   # e.g., if you run `middleman build` directly.
@@ -36,32 +35,32 @@ activate :Middlemac do |options|
 
   # Targets
 
-    # NOTE: Ruby has a type of variable called a `symbol`, which are used below
-    # quite extensively and look like :this_symbol. Except hey’re not really
-    # variables; you can’t assign values to them. Their value is themselves,
-    # though they have useful string representations (:this_symbol.to_s). You
-    # can even get the symbol representation of this_string.to_sym. Because
-    # they're unique, they make excellent array/hash keys and excellent,
-    # guaranteed unique values.
+  # NOTE: Ruby has a type of variable called a `symbol`, which are used below
+  # quite extensively and look like :this_symbol. Except hey’re not really
+  # variables; you can’t assign values to them. Their value is themselves,
+  # though they have useful string representations (:this_symbol.to_s). You
+  # can even get the symbol representation of this_string.to_sym. Because
+  # they're unique, they make excellent array/hash keys and excellent,
+  # guaranteed unique values.
 
-    # :CFBundleID
-    # Just as different versions of your app must have different bundle identifiers
-    # so the OS can distinguish them, their help files must have unique bundle IDs,
-    # too. Your application specifies the help file `CFBundleID` in its
-    # `CFBundleHelpBookName` entry. Therefore for each target, ensure that your
-    # application has a `CFBundleHelpBookName` that matches the `CFBundleID` that
-    # you will set here.
+  # :CFBundleID
+  # Just as different versions of your app must have different bundle identifiers
+  # so the OS can distinguish them, their help files must have unique bundle IDs,
+  # too. Your application specifies the help file `CFBundleID` in its
+  # `CFBundleHelpBookName` entry. Therefore for each target, ensure that your
+  # application has a `CFBundleHelpBookName` that matches the `CFBundleID` that
+  # you will set here.
 
-    # :ProductName
-    # You can specify different product names for each build target. The product
-    # name for the current target will be available via the `product_name` helper.
+  # :ProductName
+  # You can specify different product names for each build target. The product
+  # name for the current target will be available via the `product_name` helper.
 
-      # :Features
-      # A hash of features that a particular target supports or doesn't support.
-      # The `has_feature` function and several helpers will use the true/false value
-      # of these features in order to conditionally include content. This is given
-      # as a hash of true/false instead of an array of symbols in order to make it
-      # easier to enable/disable features for each target.
+  # :Features
+  # A hash of features that a particular target supports or doesn't support.
+  # The `has_feature` function and several helpers will use the true/false value
+  # of these features in order to conditionally include content. This is given
+  # as a hash of true/false instead of an array of symbols in order to make it
+  # easier to enable/disable features for each target.
 
   options.Targets =
       {
@@ -175,10 +174,10 @@ activate :Middlemac do |options|
 end #activate
 
 
-################################################################################
+################################################################
 # STOP! There's nothing below here that you should have to
 # change. Just follow the conventions and framework provided.
-################################################################################
+################################################################
 
 
 #===============================================================

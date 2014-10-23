@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 ###############################################################################
-#  middlemac.rb
+#  middlemac.rb - v1.0RC1
 #
 #    Consists of both:
 #    - the `middlemac` command-line tool for invoking Middleman with multiple
@@ -217,6 +217,12 @@ def initialize(app, options_hash={}, &block)
     exit 1
   end
 
+  #==============================================
+  #  Callback before each page is rendered.
+  #==============================================
+  app.before do
+    true
+  end
 end #initialize
 
 
@@ -266,6 +272,183 @@ end
 #===============================================================
 def after_build
     run_help_indexer
+end
+
+
+
+#===============================================================
+#  Sitemap manipulators.
+#    Add new methods to each resource.
+#===============================================================
+def manipulate_resource_list(resources)
+
+  resources.each do |resource|
+
+    #--------------------------------------------------------
+    # page_name
+    #    Make page_name available for each page. This is the
+    #    file base name. Useful for assigning classes, etc.
+    #--------------------------------------------------------
+    def resource.page_name
+      File.basename( self.url, '.*' )
+    end
+
+
+    #--------------------------------------------------------
+    #  page_group
+    #    Make page_group available for each page. This is
+    #    the source parent directory (not the request path).
+    #    Useful for for assigning classes, and/or group
+    #    conditionals.
+    #--------------------------------------------------------
+    def resource.page_group
+      File.basename(File.split(self.source_file)[0])
+    end
+
+
+    #--------------------------------------------------------
+    #  sort_order
+    #    Returns the page sort order or nil.
+    #      - If there's an `order` key, use it.
+    #      - Otherwise if there's a three digit prefix.
+    #      - Else nil.
+    #--------------------------------------------------------
+    def resource.sort_order
+      if self.data.key?('order')
+        self.data['order'].to_i
+      elsif self.page_name[0..2].to_i != 0
+        self.page_name[0..2].to_i
+      else
+        nil
+      end
+    end
+
+
+    #--------------------------------------------------------
+    #  valid_features
+    #    Returns an array of valid features for this page
+    #    based on the current target, i.e., features that
+    #    are true for the current target. These are the
+    #    only features that can be used with frontmatter
+    #    :target or :exclude.
+    #--------------------------------------------------------
+    def resource.valid_features
+      options = app.extensions[:Middlemac].options
+      options.Targets[options.Target][:Features].select { |k, v| v }.keys
+    end
+
+
+    #--------------------------------------------------------
+    #  targeted?
+    #    Determines if this pages is eligible for inclusion
+    #    in the current build/server environment based on:
+    #      - is an HTML file, and
+    #      - has a sort_order, and
+    #      - if frontmatter:target is used, the target or
+    #        feature appears in the frontmatter, and
+    #      - if frontmatter:exclude is used, the target or
+    #        enabled feature does NOT appear in the
+    #        frontmatter.
+    #--------------------------------------------------------
+    def resource.targeted?
+      target_name = app.extensions[:Middlemac].options.Target
+      self.ext == '.html' &&
+          self.data.key?('title') &&
+          !self.sort_order.nil? &&
+          ( !self.data['target'] || (self.data['target'].include?(target_name) || (self.data['target'] & self.valid_features).count > 0) ) &&
+          ( !self.data['exclude'] || !(self.data['exclude'].include?(target_name) || (self.data['exclude'] & self.valid_features).count > 0) )
+    end
+
+
+    #--------------------------------------------------------
+    #  brethren
+    #    Returns an array of all of the siblings of the
+    #    specified page, taking into account their
+    #    eligibility for display.
+    #      - is not already the current page, and
+    #      - is targeted for the current build.
+    #    Returned array will be:
+    #      - sorted by sort_order.
+    #--------------------------------------------------------
+    def resource.brethren
+      pages = self.siblings.find_all { |p| p.targeted? && p != app.current_page }
+      pages.sort_by { |p| p.sort_order }
+    end
+
+
+    #--------------------------------------------------------
+    #  brethren_next
+    #    Returns the next sibling based on order or nil.
+    #--------------------------------------------------------
+    def resource.brethren_next
+      if self.sort_order.nil?
+        puts 'NEXT reports no sort order.'
+        return nil
+      else
+        return self.brethren.select { |p| p.sort_order == app.current_page.sort_order + 1 }[0]
+      end
+    end
+
+
+    #--------------------------------------------------------
+    #  brethren_previous
+    #    Returns the previous sibling based on order or nil.
+    #--------------------------------------------------------
+    def resource.brethren_previous
+      if self.sort_order.nil?
+        puts 'PREV reports no sort order.'
+        return nil
+      else
+        return self.brethren.select { |p| p.sort_order == app.current_page.sort_order - 1 }[0]
+      end
+    end
+
+
+    #--------------------------------------------------------
+    #  navigator_eligible?
+    #    Determine whether a page is eligible to include a
+    #    previous/next page control based on:
+    #      - the group is set to allow navigation (:navigate)
+    #      - this page is not excluded from navigation. (:navigator => false)
+    #      - this page has a sort_order.
+    #--------------------------------------------------------
+    def resource.navigator_eligible?
+      (self.parent && self.parent.data.key?('navigate') && self.parent.data['navigate'] == true) &&
+          !(self.data.key?('navigator') && self.data['navigator'] == false) &&
+          (!self.sort_order.nil?)
+    end
+
+
+    #--------------------------------------------------------
+    #  legitimate_children
+    #    Returns an array of all of the children of the
+    #    specified page, taking into account their
+    #    eligibility for display.
+    #      - is targeted for the current build.
+    #    Returned array will be:
+    #      - sorted by sort_order.
+    #--------------------------------------------------------
+    def resource.legitimate_children
+      pages = self.children.find_all { |p| p.targeted? }
+      pages.sort_by { |p| p.sort_order }
+    end
+
+
+    #--------------------------------------------------------
+    #  breadcrumbs
+    #    Returns an array of pages leading to the current
+    #    page.
+    #--------------------------------------------------------
+    def resource.breadcrumbs
+      hierarchy = [] << self
+      hierarchy.unshift hierarchy.first.parent while hierarchy.first.parent
+      hierarchy
+    end
+
+
+  end # .each
+
+  resources
 end
 
 
@@ -331,7 +514,7 @@ helpers do
   # target_name?
   #   Is the current target `proposal`?
   #--------------------------------------------------------
-  def target_name?(proposal)
+  def target_name?( proposal )
     extensions[:Middlemac].options.Target == proposal.to_sym
   end
 
@@ -340,100 +523,10 @@ helpers do
   # target_feature?
   #   Does the target have the feature `feature`?
   #--------------------------------------------------------
-  def target_feature?(feature)
+  def target_feature?( feature )
     options = extensions[:Middlemac].options
     features = options.Targets[options.Target][:Features]
     features.key?(feature) && features[feature]
-  end
-
-
-  #--------------------------------------------------------
-  #  page_name
-  #    Make page_name available for each page. This is the
-  #    file base name. Useful for assigning classes, etc.
-  #--------------------------------------------------------
-  def page_name
-    File.basename( current_page.url, '.*' )
-  end
-
-
-  #--------------------------------------------------------
-  #  page_group
-  #    Make page_group available for each page. This is the
-  #    source parent directory (not the request path).
-  #    Useful for for assigning classes, and/or group
-  #    conditionals.
-  #--------------------------------------------------------
-  def page_group
-    File.basename(File.split(current_page.source_file)[0])
-  end
-
-
-  #--------------------------------------------------------
-  #  brethren
-  #    Returns an array of all of the siblings of the
-  #    specified page, taking into account their
-  #    eligibility for display.
-  #      - is not already the current page, and
-  #      - has an order specified in frontmatter, and
-  #      - if frontmatter:target is used, the target or
-  #        feature appears in the frontmatter
-  #      - if frontmatter:exclude is used, that target or
-  #        enabled feature does NOT appear in the
-  #        frontmatter.
-  #    Returned array will be:
-  #      - sorted by the "order" key.
-  #--------------------------------------------------------
-  def brethren( page = current_page )
-    pages = page.siblings.find_all do |p|
-      p.ext == '.html' &&
-          p != current_page &&
-          p.data.title &&
-          p.data.key?('order') &&
-          ( !p.data.key?('target') || (p.data['target'].include?(target_name) || p.data['target'].count{ |t| target_feature?(t) } > 0) ) &&
-          ( !p.data.key?('exclude') || !(p.data['exclude'].include?(target_name) || p.data['exclude'].count{ |t| target_feature(t) } > 0) )
-    end
-    pages.each { |p| p.add_metadata(:link => p.url ) }
-    pages.sort_by { |p| p.data['order'].to_i }
-  end
-
-
-  #--------------------------------------------------------
-  #  legitimate_children
-  #    Returns an array of all of the children of the
-  #    specified page, taking into account their
-  #    eligibility for display.
-  #      - has an order specified in frontmatter, and
-  #      - if frontmatter:target is used, the target or
-  #        feature appears in the frontmatter
-  #      - if frontmatter:exclude is used, that target or
-  #        enabled feature does NOT appear in the
-  #        frontmatter.
-  #    Returned array will be:
-  #      - sorted by the "order" key.
-  #--------------------------------------------------------
-  def legitimate_children( page = current_page )
-    pages = page.children.find_all do |p|
-      p.ext == '.html' &&
-          p.data.title &&
-          p.data.key?('order') &&
-          ( !p.data.key?('target') || (p.data['target'].include?(target_name) || p.data['target'].count{ |t| target_feature?(t) } > 0) ) &&
-          ( !p.data.key?('exclude') || !(p.data['exclude'].include?(target_name) || p.data['exclude'].count{ |t| target_feature(t) } > 0) )
-    end
-    pages.each { |p| p.add_metadata(:link => p.url ) }
-    pages.sort_by { |p| p.data['order'].to_i }
-  end
-
-
-  #--------------------------------------------------------
-  #  breadcrumbs
-  #    Returns an array of pages leading to the current
-  #    page.
-  #--------------------------------------------------------
-  def breadcrumbs( page = current_page )
-    hierarchy = [] << page
-    hierarchy.unshift hierarchy.first.parent while hierarchy.first.parent
-    hierarchy
   end
 
 
@@ -443,7 +536,6 @@ end #helpers
 #===============================================================
 #  Instance Methods
 #===============================================================
-
 
   #--------------------------------------------------------
   #  build_mdimages
@@ -515,9 +607,14 @@ end #helpers
         while File.extname(base_name) != '' do
             base_name = File.basename( base_name, '.*' )
         end
-        next if base_name.start_with?('_')
+        next if base_name.start_with?('_') # || base_name == 'index'
 
-        shortcut = "[#{base_name}]:"
+        if base_name == 'index'
+          shortcut = "[#{File.split(File.split(fileName)[0])[1]}_index]:"
+
+        else
+          shortcut = "[#{base_name}]:"
+        end
 
         # Make a fake absolute path
         path = Pathname.new(fileName).relative_path_from(Pathname.new(app.source))
