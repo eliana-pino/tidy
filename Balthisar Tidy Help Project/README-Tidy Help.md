@@ -1,24 +1,29 @@
 README
 ======
 
-About the Build System for Help
--------------------------------
+About the “Middlemac” Build System for Help
+-------------------------------------------
 This directory is the help project for _Balthisar Tidy_ series of applications.
 Because of the differing build and feature configurations for _Balthisar Tidy_,
-a more flexible build system for its help files is necessary, too.
+a more flexible build system for its help files is necessary, too. This is why
+we developed _Middlemac_. 
 
 If you're working on your own forks of _Balthisar Tidy_ and don’t wish to
-depend on an external build system for help file, you can still modify the
+depend on an external build system for help files, you can still modify the
 built help files in the `Balthisar Tidy (xxx).help` bundles. On the other hand
 if you wish to participate in the development of _Balthisar Tidy_ and issue pull
 requests, please make changes to the source files in the build system in this
 directory, in `Contents/`.
 
-The build system is [middleman](http://middlemanapp.com/) and is a well-known
-static website development tool that's available for all platforms that can
-run Ruby. The template system depends on very basic Ruby knowledge, but the
-learning curve is quite small. If you can develop Objective-C, then you can
-very easily understand the small amount of Ruby that's used.
+The build system strongly leverages [_Middleman_](http://middlemanapp.com/) and
+is a well-known static website development tool that's available for all
+platforms that can run Ruby. The template system depends on very basic Ruby
+knowledge, but the learning curve is quite small. If you can develop
+Objective-C, then you can very easily understand the small amount of Ruby that's
+used.
+
+_Middlemac_ builds on _Middleman_ to provide tools and configuration specific to
+building Apple help files targeting different application versions.
 
 The `.idea` folder is included in version control so that I can replicate my
 editor development across machines. If you are using a JetBrains IDE to open
@@ -29,62 +34,40 @@ sure that your pull requests do not include anything from this file (please
 
 Build Configurations
 --------------------
-In order to tailor the help file to each specific version of Balthisar Tidy
+In order to tailor the help file to each specific version of _Balthisar Tidy_
 the there are multiple build configurations for Tidy help, too. This avoids,
 for example, any mention of the Sparkle Update Framework for versions that
 appear in the App Store, and avoids mention of features in the help files of
 applications that don't have those features.
 
-`middleman build` will build the “pro” target by default. Because middleman
-won't accept CLI parameters, we have to pass targets to it in an environment
-variable, e.g.,
+From within the help project directory in Terminal you can build any of the
+help targets by using the middlemac.rb tool. For example: 
 
-`HBTARGET=pro middleman build`
+`./middlemac.rb pro`
 
-Current valid targets are
+If you prefer to use Middleman directly you must specify build targets via an
+environment variable, because there’s no way to specify CLI parameters to
+Middleman. For example:
 
- - app
-   : the App Store version of _Balthisar Tidy_
- - pro
-   : Balthisar Tidy for Work_
- - test
-   : Enables every feature in the help file.
- - web
-   : _Balthisar Tidy_ as distributed from balthisar.com
-   
-A better alternative is to use the `helpbook` tool, which is cleverly hidden
-in the `helpbook` extension that Middleman uses to build HelpBooks. You can
-invoke it like this:
+In general it’s better to use the `middlemac` tool directly, in that it offers
+a variety of shortcuts and doesn’t require the use of environment variables.
 
-`helpbook TARGET... | all  [--verbose | -v] [--quiet | -q]`
+`middlemac.rb TARGET... | all  [--verbose | -v] [--quiet | -q] [--help | h] [--server | -s]`
 
 For example:
 
-`helpbook web pro --verbose` to build these two targets and show Middleman's
-verbose output.
+`middlemac.rb web pro --verbose` to build these two targets and show Middleman's
+verbose output, and `helpbook pro -s` to run Middleman in server mode for local
+development (including live page reload support).
 
-
-
-Editing the Title Page / Landing Page
--------------------------------------
-Note that the standard Apple Help Book “title page” content should only be
-edited in `_title_page.md.erb`, and if you want to set the page title, you
-should modify `layouts/layout-apple_main.erb`. Apple Help requires that the
-main title page be an XHTML file, while the remaining files are HTML 4.0.1
-(this the purpose of having two layout files).
-
-Additionally, by modifying only `_title_page.html.md.erb`, the build system can
-properly manage the name of the file for the title page (it just makes a
-duplicate of `_title_page.html.md.erb`).
 
 
 Editing the Info.plist and InfoPlist.strings files
 --------------------------------------------------
-The build system will generate a proper `Info.plist` file using the
-configured data, so don't modify this file. Instead modify its template file
-`_Info.plist` whenever you want to ensure that some new item is
-included. If you're contributing to _Balthisar Tidy_ there should be no need
-for this.
+The build system will generate a proper `Info.plist` file using the configured
+data, so don't modify this file. Instead modify its template file `_Info.plist`
+whenever you want to ensure that some new item is included. If you're
+contributing to _Balthisar Tidy_ there should be no need for this.
 
 The build system will generate a proper `InfoPlist.strings` file using the
 configured data, so don't modify this file. Instead modify its template file
@@ -107,7 +90,6 @@ dependencies.
 
 Frontmatter Content
 -------------------
-
 Frontmatter in yaml format has the following meanings:
 
 ~~~~~~~~~~~~

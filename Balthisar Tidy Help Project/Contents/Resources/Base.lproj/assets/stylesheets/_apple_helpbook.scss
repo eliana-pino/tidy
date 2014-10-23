@@ -10,6 +10,32 @@
 //	* Styling containers set styles for elements inside of them.
 //*****************************************************************************
 
+@import "font-awesome-4.2.0/scss/variables";
+
+
+//*************************************
+//  Mixins
+//*************************************
+
+// Easily include font-awesome icons
+@mixin icon( $type: $fa-var-bug )
+{
+	content: $type;
+	font-family: 'Fontawesome';
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+// Easily include backgrounds for multiple browsers, just in case.
+// You might require Compass in your own projects, instead.
+@mixin background( $property )
+{
+	background: -o-#{$property};
+	background: -moz-#{$property};
+	background: -webkit-#{$property};
+	background: #{$property};
+}
+
 
 //*************************************
 //  GENERAL STYLES
@@ -40,7 +66,7 @@ body
 
 h1
 {
-	font-size: 1.6em;
+	font-size: 1.7em;
 }
 h2
 {
@@ -66,11 +92,13 @@ a
 	font-size: 1.05em;
 	color: $linkColor;
 
-	&:visited {
+	&:visited
+	{
 		color: $linkColor;
 	}
 
-	&:hover {
+	&:hover
+	{
 		text-decoration: underline;
 	}
 }
@@ -99,6 +127,11 @@ img
 //	a styling container if you want padding or margins.
 dl
 {
+	dt code
+	{
+		font-weight: bold;
+	}
+
 	dd
 	{
 		margin: 0.8ex 0 0.8ex 3em;
@@ -106,15 +139,11 @@ dl
 }
 
 
-//  "standard" ul has no margins or padding.
+//  "standard" ul has no margins or padding, except left margin.
 ul
 {
 	list-style: square outside;
-
-	ul
-	{
-		margin-left: 1em;
-	}
+	margin-left: 2em;
 }
 
 
@@ -202,7 +231,6 @@ div.yield-content
 //*************************************
 .help_map
 {
-	margin-left: 3em;
 }
 
 
@@ -217,15 +245,8 @@ nav#breadcrumbs
 	position: fixed;
 	top: 0;
 	border-bottom: 1pt solid #7E7E7E;
-	background: url('breadcrumb-bg.png') repeat-x;
-
-	ul
-	{
-		font-size: 11px;
-		line-height: 22px;
-		margin: 0;
-		padding: 0;
-	}
+	@include background(linear-gradient(top, rgba(224,224,224,1) 0%,rgba(201,201,202,1) 100%));
+	z-index: 10;
 
 	// target the main content div for additional margin.
 	& + div
@@ -233,28 +254,124 @@ nav#breadcrumbs
 		margin-top: 2em;
 	}
 
-	li {
+	ul,
+	ul li,
+	ul li a
+	{
+		font-size: 11px;
+		line-height: 22px;
+		height: 22px;
+		font-weight: normal;
+		margin: 0;
+		padding: 0;
+	}
+
+	ul li
+	{
 		list-style-type: none;
 		float: left;
 		padding: 0 0 0 10px;
 		margin: 0;
 
-		a {
-			height: 22px;
+		a
+		{
 			display: block;
-			background: url('breadcrumb-separator.png') no-repeat right;
+			background: url('breadcrumb-separator-light.png') no-repeat right;
 			padding-right: 15px;
 			text-decoration: none;
-			color: #454545;
+			color: #353535;
 		}
 
-		&:last-child a
+		&:last-child
 		{
-			color: #353535;
+			color: #555555;
+
+			a
+			{
+				background: none;
+				cursor: default;
+			}
 		}
 	}
 }
 
+
+//*************************************
+//	Navigation Buttons
+//*************************************
+div.navigate_prev_next
+{
+	display: block;
+	width: auto;
+	margin: $interMargins auto $interMargins auto;
+	text-align: center;
+	$height: 2.5em;
+
+	a,
+	span
+	{
+		display: inline-block;
+		color: #353535;
+		@include background(linear-gradient(top, rgba(224,224,224,1) 0%,rgba(201,201,202,1) 100%));
+		border-radius: 2px;
+		font-size: 0.8em;
+		text-decoration: none;
+		font-weight: bold;
+		width: 10em;
+		height: $height;
+		line-height: $height;
+
+		// space between buttons.
+		&:first-child
+		{
+			margin-right: 1em;
+		}
+
+		&:first-child:before
+		{
+			@include icon($fa-var-chevron-left);
+			font-size: 1.5em;
+			margin: 0 0 0 10px;
+			float: left;
+			color: whitesmoke;
+		}
+
+		&:first-child + a:after,
+		&:first-child + span:after,
+		{
+			@include icon($fa-var-chevron-right);
+			font-size: 1.5em;
+			margin-right: 10px;
+			float: right;
+			color: whitesmoke;
+		}
+	}
+
+	a:hover
+	{
+		@include background(linear-gradient(top, rgba(211,211,211,1) 0%,rgba(191,191,191,1) 100%));
+
+		&:before,
+		&:after
+		{
+			color: $linkColor !important; // specificity
+		}
+	}
+
+	// override span color, as it's disabled.
+	span
+	{
+		color: #888888;
+		@include background(linear-gradient(top, rgba(234,234,234,1) 0%,rgba(244,244,244,1) 100%));
+		&:before,
+		&:after
+		{
+			color: #aaaaaa;
+		}
+	}
+
+
+}
 
 
 //*************************************
@@ -270,7 +387,7 @@ div.container-logo-large
 	width: 100%;
 	height: 100%;
 
-	/* left block, template content area. */
+	// left block, template content area.
 	> div:first-child
 	{
 		position: absolute;
@@ -280,10 +397,8 @@ div.container-logo-large
 		text-align: center;
 		font-size: 0.9em;
 
-		/*
-		  top of left block, where image,
-		  headline, and link all live.
-		 */
+		//  top of left block, where image,
+		//  headline, and link all live.
 		> div:first-child
 		{
 			margin-top: 1em;
@@ -296,7 +411,7 @@ div.container-logo-large
 			}
 		}
 
-		/* bottom of left block, for related topics */
+		// bottom of left block, for related topics
 		> div:first-child + div
 		{
 			font-size: 0.9em;
@@ -310,18 +425,17 @@ div.container-logo-large
 		}
 	}
 
-	/*
-	  right block, the structure block. We will
-	  perform divider styling here, despite my no-styling rule,
-	  so that we can ensure it extends to the whole content.
-	 */
+
+	//  right block, the structure block. We will
+	//  perform divider styling here, despite my no-styling rule,
+	//  so that we can ensure it extends to the whole content.
 	> div:first-child + div
 	{
 		margin-left: $logo-width;
 		border-left: $standard_border;
 		min-height: 100%;
 
-		/* finally the user's block with a nice padding */
+		// finally the user's block with a nice padding
 		> div:first-child
 		{
 			padding: 2em;
@@ -343,11 +457,9 @@ div.container-logo-medium
 	width: 100%;
 	height: 100%;
 
-	/*
-	  left block, the structure block. We will
-	  perform divider styling here, despite my no-styling rule,
-	  so that we can ensure it extends to the whole content.
-	 */
+	//  left block, the structure block. We will
+	//  perform divider styling here, despite my no-styling rule,
+	//  so that we can ensure it extends to the whole content.
 	> div:first-child
 	{
 		margin-right: $logo-width;
@@ -368,7 +480,7 @@ div.container-logo-medium
 		}
 	}
 
-	/* right block, template content area. */
+	//  right block, template content area.
 	> div:first-child + div
 	{
 		position: absolute;
@@ -376,7 +488,7 @@ div.container-logo-medium
 		right: 0;
 		width: $logo-width;
 
-		/* top of right block, where image lives */
+		//  top of right block, where image lives
 		> div:first-child
 		{
 			padding-top: 1em;
@@ -389,7 +501,7 @@ div.container-logo-medium
 			}
 		}
 
-		/* bottom of left block, for related topics */
+		//  bottom of left block, for related topics
 		> div:first-child + div
 		{
 			font-size: 0.8em;
@@ -413,7 +525,7 @@ div.container-logo-small
 	$bannerHeight: 36pt;
 	padding: 1em 2em 1em 2em;
 
-	/* banner AND body text */
+	//  banner AND body text
 	> div:first-child
 	{
 		> img:first-child
@@ -431,7 +543,7 @@ div.container-logo-small
 		}
 	}
 
-	/* This will be the related topics div */
+	//  This will be the related topics div
 	> div:first-child ~ div
 	{
 		font-size: 0.8em;
@@ -449,7 +561,7 @@ div.container-logo-small
 //	Other Block Level Elements
 //*************************************
 
-/* for displaying source code */
+//  for displaying source code
 pre
 {
 	background-color: #eeeeee;
@@ -457,11 +569,19 @@ pre
 	margin: 2ex 2em 2ex 2em;
 	padding: 1em;
 	font-family: Menlo, Courier, monospace;
-	white-space: pre-line;
+	white-space: pre; //pre-line;
+	word-wrap: normal;
+	overflow: auto;
+}
+
+code
+{
+	white-space: pre;
+	word-wrap: normal;
 }
 
 
-/* for highlighting important information */
+// for highlighting important information
 .note
 {
 	margin: 1em;
@@ -471,7 +591,7 @@ pre
 }
 
 
-/* a container for showing things that are done step by step */
+//  a container for showing things that are done step by step
 div.steps
 {
 	margin:  0 0 ($interMargins * 2) 0;
@@ -492,7 +612,7 @@ div.steps
 	}
 }
 
-/* indented left and right version of the container */
+//  indented left and right version of the container
 div.steps.narrow
 {
 	margin-left: 3em;
@@ -500,7 +620,7 @@ div.steps.narrow
 }
 
 
-/* image_article */
+//  image_article
 div.image_article
 {
 	margin-top: $interMargins;
