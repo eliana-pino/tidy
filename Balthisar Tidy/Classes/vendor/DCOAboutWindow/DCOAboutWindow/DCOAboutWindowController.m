@@ -157,7 +157,7 @@
 		// toggle between the infoView and the ackknowledgmentsView
 		if ([self.placeHolderView subviews][0] == self.infoView) {
 			[self showView:self.acknowledgmentsView];
-			self.acknowledgmentsButton.title = NSLocalizedString(@"Comments", nil);
+			self.acknowledgmentsButton.title = NSLocalizedString(@"Credits", nil);
 		} else {
 
 			[self showView:self.infoView];
