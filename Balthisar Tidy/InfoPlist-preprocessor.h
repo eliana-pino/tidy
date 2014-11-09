@@ -18,4 +18,9 @@
 #define TIDY_HELP_BOOK_FOLDER Balthisar Tidy (pro).help
 #define TIDY_HELP_BOOK_KEY com.balthisar.Balthisar-Tidy.pro.help
 #define JSD_APPLESCRIPT_VALUE yes
+#elif defined TARGET_DEV
+#define TIDY_BUNDLE_IDENTIFIER com.balthisar.Balthisar-Tidy.dev
+#define TIDY_HELP_BOOK_FOLDER Balthisar Tidy (dev).help
+#define TIDY_HELP_BOOK_KEY com.balthisar.Balthisar-Tidy.dev.help
+#define JSD_APPLESCRIPT_VALUE yes
 #endif
