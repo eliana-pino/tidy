@@ -509,12 +509,16 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		decode the string with the user's preference.
 	*/
 	
-	NSString *testText = nil;
-	
+//	NSString *testText = nil;
+	NSMutableString *testText = nil;
+
 	[self willChangeValueForKey:@"sourceText"];
 
-	if ((testText = [[NSString alloc] initWithData:data encoding:self.inputEncoding] ))
+//	if ((testText = [[NSString alloc] initWithData:data encoding:self.inputEncoding] ))
+	if ((testText = [[NSMutableString alloc] initWithData:data encoding:self.inputEncoding] ))
 	{
+		[testText replaceOccurrencesOfString:@"\r\n" withString:@"\n" options:NSLiteralSearch range:NSMakeRange(0, [testText length])];
+		[testText replaceOccurrencesOfString:@"\r" withString:@"\n" options:NSLiteralSearch range:NSMakeRange(0, [testText length])];
 		_sourceText = testText;
 	}
 	else
