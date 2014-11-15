@@ -144,7 +144,7 @@
 
     self.aboutWindowController.appWebsiteURL = [NSURL URLWithString:@"http://www.balthisar.com/software/tidy/"];
 
-	self.aboutWindowController.acknowledgmentsUseEditor = NO;
+	self.aboutWindowController.useTextViewForAcknowledgments = YES;
     
     [self.aboutWindowController showWindow:nil];
     

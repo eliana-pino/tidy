@@ -1,6 +1,6 @@
 # Overview
 
-DCOAboutWindow is a replacement for the standard About dialog. 
+DCOAboutWindow is a replacement for the standard About dialog.
 
 It adds the option to open acknowledgments and visit the website by clicking a button.
 
@@ -49,41 +49,47 @@ Hook it up to the 'About [app name]' menu item or a button.
 
 You can change values by setting properties on `DCOAboutWindowController`:
 
-    /** 
-     *  The application name. 
+    /**
+     *  The application name.
      *  Default: CFBundleName
      */
     @property (copy) NSString *appName;
 
-    /** 
-     *  The application version. 
+    /**
+     *  The application version.
      *  Default: "Version %@ (Build %@)", CFBundleVersion, CFBundleShortVersionString
      */
     @property (copy) NSString *appVersion;
 
-    /** 
+    /**
      *  The copyright line.
      *  Default: NSHumanReadableCopyright
      */
     @property (copy) NSString *appCopyright;
 
-    /** 
+    /**
      *  The credits.
      *  Default: [[NSBundle mainBundle] pathForResource:@"Credits" ofType:@"rtf"];
      */
     @property (copy) NSAttributedString *appCredits;
 
-    /** 
-     *  The URL pointing to the app's website. 
+    /**
+     *  The URL pointing to the app's website.
      *  Default: none
      */
     @property (strong) NSURL *appWebsiteURL;
 
-    /** 
-     *  The path to the file that contains the acknowledgments. 
+    /**
+     *  The path to the file that contains the acknowledgments.
      *  Default: [[NSBundle mainBundle] pathForResource:@"Acknowledgments" ofType:@"rtf"];
      */
     @property (nonatomic, copy) NSString *acknowledgmentsPath;
+
+    /**
+     *  If set to YES acknowledgments are shown in a text view, inside the window. Otherwise an external editor is launched.
+     *  Default: NO;
+     */
+    @property (assign) BOOL useTextViewForAcknowledgments;
 
 # Localization
 
@@ -96,7 +102,10 @@ Add the following lines to your Localizable.string to change these values, or lo
     "Visit the %@ Website" = "Visit %@'s Website";
 
     /* Caption of the 'Acknowledgments' button in the about window */
-    "Acknowledgments" = "Acknowledgements";
+    "Acknowledgments" = "Acknowledgments";
+
+    /* Caption of the 'Credits' button in the about window when acknowledgments are shown when useTextViewForAcknowledgments is YES. */
+    "Credits" = "Credits";
 
 # Contributions and things to add
 
@@ -124,6 +133,14 @@ Related apps, tools and scripts that extend DCOAboutWindow's functionality.
 * [Acknowledge](https://github.com/DangerCove/Acknowledge) - Generates a single `Acknowledgments.rtf` from Cocoapods and custom markdown files.
 
 # Changelog
+
+## v0.2.0
+
+* Optionally display acknowledgments inside the window, instead of through an external editor.
+
+Set `useTextViewForAcknowledgments` to `YES` to enable this feature.
+
+* Improve Auto Layout constrains. The image view now remains the same width, while the text fields can become wider.
 
 ## v0.1.0
 
