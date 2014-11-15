@@ -757,11 +757,6 @@
 			isa = PBXGroup;
 			children = (
 				D016A92F182FD80700712C60 /* Balthisar Tidy */,
-				D016A935182FD80700712C60 /* main.m */,
-				D026169E1836F48A002ABD72 /* Balthisar Tidy.entitlements */,
-				D091D067191A514700317409 /* InfoPlist-preprocessor.h */,
-				D016A931182FD80700712C60 /* Balthisar Tidy-Info.plist */,
-				D016A937182FD80700712C60 /* Balthisar Tidy-Prefix.pch */,
 				D016A928182FD80700712C60 /* Frameworks */,
 				D016A927182FD80700712C60 /* Products */,
 			);
@@ -804,6 +799,7 @@
 			children = (
 				D0D9EABF18E6680F008A55D5 /* Classes */,
 				D08A7C9118D442AD00341DCB /* Resources */,
+				D079D8DA1A17EF36009CDF8B /* Supporting Files */,
 			);
 			path = "Balthisar Tidy";
 			sourceTree = SOURCE_ROOT;
@@ -931,6 +927,19 @@
 				D074B7961942CF0300F2E6F1 /* FirstRunController.m */,
 			);
 			name = DocumentWindow;
+			sourceTree = "<group>";
+		};
+		D079D8DA1A17EF36009CDF8B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D016A935182FD80700712C60 /* main.m */,
+				D026169E1836F48A002ABD72 /* Balthisar Tidy.entitlements */,
+				D091D067191A514700317409 /* InfoPlist-preprocessor.h */,
+				D016A931182FD80700712C60 /* Balthisar Tidy-Info.plist */,
+				D016A937182FD80700712C60 /* Balthisar Tidy-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			path = ..;
 			sourceTree = "<group>";
 		};
 		D07AF49A183658F100913067 /* Base.lproj */ = {
