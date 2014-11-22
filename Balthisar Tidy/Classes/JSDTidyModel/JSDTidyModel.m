@@ -509,14 +509,16 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		decode the string with the user's preference.
 	*/
 	
-//	NSString *testText = nil;
 	NSMutableString *testText = nil;
 
 	[self willChangeValueForKey:@"sourceText"];
 
-//	if ((testText = [[NSString alloc] initWithData:data encoding:self.inputEncoding] ))
 	if ((testText = [[NSMutableString alloc] initWithData:data encoding:self.inputEncoding] ))
 	{
+		/* 
+			Ensure that we're using modern Mac OS X line endings, regardless of the source file
+			line endings. We will check for `newline` upon file save.
+		 */
 		[testText replaceOccurrencesOfString:@"\r\n" withString:@"\n" options:NSLiteralSearch range:NSMakeRange(0, [testText length])];
 		[testText replaceOccurrencesOfString:@"\r" withString:@"\n" options:NSLiteralSearch range:NSMakeRange(0, [testText length])];
 		_sourceText = testText;
@@ -567,11 +569,25 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	tidyTextAsData
-		Return the tidy'd text in the output-encoding format.
+		Return the tidy'd text in the output-encoding format with
+		the correct line endings per `newline`.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSData *)tidyTextAsData
 {
-	return [[self tidyText] dataUsingEncoding:self.outputEncoding];
+	NSMutableString *testText = [[NSMutableString alloc] initWithString:self.tidyText];
+
+	JSDTidyOption *localOption = self.tidyOptions[@"newline"];
+
+	if ([localOption.optionConfigString isEqualToString:@"CR"])
+	{
+		[testText replaceOccurrencesOfString:@"\n" withString:@"\r" options:NSLiteralSearch range:NSMakeRange(0, [testText length])];
+	}
+	else if ([localOption.optionConfigString isEqualToString:@"CRLF"])
+	{
+		[testText replaceOccurrencesOfString:@"\n" withString:@"\r\n" options:NSLiteralSearch range:NSMakeRange(0, [testText length])];
+	}
+
+	return [testText dataUsingEncoding:self.outputEncoding];
 }
 
 
