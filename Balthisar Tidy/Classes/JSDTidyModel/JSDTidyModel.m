@@ -533,6 +533,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 	_sourceDidChange = NO;
 
+	[self notifyTidyModelSourceTextRestored];
 	[self notifyTidyModelSourceTextChanged];
 	[self processTidy];
 
@@ -1468,6 +1469,22 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	if ([[self delegate] respondsToSelector:@selector(tidyModelSourceTextChanged:text:)])
 	{
 		[[self delegate] tidyModelSourceTextChanged:self text:self.sourceText];
+	}
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	notifyTidyModelSourceTextRestored (private)
+		Fires notification and performs delegation whenever the
+        sourceText is changed as a result of setting it with data.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)notifyTidyModelSourceTextRestored
+{
+	[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifySourceTextRestored object:self];
+
+	if ([[self delegate] respondsToSelector:@selector(tidyModelSourceTextRestored:text:)])
+	{
+		[[self delegate] tidyModelSourceTextRestored:self text:self.sourceText];
 	}
 }
 

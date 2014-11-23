@@ -40,6 +40,7 @@
 
 #define tidyNotifyOptionChanged                  @"JSDTidyDocumentOptionChanged"
 #define tidyNotifySourceTextChanged              @"JSDTidyDocumentSourceTextChanged"
+#define tidyNotifySourceTextRestored             @"JSDTidyDocumentSourceTextRestored"
 #define tidyNotifyTidyTextChanged                @"JSDTidyDocumentTidyTextChanged"
 #define tidyNotifyTidyErrorsChanged              @"JSDTidyDocumentTidyErrorsChanged"
 #define tidyNotifyPossibleInputEncodingProblem   @"JSDTidyNotifyPossibleInputEncodingProblem"
@@ -62,7 +63,10 @@
 - (void)tidyModelSourceTextChanged:(JSDTidyModel *)tidyModel
                               text:(NSString *)text;
 
-- (void)tidyModelTidyTextChanged:(JSDTidyModel *)tidyModel 
+- (void)tidyModelSourceTextRestored:(JSDTidyModel *)tidyModel
+							  text:(NSString *)text;
+
+- (void)tidyModelTidyTextChanged:(JSDTidyModel *)tidyModel
                             text:(NSString *)text;
 
 - (void)tidyModelTidyMessagesChanged:(JSDTidyModel *)tidyModel
