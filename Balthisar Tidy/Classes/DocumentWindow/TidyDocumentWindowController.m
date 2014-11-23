@@ -270,11 +270,12 @@
 	handleTidyInputEncodingProblem:
 		We're here as the result of a notification. The value for
 		input-encoding might have been wrong for the file
-		that tidy is trying to process.
+		that tidy is trying to process. We only want to peform this
+		if documentIsLoading.
  *———————————————————————————————————————————————————————————————————*/
 - (void)handleTidyInputEncodingProblem:(NSNotification*)note
 {
-	if (![[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyIgnoreInputEncodingWhenOpening] boolValue])
+	if (((TidyDocument*)self.document).documentIsLoading && ![[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyIgnoreInputEncodingWhenOpening] boolValue])
 	{
 		self.encodingHelper = [[EncodingHelperController alloc] initWithNote:note fromDocument:self.document forView:self.sourceController.sourceTextView];
 #ifdef FEATURE_EMPHASIZE_HELPER
