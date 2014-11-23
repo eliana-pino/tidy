@@ -72,7 +72,7 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)dealloc
 {
-	[self.representedObject removeObserver:self forKeyPath:@"tidyProcess.sourceText"];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifySourceTextRestored object:[[self representedObject] tidyProcess]];
 
 	[[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:JSDKeyAllowMacOSTextSubstitutions];
 }
@@ -82,13 +82,15 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)awakeFromNib
 {
-	/* KVO on the document's sourceText */
-	[self.representedObject addObserver:self
-							 forKeyPath:@"tidyProcess.sourceText"
-								options:(NSKeyValueObservingOptionNew)
-								context:NULL];
+	/*
+		NSNotifications from the document's sourceText, in case tidyProcess
+		changes the sourceText.
+	 */
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(handleTidySourceTextRestored:)
+												 name:tidyNotifySourceTextRestored
+											   object:[[self representedObject] tidyProcess]];
 
-	
 	/* KVO on user prefs to look for Text Substitution Preference Changes */
 	[[NSUserDefaults standardUserDefaults] addObserver:self
 											forKeyPath:JSDKeyAllowMacOSTextSubstitutions
@@ -110,22 +112,10 @@
 - (void)textDidChange:(NSNotification *)aNotification
 {
 	TidyDocument *localDocument = self.representedObject;
-	/*
-		If the document is still in the loading stages, then simply
-		flip the flag and don't set any text. All we're doing is 
-		preventing the tidyProcess from an extra, useless round of 
-		processing.	We will be called again during the real document
-		loading process.
-	 */
-	if (!localDocument.documentIsLoading)
-	{
-		localDocument.tidyProcess.sourceText = self.sourceTextView.string;
-	}
-	else
-	{
-		localDocument.documentIsLoading = NO;
-	}
 
+	/* Update the tidyProcess */
+
+	localDocument.tidyProcess.sourceText = self.sourceTextView.string;
 
 	/* Handle document dirty detection. */
 
@@ -162,7 +152,7 @@
 }
 
 
-#pragma mark - KVC Notification Handling
+#pragma mark - KVC and Notification Handling
 
 
 /*———————————————————————————————————————————————————————————————————*
@@ -172,25 +162,6 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-	TidyDocument *localDocument = self.representedObject;
-
-	/*
-		Handle changes to the tidyProcess's sourceText property.
-		The tidyProcess changed the sourceText for some reason,
-		probably because the user changed input-encoding. Note
-		that this event is only received if Tidy itself changes
-		the sourceText, not as the result of outside setting.
-		The event chain will eventually update everything else.
-	 */
-	if ((object == localDocument) && ([keyPath isEqualToString:@"tidyProcess.sourceText"]))
-	{
-		if (localDocument.documentIsLoading)
-		{
-			self.sourceTextView.string = ((TidyDocument*)self.representedObject).tidyProcess.sourceText;
-		}
-	}
-
-
 	/* Handle changes to the preferences for allowing or disallowing Mac OS X Text Substitutions */
 	if ((object == [NSUserDefaults standardUserDefaults]) && ([keyPath isEqualToString:JSDKeyAllowMacOSTextSubstitutions]))
 	{
@@ -198,6 +169,24 @@
 		[self.sourceTextView setAutomaticTextReplacementEnabled:[[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
 		[self.sourceTextView setAutomaticDashSubstitutionEnabled:[[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
 	}
+}
+
+
+/*———————————————————————————————————————————————————————————————————*
+	handleTidySourceTextRestored:
+		Handle changes to the tidyProcess's sourceText property.
+		The tidyProcess changed the sourceText for some reason,
+		probably because the user changed input-encoding. Note
+		that this event is only received if Tidy itself changes
+		the sourceText, not as the result of outside setting.
+		The event chain will eventually update everything else.
+ *———————————————————————————————————————————————————————————————————*/
+- (void)handleTidySourceTextRestored:(NSNotification *)note
+{
+	self.sourceTextView.string = ((TidyDocument*)self.representedObject).tidyProcess.sourceText;
+
+	/* At this point, we're done loading the document */
+	((TidyDocument*)self.representedObject).documentIsLoading = NO;
 }
 
 
