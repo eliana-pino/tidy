@@ -57,6 +57,10 @@
 		D036E21418F3D2F20009A9D4 /* Tidy.icns in Resources */ = {isa = PBXBuildFile; fileRef = D036E20B18F3D2F20009A9D4 /* Tidy.icns */; };
 		D036E21518F3D2F20009A9D4 /* XML.icns in Resources */ = {isa = PBXBuildFile; fileRef = D036E20C18F3D2F20009A9D4 /* XML.icns */; };
 		D036E21618F3D2F20009A9D4 /* XML.icns in Resources */ = {isa = PBXBuildFile; fileRef = D036E20C18F3D2F20009A9D4 /* XML.icns */; };
+		D038A0D81A2180EC009A874A /* JSDTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D038A0D71A2180EC009A874A /* JSDTextView.m */; };
+		D038A0D91A2180EC009A874A /* JSDTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D038A0D71A2180EC009A874A /* JSDTextView.m */; };
+		D038A0DA1A2180EC009A874A /* JSDTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D038A0D71A2180EC009A874A /* JSDTextView.m */; };
+		D038A0DB1A2180EC009A874A /* JSDTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D038A0D71A2180EC009A874A /* JSDTextView.m */; };
 		D03B89D419553E5D00E9B4D5 /* DiffsTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D03B89D319553E5D00E9B4D5 /* DiffsTemplate.png */; };
 		D03B89D81955457500E9B4D5 /* ScrollLockTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D03B89D71955457500E9B4D5 /* ScrollLockTemplate.png */; };
 		D03B89DA1955474700E9B4D5 /* DiffViewTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D03B89D91955474700E9B4D5 /* DiffViewTemplate.png */; };
@@ -538,6 +542,8 @@
 		D036E20B18F3D2F20009A9D4 /* Tidy.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Tidy.icns; sourceTree = "<group>"; };
 		D036E20C18F3D2F20009A9D4 /* XML.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = XML.icns; sourceTree = "<group>"; };
 		D036E21718F3D81E0009A9D4 /* TidyScripting.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TidyScripting.sdef; sourceTree = "<group>"; };
+		D038A0D61A2180EC009A874A /* JSDTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSDTextView.h; sourceTree = "<group>"; };
+		D038A0D71A2180EC009A874A /* JSDTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSDTextView.m; sourceTree = "<group>"; };
 		D03B89D319553E5D00E9B4D5 /* DiffsTemplate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DiffsTemplate.png; path = "Images for Toolbar/DiffsTemplate.png"; sourceTree = "<group>"; };
 		D03B89D71955457500E9B4D5 /* ScrollLockTemplate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ScrollLockTemplate.png; path = "Images for Toolbar/ScrollLockTemplate.png"; sourceTree = "<group>"; };
 		D03B89D91955474700E9B4D5 /* DiffViewTemplate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DiffViewTemplate.png; path = "Images for Toolbar/DiffViewTemplate.png"; sourceTree = "<group>"; };
@@ -1082,6 +1088,8 @@
 				D0D9EAD118E6680F008A55D5 /* JSDTextField.m */,
 				D0D9EAD618E6680F008A55D5 /* NSTextView+JSDExtensions.h */,
 				D0D9EAD718E6680F008A55D5 /* NSTextView+JSDExtensions.m */,
+				D038A0D61A2180EC009A874A /* JSDTextView.h */,
+				D038A0D71A2180EC009A874A /* JSDTextView.m */,
 			);
 			path = "Support Pieces";
 			sourceTree = "<group>";
@@ -1591,6 +1599,7 @@
 				D0D9ED5B18E66810008A55D5 /* config.c in Sources */,
 				D0D9ED5318E66810008A55D5 /* attrs.c in Sources */,
 				D0D9ED5718E66810008A55D5 /* charsets.c in Sources */,
+				D038A0D81A2180EC009A874A /* JSDTextView.m in Sources */,
 				D0D9ED7318E66810008A55D5 /* tagask.c in Sources */,
 				D0D9ED6118E66810008A55D5 /* gdoc.c in Sources */,
 				D0D9ED6B18E66810008A55D5 /* mappedio.c in Sources */,
@@ -1657,6 +1666,7 @@
 				D07288DD1A0FC94D00FB4368 /* attrs.c in Sources */,
 				D07288DE1A0FC94D00FB4368 /* charsets.c in Sources */,
 				D07288DF1A0FC94D00FB4368 /* tagask.c in Sources */,
+				D038A0DB1A2180EC009A874A /* JSDTextView.m in Sources */,
 				D07288E01A0FC94D00FB4368 /* gdoc.c in Sources */,
 				D07288E11A0FC94D00FB4368 /* mappedio.c in Sources */,
 				D07288E21A0FC94D00FB4368 /* tmbstr.c in Sources */,
@@ -1723,6 +1733,7 @@
 				D0D9ED5418E66810008A55D5 /* attrs.c in Sources */,
 				D0D9ED5818E66810008A55D5 /* charsets.c in Sources */,
 				D0D9ED7418E66810008A55D5 /* tagask.c in Sources */,
+				D038A0D91A2180EC009A874A /* JSDTextView.m in Sources */,
 				D0D9ED6218E66810008A55D5 /* gdoc.c in Sources */,
 				D0D9ED6C18E66810008A55D5 /* mappedio.c in Sources */,
 				D0D9ED7A18E66810008A55D5 /* tmbstr.c in Sources */,
@@ -1789,6 +1800,7 @@
 				D0BB67BD193C820A007A3EB0 /* attrs.c in Sources */,
 				D0BB67BF193C820A007A3EB0 /* charsets.c in Sources */,
 				D0BB67C0193C820A007A3EB0 /* tagask.c in Sources */,
+				D038A0DA1A2180EC009A874A /* JSDTextView.m in Sources */,
 				D0BB67C1193C820A007A3EB0 /* gdoc.c in Sources */,
 				D0BB67C2193C820A007A3EB0 /* mappedio.c in Sources */,
 				D0BB67C3193C820A007A3EB0 /* tmbstr.c in Sources */,
