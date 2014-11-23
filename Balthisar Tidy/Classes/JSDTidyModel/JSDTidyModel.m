@@ -528,15 +528,6 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		_sourceText = @"";
 	}
 
-	[self didChangeValueForKey:@"sourceText"];
-
-
-	_sourceDidChange = NO;
-
-	[self notifyTidyModelSourceTextRestored];
-	[self notifyTidyModelSourceTextChanged];
-	[self processTidy];
-
 	/* Sanity check the input-encoding */
 	NSStringEncoding suggestedEncoding = [self checkSourceCoding:data];
 
@@ -544,6 +535,14 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	{
 		[self notifyTidyModelDetectedInputEncodingIssue:suggestedEncoding];
 	}
+
+	[self didChangeValueForKey:@"sourceText"];
+
+	_sourceDidChange = NO;
+
+	[self notifyTidyModelSourceTextRestored];
+	[self notifyTidyModelSourceTextChanged];
+	[self processTidy];
 }
 
 
