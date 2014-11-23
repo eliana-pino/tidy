@@ -461,7 +461,8 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		/*
 			This is the only circumstance in which we will ever
 			fire a tidyNotifySourceTextChanged notification
-			while setting the source text as a string.
+			while setting the source text as a string. NOTE THAT
+		    KVO WILL STILL FIRE.
 		*/
 
 		[self notifyTidyModelSourceTextChanged];
@@ -536,13 +537,12 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		[self notifyTidyModelDetectedInputEncodingIssue:suggestedEncoding];
 	}
 
-	[self didChangeValueForKey:@"sourceText"];
-
 	_sourceDidChange = NO;
 
 	[self notifyTidyModelSourceTextRestored];
 	[self notifyTidyModelSourceTextChanged];
 	[self processTidy];
+	[self didChangeValueForKey:@"sourceText"];
 }
 
 
@@ -1088,7 +1088,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	errorDict[@"line"]    = @(line);
 	errorDict[@"column"]  = @(col);
 	errorDict[@"message"] = @(mssg);
-	
+
 	[_errorArray addObject:errorDict];
 	
 	return YES; // Always return yes otherwise _errorText will be surpressed by TidyLib.
