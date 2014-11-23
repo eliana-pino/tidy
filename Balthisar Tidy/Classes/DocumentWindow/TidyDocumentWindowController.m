@@ -71,6 +71,7 @@
 #import "EncodingHelperController.h"
 #import "JSDTableViewController.h"
 #import "TidyDocumentSourceViewController.h"
+#import "JSDTextView.h"
 
 
 @implementation TidyDocumentWindowController

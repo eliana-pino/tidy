@@ -32,6 +32,7 @@
 #import "JSDTidyModel.h"
 #import "TidyDocumentWindowController.h"
 #import "TidyDocumentSourceViewController.h"
+#import "JSDTextView.h"
 
 
 @implementation TidyDocument

@@ -32,6 +32,7 @@
 #import "NSTextView+JSDExtensions.h"
 #import "TidyDocument.h"
 #import "JSDTidyModel.h"
+#import "JSDTextView.h"
 
 
 @implementation TidyDocumentSourceViewController
