@@ -124,24 +124,24 @@ activate :Middlemac do |options|
                       }
               },
 
-          # :test =>
-          #     {
-          #         :CFBundleID  => 'com.balthisar.Balthisar-Tidy.test.help',
-          #         :ProductName => 'Balthisar Tidy Test',
-          #         :Features =>
-          #             {
-          #                 :feature_advertise_pro        => true,
-          #                 :feature_sparkle              => true,
-          #                 :feature_exports_config       => true,
-          #                 :feature_supports_applescript => true,
-          #                 :feature_supports_diffs       => true,
-          #                 :feature_supports_preview     => true,
-          #                 :feature_supports_extensions  => true,
-          #                 :feature_supports_service     => true,
-          #                 :feature_supports_SxS_diffs   => true,
-          #                 :feature_supports_validation  => true,
-          #             }
-          #     },
+          :dev =>
+              {
+                  :CFBundleID  => 'com.balthisar.Balthisar-Tidy.dev.help',
+                  :ProductName => 'Balthisar Tidy (dev)',
+                  :Features =>
+                      {
+                          :feature_advertise_pro        => true,
+                          :feature_sparkle              => true,
+                          :feature_exports_config       => true,
+                          :feature_supports_applescript => true,
+                          :feature_supports_diffs       => true,
+                          :feature_supports_preview     => true,
+                          :feature_supports_extensions  => true,
+                          :feature_supports_service     => true,
+                          :feature_supports_SxS_diffs   => true,
+                          :feature_supports_validation  => true,
+                      }
+              },
 
       }
 

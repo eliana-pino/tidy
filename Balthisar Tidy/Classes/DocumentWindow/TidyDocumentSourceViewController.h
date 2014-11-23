@@ -29,9 +29,11 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class JSDTextView;
+
 @interface TidyDocumentSourceViewController : NSViewController <NSTextViewDelegate>
 
-@property (assign) IBOutlet NSTextView *sourceTextView;
+@property (assign) IBOutlet JSDTextView *sourceTextView;
 
 @property (assign) IBOutlet NSTextView *tidyTextView;
 

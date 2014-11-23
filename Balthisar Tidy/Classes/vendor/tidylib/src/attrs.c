@@ -152,8 +152,11 @@ static const Attribute attribute_defs [] =
   { TidyAttr_HTTP_EQUIV,        "http-equiv",            CH_PCDATA    }, /* META */
   { TidyAttr_ID,                "id",                    CH_IDDEF     }, 
   { TidyAttr_ISMAP,             "ismap",                 CH_BOOL      }, /* IMG */
+  { TidyAttr_ITEMID,            "itemid",                CH_PCDATA    },
   { TidyAttr_ITEMPROP,          "itemprop",              CH_PCDATA    },
+  { TidyAttr_ITEMREF,           "itemref",               CH_PCDATA    },
   { TidyAttr_ITEMSCOPE,         "itemscope",             CH_BOOL      },
+  { TidyAttr_ITEMTYPE,          "itemtype",              CH_URL       },
   { TidyAttr_LABEL,             "label",                 CH_PCDATA    }, /* OPT, OPTGROUP */
   { TidyAttr_LANG,              "lang",                  CH_LANG      }, 
   { TidyAttr_LANGUAGE,          "language",              CH_PCDATA    }, /* SCRIPT */
@@ -209,6 +212,7 @@ static const Attribute attribute_defs [] =
   { TidyAttr_REL,               "rel",                   CH_LINKTYPES }, 
   { TidyAttr_REV,               "rev",                   CH_LINKTYPES }, 
   { TidyAttr_RIGHTMARGIN,       "rightmargin",           CH_NUMBER    }, /* used on BODY */
+  { TidyAttr_ROLE,              "role",                  CH_PCDATA    },
   { TidyAttr_ROWS,              "rows",                  CH_NUMBER    }, /* TEXTAREA */
   { TidyAttr_ROWSPAN,           "rowspan",               CH_NUMBER    }, /* table cells */
   { TidyAttr_RULES,             "rules",                 CH_TRULES    }, /* TABLE */
@@ -355,7 +359,6 @@ static const Attribute attribute_defs [] =
   { TidyAttr_SRCDOC,            "srcdoc",                CH_PCDATA    },
   { TidyAttr_SRCLANG,           "srclang",               CH_PCDATA    },
   { TidyAttr_STEP,              "step",                  CH_PCDATA    },
-  { TidyAttr_ROLE,              "role",                  CH_PCDATA    },
 
   /* HTML5 Aria Attributes */
   { TidyAttr_ARIA_ACTIVEDESCENDANT,   "aria-activedescendant",   CH_PCDATA   },
@@ -379,6 +382,7 @@ static const Attribute attribute_defs [] =
   { TidyAttr_ARIA_LIVE,               "aria-live",               CH_PCDATA   },
   { TidyAttr_ARIA_MULTILINE,          "aria-multiline",          CH_PCDATA   },
   { TidyAttr_ARIA_MULTISELECTABLE,    "aria-multiselectable",    CH_PCDATA   },
+  { TidyAttr_ARIA_ORIENTATION,        "aria-orientation",        CH_PCDATA   },
   { TidyAttr_ARIA_OWNS,               "aria-owns",               CH_PCDATA   },
   { TidyAttr_ARIA_POSINSET,           "aria-posinset",           CH_PCDATA   },
   { TidyAttr_ARIA_PRESSED,            "aria-pressed",            CH_PCDATA   },

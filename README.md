@@ -1,14 +1,9 @@
-﻿Balthisar Tidy (version 2.0)
-============================
+﻿Balthisar Tidy (version 2.0.3)
+==============================
 
 by Jim Derry, <http://www.balthisar.com>
 Copyright © 2003-2014 by Jim Derry. All rights reserved.
 See “Legal Stuff” below for license details.
-
-
-Development Branch
-------------------
-**This is the development branch of Balthisar Tidy**.
 
 
 About
@@ -38,6 +33,37 @@ _Balthisar Tidy_ has been released with support for Mac OS X 10.8 and newer.
 Change Log
 ----------
 
+### Balthisar Tidy 2.0.3 (November 2014)
+
+- New Features
+    - You can drag contents of files into the source HTML Panel.
+        - On Mac OS X 10.10 and above, Mac OS X will attempt to decode the input encoding, even if the
+          file is a bitmap. Non-readable files (e.g., folders) will paste the filename.
+        - On Mac OS X 10.9 and below, only UTF files will allow their contents to be dragged in, otherwise
+          the filename will be pasted.
+- Visible changes
+    - Version change to 2.0.3.
+    - Contact information added to help file.
+    - Contact information added to About… box.
+    - Fixed instructions in help for deleting preferences.
+    - Word-wrap in non-vertical layout fixed.
+    - New version of Tidylib
+        - New base source
+        - Aria attributes corrected.
+        - Role attribute corrected.
+        - Itemscope series of microdata support added.
+    - Properly deal with legacy line endings. This previously could cause a problem where cloing body and
+      html tags were missing.
+    - Properly respect `newline` setting upon saving files.
+    - Run-in meta tags in head section fixed.
+    - Fixed Encoding helper logic so it only offers help when opening file.
+    - Not properly updating the error table when opening a file. This was infamously seen as
+      `adding missing title tag`.
+- Changes developers will notice
+    - Added a non-signed dev target to the Xcode project.
+    - Updated to latest versions of third party libraries such as Sparkle.
+
+
 ### Balthisar Tidy 2.0.1 (October 2014)
 - Visible Changes
     - Changed the appearance of the Quick Tutorial for better appearance in Yosemite.
@@ -53,49 +79,49 @@ Change Log
 
 ### Balthisar Tidy 2.0.0 (June 2014)
 - New Features
-	- Toolbar with quick access to Balthisar Tidy's new features.
-	- Show/Hide the Tidy Options panel on documents.
-	- Show/Hide the Tidy Messages panel on documents.
-	- Can display the source code view vertically now in addition to the traditional, horizontal layout.
-	- Tidy options are much more beautiful with groups headers to indicate option categories.
-	- New, modern Preferences system with lots of new options.
-	- Brand new, improved help file.
-	- New application and document icons. 
-	- New main menu items to support new functionality.
-	- Fixed a bug that allows two first-run helpers to be opened at the same time, which caused a crash.
-	- Renamed the "first run helper" to "Quick Tutorial."
+    - Toolbar with quick access to Balthisar Tidy's new features.
+    - Show/Hide the Tidy Options panel on documents.
+    - Show/Hide the Tidy Messages panel on documents.
+    - Can display the source code view vertically now in addition to the traditional, horizontal layout.
+    - Tidy options are much more beautiful with groups headers to indicate option categories.
+    - New, modern Preferences system with lots of new options.
+    - Brand new, improved help file.
+    - New application and document icons. 
+    - New main menu items to support new functionality.
+    - Fixed a bug that allows two first-run helpers to be opened at the same time, which caused a crash.
+    - Renamed the "first run helper" to "Quick Tutorial."
 - New Features (Balthisar Tidy for Work)
-	- Introducing Balthisar Tidy for Work.
-	- Can export option settings to Unix configuration files.
-	- AppleScript support.
+    - Introducing Balthisar Tidy for Work.
+    - Can export option settings to Unix configuration files.
+    - AppleScript support.
 - Changes developers will notice
-	- JSDTidyModel has been refactored just a little bit.
-	- The entire TidyDocument architecture has been re-written from the ground up in order to implement a better MVC object model and break apart the massive DocumentController.
-	- OptionPaneController has been slightly refactored to become a ViewController.
-	- Bit the bullet and use my own fork of TidyLib. Source is still compatible. This was done in order to incorporate the community pull requests that haven't been accepted by the maintainer yet.
-	- New help building automation system. 
-	- Some build flags meant to be used temporarily in order to facilitate screen shots, etc.
-	
+    - JSDTidyModel has been refactored just a little bit.
+    - The entire TidyDocument architecture has been re-written from the ground up in order to implement a better MVC object model and break apart the massive DocumentController.
+    - OptionPaneController has been slightly refactored to become a ViewController.
+    - Bit the bullet and use my own fork of TidyLib. Source is still compatible. This was done in order to incorporate the community pull requests that haven't been accepted by the maintainer yet.
+    - New help building automation system. 
+    - Some build flags meant to be used temporarily in order to facilitate screen shots, etc.
+    
 
 ### Balthisar Tidy 1.5.0 (May 2014)
 
 #### Visible changes
 - The application in general has had several improvements.
-	- New application and documents icons retaining the trademark Tidy Broom).
-	- Added missing View menu in the main menu.
-	- Added support for printing the Tidy'd text.
-	- Added a Show New User Helper to the Help Menu.
+    - New application and documents icons retaining the trademark Tidy Broom).
+    - Added missing View menu in the main menu.
+    - Added support for printing the Tidy'd text.
+    - Added a Show New User Helper to the Help Menu.
 - The documents window is now improved.
-	- New documents retain the position and size of last-used document.
-	- New documents splitter positions are retained based on last-used document.
+    - New documents retain the position and size of last-used document.
+    - New documents splitter positions are retained based on last-used document.
 - The Tidy options panel is improved.
-	- It is now a modern Mac OS source list, including new controls.
-	- Apply document's Tidy options to preferences (in a document).
-	- Reset document options to preferences settings (in a document).
-	- Revert to Tidy factory presets (while in Preferences).
+    - It is now a modern Mac OS source list, including new controls.
+    - Apply document's Tidy options to preferences (in a document).
+    - Reset document options to preferences settings (in a document).
+    - Revert to Tidy factory presets (while in Preferences).
 - The Messages panel has some improvements.
-	- It now has some pretty icons to help distinguish severity.
-	- Columns are now all sortable.
+    - It now has some pretty icons to help distinguish severity.
+    - Columns are now all sortable.
 
 
 
@@ -194,9 +220,9 @@ Building From Source
 
 If you’re building from source, be aware that there are now three (3) different build targets setup:
 
-	- Balthisar Tidy (web)
-	- Balthisar Tidy (app)
-	- Balthisar Tidy (pro)
+    - Balthisar Tidy (web)
+    - Balthisar Tidy (app)
+    - Balthisar Tidy (pro)
 
 _Note that you will probably have to turn off code-signing unless you have an Apple Developer Account_. You
 will still build the same product; it simply won’t be signed with a developer certificate.

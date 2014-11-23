@@ -443,17 +443,20 @@ typedef enum
   TidyTag_ARTICLE,
   TidyTag_ASIDE,
   TidyTag_AUDIO,
+  TidyTag_BDI,
   TidyTag_CANVAS,
   TidyTag_COMMAND,
   TidyTag_DATALIST,
   TidyTag_DETAILS,
+  TidyTag_DIALOG,
   TidyTag_FIGCAPTION,
   TidyTag_FIGURE,
   TidyTag_FOOTER,
-  TidyTag_MAIN,
   TidyTag_HEADER,
   TidyTag_HGROUP,
+  TidyTag_MAIN,
   TidyTag_MARK,
+  TidyTag_MENUITEM,
   TidyTag_METER,
   TidyTag_NAV,
   TidyTag_OUTPUT,
@@ -539,8 +542,11 @@ typedef enum
   TidyAttr_HTTP_EQUIV,        /**< HTTP_EQUIV= */
   TidyAttr_ID,                /**< ID= */
   TidyAttr_ISMAP,             /**< ISMAP= */
+  TidyAttr_ITEMID,            /**< ITEMID= */
   TidyAttr_ITEMPROP,          /**< ITEMPROP= */
+  TidyAttr_ITEMREF,           /**< ITEMREF= */
   TidyAttr_ITEMSCOPE,         /**< ITEMSCOPE= */
+  TidyAttr_ITEMTYPE,          /**< ITEMTYPE= */
   TidyAttr_LABEL,             /**< LABEL= */
   TidyAttr_LANG,              /**< LANG= */
   TidyAttr_LANGUAGE,          /**< LANGUAGE= */
@@ -596,6 +602,7 @@ typedef enum
   TidyAttr_REL,               /**< REL= */
   TidyAttr_REV,               /**< REV= */
   TidyAttr_RIGHTMARGIN,       /**< RIGHTMARGIN= */
+  TidyAttr_ROLE,              /**< ROLE= */
   TidyAttr_ROWS,              /**< ROWS= */
   TidyAttr_ROWSPAN,           /**< ROWSPAN= */
   TidyAttr_RULES,             /**< RULES= */
@@ -740,7 +747,6 @@ typedef enum
   TidyAttr_SRCDOC,
   TidyAttr_SRCLANG,
   TidyAttr_STEP,
-  TidyAttr_ROLE,
   TidyAttr_ARIA_ACTIVEDESCENDANT,
   TidyAttr_ARIA_ATOMIC,
   TidyAttr_ARIA_AUTOCOMPLETE,
@@ -762,6 +768,7 @@ typedef enum
   TidyAttr_ARIA_LIVE,
   TidyAttr_ARIA_MULTILINE,
   TidyAttr_ARIA_MULTISELECTABLE,
+  TidyAttr_ARIA_ORIENTATION,
   TidyAttr_ARIA_OWNS,
   TidyAttr_ARIA_POSINSET,
   TidyAttr_ARIA_PRESSED,

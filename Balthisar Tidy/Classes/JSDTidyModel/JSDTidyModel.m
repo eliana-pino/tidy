@@ -461,7 +461,8 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		/*
 			This is the only circumstance in which we will ever
 			fire a tidyNotifySourceTextChanged notification
-			while setting the source text as a string.
+			while setting the source text as a string. NOTE THAT
+		    KVO WILL STILL FIRE.
 		*/
 
 		[self notifyTidyModelSourceTextChanged];
@@ -509,26 +510,24 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		decode the string with the user's preference.
 	*/
 	
-	NSString *testText = nil;
-	
+	NSMutableString *testText = nil;
+
 	[self willChangeValueForKey:@"sourceText"];
 
-	if ((testText = [[NSString alloc] initWithData:data encoding:self.inputEncoding] ))
+	if ((testText = [[NSMutableString alloc] initWithData:data encoding:self.inputEncoding] ))
 	{
+		/* 
+			Ensure that we're using modern Mac OS X line endings, regardless of the source file
+			line endings. We will check for `newline` upon file save.
+		 */
+		[testText replaceOccurrencesOfString:@"\r\n" withString:@"\n" options:NSLiteralSearch range:NSMakeRange(0, [testText length])];
+		[testText replaceOccurrencesOfString:@"\r" withString:@"\n" options:NSLiteralSearch range:NSMakeRange(0, [testText length])];
 		_sourceText = testText;
 	}
 	else
 	{
 		_sourceText = @"";
 	}
-
-	[self didChangeValueForKey:@"sourceText"];
-
-
-	_sourceDidChange = NO;
-
-	[self notifyTidyModelSourceTextChanged];
-	[self processTidy];
 
 	/* Sanity check the input-encoding */
 	NSStringEncoding suggestedEncoding = [self checkSourceCoding:data];
@@ -537,6 +536,13 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	{
 		[self notifyTidyModelDetectedInputEncodingIssue:suggestedEncoding];
 	}
+
+	_sourceDidChange = NO;
+
+	[self notifyTidyModelSourceTextRestored];
+	[self notifyTidyModelSourceTextChanged];
+	[self processTidy];
+	[self didChangeValueForKey:@"sourceText"];
 }
 
 
@@ -563,11 +569,25 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	tidyTextAsData
-		Return the tidy'd text in the output-encoding format.
+		Return the tidy'd text in the output-encoding format with
+		the correct line endings per `newline`.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSData *)tidyTextAsData
 {
-	return [[self tidyText] dataUsingEncoding:self.outputEncoding];
+	NSMutableString *testText = [[NSMutableString alloc] initWithString:self.tidyText];
+
+	JSDTidyOption *localOption = self.tidyOptions[@"newline"];
+
+	if ([localOption.optionConfigString isEqualToString:@"CR"])
+	{
+		[testText replaceOccurrencesOfString:@"\n" withString:@"\r" options:NSLiteralSearch range:NSMakeRange(0, [testText length])];
+	}
+	else if ([localOption.optionConfigString isEqualToString:@"CRLF"])
+	{
+		[testText replaceOccurrencesOfString:@"\n" withString:@"\r\n" options:NSLiteralSearch range:NSMakeRange(0, [testText length])];
+	}
+
+	return [testText dataUsingEncoding:self.outputEncoding];
 }
 
 
@@ -1068,7 +1088,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	errorDict[@"line"]    = @(line);
 	errorDict[@"column"]  = @(col);
 	errorDict[@"message"] = @(mssg);
-	
+
 	[_errorArray addObject:errorDict];
 	
 	return YES; // Always return yes otherwise _errorText will be surpressed by TidyLib.
@@ -1448,6 +1468,22 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	if ([[self delegate] respondsToSelector:@selector(tidyModelSourceTextChanged:text:)])
 	{
 		[[self delegate] tidyModelSourceTextChanged:self text:self.sourceText];
+	}
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	notifyTidyModelSourceTextRestored (private)
+		Fires notification and performs delegation whenever the
+        sourceText is changed as a result of setting it with data.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)notifyTidyModelSourceTextRestored
+{
+	[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifySourceTextRestored object:self];
+
+	if ([[self delegate] respondsToSelector:@selector(tidyModelSourceTextRestored:text:)])
+	{
+		[[self delegate] tidyModelSourceTextRestored:self text:self.sourceText];
 	}
 }
 
