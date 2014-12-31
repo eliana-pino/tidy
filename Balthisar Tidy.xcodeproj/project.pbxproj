@@ -539,8 +539,8 @@
 		D05C16E01A53B79700558F11 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			dstPath = usr/share/man/man1;
+			dstSubfolderSpec = 16;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 1;
@@ -599,7 +599,7 @@
 		D04E8FAD195D964F00D1CEDC /* Balthisar Tidy (pro).help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Balthisar Tidy (pro).help"; sourceTree = "<group>"; };
 		D04E8FAE195D964F00D1CEDC /* Balthisar Tidy (web).help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Balthisar Tidy (web).help"; sourceTree = "<group>"; };
 		D05C16D81A53B6EB00558F11 /* tidy.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tidy.c; path = console/tidy.c; sourceTree = "<group>"; };
-		D05C16E21A53B79700558F11 /* tidy_command */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tidy_command; sourceTree = BUILT_PRODUCTS_DIR; };
+		D05C16E21A53B79700558F11 /* tidy_command */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = tidy_command; path = tidy; sourceTree = BUILT_PRODUCTS_DIR; };
 		D05C171E1A53C3FD00558F11 /* access.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = access.c; sourceTree = "<group>"; };
 		D05C171F1A53C3FD00558F11 /* access.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = access.h; sourceTree = "<group>"; };
 		D05C17201A53C3FD00558F11 /* alloc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = alloc.c; sourceTree = "<group>"; };
@@ -1276,6 +1276,7 @@
 				D05C16DE1A53B79700558F11 /* Sources */,
 				D05C16DF1A53B79700558F11 /* Frameworks */,
 				D05C16E01A53B79700558F11 /* CopyFiles */,
+				D05C17DE1A53F4C300558F11 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1666,6 +1667,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D05C17DE1A53F4C300558F11 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/sh\n\n# Build up-to-date man pages and quick-reference documentation for the command-line too.\n# They will be output in the same directory as the executable.\n\nXSL_DIR=\"$SRCROOT/Balthisar Tidy/Classes/vendor/tidylib/htmldoc\"\n\necho \"------------------------------------------\"\necho \"$XSL_DIR\"\necho \"------------------------------------------\"\n\n$BUILT_PRODUCTS_DIR/tidy -xml-help | xsltproc \"$XSL_DIR/tidy1.xsl\" - > \"$BUILT_PRODUCTS_DIR/tidy.1\"\n\n$BUILT_PRODUCTS_DIR/tidy -xml-config | xsltproc \"$XSL_DIR/quickref-html.xsl\" - > \"$BUILT_PRODUCTS_DIR/Tidy Quick Reference.html\"\n\n\n#$BUILT_PRODUCTS_DIR/tidy -xml-config > $@\n\n\n#xsltproc -o $@ $(DOCDIR)/quickref-html.xsl $(CONFIGXML)\n\n#xsltproc -o $@ $(DOCDIR)/quickref-html.xsl $(CONFIGXML)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D016A922182FD80700712C60 /* Sources */ = {
@@ -2487,6 +2504,7 @@
 				D05C16E81A53B79700558F11 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D072894C1A0FC94D00FB4368 /* Build configuration list for PBXNativeTarget "Balthisar Tidy (dev)" */ = {
 			isa = XCConfigurationList;
