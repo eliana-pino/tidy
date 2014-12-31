@@ -599,7 +599,7 @@
 		D04E8FAD195D964F00D1CEDC /* Balthisar Tidy (pro).help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Balthisar Tidy (pro).help"; sourceTree = "<group>"; };
 		D04E8FAE195D964F00D1CEDC /* Balthisar Tidy (web).help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Balthisar Tidy (web).help"; sourceTree = "<group>"; };
 		D05C16D81A53B6EB00558F11 /* tidy.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tidy.c; path = console/tidy.c; sourceTree = "<group>"; };
-		D05C16E21A53B79700558F11 /* tidy_command */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = tidy_command; path = tidy; sourceTree = BUILT_PRODUCTS_DIR; };
+		D05C16E21A53B79700558F11 /* tidy */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tidy; sourceTree = BUILT_PRODUCTS_DIR; };
 		D05C171E1A53C3FD00558F11 /* access.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = access.c; sourceTree = "<group>"; };
 		D05C171F1A53C3FD00558F11 /* access.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = access.h; sourceTree = "<group>"; };
 		D05C17201A53C3FD00558F11 /* alloc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = alloc.c; sourceTree = "<group>"; };
@@ -828,7 +828,7 @@
 				D0913CDE18B0AC06005DB2E4 /* Balthisar Tidy.app */,
 				D0BB67FF193C820A007A3EB0 /* Balthisar Tidy for Work.app */,
 				D072894F1A0FC94D00FB4368 /* Balthisar Tidy (dev).app */,
-				D05C16E21A53B79700558F11 /* tidy_command */,
+				D05C16E21A53B79700558F11 /* tidy */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1284,7 +1284,7 @@
 			);
 			name = tidy;
 			productName = tidy_command;
-			productReference = D05C16E21A53B79700558F11 /* tidy_command */;
+			productReference = D05C16E21A53B79700558F11 /* tidy */;
 			productType = "com.apple.product-type.tool";
 		};
 		D07288D11A0FC94D00FB4368 /* Balthisar Tidy (dev) */ = {
