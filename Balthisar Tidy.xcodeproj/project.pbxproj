@@ -30,6 +30,10 @@
 		D01AACB9193DE56000C4E5B2 /* ShowDescriptionTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE17190C9FAC00B49779 /* ShowDescriptionTemplate.pdf */; };
 		D01AACBA193DE58200C4E5B2 /* PaneBottomShadow.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE1F190CB34500B49779 /* PaneBottomShadow.tiff */; };
 		D01BA7BD1967DD3700843C69 /* TidyScripting.sdef in Resources */ = {isa = PBXBuildFile; fileRef = D036E21718F3D81E0009A9D4 /* TidyScripting.sdef */; };
+		D01C70B21A55463400CC5038 /* ServicesMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = D01C70B01A55463400CC5038 /* ServicesMenu.strings */; };
+		D01C70B31A55463400CC5038 /* ServicesMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = D01C70B01A55463400CC5038 /* ServicesMenu.strings */; };
+		D01C70B41A55463400CC5038 /* ServicesMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = D01C70B01A55463400CC5038 /* ServicesMenu.strings */; };
+		D01C70B51A55463400CC5038 /* ServicesMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = D01C70B01A55463400CC5038 /* ServicesMenu.strings */; };
 		D025BD5E195856B6006D7356 /* Acknowledgments.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D025BD5C195856B6006D7356 /* Acknowledgments.rtf */; };
 		D025BD5F195856C0006D7356 /* Acknowledgments.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D025BD5C195856B6006D7356 /* Acknowledgments.rtf */; };
 		D025BD60195856C1006D7356 /* Acknowledgments.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D025BD5C195856B6006D7356 /* Acknowledgments.rtf */; };
@@ -68,6 +72,10 @@
 		D04753B81938A19D00BB7163 /* JSDBoolToStringValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D04753B61938A19D00BB7163 /* JSDBoolToStringValueTransformer.m */; };
 		D047C72F1915FBF100B70A94 /* JSDTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D047C72E1915FBF100B70A94 /* JSDTableCellView.m */; };
 		D047C7301915FBF100B70A94 /* JSDTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D047C72E1915FBF100B70A94 /* JSDTableCellView.m */; };
+		D0498A611A552851005A207D /* TidyService.m in Sources */ = {isa = PBXBuildFile; fileRef = D0498A601A552851005A207D /* TidyService.m */; };
+		D0498A621A552851005A207D /* TidyService.m in Sources */ = {isa = PBXBuildFile; fileRef = D0498A601A552851005A207D /* TidyService.m */; };
+		D0498A631A552851005A207D /* TidyService.m in Sources */ = {isa = PBXBuildFile; fileRef = D0498A601A552851005A207D /* TidyService.m */; };
+		D0498A641A552851005A207D /* TidyService.m in Sources */ = {isa = PBXBuildFile; fileRef = D0498A601A552851005A207D /* TidyService.m */; };
 		D04D5F991902459500F77901 /* NSApplication+TidyApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = D04D5F981902459500F77901 /* NSApplication+TidyApplication.m */; };
 		D04D5F9A1902459500F77901 /* NSApplication+TidyApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = D04D5F981902459500F77901 /* NSApplication+TidyApplication.m */; };
 		D04E8FB0195D964F00D1CEDC /* Balthisar Tidy (app).help in Resources */ = {isa = PBXBuildFile; fileRef = D04E8FAC195D964F00D1CEDC /* Balthisar Tidy (app).help */; };
@@ -569,6 +577,7 @@
 		D016A931182FD80700712C60 /* Balthisar Tidy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Balthisar Tidy-Info.plist"; path = "Balthisar Tidy/Balthisar Tidy-Info.plist"; sourceTree = "<group>"; };
 		D016A935182FD80700712C60 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Balthisar Tidy/main.m"; sourceTree = "<group>"; };
 		D016A937182FD80700712C60 /* Balthisar Tidy-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Balthisar Tidy-Prefix.pch"; path = "Balthisar Tidy/Balthisar Tidy-Prefix.pch"; sourceTree = "<group>"; };
+		D01C70B11A55463400CC5038 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/ServicesMenu.strings; sourceTree = "<group>"; };
 		D025BD5D195856B6006D7356 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Base; path = Base.lproj/Acknowledgments.rtf; sourceTree = "<group>"; };
 		D026169E1836F48A002ABD72 /* Balthisar Tidy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = "Balthisar Tidy.entitlements"; path = "Balthisar Tidy/Balthisar Tidy.entitlements"; sourceTree = "<group>"; };
 		D036E1D918F3D25E0009A9D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Base; path = Base.lproj/Credits.rtf; sourceTree = "<group>"; };
@@ -593,6 +602,8 @@
 		D04753B61938A19D00BB7163 /* JSDBoolToStringValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSDBoolToStringValueTransformer.m; sourceTree = "<group>"; };
 		D047C72D1915FBF100B70A94 /* JSDTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSDTableCellView.h; sourceTree = "<group>"; };
 		D047C72E1915FBF100B70A94 /* JSDTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSDTableCellView.m; sourceTree = "<group>"; };
+		D0498A5F1A552851005A207D /* TidyService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TidyService.h; sourceTree = "<group>"; };
+		D0498A601A552851005A207D /* TidyService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TidyService.m; sourceTree = "<group>"; };
 		D04D5F971902459500F77901 /* NSApplication+TidyApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSApplication+TidyApplication.h"; sourceTree = "<group>"; };
 		D04D5F981902459500F77901 /* NSApplication+TidyApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSApplication+TidyApplication.m"; sourceTree = "<group>"; };
 		D04E8FAC195D964F00D1CEDC /* Balthisar Tidy (app).help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Balthisar Tidy (app).help"; sourceTree = "<group>"; };
@@ -1020,6 +1031,7 @@
 				D025BD5C195856B6006D7356 /* Acknowledgments.rtf */,
 				D036E1D818F3D25E0009A9D4 /* Credits.rtf */,
 				D036E1DC18F3D25E0009A9D4 /* InfoPlist.strings */,
+				D01C70B01A55463400CC5038 /* ServicesMenu.strings */,
 				D036E1DE18F3D25E0009A9D4 /* Localizable.strings */,
 				D0E6AE22190CDAA200B49779 /* JSDTidyModel.strings */,
 			);
@@ -1113,6 +1125,8 @@
 				D0D9EAC218E6680F008A55D5 /* AppController.m */,
 				D0D9EAC318E6680F008A55D5 /* OptionPaneController.h */,
 				D0D9EAC418E6680F008A55D5 /* OptionPaneController.m */,
+				D0498A5F1A552851005A207D /* TidyService.h */,
+				D0498A601A552851005A207D /* TidyService.m */,
 				D0BB67B5193ABB19007A3EB0 /* PreferencesDefinitions.h */,
 			);
 			path = "App Pieces";
@@ -1458,6 +1472,7 @@
 				D04E8FB5195D964F00D1CEDC /* Balthisar Tidy (web).help in Resources */,
 				D025BD5E195856B6006D7356 /* Acknowledgments.rtf in Resources */,
 				D036E1EA18F3D25E0009A9D4 /* FirstRunHelper.xib in Resources */,
+				D01C70B21A55463400CC5038 /* ServicesMenu.strings in Resources */,
 				D06C9A6D195FB9F2004D6C27 /* SavingOptionsViewController.xib in Resources */,
 				D036E1F018F3D25E0009A9D4 /* MainMenu.xib in Resources */,
 				D036E1F218F3D25E0009A9D4 /* OptionPane.xib in Resources */,
@@ -1480,6 +1495,7 @@
 				D07289521A0FCBB700FB4368 /* Balthisar Tidy (dev).help in Resources */,
 				D07289141A0FC94D00FB4368 /* messagesConfig.icns in Resources */,
 				D07289151A0FC94D00FB4368 /* messagesDocument.icns in Resources */,
+				D01C70B51A55463400CC5038 /* ServicesMenu.strings in Resources */,
 				D07289161A0FC94D00FB4368 /* messagesError.icns in Resources */,
 				D07289171A0FC94D00FB4368 /* messagesInfo.icns in Resources */,
 				D07289181A0FC94D00FB4368 /* Acknowledgments.rtf in Resources */,
@@ -1588,6 +1604,7 @@
 				D036E1ED18F3D25E0009A9D4 /* InfoPlist.strings in Resources */,
 				D0E6AE25190CDAA200B49779 /* JSDTidyModel.strings in Resources */,
 				D036E1EF18F3D25E0009A9D4 /* Localizable.strings in Resources */,
+				D01C70B31A55463400CC5038 /* ServicesMenu.strings in Resources */,
 				D06C9A6E195FB9F2004D6C27 /* SavingOptionsViewController.xib in Resources */,
 				D0E6AE21190CB34500B49779 /* PaneBottomShadow.tiff in Resources */,
 				D036E1EB18F3D25E0009A9D4 /* FirstRunHelper.xib in Resources */,
@@ -1646,6 +1663,7 @@
 				D06C9AA3195FE854004D6C27 /* prefsUpdate@2x.png in Resources */,
 				D06C9A9A195FE854004D6C27 /* prefsTidyAppearance.png in Resources */,
 				D0BB67F5193C820A007A3EB0 /* Credits.rtf in Resources */,
+				D01C70B41A55463400CC5038 /* ServicesMenu.strings in Resources */,
 				D086893C1948439700BDAD72 /* TidyDocumentSourceV.xib in Resources */,
 				D0BB67F9193C820A007A3EB0 /* InfoPlist.strings in Resources */,
 				D0BB67EC193C820A007A3EB0 /* JSDTidyModel.strings in Resources */,
@@ -1728,6 +1746,7 @@
 				D0D9ED2B18E66810008A55D5 /* AppController.m in Sources */,
 				D0B9F0F419585010008864D6 /* DCOAboutWindowController.m in Sources */,
 				D06C9A46195FB4A4004D6C27 /* MASPreferencesWindowController.m in Sources */,
+				D0498A611A552851005A207D /* TidyService.m in Sources */,
 				D05C17521A53C3FD00558F11 /* access.c in Sources */,
 				D05C177A1A53C3FD00558F11 /* clean.c in Sources */,
 				D04753B71938A19D00BB7163 /* JSDBoolToStringValueTransformer.m in Sources */,
@@ -1832,6 +1851,7 @@
 				D07288F91A0FC94D00FB4368 /* NoodleLineNumberView.m in Sources */,
 				D07288FA1A0FC94D00FB4368 /* DCOAboutWindowController.m in Sources */,
 				D07288FB1A0FC94D00FB4368 /* MASPreferencesWindowController.m in Sources */,
+				D0498A641A552851005A207D /* TidyService.m in Sources */,
 				D05C17551A53C3FD00558F11 /* access.c in Sources */,
 				D05C177D1A53C3FD00558F11 /* clean.c in Sources */,
 				D07288FC1A0FC94D00FB4368 /* JSDBoolToStringValueTransformer.m in Sources */,
@@ -1900,6 +1920,7 @@
 				D0BB67AF193AB382007A3EB0 /* NoodleLineNumberView.m in Sources */,
 				D0B9F0F519585010008864D6 /* DCOAboutWindowController.m in Sources */,
 				D06C9A47195FB4A4004D6C27 /* MASPreferencesWindowController.m in Sources */,
+				D0498A621A552851005A207D /* TidyService.m in Sources */,
 				D05C17531A53C3FD00558F11 /* access.c in Sources */,
 				D05C177B1A53C3FD00558F11 /* clean.c in Sources */,
 				D04753B81938A19D00BB7163 /* JSDBoolToStringValueTransformer.m in Sources */,
@@ -1968,6 +1989,7 @@
 				D0BB67D6193C820A007A3EB0 /* NoodleLineNumberView.m in Sources */,
 				D0B9F0F619585010008864D6 /* DCOAboutWindowController.m in Sources */,
 				D06C9A48195FB4A4004D6C27 /* MASPreferencesWindowController.m in Sources */,
+				D0498A631A552851005A207D /* TidyService.m in Sources */,
 				D05C17541A53C3FD00558F11 /* access.c in Sources */,
 				D05C177C1A53C3FD00558F11 /* clean.c in Sources */,
 				D0BB67D7193C820A007A3EB0 /* JSDBoolToStringValueTransformer.m in Sources */,
@@ -1996,6 +2018,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		D01C70B01A55463400CC5038 /* ServicesMenu.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D01C70B11A55463400CC5038 /* Base */,
+			);
+			name = ServicesMenu.strings;
+			sourceTree = "<group>";
+		};
 		D025BD5C195856B6006D7356 /* Acknowledgments.rtf */ = {
 			isa = PBXVariantGroup;
 			children = (

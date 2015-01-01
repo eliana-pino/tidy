@@ -130,5 +130,36 @@
 	<true/>
 	<key>SUFeedURL</key>
 	<string>http://www.balthisar.com/softwareupdates/updatecheck/tidy</string>
+	<key>NSServices</key>
+	<array>
+		<dict>
+			<key>NSKeyEquivalent</key>
+			<dict>
+				<key>default</key>
+				<string>Y</string>
+			</dict>
+			<key>NSMenuItem</key>
+			<dict>
+				<key>default</key>
+				<string>Tidy with Balthisar Tidy</string>
+			</dict>
+			<key>NSMessage</key>
+			<string>tidySelection</string>
+			<key>NSPortName</key>
+			<string>Balthisar Tidy</string>
+			<key>NSSendTypes</key>
+			<array>
+				<string>NSStringPboardType</string>
+			</array>
+			<key>NSReturnTypes</key>
+			<array>
+				<string>NSStringPboardType</string>
+			</array>
+            <key>NSServiceDescription</key>
+            <string>SERVICE_DESCRIPTION</string>
+            <key>NSUIElement</key>
+            <string>1</string>
+		</dict>
+	</array>
 </dict>
 </plist>

@@ -39,6 +39,9 @@
 #ifdef FEATURE_SPARKLE
 	#import <Sparkle/Sparkle.h>
 #endif
+#ifdef FEATURE_SUPPORTS_SERVICE
+    #import "TidyService.h"
+#endif
 
 
 
@@ -52,6 +55,9 @@
 
 @property (nonatomic) DCOAboutWindowController *aboutWindowController;   // Window controller for About...
 
+#ifdef FEATURE_SUPPORTS_SERVICE
+@property (nonatomic) TidyService *tidyService;                          // Instance of tidyService for system services.
+#endif
 
 /* Feature Properties for binding to conditionally-compiled features. */
 
@@ -114,6 +120,19 @@
 	#else
 		[[self menuCheckForUpdates] setHidden:YES];
 	#endif
+    
+
+    #ifdef FEATURE_SUPPORTS_SERVICE
+        self.tidyService = [[TidyService alloc] init];
+            /*
+            Use NSRegisterServicesProvider instead of NSApp:setServicesProvider
+            So that we can have careful control over the port name. @TODO: Study
+            the behavior of having multiple versions of the app, otherwise we might
+            have to conditionally-compile the Info.plist, too, to disambiguate them.
+         */
+        NSRegisterServicesProvider(self.tidyService, @"Balthisar Tidy");
+    #endif
+
 }
 
 
