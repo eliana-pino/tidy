@@ -30,6 +30,7 @@
 #import "TidyService.h"
 #import "PreferenceController.h"
 #import "JSDTidyModel.h"
+#import "TidyDocument.h"
 
 @implementation TidyService
 
@@ -49,7 +50,7 @@
     NSDictionary *options = [NSDictionary dictionary];
     
     if (![pboard canReadObjectForClasses:classes options:options]) {
-        *error = NSLocalizedString(@"Error: couldn't encrypt text.",
+        *error = NSLocalizedString(@"Error: couldn't tidy text.",
                                    @"pboard couldn't give string.");
         return;
     }
@@ -63,8 +64,8 @@
     
     if (!localModel.tidyText)
     {
-        *error = NSLocalizedString(@"Error: couldn't encrypt text.",
-                                   @"self couldn't rotate letters.");
+        *error = NSLocalizedString(@"Error: couldn't tidy text.",
+                                   @"self couldn't tidy the document.");
         return;
     }
 
@@ -81,8 +82,21 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)newDocumentWithSelection:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error
 {
+    /* Test for strings on the pasteboard. */
+    NSArray *classes = [NSArray arrayWithObject:[NSString class]];
+    NSDictionary *options = [NSDictionary dictionary];
     
+    if (![pboard canReadObjectForClasses:classes options:options]) {
+        *error = NSLocalizedString(@"Error: couldn't use text.",
+                                   @"pboard couldn't give string.");
+        return;
+    }
+
     
+    /* Create a new document and set the text. */
+    TidyDocument *localDocument = [[NSDocumentController sharedDocumentController] openUntitledDocumentAndDisplay:YES error:nil];
+    localDocument.sourceText = [pboard stringForType:NSPasteboardTypeString];
+    //localDocument.
 }
 
 

@@ -258,6 +258,7 @@
 - (void)setSourceText:(NSString *)sourceText
 {
 	self.windowController.sourceController.sourceTextView.string = sourceText;
+    [self.windowController.sourceController textDidChange:nil];
 }
 
 /*———————————————————————————————————————————————————————————————————*
