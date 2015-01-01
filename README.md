@@ -1,4 +1,4 @@
-﻿Balthisar Tidy (version 2.0.3)
+﻿Balthisar Tidy (version 2.1.x)
 ==============================
 
 by Jim Derry, <http://www.balthisar.com>
