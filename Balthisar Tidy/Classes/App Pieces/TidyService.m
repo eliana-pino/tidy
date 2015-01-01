@@ -28,6 +28,8 @@
 
 #import "PreferencesDefinitions.h"
 #import "TidyService.h"
+#import "PreferenceController.h"
+#import "JSDTidyModel.h"
 
 @implementation TidyService
 
@@ -40,9 +42,9 @@
        version using the preferences defaults. We will try with
        force-output if no response.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)tidySelection:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error;
+- (void)tidySelection:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error
 {
-    // Test for strings on the pasteboard.
+    /* Test for strings on the pasteboard. */
     NSArray *classes = [NSArray arrayWithObject:[NSString class]];
     NSDictionary *options = [NSDictionary dictionary];
     
@@ -52,19 +54,37 @@
         return;
     }
     
-    // Perform the Tidying
+    
+    /* Perform the Tidying */
     NSString *pboardString = [pboard stringForType:NSPasteboardTypeString];
-    NSString *newString = @"HELLO WORLD!";
-    if (!newString) {
+    
+    JSDTidyModel *localModel = [[JSDTidyModel alloc] initWithString:pboardString];
+    [localModel takeOptionValuesFromDefaults:[NSUserDefaults standardUserDefaults]];
+    
+    if (!localModel.tidyText)
+    {
         *error = NSLocalizedString(@"Error: couldn't encrypt text.",
                                    @"self couldn't rotate letters.");
         return;
     }
+
     
-    // Write the string onto the pasteboard.
+    /* Write the string onto the pasteboard. */
     [pboard clearContents];
-    [pboard writeObjects:[NSArray arrayWithObject:newString]];
+    [pboard writeObjects:[NSArray arrayWithObject:localModel.tidyText]];
 }
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	 newDocumentWithSelection
+	 - Creates a new Balthisar Tidy document using the selection.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)newDocumentWithSelection:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error
+{
+    
+    
+}
+
 
 #endif
 

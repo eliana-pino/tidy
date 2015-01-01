@@ -37,6 +37,10 @@
 /* Handle the "Tidy with Balthisar Tidy" system service. */
 - (void)tidySelection:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error;
 
+
+/* Handle the "New Balthisar Tidy Document with Selection" system service. */
+- (void)newDocumentWithSelection:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error;
+
 #endif
 
 

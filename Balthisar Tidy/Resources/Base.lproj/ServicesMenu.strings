@@ -1,2 +1,5 @@
-'Tidy with Balthisar Tidy'		=	'Tidy with Balthisar Tidy';
-'SERVICE_DESCRIPTION'           =   'Use Balthisar Tidy to tidy a selected string using the Tidy Options in Balthisar Tidy’s Preferences.';
+'Tidy with Balthisar Tidy'		             = 'Tidy with Balthisar Tidy';
+'SERVICE_TIDY'                               = 'Use Balthisar Tidy to tidy a selected string using the Tidy Options in Balthisar Tidy’s Preferences.';
+
+'New Balthisar Tidy Document with Selection' = 'New Balthisar Tidy Document with Selection';
+'SERVICE_NEWDOC'                             = 'Create a new Balthisar Tidy document with the selected text.'

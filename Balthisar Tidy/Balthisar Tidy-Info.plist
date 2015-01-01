@@ -136,7 +136,7 @@
 			<key>NSKeyEquivalent</key>
 			<dict>
 				<key>default</key>
-				<string>Y</string>
+				<string></string>
 			</dict>
 			<key>NSMenuItem</key>
 			<dict>
@@ -156,10 +156,34 @@
 				<string>NSStringPboardType</string>
 			</array>
             <key>NSServiceDescription</key>
-            <string>SERVICE_DESCRIPTION</string>
+            <string>SERVICE_TIDY</string>
             <key>NSUIElement</key>
             <string>1</string>
 		</dict>
+        <dict>
+            <key>NSKeyEquivalent</key>
+            <dict>
+                <key>default</key>
+                <string></string>
+            </dict>
+            <key>NSMenuItem</key>
+            <dict>
+                <key>default</key>
+                <string>New Balthisar Tidy Document with Selection</string>
+            </dict>
+            <key>NSMessage</key>
+            <string>newDocumentWithSelection</string>
+            <key>NSPortName</key>
+            <string>Balthisar Tidy</string>
+            <key>NSSendTypes</key>
+            <array>
+                <string>NSStringPboardType</string>
+            </array>
+            <key>NSServiceDescription</key>
+            <string>SERVICE_NEWDOC</string>
+            <key>NSUIElement</key>
+            <string>1</string>
+        </dict>
 	</array>
 </dict>
 </plist>
