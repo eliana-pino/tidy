@@ -123,7 +123,7 @@
 	<key>SUEnableSystemProfiling</key>
 	<true/>
 	<key>SUFeedURL</key>
-	<string>http://www.balthisar.com/softwareupdates/updatecheck/tidy</string>
+	<string>${TIDY_UPDATE_URL}</string>
 	<key>CFBundleHelpBookName</key>
 	<string>${TIDY_HELP_BOOK_KEY}</string>
 	<key>CFBundleHelpBookFolder</key>

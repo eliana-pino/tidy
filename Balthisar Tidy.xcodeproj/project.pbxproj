@@ -33,7 +33,6 @@
 		D01C70B21A55463400CC5038 /* ServicesMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = D01C70B01A55463400CC5038 /* ServicesMenu.strings */; };
 		D01C70B31A55463400CC5038 /* ServicesMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = D01C70B01A55463400CC5038 /* ServicesMenu.strings */; };
 		D01C70B41A55463400CC5038 /* ServicesMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = D01C70B01A55463400CC5038 /* ServicesMenu.strings */; };
-		D01C70B51A55463400CC5038 /* ServicesMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = D01C70B01A55463400CC5038 /* ServicesMenu.strings */; };
 		D01C70BB1A55850D00CC5038 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D016A929182FD80700712C60 /* Cocoa.framework */; };
 		D01C70C01A55850D00CC5038 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = D01C70BF1A55850D00CC5038 /* icon.icns */; };
 		D01C70C41A55850D00CC5038 /* ActionRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D01C70C31A55850D00CC5038 /* ActionRequestHandler.m */; };
@@ -43,18 +42,13 @@
 		D01C70E11A5591A500CC5038 /* ActionRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D01C70C31A55850D00CC5038 /* ActionRequestHandler.m */; };
 		D01C70E31A5591A500CC5038 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D016A929182FD80700712C60 /* Cocoa.framework */; };
 		D01C70E51A5591A500CC5038 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = D01C70BF1A55850D00CC5038 /* icon.icns */; };
-		D01C70ED1A5591AB00CC5038 /* ActionRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D01C70C31A55850D00CC5038 /* ActionRequestHandler.m */; };
-		D01C70EF1A5591AB00CC5038 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D016A929182FD80700712C60 /* Cocoa.framework */; };
-		D01C70F11A5591AB00CC5038 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = D01C70BF1A55850D00CC5038 /* icon.icns */; };
 		D025BD5E195856B6006D7356 /* Acknowledgments.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D025BD5C195856B6006D7356 /* Acknowledgments.rtf */; };
 		D025BD5F195856C0006D7356 /* Acknowledgments.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D025BD5C195856B6006D7356 /* Acknowledgments.rtf */; };
 		D025BD60195856C1006D7356 /* Acknowledgments.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D025BD5C195856B6006D7356 /* Acknowledgments.rtf */; };
 		D028E87F1A56698A00C39852 /* Balthisar Tidy (web).appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D01C70BA1A55850D00CC5038 /* Balthisar Tidy (web).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D028E8801A56699500C39852 /* Balthisar Tidy (app).appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D01C70DD1A558E1C00CC5038 /* Balthisar Tidy (app).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D028E8811A56699D00C39852 /* Balthisar Tidy (pro).appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D01C70E91A5591A500CC5038 /* Balthisar Tidy (pro).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		D028E8821A5669A600C39852 /* Balthisar Tidy (dev).appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D01C70F51A5591AB00CC5038 /* Balthisar Tidy (dev).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D028E88D1A56721200C39852 /* Balthisar Tidy (app).entitlements in Resources */ = {isa = PBXBuildFile; fileRef = D028E8891A56721200C39852 /* Balthisar Tidy (app).entitlements */; };
-		D028E88E1A56721200C39852 /* Balthisar Tidy (dev).entitlements in Resources */ = {isa = PBXBuildFile; fileRef = D028E88A1A56721200C39852 /* Balthisar Tidy (dev).entitlements */; };
 		D028E88F1A56721200C39852 /* Balthisar Tidy (pro).entitlements in Resources */ = {isa = PBXBuildFile; fileRef = D028E88B1A56721200C39852 /* Balthisar Tidy (pro).entitlements */; };
 		D028E8901A56721200C39852 /* Balthisar Tidy (web).entitlements in Resources */ = {isa = PBXBuildFile; fileRef = D028E88C1A56721200C39852 /* Balthisar Tidy (web).entitlements */; };
 		D036E1E818F3D25E0009A9D4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D036E1D818F3D25E0009A9D4 /* Credits.rtf */; };
@@ -84,7 +78,6 @@
 		D038A0D81A2180EC009A874A /* JSDTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D038A0D71A2180EC009A874A /* JSDTextView.m */; };
 		D038A0D91A2180EC009A874A /* JSDTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D038A0D71A2180EC009A874A /* JSDTextView.m */; };
 		D038A0DA1A2180EC009A874A /* JSDTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D038A0D71A2180EC009A874A /* JSDTextView.m */; };
-		D038A0DB1A2180EC009A874A /* JSDTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D038A0D71A2180EC009A874A /* JSDTextView.m */; };
 		D03B89D419553E5D00E9B4D5 /* DiffsTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D03B89D319553E5D00E9B4D5 /* DiffsTemplate.png */; };
 		D03B89D81955457500E9B4D5 /* ScrollLockTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D03B89D71955457500E9B4D5 /* ScrollLockTemplate.png */; };
 		D03B89DA1955474700E9B4D5 /* DiffViewTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D03B89D91955474700E9B4D5 /* DiffViewTemplate.png */; };
@@ -95,7 +88,6 @@
 		D0498A611A552851005A207D /* TidyService.m in Sources */ = {isa = PBXBuildFile; fileRef = D0498A601A552851005A207D /* TidyService.m */; };
 		D0498A621A552851005A207D /* TidyService.m in Sources */ = {isa = PBXBuildFile; fileRef = D0498A601A552851005A207D /* TidyService.m */; };
 		D0498A631A552851005A207D /* TidyService.m in Sources */ = {isa = PBXBuildFile; fileRef = D0498A601A552851005A207D /* TidyService.m */; };
-		D0498A641A552851005A207D /* TidyService.m in Sources */ = {isa = PBXBuildFile; fileRef = D0498A601A552851005A207D /* TidyService.m */; };
 		D04D5F991902459500F77901 /* NSApplication+TidyApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = D04D5F981902459500F77901 /* NSApplication+TidyApplication.m */; };
 		D04D5F9A1902459500F77901 /* NSApplication+TidyApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = D04D5F981902459500F77901 /* NSApplication+TidyApplication.m */; };
 		D04E8FB0195D964F00D1CEDC /* Balthisar Tidy (app).help in Resources */ = {isa = PBXBuildFile; fileRef = D04E8FAC195D964F00D1CEDC /* Balthisar Tidy (app).help */; };
@@ -106,148 +98,118 @@
 		D04E8FBB195DAA9500D1CEDC /* DiffViewTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D03B89D91955474700E9B4D5 /* DiffViewTemplate.png */; };
 		D04E8FBC195DAA9500D1CEDC /* DiffsTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D03B89D319553E5D00E9B4D5 /* DiffsTemplate.png */; };
 		D04E8FBD195DAA9500D1CEDC /* ScrollLockTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D03B89D71955457500E9B4D5 /* ScrollLockTemplate.png */; };
-		D052568D1A0FCECD00070A33 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D06626CE18B09B330091CBD8 /* Sparkle.framework */; };
-		D052568E1A0FCEEB00070A33 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D06626CE18B09B330091CBD8 /* Sparkle.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D05C16E91A53B7A000558F11 /* tidy.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C16D81A53B6EB00558F11 /* tidy.c */; };
 		D05C17521A53C3FD00558F11 /* access.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C171E1A53C3FD00558F11 /* access.c */; };
 		D05C17531A53C3FD00558F11 /* access.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C171E1A53C3FD00558F11 /* access.c */; };
 		D05C17541A53C3FD00558F11 /* access.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C171E1A53C3FD00558F11 /* access.c */; };
-		D05C17551A53C3FD00558F11 /* access.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C171E1A53C3FD00558F11 /* access.c */; };
 		D05C17561A53C3FD00558F11 /* access.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C171E1A53C3FD00558F11 /* access.c */; };
 		D05C17571A53C3FD00558F11 /* alloc.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17201A53C3FD00558F11 /* alloc.c */; };
 		D05C17581A53C3FD00558F11 /* alloc.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17201A53C3FD00558F11 /* alloc.c */; };
 		D05C17591A53C3FD00558F11 /* alloc.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17201A53C3FD00558F11 /* alloc.c */; };
-		D05C175A1A53C3FD00558F11 /* alloc.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17201A53C3FD00558F11 /* alloc.c */; };
 		D05C175B1A53C3FD00558F11 /* alloc.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17201A53C3FD00558F11 /* alloc.c */; };
 		D05C175C1A53C3FD00558F11 /* attrask.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17211A53C3FD00558F11 /* attrask.c */; };
 		D05C175D1A53C3FD00558F11 /* attrask.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17211A53C3FD00558F11 /* attrask.c */; };
 		D05C175E1A53C3FD00558F11 /* attrask.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17211A53C3FD00558F11 /* attrask.c */; };
-		D05C175F1A53C3FD00558F11 /* attrask.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17211A53C3FD00558F11 /* attrask.c */; };
 		D05C17601A53C3FD00558F11 /* attrask.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17211A53C3FD00558F11 /* attrask.c */; };
 		D05C17611A53C3FD00558F11 /* attrdict.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17221A53C3FD00558F11 /* attrdict.c */; };
 		D05C17621A53C3FD00558F11 /* attrdict.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17221A53C3FD00558F11 /* attrdict.c */; };
 		D05C17631A53C3FD00558F11 /* attrdict.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17221A53C3FD00558F11 /* attrdict.c */; };
-		D05C17641A53C3FD00558F11 /* attrdict.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17221A53C3FD00558F11 /* attrdict.c */; };
 		D05C17651A53C3FD00558F11 /* attrdict.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17221A53C3FD00558F11 /* attrdict.c */; };
 		D05C17661A53C3FD00558F11 /* attrget.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17241A53C3FD00558F11 /* attrget.c */; };
 		D05C17671A53C3FD00558F11 /* attrget.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17241A53C3FD00558F11 /* attrget.c */; };
 		D05C17681A53C3FD00558F11 /* attrget.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17241A53C3FD00558F11 /* attrget.c */; };
-		D05C17691A53C3FD00558F11 /* attrget.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17241A53C3FD00558F11 /* attrget.c */; };
 		D05C176A1A53C3FD00558F11 /* attrget.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17241A53C3FD00558F11 /* attrget.c */; };
 		D05C176B1A53C3FD00558F11 /* attrs.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17251A53C3FD00558F11 /* attrs.c */; };
 		D05C176C1A53C3FD00558F11 /* attrs.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17251A53C3FD00558F11 /* attrs.c */; };
 		D05C176D1A53C3FD00558F11 /* attrs.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17251A53C3FD00558F11 /* attrs.c */; };
-		D05C176E1A53C3FD00558F11 /* attrs.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17251A53C3FD00558F11 /* attrs.c */; };
 		D05C176F1A53C3FD00558F11 /* attrs.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17251A53C3FD00558F11 /* attrs.c */; };
 		D05C17701A53C3FD00558F11 /* buffio.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17271A53C3FD00558F11 /* buffio.c */; };
 		D05C17711A53C3FD00558F11 /* buffio.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17271A53C3FD00558F11 /* buffio.c */; };
 		D05C17721A53C3FD00558F11 /* buffio.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17271A53C3FD00558F11 /* buffio.c */; };
-		D05C17731A53C3FD00558F11 /* buffio.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17271A53C3FD00558F11 /* buffio.c */; };
 		D05C17741A53C3FD00558F11 /* buffio.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17271A53C3FD00558F11 /* buffio.c */; };
 		D05C17751A53C3FD00558F11 /* charsets.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17281A53C3FD00558F11 /* charsets.c */; };
 		D05C17761A53C3FD00558F11 /* charsets.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17281A53C3FD00558F11 /* charsets.c */; };
 		D05C17771A53C3FD00558F11 /* charsets.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17281A53C3FD00558F11 /* charsets.c */; };
-		D05C17781A53C3FD00558F11 /* charsets.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17281A53C3FD00558F11 /* charsets.c */; };
 		D05C17791A53C3FD00558F11 /* charsets.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17281A53C3FD00558F11 /* charsets.c */; };
 		D05C177A1A53C3FD00558F11 /* clean.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C172A1A53C3FD00558F11 /* clean.c */; };
 		D05C177B1A53C3FD00558F11 /* clean.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C172A1A53C3FD00558F11 /* clean.c */; };
 		D05C177C1A53C3FD00558F11 /* clean.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C172A1A53C3FD00558F11 /* clean.c */; };
-		D05C177D1A53C3FD00558F11 /* clean.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C172A1A53C3FD00558F11 /* clean.c */; };
 		D05C177E1A53C3FD00558F11 /* clean.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C172A1A53C3FD00558F11 /* clean.c */; };
 		D05C177F1A53C3FD00558F11 /* config.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C172C1A53C3FD00558F11 /* config.c */; };
 		D05C17801A53C3FD00558F11 /* config.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C172C1A53C3FD00558F11 /* config.c */; };
 		D05C17811A53C3FD00558F11 /* config.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C172C1A53C3FD00558F11 /* config.c */; };
-		D05C17821A53C3FD00558F11 /* config.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C172C1A53C3FD00558F11 /* config.c */; };
 		D05C17831A53C3FD00558F11 /* config.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C172C1A53C3FD00558F11 /* config.c */; };
 		D05C17841A53C3FD00558F11 /* entities.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C172E1A53C3FD00558F11 /* entities.c */; };
 		D05C17851A53C3FD00558F11 /* entities.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C172E1A53C3FD00558F11 /* entities.c */; };
 		D05C17861A53C3FD00558F11 /* entities.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C172E1A53C3FD00558F11 /* entities.c */; };
-		D05C17871A53C3FD00558F11 /* entities.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C172E1A53C3FD00558F11 /* entities.c */; };
 		D05C17881A53C3FD00558F11 /* entities.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C172E1A53C3FD00558F11 /* entities.c */; };
 		D05C17891A53C3FD00558F11 /* fileio.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17301A53C3FD00558F11 /* fileio.c */; };
 		D05C178A1A53C3FD00558F11 /* fileio.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17301A53C3FD00558F11 /* fileio.c */; };
 		D05C178B1A53C3FD00558F11 /* fileio.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17301A53C3FD00558F11 /* fileio.c */; };
-		D05C178C1A53C3FD00558F11 /* fileio.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17301A53C3FD00558F11 /* fileio.c */; };
 		D05C178D1A53C3FD00558F11 /* fileio.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17301A53C3FD00558F11 /* fileio.c */; };
 		D05C178E1A53C3FD00558F11 /* gdoc.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17331A53C3FD00558F11 /* gdoc.c */; };
 		D05C178F1A53C3FD00558F11 /* gdoc.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17331A53C3FD00558F11 /* gdoc.c */; };
 		D05C17901A53C3FD00558F11 /* gdoc.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17331A53C3FD00558F11 /* gdoc.c */; };
-		D05C17911A53C3FD00558F11 /* gdoc.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17331A53C3FD00558F11 /* gdoc.c */; };
 		D05C17921A53C3FD00558F11 /* gdoc.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17331A53C3FD00558F11 /* gdoc.c */; };
 		D05C17931A53C3FD00558F11 /* iconvtc.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17351A53C3FD00558F11 /* iconvtc.c */; };
 		D05C17941A53C3FD00558F11 /* iconvtc.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17351A53C3FD00558F11 /* iconvtc.c */; };
 		D05C17951A53C3FD00558F11 /* iconvtc.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17351A53C3FD00558F11 /* iconvtc.c */; };
-		D05C17961A53C3FD00558F11 /* iconvtc.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17351A53C3FD00558F11 /* iconvtc.c */; };
 		D05C17971A53C3FD00558F11 /* iconvtc.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17351A53C3FD00558F11 /* iconvtc.c */; };
 		D05C17981A53C3FD00558F11 /* istack.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17371A53C3FD00558F11 /* istack.c */; };
 		D05C17991A53C3FD00558F11 /* istack.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17371A53C3FD00558F11 /* istack.c */; };
 		D05C179A1A53C3FD00558F11 /* istack.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17371A53C3FD00558F11 /* istack.c */; };
-		D05C179B1A53C3FD00558F11 /* istack.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17371A53C3FD00558F11 /* istack.c */; };
 		D05C179C1A53C3FD00558F11 /* istack.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17371A53C3FD00558F11 /* istack.c */; };
 		D05C179D1A53C3FD00558F11 /* lexer.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17381A53C3FD00558F11 /* lexer.c */; };
 		D05C179E1A53C3FD00558F11 /* lexer.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17381A53C3FD00558F11 /* lexer.c */; };
 		D05C179F1A53C3FD00558F11 /* lexer.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17381A53C3FD00558F11 /* lexer.c */; };
-		D05C17A01A53C3FD00558F11 /* lexer.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17381A53C3FD00558F11 /* lexer.c */; };
 		D05C17A11A53C3FD00558F11 /* lexer.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17381A53C3FD00558F11 /* lexer.c */; };
 		D05C17A21A53C3FD00558F11 /* localize.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C173A1A53C3FD00558F11 /* localize.c */; };
 		D05C17A31A53C3FD00558F11 /* localize.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C173A1A53C3FD00558F11 /* localize.c */; };
 		D05C17A41A53C3FD00558F11 /* localize.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C173A1A53C3FD00558F11 /* localize.c */; };
-		D05C17A51A53C3FD00558F11 /* localize.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C173A1A53C3FD00558F11 /* localize.c */; };
 		D05C17A61A53C3FD00558F11 /* localize.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C173A1A53C3FD00558F11 /* localize.c */; };
 		D05C17A71A53C3FD00558F11 /* mappedio.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C173B1A53C3FD00558F11 /* mappedio.c */; };
 		D05C17A81A53C3FD00558F11 /* mappedio.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C173B1A53C3FD00558F11 /* mappedio.c */; };
 		D05C17A91A53C3FD00558F11 /* mappedio.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C173B1A53C3FD00558F11 /* mappedio.c */; };
-		D05C17AA1A53C3FD00558F11 /* mappedio.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C173B1A53C3FD00558F11 /* mappedio.c */; };
 		D05C17AB1A53C3FD00558F11 /* mappedio.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C173B1A53C3FD00558F11 /* mappedio.c */; };
 		D05C17AC1A53C3FD00558F11 /* parser.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C173E1A53C3FD00558F11 /* parser.c */; };
 		D05C17AD1A53C3FD00558F11 /* parser.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C173E1A53C3FD00558F11 /* parser.c */; };
 		D05C17AE1A53C3FD00558F11 /* parser.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C173E1A53C3FD00558F11 /* parser.c */; };
-		D05C17AF1A53C3FD00558F11 /* parser.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C173E1A53C3FD00558F11 /* parser.c */; };
 		D05C17B01A53C3FD00558F11 /* parser.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C173E1A53C3FD00558F11 /* parser.c */; };
 		D05C17B11A53C3FD00558F11 /* pprint.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17401A53C3FD00558F11 /* pprint.c */; };
 		D05C17B21A53C3FD00558F11 /* pprint.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17401A53C3FD00558F11 /* pprint.c */; };
 		D05C17B31A53C3FD00558F11 /* pprint.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17401A53C3FD00558F11 /* pprint.c */; };
-		D05C17B41A53C3FD00558F11 /* pprint.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17401A53C3FD00558F11 /* pprint.c */; };
 		D05C17B51A53C3FD00558F11 /* pprint.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17401A53C3FD00558F11 /* pprint.c */; };
 		D05C17B61A53C3FD00558F11 /* sprtf.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17421A53C3FD00558F11 /* sprtf.c */; };
 		D05C17B71A53C3FD00558F11 /* sprtf.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17421A53C3FD00558F11 /* sprtf.c */; };
 		D05C17B81A53C3FD00558F11 /* sprtf.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17421A53C3FD00558F11 /* sprtf.c */; };
-		D05C17B91A53C3FD00558F11 /* sprtf.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17421A53C3FD00558F11 /* sprtf.c */; };
 		D05C17BA1A53C3FD00558F11 /* sprtf.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17421A53C3FD00558F11 /* sprtf.c */; };
 		D05C17BB1A53C3FD00558F11 /* streamio.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17441A53C3FD00558F11 /* streamio.c */; };
 		D05C17BC1A53C3FD00558F11 /* streamio.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17441A53C3FD00558F11 /* streamio.c */; };
 		D05C17BD1A53C3FD00558F11 /* streamio.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17441A53C3FD00558F11 /* streamio.c */; };
-		D05C17BE1A53C3FD00558F11 /* streamio.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17441A53C3FD00558F11 /* streamio.c */; };
 		D05C17BF1A53C3FD00558F11 /* streamio.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17441A53C3FD00558F11 /* streamio.c */; };
 		D05C17C01A53C3FD00558F11 /* tagask.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17461A53C3FD00558F11 /* tagask.c */; };
 		D05C17C11A53C3FD00558F11 /* tagask.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17461A53C3FD00558F11 /* tagask.c */; };
 		D05C17C21A53C3FD00558F11 /* tagask.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17461A53C3FD00558F11 /* tagask.c */; };
-		D05C17C31A53C3FD00558F11 /* tagask.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17461A53C3FD00558F11 /* tagask.c */; };
 		D05C17C41A53C3FD00558F11 /* tagask.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17461A53C3FD00558F11 /* tagask.c */; };
 		D05C17C51A53C3FD00558F11 /* tags.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17471A53C3FD00558F11 /* tags.c */; };
 		D05C17C61A53C3FD00558F11 /* tags.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17471A53C3FD00558F11 /* tags.c */; };
 		D05C17C71A53C3FD00558F11 /* tags.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17471A53C3FD00558F11 /* tags.c */; };
-		D05C17C81A53C3FD00558F11 /* tags.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17471A53C3FD00558F11 /* tags.c */; };
 		D05C17C91A53C3FD00558F11 /* tags.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17471A53C3FD00558F11 /* tags.c */; };
 		D05C17CA1A53C3FD00558F11 /* tidylib.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C174A1A53C3FD00558F11 /* tidylib.c */; };
 		D05C17CB1A53C3FD00558F11 /* tidylib.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C174A1A53C3FD00558F11 /* tidylib.c */; };
 		D05C17CC1A53C3FD00558F11 /* tidylib.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C174A1A53C3FD00558F11 /* tidylib.c */; };
-		D05C17CD1A53C3FD00558F11 /* tidylib.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C174A1A53C3FD00558F11 /* tidylib.c */; };
 		D05C17CE1A53C3FD00558F11 /* tidylib.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C174A1A53C3FD00558F11 /* tidylib.c */; };
 		D05C17CF1A53C3FD00558F11 /* tmbstr.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C174B1A53C3FD00558F11 /* tmbstr.c */; };
 		D05C17D01A53C3FD00558F11 /* tmbstr.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C174B1A53C3FD00558F11 /* tmbstr.c */; };
 		D05C17D11A53C3FD00558F11 /* tmbstr.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C174B1A53C3FD00558F11 /* tmbstr.c */; };
-		D05C17D21A53C3FD00558F11 /* tmbstr.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C174B1A53C3FD00558F11 /* tmbstr.c */; };
 		D05C17D31A53C3FD00558F11 /* tmbstr.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C174B1A53C3FD00558F11 /* tmbstr.c */; };
 		D05C17D41A53C3FD00558F11 /* utf8.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C174D1A53C3FD00558F11 /* utf8.c */; };
 		D05C17D51A53C3FD00558F11 /* utf8.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C174D1A53C3FD00558F11 /* utf8.c */; };
 		D05C17D61A53C3FD00558F11 /* utf8.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C174D1A53C3FD00558F11 /* utf8.c */; };
-		D05C17D71A53C3FD00558F11 /* utf8.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C174D1A53C3FD00558F11 /* utf8.c */; };
 		D05C17D81A53C3FD00558F11 /* utf8.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C174D1A53C3FD00558F11 /* utf8.c */; };
 		D05C17D91A53C3FD00558F11 /* win32tc.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17501A53C3FD00558F11 /* win32tc.c */; };
 		D05C17DA1A53C3FD00558F11 /* win32tc.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17501A53C3FD00558F11 /* win32tc.c */; };
 		D05C17DB1A53C3FD00558F11 /* win32tc.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17501A53C3FD00558F11 /* win32tc.c */; };
-		D05C17DC1A53C3FD00558F11 /* win32tc.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17501A53C3FD00558F11 /* win32tc.c */; };
 		D05C17DD1A53C3FD00558F11 /* win32tc.c in Sources */ = {isa = PBXBuildFile; fileRef = D05C17501A53C3FD00558F11 /* win32tc.c */; };
 		D06C9A43195FB4A4004D6C27 /* MASPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A40195FB4A4004D6C27 /* MASPreferencesWindow.xib */; };
 		D06C9A44195FB4A4004D6C27 /* MASPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A40195FB4A4004D6C27 /* MASPreferencesWindow.xib */; };
@@ -324,99 +286,6 @@
 		D06C9AB119600550004D6C27 /* PaneTopShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9AB019600550004D6C27 /* PaneTopShadow.png */; };
 		D06C9AB219600550004D6C27 /* PaneTopShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9AB019600550004D6C27 /* PaneTopShadow.png */; };
 		D06C9AB319600550004D6C27 /* PaneTopShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9AB019600550004D6C27 /* PaneTopShadow.png */; };
-		D07288D31A0FC94D00FB4368 /* OptionListAppearanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06C9A56195FB997004D6C27 /* OptionListAppearanceViewController.m */; };
-		D07288D41A0FC94D00FB4368 /* TidyDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D074B7981942CF0300F2E6F1 /* TidyDocument.m */; };
-		D07288D61A0FC94D00FB4368 /* DCOTransparentScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B9F0F919585060008864D6 /* DCOTransparentScroller.m */; };
-		D07288D81A0FC94D00FB4368 /* JSDTidyOption.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9EACE18E6680F008A55D5 /* JSDTidyOption.m */; };
-		D07288DA1A0FC94D00FB4368 /* DocumentAppearanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06C9A5F195FB9D0004D6C27 /* DocumentAppearanceViewController.m */; };
-		D07288DC1A0FC94D00FB4368 /* TidyDocumentSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D086892F194842A400BDAD72 /* TidyDocumentSourceViewController.m */; };
-		D07288E31A0FC94D00FB4368 /* JSDTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D047C72E1915FBF100B70A94 /* JSDTableCellView.m */; };
-		D07288E41A0FC94D00FB4368 /* JSDIntegerValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D081CBDA1917C1510041B2C5 /* JSDIntegerValueTransformer.m */; };
-		D07288E71A0FC94D00FB4368 /* JSDTidyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9EACB18E6680F008A55D5 /* JSDTidyModel.m */; };
-		D07288E81A0FC94D00FB4368 /* JSDTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9EAD118E6680F008A55D5 /* JSDTextField.m */; };
-		D07288ED1A0FC94D00FB4368 /* TidyDocumentWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D074B79A1942CF0300F2E6F1 /* TidyDocumentWindowController.m */; };
-		D07288EF1A0FC94D00FB4368 /* PreferenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9EAC618E6680F008A55D5 /* PreferenceController.m */; };
-		D07288F01A0FC94D00FB4368 /* OptionPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9EAC418E6680F008A55D5 /* OptionPaneController.m */; };
-		D07288F21A0FC94D00FB4368 /* JSDTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D074B7B31947D93800F2E6F1 /* JSDTableViewController.m */; };
-		D07288F31A0FC94D00FB4368 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D016A935182FD80700712C60 /* main.m */; };
-		D07288F41A0FC94D00FB4368 /* DCOTransparentScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B9F0FB19585060008864D6 /* DCOTransparentScrollView.m */; };
-		D07288F61A0FC94D00FB4368 /* NSTextView+JSDExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9EAD718E6680F008A55D5 /* NSTextView+JSDExtensions.m */; };
-		D07288F71A0FC94D00FB4368 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9EAC218E6680F008A55D5 /* AppController.m */; };
-		D07288F81A0FC94D00FB4368 /* OptionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06C9A4D195FB955004D6C27 /* OptionListViewController.m */; };
-		D07288F91A0FC94D00FB4368 /* NoodleLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0BB67AB193AB382007A3EB0 /* NoodleLineNumberView.m */; };
-		D07288FA1A0FC94D00FB4368 /* DCOAboutWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B9F0F019585010008864D6 /* DCOAboutWindowController.m */; };
-		D07288FB1A0FC94D00FB4368 /* MASPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06C9A42195FB4A4004D6C27 /* MASPreferencesWindowController.m */; };
-		D07288FC1A0FC94D00FB4368 /* JSDBoolToStringValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D04753B61938A19D00BB7163 /* JSDBoolToStringValueTransformer.m */; };
-		D07288FD1A0FC94D00FB4368 /* SavingOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06C9A68195FB9F2004D6C27 /* SavingOptionsViewController.m */; };
-		D07288FE1A0FC94D00FB4368 /* MiscOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06C9A71195FBA0F004D6C27 /* MiscOptionsViewController.m */; };
-		D07289001A0FC94D00FB4368 /* FirstRunController.m in Sources */ = {isa = PBXBuildFile; fileRef = D074B7961942CF0300F2E6F1 /* FirstRunController.m */; };
-		D07289011A0FC94D00FB4368 /* UpdaterOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06C9A7A195FBA3F004D6C27 /* UpdaterOptionsViewController.m */; };
-		D07289021A0FC94D00FB4368 /* EncodingHelperController.m in Sources */ = {isa = PBXBuildFile; fileRef = D074B7941942CF0300F2E6F1 /* EncodingHelperController.m */; };
-		D07289031A0FC94D00FB4368 /* JSDAllCapsValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D008F0181930D9D700559F3B /* JSDAllCapsValueTransformer.m */; };
-		D07289091A0FC94D00FB4368 /* NoodleLineNumberMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = D0BB67A9193AB382007A3EB0 /* NoodleLineNumberMarker.m */; };
-		D072890A1A0FC94D00FB4368 /* JSDTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9F1A218E6BF8D008A55D5 /* JSDTableView.m */; };
-		D072890D1A0FC94D00FB4368 /* NSApplication+TidyApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = D04D5F981902459500F77901 /* NSApplication+TidyApplication.m */; };
-		D072890F1A0FC94D00FB4368 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B9F10319585474008864D6 /* QuartzCore.framework */; };
-		D07289101A0FC94D00FB4368 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D016A929182FD80700712C60 /* Cocoa.framework */; };
-		D07289121A0FC94D00FB4368 /* messagesAccess.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE691911E4DC00B49779 /* messagesAccess.icns */; };
-		D07289131A0FC94D00FB4368 /* DCOAboutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0B9F0EE19585010008864D6 /* DCOAboutWindow.xib */; };
-		D07289141A0FC94D00FB4368 /* messagesConfig.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE6B1911E88000B49779 /* messagesConfig.icns */; };
-		D07289151A0FC94D00FB4368 /* messagesDocument.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE6C1911E88000B49779 /* messagesDocument.icns */; };
-		D07289161A0FC94D00FB4368 /* messagesError.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE6D1911E88000B49779 /* messagesError.icns */; };
-		D07289171A0FC94D00FB4368 /* messagesInfo.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE6E1911E88000B49779 /* messagesInfo.icns */; };
-		D07289181A0FC94D00FB4368 /* Acknowledgments.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D025BD5C195856B6006D7356 /* Acknowledgments.rtf */; };
-		D07289191A0FC94D00FB4368 /* messagesPanic.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE6F1911E88000B49779 /* messagesPanic.icns */; };
-		D072891A1A0FC94D00FB4368 /* DiffViewTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D03B89D91955474700E9B4D5 /* DiffViewTemplate.png */; };
-		D072891B1A0FC94D00FB4368 /* messagesWarning.icns in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE701911E88000B49779 /* messagesWarning.icns */; };
-		D072891C1A0FC94D00FB4368 /* prefsDoc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9AA5195FEC11004D6C27 /* prefsDoc@2x.png */; };
-		D072891D1A0FC94D00FB4368 /* TidyEncodingHelper.xib in Resources */ = {isa = PBXBuildFile; fileRef = D074B7891942BEE200F2E6F1 /* TidyEncodingHelper.xib */; };
-		D072891E1A0FC94D00FB4368 /* Application.icns in Resources */ = {isa = PBXBuildFile; fileRef = D036E20818F3D2F20009A9D4 /* Application.icns */; };
-		D072891F1A0FC94D00FB4368 /* MASPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A40195FB4A4004D6C27 /* MASPreferencesWindow.xib */; };
-		D07289201A0FC94D00FB4368 /* HTML.icns in Resources */ = {isa = PBXBuildFile; fileRef = D036E20918F3D2F20009A9D4 /* HTML.icns */; };
-		D07289211A0FC94D00FB4368 /* prefsSave.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A84195FE854004D6C27 /* prefsSave.png */; };
-		D07289221A0FC94D00FB4368 /* LayoutSourceHTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F541953280700BBD54C /* LayoutSourceHTemplate.png */; };
-		D07289231A0FC94D00FB4368 /* DiffsTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D03B89D319553E5D00E9B4D5 /* DiffsTemplate.png */; };
-		D07289241A0FC94D00FB4368 /* ToolbarAdvanced.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0A2E1F6197548D20015F667 /* ToolbarAdvanced.tiff */; };
-		D07289251A0FC94D00FB4368 /* OptionListAppearanceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A57195FB997004D6C27 /* OptionListAppearanceViewController.xib */; };
-		D07289261A0FC94D00FB4368 /* PHP.icns in Resources */ = {isa = PBXBuildFile; fileRef = D036E20A18F3D2F20009A9D4 /* PHP.icns */; };
-		D07289271A0FC94D00FB4368 /* TidyDocumentMessagesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D074B7A81944035800F2E6F1 /* TidyDocumentMessagesView.xib */; };
-		D07289281A0FC94D00FB4368 /* DocumentAppearanceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A60195FB9D0004D6C27 /* DocumentAppearanceViewController.xib */; };
-		D07289291A0FC94D00FB4368 /* TidyScripting.sdef in Resources */ = {isa = PBXBuildFile; fileRef = D036E21718F3D81E0009A9D4 /* TidyScripting.sdef */; };
-		D072892A1A0FC94D00FB4368 /* LayoutBottomPaneTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F521953280700BBD54C /* LayoutBottomPaneTemplate.png */; };
-		D072892B1A0FC94D00FB4368 /* Tidy.icns in Resources */ = {isa = PBXBuildFile; fileRef = D036E20B18F3D2F20009A9D4 /* Tidy.icns */; };
-		D072892C1A0FC94D00FB4368 /* ToolbarInfo.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0A2E1F7197548D20015F667 /* ToolbarInfo.tiff */; };
-		D072892D1A0FC94D00FB4368 /* XML.icns in Resources */ = {isa = PBXBuildFile; fileRef = D036E20C18F3D2F20009A9D4 /* XML.icns */; };
-		D072892E1A0FC94D00FB4368 /* HideDescriptionTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE16190C9FAC00B49779 /* HideDescriptionTemplate.pdf */; };
-		D072892F1A0FC94D00FB4368 /* prefsTidy.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A86195FE854004D6C27 /* prefsTidy.png */; };
-		D07289301A0FC94D00FB4368 /* LayoutSourceVTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F551953280700BBD54C /* LayoutSourceVTemplate.png */; };
-		D07289311A0FC94D00FB4368 /* ShowDescriptionTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE17190C9FAC00B49779 /* ShowDescriptionTemplate.pdf */; };
-		D07289321A0FC94D00FB4368 /* Balthisar Tidy (pro).help in Resources */ = {isa = PBXBuildFile; fileRef = D04E8FAD195D964F00D1CEDC /* Balthisar Tidy (pro).help */; };
-		D07289331A0FC94D00FB4368 /* prefsSave@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A85195FE854004D6C27 /* prefsSave@2x.png */; };
-		D07289341A0FC94D00FB4368 /* MiscOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A72195FBA0F004D6C27 /* MiscOptionsViewController.xib */; };
-		D07289351A0FC94D00FB4368 /* SavingOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A69195FB9F2004D6C27 /* SavingOptionsViewController.xib */; };
-		D07289361A0FC94D00FB4368 /* LayoutLeftPaneTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F531953280700BBD54C /* LayoutLeftPaneTemplate.png */; };
-		D07289371A0FC94D00FB4368 /* prefsTidyAppearance@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A89195FE854004D6C27 /* prefsTidyAppearance@2x.png */; };
-		D07289381A0FC94D00FB4368 /* prefsUpdate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A8B195FE854004D6C27 /* prefsUpdate@2x.png */; };
-		D07289391A0FC94D00FB4368 /* prefsTidyAppearance.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A88195FE854004D6C27 /* prefsTidyAppearance.png */; };
-		D072893A1A0FC94D00FB4368 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D036E1D818F3D25E0009A9D4 /* Credits.rtf */; };
-		D072893B1A0FC94D00FB4368 /* TidyDocumentSourceV.xib in Resources */ = {isa = PBXBuildFile; fileRef = D08689351948439700BDAD72 /* TidyDocumentSourceV.xib */; };
-		D072893C1A0FC94D00FB4368 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D036E1DC18F3D25E0009A9D4 /* InfoPlist.strings */; };
-		D072893D1A0FC94D00FB4368 /* JSDTidyModel.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE22190CDAA200B49779 /* JSDTidyModel.strings */; };
-		D072893E1A0FC94D00FB4368 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D036E1DE18F3D25E0009A9D4 /* Localizable.strings */; };
-		D072893F1A0FC94D00FB4368 /* PaneBottomShadow.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE1F190CB34500B49779 /* PaneBottomShadow.tiff */; };
-		D07289401A0FC94D00FB4368 /* FirstRunHelper.xib in Resources */ = {isa = PBXBuildFile; fileRef = D036E1DA18F3D25E0009A9D4 /* FirstRunHelper.xib */; };
-		D07289411A0FC94D00FB4368 /* PaneTopShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9AB019600550004D6C27 /* PaneTopShadow.png */; };
-		D07289421A0FC94D00FB4368 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D036E1E018F3D25E0009A9D4 /* MainMenu.xib */; };
-		D07289431A0FC94D00FB4368 /* prefsTidy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A87195FE854004D6C27 /* prefsTidy@2x.png */; };
-		D07289441A0FC94D00FB4368 /* UpdaterOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A7B195FBA3F004D6C27 /* UpdaterOptionsViewController.xib */; };
-		D07289451A0FC94D00FB4368 /* TidyDocumentSourceH.xib in Resources */ = {isa = PBXBuildFile; fileRef = D08689331948439700BDAD72 /* TidyDocumentSourceH.xib */; };
-		D07289461A0FC94D00FB4368 /* OptionPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = D036E1E218F3D25E0009A9D4 /* OptionPane.xib */; };
-		D07289471A0FC94D00FB4368 /* OptionListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A4E195FB955004D6C27 /* OptionListViewController.xib */; };
-		D07289481A0FC94D00FB4368 /* prefsDoc.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9AA4195FEC11004D6C27 /* prefsDoc.png */; };
-		D07289491A0FC94D00FB4368 /* TidyDocumentWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D036E1E618F3D25E0009A9D4 /* TidyDocumentWindow.xib */; };
-		D072894A1A0FC94D00FB4368 /* ScrollLockTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D03B89D71955457500E9B4D5 /* ScrollLockTemplate.png */; };
-		D072894B1A0FC94D00FB4368 /* prefsUpdate.png in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A8A195FE854004D6C27 /* prefsUpdate.png */; };
-		D07289521A0FCBB700FB4368 /* Balthisar Tidy (dev).help in Resources */ = {isa = PBXBuildFile; fileRef = D07289511A0FCBB700FB4368 /* Balthisar Tidy (dev).help */; };
 		D074B78B1942BEE200F2E6F1 /* TidyEncodingHelper.xib in Resources */ = {isa = PBXBuildFile; fileRef = D074B7891942BEE200F2E6F1 /* TidyEncodingHelper.xib */; };
 		D074B78C1942BEE200F2E6F1 /* TidyEncodingHelper.xib in Resources */ = {isa = PBXBuildFile; fileRef = D074B7891942BEE200F2E6F1 /* TidyEncodingHelper.xib */; };
 		D074B78D1942BEE200F2E6F1 /* TidyEncodingHelper.xib in Resources */ = {isa = PBXBuildFile; fileRef = D074B7891942BEE200F2E6F1 /* TidyEncodingHelper.xib */; };
@@ -575,13 +444,6 @@
 			remoteGlobalIDString = D01C70D31A558E1C00CC5038;
 			remoteInfo = "Balthisar Tidy Extension (app)";
 		};
-		D01C70FB1A55930B00CC5038 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D016A91E182FD80700712C60 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D01C70EB1A5591AB00CC5038;
-			remoteInfo = "Balthisar Tidy Extension (dev)";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -616,27 +478,6 @@
 				D028E8801A56699500C39852 /* Balthisar Tidy (app).appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D01C70CF1A55884C00CC5038 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				D028E8821A5669A600C39852 /* Balthisar Tidy (dev).appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D052568B1A0FCE8E00070A33 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				D052568E1A0FCEEB00070A33 /* Sparkle.framework in CopyFiles */,
-			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D05C16E01A53B79700558F11 /* CopyFiles */ = {
@@ -680,14 +521,11 @@
 		D01C70C31A55850D00CC5038 /* ActionRequestHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActionRequestHandler.m; sourceTree = "<group>"; };
 		D01C70DD1A558E1C00CC5038 /* Balthisar Tidy (app).appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Balthisar Tidy (app).appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D01C70E91A5591A500CC5038 /* Balthisar Tidy (pro).appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Balthisar Tidy (pro).appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D01C70F51A5591AB00CC5038 /* Balthisar Tidy (dev).appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Balthisar Tidy (dev).appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D025BD5D195856B6006D7356 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Base; path = Base.lproj/Acknowledgments.rtf; sourceTree = "<group>"; };
 		D028E8851A5670FB00C39852 /* Balthisar Tidy (app).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Balthisar Tidy (app).entitlements"; sourceTree = "<group>"; };
-		D028E8861A5670FB00C39852 /* Balthisar Tidy (dev).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Balthisar Tidy (dev).entitlements"; sourceTree = "<group>"; };
 		D028E8871A5670FB00C39852 /* Balthisar Tidy (pro).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Balthisar Tidy (pro).entitlements"; sourceTree = "<group>"; };
 		D028E8881A5670FB00C39852 /* Balthisar Tidy (web).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Balthisar Tidy (web).entitlements"; sourceTree = "<group>"; };
 		D028E8891A56721200C39852 /* Balthisar Tidy (app).entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Balthisar Tidy (app).entitlements"; path = "Balthisar Tidy/Balthisar Tidy (app).entitlements"; sourceTree = "<group>"; };
-		D028E88A1A56721200C39852 /* Balthisar Tidy (dev).entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Balthisar Tidy (dev).entitlements"; path = "Balthisar Tidy/Balthisar Tidy (dev).entitlements"; sourceTree = "<group>"; };
 		D028E88B1A56721200C39852 /* Balthisar Tidy (pro).entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Balthisar Tidy (pro).entitlements"; path = "Balthisar Tidy/Balthisar Tidy (pro).entitlements"; sourceTree = "<group>"; };
 		D028E88C1A56721200C39852 /* Balthisar Tidy (web).entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Balthisar Tidy (web).entitlements"; path = "Balthisar Tidy/Balthisar Tidy (web).entitlements"; sourceTree = "<group>"; };
 		D036E1D918F3D25E0009A9D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Base; path = Base.lproj/Credits.rtf; sourceTree = "<group>"; };
@@ -807,7 +645,6 @@
 		D06C9AA4195FEC11004D6C27 /* prefsDoc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = prefsDoc.png; path = "Images for Prefs/prefsDoc.png"; sourceTree = "<group>"; };
 		D06C9AA5195FEC11004D6C27 /* prefsDoc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "prefsDoc@2x.png"; path = "Images for Prefs/prefsDoc@2x.png"; sourceTree = "<group>"; };
 		D06C9AB019600550004D6C27 /* PaneTopShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PaneTopShadow.png; path = "Images for UI/PaneTopShadow.png"; sourceTree = "<group>"; };
-		D072894F1A0FC94D00FB4368 /* Balthisar Tidy (dev).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Balthisar Tidy (dev).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D07289511A0FCBB700FB4368 /* Balthisar Tidy (dev).help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Balthisar Tidy (dev).help"; sourceTree = "<group>"; };
 		D074B78A1942BEE200F2E6F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TidyEncodingHelper.xib; sourceTree = "<group>"; };
 		D074B7931942CF0300F2E6F1 /* EncodingHelperController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EncodingHelperController.h; path = DocumentWindow/EncodingHelperController.h; sourceTree = "<group>"; };
@@ -918,28 +755,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D01C70EE1A5591AB00CC5038 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D01C70EF1A5591AB00CC5038 /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D05C16DF1A53B79700558F11 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D072890E1A0FC94D00FB4368 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D072890F1A0FC94D00FB4368 /* QuartzCore.framework in Frameworks */,
-				D07289101A0FC94D00FB4368 /* Cocoa.framework in Frameworks */,
-				D052568D1A0FCECD00070A33 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -980,12 +799,10 @@
 				D016A926182FD80700712C60 /* Balthisar Tidy.app */,
 				D0913CDE18B0AC06005DB2E4 /* Balthisar Tidy.app */,
 				D0BB67FF193C820A007A3EB0 /* Balthisar Tidy for Work.app */,
-				D072894F1A0FC94D00FB4368 /* Balthisar Tidy (dev).app */,
 				D05C16E21A53B79700558F11 /* tidy */,
 				D01C70BA1A55850D00CC5038 /* Balthisar Tidy (web).appex */,
 				D01C70DD1A558E1C00CC5038 /* Balthisar Tidy (app).appex */,
 				D01C70E91A5591A500CC5038 /* Balthisar Tidy (pro).appex */,
-				D01C70F51A5591AB00CC5038 /* Balthisar Tidy (dev).appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1055,7 +872,6 @@
 				D028E8881A5670FB00C39852 /* Balthisar Tidy (web).entitlements */,
 				D028E8851A5670FB00C39852 /* Balthisar Tidy (app).entitlements */,
 				D028E8871A5670FB00C39852 /* Balthisar Tidy (pro).entitlements */,
-				D028E8861A5670FB00C39852 /* Balthisar Tidy (dev).entitlements */,
 				D01C70BE1A55850D00CC5038 /* Info.plist */,
 				D01C70BF1A55850D00CC5038 /* icon.icns */,
 			);
@@ -1183,7 +999,6 @@
 				D028E88C1A56721200C39852 /* Balthisar Tidy (web).entitlements */,
 				D028E8891A56721200C39852 /* Balthisar Tidy (app).entitlements */,
 				D028E88B1A56721200C39852 /* Balthisar Tidy (pro).entitlements */,
-				D028E88A1A56721200C39852 /* Balthisar Tidy (dev).entitlements */,
 				D016A935182FD80700712C60 /* main.m */,
 				D016A931182FD80700712C60 /* Balthisar Tidy-Info.plist */,
 				D016A937182FD80700712C60 /* Balthisar Tidy-Prefix.pch */,
@@ -1507,23 +1322,6 @@
 			productReference = D01C70E91A5591A500CC5038 /* Balthisar Tidy (pro).appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		D01C70EB1A5591AB00CC5038 /* Balthisar Tidy Extension (dev) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D01C70F21A5591AB00CC5038 /* Build configuration list for PBXNativeTarget "Balthisar Tidy Extension (dev)" */;
-			buildPhases = (
-				D01C70EC1A5591AB00CC5038 /* Sources */,
-				D01C70EE1A5591AB00CC5038 /* Frameworks */,
-				D01C70F01A5591AB00CC5038 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Balthisar Tidy Extension (dev)";
-			productName = "Balthisar Tidy Extension";
-			productReference = D01C70F51A5591AB00CC5038 /* Balthisar Tidy (dev).appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		D05C16E11A53B79700558F11 /* tidy */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D05C16E61A53B79700558F11 /* Build configuration list for PBXNativeTarget "tidy" */;
@@ -1541,26 +1339,6 @@
 			productName = tidy_command;
 			productReference = D05C16E21A53B79700558F11 /* tidy */;
 			productType = "com.apple.product-type.tool";
-		};
-		D07288D11A0FC94D00FB4368 /* Balthisar Tidy (dev) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D072894C1A0FC94D00FB4368 /* Build configuration list for PBXNativeTarget "Balthisar Tidy (dev)" */;
-			buildPhases = (
-				D07288D21A0FC94D00FB4368 /* Sources */,
-				D072890E1A0FC94D00FB4368 /* Frameworks */,
-				D07289111A0FC94D00FB4368 /* Resources */,
-				D052568B1A0FCE8E00070A33 /* CopyFiles */,
-				D01C70CF1A55884C00CC5038 /* Embed App Extensions */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D01C70FC1A55930B00CC5038 /* PBXTargetDependency */,
-			);
-			name = "Balthisar Tidy (dev)";
-			productName = "Balthisar Tidy";
-			productReference = D072894F1A0FC94D00FB4368 /* Balthisar Tidy (dev).app */;
-			productType = "com.apple.product-type.application";
 		};
 		D0913CA118B0AC06005DB2E4 /* Balthisar Tidy (app) */ = {
 			isa = PBXNativeTarget;
@@ -1613,10 +1391,10 @@
 						DevelopmentTeam = 9PN2JXXG7Y;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
-								enabled = 0;
+								enabled = 1;
 							};
 							com.apple.Sandbox = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -1625,10 +1403,10 @@
 						DevelopmentTeam = 9PN2JXXG7Y;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
-								enabled = 0;
+								enabled = 1;
 							};
 							com.apple.Sandbox = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -1649,25 +1427,8 @@
 							};
 						};
 					};
-					D01C70EB1A5591AB00CC5038 = {
-						SystemCapabilities = {
-							com.apple.ApplicationGroups.Mac = {
-								enabled = 0;
-							};
-							com.apple.Sandbox = {
-								enabled = 1;
-							};
-						};
-					};
 					D05C16E11A53B79700558F11 = {
 						CreatedOnToolsVersion = 6.1.1;
-					};
-					D07288D11A0FC94D00FB4368 = {
-						SystemCapabilities = {
-							com.apple.Sandbox = {
-								enabled = 0;
-							};
-						};
 					};
 					D0913CA118B0AC06005DB2E4 = {
 						DevelopmentTeam = 9PN2JXXG7Y;
@@ -1709,12 +1470,10 @@
 				D016A925182FD80700712C60 /* Balthisar Tidy (web) */,
 				D0913CA118B0AC06005DB2E4 /* Balthisar Tidy (app) */,
 				D0BB67B6193C820A007A3EB0 /* Balthisar Tidy (pro) */,
-				D07288D11A0FC94D00FB4368 /* Balthisar Tidy (dev) */,
 				D05C16E11A53B79700558F11 /* tidy */,
 				D01C70B91A55850D00CC5038 /* Balthisar Tidy Extension (web) */,
 				D01C70D31A558E1C00CC5038 /* Balthisar Tidy Extension (app) */,
 				D01C70DF1A5591A500CC5038 /* Balthisar Tidy Extension (pro) */,
-				D01C70EB1A5591AB00CC5038 /* Balthisar Tidy Extension (dev) */,
 			);
 		};
 /* End PBXProject section */
@@ -1767,7 +1526,6 @@
 				D0E6AE24190CDAA200B49779 /* JSDTidyModel.strings in Resources */,
 				D06C9A9E195FE854004D6C27 /* prefsUpdate.png in Resources */,
 				D06C9AA9195FEC11004D6C27 /* prefsDoc@2x.png in Resources */,
-				D028E88E1A56721200C39852 /* Balthisar Tidy (dev).entitlements in Resources */,
 				D036E1EE18F3D25E0009A9D4 /* Localizable.strings in Resources */,
 				D0E6AE20190CB34500B49779 /* PaneBottomShadow.tiff in Resources */,
 				D06C9A76195FBA0F004D6C27 /* MiscOptionsViewController.xib in Resources */,
@@ -1810,81 +1568,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D01C70E51A5591A500CC5038 /* icon.icns in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D01C70F01A5591AB00CC5038 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D01C70F11A5591AB00CC5038 /* icon.icns in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D07289111A0FC94D00FB4368 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D07289121A0FC94D00FB4368 /* messagesAccess.icns in Resources */,
-				D07289131A0FC94D00FB4368 /* DCOAboutWindow.xib in Resources */,
-				D07289521A0FCBB700FB4368 /* Balthisar Tidy (dev).help in Resources */,
-				D07289141A0FC94D00FB4368 /* messagesConfig.icns in Resources */,
-				D07289151A0FC94D00FB4368 /* messagesDocument.icns in Resources */,
-				D01C70B51A55463400CC5038 /* ServicesMenu.strings in Resources */,
-				D07289161A0FC94D00FB4368 /* messagesError.icns in Resources */,
-				D07289171A0FC94D00FB4368 /* messagesInfo.icns in Resources */,
-				D07289181A0FC94D00FB4368 /* Acknowledgments.rtf in Resources */,
-				D07289191A0FC94D00FB4368 /* messagesPanic.icns in Resources */,
-				D072891A1A0FC94D00FB4368 /* DiffViewTemplate.png in Resources */,
-				D072891B1A0FC94D00FB4368 /* messagesWarning.icns in Resources */,
-				D072891C1A0FC94D00FB4368 /* prefsDoc@2x.png in Resources */,
-				D072891D1A0FC94D00FB4368 /* TidyEncodingHelper.xib in Resources */,
-				D072891E1A0FC94D00FB4368 /* Application.icns in Resources */,
-				D072891F1A0FC94D00FB4368 /* MASPreferencesWindow.xib in Resources */,
-				D07289201A0FC94D00FB4368 /* HTML.icns in Resources */,
-				D07289211A0FC94D00FB4368 /* prefsSave.png in Resources */,
-				D07289221A0FC94D00FB4368 /* LayoutSourceHTemplate.png in Resources */,
-				D07289231A0FC94D00FB4368 /* DiffsTemplate.png in Resources */,
-				D07289241A0FC94D00FB4368 /* ToolbarAdvanced.tiff in Resources */,
-				D07289251A0FC94D00FB4368 /* OptionListAppearanceViewController.xib in Resources */,
-				D07289261A0FC94D00FB4368 /* PHP.icns in Resources */,
-				D07289271A0FC94D00FB4368 /* TidyDocumentMessagesView.xib in Resources */,
-				D07289281A0FC94D00FB4368 /* DocumentAppearanceViewController.xib in Resources */,
-				D07289291A0FC94D00FB4368 /* TidyScripting.sdef in Resources */,
-				D072892A1A0FC94D00FB4368 /* LayoutBottomPaneTemplate.png in Resources */,
-				D072892B1A0FC94D00FB4368 /* Tidy.icns in Resources */,
-				D072892C1A0FC94D00FB4368 /* ToolbarInfo.tiff in Resources */,
-				D072892D1A0FC94D00FB4368 /* XML.icns in Resources */,
-				D072892E1A0FC94D00FB4368 /* HideDescriptionTemplate.pdf in Resources */,
-				D072892F1A0FC94D00FB4368 /* prefsTidy.png in Resources */,
-				D07289301A0FC94D00FB4368 /* LayoutSourceVTemplate.png in Resources */,
-				D07289311A0FC94D00FB4368 /* ShowDescriptionTemplate.pdf in Resources */,
-				D07289321A0FC94D00FB4368 /* Balthisar Tidy (pro).help in Resources */,
-				D07289331A0FC94D00FB4368 /* prefsSave@2x.png in Resources */,
-				D07289341A0FC94D00FB4368 /* MiscOptionsViewController.xib in Resources */,
-				D07289351A0FC94D00FB4368 /* SavingOptionsViewController.xib in Resources */,
-				D07289361A0FC94D00FB4368 /* LayoutLeftPaneTemplate.png in Resources */,
-				D07289371A0FC94D00FB4368 /* prefsTidyAppearance@2x.png in Resources */,
-				D07289381A0FC94D00FB4368 /* prefsUpdate@2x.png in Resources */,
-				D07289391A0FC94D00FB4368 /* prefsTidyAppearance.png in Resources */,
-				D072893A1A0FC94D00FB4368 /* Credits.rtf in Resources */,
-				D072893B1A0FC94D00FB4368 /* TidyDocumentSourceV.xib in Resources */,
-				D072893C1A0FC94D00FB4368 /* InfoPlist.strings in Resources */,
-				D072893D1A0FC94D00FB4368 /* JSDTidyModel.strings in Resources */,
-				D072893E1A0FC94D00FB4368 /* Localizable.strings in Resources */,
-				D072893F1A0FC94D00FB4368 /* PaneBottomShadow.tiff in Resources */,
-				D07289401A0FC94D00FB4368 /* FirstRunHelper.xib in Resources */,
-				D07289411A0FC94D00FB4368 /* PaneTopShadow.png in Resources */,
-				D07289421A0FC94D00FB4368 /* MainMenu.xib in Resources */,
-				D07289431A0FC94D00FB4368 /* prefsTidy@2x.png in Resources */,
-				D07289441A0FC94D00FB4368 /* UpdaterOptionsViewController.xib in Resources */,
-				D07289451A0FC94D00FB4368 /* TidyDocumentSourceH.xib in Resources */,
-				D07289461A0FC94D00FB4368 /* OptionPane.xib in Resources */,
-				D07289471A0FC94D00FB4368 /* OptionListViewController.xib in Resources */,
-				D07289481A0FC94D00FB4368 /* prefsDoc.png in Resources */,
-				D07289491A0FC94D00FB4368 /* TidyDocumentWindow.xib in Resources */,
-				D072894A1A0FC94D00FB4368 /* ScrollLockTemplate.png in Resources */,
-				D072894B1A0FC94D00FB4368 /* prefsUpdate.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2131,14 +1814,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D01C70EC1A5591AB00CC5038 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D01C70ED1A5591AB00CC5038 /* ActionRequestHandler.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D05C16DE1A53B79700558F11 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2172,75 +1847,6 @@
 				D05C17B51A53C3FD00558F11 /* pprint.c in Sources */,
 				D05C17D81A53C3FD00558F11 /* utf8.c in Sources */,
 				D05C17BA1A53C3FD00558F11 /* sprtf.c in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D07288D21A0FC94D00FB4368 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D05C176E1A53C3FD00558F11 /* attrs.c in Sources */,
-				D07288D31A0FC94D00FB4368 /* OptionListAppearanceViewController.m in Sources */,
-				D07288D41A0FC94D00FB4368 /* TidyDocument.m in Sources */,
-				D05C17CD1A53C3FD00558F11 /* tidylib.c in Sources */,
-				D07288D61A0FC94D00FB4368 /* DCOTransparentScroller.m in Sources */,
-				D07288D81A0FC94D00FB4368 /* JSDTidyOption.m in Sources */,
-				D05C175F1A53C3FD00558F11 /* attrask.c in Sources */,
-				D07288DA1A0FC94D00FB4368 /* DocumentAppearanceViewController.m in Sources */,
-				D07288DC1A0FC94D00FB4368 /* TidyDocumentSourceViewController.m in Sources */,
-				D038A0DB1A2180EC009A874A /* JSDTextView.m in Sources */,
-				D05C17B91A53C3FD00558F11 /* sprtf.c in Sources */,
-				D07288E31A0FC94D00FB4368 /* JSDTableCellView.m in Sources */,
-				D05C175A1A53C3FD00558F11 /* alloc.c in Sources */,
-				D07288E41A0FC94D00FB4368 /* JSDIntegerValueTransformer.m in Sources */,
-				D07288E71A0FC94D00FB4368 /* JSDTidyModel.m in Sources */,
-				D07288E81A0FC94D00FB4368 /* JSDTextField.m in Sources */,
-				D07288ED1A0FC94D00FB4368 /* TidyDocumentWindowController.m in Sources */,
-				D07288EF1A0FC94D00FB4368 /* PreferenceController.m in Sources */,
-				D07288F01A0FC94D00FB4368 /* OptionPaneController.m in Sources */,
-				D07288F21A0FC94D00FB4368 /* JSDTableViewController.m in Sources */,
-				D07288F31A0FC94D00FB4368 /* main.m in Sources */,
-				D05C17D21A53C3FD00558F11 /* tmbstr.c in Sources */,
-				D05C17821A53C3FD00558F11 /* config.c in Sources */,
-				D07288F41A0FC94D00FB4368 /* DCOTransparentScrollView.m in Sources */,
-				D07288F61A0FC94D00FB4368 /* NSTextView+JSDExtensions.m in Sources */,
-				D05C17A01A53C3FD00558F11 /* lexer.c in Sources */,
-				D05C17911A53C3FD00558F11 /* gdoc.c in Sources */,
-				D07288F71A0FC94D00FB4368 /* AppController.m in Sources */,
-				D05C179B1A53C3FD00558F11 /* istack.c in Sources */,
-				D05C17B41A53C3FD00558F11 /* pprint.c in Sources */,
-				D05C17D71A53C3FD00558F11 /* utf8.c in Sources */,
-				D05C17C31A53C3FD00558F11 /* tagask.c in Sources */,
-				D05C17AF1A53C3FD00558F11 /* parser.c in Sources */,
-				D05C178C1A53C3FD00558F11 /* fileio.c in Sources */,
-				D05C17DC1A53C3FD00558F11 /* win32tc.c in Sources */,
-				D07288F81A0FC94D00FB4368 /* OptionListViewController.m in Sources */,
-				D07288F91A0FC94D00FB4368 /* NoodleLineNumberView.m in Sources */,
-				D07288FA1A0FC94D00FB4368 /* DCOAboutWindowController.m in Sources */,
-				D07288FB1A0FC94D00FB4368 /* MASPreferencesWindowController.m in Sources */,
-				D0498A641A552851005A207D /* TidyService.m in Sources */,
-				D05C17551A53C3FD00558F11 /* access.c in Sources */,
-				D05C177D1A53C3FD00558F11 /* clean.c in Sources */,
-				D07288FC1A0FC94D00FB4368 /* JSDBoolToStringValueTransformer.m in Sources */,
-				D05C17731A53C3FD00558F11 /* buffio.c in Sources */,
-				D07288FD1A0FC94D00FB4368 /* SavingOptionsViewController.m in Sources */,
-				D07288FE1A0FC94D00FB4368 /* MiscOptionsViewController.m in Sources */,
-				D07289001A0FC94D00FB4368 /* FirstRunController.m in Sources */,
-				D07289011A0FC94D00FB4368 /* UpdaterOptionsViewController.m in Sources */,
-				D05C17961A53C3FD00558F11 /* iconvtc.c in Sources */,
-				D05C17BE1A53C3FD00558F11 /* streamio.c in Sources */,
-				D07289021A0FC94D00FB4368 /* EncodingHelperController.m in Sources */,
-				D05C17641A53C3FD00558F11 /* attrdict.c in Sources */,
-				D05C17C81A53C3FD00558F11 /* tags.c in Sources */,
-				D05C17781A53C3FD00558F11 /* charsets.c in Sources */,
-				D07289031A0FC94D00FB4368 /* JSDAllCapsValueTransformer.m in Sources */,
-				D07289091A0FC94D00FB4368 /* NoodleLineNumberMarker.m in Sources */,
-				D05C17871A53C3FD00558F11 /* entities.c in Sources */,
-				D05C17AA1A53C3FD00558F11 /* mappedio.c in Sources */,
-				D05C17691A53C3FD00558F11 /* attrget.c in Sources */,
-				D072890A1A0FC94D00FB4368 /* JSDTableView.m in Sources */,
-				D05C17A51A53C3FD00558F11 /* localize.c in Sources */,
-				D072890D1A0FC94D00FB4368 /* NSApplication+TidyApplication.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2399,11 +2005,6 @@
 			isa = PBXTargetDependency;
 			target = D01C70D31A558E1C00CC5038 /* Balthisar Tidy Extension (app) */;
 			targetProxy = D01C70F91A55930300CC5038 /* PBXContainerItemProxy */;
-		};
-		D01C70FC1A55930B00CC5038 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D01C70EB1A5591AB00CC5038 /* Balthisar Tidy Extension (dev) */;
-			targetProxy = D01C70FB1A55930B00CC5038 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2627,6 +2228,7 @@
 				TIDY_APP_BUNDLE_ID = "com.balthisar.web.free.balthisar-tidy";
 				TIDY_HELP_BOOK_FOLDER = "Balthisar Tidy (web).help";
 				TIDY_HELP_BOOK_KEY = "com.balthisar.Balthisar-Tidy.web.help";
+				TIDY_UPDATE_URL = "http://balthisar.dev/softwareupdates/updatecheck/tidy/index.xml";
 			};
 			name = Debug;
 		};
@@ -2656,6 +2258,7 @@
 				TIDY_APP_BUNDLE_ID = "com.balthisar.web.free.balthisar-tidy";
 				TIDY_HELP_BOOK_FOLDER = "Balthisar Tidy (web).help";
 				TIDY_HELP_BOOK_KEY = "com.balthisar.Balthisar-Tidy.web.help";
+				TIDY_UPDATE_URL = "http://www.balthisar.com/softwareupdates/updatecheck/tidy/";
 			};
 			name = Release;
 		};
@@ -2665,7 +2268,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar Tidy (web).entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy (web).entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -2693,7 +2296,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar Tidy (web).entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy (web).entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -2815,58 +2418,6 @@
 			};
 			name = Release;
 		};
-		D01C70F31A5591AB00CC5038 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar Tidy (dev).entitlements";
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = "Balthisar Tidy Extension/Info.plist";
-				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = "Balthisar Tidy (dev)";
-				PROVISIONING_PROFILE = "";
-				SKIP_INSTALL = YES;
-				TIDY_APP_BUNDLE_ID = "com.balthisar.Balthisar-Tidy.dev";
-			};
-			name = Debug;
-		};
-		D01C70F41A5591AB00CC5038 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar Tidy (dev).entitlements";
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = "Balthisar Tidy Extension/Info.plist";
-				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "Balthisar Tidy (dev)";
-				PROVISIONING_PROFILE = "";
-				SKIP_INSTALL = YES;
-				TIDY_APP_BUNDLE_ID = "com.balthisar.Balthisar-Tidy.dev";
-			};
-			name = Release;
-		};
 		D05C16E71A53B79700558F11 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2909,70 +2460,6 @@
 			};
 			name = Release;
 		};
-		D072894D1A0FC94D00FB4368 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				APPLY_RULES_IN_COPY_FILES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
-				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy (dev).entitlements";
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "./**";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Balthisar Tidy/Balthisar Tidy-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					TARGET_DEV,
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
-				GCC_WARN_UNUSED_PARAMETER = NO;
-				INFOPLIST_FILE = "Balthisar Tidy/Balthisar Tidy-Info.plist";
-				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
-				JSD_APPLESCRIPT_VALUE = yes;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				PRODUCT_NAME = "Balthisar Tidy (dev)";
-				PROVISIONING_PROFILE = "";
-				TIDY_APP_BUNDLE_ID = "com.balthisar.Balthisar-Tidy.dev";
-				TIDY_HELP_BOOK_FOLDER = "Balthisar Tidy (dev).help";
-				TIDY_HELP_BOOK_KEY = "com.balthisar.Balthisar-Tidy.dev.help";
-			};
-			name = Debug;
-		};
-		D072894E1A0FC94D00FB4368 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				APPLY_RULES_IN_COPY_FILES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
-				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy (dev).entitlements";
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "./**";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Balthisar Tidy/Balthisar Tidy-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = TARGET_DEV;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
-				GCC_WARN_UNUSED_PARAMETER = NO;
-				INFOPLIST_FILE = "Balthisar Tidy/Balthisar Tidy-Info.plist";
-				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
-				JSD_APPLESCRIPT_VALUE = yes;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				PRODUCT_NAME = "Balthisar Tidy (dev)";
-				PROVISIONING_PROFILE = "";
-				TIDY_APP_BUNDLE_ID = "com.balthisar.Balthisar-Tidy.dev";
-				TIDY_HELP_BOOK_FOLDER = "Balthisar Tidy (dev).help";
-				TIDY_HELP_BOOK_KEY = "com.balthisar.Balthisar-Tidy.dev.help";
-			};
-			name = Release;
-		};
 		D0913CDC18B0AC06005DB2E4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3003,6 +2490,7 @@
 				TIDY_APP_BUNDLE_ID = "com.balthisar.Balthisar-Tidy";
 				TIDY_HELP_BOOK_FOLDER = "Balthisar Tidy (app).help";
 				TIDY_HELP_BOOK_KEY = "com.balthisar.Balthisar-Tidy.help";
+				TIDY_UPDATE_URL = "http://balthisar.dev/softwareupdates/updatecheck/tidy/index.xml";
 			};
 			name = Debug;
 		};
@@ -3032,6 +2520,7 @@
 				TIDY_APP_BUNDLE_ID = "com.balthisar.Balthisar-Tidy";
 				TIDY_HELP_BOOK_FOLDER = "Balthisar Tidy (app).help";
 				TIDY_HELP_BOOK_KEY = "com.balthisar.Balthisar-Tidy.help";
+				TIDY_UPDATE_URL = "http://www.balthisar.com/softwareupdates/updatecheck/tidy/";
 			};
 			name = Release;
 		};
@@ -3065,6 +2554,7 @@
 				TIDY_APP_BUNDLE_ID = "com.balthisar.Balthisar-Tidy.pro";
 				TIDY_HELP_BOOK_FOLDER = "Balthisar Tidy (pro).help";
 				TIDY_HELP_BOOK_KEY = "com.balthisar.Balthisar-Tidy.pro.help";
+				TIDY_UPDATE_URL = "http://balthisar.dev/softwareupdates/updatecheck/tidy/index.xml";
 			};
 			name = Debug;
 		};
@@ -3094,6 +2584,7 @@
 				TIDY_APP_BUNDLE_ID = "com.balthisar.Balthisar-Tidy.pro";
 				TIDY_HELP_BOOK_FOLDER = "Balthisar Tidy (pro).help";
 				TIDY_HELP_BOOK_KEY = "com.balthisar.Balthisar-Tidy.pro.help";
+				TIDY_UPDATE_URL = "http://www.balthisar.com/softwareupdates/updatecheck/tidy/";
 			};
 			name = Release;
 		};
@@ -3145,29 +2636,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D01C70F21A5591AB00CC5038 /* Build configuration list for PBXNativeTarget "Balthisar Tidy Extension (dev)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D01C70F31A5591AB00CC5038 /* Debug */,
-				D01C70F41A5591AB00CC5038 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		D05C16E61A53B79700558F11 /* Build configuration list for PBXNativeTarget "tidy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D05C16E71A53B79700558F11 /* Debug */,
 				D05C16E81A53B79700558F11 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D072894C1A0FC94D00FB4368 /* Build configuration list for PBXNativeTarget "Balthisar Tidy (dev)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D072894D1A0FC94D00FB4368 /* Debug */,
-				D072894E1A0FC94D00FB4368 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

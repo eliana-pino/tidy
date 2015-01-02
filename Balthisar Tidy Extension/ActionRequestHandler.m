@@ -37,7 +37,8 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)beginRequestWithExtensionContext:(NSExtensionContext *)context
 {
-    NSUserDefaults *myDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"com.balthisar.Balthisar-Tidy.prefs"];
+    NSUserDefaults *myDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.balthisar.web.free.balthisar-tidy.prefs"];
+    NSLog(@"%@", @"------------------------------------------------------");
     NSLog(@"%@", myDefaults);
     
     //[myDefaults setObject:@"foo" forKey:@"bar"];
