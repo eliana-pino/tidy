@@ -53,6 +53,10 @@
 		D028E8801A56699500C39852 /* Balthisar Tidy (app).appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D01C70DD1A558E1C00CC5038 /* Balthisar Tidy (app).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D028E8811A56699D00C39852 /* Balthisar Tidy (pro).appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D01C70E91A5591A500CC5038 /* Balthisar Tidy (pro).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D028E8821A5669A600C39852 /* Balthisar Tidy (dev).appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D01C70F51A5591AB00CC5038 /* Balthisar Tidy (dev).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D028E88D1A56721200C39852 /* Balthisar Tidy (app).entitlements in Resources */ = {isa = PBXBuildFile; fileRef = D028E8891A56721200C39852 /* Balthisar Tidy (app).entitlements */; };
+		D028E88E1A56721200C39852 /* Balthisar Tidy (dev).entitlements in Resources */ = {isa = PBXBuildFile; fileRef = D028E88A1A56721200C39852 /* Balthisar Tidy (dev).entitlements */; };
+		D028E88F1A56721200C39852 /* Balthisar Tidy (pro).entitlements in Resources */ = {isa = PBXBuildFile; fileRef = D028E88B1A56721200C39852 /* Balthisar Tidy (pro).entitlements */; };
+		D028E8901A56721200C39852 /* Balthisar Tidy (web).entitlements in Resources */ = {isa = PBXBuildFile; fileRef = D028E88C1A56721200C39852 /* Balthisar Tidy (web).entitlements */; };
 		D036E1E818F3D25E0009A9D4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D036E1D818F3D25E0009A9D4 /* Credits.rtf */; };
 		D036E1E918F3D25E0009A9D4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D036E1D818F3D25E0009A9D4 /* Credits.rtf */; };
 		D036E1EA18F3D25E0009A9D4 /* FirstRunHelper.xib in Resources */ = {isa = PBXBuildFile; fileRef = D036E1DA18F3D25E0009A9D4 /* FirstRunHelper.xib */; };
@@ -672,14 +676,20 @@
 		D01C70BA1A55850D00CC5038 /* Balthisar Tidy (web).appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Balthisar Tidy (web).appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D01C70BE1A55850D00CC5038 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D01C70BF1A55850D00CC5038 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
-		D01C70C11A55850D00CC5038 /* Balthisar_Tidy_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Balthisar_Tidy_Extension.entitlements; sourceTree = "<group>"; };
 		D01C70C21A55850D00CC5038 /* ActionRequestHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionRequestHandler.h; sourceTree = "<group>"; };
 		D01C70C31A55850D00CC5038 /* ActionRequestHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActionRequestHandler.m; sourceTree = "<group>"; };
 		D01C70DD1A558E1C00CC5038 /* Balthisar Tidy (app).appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Balthisar Tidy (app).appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D01C70E91A5591A500CC5038 /* Balthisar Tidy (pro).appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Balthisar Tidy (pro).appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D01C70F51A5591AB00CC5038 /* Balthisar Tidy (dev).appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Balthisar Tidy (dev).appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D025BD5D195856B6006D7356 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Base; path = Base.lproj/Acknowledgments.rtf; sourceTree = "<group>"; };
-		D026169E1836F48A002ABD72 /* Balthisar Tidy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = "Balthisar Tidy.entitlements"; path = "Balthisar Tidy/Balthisar Tidy.entitlements"; sourceTree = "<group>"; };
+		D028E8851A5670FB00C39852 /* Balthisar Tidy (app).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Balthisar Tidy (app).entitlements"; sourceTree = "<group>"; };
+		D028E8861A5670FB00C39852 /* Balthisar Tidy (dev).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Balthisar Tidy (dev).entitlements"; sourceTree = "<group>"; };
+		D028E8871A5670FB00C39852 /* Balthisar Tidy (pro).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Balthisar Tidy (pro).entitlements"; sourceTree = "<group>"; };
+		D028E8881A5670FB00C39852 /* Balthisar Tidy (web).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Balthisar Tidy (web).entitlements"; sourceTree = "<group>"; };
+		D028E8891A56721200C39852 /* Balthisar Tidy (app).entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Balthisar Tidy (app).entitlements"; path = "Balthisar Tidy/Balthisar Tidy (app).entitlements"; sourceTree = "<group>"; };
+		D028E88A1A56721200C39852 /* Balthisar Tidy (dev).entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Balthisar Tidy (dev).entitlements"; path = "Balthisar Tidy/Balthisar Tidy (dev).entitlements"; sourceTree = "<group>"; };
+		D028E88B1A56721200C39852 /* Balthisar Tidy (pro).entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Balthisar Tidy (pro).entitlements"; path = "Balthisar Tidy/Balthisar Tidy (pro).entitlements"; sourceTree = "<group>"; };
+		D028E88C1A56721200C39852 /* Balthisar Tidy (web).entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Balthisar Tidy (web).entitlements"; path = "Balthisar Tidy/Balthisar Tidy (web).entitlements"; sourceTree = "<group>"; };
 		D036E1D918F3D25E0009A9D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Base; path = Base.lproj/Credits.rtf; sourceTree = "<group>"; };
 		D036E1DB18F3D25E0009A9D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/FirstRunHelper.xib; sourceTree = "<group>"; };
 		D036E1DD18F3D25E0009A9D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1042,9 +1052,12 @@
 		D01C70BD1A55850D00CC5038 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D028E8881A5670FB00C39852 /* Balthisar Tidy (web).entitlements */,
+				D028E8851A5670FB00C39852 /* Balthisar Tidy (app).entitlements */,
+				D028E8871A5670FB00C39852 /* Balthisar Tidy (pro).entitlements */,
+				D028E8861A5670FB00C39852 /* Balthisar Tidy (dev).entitlements */,
 				D01C70BE1A55850D00CC5038 /* Info.plist */,
 				D01C70BF1A55850D00CC5038 /* icon.icns */,
-				D01C70C11A55850D00CC5038 /* Balthisar_Tidy_Extension.entitlements */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1167,8 +1180,11 @@
 		D079D8DA1A17EF36009CDF8B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D028E88C1A56721200C39852 /* Balthisar Tidy (web).entitlements */,
+				D028E8891A56721200C39852 /* Balthisar Tidy (app).entitlements */,
+				D028E88B1A56721200C39852 /* Balthisar Tidy (pro).entitlements */,
+				D028E88A1A56721200C39852 /* Balthisar Tidy (dev).entitlements */,
 				D016A935182FD80700712C60 /* main.m */,
-				D026169E1836F48A002ABD72 /* Balthisar Tidy.entitlements */,
 				D016A931182FD80700712C60 /* Balthisar Tidy-Info.plist */,
 				D016A937182FD80700712C60 /* Balthisar Tidy-Prefix.pch */,
 			);
@@ -1608,6 +1624,9 @@
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = 9PN2JXXG7Y;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.Mac = {
+								enabled = 0;
+							};
 							com.apple.Sandbox = {
 								enabled = 0;
 							};
@@ -1616,17 +1635,27 @@
 					D01C70D31A558E1C00CC5038 = {
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.Sandbox = {
 								enabled = 1;
 							};
 						};
 					};
+					D01C70DF1A5591A500CC5038 = {
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.Mac = {
+								enabled = 0;
+							};
+						};
+					};
 					D01C70EB1A5591AB00CC5038 = {
 						SystemCapabilities = {
-							com.apple.Sandbox = {
+							com.apple.ApplicationGroups.Mac = {
 								enabled = 0;
+							};
+							com.apple.Sandbox = {
+								enabled = 1;
 							};
 						};
 					};
@@ -1644,7 +1673,7 @@
 						DevelopmentTeam = 9PN2JXXG7Y;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.Sandbox = {
 								enabled = 1;
@@ -1655,7 +1684,7 @@
 						DevelopmentTeam = 9PN2JXXG7Y;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.Sandbox = {
 								enabled = 1;
@@ -1717,6 +1746,8 @@
 				D0CA8F771953280700BBD54C /* LayoutSourceVTemplate.png in Resources */,
 				D036E21118F3D2F20009A9D4 /* PHP.icns in Resources */,
 				D036E21518F3D2F20009A9D4 /* XML.icns in Resources */,
+				D028E8901A56721200C39852 /* Balthisar Tidy (web).entitlements in Resources */,
+				D028E88F1A56721200C39852 /* Balthisar Tidy (pro).entitlements in Resources */,
 				D036E21318F3D2F20009A9D4 /* Tidy.icns in Resources */,
 				D0CA8F741953280700BBD54C /* LayoutSourceHTemplate.png in Resources */,
 				D0E6AE18190C9FAC00B49779 /* HideDescriptionTemplate.pdf in Resources */,
@@ -1730,11 +1761,13 @@
 				D06C9A9B195FE854004D6C27 /* prefsTidyAppearance@2x.png in Resources */,
 				D074B78B1942BEE200F2E6F1 /* TidyEncodingHelper.xib in Resources */,
 				D06C9A92195FE854004D6C27 /* prefsTidy.png in Resources */,
+				D028E88D1A56721200C39852 /* Balthisar Tidy (app).entitlements in Resources */,
 				D0CA8F6E1953280700BBD54C /* LayoutBottomPaneTemplate.png in Resources */,
 				D036E1EC18F3D25E0009A9D4 /* InfoPlist.strings in Resources */,
 				D0E6AE24190CDAA200B49779 /* JSDTidyModel.strings in Resources */,
 				D06C9A9E195FE854004D6C27 /* prefsUpdate.png in Resources */,
 				D06C9AA9195FEC11004D6C27 /* prefsDoc@2x.png in Resources */,
+				D028E88E1A56721200C39852 /* Balthisar Tidy (dev).entitlements in Resources */,
 				D036E1EE18F3D25E0009A9D4 /* Localizable.strings in Resources */,
 				D0E6AE20190CB34500B49779 /* PaneBottomShadow.tiff in Resources */,
 				D06C9A76195FBA0F004D6C27 /* MiscOptionsViewController.xib in Resources */,
@@ -2572,6 +2605,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy (web).entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -2603,6 +2637,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy (web).entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -2630,6 +2665,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar Tidy (web).entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -2657,6 +2693,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar Tidy (web).entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -2680,7 +2717,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar_Tidy_Extension.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar Tidy (app).entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -2708,7 +2745,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar_Tidy_Extension.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar Tidy (app).entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -2732,7 +2769,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar_Tidy_Extension.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar Tidy (pro).entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -2760,7 +2797,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar_Tidy_Extension.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar Tidy (pro).entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -2784,6 +2821,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar Tidy (dev).entitlements";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -2811,6 +2849,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar Tidy (dev).entitlements";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -2878,6 +2917,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy (dev).entitlements";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -2910,6 +2950,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy (dev).entitlements";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -2940,7 +2981,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
-				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy (app).entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -2972,7 +3013,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
-				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy (app).entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -3002,7 +3043,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
-				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy (pro).entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -3034,7 +3075,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
-				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy (pro).entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
