@@ -39,39 +39,34 @@
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	beginRequestWithExtensionContext
-		Tidy's the provided text and returns it.
+ Tidy's the provided text and returns it.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)beginRequestWithExtensionContext:(NSExtensionContext *)context
 {
-    /*
-        The macro from PreferencesDefinitions.h. This is the means for
-        accessing shared preferences when everything is sandboxed.
-     */
-    NSUserDefaults *localDefaults = [[NSUserDefaults alloc] initWithSuiteName:APP_GROUP_PREFS];
+	/*
+	 The macro from PreferencesDefinitions.h. initWithSuiteName is the
+	 means for accessing shared preferences when everything is sandboxed.
+	 */
+	NSUserDefaults *localDefaults = [[NSUserDefaults alloc] initWithSuiteName:APP_GROUP_PREFS];
 
-    
-    /* Get the input item. */
-    NSExtensionItem *item = context.inputItems.firstObject;
-    NSString *content = [item.attributedContentText string];
 
-    NSLog(@"%@", content);
-    
-    /* Perform the Tidying */
-   
-    JSDTidyModel *localModel = [[JSDTidyModel alloc] initWithString:content];
-    [localModel takeOptionValuesFromDefaults:localDefaults];
+	/* Get the input item. */
+	NSExtensionItem *item = context.inputItems.firstObject;
+	NSString *content = [item.attributedContentText string];
 
-    NSLog(@"%@", localModel.tidyText);
+	/* Perform the Tidying */
+	JSDTidyModel *localModel = [[JSDTidyModel alloc] initWithString:content];
+	[localModel takeOptionValuesFromDefaults:localDefaults];
 
-    if (localModel.tidyText)
-    {
-        item.attributedContentText = [[NSAttributedString alloc] initWithString:localModel.tidyText];
-        [context completeRequestReturningItems:@[item] completionHandler:nil];
-    }
-    else
-    {
-        [context cancelRequestWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:NSUserCancelledError userInfo:nil]];
-    }
+	if (localModel.tidyText)
+	{
+		item.attributedContentText = [[NSAttributedString alloc] initWithString:localModel.tidyText];
+		[context completeRequestReturningItems:@[item] completionHandler:nil];
+	}
+	else
+	{
+		[context cancelRequestWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:NSUserCancelledError userInfo:nil]];
+	}
 }
 
 
