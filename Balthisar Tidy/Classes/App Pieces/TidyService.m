@@ -28,7 +28,6 @@
 
 #import "PreferencesDefinitions.h"
 #import "TidyService.h"
-#import "PreferenceController.h"
 #import "JSDTidyModel.h"
 #import "TidyDocument.h"
 

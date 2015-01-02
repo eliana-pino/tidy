@@ -28,8 +28,14 @@
  **************************************************************************************************/
 
 #import "ActionRequestHandler.h"
+#import "PreferencesDefinitions.h"
+#import "JSDTidyModel.h"
 
 @implementation ActionRequestHandler
+
+
+#ifdef FEATURE_SUPPORTS_EXTENSIONS
+
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	beginRequestWithExtensionContext
@@ -37,30 +43,39 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)beginRequestWithExtensionContext:(NSExtensionContext *)context
 {
-    NSUserDefaults *myDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.balthisar.web.free.balthisar-tidy.prefs"];
-    NSLog(@"%@", @"------------------------------------------------------");
-    NSLog(@"%@", myDefaults);
+    /*
+        The macro from PreferencesDefinitions.h. This is the means for
+        accessing shared preferences when everything is sandboxed.
+     */
+    NSUserDefaults *localDefaults = [[NSUserDefaults alloc] initWithSuiteName:APP_GROUP_PREFS];
+
     
-    //[myDefaults setObject:@"foo" forKey:@"bar"];
-    
-    // Get the input item
+    /* Get the input item. */
     NSExtensionItem *item = context.inputItems.firstObject;
-    NSAttributedString *content = item.attributedContentText;
-    NSLog(@"Content %@", content);
+    NSString *content = [item.attributedContentText string];
 
-    // Transform the content
-    NSMutableAttributedString *newContent = [content mutableCopy];
+    NSLog(@"%@", content);
+    
+    /* Perform the Tidying */
+   
+    JSDTidyModel *localModel = [[JSDTidyModel alloc] initWithString:content];
+    [localModel takeOptionValuesFromDefaults:localDefaults];
 
-    if (newContent.length > 0) {
-        [newContent.mutableString appendString:@"ABC"];
-        item.attributedContentText = newContent;
+    NSLog(@"%@", localModel.tidyText);
 
-        // Notify the action is done with success
+    if (localModel.tidyText)
+    {
+        item.attributedContentText = [[NSAttributedString alloc] initWithString:localModel.tidyText];
         [context completeRequestReturningItems:@[item] completionHandler:nil];
-    } else {
-        // Notify the action failed to complete, use an appropriate error
+    }
+    else
+    {
         [context cancelRequestWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:NSUserCancelledError userInfo:nil]];
     }
 }
+
+
+#endif
+
 
 @end

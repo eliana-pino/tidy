@@ -28,6 +28,7 @@
 
  **************************************************************************************************/
 
+#import <Cocoa/Cocoa.h>
 #import "JSDTidyModel.h"
 #import "JSDTidyOption.h"
 #import "config.h"   // from vendor/tidylib/src/
@@ -1183,7 +1184,10 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 	/* Build the finished array */
 
-	[errorDict setObject:levelImage forKey:@"levelImage"];
+	if (levelImage)
+    {
+        [errorDict setObject:levelImage forKey:@"levelImage"];
+    }
 
 	errorDict[@"level"]            = @((int)lvl);	// lvl is a c enum
 	errorDict[@"levelDescription"] = levelDescription;
