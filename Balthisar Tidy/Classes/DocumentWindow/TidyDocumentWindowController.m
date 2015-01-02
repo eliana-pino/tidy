@@ -132,8 +132,6 @@
 
 	[self.optionPane addSubview:self.optionController.view];
 
-	self.optionsPanelIsVisible = [[[NSUserDefaults standardUserDefaults] objectForKey:JSDKeyShowNewDocumentTidyOptions] boolValue];
-
 	self.optionController.optionsInEffect = [PreferenceController optionsInEffect];
 
 	/*
@@ -156,8 +154,6 @@
 	self.messagesController.view.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
 
 	[self.messagesController.view setFrame:self.messagesPane.bounds];
-
-	self.messagesPanelIsVisible = [[[NSUserDefaults standardUserDefaults] objectForKey:JSDKeyShowNewDocumentMessages] boolValue];
 
 
 	/******************************************************
@@ -229,6 +225,10 @@
 - (void)windowDidLoad
 {
 	[super windowDidLoad];
+    
+    self.optionsPanelIsVisible = [[[NSUserDefaults standardUserDefaults] objectForKey:JSDKeyShowNewDocumentTidyOptions] boolValue];
+    self.messagesPanelIsVisible = [[[NSUserDefaults standardUserDefaults] objectForKey:JSDKeyShowNewDocumentMessages] boolValue];
+
 
 	[self.window setInitialFirstResponder:self.optionController.view];
 
