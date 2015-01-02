@@ -37,6 +37,11 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)beginRequestWithExtensionContext:(NSExtensionContext *)context
 {
+    NSUserDefaults *myDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"com.balthisar.Balthisar-Tidy.prefs"];
+    NSLog(@"%@", myDefaults);
+    
+    //[myDefaults setObject:@"foo" forKey:@"bar"];
+    
     // Get the input item
     NSExtensionItem *item = context.inputItems.firstObject;
     NSAttributedString *content = item.attributedContentText;
