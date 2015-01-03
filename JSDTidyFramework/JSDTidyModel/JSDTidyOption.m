@@ -253,7 +253,7 @@
 {
 	if (!_localizedHumanReadableName)
 	{
-		_localizedHumanReadableName = NSLocalizedStringFromTable(([NSString stringWithFormat:@"tag-%@", _name]), @"JSDTidyModel" ,nil);
+		_localizedHumanReadableName = NSLocalizedString(([NSString stringWithFormat:@"tag-%@", _name]) ,nil);
 	}
 	return _localizedHumanReadableName;
 }
@@ -267,7 +267,7 @@
 	if (!_localizedHumanReadableDescription)
 	{
 		// parentheses around brackets required lest preprocessor get confused.
-		NSString *rawString = NSLocalizedStringFromTable(([NSString stringWithFormat:@"description-%@", _name]), @"JSDTidyModel", nil);
+		NSString *rawString = NSLocalizedString(([NSString stringWithFormat:@"description-%@", _name]), nil);
 		
 		/*
 			RTF can be a little complex due to legacy string encoding issues.
@@ -306,7 +306,7 @@
 {
 	if (!_localizedHumanReadableCategory)
 	{
-		_localizedHumanReadableCategory = NSLocalizedStringFromTable(([NSString stringWithFormat:@"category-%u", self.builtInCategory]), @"JSDTidyModel", nil);
+		_localizedHumanReadableCategory = NSLocalizedString(([NSString stringWithFormat:@"category-%u", self.builtInCategory]), nil);
 	}
 	return _localizedHumanReadableCategory;
 }

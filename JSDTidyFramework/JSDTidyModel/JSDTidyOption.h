@@ -27,6 +27,7 @@
  **************************************************************************************************/
 
 #import <Cocoa/Cocoa.h>
+#import "JSDCommon.h"
 #import "config.h"   // from vendor/tidylib/src/
 
 
