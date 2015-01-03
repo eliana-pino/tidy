@@ -1,4 +1,4 @@
-﻿Balthisar Tidy (version 2.1.x)
+Balthisar Tidy (version 2.1.x)
 ==============================
 
 by Jim Derry, <http://www.balthisar.com>
@@ -32,6 +32,10 @@ _Balthisar Tidy_ has been released with support for Mac OS X 10.8 and newer.
 
 Change Log
 ----------
+
+### Balthisar Tidy 2.1.x (January 2015)
+- in development
+
 
 ### Balthisar Tidy 2.0.3 (November 2014)
 
@@ -215,6 +219,7 @@ Change Log
 - Requires Mac OS X 10.2 or higher.
 
 
+
 Building From Source
 --------------------
 
@@ -251,6 +256,7 @@ license, or similar licenses. You can refer to the licenses in the source code.
 
 Items that are not source code, such as artwork and the name "Balthisar" and "Balthisar Tidy" are not licensed
 and remain the property of James S. Derry. See the Trademark and Artwork Policy, next.
+
 
 Trademark and Artwork Policy
 ----------------------------
