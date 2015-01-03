@@ -31,14 +31,15 @@
 
 
 /*
-	This is the main key in the implementing application's prefs file
-	under which all of the TidyLib options will be written. You might
-	change this if your application uses Cocoa's native preferences
+	This is the main key in the implementing application's prefs file under which all of the TidyLib
+	options will be written. You might change this if your application uses Cocoa's native preferences
 	system.
  */
 
 #define JSDKeyTidyTidyOptionsKey @"JSDTidyTidyOptions"
 
+
+/* Redefine NSLocalizedString so that we can use it directly without a lot of fuss. */
 #undef NSLocalizedString
 #define NSLocalizedString(key, val) [[NSBundle bundleForClass:[self class]] localizedStringForKey:(key) value:(val) table:nil]
 

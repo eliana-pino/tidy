@@ -11,6 +11,7 @@
 		D002EFD91A57AC6500530D2F /* JSDTidyFramework.framework in Add Frameworks */ = {isa = PBXBuildFile; fileRef = D00661081A579BE700F73F85 /* JSDTidyFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D002EFDA1A57AC9000530D2F /* JSDTidyFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D00661081A579BE700F73F85 /* JSDTidyFramework.framework */; };
 		D002EFDB1A57AC9000530D2F /* JSDTidyFramework.framework in Add Frameworks */ = {isa = PBXBuildFile; fileRef = D00661081A579BE700F73F85 /* JSDTidyFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D002EFE21A57B82500530D2F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D002EFE01A57B80100530D2F /* README.md */; };
 		D006610D1A579BE700F73F85 /* JSDTidyFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = D006610C1A579BE700F73F85 /* JSDTidyFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D00661131A579BE700F73F85 /* JSDTidyFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D00661081A579BE700F73F85 /* JSDTidyFramework.framework */; };
 		D006611C1A579BE700F73F85 /* JSDTidyFrameworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D006611B1A579BE700F73F85 /* JSDTidyFrameworkTests.m */; };
@@ -75,7 +76,6 @@
 		D00661A71A579E1D00F73F85 /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = D00661731A579E1D00F73F85 /* version.h */; };
 		D00661A81A579E1D00F73F85 /* win32tc.c in Sources */ = {isa = PBXBuildFile; fileRef = D00661741A579E1D00F73F85 /* win32tc.c */; };
 		D00661A91A579E1D00F73F85 /* win32tc.h in Headers */ = {isa = PBXBuildFile; fileRef = D00661751A579E1D00F73F85 /* win32tc.h */; };
-		D00661B21A579EA100F73F85 /* Acknowledgments.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D00661AC1A579EA100F73F85 /* Acknowledgments.rtf */; };
 		D00661B41A579EA100F73F85 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D00661B01A579EA100F73F85 /* Localizable.strings */; };
 		D00661BD1A579EE000F73F85 /* messagesAccess.icns in Resources */ = {isa = PBXBuildFile; fileRef = D00661B61A579EE000F73F85 /* messagesAccess.icns */; };
 		D00661BE1A579EE000F73F85 /* messagesConfig.icns in Resources */ = {isa = PBXBuildFile; fileRef = D00661B71A579EE000F73F85 /* messagesConfig.icns */; };
@@ -1219,6 +1219,7 @@
 		D002EFD41A57AA3E00530D2F /* xmlcases.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = xmlcases.txt; sourceTree = "<group>"; };
 		D002EFD51A57AA3E00530D2F /* xmltest.cmd */ = {isa = PBXFileReference; lastKnownFileType = text; path = xmltest.cmd; sourceTree = "<group>"; };
 		D002EFDE1A57AFD800530D2F /* JSDCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JSDCommon.h; path = JSDTidyModel/JSDCommon.h; sourceTree = "<group>"; };
+		D002EFE01A57B80100530D2F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = Resources/Base.lproj/Documentation/README.md; sourceTree = "<group>"; };
 		D00661081A579BE700F73F85 /* JSDTidyFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JSDTidyFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D006610C1A579BE700F73F85 /* JSDTidyFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSDTidyFramework.h; sourceTree = "<group>"; };
 		D00661121A579BE700F73F85 /* JSDTidyFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JSDTidyFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1285,7 +1286,6 @@
 		D00661731A579E1D00F73F85 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = version.h; path = vendor/tidylib/src/version.h; sourceTree = "<group>"; };
 		D00661741A579E1D00F73F85 /* win32tc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = win32tc.c; path = vendor/tidylib/src/win32tc.c; sourceTree = "<group>"; };
 		D00661751A579E1D00F73F85 /* win32tc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = win32tc.h; path = vendor/tidylib/src/win32tc.h; sourceTree = "<group>"; };
-		D00661AD1A579EA100F73F85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Base; path = Resources/Base.lproj/Acknowledgments.rtf; sourceTree = "<group>"; };
 		D00661B11A579EA100F73F85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Resources/Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D00661B61A579EE000F73F85 /* messagesAccess.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = messagesAccess.icns; path = Resources/common/messagesAccess.icns; sourceTree = "<group>"; };
 		D00661B71A579EE000F73F85 /* messagesConfig.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = messagesConfig.icns; path = Resources/common/messagesConfig.icns; sourceTree = "<group>"; };
@@ -2494,6 +2494,14 @@
 			path = output;
 			sourceTree = "<group>";
 		};
+		D002EFDF1A57B7F100530D2F /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				D002EFE01A57B80100530D2F /* README.md */,
+			);
+			name = Documentation;
+			sourceTree = "<group>";
+		};
 		D00661091A579BE700F73F85 /* JSDTidyFramework */ = {
 			isa = PBXGroup;
 			children = (
@@ -2643,7 +2651,7 @@
 		D00661AB1A579E7E00F73F85 /* Base.lproj */ = {
 			isa = PBXGroup;
 			children = (
-				D00661AC1A579EA100F73F85 /* Acknowledgments.rtf */,
+				D002EFDF1A57B7F100530D2F /* Documentation */,
 				D00661B01A579EA100F73F85 /* Localizable.strings */,
 			);
 			name = Base.lproj;
@@ -3350,6 +3358,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D002EFE21A57B82500530D2F /* README.md in Resources */,
 				D00661C21A579EE000F73F85 /* messagesPanic.icns in Resources */,
 				D00661C11A579EE000F73F85 /* messagesInfo.icns in Resources */,
 				D00661B41A579EA100F73F85 /* Localizable.strings in Resources */,
@@ -3357,7 +3366,6 @@
 				D00661C31A579EE000F73F85 /* messagesWarning.icns in Resources */,
 				D00661BF1A579EE000F73F85 /* messagesDocument.icns in Resources */,
 				D00661BE1A579EE000F73F85 /* messagesConfig.icns in Resources */,
-				D00661B21A579EA100F73F85 /* Acknowledgments.rtf in Resources */,
 				D00661C01A579EE000F73F85 /* messagesError.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3843,14 +3851,6 @@
 				D002ECE01A57AA3D00530D2F /* Base */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		D00661AC1A579EA100F73F85 /* Acknowledgments.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D00661AD1A579EA100F73F85 /* Base */,
-			);
-			name = Acknowledgments.rtf;
 			sourceTree = "<group>";
 		};
 		D00661B01A579EA100F73F85 /* Localizable.strings */ = {
