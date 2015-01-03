@@ -26,7 +26,6 @@
  
  **************************************************************************************************/
 
-#import <Cocoa/Cocoa.h>
 #import "JSDTidyOption.h"
 #import "JSDTidyModel.h"
 

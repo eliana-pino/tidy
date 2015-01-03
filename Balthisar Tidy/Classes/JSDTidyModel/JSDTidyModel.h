@@ -28,7 +28,7 @@
 
  **************************************************************************************************/
 
-#import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
 #import "JSDTidyModelDelegate.h"
 
 @class JSDTidyOption;

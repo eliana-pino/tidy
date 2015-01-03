@@ -26,7 +26,7 @@
  
  **************************************************************************************************/
 
-#import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
 #import "config.h"   // from vendor/tidylib/src/
 
 
