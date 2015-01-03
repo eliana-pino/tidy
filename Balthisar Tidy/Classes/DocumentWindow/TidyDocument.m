@@ -191,11 +191,12 @@
 		[self.windowController.window setAlphaValue:0.0f];
 #endif
 		NSInteger i = NSRunAlertPanel(NSLocalizedString(@"WarnSaveOverwrite", nil),
-									  NSLocalizedString(@"WarnSaveOverwriteExplain", nil),
+									  @"%@",
 									  NSLocalizedString(@"continue save", nil),
 									  NSLocalizedString(@"do not save", nil),
-									  nil);
-		
+									  nil,
+									  NSLocalizedString(@"WarnSaveOverwriteExplain", nil));
+
 		if (i == NSAlertAlternateReturn)
 		{
 			return; // User chose don't save.
@@ -211,11 +212,12 @@
 		[self.windowController.window setAlphaValue:0.0f];
 #endif
 		NSRunAlertPanel(NSLocalizedString(@"WarnSaveDisabled", nil),
-						NSLocalizedString(@"WarnSaveDisabledExplain", nil),
 						NSLocalizedString(@"cancel", nil),
+						@"%@",
 						nil,
-						nil);
-		
+						nil,
+						NSLocalizedString(@"WarnSaveDisabledExplain", nil));
+
 		return; // Don't continue the save operation
 	}
 
