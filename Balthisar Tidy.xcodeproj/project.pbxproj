@@ -3215,6 +3215,7 @@
 						};
 					};
 					D01C70D31A558E1C00CC5038 = {
+						DevelopmentTeam = 9PN2JXXG7Y;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
 								enabled = 1;
@@ -3225,6 +3226,7 @@
 						};
 					};
 					D01C70DF1A5591A500CC5038 = {
+						DevelopmentTeam = 9PN2JXXG7Y;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
 								enabled = 1;
