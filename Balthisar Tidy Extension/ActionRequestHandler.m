@@ -43,30 +43,30 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)beginRequestWithExtensionContext:(NSExtensionContext *)context
 {
-	/*
-	 The macro from PreferencesDefinitions.h. initWithSuiteName is the
-	 means for accessing shared preferences when everything is sandboxed.
-	 */
-	NSUserDefaults *localDefaults = [[NSUserDefaults alloc] initWithSuiteName:APP_GROUP_PREFS];
-
-
+//	/*
+//	 The macro from PreferencesDefinitions.h. initWithSuiteName is the
+//	 means for accessing shared preferences when everything is sandboxed.
+//	 */
+//	NSUserDefaults *localDefaults = [[NSUserDefaults alloc] initWithSuiteName:APP_GROUP_PREFS];
+//
+//
 	/* Get the input item. */
 	NSExtensionItem *item = context.inputItems.firstObject;
-	NSString *content = [item.attributedContentText string];
-
-	/* Perform the Tidying */
-	JSDTidyModel *localModel = [[JSDTidyModel alloc] initWithString:content];
-	[localModel takeOptionValuesFromDefaults:localDefaults];
-
-	if (localModel.tidyText)
-	{
-		item.attributedContentText = [[NSAttributedString alloc] initWithString:localModel.tidyText];
+//	NSString *content = [item.attributedContentText string];
+//
+//	/* Perform the Tidying */
+//	JSDTidyModel *localModel = [[JSDTidyModel alloc] initWithString:content];
+//	[localModel takeOptionValuesFromDefaults:localDefaults];
+//
+//	if (localModel.tidyText)
+//	{
+		item.attributedContentText = [[NSAttributedString alloc] initWithString:@"ACTION!"];//localModel.tidyText];
 		[context completeRequestReturningItems:@[item] completionHandler:nil];
-	}
-	else
-	{
-		[context cancelRequestWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:NSUserCancelledError userInfo:nil]];
-	}
+//	}
+//	else
+//	{
+//		[context cancelRequestWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:NSUserCancelledError userInfo:nil]];
+//	}
 }
 
 

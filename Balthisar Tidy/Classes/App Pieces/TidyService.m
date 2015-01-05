@@ -44,34 +44,37 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)tidySelection:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error
 {
-    /* Test for strings on the pasteboard. */
-    NSArray *classes = [NSArray arrayWithObject:[NSString class]];
-    NSDictionary *options = [NSDictionary dictionary];
-    
-    if (![pboard canReadObjectForClasses:classes options:options]) {
-        *error = NSLocalizedString(@"Error: couldn't tidy text.",
-                                   @"pboard couldn't give string.");
-        return;
-    }
-    
-    
-    /* Perform the Tidying */
-    NSString *pboardString = [pboard stringForType:NSPasteboardTypeString];
-    
-    JSDTidyModel *localModel = [[JSDTidyModel alloc] initWithString:pboardString];
-    [localModel takeOptionValuesFromDefaults:[NSUserDefaults standardUserDefaults]];
-    
-    if (!localModel.tidyText)
-    {
-        *error = NSLocalizedString(@"Error: couldn't tidy text.",
-                                   @"self couldn't tidy the document.");
-        return;
-    }
-
-    
-    /* Write the string onto the pasteboard. */
-    [pboard clearContents];
-    [pboard writeObjects:[NSArray arrayWithObject:localModel.tidyText]];
+//    /* Test for strings on the pasteboard. */
+//    NSArray *classes = [NSArray arrayWithObject:[NSString class]];
+//    NSDictionary *options = [NSDictionary dictionary];
+//    
+//    if (![pboard canReadObjectForClasses:classes options:options]) {
+//        *error = NSLocalizedString(@"Error: couldn't tidy text.",
+//                                   @"pboard couldn't give string.");
+//        return;
+//    }
+//    
+//    
+//    /* Perform the Tidying */
+//    NSString *pboardString = [pboard stringForType:NSPasteboardTypeString];
+//    
+//    JSDTidyModel *localModel = [[JSDTidyModel alloc] initWithString:pboardString];
+//    [localModel takeOptionValuesFromDefaults:[NSUserDefaults standardUserDefaults]];
+//    
+//    if (!localModel.tidyText)
+//    {
+//        *error = NSLocalizedString(@"Error: couldn't tidy text.",
+//                                   @"self couldn't tidy the document.");
+//        return;
+//    }
+//
+//    
+//    /* Write the string onto the pasteboard. */
+//    [pboard clearContents];
+//    [pboard writeObjects:[NSArray arrayWithObject:localModel.tidyText]];
+	NSLog(@"%@", @"JIM DERRY IS HERE!");
+	[pboard clearContents];
+	[pboard writeObjects:[NSArray arrayWithObject:@"TextIsTidy"]];
 }
 
 
