@@ -27,7 +27,7 @@
  **************************************************************************************************/
 
 #import <Cocoa/Cocoa.h>
-#import "JSDCommon.h"
+#import "JSDTidyExtensionCommon.h"
 #import "config.h"   // from vendor/tidylib/src/
 
 
@@ -82,6 +82,8 @@
 @property (readonly)         NSString *optionUIType;                    // Suggested UI type for setting options.
 
 @property (readonly)         NSString *optionConfigString;              // Option suitable for use in a config file.
+
+@property                    NSUserDefaults *userDefaults;              // The NSUserDefaults instance to get defaults from.
 
 
 #pragma mark - Properties maintained for original TidyLib compatability (may be used internally)

@@ -41,7 +41,7 @@
 		D002F0401A57C13500530D2F /* tmbstr.c in Sources */ = {isa = PBXBuildFile; fileRef = D002F0201A57C13500530D2F /* tmbstr.c */; };
 		D002F0411A57C13500530D2F /* utf8.c in Sources */ = {isa = PBXBuildFile; fileRef = D002F0221A57C13500530D2F /* utf8.c */; };
 		D002F0421A57C13500530D2F /* win32tc.c in Sources */ = {isa = PBXBuildFile; fileRef = D002F0251A57C13500530D2F /* win32tc.c */; };
-		D006610D1A579BE700F73F85 /* JSDTidyFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = D006610C1A579BE700F73F85 /* JSDTidyFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D006610D1A579BE700F73F85 /* JSDTidyFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = D006610C1A579BE700F73F85 /* JSDTidyFramework.h */; };
 		D00661341A579DF300F73F85 /* JSDTidyModel.h in Headers */ = {isa = PBXBuildFile; fileRef = D006612E1A579DF300F73F85 /* JSDTidyModel.h */; };
 		D00661351A579DF300F73F85 /* JSDTidyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D006612F1A579DF300F73F85 /* JSDTidyModel.m */; };
 		D00661371A579DF300F73F85 /* JSDTidyModelDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = D00661311A579DF300F73F85 /* JSDTidyModelDelegate.h */; };
@@ -114,6 +114,13 @@
 		D008F0191930D9D700559F3B /* JSDAllCapsValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D008F0181930D9D700559F3B /* JSDAllCapsValueTransformer.m */; };
 		D008F01A1930D9D700559F3B /* JSDAllCapsValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D008F0181930D9D700559F3B /* JSDAllCapsValueTransformer.m */; };
 		D0097B0B19712F68001CCF94 /* Balthisar Tidy (pro).help in Resources */ = {isa = PBXBuildFile; fileRef = D04E8FAD195D964F00D1CEDC /* Balthisar Tidy (pro).help */; };
+		D013165A1A5D871500AB1456 /* Balthisar Tidy Service Helper.app in Resources */ = {isa = PBXBuildFile; fileRef = D04BC9681A5AC5CB009AC43A /* Balthisar Tidy Service Helper.app */; };
+		D01316611A5D881400AB1456 /* Balthisar Tidy Service Helper.app in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D04BC9681A5AC5CB009AC43A /* Balthisar Tidy Service Helper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D01316621A5D881C00AB1456 /* Balthisar Tidy Service Helper.app in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D04BC9681A5AC5CB009AC43A /* Balthisar Tidy Service Helper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D01316631A5D884100AB1456 /* JSDTidyFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D00661081A579BE700F73F85 /* JSDTidyFramework.framework */; };
+		D01316641A5D885100AB1456 /* JSDTidyFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D00661081A579BE700F73F85 /* JSDTidyFramework.framework */; };
+		D013166A1A5D888300AB1456 /* JSDTidyFramework.framework in Add Frameworks */ = {isa = PBXBuildFile; fileRef = D00661081A579BE700F73F85 /* JSDTidyFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D013166C1A5D88A600AB1456 /* JSDTidyFramework.framework in Add Frameworks */ = {isa = PBXBuildFile; fileRef = D00661081A579BE700F73F85 /* JSDTidyFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D016A92A182FD80700712C60 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D016A929182FD80700712C60 /* Cocoa.framework */; };
 		D016A936182FD80700712C60 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D016A935182FD80700712C60 /* main.m */; };
 		D017A13F1A56D251003DDE6C /* Balthisar Tidy (web).appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D01C70BA1A55850D00CC5038 /* Balthisar Tidy (web).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -138,9 +145,10 @@
 		D025BD60195856C1006D7356 /* Acknowledgments.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D025BD5C195856B6006D7356 /* Acknowledgments.rtf */; };
 		D028E8801A56699500C39852 /* Balthisar Tidy (app).appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D01C70DD1A558E1C00CC5038 /* Balthisar Tidy (app).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D028E8811A56699D00C39852 /* Balthisar Tidy (pro).appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D01C70E91A5591A500CC5038 /* Balthisar Tidy (pro).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		D028E88D1A56721200C39852 /* Balthisar Tidy (app).entitlements in Resources */ = {isa = PBXBuildFile; fileRef = D028E8891A56721200C39852 /* Balthisar Tidy (app).entitlements */; };
-		D028E88F1A56721200C39852 /* Balthisar Tidy (pro).entitlements in Resources */ = {isa = PBXBuildFile; fileRef = D028E88B1A56721200C39852 /* Balthisar Tidy (pro).entitlements */; };
-		D028E8901A56721200C39852 /* Balthisar Tidy (web).entitlements in Resources */ = {isa = PBXBuildFile; fileRef = D028E88C1A56721200C39852 /* Balthisar Tidy (web).entitlements */; };
+		D02DBCEB1A5950B8009C84CF /* JSDTidyFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D00661081A579BE700F73F85 /* JSDTidyFramework.framework */; };
+		D02DBCEC1A5950BE009C84CF /* JSDTidyFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D00661081A579BE700F73F85 /* JSDTidyFramework.framework */; };
+		D02DBCEE1A595104009C84CF /* JSDTidyFramework.framework in Add Frameworks */ = {isa = PBXBuildFile; fileRef = D00661081A579BE700F73F85 /* JSDTidyFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D02DBCF01A59512E009C84CF /* JSDTidyFramework.framework in Add Frameworks */ = {isa = PBXBuildFile; fileRef = D00661081A579BE700F73F85 /* JSDTidyFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D036E1E818F3D25E0009A9D4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D036E1D818F3D25E0009A9D4 /* Credits.rtf */; };
 		D036E1E918F3D25E0009A9D4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D036E1D818F3D25E0009A9D4 /* Credits.rtf */; };
 		D036E1EA18F3D25E0009A9D4 /* FirstRunHelper.xib in Resources */ = {isa = PBXBuildFile; fileRef = D036E1DA18F3D25E0009A9D4 /* FirstRunHelper.xib */; };
@@ -175,9 +183,18 @@
 		D04753B81938A19D00BB7163 /* JSDBoolToStringValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D04753B61938A19D00BB7163 /* JSDBoolToStringValueTransformer.m */; };
 		D047C72F1915FBF100B70A94 /* JSDTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D047C72E1915FBF100B70A94 /* JSDTableCellView.m */; };
 		D047C7301915FBF100B70A94 /* JSDTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D047C72E1915FBF100B70A94 /* JSDTableCellView.m */; };
-		D0498A611A552851005A207D /* TidyService.m in Sources */ = {isa = PBXBuildFile; fileRef = D0498A601A552851005A207D /* TidyService.m */; };
-		D0498A621A552851005A207D /* TidyService.m in Sources */ = {isa = PBXBuildFile; fileRef = D0498A601A552851005A207D /* TidyService.m */; };
-		D0498A631A552851005A207D /* TidyService.m in Sources */ = {isa = PBXBuildFile; fileRef = D0498A601A552851005A207D /* TidyService.m */; };
+		D04BC96E1A5AC5CB009AC43A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D04BC96D1A5AC5CB009AC43A /* AppDelegate.m */; };
+		D04BC9701A5AC5CB009AC43A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D04BC96F1A5AC5CB009AC43A /* main.m */; };
+		D04BC98C1A5AC6F4009AC43A /* ServicesMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = D04BC98A1A5AC6F4009AC43A /* ServicesMenu.strings */; };
+		D04BC9901A5AC7A2009AC43A /* TidyService.m in Sources */ = {isa = PBXBuildFile; fileRef = D04BC98F1A5AC7A2009AC43A /* TidyService.m */; };
+		D04BC9B91A5ACB7D009AC43A /* HelperMainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D04BC9B71A5ACB7D009AC43A /* HelperMainMenu.xib */; };
+		D04BC9BC1A5ACCC1009AC43A /* Balthisar Tidy Service Helper.app in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D04BC9681A5AC5CB009AC43A /* Balthisar Tidy Service Helper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D04BC9C31A5BF973009AC43A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D04BC9BE1A5BF47E009AC43A /* Localizable.strings */; };
+		D04BC9C41A5BF974009AC43A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D04BC9BE1A5BF47E009AC43A /* Localizable.strings */; };
+		D04BC9C51A5BF974009AC43A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D04BC9BE1A5BF47E009AC43A /* Localizable.strings */; };
+		D04BC9C61A5BFB0D009AC43A /* JSDTidyFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D00661081A579BE700F73F85 /* JSDTidyFramework.framework */; };
+		D04BC9CB1A5C0991009AC43A /* JSDTidyFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D00661081A579BE700F73F85 /* JSDTidyFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D04BC9CE1A5C2A22009AC43A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D04BC9CC1A5C2A22009AC43A /* Localizable.strings */; };
 		D04D5F991902459500F77901 /* NSApplication+TidyApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = D04D5F981902459500F77901 /* NSApplication+TidyApplication.m */; };
 		D04D5F9A1902459500F77901 /* NSApplication+TidyApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = D04D5F981902459500F77901 /* NSApplication+TidyApplication.m */; };
 		D04E8FB0195D964F00D1CEDC /* Balthisar Tidy (app).help in Resources */ = {isa = PBXBuildFile; fileRef = D04E8FAC195D964F00D1CEDC /* Balthisar Tidy (app).help */; };
@@ -398,6 +415,34 @@
 			remoteGlobalIDString = D00661071A579BE700F73F85;
 			remoteInfo = JSDTidyFramework;
 		};
+		D013165B1A5D871500AB1456 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D016A91E182FD80700712C60 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D04BC9671A5AC5CB009AC43A;
+			remoteInfo = "Balthisar Tidy Service Helper";
+		};
+		D013165F1A5D874A00AB1456 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D016A91E182FD80700712C60 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D04BC9671A5AC5CB009AC43A;
+			remoteInfo = "Balthisar Tidy Service Helper";
+		};
+		D01316651A5D885F00AB1456 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D016A91E182FD80700712C60 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D00661071A579BE700F73F85;
+			remoteInfo = JSDTidyFramework;
+		};
+		D01316671A5D886300AB1456 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D016A91E182FD80700712C60 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D00661071A579BE700F73F85;
+			remoteInfo = JSDTidyFramework;
+		};
 		D017A13C1A56D1E5003DDE6C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D016A91E182FD80700712C60 /* Project object */;
@@ -419,6 +464,34 @@
 			remoteGlobalIDString = D01C70D31A558E1C00CC5038;
 			remoteInfo = "Balthisar Tidy Extension (app)";
 		};
+		D02DBCF11A5951AB009C84CF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D016A91E182FD80700712C60 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D00661071A579BE700F73F85;
+			remoteInfo = JSDTidyFramework;
+		};
+		D02DBCF31A5951B1009C84CF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D016A91E182FD80700712C60 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D00661071A579BE700F73F85;
+			remoteInfo = JSDTidyFramework;
+		};
+		D04BC9BA1A5ACCB1009AC43A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D016A91E182FD80700712C60 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D04BC9671A5AC5CB009AC43A;
+			remoteInfo = "Balthisar Tidy Service Helper";
+		};
+		D04BC9C81A5BFB0D009AC43A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D016A91E182FD80700712C60 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D00661071A579BE700F73F85;
+			remoteInfo = JSDTidyFramework;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -433,12 +506,35 @@
 			name = "Add Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D01316691A5D887400AB1456 /* Add Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D013166A1A5D888300AB1456 /* JSDTidyFramework.framework in Add Frameworks */,
+			);
+			name = "Add Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D013166B1A5D889500AB1456 /* Add Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D013166C1A5D88A600AB1456 /* JSDTidyFramework.framework in Add Frameworks */,
+			);
+			name = "Add Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D01C70CB1A55850D00CC5038 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				D01316621A5D881C00AB1456 /* Balthisar Tidy Service Helper.app in Embed App Extensions */,
 				D028E8811A56699D00C39852 /* Balthisar Tidy (pro).appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
@@ -450,6 +546,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				D04BC9BC1A5ACCC1009AC43A /* Balthisar Tidy Service Helper.app in Embed App Extensions */,
 				D017A13F1A56D251003DDE6C /* Balthisar Tidy (web).appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
@@ -461,9 +558,43 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				D01316611A5D881400AB1456 /* Balthisar Tidy Service Helper.app in Embed App Extensions */,
 				D028E8801A56699500C39852 /* Balthisar Tidy (app).appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D02DBCED1A5950E7009C84CF /* Add Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D02DBCEE1A595104009C84CF /* JSDTidyFramework.framework in Add Frameworks */,
+			);
+			name = "Add Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D02DBCEF1A595118009C84CF /* Add Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D02DBCF01A59512E009C84CF /* JSDTidyFramework.framework in Add Frameworks */,
+			);
+			name = "Add Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D04BC9CA1A5BFB0D009AC43A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D04BC9CB1A5C0991009AC43A /* JSDTidyFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D05C16E01A53B79700558F11 /* CopyFiles */ = {
@@ -563,7 +694,7 @@
 		D002ED6B1A57AA3D00530D2F /* version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
 		D002ED6C1A57AA3D00530D2F /* win32tc.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = win32tc.c; sourceTree = "<group>"; };
 		D002ED6D1A57AA3D00530D2F /* win32tc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = win32tc.h; sourceTree = "<group>"; };
-		D002EFDE1A57AFD800530D2F /* JSDCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JSDCommon.h; path = JSDTidyModel/JSDCommon.h; sourceTree = "<group>"; };
+		D002EFDE1A57AFD800530D2F /* JSDTidyModelCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JSDTidyModelCommon.h; path = JSDTidyModel/JSDTidyModelCommon.h; sourceTree = "<group>"; };
 		D002EFE01A57B80100530D2F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = Resources/Base.lproj/Documentation/README.md; sourceTree = "<group>"; };
 		D002EFE61A57C05A00530D2F /* tidy.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tidy.c; sourceTree = "<group>"; };
 		D002EFEE1A57C0EC00530D2F /* buffio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = buffio.h; path = ../JSDTidyFramework/vendor/tidylib/include/buffio.h; sourceTree = "<group>"; };
@@ -703,7 +834,6 @@
 		D016A92E182FD80700712C60 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D016A931182FD80700712C60 /* Balthisar Tidy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Balthisar Tidy-Info.plist"; path = "Balthisar Tidy/Balthisar Tidy-Info.plist"; sourceTree = "<group>"; };
 		D016A935182FD80700712C60 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Balthisar Tidy/main.m"; sourceTree = "<group>"; };
-		D016A937182FD80700712C60 /* Balthisar Tidy-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Balthisar Tidy-Prefix.pch"; path = "Balthisar Tidy/Balthisar Tidy-Prefix.pch"; sourceTree = "<group>"; };
 		D01C70B11A55463400CC5038 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/ServicesMenu.strings; sourceTree = "<group>"; };
 		D01C70BA1A55850D00CC5038 /* Balthisar Tidy (web).appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Balthisar Tidy (web).appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D01C70BE1A55850D00CC5038 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -713,12 +843,8 @@
 		D01C70DD1A558E1C00CC5038 /* Balthisar Tidy (app).appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Balthisar Tidy (app).appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D01C70E91A5591A500CC5038 /* Balthisar Tidy (pro).appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Balthisar Tidy (pro).appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D025BD5D195856B6006D7356 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Base; path = Base.lproj/Acknowledgments.rtf; sourceTree = "<group>"; };
-		D028E8851A5670FB00C39852 /* Balthisar Tidy (app).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Balthisar Tidy (app).entitlements"; sourceTree = "<group>"; };
-		D028E8871A5670FB00C39852 /* Balthisar Tidy (pro).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Balthisar Tidy (pro).entitlements"; sourceTree = "<group>"; };
-		D028E8881A5670FB00C39852 /* Balthisar Tidy (web).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Balthisar Tidy (web).entitlements"; sourceTree = "<group>"; };
-		D028E8891A56721200C39852 /* Balthisar Tidy (app).entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Balthisar Tidy (app).entitlements"; path = "Balthisar Tidy/Balthisar Tidy (app).entitlements"; sourceTree = "<group>"; };
-		D028E88B1A56721200C39852 /* Balthisar Tidy (pro).entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Balthisar Tidy (pro).entitlements"; path = "Balthisar Tidy/Balthisar Tidy (pro).entitlements"; sourceTree = "<group>"; };
-		D028E88C1A56721200C39852 /* Balthisar Tidy (web).entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Balthisar Tidy (web).entitlements"; path = "Balthisar Tidy/Balthisar Tidy (web).entitlements"; sourceTree = "<group>"; };
+		D028E8881A5670FB00C39852 /* Balthisar Tidy Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Balthisar Tidy Extension.entitlements"; sourceTree = "<group>"; };
+		D028E88C1A56721200C39852 /* Balthisar Tidy.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Balthisar Tidy.entitlements"; path = "Balthisar Tidy/Balthisar Tidy.entitlements"; sourceTree = "<group>"; };
 		D036E1D918F3D25E0009A9D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Base; path = Base.lproj/Credits.rtf; sourceTree = "<group>"; };
 		D036E1DB18F3D25E0009A9D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/FirstRunHelper.xib; sourceTree = "<group>"; };
 		D036E1DD18F3D25E0009A9D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -741,8 +867,21 @@
 		D04753B61938A19D00BB7163 /* JSDBoolToStringValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSDBoolToStringValueTransformer.m; sourceTree = "<group>"; };
 		D047C72D1915FBF100B70A94 /* JSDTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSDTableCellView.h; sourceTree = "<group>"; };
 		D047C72E1915FBF100B70A94 /* JSDTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSDTableCellView.m; sourceTree = "<group>"; };
-		D0498A5F1A552851005A207D /* TidyService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TidyService.h; sourceTree = "<group>"; };
-		D0498A601A552851005A207D /* TidyService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TidyService.m; sourceTree = "<group>"; };
+		D04BC9681A5AC5CB009AC43A /* Balthisar Tidy Service Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Balthisar Tidy Service Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D04BC96B1A5AC5CB009AC43A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D04BC96C1A5AC5CB009AC43A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D04BC96D1A5AC5CB009AC43A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D04BC96F1A5AC5CB009AC43A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D04BC9881A5AC6E2009AC43A /* Balthisar Tidy Service Helper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Balthisar Tidy Service Helper.entitlements"; sourceTree = "<group>"; };
+		D04BC98B1A5AC6F4009AC43A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = ServicesMenu.strings; sourceTree = "<group>"; };
+		D04BC98D1A5AC714009AC43A /* helper-icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "helper-icon.icns"; sourceTree = "<group>"; };
+		D04BC98E1A5AC7A2009AC43A /* TidyService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TidyService.h; sourceTree = "<group>"; };
+		D04BC98F1A5AC7A2009AC43A /* TidyService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TidyService.m; sourceTree = "<group>"; };
+		D04BC9B81A5ACB7D009AC43A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = HelperMainMenu.xib; sourceTree = "<group>"; };
+		D04BC9BF1A5BF47E009AC43A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Localizable.strings; sourceTree = "<group>"; };
+		D04BC9C21A5BF67F009AC43A /* JSDTidyExtensionCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSDTidyExtensionCommon.h; sourceTree = "<group>"; };
+		D04BC9CD1A5C2A22009AC43A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Localizable.strings; sourceTree = "<group>"; };
+		D04BC9CF1A5C345F009AC43A /* HelperPreferencesDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelperPreferencesDefinitions.h; sourceTree = "<group>"; };
 		D04D5F971902459500F77901 /* NSApplication+TidyApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSApplication+TidyApplication.h"; sourceTree = "<group>"; };
 		D04D5F981902459500F77901 /* NSApplication+TidyApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSApplication+TidyApplication.m"; sourceTree = "<group>"; };
 		D04E8FAC195D964F00D1CEDC /* Balthisar Tidy (app).help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Balthisar Tidy (app).help"; sourceTree = "<group>"; };
@@ -750,6 +889,7 @@
 		D04E8FAE195D964F00D1CEDC /* Balthisar Tidy (web).help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Balthisar Tidy (web).help"; sourceTree = "<group>"; };
 		D05C16E21A53B79700558F11 /* tidy */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tidy; sourceTree = BUILT_PRODUCTS_DIR; };
 		D06626CE18B09B330091CBD8 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = "Balthisar Tidy/Frameworks/Sparkle.framework"; sourceTree = "<group>"; };
+		D06657C01A5D8BDB002DCD2F /* CommonHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonHeaders.h; path = "Balthisar Common Headers/CommonHeaders.h"; sourceTree = "<group>"; };
 		D06C9A3F195FB4A4004D6C27 /* MASPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MASPreferencesViewController.h; path = MASPreferences/MASPreferencesViewController.h; sourceTree = "<group>"; };
 		D06C9A40195FB4A4004D6C27 /* MASPreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MASPreferencesWindow.xib; path = MASPreferences/MASPreferencesWindow.xib; sourceTree = "<group>"; };
 		D06C9A41195FB4A4004D6C27 /* MASPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MASPreferencesWindowController.h; path = MASPreferences/MASPreferencesWindowController.h; sourceTree = "<group>"; };
@@ -818,7 +958,6 @@
 		D0BB67AA193AB382007A3EB0 /* NoodleLineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoodleLineNumberView.h; sourceTree = "<group>"; };
 		D0BB67AB193AB382007A3EB0 /* NoodleLineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoodleLineNumberView.m; sourceTree = "<group>"; };
 		D0BB67B1193AB45A007A3EB0 /* JSDTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSDTableViewDelegate.h; sourceTree = "<group>"; };
-		D0BB67B5193ABB19007A3EB0 /* PreferencesDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesDefinitions.h; sourceTree = "<group>"; };
 		D0BB67FF193C820A007A3EB0 /* Balthisar Tidy for Work.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Balthisar Tidy for Work.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0CA8F521953280700BBD54C /* LayoutBottomPaneTemplate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LayoutBottomPaneTemplate.png; path = "Images for Toolbar/LayoutBottomPaneTemplate.png"; sourceTree = "<group>"; };
 		D0CA8F531953280700BBD54C /* LayoutLeftPaneTemplate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LayoutLeftPaneTemplate.png; path = "Images for Toolbar/LayoutLeftPaneTemplate.png"; sourceTree = "<group>"; };
@@ -874,6 +1013,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D01C70D71A558E1C00CC5038 /* Cocoa.framework in Frameworks */,
+				D01316631A5D884100AB1456 /* JSDTidyFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -882,6 +1022,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				D01C70E31A5591A500CC5038 /* Cocoa.framework in Frameworks */,
+				D01316641A5D885100AB1456 /* JSDTidyFramework.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D04BC9651A5AC5CB009AC43A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D04BC9C61A5BFB0D009AC43A /* JSDTidyFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -896,8 +1045,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0B9F1051958547A008864D6 /* QuartzCore.framework in Frameworks */,
 				D0913CC918B0AC06005DB2E4 /* Cocoa.framework in Frameworks */,
+				D0B9F1051958547A008864D6 /* QuartzCore.framework in Frameworks */,
+				D02DBCEB1A5950B8009C84CF /* JSDTidyFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -905,8 +1055,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0B9F1061958547B008864D6 /* QuartzCore.framework in Frameworks */,
 				D0BB67E6193C820A007A3EB0 /* Cocoa.framework in Frameworks */,
+				D0B9F1061958547B008864D6 /* QuartzCore.framework in Frameworks */,
+				D02DBCEC1A5950BE009C84CF /* JSDTidyFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1266,7 +1417,7 @@
 		D006612D1A579DE200F73F85 /* JSDTidyModel */ = {
 			isa = PBXGroup;
 			children = (
-				D002EFDE1A57AFD800530D2F /* JSDCommon.h */,
+				D002EFDE1A57AFD800530D2F /* JSDTidyModelCommon.h */,
 				D00661311A579DF300F73F85 /* JSDTidyModelDelegate.h */,
 				D006612E1A579DF300F73F85 /* JSDTidyModel.h */,
 				D006612F1A579DF300F73F85 /* JSDTidyModel.m */,
@@ -1311,8 +1462,10 @@
 		D016A91D182FD80700712C60 = {
 			isa = PBXGroup;
 			children = (
+				D06657C01A5D8BDB002DCD2F /* CommonHeaders.h */,
 				D016A92F182FD80700712C60 /* Balthisar Tidy */,
 				D01C70BC1A55850D00CC5038 /* Balthisar Tidy Extension */,
+				D04BC9691A5AC5CB009AC43A /* Balthisar Tidy Service Helper */,
 				D00661091A579BE700F73F85 /* JSDTidyFramework */,
 				D002EFE31A57BFF200530D2F /* Tidy Command Line */,
 				D016A928182FD80700712C60 /* Frameworks */,
@@ -1331,6 +1484,7 @@
 				D01C70DD1A558E1C00CC5038 /* Balthisar Tidy (app).appex */,
 				D01C70E91A5591A500CC5038 /* Balthisar Tidy (pro).appex */,
 				D00661081A579BE700F73F85 /* JSDTidyFramework.framework */,
+				D04BC9681A5AC5CB009AC43A /* Balthisar Tidy Service Helper.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1381,6 +1535,7 @@
 		D01C70BC1A55850D00CC5038 /* Balthisar Tidy Extension */ = {
 			isa = PBXGroup;
 			children = (
+				D04BC9C21A5BF67F009AC43A /* JSDTidyExtensionCommon.h */,
 				D01C70C21A55850D00CC5038 /* ActionRequestHandler.h */,
 				D01C70C31A55850D00CC5038 /* ActionRequestHandler.m */,
 				D01C70BD1A55850D00CC5038 /* Supporting Files */,
@@ -1391,9 +1546,8 @@
 		D01C70BD1A55850D00CC5038 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D028E8881A5670FB00C39852 /* Balthisar Tidy (web).entitlements */,
-				D028E8851A5670FB00C39852 /* Balthisar Tidy (app).entitlements */,
-				D028E8871A5670FB00C39852 /* Balthisar Tidy (pro).entitlements */,
+				D04BC9BD1A5BF47E009AC43A /* Base.lproj */,
+				D028E8881A5670FB00C39852 /* Balthisar Tidy Extension.entitlements */,
 				D01C70BE1A55850D00CC5038 /* Info.plist */,
 				D01C70BF1A55850D00CC5038 /* icon.icns */,
 			);
@@ -1411,6 +1565,49 @@
 			);
 			name = "File Icons";
 			path = Icons;
+			sourceTree = "<group>";
+		};
+		D04BC9691A5AC5CB009AC43A /* Balthisar Tidy Service Helper */ = {
+			isa = PBXGroup;
+			children = (
+				D04BC9CF1A5C345F009AC43A /* HelperPreferencesDefinitions.h */,
+				D04BC96F1A5AC5CB009AC43A /* main.m */,
+				D04BC96C1A5AC5CB009AC43A /* AppDelegate.h */,
+				D04BC96D1A5AC5CB009AC43A /* AppDelegate.m */,
+				D04BC98E1A5AC7A2009AC43A /* TidyService.h */,
+				D04BC98F1A5AC7A2009AC43A /* TidyService.m */,
+				D04BC9891A5AC6F4009AC43A /* Base.lproj */,
+				D04BC96A1A5AC5CB009AC43A /* Supporting Files */,
+			);
+			path = "Balthisar Tidy Service Helper";
+			sourceTree = "<group>";
+		};
+		D04BC96A1A5AC5CB009AC43A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D04BC9881A5AC6E2009AC43A /* Balthisar Tidy Service Helper.entitlements */,
+				D04BC98D1A5AC714009AC43A /* helper-icon.icns */,
+				D04BC96B1A5AC5CB009AC43A /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D04BC9891A5AC6F4009AC43A /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				D04BC9B71A5ACB7D009AC43A /* HelperMainMenu.xib */,
+				D04BC98A1A5AC6F4009AC43A /* ServicesMenu.strings */,
+				D04BC9CC1A5C2A22009AC43A /* Localizable.strings */,
+			);
+			path = Base.lproj;
+			sourceTree = "<group>";
+		};
+		D04BC9BD1A5BF47E009AC43A /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				D04BC9BE1A5BF47E009AC43A /* Localizable.strings */,
+			);
+			path = Base.lproj;
 			sourceTree = "<group>";
 		};
 		D06C9A49195FB4AB004D6C27 /* MASPreferences */ = {
@@ -1510,12 +1707,9 @@
 		D079D8DA1A17EF36009CDF8B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D028E88C1A56721200C39852 /* Balthisar Tidy (web).entitlements */,
-				D028E8891A56721200C39852 /* Balthisar Tidy (app).entitlements */,
-				D028E88B1A56721200C39852 /* Balthisar Tidy (pro).entitlements */,
+				D028E88C1A56721200C39852 /* Balthisar Tidy.entitlements */,
 				D016A935182FD80700712C60 /* main.m */,
 				D016A931182FD80700712C60 /* Balthisar Tidy-Info.plist */,
-				D016A937182FD80700712C60 /* Balthisar Tidy-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			path = ..;
@@ -1623,9 +1817,6 @@
 				D0D9EAC218E6680F008A55D5 /* AppController.m */,
 				D0D9EAC318E6680F008A55D5 /* OptionPaneController.h */,
 				D0D9EAC418E6680F008A55D5 /* OptionPaneController.m */,
-				D0498A5F1A552851005A207D /* TidyService.h */,
-				D0498A601A552851005A207D /* TidyService.m */,
-				D0BB67B5193ABB19007A3EB0 /* PreferencesDefinitions.h */,
 			);
 			path = "App Pieces";
 			sourceTree = "<group>";
@@ -1675,6 +1866,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D006619B1A579E1D00F73F85 /* sprtf.h in Headers */,
+				D006610D1A579BE700F73F85 /* JSDTidyFramework.h in Headers */,
 				D00661341A579DF300F73F85 /* JSDTidyModel.h in Headers */,
 				D006619D1A579E1D00F73F85 /* streamio.h in Headers */,
 				D00661911A579E1D00F73F85 /* lexer.h in Headers */,
@@ -1682,7 +1874,6 @@
 				D00661941A579E1D00F73F85 /* mappedio.h in Headers */,
 				D00661991A579E1D00F73F85 /* pprint.h in Headers */,
 				D00661381A579DF300F73F85 /* JSDTidyOption.h in Headers */,
-				D006610D1A579BE700F73F85 /* JSDTidyFramework.h in Headers */,
 				D00661A91A579E1D00F73F85 /* win32tc.h in Headers */,
 				D00661971A579E1D00F73F85 /* parser.h in Headers */,
 				D00661A01A579E1D00F73F85 /* tags.h in Headers */,
@@ -1744,6 +1935,7 @@
 			);
 			dependencies = (
 				D002EFDD1A57AC9000530D2F /* PBXTargetDependency */,
+				D04BC9BB1A5ACCB1009AC43A /* PBXTargetDependency */,
 				D01C70F81A5592FC00CC5038 /* PBXTargetDependency */,
 			);
 			name = "Balthisar Tidy (web)";
@@ -1777,10 +1969,12 @@
 				D01C70D41A558E1C00CC5038 /* Sources */,
 				D01C70D61A558E1C00CC5038 /* Frameworks */,
 				D01C70D81A558E1C00CC5038 /* Resources */,
+				D01316691A5D887400AB1456 /* Add Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D01316661A5D885F00AB1456 /* PBXTargetDependency */,
 			);
 			name = "Balthisar Tidy Extension (app)";
 			productName = "Balthisar Tidy Extension";
@@ -1794,15 +1988,36 @@
 				D01C70E01A5591A500CC5038 /* Sources */,
 				D01C70E21A5591A500CC5038 /* Frameworks */,
 				D01C70E41A5591A500CC5038 /* Resources */,
+				D013166B1A5D889500AB1456 /* Add Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D01316681A5D886300AB1456 /* PBXTargetDependency */,
 			);
 			name = "Balthisar Tidy Extension (pro)";
 			productName = "Balthisar Tidy Extension";
 			productReference = D01C70E91A5591A500CC5038 /* Balthisar Tidy (pro).appex */;
 			productType = "com.apple.product-type.app-extension";
+		};
+		D04BC9671A5AC5CB009AC43A /* Balthisar Tidy Service Helper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D04BC9821A5AC5CB009AC43A /* Build configuration list for PBXNativeTarget "Balthisar Tidy Service Helper" */;
+			buildPhases = (
+				D04BC9641A5AC5CB009AC43A /* Sources */,
+				D04BC9651A5AC5CB009AC43A /* Frameworks */,
+				D04BC9661A5AC5CB009AC43A /* Resources */,
+				D04BC9CA1A5BFB0D009AC43A /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D04BC9C91A5BFB0D009AC43A /* PBXTargetDependency */,
+			);
+			name = "Balthisar Tidy Service Helper";
+			productName = "Balthisar Tidy Service Helper";
+			productReference = D04BC9681A5AC5CB009AC43A /* Balthisar Tidy Service Helper.app */;
+			productType = "com.apple.product-type.application";
 		};
 		D05C16E11A53B79700558F11 /* tidy */ = {
 			isa = PBXNativeTarget;
@@ -1829,11 +2044,14 @@
 				D0913CA218B0AC06005DB2E4 /* Sources */,
 				D0913CC818B0AC06005DB2E4 /* Frameworks */,
 				D0913CCB18B0AC06005DB2E4 /* Resources */,
+				D02DBCED1A5950E7009C84CF /* Add Frameworks */,
 				D01C70CE1A55882900CC5038 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D02DBCF21A5951AB009C84CF /* PBXTargetDependency */,
+				D013165C1A5D871500AB1456 /* PBXTargetDependency */,
 				D01C70FA1A55930300CC5038 /* PBXTargetDependency */,
 			);
 			name = "Balthisar Tidy (app)";
@@ -1848,11 +2066,14 @@
 				D0BB67B7193C820A007A3EB0 /* Sources */,
 				D0BB67E5193C820A007A3EB0 /* Frameworks */,
 				D0BB67E7193C820A007A3EB0 /* Resources */,
+				D02DBCEF1A595118009C84CF /* Add Frameworks */,
 				D01C70CB1A55850D00CC5038 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D02DBCF41A5951B1009C84CF /* PBXTargetDependency */,
+				D01316601A5D874A00AB1456 /* PBXTargetDependency */,
 				D017A13D1A56D1E5003DDE6C /* PBXTargetDependency */,
 			);
 			name = "Balthisar Tidy (pro)";
@@ -1915,6 +2136,10 @@
 							};
 						};
 					};
+					D04BC9671A5AC5CB009AC43A = {
+						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 9PN2JXXG7Y;
+					};
 					D05C16E11A53B79700558F11 = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
@@ -1958,10 +2183,11 @@
 				D016A925182FD80700712C60 /* Balthisar Tidy (web) */,
 				D0913CA118B0AC06005DB2E4 /* Balthisar Tidy (app) */,
 				D0BB67B6193C820A007A3EB0 /* Balthisar Tidy (pro) */,
-				D05C16E11A53B79700558F11 /* tidy */,
 				D01C70B91A55850D00CC5038 /* Balthisar Tidy Extension (web) */,
 				D01C70D31A558E1C00CC5038 /* Balthisar Tidy Extension (app) */,
 				D01C70DF1A5591A500CC5038 /* Balthisar Tidy Extension (pro) */,
+				D04BC9671A5AC5CB009AC43A /* Balthisar Tidy Service Helper */,
+				D05C16E11A53B79700558F11 /* tidy */,
 				D00661071A579BE700F73F85 /* JSDTidyFramework */,
 			);
 		};
@@ -2003,8 +2229,6 @@
 				D0CA8F771953280700BBD54C /* LayoutSourceVTemplate.png in Resources */,
 				D036E21118F3D2F20009A9D4 /* PHP.icns in Resources */,
 				D036E21518F3D2F20009A9D4 /* XML.icns in Resources */,
-				D028E8901A56721200C39852 /* Balthisar Tidy (web).entitlements in Resources */,
-				D028E88F1A56721200C39852 /* Balthisar Tidy (pro).entitlements in Resources */,
 				D036E21318F3D2F20009A9D4 /* Tidy.icns in Resources */,
 				D0CA8F741953280700BBD54C /* LayoutSourceHTemplate.png in Resources */,
 				D0E6AE18190C9FAC00B49779 /* HideDescriptionTemplate.pdf in Resources */,
@@ -2018,7 +2242,6 @@
 				D06C9A9B195FE854004D6C27 /* prefsTidyAppearance@2x.png in Resources */,
 				D074B78B1942BEE200F2E6F1 /* TidyEncodingHelper.xib in Resources */,
 				D06C9A92195FE854004D6C27 /* prefsTidy.png in Resources */,
-				D028E88D1A56721200C39852 /* Balthisar Tidy (app).entitlements in Resources */,
 				D0CA8F6E1953280700BBD54C /* LayoutBottomPaneTemplate.png in Resources */,
 				D036E1EC18F3D25E0009A9D4 /* InfoPlist.strings in Resources */,
 				D06C9A9E195FE854004D6C27 /* prefsUpdate.png in Resources */,
@@ -2049,6 +2272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D01C70C01A55850D00CC5038 /* icon.icns in Resources */,
+				D04BC9C31A5BF973009AC43A /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2057,6 +2281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D01C70D91A558E1C00CC5038 /* icon.icns in Resources */,
+				D04BC9C41A5BF974009AC43A /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2065,6 +2290,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				D01C70E51A5591A500CC5038 /* icon.icns in Resources */,
+				D04BC9C51A5BF974009AC43A /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D04BC9661A5AC5CB009AC43A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D04BC9B91A5ACB7D009AC43A /* HelperMainMenu.xib in Resources */,
+				D04BC9CE1A5C2A22009AC43A /* Localizable.strings in Resources */,
+				D04BC98C1A5AC6F4009AC43A /* ServicesMenu.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2075,6 +2311,7 @@
 				D06C9A96195FE854004D6C27 /* prefsTidy@2x.png in Resources */,
 				D06C9AB219600550004D6C27 /* PaneTopShadow.png in Resources */,
 				D06C9A5C195FB997004D6C27 /* OptionListAppearanceViewController.xib in Resources */,
+				D013165A1A5D871500AB1456 /* Balthisar Tidy Service Helper.app in Resources */,
 				D06C9A80195FBA3F004D6C27 /* UpdaterOptionsViewController.xib in Resources */,
 				D0B9F0F219585010008864D6 /* DCOAboutWindow.xib in Resources */,
 				D04E8FB8195DAA9400D1CEDC /* DiffViewTemplate.png in Resources */,
@@ -2264,7 +2501,6 @@
 				D0D9ED2B18E66810008A55D5 /* AppController.m in Sources */,
 				D0B9F0F419585010008864D6 /* DCOAboutWindowController.m in Sources */,
 				D06C9A46195FB4A4004D6C27 /* MASPreferencesWindowController.m in Sources */,
-				D0498A611A552851005A207D /* TidyService.m in Sources */,
 				D04753B71938A19D00BB7163 /* JSDBoolToStringValueTransformer.m in Sources */,
 				D06C9A6A195FB9F2004D6C27 /* SavingOptionsViewController.m in Sources */,
 				D06C9A73195FBA0F004D6C27 /* MiscOptionsViewController.m in Sources */,
@@ -2299,6 +2535,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				D01C70E11A5591A500CC5038 /* ActionRequestHandler.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D04BC9641A5AC5CB009AC43A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D04BC9701A5AC5CB009AC43A /* main.m in Sources */,
+				D04BC96E1A5AC5CB009AC43A /* AppDelegate.m in Sources */,
+				D04BC9901A5AC7A2009AC43A /* TidyService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2363,7 +2609,6 @@
 				D0BB67AF193AB382007A3EB0 /* NoodleLineNumberView.m in Sources */,
 				D0B9F0F519585010008864D6 /* DCOAboutWindowController.m in Sources */,
 				D06C9A47195FB4A4004D6C27 /* MASPreferencesWindowController.m in Sources */,
-				D0498A621A552851005A207D /* TidyService.m in Sources */,
 				D04753B81938A19D00BB7163 /* JSDBoolToStringValueTransformer.m in Sources */,
 				D06C9A6B195FB9F2004D6C27 /* SavingOptionsViewController.m in Sources */,
 				D06C9A74195FBA0F004D6C27 /* MiscOptionsViewController.m in Sources */,
@@ -2402,7 +2647,6 @@
 				D0BB67D6193C820A007A3EB0 /* NoodleLineNumberView.m in Sources */,
 				D0B9F0F619585010008864D6 /* DCOAboutWindowController.m in Sources */,
 				D06C9A48195FB4A4004D6C27 /* MASPreferencesWindowController.m in Sources */,
-				D0498A631A552851005A207D /* TidyService.m in Sources */,
 				D0BB67D7193C820A007A3EB0 /* JSDBoolToStringValueTransformer.m in Sources */,
 				D06C9A6C195FB9F2004D6C27 /* SavingOptionsViewController.m in Sources */,
 				D06C9A75195FBA0F004D6C27 /* MiscOptionsViewController.m in Sources */,
@@ -2429,6 +2673,26 @@
 			target = D00661071A579BE700F73F85 /* JSDTidyFramework */;
 			targetProxy = D002EFDC1A57AC9000530D2F /* PBXContainerItemProxy */;
 		};
+		D013165C1A5D871500AB1456 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D04BC9671A5AC5CB009AC43A /* Balthisar Tidy Service Helper */;
+			targetProxy = D013165B1A5D871500AB1456 /* PBXContainerItemProxy */;
+		};
+		D01316601A5D874A00AB1456 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D04BC9671A5AC5CB009AC43A /* Balthisar Tidy Service Helper */;
+			targetProxy = D013165F1A5D874A00AB1456 /* PBXContainerItemProxy */;
+		};
+		D01316661A5D885F00AB1456 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D00661071A579BE700F73F85 /* JSDTidyFramework */;
+			targetProxy = D01316651A5D885F00AB1456 /* PBXContainerItemProxy */;
+		};
+		D01316681A5D886300AB1456 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D00661071A579BE700F73F85 /* JSDTidyFramework */;
+			targetProxy = D01316671A5D886300AB1456 /* PBXContainerItemProxy */;
+		};
 		D017A13D1A56D1E5003DDE6C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D01C70DF1A5591A500CC5038 /* Balthisar Tidy Extension (pro) */;
@@ -2443,6 +2707,26 @@
 			isa = PBXTargetDependency;
 			target = D01C70D31A558E1C00CC5038 /* Balthisar Tidy Extension (app) */;
 			targetProxy = D01C70F91A55930300CC5038 /* PBXContainerItemProxy */;
+		};
+		D02DBCF21A5951AB009C84CF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D00661071A579BE700F73F85 /* JSDTidyFramework */;
+			targetProxy = D02DBCF11A5951AB009C84CF /* PBXContainerItemProxy */;
+		};
+		D02DBCF41A5951B1009C84CF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D00661071A579BE700F73F85 /* JSDTidyFramework */;
+			targetProxy = D02DBCF31A5951B1009C84CF /* PBXContainerItemProxy */;
+		};
+		D04BC9BB1A5ACCB1009AC43A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D04BC9671A5AC5CB009AC43A /* Balthisar Tidy Service Helper */;
+			targetProxy = D04BC9BA1A5ACCB1009AC43A /* PBXContainerItemProxy */;
+		};
+		D04BC9C91A5BFB0D009AC43A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D00661071A579BE700F73F85 /* JSDTidyFramework */;
+			targetProxy = D04BC9C81A5BFB0D009AC43A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2549,6 +2833,38 @@
 				D036E1E718F3D25E0009A9D4 /* Base */,
 			);
 			name = TidyDocumentWindow.xib;
+			sourceTree = "<group>";
+		};
+		D04BC98A1A5AC6F4009AC43A /* ServicesMenu.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D04BC98B1A5AC6F4009AC43A /* Base */,
+			);
+			name = ServicesMenu.strings;
+			sourceTree = "<group>";
+		};
+		D04BC9B71A5ACB7D009AC43A /* HelperMainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D04BC9B81A5ACB7D009AC43A /* Base */,
+			);
+			name = HelperMainMenu.xib;
+			sourceTree = "<group>";
+		};
+		D04BC9BE1A5BF47E009AC43A /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D04BC9BF1A5BF47E009AC43A /* Base */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		D04BC9CC1A5C2A22009AC43A /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D04BC9CD1A5C2A22009AC43A /* Base */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		D074B7891942BEE200F2E6F1 /* TidyEncodingHelper.xib */ = {
@@ -2731,15 +3047,14 @@
 			buildSettings = {
 				APPLY_RULES_IN_COPY_FILES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
-				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy (web).entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy.entitlements";
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "./**";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Balthisar Tidy/Balthisar Tidy-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					TARGET_WEB,
 					"$(inherited)",
@@ -2763,14 +3078,14 @@
 			buildSettings = {
 				APPLY_RULES_IN_COPY_FILES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
-				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy (web).entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy.entitlements";
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "./**";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Balthisar Tidy/Balthisar Tidy-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = TARGET_WEB;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				INFOPLIST_FILE = "Balthisar Tidy/Balthisar Tidy-Info.plist";
@@ -2793,7 +3108,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy (web).entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar Tidy Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2821,7 +3136,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy (web).entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar Tidy Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2846,7 +3161,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar Tidy (app).entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -2876,7 +3191,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar Tidy (app).entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -2906,7 +3221,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar Tidy (pro).entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -2936,7 +3251,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar Tidy (pro).entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -2956,6 +3271,61 @@
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				TIDY_APP_BUNDLE_ID = "com.balthisar.Balthisar-Tidy.pro";
+			};
+			name = Release;
+		};
+		D04BC9831A5AC5CB009AC43A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Service Helper/Balthisar Tidy Service Helper.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					TARGET_WEB,
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "Balthisar Tidy Service Helper/Info.plist";
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		D04BC9841A5AC5CB009AC43A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Service Helper/Balthisar Tidy Service Helper.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = TARGET_WEB;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "Balthisar Tidy Service Helper/Info.plist";
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
@@ -3006,16 +3376,15 @@
 			buildSettings = {
 				APPLY_RULES_IN_COPY_FILES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
-				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy (app).entitlements";
-				CODE_SIGN_IDENTITY = "Developer ID Application";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Balthisar Tidy/Balthisar Tidy-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					TARGET_APP,
 					"$(inherited)",
@@ -3040,15 +3409,14 @@
 			buildSettings = {
 				APPLY_RULES_IN_COPY_FILES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
-				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy (app).entitlements";
-				CODE_SIGN_IDENTITY = "Developer ID Application";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Balthisar Tidy/Balthisar Tidy-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = TARGET_APP;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_UNUSED_PARAMETER = NO;
@@ -3070,16 +3438,15 @@
 			buildSettings = {
 				APPLY_RULES_IN_COPY_FILES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
-				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy (pro).entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Balthisar Tidy/Balthisar Tidy-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					TARGET_PRO,
 					"$(inherited)",
@@ -3104,15 +3471,14 @@
 			buildSettings = {
 				APPLY_RULES_IN_COPY_FILES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
-				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy (pro).entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Balthisar Tidy/Balthisar Tidy-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = TARGET_PRO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_UNUSED_PARAMETER = NO;
@@ -3182,6 +3548,15 @@
 			buildConfigurations = (
 				D01C70E71A5591A500CC5038 /* Debug */,
 				D01C70E81A5591A500CC5038 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D04BC9821A5AC5CB009AC43A /* Build configuration list for PBXNativeTarget "Balthisar Tidy Service Helper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D04BC9831A5AC5CB009AC43A /* Debug */,
+				D04BC9841A5AC5CB009AC43A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

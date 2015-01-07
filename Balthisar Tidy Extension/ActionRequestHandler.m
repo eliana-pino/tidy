@@ -28,8 +28,10 @@
  **************************************************************************************************/
 
 #import "ActionRequestHandler.h"
-#import "PreferencesDefinitions.h"
+#import "CommonHeaders.h"
 #import "JSDTidyModel.h"
+#import "JSDTidyOption.h"
+#import "JSDTidyExtensionCommon.h"
 
 @implementation ActionRequestHandler
 
@@ -43,30 +45,41 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)beginRequestWithExtensionContext:(NSExtensionContext *)context
 {
-//	/*
-//	 The macro from PreferencesDefinitions.h. initWithSuiteName is the
-//	 means for accessing shared preferences when everything is sandboxed.
-//	 */
-//	NSUserDefaults *localDefaults = [[NSUserDefaults alloc] initWithSuiteName:APP_GROUP_PREFS];
-//
-//
+	/*
+	 The macro from CommonHeaders.h initWithSuiteName is the
+	 means for accessing shared preferences when everything is sandboxed.
+	 */
+	NSUserDefaults *localDefaults = [[NSUserDefaults alloc] initWithSuiteName:APP_GROUP_PREFS];
+
+
 	/* Get the input item. */
 	NSExtensionItem *item = context.inputItems.firstObject;
-//	NSString *content = [item.attributedContentText string];
-//
-//	/* Perform the Tidying */
-//	JSDTidyModel *localModel = [[JSDTidyModel alloc] initWithString:content];
-//	[localModel takeOptionValuesFromDefaults:localDefaults];
-//
-//	if (localModel.tidyText)
-//	{
-		item.attributedContentText = [[NSAttributedString alloc] initWithString:@"ACTION!"];//localModel.tidyText];
+	NSString *content = [item.attributedContentText string];
+
+	/* Set option and perform the Tidying */
+	JSDTidyModel *localModel = [[JSDTidyModel alloc] initWithString:content];
+	[localModel takeOptionValuesFromDefaults:localDefaults];
+	JSDTidyOption *localOption = localModel.tidyOptions[@"force-output"];
+	localOption.optionValue = @"YES";
+
+	/* Grab a current copy of tidyText */
+	NSString *localTidyText = localModel.tidyText;
+
+	if (localTidyText && localTidyText.length > 0)
+	{
+		item.attributedContentText = [[NSAttributedString alloc] initWithString:localModel.tidyText];
 		[context completeRequestReturningItems:@[item] completionHandler:nil];
-//	}
-//	else
-//	{
-//		[context cancelRequestWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:NSUserCancelledError userInfo:nil]];
-//	}
+	}
+	else
+	{
+		NSAlert *alert = [[NSAlert alloc] init];
+		[alert addButtonWithTitle:NSLocalizedString(@"dialogOK", nil)];
+		[alert setMessageText:NSLocalizedString(@"dialogMessageText", nil)];
+		[alert setInformativeText:NSLocalizedString(@"dialogInformativeText", nil)];
+		[alert setAlertStyle:NSInformationalAlertStyle];
+		[alert runModal];
+		[context cancelRequestWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:NSUserCancelledError userInfo:nil]];
+	}
 }
 
 

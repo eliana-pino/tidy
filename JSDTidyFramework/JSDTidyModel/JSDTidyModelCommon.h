@@ -1,9 +1,9 @@
 /**************************************************************************************************
 
-	TidyService
+	JSDCommon.h
 
-	This class provides the functions for allowing Balthisar Tidy to provide a service.
-
+	Common defs used within the framework.
+	
 
 	The MIT License (MIT)
 
@@ -26,22 +26,22 @@
 
  **************************************************************************************************/
 
-#import <Foundation/Foundation.h>
-#import "PreferencesDefinitions.h"
-
-@interface TidyService : NSObject
+#ifndef Balthisar_Tidy_JSDTidyModelCommon_h
+#define Balthisar_Tidy_JSDTidyModelCommon_h
 
 
-#ifdef FEATURE_SUPPORTS_SERVICE
+/*
+	This is the main key in the implementing application's prefs file under which all of the TidyLib
+	options will be written. You might change this if your application uses Cocoa's native preferences
+	system.
+ */
 
-/* Handle the "Tidy with Balthisar Tidy" system service. */
-- (void)tidySelection:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error;
+#define JSDKeyTidyTidyOptionsKey @"JSDTidyTidyOptions"
 
 
-/* Handle the "New Balthisar Tidy Document with Selection" system service. */
-- (void)newDocumentWithSelection:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error;
+/* Redefine NSLocalizedString so that we can use it directly without a lot of fuss. */
+#undef NSLocalizedString
+#define NSLocalizedString(key, val) [[NSBundle bundleForClass:[self class]] localizedStringForKey:(key) value:(val) table:nil]
+
 
 #endif
-
-
-@end

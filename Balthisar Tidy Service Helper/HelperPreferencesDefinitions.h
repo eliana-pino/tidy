@@ -1,9 +1,11 @@
 /**************************************************************************************************
 
-	JSDCommon.h
+	PreferencesDefinitions.h
+ 
+	Application-wide preferences and definitions.
+	- Keys for top-hierarchy preferences managed by this application.
+	- Definitions for behaviors based on the build targets' preprocessor macros.
 
-	Common defs used within the framework.
-	
 
 	The MIT License (MIT)
 
@@ -26,22 +28,22 @@
 
  **************************************************************************************************/
 
-#ifndef Balthisar_Tidy_JSDCommon_h
-#define Balthisar_Tidy_JSDCommon_h
+#ifndef HelperPreferencesDefinitions_h
+#define HelperPreferencesDefinitions_h
+
+#pragma mark - Feature Definitions
 
 
-/*
-	This is the main key in the implementing application's prefs file under which all of the TidyLib
-	options will be written. You might change this if your application uses Cocoa's native preferences
-	system.
- */
+#ifdef TARGET_WEB
+    #define APP_GROUP_PREFS @"group.com.balthisar.web.free.balthisar-tidy.prefs"
+#endif
 
-#define JSDKeyTidyTidyOptionsKey @"JSDTidyTidyOptions"
+#ifdef TARGET_APP
+    #define APP_GROUP_PREFS @"group.com.balthisar.Balthisar-Tidy.prefs"
+#endif
 
-
-/* Redefine NSLocalizedString so that we can use it directly without a lot of fuss. */
-#undef NSLocalizedString
-#define NSLocalizedString(key, val) [[NSBundle bundleForClass:[self class]] localizedStringForKey:(key) value:(val) table:nil]
-
+#ifdef TARGET_PRO
+    #define APP_GROUP_PREFS @"group.com.balthisar.Balthisar-Tidy.pro.prefs"
+#endif
 
 #endif

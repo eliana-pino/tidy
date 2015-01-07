@@ -26,15 +26,14 @@
 
  **************************************************************************************************/
 
-#import "PreferencesDefinitions.h"
+#import "HelperPreferencesDefinitions.h"
 #import "TidyService.h"
 #import "JSDTidyModel.h"
-#import "TidyDocument.h"
+//#import "TidyDocument.h"
+#import "JSDTidyOption.h"
 
 @implementation TidyService
 
-
-#ifdef FEATURE_SUPPORTS_SERVICE
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	 tidySelection
@@ -44,37 +43,52 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)tidySelection:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error
 {
-//    /* Test for strings on the pasteboard. */
-//    NSArray *classes = [NSArray arrayWithObject:[NSString class]];
-//    NSDictionary *options = [NSDictionary dictionary];
-//    
-//    if (![pboard canReadObjectForClasses:classes options:options]) {
-//        *error = NSLocalizedString(@"Error: couldn't tidy text.",
-//                                   @"pboard couldn't give string.");
-//        return;
-//    }
-//    
-//    
-//    /* Perform the Tidying */
-//    NSString *pboardString = [pboard stringForType:NSPasteboardTypeString];
-//    
-//    JSDTidyModel *localModel = [[JSDTidyModel alloc] initWithString:pboardString];
-//    [localModel takeOptionValuesFromDefaults:[NSUserDefaults standardUserDefaults]];
-//    
-//    if (!localModel.tidyText)
-//    {
-//        *error = NSLocalizedString(@"Error: couldn't tidy text.",
-//                                   @"self couldn't tidy the document.");
-//        return;
-//    }
-//
-//    
-//    /* Write the string onto the pasteboard. */
-//    [pboard clearContents];
-//    [pboard writeObjects:[NSArray arrayWithObject:localModel.tidyText]];
-	NSLog(@"%@", @"JIM DERRY IS HERE!");
-	[pboard clearContents];
-	[pboard writeObjects:[NSArray arrayWithObject:@"TextIsTidy"]];
+    /* Test for strings on the pasteboard. */
+
+    NSArray *classes = [NSArray arrayWithObject:[NSString class]];
+
+    NSDictionary *options = [NSDictionary dictionary];
+    
+    if (![pboard canReadObjectForClasses:classes options:options])
+	{
+        *error = NSLocalizedString(@"tidyCantRead", nil);
+        return;
+    }
+
+
+    /* Perform the Tidying and get the current Preferences. */
+
+	NSString *pboardString = [pboard stringForType:NSPasteboardTypeString];
+
+    JSDTidyModel *localModel = [[JSDTidyModel alloc] initWithString:pboardString];
+
+
+	/*
+	 The macro from CommonHeaders.h initWithSuiteName is the
+	 means for accessing shared preferences when everything is sandboxed.
+	 */
+	NSLog(@"%@", APP_GROUP_PREFS);
+	NSUserDefaults *localDefaults = [[NSUserDefaults alloc] initWithSuiteName:APP_GROUP_PREFS];
+	[localModel takeOptionValuesFromDefaults:localDefaults];
+	JSDTidyOption *localOption = localModel.tidyOptions[@"force-output"];
+	localOption.optionValue = @"YES";
+
+
+	/* Grab a current copy of tidyText */
+
+	NSString *localTidyText = localModel.tidyText;
+
+
+    if (!localTidyText)
+    {
+        *error = NSLocalizedString(@"tidyDidntWork", nil);
+    }
+	else
+	{
+		/* Write the string onto the pasteboard. */
+		[pboard clearContents];
+		[pboard writeObjects:[NSArray arrayWithObject:localTidyText]];
+	}
 }
 
 
@@ -84,24 +98,22 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)newDocumentWithSelection:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error
 {
-    /* Test for strings on the pasteboard. */
-    NSArray *classes = [NSArray arrayWithObject:[NSString class]];
-    NSDictionary *options = [NSDictionary dictionary];
-    
-    if (![pboard canReadObjectForClasses:classes options:options]) {
-        *error = NSLocalizedString(@"Error: couldn't use text.",
-                                   @"pboard couldn't give string.");
-        return;
-    }
-
-    
-    /* Create a new document and set the text. */
-    TidyDocument *localDocument = [[NSDocumentController sharedDocumentController] openUntitledDocumentAndDisplay:YES error:nil];
-    localDocument.sourceText = [pboard stringForType:NSPasteboardTypeString];
-    //localDocument.
+//    /* Test for strings on the pasteboard. */
+//    NSArray *classes = [NSArray arrayWithObject:[NSString class]];
+//    NSDictionary *options = [NSDictionary dictionary];
+//    
+//    if (![pboard canReadObjectForClasses:classes options:options]) {
+//        *error = NSLocalizedString(@"Error: couldn't use text.",
+//                                   @"pboard couldn't give string.");
+//        return;
+//    }
+//
+//    
+//    /* Create a new document and set the text. */
+//    TidyDocument *localDocument = [[NSDocumentController sharedDocumentController] openUntitledDocumentAndDisplay:YES error:nil];
+//    localDocument.sourceText = [pboard stringForType:NSPasteboardTypeString];
+//    //localDocument.
 }
 
-
-#endif
 
 @end

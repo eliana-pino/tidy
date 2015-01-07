@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleIdentifier</key>
+	<string>${TIDY_APP_BUNDLE_ID}</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -90,14 +92,8 @@
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
-	<key>CFBundleHelpBookFolder</key>
-	<string>${TIDY_HELP_BOOK_FOLDER}</string>
-	<key>CFBundleHelpBookName</key>
-	<string>${TIDY_HELP_BOOK_KEY}</string>
 	<key>CFBundleIconFile</key>
 	<string>Application.icns</string>
-	<key>CFBundleIdentifier</key>
-	<string>$(TIDY_APP_BUNDLE_ID)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -114,69 +110,12 @@
 	<string>public.app-category.developer-tools</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
-	<key>NSAppleScriptEnabled</key>
-	<string>${JSD_APPLESCRIPT_VALUE}</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright ©2015 James S. Derry. All rights reserved.</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	<key>NSServices</key>
-	<array>
-		<dict>
-			<key>LSUIElement</key>
-			<string>1</string>
-			<key>NSKeyEquivalent</key>
-			<dict>
-				<key>default</key>
-				<string></string>
-			</dict>
-			<key>NSMenuItem</key>
-			<dict>
-				<key>default</key>
-				<string>Tidy with Balthisar Tidy</string>
-			</dict>
-			<key>NSMessage</key>
-			<string>tidySelection</string>
-			<key>NSPortName</key>
-			<string>Balthisar Tidy</string>
-			<key>NSReturnTypes</key>
-			<array>
-				<string>NSStringPboardType</string>
-			</array>
-			<key>NSSendTypes</key>
-			<array>
-				<string>NSStringPboardType</string>
-			</array>
-			<key>NSServiceDescription</key>
-			<string>SERVICE_TIDY</string>
-		</dict>
-		<dict>
-			<key>LSUIElement</key>
-			<string>1</string>
-			<key>NSKeyEquivalent</key>
-			<dict>
-				<key>default</key>
-				<string></string>
-			</dict>
-			<key>NSMenuItem</key>
-			<dict>
-				<key>default</key>
-				<string>New Balthisar Tidy Document with Selection</string>
-			</dict>
-			<key>NSMessage</key>
-			<string>newDocumentWithSelection</string>
-			<key>NSPortName</key>
-			<string>Balthisar Tidy</string>
-			<key>NSSendTypes</key>
-			<array>
-				<string>NSStringPboardType</string>
-			</array>
-			<key>NSServiceDescription</key>
-			<string>SERVICE_NEWDOC</string>
-		</dict>
-	</array>
 	<key>OSAScriptingDefinition</key>
 	<string>TidyScripting.sdef</string>
 	<key>SUAllowsAutomaticUpdates</key>
@@ -185,5 +124,11 @@
 	<true/>
 	<key>SUFeedURL</key>
 	<string>${TIDY_UPDATE_URL}</string>
+	<key>CFBundleHelpBookName</key>
+	<string>${TIDY_HELP_BOOK_KEY}</string>
+	<key>CFBundleHelpBookFolder</key>
+	<string>${TIDY_HELP_BOOK_FOLDER}</string>
+	<key>NSAppleScriptEnabled</key>
+	<string>${JSD_APPLESCRIPT_VALUE}</string>
 </dict>
 </plist>

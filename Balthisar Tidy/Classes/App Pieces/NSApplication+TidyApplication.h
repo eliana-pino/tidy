@@ -27,7 +27,7 @@
  **************************************************************************************************/
 
 #import <Cocoa/Cocoa.h>
-#import "PreferencesDefinitions.h"
+#import "CommonHeaders.h"
 
 @interface NSApplication (TidyApplication)
 

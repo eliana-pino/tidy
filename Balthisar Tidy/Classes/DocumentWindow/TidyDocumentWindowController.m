@@ -61,7 +61,7 @@
  **************************************************************************************************/
 
 #import "TidyDocumentWindowController.h"
-#import "PreferencesDefinitions.h"
+#import "CommonHeaders.h"
 #import "PreferenceController.h"
 #import "JSDTidyModel.h"
 #import "TidyDocument.h"

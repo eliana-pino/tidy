@@ -37,7 +37,7 @@
  **************************************************************************************************/
 
 #import "JSDTableCellView.h"
-#import "PreferencesDefinitions.h"
+#import "CommonHeaders.h"
 //#import "JSDTableView.h"
 
 

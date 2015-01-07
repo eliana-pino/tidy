@@ -35,7 +35,7 @@
  **************************************************************************************************/
 
 #import "PreferenceController.h"
-#import "PreferencesDefinitions.h"
+#import "CommonHeaders.h"
 #import "JSDTidyModel.h"
 #import "OptionListViewController.h"
 #import "OptionListAppearanceViewController.h"
@@ -67,6 +67,24 @@
     dispatch_once(&onceToken, ^{ sharedMyPrefController = [[self alloc] init]; });
 	
     return sharedMyPrefController;
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	sharedUserDefaults (class)
+		Returns the defaults instance for this application. This
+        allows easy substitution of standardUserDefaults with the
+        use of suite names.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
++ (NSUserDefaults *)sharedUserDefaults
+{
+    static NSUserDefaults *sharedSharedUserDefaults = nil;
+	
+    static dispatch_once_t onceToken;
+	
+    dispatch_once(&onceToken, ^{ sharedSharedUserDefaults = [[NSUserDefaults alloc] initWithSuiteName:APP_GROUP_PREFS]; });
+	
+    return sharedSharedUserDefaults;
 }
 
 
@@ -116,7 +134,7 @@
 	[defaultValues setObject:@NO  forKey:@"NSPrintHeaderAndFooter"];
 
 
-	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
+	[[PreferenceController sharedUserDefaults] registerDefaults:defaultValues];
 }
 
 

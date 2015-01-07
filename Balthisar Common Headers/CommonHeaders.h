@@ -97,7 +97,7 @@
 //	#define FEATURE_SUPPORTS_APPLESCRIPT
 	#define FEATURE_SUPPORTS_SERVICE
 	#define FEATURE_SUPPORTS_EXTENSIONS
-    #define APP_GROUP_PREFS @"group.com.balthisar.web.free.balthisar-tidy.prefs"
+    #define APP_GROUP_PREFS @"group.com.balthisar.Balthisar-Tidy.prefs"
 //	#define FEATURE_SUPPORTS_SXS_DIFFS
 #endif
 
@@ -119,7 +119,7 @@
 	#define FEATURE_SUPPORTS_APPLESCRIPT
 	#define FEATURE_SUPPORTS_SERVICE
 	#define FEATURE_SUPPORTS_EXTENSIONS
-    #define APP_GROUP_PREFS @"group.com.balthisar.Balthisar-Tidy.pro.prefs"
+    #define APP_GROUP_PREFS @"group.com.balthisar.Balthisar-Tidy.prefs"
 	#define FEATURE_SUPPORTS_SXS_DIFFS
 #endif
 

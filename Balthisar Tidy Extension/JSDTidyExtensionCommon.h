@@ -1,13 +1,9 @@
 /**************************************************************************************************
 
-	FirstRunController
+	JSDCommon.h
 
-	Implements a first run helper using an array of programmed steps:
-		- message as NSString
-		- showRelativeToRect as NSRect
-		- ofView as NSView
-		- preferredEdge as NSRectEdge
-
+	Common defs used within the framework.
+	
 
 	The MIT License (MIT)
 
@@ -30,24 +26,13 @@
 
  **************************************************************************************************/
 
-@import Cocoa;
-
-#import "PreferenceController.h"
-
-
-@interface FirstRunController : NSObject
+#ifndef Balthisar_Tidy_JSDTidyExtensionCommon_h
+#define Balthisar_Tidy_JSDTidyExtensionCommon_h
 
 
-@property NSArray *steps;                      // Steps array, as described above.
-
-@property NSString *preferencesKeyName;        // Preferences key to record whether or not helper finished.
-
-@property (readonly, assign) BOOL isVisible;   // Indicates whether or not the helper is currently shown.
+/* Redefine NSLocalizedString so that we can use it directly without a lot of fuss. */
+#undef NSLocalizedString
+#define NSLocalizedString(key, val) [[NSBundle bundleForClass:[self class]] localizedStringForKey:(key) value:(val) table:nil]
 
 
-- (instancetype)initWithSteps:(NSArray*)steps;   // Inital with a steps array directly.
-
-- (void)beginFirstRunSequence;                   // Start the sequence.
-
-
-@end
+#endif

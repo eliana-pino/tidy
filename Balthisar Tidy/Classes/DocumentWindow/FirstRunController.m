@@ -147,7 +147,7 @@
 	
 	self.checkboxShowAgain.enabled = YES;
 	
-	self.checkboxShowAgain.state = ![[[NSUserDefaults standardUserDefaults] objectForKey:self.preferencesKeyName] boolValue];
+	self.checkboxShowAgain.state = ![[[PreferenceController sharedUserDefaults] objectForKey:self.preferencesKeyName] boolValue];
 	
 	self.buttonCancel.hidden = NO;
 	

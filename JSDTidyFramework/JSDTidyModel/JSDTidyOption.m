@@ -41,8 +41,9 @@
 
 #pragma mark - iVar Synthesis
 
-@synthesize name        = _name;
-@synthesize optionValue = _optionValue;
+@synthesize name         = _name;
+@synthesize optionValue  = _optionValue;
+@synthesize userDefaults = _userDefaults;
 
 /* One-time loading of these */
 @synthesize localizedHumanReadableName = _localizedHumanReadableName;
@@ -189,7 +190,7 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSString*)defaultOptionValue
 {
-	NSString *cocoaDefault = [[[NSUserDefaults standardUserDefaults] objectForKey:JSDKeyTidyTidyOptionsKey] stringForKey:_name];
+	NSString *cocoaDefault = [[self.userDefaults objectForKey:JSDKeyTidyTidyOptionsKey] stringForKey:_name];
 	
 	if (cocoaDefault)
 	{
@@ -641,6 +642,29 @@
  
 		This method is implemented automatically by compiler.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	userDefaults
+		Points to an alternate set of user defaults in case the
+		application does not want to use `standardUserDefaults`.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (NSUserDefaults *)userDefaults
+{
+	if (_userDefaults)
+	{
+		return _userDefaults;
+	}
+	else
+	{
+		return [NSUserDefaults standardUserDefaults];
+	}
+}
+
+- (void)setUserDefaults:(NSUserDefaults *)userDefaults
+{
+	_userDefaults = userDefaults;
+}
 
 
 #pragma mark - Other Public Methods

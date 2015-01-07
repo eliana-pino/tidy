@@ -48,6 +48,8 @@
 
 + (id)sharedPreferences;        // Singleton accessor for this class.
 
++ (id)sharedUserDefaults;       // Replace [NSUserDefaults standardUserDefaults] with this.
+
 + (void)registerUserDefaults;   // Registers Balthisar Tidy's defaults with Mac OS X' defaults system.
 
 + (NSArray*)optionsInEffect;    // An array of the tidy options that Balthisar Tidy supports.

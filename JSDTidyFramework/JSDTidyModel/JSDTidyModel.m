@@ -49,6 +49,10 @@
 	NSData* _originalData;                     // The original data that the file was loaded from.
 
 	BOOL _sourceDidChange;                     // States whether whether _sourceText has changed.
+
+	dispatch_queue_t _tidyQueue;               // Dispatch and syncronization queue for processTidy.
+
+	NSString *_tidyText;                       // Buffer for the tidy result.
 }
 
 
@@ -56,9 +60,9 @@
 
 
 @synthesize sourceText      = _sourceText;
-@synthesize tidyText        = _tidyText;
 @synthesize errorText       = _errorText;
 @synthesize optionsInUse	= _optionsInUse;
+@synthesize userDefaults    = _userDefaults;
 
 
 #pragma mark - Standard C Functions
@@ -110,6 +114,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		_tidyOptionHeaders = [[NSMutableArray alloc] init];
 		_errorArray        = [[NSMutableArray alloc] init];
 		_bufferErrorArray  = [[NSMutableArray alloc] init];
+		_tidyQueue         = dispatch_queue_create("com.balthisar.processTidy", NULL);
 
 		[self optionsPopulateTidyOptions];
 	}
@@ -566,7 +571,11 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSString *)tidyText
 {
-	return _tidyText;
+	__block NSString *localTidyText;
+	dispatch_sync(_tidyQueue, ^{
+			localTidyText = _tidyText;
+	});
+	return localTidyText;
 }
 
 
@@ -613,7 +622,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (BOOL)isDirty
 {
-	return (_sourceDidChange) || (![_sourceText isEqualToString:_tidyText]);
+	return (_sourceDidChange) || (![_sourceText isEqualToString:self.tidyText]);
 }
 
 
@@ -927,7 +936,10 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	 processTidy (private)
-		 Called via GCD from processTidy.
+		 Processes the current `sourceText` into `tidyText`.
+         This is action takes place in the background and works quite
+         well for GUI applications that wait for notifications that
+		 `tidyText` has been changed.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)processTidy
 {
@@ -936,8 +948,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		Perform all of the heavy lifting in this queue. 
 	 *****************************************************/
 
-	dispatch_queue_t tidyQueue = dispatch_queue_create("com.balthisar.processTidy", NULL);
-	dispatch_async(tidyQueue, ^{
+	dispatch_async(_tidyQueue, ^{
 
 		/* Create a TidyDoc and sets its options. */
 
@@ -1013,11 +1024,6 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		tidyGeneralInfo(newTidy);
 
 
-		/*****************************************************
-			Now do stuff that's likely to affect the UI.
-		 *****************************************************/
-		dispatch_async(dispatch_get_main_queue(), ^{
-
 		/* Set ivars for properties. */
 
 		_tidyDetectedHtmlVersion = tidyDetectedHtmlVersion(newTidy);
@@ -1032,8 +1038,8 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		/* Set the actual, external _errorArray. */
 		_errorArray = [[NSMutableArray alloc] initWithArray:_bufferErrorArray];
 
-		/* Copy the error buffer into an NSString. */
 
+		/* Copy the error buffer into an NSString. */
 
 		if (errBuffer->size > 0)
 		{
@@ -1045,13 +1051,11 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		}
 
 
-		/*
-			Save the tidy'd text to an NSString. If the Tidy result is different
-			than the existing Tidy text, then save the new result.
-		 */
-		tidySaveBuffer(newTidy, outBuffer);
+		/* Save the tidy'd text to an NSString. */
 
 		NSString *tidyResult;
+
+		tidySaveBuffer(newTidy, outBuffer);
 
 		if (outBuffer->size > 0)
 		{
@@ -1069,11 +1073,23 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		tidyRelease(newTidy);
 
 
-			/* Only update the Tidy text if there's a change. */
-			if ( ![_tidyText isEqualToString:tidyResult])
+		BOOL textDidChange = ![_tidyText isEqualToString:tidyResult];
+
+		if (textDidChange)
+		{
+			_tidyText = tidyResult;
+		}
+
+
+		/*****************************************************
+			Now do stuff that's likely to affect the UI.
+		 *****************************************************/
+		dispatch_async(dispatch_get_main_queue(), ^{
+
+			/* Only send notifications if the text changed. */
+			if ( textDidChange )
 			{
 				[self willChangeValueForKey:@"tidyText"];
-				_tidyText = tidyResult;
 				[self didChangeValueForKey:@"tidyText"];
 				[self notifyTidyModelTidyTextChanged];
 			}
@@ -1087,7 +1103,6 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 			[self notifyTidyModelMessagesChanged];
 
 		}); // end dispatch_async block
-
 
 	}); // end dispatch_async block
 }
@@ -1383,6 +1398,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		if (localOption)
 		{
 			localOption.optionValue = valueFromPreferences;
+			NSLog(@"NAME=%@ and VALUE=%@.", optionName, valueFromPreferences);
 		}
 	}
 
@@ -1396,6 +1412,29 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 #pragma mark - Tidy Options
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	userDefaults
+		Points to an alternate set of user defaults in case the
+		application does not want to use `standardUserDefaults`.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (NSUserDefaults *)userDefaults
+{
+	if (_userDefaults)
+	{
+		return _userDefaults;
+	}
+	else
+	{
+		return [NSUserDefaults standardUserDefaults];
+	}
+}
+
+- (void)setUserDefaults:(NSUserDefaults *)userDefaults
+{
+	_userDefaults = userDefaults;
+}
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*

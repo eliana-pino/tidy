@@ -29,7 +29,7 @@
  **************************************************************************************************/
 
 #import <Cocoa/Cocoa.h>
-#import "JSDCommon.h"
+#import "JSDTidyModelCommon.h"
 #import "JSDTidyModelDelegate.h"
 
 @class JSDTidyOption;
@@ -278,6 +278,9 @@
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	TIDYOPTIONS
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+
+
+@property NSUserDefaults *userDefaults;              // The NSUserDefaults instance to get defaults from.
 
 
 #pragma mark - Public API and General Properties

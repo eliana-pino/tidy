@@ -1,12 +1,8 @@
 /**************************************************************************************************
 
-	FirstRunController
+	TidyService
 
-	Implements a first run helper using an array of programmed steps:
-		- message as NSString
-		- showRelativeToRect as NSRect
-		- ofView as NSView
-		- preferredEdge as NSRectEdge
+	This class provides the functions for allowing Balthisar Tidy to provide a service.
 
 
 	The MIT License (MIT)
@@ -30,24 +26,16 @@
 
  **************************************************************************************************/
 
-@import Cocoa;
-
-#import "PreferenceController.h"
+#import <Cocoa/Cocoa.h>
 
 
-@interface FirstRunController : NSObject
+@interface TidyService : NSObject
+
+/* Handle the "Tidy with Balthisar Tidy" system service. */
+- (void)tidySelection:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error;
 
 
-@property NSArray *steps;                      // Steps array, as described above.
-
-@property NSString *preferencesKeyName;        // Preferences key to record whether or not helper finished.
-
-@property (readonly, assign) BOOL isVisible;   // Indicates whether or not the helper is currently shown.
-
-
-- (instancetype)initWithSteps:(NSArray*)steps;   // Inital with a steps array directly.
-
-- (void)beginFirstRunSequence;                   // Start the sequence.
-
+/* Handle the "New Balthisar Tidy Document with Selection" system service. */
+- (void)newDocumentWithSelection:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error;
 
 @end

@@ -30,7 +30,7 @@
  **************************************************************************************************/
 
 #import "OptionPaneController.h"
-#import "PreferencesDefinitions.h"
+#import "CommonHeaders.h"
 #import "JSDTidyModel.h"
 #import "JSDTidyOption.h"
 #import "JSDTableCellView.h"
