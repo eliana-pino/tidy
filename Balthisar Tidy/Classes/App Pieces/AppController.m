@@ -101,6 +101,18 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+	/* Launch and Quit the helper to ensure that it registers itself. */
+	dispatch_queue_t launchQueue = dispatch_queue_create("launchHelper", NULL);
+	dispatch_async(launchQueue, ^{
+		NSString *helper = [NSString stringWithFormat:@"%@/Contents/PlugIns/Balthisar Tidy Service Helper.app", [[NSBundle mainBundle] bundlePath]];
+		NSTask *t = [[NSTask alloc] init];
+		[t setLaunchPath:@"/usr/bin/open"];
+		[t setArguments:@[helper]];
+		[t launch];
+		sleep(1);
+		[t terminate];
+	});
+
 	/*
 		The `Balthisar Tidy (no sparkle)` target has NOSPARKLE=1 defined.
 		Because we're building completely without Sparkle, we have to
