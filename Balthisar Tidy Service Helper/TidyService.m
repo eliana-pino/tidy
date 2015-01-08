@@ -28,8 +28,8 @@
 
 #import "TidyService.h"
 #import "CommonHeaders.h"
+
 #import "JSDTidyModel.h"
-//#import "TidyDocument.h"
 #import "JSDTidyOption.h"
 
 @implementation TidyService
