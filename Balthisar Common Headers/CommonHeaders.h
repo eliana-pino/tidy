@@ -1,6 +1,6 @@
 /**************************************************************************************************
 
-	PreferencesDefinitions.h
+	CommonHeaders.h
  
 	Application-wide preferences and definitions.
 	- Keys for top-hierarchy preferences managed by this application.
@@ -28,11 +28,15 @@
 
  **************************************************************************************************/
 
-#ifndef Balthisar_Tidy_PreferencesDefinitions_h
-#define Balthisar_Tidy_PreferencesDefinitions_h
+@import Foundation;
 
+#ifndef CommonHeaders_h
+#define CommonHeaders_h
+
+/*=======================================================*
+  These defs are used as key in userDefaults.
+ *=======================================================*/
 #pragma mark - User Defaults Keys
-
 
 	/* Options List Appearance */
 
@@ -87,10 +91,17 @@
 	 */
 
 
+/*=======================================================*
+  These defs determine which features and other version-
+  specific behaviors and settings apply to a target. Note
+  that the fallback version covers cases for components
+  that we're building in that don't have multiple, per-
+  version targets, e.g., the Service Helper app.
+ *=======================================================*/
 #pragma mark - Feature Definitions
 
 
-#ifdef TARGET_WEB
+#if defined(TARGET_WEB)
 	#define FEATURE_ADVERTISE_PRO
 	#define FEATURE_SPARKLE
 //	#define FEATURE_EXPORTS_CONFIG
@@ -99,9 +110,7 @@
 	#define FEATURE_SUPPORTS_EXTENSIONS
     #define APP_GROUP_PREFS @"group.com.balthisar.Balthisar-Tidy.prefs"
 //	#define FEATURE_SUPPORTS_SXS_DIFFS
-#endif
-
-#ifdef TARGET_APP
+#elif defined(TARGET_APP)
 	#define FEATURE_ADVERTISE_PRO
 //	#define FEATURE_SPARKLE
 //	#define FEATURE_EXPORTS_CONFIG
@@ -110,9 +119,7 @@
 	#define FEATURE_SUPPORTS_EXTENSIONS
     #define APP_GROUP_PREFS @"group.com.balthisar.Balthisar-Tidy.prefs"
 //	#define FEATURE_SUPPORTS_SXS_DIFFS
-#endif
-
-#ifdef TARGET_PRO
+#elif defined(TARGET_PRO)
 //	#define FEATURE_ADVERTISE_PRO
 //	#define FEATURE_SPARKLE
 	#define FEATURE_EXPORTS_CONFIG
@@ -121,29 +128,44 @@
 	#define FEATURE_SUPPORTS_EXTENSIONS
     #define APP_GROUP_PREFS @"group.com.balthisar.Balthisar-Tidy.prefs"
 	#define FEATURE_SUPPORTS_SXS_DIFFS
+#elif
+//	#define FEATURE_ADVERTISE_PRO
+//	#define FEATURE_SPARKLE
+//	#define FEATURE_EXPORTS_CONFIG
+//	#define FEATURE_SUPPORTS_APPLESCRIPT
+	#define FEATURE_SUPPORTS_SERVICE
+//	#define FEATURE_SUPPORTS_EXTENSIONS
+    #define APP_GROUP_PREFS @"group.com.balthisar.Balthisar-Tidy.prefs"
+//	#define FEATURE_SUPPORTS_SXS_DIFFS
 #endif
 
 
-/*
-	DEVELOPMENT definitions USED FOR SPECIAL DEVELOPMENT TASKS.
- */
+#pragma mark - Other Definitions
+/*=======================================================*
+  This enum is used in the DocumentWindow classes and
+  value is stored in preferences to manage the type of
+  save behavior that is applied to open, dirty documents.
+ *=======================================================*/
+
+/* The values for the save type behaviours related to app preferences. */
+typedef enum : NSInteger
+{
+	kJSDSaveNormal = 0,
+	kJSDSaveButWarn = 1,
+	kJSDSaveAsOnly = 2
+} JSDSaveType;
+
+
+#pragma mark - Special Development Tasks
+/*=======================================================*
+   These defs are used for special development tasks.
+ *=======================================================*/
 
 /* FAKE Sparkle so Pro Version can use Applescript to take screenshots. */
 //#define FEATURE_FAKE_SPARKLE
 
 /* Make the document window transparent when the encoding helper starts. */
 //#define FEATURE_EMPHASIZE_HELPER
-
-
-#pragma mark - Other Definitions
-
-	/* The values for the save type behaviours related to app preferences. */
-	typedef enum : NSInteger
-	{
-		kJSDSaveNormal = 0,
-		kJSDSaveButWarn = 1,
-		kJSDSaveAsOnly = 2
-	} JSDSaveType;
 
 
 #endif
