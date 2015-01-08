@@ -29,10 +29,12 @@
 
 #import "TidyDocument.h"
 #import "CommonHeaders.h"
-#import "JSDTidyModel.h"
+
 #import "TidyDocumentWindowController.h"
 #import "TidyDocumentSourceViewController.h"
 #import "JSDTextView.h"
+
+#import "JSDTidyModel.h"
 
 
 @implementation TidyDocument
@@ -260,6 +262,12 @@
 - (void)setSourceText:(NSString *)sourceText
 {
 	self.windowController.sourceController.sourceTextView.string = sourceText;
+	
+	/*
+	  Setting the text directly does not set off the event chain,
+	  so this cheat will allow us to activate the delegate directly.
+	 */
+	
     [self.windowController.sourceController textDidChange:nil];
 }
 
@@ -270,7 +278,6 @@
 {
 	return self.windowController.sourceController.tidyTextView.string;
 }
-
 
 
 @end

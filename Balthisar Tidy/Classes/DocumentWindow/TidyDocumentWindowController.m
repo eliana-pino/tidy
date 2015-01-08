@@ -33,11 +33,12 @@
 	Event Handling and Interacting with the Tidy Processor
  
 		The Tidy processor is loosely coupled with the document controller. Most
-		interaction with it is handled via NSNotifications.
+		interaction with it is handled via NSNotifications and/or bindings.
  
-		If user types text the SourceViewController receive a `textDidChange` delegate notification,
-		and we will set new text in [tidyProcess sourceText]. The event chain will eventually handle
-		everything else.
+		If user types text then the SourceViewController receives a `textDidChange` delegate
+        notification, and will set new text in `tidyProcess.sourceText]`. The event chain will
+        eventually handle everything else. (Notably setting this text directly does _not_
+        invoke this notification).
  
 		If `tidyText` changes we will receive NSNotification, and put the new `tidyText`
 		into the `tidyView`, and also update `messagesViewController`.
@@ -62,16 +63,19 @@
 
 #import "TidyDocumentWindowController.h"
 #import "CommonHeaders.h"
+
 #import "PreferenceController.h"
-#import "JSDTidyModel.h"
-#import "TidyDocument.h"
-#import "OptionPaneController.h"
-#import "NSTextView+JSDExtensions.h"
-#import "FirstRunController.h"
+
 #import "EncodingHelperController.h"
+#import "FirstRunController.h"
 #import "JSDTableViewController.h"
-#import "TidyDocumentSourceViewController.h"
 #import "JSDTextView.h"
+#import "NSTextView+JSDExtensions.h"
+#import "OptionPaneController.h"
+#import "TidyDocument.h"
+#import "TidyDocumentSourceViewController.h"
+
+#import "JSDTidyModel.h"
 
 
 @implementation TidyDocumentWindowController

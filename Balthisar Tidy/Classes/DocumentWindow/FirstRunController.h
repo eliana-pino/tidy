@@ -32,8 +32,6 @@
 
 @import Cocoa;
 
-#import "PreferenceController.h"
-
 
 @interface FirstRunController : NSObject
 
