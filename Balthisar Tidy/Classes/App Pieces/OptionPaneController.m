@@ -125,20 +125,19 @@
 	awakeFromNib
 		Set up the description label's constraint.
 		Ensure view occupies entire parent container.
+	@TODO: called multiple times because of view based tables.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)awakeFromNib
 {
-	self.theDescriptionConstraint = [NSLayoutConstraint constraintWithItem:self.theDescription
-																 attribute:NSLayoutAttributeHeight
-																 relatedBy:NSLayoutRelationEqual
-																	toItem:nil
-																 attribute:NSLayoutAttributeNotAnAttribute
-																multiplier:1.0
-																  constant:0.0];
-
-	if (self.view.superview)
+	if (!self.theDescriptionConstraint)
 	{
-		[self.view setFrame:self.view.superview.bounds];
+		self.theDescriptionConstraint = [NSLayoutConstraint constraintWithItem:self.theDescription
+																	 attribute:NSLayoutAttributeHeight
+																	 relatedBy:NSLayoutRelationEqual
+																		toItem:nil
+																	 attribute:NSLayoutAttributeNotAnAttribute
+																	multiplier:1.0
+																	  constant:0.0];
 	}
 
 	self.descriptionIsVisible = [[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyOptionsShowDescription] boolValue];

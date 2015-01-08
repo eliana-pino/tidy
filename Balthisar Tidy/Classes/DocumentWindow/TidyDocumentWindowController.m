@@ -135,6 +135,8 @@
 	self.optionController = [[OptionPaneController alloc] init];
 
 	[self.optionPane addSubview:self.optionController.view];
+	
+	[self.optionController.view setFrame:self.optionPane.bounds]; //view.superview.bounds];
 
 	self.optionController.optionsInEffect = [PreferenceController optionsInEffect];
 

@@ -80,6 +80,8 @@
 
 	[self.optionControllerView addSubview:self.optionController.view];
 
+	[self.optionController.view setFrame:self.optionControllerView.bounds];
+
 	self.optionController.optionsInEffect = [PreferenceController optionsInEffect];
 
 
