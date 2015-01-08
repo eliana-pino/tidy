@@ -38,7 +38,6 @@
 
 #import "JSDTableCellView.h"
 #import "CommonHeaders.h"
-//#import "JSDTableView.h"
 
 
 @implementation JSDTableCellView

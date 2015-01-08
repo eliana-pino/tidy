@@ -27,8 +27,8 @@
 
  **************************************************************************************************/
 
+@import Cocoa;
 
-#import <Cocoa/Cocoa.h>
 
 @interface JSDTextView : NSTextView
 
