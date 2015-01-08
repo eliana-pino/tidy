@@ -35,17 +35,6 @@
 @class JSDTidyOption;
 
 
-#pragma mark - Defines
-
-/*
-  This is the main key in the implementing application's prefs file under which all of the TidyLib
-  options will be written. You might change this if your application uses Cocoa's native preferences
-  system.
- */
-
-#define JSDKeyTidyTidyOptionsKey @"JSDTidyTidyOptions"
-
-
 #pragma mark - class JSDTidyModel
 
 

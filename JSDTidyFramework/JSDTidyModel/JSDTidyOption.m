@@ -27,9 +27,9 @@
  **************************************************************************************************/
 
 #import "JSDTidyOption.h"
+#import "JSDTidyCommonHeaders.h"
 
 #import "JSDTidyModel.h"
-#import "JSDTidyCommonHeaders.h"
 
 
 #pragma mark - IMPLEMENTATION
