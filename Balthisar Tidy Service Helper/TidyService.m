@@ -26,8 +26,8 @@
 
  **************************************************************************************************/
 
-#import "HelperPreferencesDefinitions.h"
 #import "TidyService.h"
+#import "CommonHeaders.h"
 #import "JSDTidyModel.h"
 //#import "TidyDocument.h"
 #import "JSDTidyOption.h"
@@ -51,7 +51,7 @@
     
     if (![pboard canReadObjectForClasses:classes options:options])
 	{
-        *error = NSLocalizedString(@"tidyCantRead", nil);
+        *error = JSDLocalizedString(@"tidyCantRead", nil);
         return;
     }
 
@@ -81,7 +81,7 @@
 
     if (!localTidyText)
     {
-        *error = NSLocalizedString(@"tidyDidntWork", nil);
+        *error = JSDLocalizedString(@"tidyDidntWork", nil);
     }
 	else
 	{
@@ -103,7 +103,7 @@
 //    NSDictionary *options = [NSDictionary dictionary];
 //    
 //    if (![pboard canReadObjectForClasses:classes options:options]) {
-//        *error = NSLocalizedString(@"Error: couldn't use text.",
+//        *error = JSDLocalizedString(@"Error: couldn't use text.",
 //                                   @"pboard couldn't give string.");
 //        return;
 //    }

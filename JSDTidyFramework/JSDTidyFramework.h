@@ -27,7 +27,8 @@
 
  **************************************************************************************************/
 
-#import <Cocoa/Cocoa.h>
+@import Cocoa;
+
 
 //! Project version number for JSDTidyFramework.
 FOUNDATION_EXPORT double JSDTidyFrameworkVersionNumber;
@@ -37,7 +38,7 @@ FOUNDATION_EXPORT const unsigned char JSDTidyFrameworkVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <JSDTidyFramework/PublicHeader.h>
 
-#import "JSDTidyOption.h"
 #import "JSDTidyModel.h"
 #import "JSDTidyModelDelegate.h"
+#import "JSDTidyOption.h"
 

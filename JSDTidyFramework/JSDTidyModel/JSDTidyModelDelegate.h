@@ -28,11 +28,10 @@
 
  **************************************************************************************************/
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
-
-@class JSDTidyOption;
 @class JSDTidyModel;
+@class JSDTidyOption;
 
 /*
 	TidyLib will post the following NSNotifications.

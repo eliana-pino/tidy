@@ -26,8 +26,8 @@
  
  **************************************************************************************************/
 
-#import <Cocoa/Cocoa.h>
-#import "JSDTidyExtensionCommon.h"
+@import Cocoa;
+
 #import "config.h"   // from vendor/tidylib/src/
 
 

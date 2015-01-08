@@ -214,8 +214,8 @@
 		[self.windowController.window setAlphaValue:0.0f];
 #endif
 		NSRunAlertPanel(NSLocalizedString(@"WarnSaveDisabled", nil),
-						NSLocalizedString(@"cancel", nil),
 						@"%@",
+						NSLocalizedString(@"cancel", nil),
 						nil,
 						nil,
 						NSLocalizedString(@"WarnSaveDisabledExplain", nil));

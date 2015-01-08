@@ -29,7 +29,10 @@
  **************************************************************************************************/
 
 #import "JSDTidyModel.h"
+
+#import "JSDTidyCommonHeaders.h"
 #import "JSDTidyOption.h"
+
 #import "config.h"   // from vendor/tidylib/src/
 
 
@@ -1168,18 +1171,18 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 	/* Localize the message */
 
-	NSString *formatString = NSLocalizedString(@(mssg), nil);
+	NSString *formatString = JSDLocalizedString(@(mssg), nil);
 
 	NSString *intermediateString = [[NSString alloc] initWithFormat:formatString arguments:args];
 	
-	NSString *messageString = NSLocalizedString(intermediateString, nil);
+	NSString *messageString = JSDLocalizedString(intermediateString, nil);
 
 
 	/* Localize the levelDescription and get an image */
 
 	NSArray *errorTypes = @[@"messagesInfo", @"messagesWarning", @"messagesConfig", @"messagesAccess", @"messagesError", @"messagesDocument", @"messagesPanic"];
 
-	NSString *levelDescription = NSLocalizedString(errorTypes[(int)lvl], nil);
+	NSString *levelDescription = JSDLocalizedString(errorTypes[(int)lvl], nil);
 
 	NSImage *levelImage = [[NSImage alloc] initWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:errorTypes[(int)lvl] ofType:@"icns"]];
 
@@ -1190,29 +1193,29 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 	if (line == 0)
 	{
-		lineString = NSLocalizedString(@"N/A", @"");
+		lineString = JSDLocalizedString(@"N/A", @"");
 	}
 	else
 	{
-		lineString = [NSString stringWithFormat:@"%@ %u", NSLocalizedString(@"line", nil), line];
+		lineString = [NSString stringWithFormat:@"%@ %u", JSDLocalizedString(@"line", nil), line];
 	}
 
 	NSString *columnString;
 
 	if (col == 0)
 	{
-		columnString = NSLocalizedString(@"N/A", @"");
+		columnString = JSDLocalizedString(@"N/A", @"");
 	}
 	else
 	{
-		columnString = [NSString stringWithFormat:@"%@ %u", NSLocalizedString(@"column", nil), col];
+		columnString = [NSString stringWithFormat:@"%@ %u", JSDLocalizedString(@"column", nil), col];
 	}
 
 	NSString *locationString;
 
 	if ((line == 0) || (col == 0))
 	{
-		locationString = NSLocalizedString(@"N/A", @"");
+		locationString = JSDLocalizedString(@"N/A", @"");
 	}
 	else
 	{
@@ -1398,7 +1401,6 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		if (localOption)
 		{
 			localOption.optionValue = valueFromPreferences;
-			NSLog(@"NAME=%@ and VALUE=%@.", optionName, valueFromPreferences);
 		}
 	}
 
@@ -1484,7 +1486,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	NSMutableString *result = [[NSMutableString alloc] init];
 
 
-	NSString *tempString = [NSString stringWithFormat:@"# %@\n", NSLocalizedString(@"export-byline", nil)];
+	NSString *tempString = [NSString stringWithFormat:@"# %@\n", JSDLocalizedString(@"export-byline", nil)];
 
 	[result appendString:[NSString stringWithFormat:tempString, baseFileName]];
 

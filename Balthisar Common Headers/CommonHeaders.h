@@ -5,6 +5,7 @@
 	Application-wide preferences and definitions.
 	- Keys for top-hierarchy preferences managed by this application.
 	- Definitions for behaviors based on the build targets' preprocessor macros.
+    - Provideds `JSDLocalizedString` as an `NSLocalizedString` substitute for dependencies.
 
 
 	The MIT License (MIT)
@@ -80,8 +81,8 @@
 
 	#ifdef JSDKeyTidyTidyOptionsKey
 		#undef JSDKeyTidyTidyOptionsKey
-		#define JSDKeyTidyTidyOptionsKey          @"JSDTidyTidyOptions"
 	#endif
+	#define JSDKeyTidyTidyOptionsKey              @"JSDTidyTidyOptions"
 
 
 	/*
@@ -128,7 +129,7 @@
 	#define FEATURE_SUPPORTS_EXTENSIONS
     #define APP_GROUP_PREFS @"group.com.balthisar.Balthisar-Tidy.prefs"
 	#define FEATURE_SUPPORTS_SXS_DIFFS
-#elif
+#else
 //	#define FEATURE_ADVERTISE_PRO
 //	#define FEATURE_SPARKLE
 //	#define FEATURE_EXPORTS_CONFIG
@@ -154,6 +155,14 @@ typedef enum : NSInteger
 	kJSDSaveButWarn = 1,
 	kJSDSaveAsOnly = 2
 } JSDSaveType;
+
+
+#pragma mark - JSDLocalizedString
+/*=======================================================*
+  Simple NSLocalizedString substitute.
+ *=======================================================*/
+
+#define JSDLocalizedString(key, val) [[NSBundle bundleForClass:[self class]] localizedStringForKey:(key) value:(val) table:nil]
 
 
 #pragma mark - Special Development Tasks

@@ -694,7 +694,6 @@
 		D002ED6B1A57AA3D00530D2F /* version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
 		D002ED6C1A57AA3D00530D2F /* win32tc.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = win32tc.c; sourceTree = "<group>"; };
 		D002ED6D1A57AA3D00530D2F /* win32tc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = win32tc.h; sourceTree = "<group>"; };
-		D002EFDE1A57AFD800530D2F /* JSDTidyModelCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JSDTidyModelCommon.h; path = JSDTidyModel/JSDTidyModelCommon.h; sourceTree = "<group>"; };
 		D002EFE01A57B80100530D2F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = Resources/Base.lproj/Documentation/README.md; sourceTree = "<group>"; };
 		D002EFE61A57C05A00530D2F /* tidy.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tidy.c; sourceTree = "<group>"; };
 		D002EFEE1A57C0EC00530D2F /* buffio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = buffio.h; path = ../JSDTidyFramework/vendor/tidylib/include/buffio.h; sourceTree = "<group>"; };
@@ -879,9 +878,7 @@
 		D04BC98F1A5AC7A2009AC43A /* TidyService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TidyService.m; sourceTree = "<group>"; };
 		D04BC9B81A5ACB7D009AC43A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = HelperMainMenu.xib; sourceTree = "<group>"; };
 		D04BC9BF1A5BF47E009AC43A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Localizable.strings; sourceTree = "<group>"; };
-		D04BC9C21A5BF67F009AC43A /* JSDTidyExtensionCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSDTidyExtensionCommon.h; sourceTree = "<group>"; };
 		D04BC9CD1A5C2A22009AC43A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Localizable.strings; sourceTree = "<group>"; };
-		D04BC9CF1A5C345F009AC43A /* HelperPreferencesDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelperPreferencesDefinitions.h; sourceTree = "<group>"; };
 		D04D5F971902459500F77901 /* NSApplication+TidyApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSApplication+TidyApplication.h"; sourceTree = "<group>"; };
 		D04D5F981902459500F77901 /* NSApplication+TidyApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSApplication+TidyApplication.m"; sourceTree = "<group>"; };
 		D04E8FAC195D964F00D1CEDC /* Balthisar Tidy (app).help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Balthisar Tidy (app).help"; sourceTree = "<group>"; };
@@ -935,6 +932,7 @@
 		D074B7A91944035800F2E6F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TidyDocumentMessagesView.xib; sourceTree = "<group>"; };
 		D074B7B21947D93800F2E6F1 /* JSDTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSDTableViewController.h; sourceTree = "<group>"; };
 		D074B7B31947D93800F2E6F1 /* JSDTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSDTableViewController.m; sourceTree = "<group>"; };
+		D07DD0E91A5E7AFC008130D0 /* JSDTidyCommonHeaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSDTidyCommonHeaders.h; sourceTree = "<group>"; };
 		D081CBD91917C1510041B2C5 /* JSDIntegerValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSDIntegerValueTransformer.h; sourceTree = "<group>"; };
 		D081CBDA1917C1510041B2C5 /* JSDIntegerValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSDIntegerValueTransformer.m; sourceTree = "<group>"; };
 		D086892E194842A400BDAD72 /* TidyDocumentSourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TidyDocumentSourceViewController.h; path = DocumentWindow/TidyDocumentSourceViewController.h; sourceTree = "<group>"; };
@@ -1416,7 +1414,7 @@
 		D006612D1A579DE200F73F85 /* JSDTidyModel */ = {
 			isa = PBXGroup;
 			children = (
-				D002EFDE1A57AFD800530D2F /* JSDTidyModelCommon.h */,
+				D07DD0E91A5E7AFC008130D0 /* JSDTidyCommonHeaders.h */,
 				D00661311A579DF300F73F85 /* JSDTidyModelDelegate.h */,
 				D006612E1A579DF300F73F85 /* JSDTidyModel.h */,
 				D006612F1A579DF300F73F85 /* JSDTidyModel.m */,
@@ -1534,7 +1532,6 @@
 		D01C70BC1A55850D00CC5038 /* Balthisar Tidy Extension */ = {
 			isa = PBXGroup;
 			children = (
-				D04BC9C21A5BF67F009AC43A /* JSDTidyExtensionCommon.h */,
 				D01C70C21A55850D00CC5038 /* ActionRequestHandler.h */,
 				D01C70C31A55850D00CC5038 /* ActionRequestHandler.m */,
 				D01C70BD1A55850D00CC5038 /* Supporting Files */,
@@ -1569,7 +1566,6 @@
 		D04BC9691A5AC5CB009AC43A /* Balthisar Tidy Service Helper */ = {
 			isa = PBXGroup;
 			children = (
-				D04BC9CF1A5C345F009AC43A /* HelperPreferencesDefinitions.h */,
 				D04BC96F1A5AC5CB009AC43A /* main.m */,
 				D04BC96C1A5AC5CB009AC43A /* AppDelegate.h */,
 				D04BC96D1A5AC5CB009AC43A /* AppDelegate.m */,

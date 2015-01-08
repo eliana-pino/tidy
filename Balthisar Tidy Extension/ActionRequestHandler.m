@@ -29,9 +29,9 @@
 
 #import "ActionRequestHandler.h"
 #import "CommonHeaders.h"
+
 #import "JSDTidyModel.h"
 #import "JSDTidyOption.h"
-#import "JSDTidyExtensionCommon.h"
 
 @implementation ActionRequestHandler
 
@@ -73,9 +73,9 @@
 	else
 	{
 		NSAlert *alert = [[NSAlert alloc] init];
-		[alert addButtonWithTitle:NSLocalizedString(@"dialogOK", nil)];
-		[alert setMessageText:NSLocalizedString(@"dialogMessageText", nil)];
-		[alert setInformativeText:NSLocalizedString(@"dialogInformativeText", nil)];
+		[alert addButtonWithTitle:JSDLocalizedString(@"dialogOK", nil)];
+		[alert setMessageText:JSDLocalizedString(@"dialogMessageText", nil)];
+		[alert setInformativeText:JSDLocalizedString(@"dialogInformativeText", nil)];
 		[alert setAlertStyle:NSInformationalAlertStyle];
 		[alert runModal];
 		[context cancelRequestWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:NSUserCancelledError userInfo:nil]];

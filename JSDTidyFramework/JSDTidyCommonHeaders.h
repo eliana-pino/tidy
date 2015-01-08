@@ -1,10 +1,6 @@
 /**************************************************************************************************
 
-	PreferencesDefinitions.h
- 
-	Application-wide preferences and definitions.
-	- Keys for top-hierarchy preferences managed by this application.
-	- Definitions for behaviors based on the build targets' preprocessor macros.
+	JSDTidyCommonHeaders.h
 
 
 	The MIT License (MIT)
@@ -28,22 +24,18 @@
 
  **************************************************************************************************/
 
-#ifndef HelperPreferencesDefinitions_h
-#define HelperPreferencesDefinitions_h
-
-#pragma mark - Feature Definitions
+#ifndef JSDTidyCommonHeaders_h
+#define JSDTidyCommonHeaders_h
 
 
-#ifdef TARGET_WEB
-    #define APP_GROUP_PREFS @"group.com.balthisar.web.free.balthisar-tidy.prefs"
-#endif
+#pragma mark - JSDLocalizedString
+/*=======================================================*
+  Simple NSLocalizedString substitute.
+ *=======================================================*/
 
-#ifdef TARGET_APP
-    #define APP_GROUP_PREFS @"group.com.balthisar.Balthisar-Tidy.prefs"
-#endif
+#define JSDLocalizedString(key, val) [[NSBundle bundleForClass:[self class]] localizedStringForKey:(key) value:(val) table:nil]
 
-#ifdef TARGET_PRO
-    #define APP_GROUP_PREFS @"group.com.balthisar.Balthisar-Tidy.pro.prefs"
-#endif
+
+
 
 #endif

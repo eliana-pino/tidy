@@ -27,7 +27,7 @@
 
  **************************************************************************************************/
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 @interface ActionRequestHandler : NSObject <NSExtensionRequestHandling>
 

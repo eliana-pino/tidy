@@ -27,7 +27,9 @@
  **************************************************************************************************/
 
 #import "JSDTidyOption.h"
+
 #import "JSDTidyModel.h"
+#import "JSDTidyCommonHeaders.h"
 
 
 #pragma mark - IMPLEMENTATION
@@ -254,7 +256,7 @@
 {
 	if (!_localizedHumanReadableName)
 	{
-		_localizedHumanReadableName = NSLocalizedString(([NSString stringWithFormat:@"tag-%@", _name]) ,nil);
+		_localizedHumanReadableName = JSDLocalizedString(([NSString stringWithFormat:@"tag-%@", _name]) ,nil);
 	}
 	return _localizedHumanReadableName;
 }
@@ -268,7 +270,7 @@
 	if (!_localizedHumanReadableDescription)
 	{
 		// parentheses around brackets required lest preprocessor get confused.
-		NSString *rawString = NSLocalizedString(([NSString stringWithFormat:@"description-%@", _name]), nil);
+		NSString *rawString = JSDLocalizedString(([NSString stringWithFormat:@"description-%@", _name]), nil);
 		
 		/*
 			RTF can be a little complex due to legacy string encoding issues.
@@ -307,7 +309,7 @@
 {
 	if (!_localizedHumanReadableCategory)
 	{
-		_localizedHumanReadableCategory = NSLocalizedString(([NSString stringWithFormat:@"category-%u", self.builtInCategory]), nil);
+		_localizedHumanReadableCategory = JSDLocalizedString(([NSString stringWithFormat:@"category-%u", self.builtInCategory]), nil);
 	}
 	return _localizedHumanReadableCategory;
 }
