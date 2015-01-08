@@ -28,13 +28,15 @@
  **************************************************************************************************/
 
 #import "AppController.h"
-#import "PreferenceController.h"
 #import "CommonHeaders.h"
-#import "JSDIntegerValueTransformer.h"
+
 #import "JSDAllCapsValueTransformer.h"
+#import "JSDIntegerValueTransformer.h"
 #import "JSDBoolToStringValueTransformer.h"
-#import "TidyDocument.h"
+
 #import "DCOAboutWindowController.h"
+#import "PreferenceController.h"
+#import "TidyDocument.h"
 
 #ifdef FEATURE_SPARKLE
 	#import <Sparkle/Sparkle.h>

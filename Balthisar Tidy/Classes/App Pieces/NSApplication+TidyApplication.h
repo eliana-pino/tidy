@@ -26,8 +26,8 @@
 
  **************************************************************************************************/
 
-#import <Cocoa/Cocoa.h>
-#import "CommonHeaders.h"
+@import Cocoa;
+
 
 @interface NSApplication (TidyApplication)
 

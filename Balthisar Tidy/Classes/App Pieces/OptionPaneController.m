@@ -31,8 +31,10 @@
 
 #import "OptionPaneController.h"
 #import "CommonHeaders.h"
+
 #import "JSDTidyModel.h"
 #import "JSDTidyOption.h"
+
 #import "JSDTableCellView.h"
 
 
@@ -332,36 +334,6 @@
 		 }];
 	}
 }
-
-///*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-//	handleToggleDescription:
-// *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-//- (IBAction)handleToggleDescription:(NSButton *)sender
-//{
-//	[self.view layoutSubtreeIfNeeded];
-//
-//	[NSAnimationContext runAnimationGroup:^(NSAnimationContext *context)
-//		{
-//			[context setAllowsImplicitAnimation: YES];
-//
-//			/* This little function makes a nice acceleration curved based on the height. */
-//			context.duration = pow(1 / self.theDescription.intrinsicContentSize.height,1/3) / 5;
-//
-//			if (sender.state)
-//			{
-//				[self.theDescription addConstraint:self.theDescriptionConstraint];
-//			}
-//			else
-//			{
-//				[self.theDescription removeConstraint:self.theDescriptionConstraint];
-//			}
-//			[self.view layoutSubtreeIfNeeded];
-//		}
-//		completionHandler:^
-//		{
-//			[[self theTable] scrollRowToVisible:self.theTable.selectedRow];
-//		}];
-//}
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
