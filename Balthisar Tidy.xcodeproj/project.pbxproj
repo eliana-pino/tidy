@@ -923,7 +923,6 @@
 		D06C9AA4195FEC11004D6C27 /* prefsDoc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = prefsDoc.png; path = "Images for Prefs/prefsDoc.png"; sourceTree = "<group>"; };
 		D06C9AA5195FEC11004D6C27 /* prefsDoc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "prefsDoc@2x.png"; path = "Images for Prefs/prefsDoc@2x.png"; sourceTree = "<group>"; };
 		D06C9AB019600550004D6C27 /* PaneTopShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PaneTopShadow.png; path = "Images for UI/PaneTopShadow.png"; sourceTree = "<group>"; };
-		D07289511A0FCBB700FB4368 /* Balthisar Tidy (dev).help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Balthisar Tidy (dev).help"; sourceTree = "<group>"; };
 		D074B78A1942BEE200F2E6F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TidyEncodingHelper.xib; sourceTree = "<group>"; };
 		D074B7931942CF0300F2E6F1 /* EncodingHelperController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EncodingHelperController.h; path = DocumentWindow/EncodingHelperController.h; sourceTree = "<group>"; };
 		D074B7941942CF0300F2E6F1 /* EncodingHelperController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EncodingHelperController.m; path = DocumentWindow/EncodingHelperController.m; sourceTree = "<group>"; };
@@ -1737,7 +1736,6 @@
 				D04E8FAE195D964F00D1CEDC /* Balthisar Tidy (web).help */,
 				D04E8FAC195D964F00D1CEDC /* Balthisar Tidy (app).help */,
 				D04E8FAD195D964F00D1CEDC /* Balthisar Tidy (pro).help */,
-				D07289511A0FCBB700FB4368 /* Balthisar Tidy (dev).help */,
 				D036E21718F3D81E0009A9D4 /* TidyScripting.sdef */,
 				D036E20718F3D2F20009A9D4 /* File Icons */,
 				D06C9A83195FE82D004D6C27 /* Images for Prefs */,
