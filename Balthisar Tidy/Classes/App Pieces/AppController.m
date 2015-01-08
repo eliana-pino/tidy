@@ -78,8 +78,7 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 + (void)initialize
 {
-	[PreferenceController registerUserDefaults];
-
+	[[PreferenceController sharedPreferences] registerUserDefaults];
 
 	/* Initialize the value transformers used throughout the application bindings */
 
