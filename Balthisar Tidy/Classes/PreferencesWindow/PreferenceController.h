@@ -34,7 +34,8 @@
 
  **************************************************************************************************/
 
-#import <Cocoa/Cocoa.h>
+@import Cocoa;
+
 #import "MASPreferencesWindowController.h"
 
 @class JSDTidyModel;

@@ -36,12 +36,14 @@
 
 #import "PreferenceController.h"
 #import "CommonHeaders.h"
+
 #import "JSDTidyModel.h"
-#import "OptionListViewController.h"
-#import "OptionListAppearanceViewController.h"
+
 #import "DocumentAppearanceViewController.h"
-#import "SavingOptionsViewController.h"
+#import "OptionListAppearanceViewController.h"
+#import "OptionListViewController.h"
 #import "MiscOptionsViewController.h"
+#import "SavingOptionsViewController.h"
 #import "UpdaterOptionsViewController.h"
 
 
