@@ -836,7 +836,7 @@
 		D016A92E182FD80700712C60 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D016A931182FD80700712C60 /* Balthisar Tidy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Balthisar Tidy-Info.plist"; path = "Balthisar Tidy/Balthisar Tidy-Info.plist"; sourceTree = "<group>"; };
 		D016A935182FD80700712C60 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Balthisar Tidy/main.m"; sourceTree = "<group>"; };
-		D01C70B11A55463400CC5038 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/ServicesMenu.strings; sourceTree = "<group>"; };
+		D01C70B11A55463400CC5038 /* Base */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/ServicesMenu.strings; sourceTree = "<group>"; };
 		D01C70BA1A55850D00CC5038 /* Balthisar Tidy (web).appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Balthisar Tidy (web).appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D01C70BE1A55850D00CC5038 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D01C70BF1A55850D00CC5038 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
@@ -875,7 +875,7 @@
 		D04BC96D1A5AC5CB009AC43A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D04BC96F1A5AC5CB009AC43A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D04BC9881A5AC6E2009AC43A /* Balthisar Tidy Service Helper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Balthisar Tidy Service Helper.entitlements"; sourceTree = "<group>"; };
-		D04BC98B1A5AC6F4009AC43A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = ServicesMenu.strings; sourceTree = "<group>"; };
+		D04BC98B1A5AC6F4009AC43A /* Base */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Base; path = ServicesMenu.strings; sourceTree = "<group>"; };
 		D04BC98D1A5AC714009AC43A /* helper-icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "helper-icon.icns"; sourceTree = "<group>"; };
 		D04BC98E1A5AC7A2009AC43A /* TidyService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TidyService.h; sourceTree = "<group>"; };
 		D04BC98F1A5AC7A2009AC43A /* TidyService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TidyService.m; sourceTree = "<group>"; };
