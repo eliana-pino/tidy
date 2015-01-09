@@ -39,6 +39,9 @@
 @implementation AppDelegate
 
 
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	applicationDidFinishLaunching:
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 
 	TidyService *tidyService = [[TidyService alloc] init];
@@ -48,6 +51,28 @@
 	  So that we can have careful control over the port name.
 	 */
 	NSRegisterServicesProvider(tidyService, @"com.balthisar.service.port");
+	
+	/* 
+	  If started by simply launching Balthisar Tidy_ quit immediately.
+	  This message will be sent by Balthisar Tidy soon after launching.
+	 */
+	[[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTerminate:) name:@"balthisarTidyHelperOpenThenQuit" object:@"BalthisarTidy"];
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	handleTerminate:
+		Balthisar Tidy launches this helper every time it starts.
+		This ensures that the system knows the helper is capable of
+		providing a service. However we don't want it to hang around
+		open all the time. Because we're sandboxed a lot of other
+		means to terminate (such as NSTask and NSWorkspace) aren't
+		effective, but Distributed Notifications still work among
+        Application Groups.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)handleTerminate:(NSNotification*)aNotification
+{
+	[[NSApplication sharedApplication] terminate:self];
 }
 
 

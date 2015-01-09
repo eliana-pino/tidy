@@ -49,10 +49,7 @@
 	 The macro from CommonHeaders.h initWithSuiteName is the
 	 means for accessing shared preferences when everything is sandboxed.
 	 */
-	NSLog(@"Group in RequestHandler is: %@", APP_GROUP_PREFS);
-
 	NSUserDefaults *localDefaults = [[NSUserDefaults alloc] initWithSuiteName:APP_GROUP_PREFS];
-	NSLog(@"%@", [localDefaults dictionaryRepresentation]);
 
 
 	/* Get the input item. */

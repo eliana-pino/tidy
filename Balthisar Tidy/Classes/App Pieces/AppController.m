@@ -101,17 +101,24 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-	/* Launch and Quit the helper to ensure that it registers itself. */
+#ifdef FEATURE_SUPPORTS_SERVICE
+	/* 
+	   Launch and Quit the helper to ensure that it registers
+	   itself as a provider of System Services.
+	 */
 	dispatch_queue_t launchQueue = dispatch_queue_create("launchHelper", NULL);
 	dispatch_async(launchQueue, ^{
 		NSString *helper = [NSString stringWithFormat:@"%@/Contents/PlugIns/Balthisar Tidy Service Helper.app", [[NSBundle mainBundle] bundlePath]];
-		NSTask *t = [[NSTask alloc] init];
-		[t setLaunchPath:@"/usr/bin/open"];
-		[t setArguments:@[helper]];
-		[t launch];
-		sleep(1);
-		[t terminate];
+		NSTask *task = [[NSTask alloc] init];
+		[task setLaunchPath:@"/usr/bin/open"];
+		[task setArguments:@[helper]];
+		[task launch];
+		sleep(3);
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"balthisarTidyHelperOpenThenQuit" object:@"BalthisarTidy"];
+		});
 	});
+#endif
 
 	/*
 		The `Balthisar Tidy (no sparkle)` target has NOSPARKLE=1 defined.
@@ -119,13 +126,13 @@
 		make sure there are no references to it in the MainMenu nib,
 		and set its target-action programmatically.
 	 */
-	#ifdef FEATURE_SPARKLE
-		[[self menuCheckForUpdates] setTarget:[SUUpdater sharedUpdater]];
-		[[self menuCheckForUpdates] setAction:@selector(checkForUpdates:)];
-		[[self menuCheckForUpdates] setEnabled:YES];
-	#else
-		[[self menuCheckForUpdates] setHidden:YES];
-	#endif
+#ifdef FEATURE_SPARKLE
+	[[self menuCheckForUpdates] setTarget:[SUUpdater sharedUpdater]];
+	[[self menuCheckForUpdates] setAction:@selector(checkForUpdates:)];
+	[[self menuCheckForUpdates] setEnabled:YES];
+#else
+	[[self menuCheckForUpdates] setHidden:YES];
+#endif
 }
 
 

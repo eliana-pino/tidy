@@ -30,6 +30,7 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
+- (void)handleTerminate:(NSNotification*)aNotification;
 
 @end
 
