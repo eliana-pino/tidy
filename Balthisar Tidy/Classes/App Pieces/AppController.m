@@ -38,6 +38,10 @@
 #import "PreferenceController.h"
 #import "TidyDocument.h"
 
+#ifdef FEATURE_SUPPORTS_SERVICE
+	#import "TidyDocumentService.h"
+#endif
+
 #ifdef FEATURE_SPARKLE
 	#import <Sparkle/Sparkle.h>
 #endif
@@ -102,7 +106,20 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
 #ifdef FEATURE_SUPPORTS_SERVICE
-	/* 
+	
+	/*
+	   Register our services.
+	 */
+	TidyDocumentService *tidyService = [[TidyDocumentService alloc] init];
+	
+	/*
+	   Use NSRegisterServicesProvider instead of NSApp:setServicesProvider
+	   So that we can have careful control over the port name.
+	 */
+	NSRegisterServicesProvider(tidyService, @"com.balthisar.app.port");
+	
+
+	/*
 	   Launch and Quit the helper to ensure that it registers
 	   itself as a provider of System Services.
 	 */

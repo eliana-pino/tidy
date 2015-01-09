@@ -1,11 +1,10 @@
 /**************************************************************************************************
 
-	TidyService
+	TidyDocumentService
 
 	This class provides the functions for allowing Balthisar Tidy to provide a service.
-	It operates as a faceless app only and thus only provides the faceless services.
-    Balthisar Tidy proper will provide other services.
-
+	It contains functions for services that Balthisar Tidy proper will offer.
+ 
 
 	The MIT License (MIT)
 
@@ -31,9 +30,9 @@
 @import Cocoa;
 
 
-@interface TidyService : NSObject
+@interface TidyDocumentService : NSObject
 
-/* Handle the "Tidy with Balthisar Tidy" system service. */
-- (void)tidySelection:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error;
+/* Handle the "New Balthisar Tidy Document with Selection" system service. */
+- (void)newDocumentWithSelection:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error;
 
 @end

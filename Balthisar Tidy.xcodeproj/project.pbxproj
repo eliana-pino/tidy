@@ -392,6 +392,9 @@
 		D0D9ED4018E66810008A55D5 /* NSTextView+JSDExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9EAD718E6680F008A55D5 /* NSTextView+JSDExtensions.m */; };
 		D0D9F1A318E6BF8D008A55D5 /* JSDTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9F1A218E6BF8D008A55D5 /* JSDTableView.m */; };
 		D0D9F1A418E6BF8D008A55D5 /* JSDTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9F1A218E6BF8D008A55D5 /* JSDTableView.m */; };
+		D0DCEFB21A5FC40100E8A2AE /* TidyDocumentService.m in Sources */ = {isa = PBXBuildFile; fileRef = D0DCEFB11A5FC40100E8A2AE /* TidyDocumentService.m */; };
+		D0DCEFB31A5FC40100E8A2AE /* TidyDocumentService.m in Sources */ = {isa = PBXBuildFile; fileRef = D0DCEFB11A5FC40100E8A2AE /* TidyDocumentService.m */; };
+		D0DCEFB41A5FC40100E8A2AE /* TidyDocumentService.m in Sources */ = {isa = PBXBuildFile; fileRef = D0DCEFB11A5FC40100E8A2AE /* TidyDocumentService.m */; };
 		D0E6AE18190C9FAC00B49779 /* HideDescriptionTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE16190C9FAC00B49779 /* HideDescriptionTemplate.pdf */; };
 		D0E6AE19190C9FAC00B49779 /* HideDescriptionTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE16190C9FAC00B49779 /* HideDescriptionTemplate.pdf */; };
 		D0E6AE1A190C9FAC00B49779 /* ShowDescriptionTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE17190C9FAC00B49779 /* ShowDescriptionTemplate.pdf */; };
@@ -972,6 +975,8 @@
 		D0D9EAD718E6680F008A55D5 /* NSTextView+JSDExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+JSDExtensions.m"; sourceTree = "<group>"; };
 		D0D9F1A118E6BF8D008A55D5 /* JSDTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSDTableView.h; sourceTree = "<group>"; };
 		D0D9F1A218E6BF8D008A55D5 /* JSDTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSDTableView.m; sourceTree = "<group>"; };
+		D0DCEFB01A5FC40100E8A2AE /* TidyDocumentService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TidyDocumentService.h; sourceTree = "<group>"; };
+		D0DCEFB11A5FC40100E8A2AE /* TidyDocumentService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TidyDocumentService.m; sourceTree = "<group>"; };
 		D0E6AE16190C9FAC00B49779 /* HideDescriptionTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = HideDescriptionTemplate.pdf; path = "Balthisar Tidy/Resources/Images for UI/HideDescriptionTemplate.pdf"; sourceTree = SOURCE_ROOT; };
 		D0E6AE17190C9FAC00B49779 /* ShowDescriptionTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = ShowDescriptionTemplate.pdf; path = "Balthisar Tidy/Resources/Images for UI/ShowDescriptionTemplate.pdf"; sourceTree = SOURCE_ROOT; };
 		D0E6AE1F190CB34500B49779 /* PaneBottomShadow.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = PaneBottomShadow.tiff; path = "Balthisar Tidy/Resources/Images for UI/PaneBottomShadow.tiff"; sourceTree = SOURCE_ROOT; };
@@ -1811,6 +1816,8 @@
 				D0D9EAC218E6680F008A55D5 /* AppController.m */,
 				D0D9EAC318E6680F008A55D5 /* OptionPaneController.h */,
 				D0D9EAC418E6680F008A55D5 /* OptionPaneController.m */,
+				D0DCEFB01A5FC40100E8A2AE /* TidyDocumentService.h */,
+				D0DCEFB11A5FC40100E8A2AE /* TidyDocumentService.m */,
 			);
 			path = "App Pieces";
 			sourceTree = "<group>";
@@ -2500,6 +2507,7 @@
 				D06C9A73195FBA0F004D6C27 /* MiscOptionsViewController.m in Sources */,
 				D074B79E1942CF0300F2E6F1 /* FirstRunController.m in Sources */,
 				D06C9A7C195FBA3F004D6C27 /* UpdaterOptionsViewController.m in Sources */,
+				D0DCEFB21A5FC40100E8A2AE /* TidyDocumentService.m in Sources */,
 				D074B79B1942CF0300F2E6F1 /* EncodingHelperController.m in Sources */,
 				D0BB67AE193AB382007A3EB0 /* NoodleLineNumberView.m in Sources */,
 				D008F0191930D9D700559F3B /* JSDAllCapsValueTransformer.m in Sources */,
@@ -2608,6 +2616,7 @@
 				D06C9A74195FBA0F004D6C27 /* MiscOptionsViewController.m in Sources */,
 				D074B79F1942CF0300F2E6F1 /* FirstRunController.m in Sources */,
 				D06C9A7D195FBA3F004D6C27 /* UpdaterOptionsViewController.m in Sources */,
+				D0DCEFB31A5FC40100E8A2AE /* TidyDocumentService.m in Sources */,
 				D074B79C1942CF0300F2E6F1 /* EncodingHelperController.m in Sources */,
 				D008F01A1930D9D700559F3B /* JSDAllCapsValueTransformer.m in Sources */,
 				D0BB67AD193AB382007A3EB0 /* NoodleLineNumberMarker.m in Sources */,
@@ -2646,6 +2655,7 @@
 				D06C9A75195FBA0F004D6C27 /* MiscOptionsViewController.m in Sources */,
 				D074B7A01942CF0300F2E6F1 /* FirstRunController.m in Sources */,
 				D06C9A7E195FBA3F004D6C27 /* UpdaterOptionsViewController.m in Sources */,
+				D0DCEFB41A5FC40100E8A2AE /* TidyDocumentService.m in Sources */,
 				D074B79D1942CF0300F2E6F1 /* EncodingHelperController.m in Sources */,
 				D0BB67DA193C820A007A3EB0 /* JSDAllCapsValueTransformer.m in Sources */,
 				D0BB67E0193C820A007A3EB0 /* NoodleLineNumberMarker.m in Sources */,

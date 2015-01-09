@@ -68,3 +68,7 @@
 /* Info Window */
 "Credits"          = "Credits";
 "Acknowledgements" = "Acknowledgements";
+
+/* TidyDocumentService */
+"tidyCantRead" = "Error: Tidy doesn't understand the selected text.";
+

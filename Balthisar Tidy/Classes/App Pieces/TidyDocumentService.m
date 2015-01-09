@@ -1,10 +1,9 @@
 /**************************************************************************************************
 
-	TidyService
+	TidyDocumentService
 
 	This class provides the functions for allowing Balthisar Tidy to provide a service.
-	It operates as a faceless app only and thus only provides the faceless services.
-    Balthisar Tidy proper will provide other services.
+	It contains functions for services that Balthisar Tidy proper will offer.
 
 
 	The MIT License (MIT)
@@ -28,69 +27,37 @@
 
  **************************************************************************************************/
 
-#import "TidyService.h"
+#import "TidyDocumentService.h"
 #import "CommonHeaders.h"
 
 #import "JSDTidyModel.h"
 #import "JSDTidyOption.h"
+#import "TidyDocument.h"
 
-@implementation TidyService
+@implementation TidyDocumentService
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	 tidySelection
-	 - Returns a Tidy'd version of the pasteboard text with a tidy'd
-       version using the preferences defaults. We will try with
-       force-output if no response.
+	 newDocumentWithSelection
+	 - Creates a new Balthisar Tidy document using the selection.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)tidySelection:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error
+- (void)newDocumentWithSelection:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error
 {
+#ifdef FEATURE_SUPPORTS_SERVICE
     /* Test for strings on the pasteboard. */
-
     NSArray *classes = [NSArray arrayWithObject:[NSString class]];
-
     NSDictionary *options = [NSDictionary dictionary];
     
     if (![pboard canReadObjectForClasses:classes options:options])
 	{
-        *error = JSDLocalizedString(@"tidyCantRead", nil);
+        *error = NSLocalizedString(@"tidyCantRead", nil);
         return;
     }
-
-
-    /* Perform the Tidying and get the current Preferences. */
-
-	NSString *pboardString = [pboard stringForType:NSPasteboardTypeString];
-
-    JSDTidyModel *localModel = [[JSDTidyModel alloc] initWithString:pboardString];
-
-
-	/*
-	   The macro from CommonHeaders.h initWithSuiteName is the means
-	   for accessing shared preferences when everything is sandboxed.
-	 */
-	NSLog(@"%@", APP_GROUP_PREFS);
-	NSUserDefaults *localDefaults = [[NSUserDefaults alloc] initWithSuiteName:APP_GROUP_PREFS];
-	[localModel takeOptionValuesFromDefaults:localDefaults];
-	JSDTidyOption *localOption = localModel.tidyOptions[@"force-output"];
-	localOption.optionValue = @"YES";
-
-
-	/* Grab a current copy of tidyText */
-
-	NSString *localTidyText = localModel.tidyText;
-
-
-    if (!localTidyText)
-    {
-        *error = JSDLocalizedString(@"tidyDidntWork", nil);
-    }
-	else
-	{
-		/* Write the string onto the pasteboard. */
-		[pboard clearContents];
-		[pboard writeObjects:[NSArray arrayWithObject:localTidyText]];
-	}
+    
+    /* Create a new document and set the text. */
+    TidyDocument *localDocument = [[NSDocumentController sharedDocumentController] openUntitledDocumentAndDisplay:YES error:nil];
+    localDocument.sourceText = [pboard stringForType:NSPasteboardTypeString];
+#endif
 }
 
 
