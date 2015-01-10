@@ -114,7 +114,6 @@
 		D008F0191930D9D700559F3B /* JSDAllCapsValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D008F0181930D9D700559F3B /* JSDAllCapsValueTransformer.m */; };
 		D008F01A1930D9D700559F3B /* JSDAllCapsValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D008F0181930D9D700559F3B /* JSDAllCapsValueTransformer.m */; };
 		D0097B0B19712F68001CCF94 /* Balthisar Tidy (pro).help in Resources */ = {isa = PBXBuildFile; fileRef = D04E8FAD195D964F00D1CEDC /* Balthisar Tidy (pro).help */; };
-		D013165A1A5D871500AB1456 /* Balthisar Tidy Service Helper.app in Resources */ = {isa = PBXBuildFile; fileRef = D04BC9681A5AC5CB009AC43A /* Balthisar Tidy Service Helper.app */; };
 		D01316611A5D881400AB1456 /* Balthisar Tidy Service Helper.app in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D04BC9681A5AC5CB009AC43A /* Balthisar Tidy Service Helper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D01316621A5D881C00AB1456 /* Balthisar Tidy Service Helper.app in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D04BC9681A5AC5CB009AC43A /* Balthisar Tidy Service Helper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D01316631A5D884100AB1456 /* JSDTidyFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D00661081A579BE700F73F85 /* JSDTidyFramework.framework */; };
@@ -2191,15 +2190,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D002EFE21A57B82500530D2F /* README.md in Resources */,
-				D00661C21A579EE000F73F85 /* messagesPanic.icns in Resources */,
-				D00661C11A579EE000F73F85 /* messagesInfo.icns in Resources */,
 				D00661B41A579EA100F73F85 /* Localizable.strings in Resources */,
 				D00661BD1A579EE000F73F85 /* messagesAccess.icns in Resources */,
-				D00661C31A579EE000F73F85 /* messagesWarning.icns in Resources */,
-				D00661BF1A579EE000F73F85 /* messagesDocument.icns in Resources */,
 				D00661BE1A579EE000F73F85 /* messagesConfig.icns in Resources */,
+				D00661BF1A579EE000F73F85 /* messagesDocument.icns in Resources */,
 				D00661C01A579EE000F73F85 /* messagesError.icns in Resources */,
+				D00661C11A579EE000F73F85 /* messagesInfo.icns in Resources */,
+				D00661C21A579EE000F73F85 /* messagesPanic.icns in Resources */,
+				D00661C31A579EE000F73F85 /* messagesWarning.icns in Resources */,
+				D002EFE21A57B82500530D2F /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2207,55 +2206,55 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D06C9A95195FE854004D6C27 /* prefsTidy@2x.png in Resources */,
-				D06C9AB119600550004D6C27 /* PaneTopShadow.png in Resources */,
-				D06C9A5B195FB997004D6C27 /* OptionListAppearanceViewController.xib in Resources */,
-				D06C9A7F195FBA3F004D6C27 /* UpdaterOptionsViewController.xib in Resources */,
-				D074B7AA1944035800F2E6F1 /* TidyDocumentMessagesView.xib in Resources */,
-				D06C9A98195FE854004D6C27 /* prefsTidyAppearance.png in Resources */,
-				D03B89D419553E5D00E9B4D5 /* DiffsTemplate.png in Resources */,
-				D0A2E1FB197548D20015F667 /* ToolbarInfo.tiff in Resources */,
-				D06C9AA1195FE854004D6C27 /* prefsUpdate@2x.png in Resources */,
-				D036E20D18F3D2F20009A9D4 /* Application.icns in Resources */,
-				D036E20F18F3D2F20009A9D4 /* HTML.icns in Resources */,
-				D06C9A8C195FE854004D6C27 /* prefsSave.png in Resources */,
-				D0CA8F771953280700BBD54C /* LayoutSourceVTemplate.png in Resources */,
-				D036E21118F3D2F20009A9D4 /* PHP.icns in Resources */,
-				D036E21518F3D2F20009A9D4 /* XML.icns in Resources */,
-				D036E21318F3D2F20009A9D4 /* Tidy.icns in Resources */,
-				D0CA8F741953280700BBD54C /* LayoutSourceHTemplate.png in Resources */,
-				D0E6AE18190C9FAC00B49779 /* HideDescriptionTemplate.pdf in Resources */,
-				D06C9A52195FB955004D6C27 /* OptionListViewController.xib in Resources */,
-				D0E6AE1A190C9FAC00B49779 /* ShowDescriptionTemplate.pdf in Resources */,
-				D036E1E818F3D25E0009A9D4 /* Credits.rtf in Resources */,
-				D086893A1948439700BDAD72 /* TidyDocumentSourceV.xib in Resources */,
-				D0A2E1F8197548D20015F667 /* ToolbarAdvanced.tiff in Resources */,
-				D06C9AA6195FEC11004D6C27 /* prefsDoc.png in Resources */,
-				D06C9A43195FB4A4004D6C27 /* MASPreferencesWindow.xib in Resources */,
-				D06C9A9B195FE854004D6C27 /* prefsTidyAppearance@2x.png in Resources */,
-				D074B78B1942BEE200F2E6F1 /* TidyEncodingHelper.xib in Resources */,
-				D06C9A92195FE854004D6C27 /* prefsTidy.png in Resources */,
-				D0CA8F6E1953280700BBD54C /* LayoutBottomPaneTemplate.png in Resources */,
-				D036E1EC18F3D25E0009A9D4 /* InfoPlist.strings in Resources */,
-				D06C9A9E195FE854004D6C27 /* prefsUpdate.png in Resources */,
-				D06C9AA9195FEC11004D6C27 /* prefsDoc@2x.png in Resources */,
-				D036E1EE18F3D25E0009A9D4 /* Localizable.strings in Resources */,
-				D0E6AE20190CB34500B49779 /* PaneBottomShadow.tiff in Resources */,
-				D06C9A76195FBA0F004D6C27 /* MiscOptionsViewController.xib in Resources */,
-				D06C9A8F195FE854004D6C27 /* prefsSave@2x.png in Resources */,
-				D04E8FB5195D964F00D1CEDC /* Balthisar Tidy (web).help in Resources */,
 				D025BD5E195856B6006D7356 /* Acknowledgments.rtf in Resources */,
-				D036E1EA18F3D25E0009A9D4 /* FirstRunHelper.xib in Resources */,
-				D06C9A6D195FB9F2004D6C27 /* SavingOptionsViewController.xib in Resources */,
-				D036E1F018F3D25E0009A9D4 /* MainMenu.xib in Resources */,
-				D036E1F218F3D25E0009A9D4 /* OptionPane.xib in Resources */,
-				D03B89DA1955474700E9B4D5 /* DiffViewTemplate.png in Resources */,
+				D036E20D18F3D2F20009A9D4 /* Application.icns in Resources */,
+				D04E8FB5195D964F00D1CEDC /* Balthisar Tidy (web).help in Resources */,
+				D036E1E818F3D25E0009A9D4 /* Credits.rtf in Resources */,
 				D0B9F0F119585010008864D6 /* DCOAboutWindow.xib in Resources */,
-				D036E1F618F3D25E0009A9D4 /* TidyDocumentWindow.xib in Resources */,
-				D03B89D81955457500E9B4D5 /* ScrollLockTemplate.png in Resources */,
-				D0CA8F711953280700BBD54C /* LayoutLeftPaneTemplate.png in Resources */,
-				D08689371948439700BDAD72 /* TidyDocumentSourceH.xib in Resources */,
+				D03B89D419553E5D00E9B4D5 /* DiffsTemplate.png in Resources */,
+				D03B89DA1955474700E9B4D5 /* DiffViewTemplate.png in Resources */,
 				D06C9A64195FB9D0004D6C27 /* DocumentAppearanceViewController.xib in Resources */,
+				D036E1EA18F3D25E0009A9D4 /* FirstRunHelper.xib in Resources */,
+				D0E6AE18190C9FAC00B49779 /* HideDescriptionTemplate.pdf in Resources */,
+				D036E20F18F3D2F20009A9D4 /* HTML.icns in Resources */,
+				D036E1EC18F3D25E0009A9D4 /* InfoPlist.strings in Resources */,
+				D0CA8F6E1953280700BBD54C /* LayoutBottomPaneTemplate.png in Resources */,
+				D0CA8F711953280700BBD54C /* LayoutLeftPaneTemplate.png in Resources */,
+				D0CA8F741953280700BBD54C /* LayoutSourceHTemplate.png in Resources */,
+				D0CA8F771953280700BBD54C /* LayoutSourceVTemplate.png in Resources */,
+				D036E1EE18F3D25E0009A9D4 /* Localizable.strings in Resources */,
+				D036E1F018F3D25E0009A9D4 /* MainMenu.xib in Resources */,
+				D06C9A43195FB4A4004D6C27 /* MASPreferencesWindow.xib in Resources */,
+				D06C9A76195FBA0F004D6C27 /* MiscOptionsViewController.xib in Resources */,
+				D06C9A5B195FB997004D6C27 /* OptionListAppearanceViewController.xib in Resources */,
+				D06C9A52195FB955004D6C27 /* OptionListViewController.xib in Resources */,
+				D036E1F218F3D25E0009A9D4 /* OptionPane.xib in Resources */,
+				D0E6AE20190CB34500B49779 /* PaneBottomShadow.tiff in Resources */,
+				D06C9AB119600550004D6C27 /* PaneTopShadow.png in Resources */,
+				D036E21118F3D2F20009A9D4 /* PHP.icns in Resources */,
+				D06C9AA6195FEC11004D6C27 /* prefsDoc.png in Resources */,
+				D06C9AA9195FEC11004D6C27 /* prefsDoc@2x.png in Resources */,
+				D06C9A8C195FE854004D6C27 /* prefsSave.png in Resources */,
+				D06C9A8F195FE854004D6C27 /* prefsSave@2x.png in Resources */,
+				D06C9A92195FE854004D6C27 /* prefsTidy.png in Resources */,
+				D06C9A95195FE854004D6C27 /* prefsTidy@2x.png in Resources */,
+				D06C9A98195FE854004D6C27 /* prefsTidyAppearance.png in Resources */,
+				D06C9A9B195FE854004D6C27 /* prefsTidyAppearance@2x.png in Resources */,
+				D06C9A9E195FE854004D6C27 /* prefsUpdate.png in Resources */,
+				D06C9AA1195FE854004D6C27 /* prefsUpdate@2x.png in Resources */,
+				D06C9A6D195FB9F2004D6C27 /* SavingOptionsViewController.xib in Resources */,
+				D03B89D81955457500E9B4D5 /* ScrollLockTemplate.png in Resources */,
+				D0E6AE1A190C9FAC00B49779 /* ShowDescriptionTemplate.pdf in Resources */,
+				D036E21318F3D2F20009A9D4 /* Tidy.icns in Resources */,
+				D074B7AA1944035800F2E6F1 /* TidyDocumentMessagesView.xib in Resources */,
+				D08689371948439700BDAD72 /* TidyDocumentSourceH.xib in Resources */,
+				D086893A1948439700BDAD72 /* TidyDocumentSourceV.xib in Resources */,
+				D036E1F618F3D25E0009A9D4 /* TidyDocumentWindow.xib in Resources */,
+				D074B78B1942BEE200F2E6F1 /* TidyEncodingHelper.xib in Resources */,
+				D0A2E1F8197548D20015F667 /* ToolbarAdvanced.tiff in Resources */,
+				D0A2E1FB197548D20015F667 /* ToolbarInfo.tiff in Resources */,
+				D06C9A7F195FBA3F004D6C27 /* UpdaterOptionsViewController.xib in Resources */,
+				D036E21518F3D2F20009A9D4 /* XML.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2299,56 +2298,55 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D06C9A96195FE854004D6C27 /* prefsTidy@2x.png in Resources */,
-				D06C9AB219600550004D6C27 /* PaneTopShadow.png in Resources */,
-				D06C9A5C195FB997004D6C27 /* OptionListAppearanceViewController.xib in Resources */,
-				D013165A1A5D871500AB1456 /* Balthisar Tidy Service Helper.app in Resources */,
-				D06C9A80195FBA3F004D6C27 /* UpdaterOptionsViewController.xib in Resources */,
-				D0B9F0F219585010008864D6 /* DCOAboutWindow.xib in Resources */,
-				D04E8FB8195DAA9400D1CEDC /* DiffViewTemplate.png in Resources */,
-				D074B7AB1944035800F2E6F1 /* TidyDocumentMessagesView.xib in Resources */,
-				D06C9A99195FE854004D6C27 /* prefsTidyAppearance.png in Resources */,
 				D025BD5F195856C0006D7356 /* Acknowledgments.rtf in Resources */,
-				D0A2E1FC197548D20015F667 /* ToolbarInfo.tiff in Resources */,
-				D06C9AA2195FE854004D6C27 /* prefsUpdate@2x.png in Resources */,
-				D06C9A8D195FE854004D6C27 /* prefsSave.png in Resources */,
 				D036E20E18F3D2F20009A9D4 /* Application.icns in Resources */,
-				D036E21018F3D2F20009A9D4 /* HTML.icns in Resources */,
-				D0CA8F781953280700BBD54C /* LayoutSourceVTemplate.png in Resources */,
 				D04E8FB0195D964F00D1CEDC /* Balthisar Tidy (app).help in Resources */,
-				D036E21218F3D2F20009A9D4 /* PHP.icns in Resources */,
-				D04E8FB9195DAA9400D1CEDC /* DiffsTemplate.png in Resources */,
-				D06C9A53195FB955004D6C27 /* OptionListViewController.xib in Resources */,
-				D036E21418F3D2F20009A9D4 /* Tidy.icns in Resources */,
-				D036E21618F3D2F20009A9D4 /* XML.icns in Resources */,
-				D0CA8F751953280700BBD54C /* LayoutSourceHTemplate.png in Resources */,
-				D0A2E1F9197548D20015F667 /* ToolbarAdvanced.tiff in Resources */,
-				D06C9AA7195FEC11004D6C27 /* prefsDoc.png in Resources */,
-				D06C9A44195FB4A4004D6C27 /* MASPreferencesWindow.xib in Resources */,
-				D06C9A9C195FE854004D6C27 /* prefsTidyAppearance@2x.png in Resources */,
-				D0E6AE19190C9FAC00B49779 /* HideDescriptionTemplate.pdf in Resources */,
-				D06C9A93195FE854004D6C27 /* prefsTidy.png in Resources */,
-				D0E6AE1B190C9FAC00B49779 /* ShowDescriptionTemplate.pdf in Resources */,
 				D036E1E918F3D25E0009A9D4 /* Credits.rtf in Resources */,
-				D086893B1948439700BDAD72 /* TidyDocumentSourceV.xib in Resources */,
-				D06C9A9F195FE854004D6C27 /* prefsUpdate.png in Resources */,
-				D06C9AAA195FEC11004D6C27 /* prefsDoc@2x.png in Resources */,
-				D074B78C1942BEE200F2E6F1 /* TidyEncodingHelper.xib in Resources */,
-				D0CA8F6F1953280700BBD54C /* LayoutBottomPaneTemplate.png in Resources */,
-				D06C9A77195FBA0F004D6C27 /* MiscOptionsViewController.xib in Resources */,
-				D06C9A90195FE854004D6C27 /* prefsSave@2x.png in Resources */,
-				D036E1ED18F3D25E0009A9D4 /* InfoPlist.strings in Resources */,
-				D036E1EF18F3D25E0009A9D4 /* Localizable.strings in Resources */,
-				D06C9A6E195FB9F2004D6C27 /* SavingOptionsViewController.xib in Resources */,
-				D0E6AE21190CB34500B49779 /* PaneBottomShadow.tiff in Resources */,
-				D036E1EB18F3D25E0009A9D4 /* FirstRunHelper.xib in Resources */,
-				D036E1F118F3D25E0009A9D4 /* MainMenu.xib in Resources */,
-				D036E1F718F3D25E0009A9D4 /* TidyDocumentWindow.xib in Resources */,
-				D036E1F318F3D25E0009A9D4 /* OptionPane.xib in Resources */,
-				D04E8FBA195DAA9400D1CEDC /* ScrollLockTemplate.png in Resources */,
-				D0CA8F721953280700BBD54C /* LayoutLeftPaneTemplate.png in Resources */,
-				D08689381948439700BDAD72 /* TidyDocumentSourceH.xib in Resources */,
+				D0B9F0F219585010008864D6 /* DCOAboutWindow.xib in Resources */,
+				D04E8FB9195DAA9400D1CEDC /* DiffsTemplate.png in Resources */,
+				D04E8FB8195DAA9400D1CEDC /* DiffViewTemplate.png in Resources */,
 				D06C9A65195FB9D0004D6C27 /* DocumentAppearanceViewController.xib in Resources */,
+				D036E1EB18F3D25E0009A9D4 /* FirstRunHelper.xib in Resources */,
+				D0E6AE19190C9FAC00B49779 /* HideDescriptionTemplate.pdf in Resources */,
+				D036E21018F3D2F20009A9D4 /* HTML.icns in Resources */,
+				D036E1ED18F3D25E0009A9D4 /* InfoPlist.strings in Resources */,
+				D0CA8F6F1953280700BBD54C /* LayoutBottomPaneTemplate.png in Resources */,
+				D0CA8F721953280700BBD54C /* LayoutLeftPaneTemplate.png in Resources */,
+				D0CA8F751953280700BBD54C /* LayoutSourceHTemplate.png in Resources */,
+				D0CA8F781953280700BBD54C /* LayoutSourceVTemplate.png in Resources */,
+				D036E1EF18F3D25E0009A9D4 /* Localizable.strings in Resources */,
+				D036E1F118F3D25E0009A9D4 /* MainMenu.xib in Resources */,
+				D06C9A44195FB4A4004D6C27 /* MASPreferencesWindow.xib in Resources */,
+				D06C9A77195FBA0F004D6C27 /* MiscOptionsViewController.xib in Resources */,
+				D06C9A5C195FB997004D6C27 /* OptionListAppearanceViewController.xib in Resources */,
+				D06C9A53195FB955004D6C27 /* OptionListViewController.xib in Resources */,
+				D036E1F318F3D25E0009A9D4 /* OptionPane.xib in Resources */,
+				D0E6AE21190CB34500B49779 /* PaneBottomShadow.tiff in Resources */,
+				D06C9AB219600550004D6C27 /* PaneTopShadow.png in Resources */,
+				D036E21218F3D2F20009A9D4 /* PHP.icns in Resources */,
+				D06C9AA7195FEC11004D6C27 /* prefsDoc.png in Resources */,
+				D06C9AAA195FEC11004D6C27 /* prefsDoc@2x.png in Resources */,
+				D06C9A8D195FE854004D6C27 /* prefsSave.png in Resources */,
+				D06C9A90195FE854004D6C27 /* prefsSave@2x.png in Resources */,
+				D06C9A93195FE854004D6C27 /* prefsTidy.png in Resources */,
+				D06C9A96195FE854004D6C27 /* prefsTidy@2x.png in Resources */,
+				D06C9A99195FE854004D6C27 /* prefsTidyAppearance.png in Resources */,
+				D06C9A9C195FE854004D6C27 /* prefsTidyAppearance@2x.png in Resources */,
+				D06C9A9F195FE854004D6C27 /* prefsUpdate.png in Resources */,
+				D06C9AA2195FE854004D6C27 /* prefsUpdate@2x.png in Resources */,
+				D06C9A6E195FB9F2004D6C27 /* SavingOptionsViewController.xib in Resources */,
+				D04E8FBA195DAA9400D1CEDC /* ScrollLockTemplate.png in Resources */,
+				D0E6AE1B190C9FAC00B49779 /* ShowDescriptionTemplate.pdf in Resources */,
+				D036E21418F3D2F20009A9D4 /* Tidy.icns in Resources */,
+				D074B7AB1944035800F2E6F1 /* TidyDocumentMessagesView.xib in Resources */,
+				D08689381948439700BDAD72 /* TidyDocumentSourceH.xib in Resources */,
+				D086893B1948439700BDAD72 /* TidyDocumentSourceV.xib in Resources */,
+				D036E1F718F3D25E0009A9D4 /* TidyDocumentWindow.xib in Resources */,
+				D074B78C1942BEE200F2E6F1 /* TidyEncodingHelper.xib in Resources */,
+				D0A2E1F9197548D20015F667 /* ToolbarAdvanced.tiff in Resources */,
+				D0A2E1FC197548D20015F667 /* ToolbarInfo.tiff in Resources */,
+				D06C9A80195FBA3F004D6C27 /* UpdaterOptionsViewController.xib in Resources */,
+				D036E21618F3D2F20009A9D4 /* XML.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2356,56 +2354,56 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0B9F0F319585010008864D6 /* DCOAboutWindow.xib in Resources */,
 				D025BD60195856C1006D7356 /* Acknowledgments.rtf in Resources */,
-				D04E8FBB195DAA9500D1CEDC /* DiffViewTemplate.png in Resources */,
-				D06C9AAB195FEC11004D6C27 /* prefsDoc@2x.png in Resources */,
-				D074B78D1942BEE200F2E6F1 /* TidyEncodingHelper.xib in Resources */,
 				D0BB67F3193C820A007A3EB0 /* Application.icns in Resources */,
-				D06C9A45195FB4A4004D6C27 /* MASPreferencesWindow.xib in Resources */,
-				D0BB67F8193C820A007A3EB0 /* HTML.icns in Resources */,
-				D06C9A8E195FE854004D6C27 /* prefsSave.png in Resources */,
-				D0CA8F761953280700BBD54C /* LayoutSourceHTemplate.png in Resources */,
-				D04E8FBC195DAA9500D1CEDC /* DiffsTemplate.png in Resources */,
-				D0A2E1FA197548D20015F667 /* ToolbarAdvanced.tiff in Resources */,
-				D06C9A5D195FB997004D6C27 /* OptionListAppearanceViewController.xib in Resources */,
-				D0BB67EF193C820A007A3EB0 /* PHP.icns in Resources */,
-				D074B7AC1944035800F2E6F1 /* TidyDocumentMessagesView.xib in Resources */,
-				D06C9A66195FB9D0004D6C27 /* DocumentAppearanceViewController.xib in Resources */,
-				D01BA7BD1967DD3700843C69 /* TidyScripting.sdef in Resources */,
-				D0CA8F701953280700BBD54C /* LayoutBottomPaneTemplate.png in Resources */,
-				D0BB67F7193C820A007A3EB0 /* Tidy.icns in Resources */,
-				D0A2E1FD197548D20015F667 /* ToolbarInfo.tiff in Resources */,
-				D0BB67F0193C820A007A3EB0 /* XML.icns in Resources */,
-				D01AACB8193DE56000C4E5B2 /* HideDescriptionTemplate.pdf in Resources */,
-				D06C9A94195FE854004D6C27 /* prefsTidy.png in Resources */,
-				D0CA8F791953280700BBD54C /* LayoutSourceVTemplate.png in Resources */,
-				D01AACB9193DE56000C4E5B2 /* ShowDescriptionTemplate.pdf in Resources */,
 				D0097B0B19712F68001CCF94 /* Balthisar Tidy (pro).help in Resources */,
-				D06C9A91195FE854004D6C27 /* prefsSave@2x.png in Resources */,
-				D06C9A78195FBA0F004D6C27 /* MiscOptionsViewController.xib in Resources */,
-				D06C9A6F195FB9F2004D6C27 /* SavingOptionsViewController.xib in Resources */,
-				D0CA8F731953280700BBD54C /* LayoutLeftPaneTemplate.png in Resources */,
-				D06C9A9D195FE854004D6C27 /* prefsTidyAppearance@2x.png in Resources */,
-				D06C9AA3195FE854004D6C27 /* prefsUpdate@2x.png in Resources */,
-				D06C9A9A195FE854004D6C27 /* prefsTidyAppearance.png in Resources */,
 				D0BB67F5193C820A007A3EB0 /* Credits.rtf in Resources */,
-				D086893C1948439700BDAD72 /* TidyDocumentSourceV.xib in Resources */,
-				D0BB67F9193C820A007A3EB0 /* InfoPlist.strings in Resources */,
-				D0BB67ED193C820A007A3EB0 /* Localizable.strings in Resources */,
-				D01AACBA193DE58200C4E5B2 /* PaneBottomShadow.tiff in Resources */,
+				D0B9F0F319585010008864D6 /* DCOAboutWindow.xib in Resources */,
+				D04E8FBC195DAA9500D1CEDC /* DiffsTemplate.png in Resources */,
+				D04E8FBB195DAA9500D1CEDC /* DiffViewTemplate.png in Resources */,
+				D06C9A66195FB9D0004D6C27 /* DocumentAppearanceViewController.xib in Resources */,
 				D0BB67EB193C820A007A3EB0 /* FirstRunHelper.xib in Resources */,
-				D06C9AB319600550004D6C27 /* PaneTopShadow.png in Resources */,
+				D01AACB8193DE56000C4E5B2 /* HideDescriptionTemplate.pdf in Resources */,
+				D0BB67F8193C820A007A3EB0 /* HTML.icns in Resources */,
+				D0BB67F9193C820A007A3EB0 /* InfoPlist.strings in Resources */,
+				D0CA8F701953280700BBD54C /* LayoutBottomPaneTemplate.png in Resources */,
+				D0CA8F731953280700BBD54C /* LayoutLeftPaneTemplate.png in Resources */,
+				D0CA8F761953280700BBD54C /* LayoutSourceHTemplate.png in Resources */,
+				D0CA8F791953280700BBD54C /* LayoutSourceVTemplate.png in Resources */,
+				D0BB67ED193C820A007A3EB0 /* Localizable.strings in Resources */,
 				D0BB67FA193C820A007A3EB0 /* MainMenu.xib in Resources */,
-				D06C9A97195FE854004D6C27 /* prefsTidy@2x.png in Resources */,
-				D06C9A81195FBA3F004D6C27 /* UpdaterOptionsViewController.xib in Resources */,
-				D08689391948439700BDAD72 /* TidyDocumentSourceH.xib in Resources */,
-				D0BB67F4193C820A007A3EB0 /* OptionPane.xib in Resources */,
+				D06C9A45195FB4A4004D6C27 /* MASPreferencesWindow.xib in Resources */,
+				D06C9A78195FBA0F004D6C27 /* MiscOptionsViewController.xib in Resources */,
+				D06C9A5D195FB997004D6C27 /* OptionListAppearanceViewController.xib in Resources */,
 				D06C9A54195FB955004D6C27 /* OptionListViewController.xib in Resources */,
+				D0BB67F4193C820A007A3EB0 /* OptionPane.xib in Resources */,
+				D01AACBA193DE58200C4E5B2 /* PaneBottomShadow.tiff in Resources */,
+				D06C9AB319600550004D6C27 /* PaneTopShadow.png in Resources */,
+				D0BB67EF193C820A007A3EB0 /* PHP.icns in Resources */,
 				D06C9AA8195FEC11004D6C27 /* prefsDoc.png in Resources */,
-				D0BB67F6193C820A007A3EB0 /* TidyDocumentWindow.xib in Resources */,
-				D04E8FBD195DAA9500D1CEDC /* ScrollLockTemplate.png in Resources */,
+				D06C9AAB195FEC11004D6C27 /* prefsDoc@2x.png in Resources */,
+				D06C9A8E195FE854004D6C27 /* prefsSave.png in Resources */,
+				D06C9A91195FE854004D6C27 /* prefsSave@2x.png in Resources */,
+				D06C9A94195FE854004D6C27 /* prefsTidy.png in Resources */,
+				D06C9A97195FE854004D6C27 /* prefsTidy@2x.png in Resources */,
+				D06C9A9A195FE854004D6C27 /* prefsTidyAppearance.png in Resources */,
+				D06C9A9D195FE854004D6C27 /* prefsTidyAppearance@2x.png in Resources */,
 				D06C9AA0195FE854004D6C27 /* prefsUpdate.png in Resources */,
+				D06C9AA3195FE854004D6C27 /* prefsUpdate@2x.png in Resources */,
+				D06C9A6F195FB9F2004D6C27 /* SavingOptionsViewController.xib in Resources */,
+				D04E8FBD195DAA9500D1CEDC /* ScrollLockTemplate.png in Resources */,
+				D01AACB9193DE56000C4E5B2 /* ShowDescriptionTemplate.pdf in Resources */,
+				D0BB67F7193C820A007A3EB0 /* Tidy.icns in Resources */,
+				D074B7AC1944035800F2E6F1 /* TidyDocumentMessagesView.xib in Resources */,
+				D08689391948439700BDAD72 /* TidyDocumentSourceH.xib in Resources */,
+				D086893C1948439700BDAD72 /* TidyDocumentSourceV.xib in Resources */,
+				D0BB67F6193C820A007A3EB0 /* TidyDocumentWindow.xib in Resources */,
+				D074B78D1942BEE200F2E6F1 /* TidyEncodingHelper.xib in Resources */,
+				D01BA7BD1967DD3700843C69 /* TidyScripting.sdef in Resources */,
+				D0A2E1FA197548D20015F667 /* ToolbarAdvanced.tiff in Resources */,
+				D0A2E1FD197548D20015F667 /* ToolbarInfo.tiff in Resources */,
+				D06C9A81195FBA3F004D6C27 /* UpdaterOptionsViewController.xib in Resources */,
+				D0BB67F0193C820A007A3EB0 /* XML.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3060,7 +3058,6 @@
 				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy.entitlements";
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "./**";
 				GCC_PREPROCESSOR_DEFINITIONS = TARGET_WEB;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
@@ -3137,7 +3134,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy Extension.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar Tidy Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -3167,7 +3164,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy Extension.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar Tidy Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -3197,7 +3194,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy Extension.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar Tidy Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -3227,7 +3224,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy Extension.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar Tidy Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -3368,6 +3365,7 @@
 				INFOPLIST_FILE = "Balthisar Tidy/Balthisar Tidy-Info.plist";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				JSD_APPLESCRIPT_VALUE = no;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "Balthisar Tidy";
 				PROVISIONING_PROFILE = "";
@@ -3397,6 +3395,7 @@
 				INFOPLIST_FILE = "Balthisar Tidy/Balthisar Tidy-Info.plist";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				JSD_APPLESCRIPT_VALUE = no;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "Balthisar Tidy";
 				PROVISIONING_PROFILE = "";
@@ -3430,6 +3429,7 @@
 				INFOPLIST_FILE = "Balthisar Tidy/Balthisar Tidy-Info.plist";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				JSD_APPLESCRIPT_VALUE = yes;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "Balthisar Tidy for Work";
 				PROVISIONING_PROFILE = "";
@@ -3459,6 +3459,7 @@
 				INFOPLIST_FILE = "Balthisar Tidy/Balthisar Tidy-Info.plist";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				JSD_APPLESCRIPT_VALUE = yes;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "Balthisar Tidy for Work";
 				PROVISIONING_PROFILE = "";
