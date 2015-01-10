@@ -3094,7 +3094,7 @@
 				INFOPLIST_FILE = "Balthisar Tidy Extension/Info.plist";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "Balthisar Tidy (web)";
 				SKIP_INSTALL = YES;
@@ -3119,7 +3119,7 @@
 				INFOPLIST_FILE = "Balthisar Tidy Extension/Info.plist";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "Balthisar Tidy (web)";
 				SKIP_INSTALL = YES;
@@ -3135,8 +3135,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar Tidy Extension.entitlements";
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3151,7 +3150,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "Balthisar Tidy (app)";
-				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				TIDY_APP_BUNDLE_ID = "com.balthisar.Balthisar-Tidy";
 			};
@@ -3165,8 +3163,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar Tidy Extension.entitlements";
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3181,7 +3178,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "Balthisar Tidy (app)";
-				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				TIDY_APP_BUNDLE_ID = "com.balthisar.Balthisar-Tidy";
 			};
@@ -3195,8 +3191,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar Tidy Extension.entitlements";
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3211,7 +3206,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "Balthisar Tidy (pro)";
-				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				TIDY_APP_BUNDLE_ID = "com.balthisar.Balthisar-Tidy.pro";
 			};
@@ -3225,8 +3219,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar Tidy Extension.entitlements";
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3241,7 +3234,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "Balthisar Tidy (pro)";
-				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				TIDY_APP_BUNDLE_ID = "com.balthisar.Balthisar-Tidy.pro";
 			};
@@ -3256,8 +3248,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Service Helper/Balthisar Tidy Service Helper.entitlements";
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3269,7 +3260,7 @@
 				INFOPLIST_FILE = "Balthisar Tidy Service Helper/Info.plist";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -3285,8 +3276,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Service Helper/Balthisar Tidy Service Helper.entitlements";
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = TARGET_WEB;
@@ -3295,7 +3285,7 @@
 				INFOPLIST_FILE = "Balthisar Tidy Service Helper/Info.plist";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -3352,10 +3342,9 @@
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy.entitlements";
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "./**";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					TARGET_APP,
 					"$(inherited)",
@@ -3368,7 +3357,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "Balthisar Tidy";
-				PROVISIONING_PROFILE = "";
 				TIDY_APP_BUNDLE_ID = "com.balthisar.Balthisar-Tidy";
 				TIDY_HELP_BOOK_FOLDER = "Balthisar Tidy (app).help";
 				TIDY_HELP_BOOK_KEY = "com.balthisar.Balthisar-Tidy.help";
@@ -3385,10 +3373,9 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy.entitlements";
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "./**";
 				GCC_PREPROCESSOR_DEFINITIONS = TARGET_APP;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_UNUSED_PARAMETER = NO;
@@ -3398,7 +3385,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "Balthisar Tidy";
-				PROVISIONING_PROFILE = "";
 				TIDY_APP_BUNDLE_ID = "com.balthisar.Balthisar-Tidy";
 				TIDY_HELP_BOOK_FOLDER = "Balthisar Tidy (app).help";
 				TIDY_HELP_BOOK_KEY = "com.balthisar.Balthisar-Tidy.help";
@@ -3416,10 +3402,9 @@
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy.entitlements";
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "./**";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					TARGET_PRO,
 					"$(inherited)",
@@ -3432,7 +3417,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "Balthisar Tidy for Work";
-				PROVISIONING_PROFILE = "";
 				TIDY_APP_BUNDLE_ID = "com.balthisar.Balthisar-Tidy.pro";
 				TIDY_HELP_BOOK_FOLDER = "Balthisar Tidy (pro).help";
 				TIDY_HELP_BOOK_KEY = "com.balthisar.Balthisar-Tidy.pro.help";
@@ -3449,10 +3433,9 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy.entitlements";
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "./**";
 				GCC_PREPROCESSOR_DEFINITIONS = TARGET_PRO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_UNUSED_PARAMETER = NO;
@@ -3462,7 +3445,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "Balthisar Tidy for Work";
-				PROVISIONING_PROFILE = "";
 				TIDY_APP_BUNDLE_ID = "com.balthisar.Balthisar-Tidy.pro";
 				TIDY_HELP_BOOK_FOLDER = "Balthisar Tidy (pro).help";
 				TIDY_HELP_BOOK_KEY = "com.balthisar.Balthisar-Tidy.pro.help";
