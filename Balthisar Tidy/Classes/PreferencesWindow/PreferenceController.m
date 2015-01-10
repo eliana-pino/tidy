@@ -73,12 +73,16 @@
 	NSViewController *savingOptionsViewController = [[SavingOptionsViewController alloc] init];
 	NSViewController *miscOptionsViewController = [[MiscOptionsViewController alloc] init];
 
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(handleUserDefaultsChanged:)
-												 name:NSUserDefaultsDidChangeNotification
-											   object:[NSUserDefaults standardUserDefaults]];
+	/* Handle Preferences Mirroring -- @NOTE: only on OS X 10.9 and above. */
+	if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber10_9)
+	{
+		[[NSNotificationCenter defaultCenter] addObserver:self
+												 selector:@selector(handleUserDefaultsChanged:)
+													 name:NSUserDefaultsDidChangeNotification
+												   object:[NSUserDefaults standardUserDefaults]];
 
-	_mirroredDefaults = [[NSUserDefaults alloc] initWithSuiteName:APP_GROUP_PREFS];
+		_mirroredDefaults = [[NSUserDefaults alloc] initWithSuiteName:APP_GROUP_PREFS];
+	}
 
 #if defined(FEATURE_SPARKLE) || defined(FEATURE_FAKE_SPARKLE)
 

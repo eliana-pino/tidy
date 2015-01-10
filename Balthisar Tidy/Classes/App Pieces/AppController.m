@@ -121,20 +121,24 @@
 
 	/*
 	   Launch and Quit the helper to ensure that it registers
-	   itself as a provider of System Services.
+	   itself as a provider of System Services. 
+	   @NOTE: Only on 10.9 and above.
 	 */
-	dispatch_queue_t launchQueue = dispatch_queue_create("launchHelper", NULL);
-	dispatch_async(launchQueue, ^{
-		NSString *helper = [NSString stringWithFormat:@"%@/Contents/PlugIns/Balthisar Tidy Service Helper.app", [[NSBundle mainBundle] bundlePath]];
-		NSTask *task = [[NSTask alloc] init];
-		[task setLaunchPath:@"/usr/bin/open"];
-		[task setArguments:@[helper]];
-		[task launch];
-		sleep(3);
-		dispatch_async(dispatch_get_main_queue(), ^{
-			[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"balthisarTidyHelperOpenThenQuit" object:@"BalthisarTidy"];
+	if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber10_9)
+	{
+		dispatch_queue_t launchQueue = dispatch_queue_create("launchHelper", NULL);
+		dispatch_async(launchQueue, ^{
+			NSString *helper = [NSString stringWithFormat:@"%@/Contents/PlugIns/Balthisar Tidy Service Helper.app", [[NSBundle mainBundle] bundlePath]];
+			NSTask *task = [[NSTask alloc] init];
+			[task setLaunchPath:@"/usr/bin/open"];
+			[task setArguments:@[helper]];
+			[task launch];
+			sleep(3);
+			dispatch_async(dispatch_get_main_queue(), ^{
+				[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"balthisarTidyHelperOpenThenQuit" object:@"BalthisarTidy"];
+			});
 		});
-	});
+	}
 #endif
 
 	/*
