@@ -128,9 +128,6 @@
 		D01AACB9193DE56000C4E5B2 /* ShowDescriptionTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE17190C9FAC00B49779 /* ShowDescriptionTemplate.pdf */; };
 		D01AACBA193DE58200C4E5B2 /* PaneBottomShadow.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE1F190CB34500B49779 /* PaneBottomShadow.tiff */; };
 		D01BA7BD1967DD3700843C69 /* TidyScripting.sdef in Resources */ = {isa = PBXBuildFile; fileRef = D036E21718F3D81E0009A9D4 /* TidyScripting.sdef */; };
-		D01C70B21A55463400CC5038 /* ServicesMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = D01C70B01A55463400CC5038 /* ServicesMenu.strings */; };
-		D01C70B31A55463400CC5038 /* ServicesMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = D01C70B01A55463400CC5038 /* ServicesMenu.strings */; };
-		D01C70B41A55463400CC5038 /* ServicesMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = D01C70B01A55463400CC5038 /* ServicesMenu.strings */; };
 		D01C70BB1A55850D00CC5038 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D016A929182FD80700712C60 /* Cocoa.framework */; };
 		D01C70C01A55850D00CC5038 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = D01C70BF1A55850D00CC5038 /* icon.icns */; };
 		D01C70C41A55850D00CC5038 /* ActionRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D01C70C31A55850D00CC5038 /* ActionRequestHandler.m */; };
@@ -185,7 +182,6 @@
 		D047C7301915FBF100B70A94 /* JSDTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D047C72E1915FBF100B70A94 /* JSDTableCellView.m */; };
 		D04BC96E1A5AC5CB009AC43A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D04BC96D1A5AC5CB009AC43A /* AppDelegate.m */; };
 		D04BC9701A5AC5CB009AC43A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D04BC96F1A5AC5CB009AC43A /* main.m */; };
-		D04BC98C1A5AC6F4009AC43A /* ServicesMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = D04BC98A1A5AC6F4009AC43A /* ServicesMenu.strings */; };
 		D04BC9901A5AC7A2009AC43A /* TidyService.m in Sources */ = {isa = PBXBuildFile; fileRef = D04BC98F1A5AC7A2009AC43A /* TidyService.m */; };
 		D04BC9B91A5ACB7D009AC43A /* HelperMainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D04BC9B71A5ACB7D009AC43A /* HelperMainMenu.xib */; };
 		D04BC9BC1A5ACCC1009AC43A /* Balthisar Tidy Service Helper.app in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D04BC9681A5AC5CB009AC43A /* Balthisar Tidy Service Helper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -836,7 +832,6 @@
 		D016A92E182FD80700712C60 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D016A931182FD80700712C60 /* Balthisar Tidy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Balthisar Tidy-Info.plist"; path = "Balthisar Tidy/Balthisar Tidy-Info.plist"; sourceTree = "<group>"; };
 		D016A935182FD80700712C60 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Balthisar Tidy/main.m"; sourceTree = "<group>"; };
-		D01C70B11A55463400CC5038 /* Base */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/ServicesMenu.strings; sourceTree = "<group>"; };
 		D01C70BA1A55850D00CC5038 /* Balthisar Tidy (web).appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Balthisar Tidy (web).appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D01C70BE1A55850D00CC5038 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D01C70BF1A55850D00CC5038 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
@@ -875,7 +870,6 @@
 		D04BC96D1A5AC5CB009AC43A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D04BC96F1A5AC5CB009AC43A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D04BC9881A5AC6E2009AC43A /* Balthisar Tidy Service Helper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Balthisar Tidy Service Helper.entitlements"; sourceTree = "<group>"; };
-		D04BC98B1A5AC6F4009AC43A /* Base */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Base; path = ServicesMenu.strings; sourceTree = "<group>"; };
 		D04BC98D1A5AC714009AC43A /* helper-icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "helper-icon.icns"; sourceTree = "<group>"; };
 		D04BC98E1A5AC7A2009AC43A /* TidyService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TidyService.h; sourceTree = "<group>"; };
 		D04BC98F1A5AC7A2009AC43A /* TidyService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TidyService.m; sourceTree = "<group>"; };
@@ -1596,7 +1590,6 @@
 			isa = PBXGroup;
 			children = (
 				D04BC9B71A5ACB7D009AC43A /* HelperMainMenu.xib */,
-				D04BC98A1A5AC6F4009AC43A /* ServicesMenu.strings */,
 				D04BC9CC1A5C2A22009AC43A /* Localizable.strings */,
 			);
 			path = Base.lproj;
@@ -1725,7 +1718,6 @@
 				D025BD5C195856B6006D7356 /* Acknowledgments.rtf */,
 				D036E1D818F3D25E0009A9D4 /* Credits.rtf */,
 				D036E1DC18F3D25E0009A9D4 /* InfoPlist.strings */,
-				D01C70B01A55463400CC5038 /* ServicesMenu.strings */,
 				D036E1DE18F3D25E0009A9D4 /* Localizable.strings */,
 			);
 			name = Base.lproj;
@@ -2254,7 +2246,6 @@
 				D04E8FB5195D964F00D1CEDC /* Balthisar Tidy (web).help in Resources */,
 				D025BD5E195856B6006D7356 /* Acknowledgments.rtf in Resources */,
 				D036E1EA18F3D25E0009A9D4 /* FirstRunHelper.xib in Resources */,
-				D01C70B21A55463400CC5038 /* ServicesMenu.strings in Resources */,
 				D06C9A6D195FB9F2004D6C27 /* SavingOptionsViewController.xib in Resources */,
 				D036E1F018F3D25E0009A9D4 /* MainMenu.xib in Resources */,
 				D036E1F218F3D25E0009A9D4 /* OptionPane.xib in Resources */,
@@ -2301,7 +2292,6 @@
 			files = (
 				D04BC9B91A5ACB7D009AC43A /* HelperMainMenu.xib in Resources */,
 				D04BC9CE1A5C2A22009AC43A /* Localizable.strings in Resources */,
-				D04BC98C1A5AC6F4009AC43A /* ServicesMenu.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2349,7 +2339,6 @@
 				D06C9A90195FE854004D6C27 /* prefsSave@2x.png in Resources */,
 				D036E1ED18F3D25E0009A9D4 /* InfoPlist.strings in Resources */,
 				D036E1EF18F3D25E0009A9D4 /* Localizable.strings in Resources */,
-				D01C70B31A55463400CC5038 /* ServicesMenu.strings in Resources */,
 				D06C9A6E195FB9F2004D6C27 /* SavingOptionsViewController.xib in Resources */,
 				D0E6AE21190CB34500B49779 /* PaneBottomShadow.tiff in Resources */,
 				D036E1EB18F3D25E0009A9D4 /* FirstRunHelper.xib in Resources */,
@@ -2401,7 +2390,6 @@
 				D06C9AA3195FE854004D6C27 /* prefsUpdate@2x.png in Resources */,
 				D06C9A9A195FE854004D6C27 /* prefsTidyAppearance.png in Resources */,
 				D0BB67F5193C820A007A3EB0 /* Credits.rtf in Resources */,
-				D01C70B41A55463400CC5038 /* ServicesMenu.strings in Resources */,
 				D086893C1948439700BDAD72 /* TidyDocumentSourceV.xib in Resources */,
 				D0BB67F9193C820A007A3EB0 /* InfoPlist.strings in Resources */,
 				D0BB67ED193C820A007A3EB0 /* Localizable.strings in Resources */,
@@ -2767,14 +2755,6 @@
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
-		D01C70B01A55463400CC5038 /* ServicesMenu.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D01C70B11A55463400CC5038 /* Base */,
-			);
-			name = ServicesMenu.strings;
-			sourceTree = "<group>";
-		};
 		D025BD5C195856B6006D7356 /* Acknowledgments.rtf */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2837,14 +2817,6 @@
 				D036E1E718F3D25E0009A9D4 /* Base */,
 			);
 			name = TidyDocumentWindow.xib;
-			sourceTree = "<group>";
-		};
-		D04BC98A1A5AC6F4009AC43A /* ServicesMenu.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D04BC98B1A5AC6F4009AC43A /* Base */,
-			);
-			name = ServicesMenu.strings;
 			sourceTree = "<group>";
 		};
 		D04BC9B71A5ACB7D009AC43A /* HelperMainMenu.xib */ = {

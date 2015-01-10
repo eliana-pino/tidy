@@ -41,7 +41,7 @@
 			<key>NSMenuItem</key>
 			<dict>
 				<key>default</key>
-				<string>SERVICE_TIDY_TITLE</string>
+				<string>Tidy selection using Balthisar Tidy</string>
 			</dict>
 			<key>NSMessage</key>
 			<string>tidySelection</string>
@@ -55,8 +55,6 @@
 			<array>
 				<string>NSStringPboardType</string>
 			</array>
-			<key>NSServiceDescription</key>
-			<string>SERVICE_TIDY_DESCRIPTION</string>
 		</dict>
 	</array>
 </dict>

@@ -141,7 +141,7 @@
 			<key>NSMenuItem</key>
 			<dict>
 				<key>default</key>
-				<string>SERVICE_NEWDOC_TITLE</string>
+				<string>Tidy selection in new Balthisar Tidy document</string>
 			</dict>
 			<key>NSMessage</key>
 			<string>newDocumentWithSelection</string>
@@ -151,8 +151,6 @@
 			<array>
 				<string>NSStringPboardType</string>
 			</array>
-			<key>NSServiceDescription</key>
-			<string>SERVICE_NEWDOC_DESCRIPTION</string>
 		</dict>
 	</array>
 </dict>
