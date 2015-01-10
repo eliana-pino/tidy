@@ -69,7 +69,6 @@
 	   The macro from CommonHeaders.h initWithSuiteName is the means
 	   for accessing shared preferences when everything is sandboxed.
 	 */
-	NSLog(@"%@", APP_GROUP_PREFS);
 	NSUserDefaults *localDefaults = [[NSUserDefaults alloc] initWithSuiteName:APP_GROUP_PREFS];
 	[localModel takeOptionValuesFromDefaults:localDefaults];
 	JSDTidyOption *localOption = localModel.tidyOptions[@"force-output"];

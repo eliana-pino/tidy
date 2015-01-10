@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIconFile</key>
-	<string>Balthisar Tidy Service Helper/helper-icon</string>
+	<string>helper-icon</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.balthisar.$(PRODUCT_NAME:rfc1034identifier)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
