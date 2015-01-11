@@ -553,7 +553,11 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	[self notifyTidyModelSourceTextRestored];
 	[self notifyTidyModelSourceTextChanged];
 	[self processTidy];
-	[self didChangeValueForKey:@"sourceText"];
+//	dispatch_async(_tidyQueue, ^{
+//		dispatch_async(dispatch_get_main_queue(), ^{
+			[self didChangeValueForKey:@"sourceText"];
+//		});
+//	});
 }
 
 
@@ -574,11 +578,12 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSString *)tidyText
 {
-	__block NSString *localTidyText;
-	dispatch_sync(_tidyQueue, ^{
-			localTidyText = _tidyText;
-	});
-	return localTidyText;
+//	__block NSString *localTidyText;
+//	dispatch_sync(_tidyQueue, ^{
+//			localTidyText = _tidyText;
+//	});
+//	return localTidyText;
+	return _tidyText;
 }
 
 
@@ -951,7 +956,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		Perform all of the heavy lifting in this queue. 
 	 *****************************************************/
 
-	dispatch_async(_tidyQueue, ^{
+//	dispatch_async(_tidyQueue, ^{
 
 		/* Create a TidyDoc and sets its options. */
 
@@ -1087,7 +1092,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		/*****************************************************
 			Now do stuff that's likely to affect the UI.
 		 *****************************************************/
-		dispatch_async(dispatch_get_main_queue(), ^{
+//		dispatch_async(dispatch_get_main_queue(), ^{
 
 			/* Only send notifications if the text changed. */
 			if ( textDidChange )
@@ -1105,9 +1110,9 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 			 */
 			[self notifyTidyModelMessagesChanged];
 
-		}); // end dispatch_async block
+//		}); // end dispatch_async block
 
-	}); // end dispatch_async block
+//	}); // end dispatch_async block
 }
 
 

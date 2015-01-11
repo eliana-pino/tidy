@@ -51,9 +51,6 @@ Change Log
     - New help content to support new features.
     - Updated help images to Yosemite images.
 
-- Invisible Changes
-    - Tidy processing now occurs in the background which should make things snappier for very large source files or very fast typists that use the editor for work.
-
 - Additional Release Notes
     - Services — To enable the new services you may have to logoff your user account and login again (this is a Mac OS X restriction). The services will then be available in most apps after enabling them in System Preferences > Keyboard > Shortcuts > Services in the Text group.
     - Action Extension — To enable the new extension run the updated Balthisar Tidy one time. Then enable the extension in System Preference > Extensions > Balthisar Tidy > Actions check box.
