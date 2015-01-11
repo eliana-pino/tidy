@@ -145,6 +145,7 @@
 		D02DBCEC1A5950BE009C84CF /* JSDTidyFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D00661081A579BE700F73F85 /* JSDTidyFramework.framework */; };
 		D02DBCEE1A595104009C84CF /* JSDTidyFramework.framework in Add Frameworks */ = {isa = PBXBuildFile; fileRef = D00661081A579BE700F73F85 /* JSDTidyFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D02DBCF01A59512E009C84CF /* JSDTidyFramework.framework in Add Frameworks */ = {isa = PBXBuildFile; fileRef = D00661081A579BE700F73F85 /* JSDTidyFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D034D8131A621E5300821FE5 /* helper-icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = D04BC98D1A5AC714009AC43A /* helper-icon.icns */; };
 		D036E1E818F3D25E0009A9D4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D036E1D818F3D25E0009A9D4 /* Credits.rtf */; };
 		D036E1E918F3D25E0009A9D4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D036E1D818F3D25E0009A9D4 /* Credits.rtf */; };
 		D036E1EA18F3D25E0009A9D4 /* FirstRunHelper.xib in Resources */ = {isa = PBXBuildFile; fileRef = D036E1DA18F3D25E0009A9D4 /* FirstRunHelper.xib */; };
@@ -2291,6 +2292,7 @@
 			files = (
 				D04BC9B91A5ACB7D009AC43A /* HelperMainMenu.xib in Resources */,
 				D04BC9CE1A5C2A22009AC43A /* Localizable.strings in Resources */,
+				D034D8131A621E5300821FE5 /* helper-icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
