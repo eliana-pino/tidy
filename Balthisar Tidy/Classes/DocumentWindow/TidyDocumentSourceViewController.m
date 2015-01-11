@@ -28,11 +28,12 @@
  **************************************************************************************************/
 
 #import "TidyDocumentSourceViewController.h"
-#import "PreferencesDefinitions.h"
+#import "CommonHeaders.h"
+
+#import "JSDTextView.h"
+#import "JSDTidyModel.h"
 #import "NSTextView+JSDExtensions.h"
 #import "TidyDocument.h"
-#import "JSDTidyModel.h"
-#import "JSDTextView.h"
 
 
 @implementation TidyDocumentSourceViewController

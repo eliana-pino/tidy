@@ -1,4 +1,4 @@
-﻿Balthisar Tidy (version 2.0.3)
+Balthisar Tidy (version 2.1.0)
 ==============================
 
 by Jim Derry, <http://www.balthisar.com>
@@ -32,6 +32,32 @@ _Balthisar Tidy_ has been released with support for Mac OS X 10.8 and newer.
 
 Change Log
 ----------
+
+### Balthisar Tidy 2.x.x (February 2015)
+- in development
+
+### Balthisar Tidy 2.1.0 (January 2015)
+- New Features
+    - Added system service "Tidy selection in new Balthisar Tidy document" (Mac OS X 10.8 and above)
+    - Added system service "Tidy selection using Balthisar Tidy" (Mac OS X 10.9 and above)
+    - Added Action Extension "Balthisar Tidy" (Mac OS X 10.10+ only)
+
+- Visible Changes
+    - Updated Tidy Options list to assume default Yosemite appearance.
+    - Updated support contact information in About… and in Help.
+    - Fixed a view updating bug when used via external sources such as AppleScript. In some cases when setting a document's source text with `.sourceText` via AppleScript the Tidy'd text would not update.
+    - Fixed reversion wherein the Preference for showing/hiding the Tidy and Options panes preferences weren't honored.
+    - Fixed reversion wherein is wasn't always possible to show/hide the description text in the Tidy Options panel.
+    - New help content to support new features.
+    - Updated help images to Yosemite images.
+
+- Invisible Changes
+    - Tidy processing now occurs in the background which should make things snappier for very large source files or very fast typists that use the editor for work.
+
+- Additional Release Notes
+    - Services — To enable the new services you may have to logoff your user account and login again (this is a Mac OS X restriction). The services will then be available in most apps after enabling them in System Preferences > Keyboard > Shortcuts > Services in the Text group.
+    - Action Extension — To enable the new extension run the updated Balthisar Tidy one time. Then enable the extension in System Preference > Extensions > Balthisar Tidy > Actions check box.
+
 
 ### Balthisar Tidy 2.0.3 (November 2014)
 
@@ -215,6 +241,7 @@ Change Log
 - Requires Mac OS X 10.2 or higher.
 
 
+
 Building From Source
 --------------------
 
@@ -251,6 +278,7 @@ license, or similar licenses. You can refer to the licenses in the source code.
 
 Items that are not source code, such as artwork and the name "Balthisar" and "Balthisar Tidy" are not licensed
 and remain the property of James S. Derry. See the Trademark and Artwork Policy, next.
+
 
 Trademark and Artwork Policy
 ----------------------------
