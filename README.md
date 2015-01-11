@@ -78,7 +78,7 @@ Change Log
         - Aria attributes corrected.
         - Role attribute corrected.
         - Itemscope series of microdata support added.
-    - Properly deal with legacy line endings. This previously could cause a problem where cloing body and
+    - Properly deal with legacy line endings. This previously could cause a problem where closing body and
       html tags were missing.
     - Properly respect `newline` setting upon saving files.
     - Run-in meta tags in head section fixed.
@@ -100,7 +100,7 @@ Change Log
 - Changes developers will notice
     - Updated project files to XCode6.
     - Compiled against the Mac OS X 10.10 (Yosemite SDK).
-    - Improved the help build system considerable (introducing Middlemac).
+    - Improved the help build system considerably (introducing Middlemac).
 
 
 ### Balthisar Tidy 2.0.0 (June 2014)
@@ -192,7 +192,7 @@ Change Log
 - Added a file encoding helper to help users when Tidy thinks that the input-encoding is set wrong
 - Added the Sparkle update engine to offer automatic updates
 - Added preferences to support Sparkle
-- Tweaked other preferences’s layouts for better usability and to support Cocoa bindings
+- Tweaked other preferences’ layouts for better usability and to support Cocoa bindings
 - Other code tweaks, changes, and simplification
 
 ### Balthisar Tidy 0.72 (January 2014)
@@ -219,9 +219,9 @@ Change Log
 #### Invisible changes
 - Significant source code cleanup for legibility
 - Some refactorization
-- Some migrration to modern Objective-C style
+- Some migration to modern Objective-C style
 - Patched some memory leaks
-- Removed alldeprecated calls
+- Removed all deprecated calls
 - Started ivar to property conversion
 - Eliminated all compiler warnings (except for TidyLib proper)
 
