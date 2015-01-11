@@ -109,7 +109,7 @@
 //	#define FEATURE_SUPPORTS_APPLESCRIPT
 	#define FEATURE_SUPPORTS_SERVICE
 	#define FEATURE_SUPPORTS_EXTENSIONS
-    #define APP_GROUP_PREFS @"group.com.balthisar.Balthisar-Tidy.prefs"
+    #define APP_GROUP_PREFS @"9PN2JXXG7Y.com.balthisar.Balthisar-Tidy.prefs"
 //	#define FEATURE_SUPPORTS_SXS_DIFFS
 #elif defined(TARGET_APP)
 	#define FEATURE_ADVERTISE_PRO
@@ -118,7 +118,7 @@
 //	#define FEATURE_SUPPORTS_APPLESCRIPT
 	#define FEATURE_SUPPORTS_SERVICE
 	#define FEATURE_SUPPORTS_EXTENSIONS
-    #define APP_GROUP_PREFS @"group.com.balthisar.Balthisar-Tidy.prefs"
+    #define APP_GROUP_PREFS @"9PN2JXXG7Y.com.balthisar.Balthisar-Tidy.prefs"
 //	#define FEATURE_SUPPORTS_SXS_DIFFS
 #elif defined(TARGET_PRO)
 //	#define FEATURE_ADVERTISE_PRO
@@ -127,7 +127,7 @@
 	#define FEATURE_SUPPORTS_APPLESCRIPT
 	#define FEATURE_SUPPORTS_SERVICE
 	#define FEATURE_SUPPORTS_EXTENSIONS
-    #define APP_GROUP_PREFS @"group.com.balthisar.Balthisar-Tidy.prefs"
+    #define APP_GROUP_PREFS @"9PN2JXXG7Y.com.balthisar.Balthisar-Tidy.prefs"
 	#define FEATURE_SUPPORTS_SXS_DIFFS
 #else
 //	#define FEATURE_ADVERTISE_PRO
@@ -136,7 +136,7 @@
 //	#define FEATURE_SUPPORTS_APPLESCRIPT
 	#define FEATURE_SUPPORTS_SERVICE
 //	#define FEATURE_SUPPORTS_EXTENSIONS
-    #define APP_GROUP_PREFS @"group.com.balthisar.Balthisar-Tidy.prefs"
+    #define APP_GROUP_PREFS @"9PN2JXXG7Y.com.balthisar.Balthisar-Tidy.prefs"
 //	#define FEATURE_SUPPORTS_SXS_DIFFS
 #endif
 
