@@ -452,7 +452,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)setSourceText:(NSString *)value
 {
-	_sourceText = value;
+	_sourceText = [self normalizeLineEndings:value];
 	
 	if (!_originalData)
 	{
@@ -527,13 +527,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 	if ((testText = [[NSMutableString alloc] initWithData:data encoding:self.inputEncoding] ))
 	{
-		/* 
-			Ensure that we're using modern Mac OS X line endings, regardless of the source file
-			line endings. We will check for `newline` upon file save.
-		 */
-		[testText replaceOccurrencesOfString:@"\r\n" withString:@"\n" options:NSLiteralSearch range:NSMakeRange(0, [testText length])];
-		[testText replaceOccurrencesOfString:@"\r" withString:@"\n" options:NSLiteralSearch range:NSMakeRange(0, [testText length])];
-		_sourceText = testText;
+		_sourceText = [self normalizeLineEndings:testText];
 	}
 	else
 	{
@@ -631,6 +625,27 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 - (BOOL)isDirty
 {
 	return (_sourceDidChange) || (![_sourceText isEqualToString:self.tidyText]);
+}
+
+
+#pragma mark - Text - Private Methods
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	normalizeLineEndings:
+		Ensure that we're using modern Mac OS X line endings,
+		regardless of the source line endings. We will check for 
+		`newline` upon file save.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (NSString *)normalizeLineEndings:(NSString*)text
+{
+	NSMutableString *localText = [NSMutableString stringWithString:text];
+
+	[localText replaceOccurrencesOfString:@"\r\n" withString:@"\n" options:NSLiteralSearch range:NSMakeRange(0, [localText length])];
+
+	[localText replaceOccurrencesOfString:@"\r" withString:@"\n" options:NSLiteralSearch range:NSMakeRange(0, [localText length])];
+
+	return localText;
 }
 
 
