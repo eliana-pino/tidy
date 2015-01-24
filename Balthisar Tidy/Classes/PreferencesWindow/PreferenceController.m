@@ -273,10 +273,12 @@
 	/* File Saving Options */
 	[defaultValues setObject:@(kJSDSaveAsOnly) forKey:JSDKeySavingPrefStyle];
 
-	/* Miscellaneous Options */
+	/* Advanced Options */
 	[defaultValues setObject:@NO forKey:JSDKeyAllowMacOSTextSubstitutions];
 	[defaultValues setObject:@NO forKey:JSDKeyFirstRunComplete];
 	[defaultValues setObject:@NO forKey:JSDKeyIgnoreInputEncodingWhenOpening];
+	[defaultValues setObject:@NO forKey:JSDKeyAllowServiceHelperTSR];
+	[defaultValues setObject:@NO forKey:JSDKeyAlreadyAskedServiceHelperTSR];
 
 	/* Updates */
 	// none - handled by Sparkle

@@ -41,7 +41,7 @@
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	beginRequestWithExtensionContext
- Tidy's the provided text and returns it.
+		Tidy's the provided text and returns it.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)beginRequestWithExtensionContext:(NSExtensionContext *)context
 {

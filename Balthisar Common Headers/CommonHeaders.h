@@ -39,7 +39,14 @@
  *=======================================================*/
 #pragma mark - User Defaults Keys
 
-	/* Options List Appearance */
+	/* Tidy - Key under which to store TidyOptions */
+
+	#ifdef JSDKeyTidyTidyOptionsKey
+		#undef JSDKeyTidyTidyOptionsKey
+	#endif
+	#define JSDKeyTidyTidyOptionsKey              @"JSDTidyTidyOptions"
+
+	/* Options - List Appearance */
 
 	#define JSDKeyOptionsAlternateRowColors       @"OptionsAlternateRowColors"
 	#define JSDKeyOptionsAreGrouped               @"OptionsAreGrouped"
@@ -47,7 +54,7 @@
 	#define JSDKeyOptionsShowHumanReadableNames   @"OptionsShowHumanReadableNames"
 	#define JSDKeyOptionsUseHoverEffect           @"OptionsUseHoverEffect"
 
-	/** Document Appearance */
+	/* Document - Appearance */
 
 	#define JSDKeyShowNewDocumentLineNumbers      @"ShowNewDocumentLineNumbers"
 	#define JSDKeyShowNewDocumentMessages         @"ShowNewDocumentMessages"
@@ -56,17 +63,18 @@
 	#define JSDKeyShowNewDocumentSyncInOut        @"ShowNewDocumentSyncInOut"
 
 
-	/* File Saving Options */
+	/* Saving - File Saving Options */
 
 	#define JSDKeySavingPrefStyle                 @"SavingPrefStyle"
 
 
-	/* Miscellaneous Options */
+	/* Advanced - Options */
 
 	#define JSDKeyAllowMacOSTextSubstitutions     @"AllowMacOSTextSubstitutions"
 	#define JSDKeyFirstRunComplete                @"FirstRunComplete"
 	#define JSDKeyIgnoreInputEncodingWhenOpening  @"IgnoreInputEncodingWhenOpeningFiles"
-
+	#define JSDKeyAllowServiceHelperTSR           @"ServiceHelperDontForceQuit"
+	#define JSDKeyAlreadyAskedServiceHelperTSR    @"ServiceHelperAskedUserTSR"
 
 	/* Application preferences */
 
@@ -76,13 +84,6 @@
 
 	/* Other */
 
-
-	/* Key under which to store TidyOptions */
-
-	#ifdef JSDKeyTidyTidyOptionsKey
-		#undef JSDKeyTidyTidyOptionsKey
-	#endif
-	#define JSDKeyTidyTidyOptionsKey              @"JSDTidyTidyOptions"
 
 
 	/*
