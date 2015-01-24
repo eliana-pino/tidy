@@ -133,10 +133,13 @@
 			[task setLaunchPath:@"/usr/bin/open"];
 			[task setArguments:@[helper]];
 			[task launch];
-			sleep(3);
-			dispatch_async(dispatch_get_main_queue(), ^{
-				[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"balthisarTidyHelperOpenThenQuit" object:@"BalthisarTidy"];
-			});
+			if (![[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyAllowServiceHelperTSR])
+			{
+				sleep(3);
+				dispatch_async(dispatch_get_main_queue(), ^{
+					[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"balthisarTidyHelperOpenThenQuit" object:@"BalthisarTidy"];
+				});
+			}
 		});
 	}
 #endif
@@ -154,6 +157,19 @@
 #else
 	[[self menuCheckForUpdates] setHidden:YES];
 #endif
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	applicationWillTerminate
+		Cleanup before quitting.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)applicationWillTerminate:(NSNotification *)aNotification
+{
+	if (![[NSUserDefaults standardUserDefaults] boolForKey:JSDKeyAllowServiceHelperTSR])
+	{
+		[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"balthisarTidyHelperOpenThenQuit" object:@"BalthisarTidy"];
+	}
 }
 
 

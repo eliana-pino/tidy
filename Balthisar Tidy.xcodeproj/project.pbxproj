@@ -364,6 +364,9 @@
 		D0BB67F8193C820A007A3EB0 /* HTML.icns in Resources */ = {isa = PBXBuildFile; fileRef = D036E20918F3D2F20009A9D4 /* HTML.icns */; };
 		D0BB67F9193C820A007A3EB0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D036E1DC18F3D25E0009A9D4 /* InfoPlist.strings */; };
 		D0BB67FA193C820A007A3EB0 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D036E1E018F3D25E0009A9D4 /* MainMenu.xib */; };
+		D0BF29E11A7347580062B01A /* ActionRequestHandler.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0BF29DF1A7347580062B01A /* ActionRequestHandler.xib */; };
+		D0BF29E21A7347580062B01A /* ActionRequestHandler.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0BF29DF1A7347580062B01A /* ActionRequestHandler.xib */; };
+		D0BF29E31A7347580062B01A /* ActionRequestHandler.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0BF29DF1A7347580062B01A /* ActionRequestHandler.xib */; };
 		D0CA8F6E1953280700BBD54C /* LayoutBottomPaneTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F521953280700BBD54C /* LayoutBottomPaneTemplate.png */; };
 		D0CA8F6F1953280700BBD54C /* LayoutBottomPaneTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F521953280700BBD54C /* LayoutBottomPaneTemplate.png */; };
 		D0CA8F701953280700BBD54C /* LayoutBottomPaneTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F521953280700BBD54C /* LayoutBottomPaneTemplate.png */; };
@@ -953,6 +956,7 @@
 		D0BB67AB193AB382007A3EB0 /* NoodleLineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoodleLineNumberView.m; sourceTree = "<group>"; };
 		D0BB67B1193AB45A007A3EB0 /* JSDTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSDTableViewDelegate.h; sourceTree = "<group>"; };
 		D0BB67FF193C820A007A3EB0 /* Balthisar Tidy for Work.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Balthisar Tidy for Work.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0BF29E01A7347580062B01A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = ActionRequestHandler.xib; sourceTree = "<group>"; };
 		D0CA8F521953280700BBD54C /* LayoutBottomPaneTemplate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LayoutBottomPaneTemplate.png; path = "Images for Toolbar/LayoutBottomPaneTemplate.png"; sourceTree = "<group>"; };
 		D0CA8F531953280700BBD54C /* LayoutLeftPaneTemplate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LayoutLeftPaneTemplate.png; path = "Images for Toolbar/LayoutLeftPaneTemplate.png"; sourceTree = "<group>"; };
 		D0CA8F541953280700BBD54C /* LayoutSourceHTemplate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LayoutSourceHTemplate.png; path = "Images for Toolbar/LayoutSourceHTemplate.png"; sourceTree = "<group>"; };
@@ -1599,6 +1603,7 @@
 			isa = PBXGroup;
 			children = (
 				D04BC9BE1A5BF47E009AC43A /* Localizable.strings */,
+				D0BF29DF1A7347580062B01A /* ActionRequestHandler.xib */,
 			);
 			path = Base.lproj;
 			sourceTree = "<group>";
@@ -2264,6 +2269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D01C70C01A55850D00CC5038 /* icon.icns in Resources */,
+				D0BF29E11A7347580062B01A /* ActionRequestHandler.xib in Resources */,
 				D04BC9C31A5BF973009AC43A /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2273,6 +2279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D01C70D91A558E1C00CC5038 /* icon.icns in Resources */,
+				D0BF29E21A7347580062B01A /* ActionRequestHandler.xib in Resources */,
 				D04BC9C41A5BF974009AC43A /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2282,6 +2289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D01C70E51A5591A500CC5038 /* icon.icns in Resources */,
+				D0BF29E31A7347580062B01A /* ActionRequestHandler.xib in Resources */,
 				D04BC9C51A5BF974009AC43A /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2873,6 +2881,14 @@
 				D08689361948439700BDAD72 /* Base */,
 			);
 			name = TidyDocumentSourceV.xib;
+			sourceTree = "<group>";
+		};
+		D0BF29DF1A7347580062B01A /* ActionRequestHandler.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0BF29E01A7347580062B01A /* Base */,
+			);
+			name = ActionRequestHandler.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

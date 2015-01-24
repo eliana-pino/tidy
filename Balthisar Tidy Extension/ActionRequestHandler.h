@@ -27,8 +27,15 @@
 
  **************************************************************************************************/
 
-@import Foundation;
+@import Cocoa;
 
-@interface ActionRequestHandler : NSObject <NSExtensionRequestHandling>
+/*
+	Apple pointed out that the extension endpoint com.apple.services is only
+	for iOS, which means that we *must* use com.apple.ui-services. This means
+	on Mac OS X we *have* to inherit from NSViewController. There's a dummy
+	nib, too, to facilitate this.
+ */
+
+@interface ActionRequestHandler : NSViewController <NSExtensionRequestHandling>
 
 @end
