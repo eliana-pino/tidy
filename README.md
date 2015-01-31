@@ -1,8 +1,8 @@
-Balthisar Tidy (version 2.1.2)
-==============================
+Balthisar Tidy
+==============
 
 by Jim Derry, <http://www.balthisar.com>
-Copyright © 2003-2014 by Jim Derry. All rights reserved.
+Copyright © 2003-2015 by Jim Derry. All rights reserved.
 See “Legal Stuff” below for license details.
 
 
