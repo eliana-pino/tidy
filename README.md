@@ -36,7 +36,7 @@ Change Log
 ### Balthisar Tidy 2.x.x (February 2015)
 - in development
 
-### Balthisar Tidy 2.1.2 (January 2015)
+### Balthisar Tidy 2.1.3 (January 2015)
 - New Features
     - Added system service "Tidy selection in new Balthisar Tidy document" (Mac OS X 10.8 and above)
     - Added system service "Tidy selection using Balthisar Tidy" (Mac OS X 10.9 and above)
