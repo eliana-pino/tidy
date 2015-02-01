@@ -387,7 +387,7 @@
 			outputFiles = (
 				"$(SRCROOT)/HTMLTidy/xcode-version.h",
 			);
-			script = "echo \"Processing the date and version file to build a dynamic header.\"\nHEADER=\"${SRCROOT}/HTMLTidy/xcode-version.h\"\ncd ${SRCROOT}\necho \"// This file is generated automatically. Do not edit. Edit version.txt instead.\" > $HEADER\necho \"// Make sure you include this file as the lib-tidy target prefix header.\" > $HEADER\n\nIFS=$'\\n' read -d '' -r -a LINES < \"${INPUT_FILE_PATH}\"\nLINES[1]=${LINES[1]//.//}\n\ncat << EOF >> $HEADER\n#ifdef LIBTIDY_VERSION\n#undef LIBTIDY_VERSION\n#endif\n#ifdef RELEASE_DATE\n#undef RELEASE_DATE\n#endif\nEOF\n\necho \"#define LIBTIDY_VERSION \\\"${LINES[0]}\\\"\" >> $HEADER\necho \"#define RELEASE_DATE \\\"${LINES[1]}\\\"\" >> $HEADER\n\necho \"// Updated on \"`date` >> $HEADER\n";
+			script = "echo \"Processing the date and version file to build a dynamic header.\"\nHEADER=\"${SRCROOT}/HTMLTidy/xcode-version.h\"\ncd ${SRCROOT}\necho \"// This file is generated automatically. Do not edit. Edit version.txt instead.\" > $HEADER\necho \"// Make sure you include this file as the lib-tidy target prefix header.\" > $HEADER\n\nIFS=$'\\n' read -d '' -r -a LINES < \"${INPUT_FILE_PATH}\"\n\ncat << EOF >> $HEADER\n#ifdef LIBTIDY_VERSION\n#undef LIBTIDY_VERSION\n#endif\nEOF\n\necho \"#define LIBTIDY_VERSION \\\"${LINES[0]}\\\"\" >> $HEADER\n\necho \"// Updated on \"`date` >> $HEADER\n";
 		};
 /* End PBXBuildRule section */
 
@@ -1039,8 +1039,8 @@
 				D016A92F182FD80700712C60 /* Balthisar Tidy */,
 				D01C70BC1A55850D00CC5038 /* Balthisar Tidy Extension */,
 				D04BC9691A5AC5CB009AC43A /* Balthisar Tidy Service Helper */,
-				D00661091A579BE700F73F85 /* JSDTidyFramework */,
 				D002EFE31A57BFF200530D2F /* HTMLTidy */,
+				D00661091A579BE700F73F85 /* JSDTidyFramework */,
 				D016A928182FD80700712C60 /* Frameworks */,
 				D016A927182FD80700712C60 /* Products */,
 			);
@@ -2922,7 +2922,6 @@
 					"SUPPORT_UTF16_ENCODINGS=1",
 					"SUPPORT_ACCESSIBILITY_CHECKS=1",
 					"SUPPORT_ASIAN_ENCODINGS=1",
-					"'RELEASE_DATE=\"2015/01/31\"'",
 					"'LIBTIDY_VERSION=\"4.9.3\"'",
 					"DEBUG=1",
 				);
@@ -2948,7 +2947,6 @@
 					"SUPPORT_UTF16_ENCODINGS=1",
 					"SUPPORT_ACCESSIBILITY_CHECKS=1",
 					"SUPPORT_ASIAN_ENCODINGS=1",
-					"'RELEASE_DATE=\"2015/01/31\"'",
 					"'LIBTIDY_VERSION=\"4.9.3\"'",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
