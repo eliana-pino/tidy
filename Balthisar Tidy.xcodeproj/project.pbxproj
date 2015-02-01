@@ -965,7 +965,6 @@
 			children = (
 				D006610C1A579BE700F73F85 /* JSDTidyFramework.h */,
 				D006612D1A579DE200F73F85 /* JSDTidyModel */,
-				D00661271A579D4300F73F85 /* vendor */,
 				D00661AA1A579E3D00F73F85 /* Resources */,
 				D006610A1A579BE700F73F85 /* Supporting Files */,
 			);
@@ -978,13 +977,6 @@
 				D00661C41A57A06600F73F85 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		D00661271A579D4300F73F85 /* vendor */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = vendor;
 			sourceTree = "<group>";
 		};
 		D006612D1A579DE200F73F85 /* JSDTidyModel */ = {

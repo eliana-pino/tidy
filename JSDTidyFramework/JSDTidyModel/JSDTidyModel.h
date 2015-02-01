@@ -227,7 +227,9 @@
 	MISCELLENEOUS - Misc. Tidy methods supported
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
-@property (readonly) NSString *tidyReleaseDate;     // Returns the TidyLib release date.
+@property (readonly) NSString *tidyReleaseDate DEPRECATED_MSG_ATTRIBUTE("Use tidyLibraryVersion property instead.");
+
+@property (readonly) NSString *tidyLibraryVersion;  // Returns the TidyLib semantic version.
 
 
 #pragma mark - Configuration List Support

@@ -1271,10 +1271,20 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	 tidyReleaseDate
 		 Returns the TidyLib release date.
+	 @deprecated
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSString *)tidyReleaseDate
 {
 	return @(tidyReleaseDate());
+}
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	 tidyLibraryVersion
+		 Returns the TidyLib version.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (NSString *)tidyLibraryVersion
+{
+	return @(tidyLibraryVersion());
 }
 
 
