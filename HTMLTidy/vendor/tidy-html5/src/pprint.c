@@ -1778,6 +1778,8 @@ void PPrintScriptStyle( TidyDocImpl* doc, uint mode, uint indent, Node *node )
     if ( InsideHead(doc, node) )
       TY_(PFlushLine)( doc, indent );
 
+    PCondFlushLine( doc, indent );  /* Issue #56 - long oustanding bug - flush any existing closing tag */
+
     PPrintTag( doc, mode, indent, node );
 
     /* use zero indent here, see http://tidy.sf.net/bug/729972 */

@@ -1,22 +1,34 @@
-# CMakeLists.txt - 20140801 - for github tidy
-
+# CMakeLists.txt - 20150130 - 20140801 - for github htacg/tidy-html5
 cmake_minimum_required (VERSION 2.8)
 
 project (tidy5)
 
-# ### NOTE: *** Adjust when required ***
-set( TIDY_MAJOR_VERSION 1 )
-set( TIDY_MINOR_VERSION 0 )
-set( TIDY_MICRO_VERSION 0 )
-set( LIBTIDY_VERSION "${TIDY_MAJOR_VERSION}.${TIDY_MINOR_VERSION}.${TIDY_MICRO_VERSION}" )
+# ### NOTE: *** Adjust version.txt when required ***
+# read 'version' file into a variable (stripping any newlines or spaces)
+file(READ version.txt versionFile)
+if (NOT versionFile)
+    message(FATAL_ERROR "Unable to determine libtidy version. version.txt file is missing.")
+endif()
+string(STRIP "${versionFile}" versionFile)
+string(REGEX REPLACE "(.*)[\r\n|\n](.*)" "\\1" LIBTIDY_VERSION ${versionFile})
+string(REGEX REPLACE "(.*)[\r\n|\n](.*)" "\\2" LIBTIDY_DATE ${versionFile})
+
+# establish version number
+string(REPLACE "." ";" VERSION_LIST ${LIBTIDY_VERSION})
+list(GET VERSION_LIST 0 TIDY_MAJOR_VERSION)
+list(GET VERSION_LIST 1 TIDY_MINOR_VERSION)
+list(GET VERSION_LIST 2 TIDY_POINT_VERSION)
+
 # establish version date
-set( tidy_YEAR  2014 )
-set( tidy_MONTH 08 )
-set( tidy_DAY   06 )
+string(REPLACE "." ";" VERSION_LIST ${LIBTIDY_DATE})
+list(GET VERSION_LIST 0 tidy_YEAR)
+list(GET VERSION_LIST 1 tidy_MONTH)
+list(GET VERSION_LIST 2 tidy_DAY)
 
 # Allow developer to select is Dynamic or static library built
 set( LIB_TYPE STATIC )  # set default static
-option( BUILD_SHARED_LIB "Build Shared Library" OFF )
+option( BUILD_SHARED_LIB "Set ON to build Shared (DLL) Library"   OFF )
+option( BUILD_TAB2SPACE  "Set ON to build utility app, tab2space" OFF )
 
 if (CMAKE_SIZEOF_VOID_P EQUAL 8)
     message(STATUS "*** Have SIZEOF void * = 8, so 64-bit")
@@ -24,11 +36,6 @@ if (CMAKE_SIZEOF_VOID_P EQUAL 8)
 else ()
     message(STATUS "*** SIZEOF void * != 8, so not 64-bit")
 endif ()
-
-# to distinguish between debug and release lib in windows
-if (WIN32)
-    set( CMAKE_DEBUG_POSTFIX "d" ) # little effect in unix
-endif (WIN32)
 
 if(CMAKE_COMPILER_IS_GNUCXX)
     set( WARNING_FLAGS -Wall )
@@ -48,7 +55,6 @@ if(WIN32 AND MSVC)
     foreach(warning 4090 4244 4267)
         set(WARNING_FLAGS "${WARNING_FLAGS} /wd${warning}")
     endforeach()
-
     set( MSVC_FLAGS "-DNOMINMAX -D_USE_MATH_DEFINES -D_CRT_SECURE_NO_WARNINGS -D_SCL_SECURE_NO_WARNINGS -D__CRT_NONSTDC_NO_WARNINGS" )
     if (IS_64_BIT)
         set( MSVC_FLAGS "${MSVC_FLAGS} -DWIN64" )
@@ -56,7 +62,9 @@ if(WIN32 AND MSVC)
     # if (${MSVC_VERSION} EQUAL 1600)
     #    set( MSVC_LD_FLAGS "/FORCE:MULTIPLE" )
     # endif (${MSVC_VERSION} EQUAL 1600)
-    set( NOMINMAX 1 )
+    # set( NOMINMAX 1 )
+    # to distinguish between debug and release lib in windows
+    set( CMAKE_DEBUG_POSTFIX "d" ) # little effect in unix
 else()
     # add any gcc flags
 endif()
@@ -70,16 +78,13 @@ add_definitions ( -DSUPPORT_UTF16_ENCODINGS=1 )
 add_definitions ( -DSUPPORT_ASIAN_ENCODINGS=1 )
 add_definitions ( -DSUPPORT_ACCESSIBILITY_CHECKS=1 )
 add_definitions ( -DRELEASE_DATE="${tidy_YEAR}/${tidy_MONTH}/${tidy_DAY}" )
-# to distinguish between debug and release lib
-if (WIN32)
-   set( CMAKE_DEBUG_POSTFIX "d" )
-endif(WIN32)
+add_definitions ( -DLIBTIDY_VERSION="${LIBTIDY_VERSION}" )
 
 if(BUILD_SHARED_LIB)
    set(LIB_TYPE SHARED)
-   message("*** Building DLL library ${LIB_TYPE}")
+   message("*** Building DLL library ${LIB_TYPE}, version ${LIBTIDY_VERSION}")
 else(BUILD_SHARED_LIB)
-   message("*** Building static library ${LIB_TYPE}")
+   message("*** Building static library ${LIB_TYPE}, version ${LIBTIDY_VERSION}")
 endif(BUILD_SHARED_LIB)
 
 include_directories ( "${PROJECT_SOURCE_DIR}/include" "${PROJECT_SOURCE_DIR}/src" )
@@ -114,18 +119,23 @@ if (MSVC)
     list(APPEND CFILES ${SRCDIR}/sprtf.c)
     list(APPEND LIBHFILES ${SRCDIR}/sprtf.h)
 endif ()
-if (BUILD_SHARED_LIB)
-    set(name tidy-shared)
-else ()
-    set(name tidy-static)
-endif ()
+set(name lib-tidy)
 add_library ( ${name} ${LIB_TYPE} ${CFILES} ${HFILES} ${LIBHFILES} )
+set_target_properties( ${name} PROPERTIES 
+    OUTPUT_NAME tidy5
+    )
+set_target_properties( ${name} PROPERTIES
+                               VERSION   ${LIBTIDY_VERSION}
+                               SOVERSION ${TIDY_MAJOR_VERSION} )
+if (BUILD_SHARED_LIB)
+set_target_properties( ${name} PROPERTIES 
+    COMPILE_FLAGS "-DBUILD_SHARED_LIB"
+    )
+set_target_properties( ${name} PROPERTIES 
+    COMPILE_FLAGS "-DBUILDING_SHARED_LIB"
+    )
+endif ()                               
 list ( APPEND add_LIBS ${name} )
-if (NOT MSVC)
-    set_target_properties( ${name} PROPERTIES
-                                   VERSION   ${LIBTIDY_VERSION}
-                                   SOVERSION ${TIDY_MAJOR_VERSION} )
-endif ()
 install(TARGETS ${name}
     RUNTIME DESTINATION bin
     ARCHIVE DESTINATION lib
@@ -142,13 +152,21 @@ target_link_libraries( ${name} ${add_LIBS} )
 if (MSVC)
     set_target_properties( ${name} PROPERTIES DEBUG_POSTFIX d )
 endif ()
+if (BUILD_SHARED_LIB)
+set_target_properties( ${name} PROPERTIES 
+    COMPILE_FLAGS "-DBUILD_SHARED_LIB"
+    )
+endif ()                               
 install (TARGETS ${name} DESTINATION bin)
 
-set(name tab2space)
-add_executable( ${name} ${BINDIR}/tab2space.c )
-if (MSVC)
-    set_target_properties( ${name} PROPERTIES DEBUG_POSTFIX d )
+if (BUILD_TAB2SPACE)
+    set(name tab2space)
+    add_executable( ${name} ${BINDIR}/tab2space.c )
+    if (MSVC)
+        set_target_properties( ${name} PROPERTIES DEBUG_POSTFIX d )
+    endif ()
+    # no INSTALL of this 'local' tool
 endif ()
-# no INSTALL of this 'lcoal' tool
 
 # eof
+

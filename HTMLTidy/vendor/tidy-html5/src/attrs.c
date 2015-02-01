@@ -260,7 +260,7 @@ static const Attribute attribute_defs [] =
   { TidyAttr_URN,               "urn",                   CH_PCDATA    }, /* for <a>, never implemented */
 
   /* HTML5 */
-  { TidyAttr_ASYNC,             "async",                 CH_PCDATA    },
+  { TidyAttr_ASYNC,             "async",                 CH_BOOL      }, /* <script src="..." async> */
   { TidyAttr_AUTOCOMPLETE,      "autocomplete",          CH_PCDATA    },
   { TidyAttr_AUTOFOCUS,         "autofocus",             CH_PCDATA    },
   { TidyAttr_AUTOPLAY,          "autoplay",              CH_PCDATA    },
@@ -405,11 +405,14 @@ static uint AttributeVersions(Node* node, AttVal* attval)
 {
     uint i;
 
-    /* HTML5 data-* attributes */
-    if (attval && attval->attribute)
+    /* HTML5 data-* attributes 
+       20150118: added allowfullscreen */
+    if (attval && attval->attribute) {
         if (TY_(tmbstrncmp)(attval->attribute, "data-", 5) == 0)
             return (XH50 | HT50);
-
+        if (strcmp(attval->attribute,"allowfullscreen") == 0)
+            return (XH50 | HT50);
+    }
     /* TODO: maybe this should return VERS_PROPRIETARY instead? */
     if (!attval || !attval->dict)
         return VERS_UNKNOWN;
@@ -1762,6 +1765,9 @@ void CheckNumber( TidyDocImpl* doc, Node *node, AttVal *attval)
     
     /* font size may be preceded by + or - */
     if ( nodeIsFONT(node) && (*p == '+' || *p == '-') )
+        ++p;
+    /* tabindex may be preceeded by - */
+    if (attval->attribute && (strcmp(attval->attribute,"tabindex") == 0) && (*p == '-'))
         ++p;
 
     while (*p)

@@ -1462,10 +1462,10 @@ Bool TY_(AddGenerator)( TidyDocImpl* doc )
     if (head)
     {
 #ifdef PLATFORM_NAME
-        TY_(tmbsnprintf)(buf, sizeof(buf), "HTML Tidy (Balthisar Tidy) for HTML5 for "PLATFORM_NAME" dated %s",
-                         tidyReleaseDate());
+        TY_(tmbsnprintf)(buf, sizeof(buf), "HTML Tidy for HTML5 for "PLATFORM_NAME" version %s",
+                         tidyLibraryVersion());
 #else
-        TY_(tmbsnprintf)(buf, sizeof(buf), "HTML Tidy (Balthisar Tidy) for HTML5 dated %s", tidyReleaseDate());
+        TY_(tmbsnprintf)(buf, sizeof(buf), "HTML Tidy for HTML5 version %s", tidyLibraryVersion());
 #endif
 
         for ( node = head->content; node; node = node->next )
@@ -2138,6 +2138,9 @@ Node* TY_(GetToken)( TidyDocImpl* doc, GetTokenMode mode )
     /* at start of block elements, unclosed inline
        elements are inserted into the token stream */
     if (lexer->insert || lexer->inode) {
+        /*\ Issue #92: could fix by the following, but instead chose not to stack these 2
+         *  if ( !(lexer->insert && (nodeIsINS(lexer->insert) || nodeIsDEL(lexer->insert))) ) {
+        \*/
         lexer->token = TY_(InsertedToken)( doc );
         node = lexer->token;
         GTDBG(doc,"lex-inserted2", node);

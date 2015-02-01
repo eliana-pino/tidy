@@ -34,6 +34,12 @@ ctmbstr TY_(ReleaseDate)(void)
   return TY_(release_date);
 }
 
+ctmbstr tidyLibraryVersion(void)
+{
+  return TY_(library_version);
+}
+
+
 static struct _msgfmt
 {
     uint code;
@@ -1060,10 +1066,9 @@ static void messagePos( TidyDocImpl* doc, TidyReportLevel level,
             ReportPosition(doc, line, col, buf, sizeBuf);
 #if !defined(NDEBUG) && defined(_MSC_VER)
             SPRTF("%s",buf);
-#else
+#endif
             for ( cp = buf; *cp; ++cp )
                 TY_(WriteChar)( *cp, doc->errout );
-#endif
         }
 
         LevelPrefix( level, buf, sizeBuf );
@@ -1159,15 +1164,21 @@ void tidy_out( TidyDocImpl* doc, ctmbstr msg, ... )
     {
         ctmbstr cp;
         enum { sizeBuf=2048 };
-        char *buf = TidyDocAlloc(doc,sizeBuf);
+        char *buf = (char *)TidyDocAlloc(doc,sizeBuf);
 
         va_list args;
         va_start( args, msg );
         TY_(tmbvsnprintf)(buf, sizeBuf, msg, args);
         va_end( args );
 
+#if !defined(NDEBUG) && defined(_MSC_VER)
+        add_std_out(0);
+#endif
         for ( cp=buf; *cp; ++cp )
           TY_(WriteChar)( *cp, doc->errout );
+#if !defined(NDEBUG) && defined(_MSC_VER)
+        add_std_out(1);
+#endif
         TidyDocFree(doc, buf);
     }
 }
@@ -1183,8 +1194,7 @@ void ShowVersion( TidyDocImpl* doc )
 #endif
 
     tidy_out( doc, "\nHTML Tidy%s%s (release date: %s; built on %s, at %s)\n"
-                   "See https://github.com/balthisar/tidy-html5\n"
-                   " or http://tidy.sourceforge.net/\n",
+                   "See http://tidy.sourceforge.net/ for details.\n",
               helper, platform, TY_(release_date), __DATE__, __TIME__ );
 }
 #endif
@@ -1858,9 +1868,10 @@ void TY_(NeedsAuthorIntervention)( TidyDocImpl* doc )
 void TY_(GeneralInfo)( TidyDocImpl* doc )
 {
     if (!cfgBool(doc, TidyShowInfo)) return;
-    tidy_out(doc, "About this fork of Tidy: https://github.com/balthisar/tidy-html5\n");
-    tidy_out(doc, "Incorporates changes from: https://github.com/geoffmcl/tidy-fork\n");
-    tidy_out(doc, "Forked originally from: https://github.com/w3c/tidy-html5\n");
+    tidy_out(doc, "About this fork of Tidy: https://github.com/htacg/tidy-html5/tree/develop-500\n");
+    tidy_out(doc, "Bug reports and comments: https://github.com/htacg/tidy-html5/issues\n");
+    tidy_out(doc, "Or send questions and comments to: https://lists.w3.org/Archives/Public/public-htacg/\n");
+    tidy_out(doc, "HTML5 language tutorial: http://www.w3schools.com/html/html5_intro.asp\n");
     tidy_out(doc, "Latest HTML specification: http://dev.w3.org/html5/spec-author-view/\n");
     tidy_out(doc, "Validate your HTML5 documents: http://validator.w3.org/nu/\n");
     tidy_out(doc, "Lobby your company to join the W3C: http://www.w3.org/Consortium\n");
