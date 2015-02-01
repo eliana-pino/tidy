@@ -1607,6 +1607,8 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)notifyTidyModelMessagesChanged
 {
+    [self willChangeValueForKey:@"errorArray"];
+    [self didChangeValueForKey:@"errorArray"];
 	[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyTidyErrorsChanged object:self];
 
 	if ([[self delegate] respondsToSelector:@selector(tidyModelTidyMessagesChanged:messages:)])
