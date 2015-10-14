@@ -1757,7 +1757,7 @@
 		D016A91E182FD80700712C60 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Jim Derry";
 				TargetAttributes = {
 					D00661071A579BE700F73F85 = {
@@ -2565,6 +2565,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.balthisar.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2596,6 +2597,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.balthisar.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2620,6 +2622,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/**";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -2661,6 +2665,7 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/**";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 3;
@@ -2689,7 +2694,6 @@
 				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy.entitlements";
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "./**";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					TARGET_WEB,
 					"$(inherited)",
@@ -2700,6 +2704,7 @@
 				JSD_APPLESCRIPT_VALUE = no;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_BUNDLE_IDENTIFIER = "${TIDY_APP_BUNDLE_ID}";
 				PRODUCT_NAME = "Balthisar Tidy";
 				TIDY_APP_BUNDLE_ID = "com.balthisar.web.free.balthisar-tidy";
 				TIDY_HELP_BOOK_FOLDER = "Balthisar Tidy (web).help";
@@ -2719,7 +2724,6 @@
 				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy.entitlements";
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "./**";
 				GCC_PREPROCESSOR_DEFINITIONS = TARGET_WEB;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				INFOPLIST_FILE = "Balthisar Tidy/Balthisar Tidy-Info.plist";
@@ -2727,6 +2731,7 @@
 				JSD_APPLESCRIPT_VALUE = no;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_BUNDLE_IDENTIFIER = "${TIDY_APP_BUNDLE_ID}";
 				PRODUCT_NAME = "Balthisar Tidy";
 				TIDY_APP_BUNDLE_ID = "com.balthisar.web.free.balthisar-tidy";
 				TIDY_HELP_BOOK_FOLDER = "Balthisar Tidy (web).help";
@@ -2757,6 +2762,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(TIDY_APP_BUNDLE_ID).$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "Balthisar Tidy (web)";
 				SKIP_INSTALL = YES;
 				TIDY_APP_BUNDLE_ID = "com.balthisar.web.free.balthisar-tidy";
@@ -2782,6 +2788,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(TIDY_APP_BUNDLE_ID).$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "Balthisar Tidy (web)";
 				SKIP_INSTALL = YES;
 				TIDY_APP_BUNDLE_ID = "com.balthisar.web.free.balthisar-tidy";
@@ -2810,6 +2817,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(TIDY_APP_BUNDLE_ID).$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "Balthisar Tidy (app)";
 				SKIP_INSTALL = YES;
 				TIDY_APP_BUNDLE_ID = "com.balthisar.Balthisar-Tidy";
@@ -2838,6 +2846,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(TIDY_APP_BUNDLE_ID).$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "Balthisar Tidy (app)";
 				SKIP_INSTALL = YES;
 				TIDY_APP_BUNDLE_ID = "com.balthisar.Balthisar-Tidy";
@@ -2866,6 +2875,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(TIDY_APP_BUNDLE_ID).$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "Balthisar Tidy (pro)";
 				SKIP_INSTALL = YES;
 				TIDY_APP_BUNDLE_ID = "com.balthisar.Balthisar-Tidy.pro";
@@ -2894,6 +2904,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(TIDY_APP_BUNDLE_ID).$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "Balthisar Tidy (pro)";
 				SKIP_INSTALL = YES;
 				TIDY_APP_BUNDLE_ID = "com.balthisar.Balthisar-Tidy.pro";
@@ -2907,6 +2918,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_PREFIX = lib;
 				GCC_PREFIX_HEADER = "HTMLTidy/xcode-version.h";
@@ -2932,6 +2944,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_PREFIX = lib;
 				GCC_PREFIX_HEADER = "HTMLTidy/xcode-version.h";
@@ -2972,6 +2985,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.balthisar.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -2997,6 +3011,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.balthisar.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -3064,6 +3079,7 @@
 				JSD_APPLESCRIPT_VALUE = no;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_BUNDLE_IDENTIFIER = "${TIDY_APP_BUNDLE_ID}";
 				PRODUCT_NAME = "Balthisar Tidy";
 				TIDY_APP_BUNDLE_ID = "com.balthisar.Balthisar-Tidy";
 				TIDY_HELP_BOOK_FOLDER = "Balthisar Tidy (app).help";
@@ -3092,6 +3108,7 @@
 				JSD_APPLESCRIPT_VALUE = no;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_BUNDLE_IDENTIFIER = "${TIDY_APP_BUNDLE_ID}";
 				PRODUCT_NAME = "Balthisar Tidy";
 				TIDY_APP_BUNDLE_ID = "com.balthisar.Balthisar-Tidy";
 				TIDY_HELP_BOOK_FOLDER = "Balthisar Tidy (app).help";
@@ -3124,6 +3141,7 @@
 				JSD_APPLESCRIPT_VALUE = yes;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_BUNDLE_IDENTIFIER = "${TIDY_APP_BUNDLE_ID}";
 				PRODUCT_NAME = "Balthisar Tidy for Work";
 				TIDY_APP_BUNDLE_ID = "com.balthisar.Balthisar-Tidy.pro";
 				TIDY_HELP_BOOK_FOLDER = "Balthisar Tidy (pro).help";
@@ -3152,6 +3170,7 @@
 				JSD_APPLESCRIPT_VALUE = yes;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_BUNDLE_IDENTIFIER = "${TIDY_APP_BUNDLE_ID}";
 				PRODUCT_NAME = "Balthisar Tidy for Work";
 				TIDY_APP_BUNDLE_ID = "com.balthisar.Balthisar-Tidy.pro";
 				TIDY_HELP_BOOK_FOLDER = "Balthisar Tidy (pro).help";
@@ -3224,6 +3243,7 @@
 				D0323A8C1A7DE0D400A0A9FC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D04BC9821A5AC5CB009AC43A /* Build configuration list for PBXNativeTarget "Balthisar Tidy Service Helper" */ = {
 			isa = XCConfigurationList;

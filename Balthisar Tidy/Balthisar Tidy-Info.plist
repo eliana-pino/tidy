@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleIdentifier</key>
-	<string>${TIDY_APP_BUNDLE_ID}</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -92,8 +90,14 @@
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleHelpBookFolder</key>
+	<string>${TIDY_HELP_BOOK_FOLDER}</string>
+	<key>CFBundleHelpBookName</key>
+	<string>${TIDY_HELP_BOOK_KEY}</string>
 	<key>CFBundleIconFile</key>
 	<string>Application.icns</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -110,26 +114,14 @@
 	<string>public.app-category.developer-tools</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
+	<key>NSAppleScriptEnabled</key>
+	<string>${JSD_APPLESCRIPT_VALUE}</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright ©2015 James S. Derry. All rights reserved.</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	<key>OSAScriptingDefinition</key>
-	<string>TidyScripting.sdef</string>
-	<key>SUAllowsAutomaticUpdates</key>
-	<false/>
-	<key>SUEnableSystemProfiling</key>
-	<true/>
-	<key>SUFeedURL</key>
-	<string>${TIDY_UPDATE_URL}</string>
-	<key>CFBundleHelpBookName</key>
-	<string>${TIDY_HELP_BOOK_KEY}</string>
-	<key>CFBundleHelpBookFolder</key>
-	<string>${TIDY_HELP_BOOK_FOLDER}</string>
-	<key>NSAppleScriptEnabled</key>
-	<string>${JSD_APPLESCRIPT_VALUE}</string>
 	<key>NSServices</key>
 	<array>
 		<dict>
@@ -153,5 +145,13 @@
 			</array>
 		</dict>
 	</array>
+	<key>OSAScriptingDefinition</key>
+	<string>TidyScripting.sdef</string>
+	<key>SUAllowsAutomaticUpdates</key>
+	<false/>
+	<key>SUEnableSystemProfiling</key>
+	<true/>
+	<key>SUFeedURL</key>
+	<string>${TIDY_UPDATE_URL}</string>
 </dict>
 </plist>
