@@ -33,9 +33,18 @@ _Balthisar Tidy_ has been released with support for Mac OS X 10.8 and newer.
 Change Log
 ----------
 
-### Balthisar Tidy 2.x.x (February 2015)
+### Balthisar Tidy 2.1.4 (October 2015)
 
-- in development
+- New Features
+    - New built-in version of Tidy. Now uses HTACG HTML Tidy 5.0.0 stable.
+    - Balthisar Tidy will automatically use /usr/local/lib/libtidy.dylib instead of the built-in version (if present). Note that this feature is potentially dangerous and subject to change before official public release. Thanks @strider72 for the suggestion.
+
+- Visible Changes
+    - Fixed the horrible appearance in the Tidy options panel introduced in Mac OS X 10.11 El Capitán.
+
+- Bug Fixes
+    - Fixed a condition in which the messages table would not be updated in certain circumstances.
+
 
 ### Balthisar Tidy 2.1.3 (January 2015)
 
