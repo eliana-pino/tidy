@@ -35,6 +35,9 @@
 #ifdef TIDY_WIN32_MLANG_SUPPORT
 #include "win32tc.h"
 #endif
+#if !defined(NDEBUG) && defined(_MSC_VER)
+#include "sprtf.h"
+#endif
 
 /* Create/Destroy a Tidy "document" object */
 static TidyDocImpl* tidyDocCreate( TidyAllocator *allocator );
@@ -168,7 +171,6 @@ void          tidyDocRelease( TidyDocImpl* doc )
         doc->errout = NULL;
 
         TY_(FreePrintBuf)( doc );
-        TY_(FreeLexer)( doc );
         TY_(FreeNode)(doc, &doc->root);
         TidyClearMemory(&doc->root, sizeof(Node));
 
@@ -178,6 +180,11 @@ void          tidyDocRelease( TidyDocImpl* doc )
         TY_(FreeConfig)( doc );
         TY_(FreeAttrTable)( doc );
         TY_(FreeTags)( doc );
+        /*\ 
+         *  Issue #186 - Now FreeNode depend on the doctype, so the lexer is needed
+         *  to determine which hash is to be used, so free it last.
+        \*/
+        TY_(FreeLexer)( doc );
         TidyDocFree( doc, doc );
     }
 }
@@ -1179,7 +1186,6 @@ int         TY_(DocParseStream)( TidyDocImpl* doc, StreamIn* in )
     doc->docIn = in;
 
     TY_(TakeConfigSnapshot)( doc );    /* Save config state */
-    TY_(FreeLexer)( doc );
     TY_(FreeAnchors)( doc );
 
     TY_(FreeNode)(doc, &doc->root);
@@ -1187,7 +1193,11 @@ int         TY_(DocParseStream)( TidyDocImpl* doc, StreamIn* in )
 
     if (doc->givenDoctype)
         TidyDocFree(doc, doc->givenDoctype);
-
+    /*\ 
+     *  Issue #186 - Now FreeNode depend on the doctype, so the lexer is needed
+     *  to determine which hash is to be used, so free it last.
+    \*/
+    TY_(FreeLexer)( doc );
     doc->givenDoctype = NULL;
 
     doc->lexer = TY_(NewLexer)( doc );
@@ -1506,6 +1516,127 @@ void TY_(CheckHTML5)( TidyDocImpl* doc, Node* node )
    ######################################################################################
  */
 
+#if !defined(NDEBUG) && defined(_MSC_VER)
+/* *** FOR DEBUG ONLY *** */
+const char *dbg_get_lexer_type( void *vp )
+{
+    Node *node = (Node *)vp;
+    switch ( node->type )
+    {
+    case RootNode:      return "Root";
+    case DocTypeTag:    return "DocType";
+    case CommentTag:    return "Comment";
+    case ProcInsTag:    return "ProcIns";
+    case TextNode:      return "Text";
+    case StartTag:      return "StartTag";
+    case EndTag:        return "EndTag";
+    case StartEndTag:   return "StartEnd";
+    case CDATATag:      return "CDATA";
+    case SectionTag:    return "Section";
+    case AspTag:        return "Asp";
+    case JsteTag:       return "Jste";
+    case PhpTag:        return "Php";
+    case XmlDecl:       return "XmlDecl";
+    }
+    return "Uncased";
+}
+
+/* NOTE: THis matches the above lexer type, except when element has a name */
+const char *dbg_get_element_name( void *vp )
+{
+    Node *node = (Node *)vp;
+    switch ( node->type )
+    {
+    case TidyNode_Root:       return "Root";
+    case TidyNode_DocType:    return "DocType";
+    case TidyNode_Comment:    return "Comment";
+    case TidyNode_ProcIns:    return "ProcIns";
+    case TidyNode_Text:       return "Text";
+    case TidyNode_CDATA:      return "CDATA";
+    case TidyNode_Section:    return "Section";
+    case TidyNode_Asp:        return "Asp";
+    case TidyNode_Jste:       return "Jste";
+    case TidyNode_Php:        return "Php";
+    case TidyNode_XmlDecl:    return "XmlDecl";
+
+    case TidyNode_Start:
+    case TidyNode_End:
+    case TidyNode_StartEnd:
+    default:
+        if (node->element)
+            return node->element;
+    }
+    return "Unknown";
+}
+
+void dbg_show_node( TidyDocImpl* doc, Node *node, int caller, int indent )
+{
+    AttVal* av;
+    Lexer* lexer = doc->lexer;
+    ctmbstr call = "";
+    ctmbstr name = dbg_get_element_name(node);
+    ctmbstr type = dbg_get_lexer_type(node);
+    ctmbstr impl = node->implicit ? "implicit" : "";
+    switch ( caller )
+    {
+    case 1: call = "discard";   break;
+    case 2: call = "trim";      break;
+    case 3: call = "test";      break;
+    }
+    while (indent--)
+        SPRTF(" ");
+    if (strcmp(type,name))
+        SPRTF("%s %s %s %s", type, name, impl, call );
+    else
+        SPRTF("%s %s %s", name, impl, call );
+    if (lexer && (strcmp("Text",name) == 0)) {
+        uint len = node->end - node->start;
+        uint i;
+        SPRTF(" (%d) '", len);
+        if (len < 40) {
+            /* show it all */
+            for (i = node->start; i < node->end; i++) {
+                SPRTF("%c", lexer->lexbuf[i]);
+            }
+        } else {
+            /* partial display */
+            uint max = 19;
+            for (i = node->start; i < max; i++) {
+                SPRTF("%c", lexer->lexbuf[i]);
+            }
+            SPRTF("...");
+            i = node->end - 19;
+            for (; i < node->end; i++) {
+                SPRTF("%c", lexer->lexbuf[i]);
+            }
+        }
+        SPRTF("'");
+    }
+    for (av = node->attributes; av; av = av->next) {
+        name = av->attribute;
+        if (name) {
+            SPRTF(" %s",name);
+            if (av->value) {
+                SPRTF("=\"%s\"", av->value);
+            }
+        }
+    }
+
+    SPRTF("\n");
+}
+
+void dbg_show_all_nodes( TidyDocImpl* doc, Node *node, int indent )
+{
+    while (node)
+    {
+        dbg_show_node( doc, node, 0, indent );
+        dbg_show_all_nodes( doc, node->content, indent + 1 );
+        node = node->next;
+    }
+}
+
+#endif
+
 int         tidyDocCleanAndRepair( TidyDocImpl* doc )
 {
     Bool word2K   = cfgBool( doc, TidyWord2000 );
@@ -1524,6 +1655,10 @@ int         tidyDocCleanAndRepair( TidyDocImpl* doc )
     ctmbstr sdef = NULL;
     Node* node;
 
+#if !defined(NDEBUG) && defined(_MSC_VER)
+    SPRTF("All nodes BEFORE clean and repair\n");
+    dbg_show_all_nodes( doc, &doc->root, 0  );
+#endif
     if (tidyXmlTags)
        return tidyDocStatus( doc );
 
@@ -1629,6 +1764,10 @@ int         tidyDocCleanAndRepair( TidyDocImpl* doc )
     if ( xmlOut && xmlDecl )
         TY_(FixXmlDecl)( doc );
 
+#if !defined(NDEBUG) && defined(_MSC_VER)
+    SPRTF("All nodes AFTER clean and repair\n");
+    dbg_show_all_nodes( doc, &doc->root, 0  );
+#endif
     return tidyDocStatus( doc );
 }
 

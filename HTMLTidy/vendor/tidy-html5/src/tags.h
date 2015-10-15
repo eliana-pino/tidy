@@ -86,6 +86,7 @@ ctmbstr        TY_(GetNextDeclaredTag)( TidyDocImpl* doc, UserTagType tagType,
 
 void TY_(InitTags)( TidyDocImpl* doc );
 void TY_(FreeTags)( TidyDocImpl* doc );
+void TY_(AdjustTags)( TidyDocImpl *doc ); /* if NOT HTML5 DOCTYPE, fall back to HTML4 legacy mode */
 
 
 /* Parser methods for tags */
@@ -111,6 +112,7 @@ Parser TY_(ParseSelect);
 Parser TY_(ParseOptGroup);
 Parser TY_(ParseText);
 Parser TY_(ParseDatalist);
+Parser TY_(ParseNamespace);
 
 CheckAttribs TY_(CheckAttributes);
 
@@ -224,6 +226,7 @@ uint TY_(nodeHeaderLevel)( Node* node );  /* 1, 2, ..., 6 */
 #define nodeIsSUP( node )        TagIsId( node, TidyTag_SUP )
 #define nodeIsU( node )          TagIsId( node, TidyTag_U )
 #define nodeIsMENU( node )       TagIsId( node, TidyTag_MENU )
+#define nodeIsMAIN( node )       TagIsId( node, TidyTag_MAIN )
 #define nodeIsBUTTON( node )     TagIsId( node, TidyTag_BUTTON )
 #define nodeIsCANVAS( node )     TagIsId( node, TidyTag_CANVAS )
 #define nodeIsPROGRESS( node )   TagIsId( node, TidyTag_PROGRESS )
@@ -233,6 +236,8 @@ uint TY_(nodeHeaderLevel)( Node* node );  /* 1, 2, ..., 6 */
 
 /* HTML5 */
 #define nodeIsDATALIST( node )   TagIsId( node, TidyTag_DATALIST )
+#define nodeIsMATHML( node )     TagIsId( node, TidyTag_MATHML ) /* #130 MathML attr and entity fix! */
+
 /* NOT in HTML 5 */
 #define nodeIsACRONYM( node )    TagIsId( node, TidyTag_ACRONYM )
 #define nodesIsFRAME( node )     TagIsId( node, TidyTag_FRAME )

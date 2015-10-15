@@ -227,6 +227,7 @@ static const Attribute attribute_defs [] =
   { TidyAttr_SIZE,              "size",                  CH_NUMBER    }, /* HR, FONT, BASEFONT, SELECT */
   { TidyAttr_SPAN,              "span",                  CH_NUMBER    }, /* COL, COLGROUP */
   { TidyAttr_SRC,               "src",                   CH_URL       }, /* IMG, FRAME, IFRAME */
+  { TidyAttr_SRCSET,            "srcset",                CH_PCDATA    }, /* IMG (HTML5) */
   { TidyAttr_STANDBY,           "standby",               CH_PCDATA    }, /* OBJECT */
   { TidyAttr_START,             "start",                 CH_NUMBER    }, /* OL */
   { TidyAttr_STYLE,             "style",                 CH_PCDATA    }, 
@@ -396,6 +397,25 @@ static const Attribute attribute_defs [] =
   { TidyAttr_ARIA_VALUEMIN,           "aria-valuemin",           CH_PCDATA   },
   { TidyAttr_ARIA_VALUENOW,           "aria-valuenow",           CH_PCDATA   },
   { TidyAttr_ARIA_VALUETEXT,          "aria-valuetext",          CH_PCDATA   },
+
+  { TidyAttr_X,                        "x",                      CH_PCDATA    }, /* for <svg> */
+  { TidyAttr_Y,                        "y",                      CH_PCDATA    }, /* for <svg> */
+#if 0   /* with uppercase chars taken directly from W3C; are these case-insensitive everywhere? */
+  { TidyAttr_VIEWBOX,           "viewBox",           VERS_INLINE_SVG,   CH_PCDATA    }, /* for <svg> */
+  { TidyAttr_PRESERVEASPECTRATIO, "preserveAspectRatio", VERS_INLINE_SVG, CH_PCDATA  }, /* for <svg> */
+  { TidyAttr_ZOOMANDPAN,        "zoomAndPan",        VERS_INLINE_SVG,   CH_PCDATA    }, /* for <svg> */
+  { TidyAttr_BASEPROFILE,       "baseProfile",       VERS_INLINE_SVG,   CH_PCDATA    }, /* for <svg> */
+  { TidyAttr_CONTENTSCRIPTTYPE, "contentScriptType", VERS_INLINE_SVG,   CH_PCDATA    }, /* for <svg> */
+  { TidyAttr_CONTENTSTYLETYPE,  "contentStyleType",  VERS_INLINE_SVG,   CH_PCDATA    }, /* for <svg> */
+#else
+  { TidyAttr_VIEWBOX,                  "viewbox",                CH_PCDATA    }, /* for <svg> */
+  { TidyAttr_PRESERVEASPECTRATIO,      "preserveaspectratio",    CH_PCDATA    }, /* for <svg> */
+  { TidyAttr_ZOOMANDPAN,               "zoomandpan",             CH_PCDATA    }, /* for <svg> */
+  { TidyAttr_BASEPROFILE,              "baseprofile",            CH_PCDATA    }, /* for <svg> */
+  { TidyAttr_CONTENTSCRIPTTYPE,        "contentscripttype",      CH_PCDATA    }, /* for <svg> */
+  { TidyAttr_CONTENTSTYLETYPE,         "contentstyletype",       CH_PCDATA    }, /* for <svg> */
+#endif
+  { TidyAttr_DISPLAY,                  "display",                 CH_PCDATA   }, /* on MATH tag (html5) */
 
   /* this must be the final entry */
   { N_TIDY_ATTRIBS,             NULL,                    NULL         }
@@ -947,22 +967,52 @@ static void FreeAnchor(TidyDocImpl* doc, Anchor *a)
 
 static uint anchorNameHash(ctmbstr s)
 {
-    uint hashval;
-
-    for (hashval = 0; *s != '\0'; s++) {
-        tmbchar c = TY_(ToLower)( *s );
-        hashval = c + 31*hashval;
+    uint hashval = 0;
+    /* Issue #149 - an inferred name can be null. avoid crash */
+    if (s) 
+    {
+        for ( ; *s != '\0'; s++) {
+            tmbchar c = TY_(ToLower)( *s );
+            hashval = c + 31*hashval;
+        }
     }
-
     return hashval % ANCHOR_HASH_SIZE;
 }
 
-/* removes anchor for specific node */
+/*\
+ *  New Service for HTML5
+ *  Issue #185 - Treat elements ids as case-sensitive
+ *  if in HTML5 modes, make hash of value AS IS!
+\*/
+static uint anchorNameHash5(ctmbstr s)
+{
+    uint hashval = 0;
+    /* Issue #149 - an inferred name can be null. avoid crash */
+    if (s) 
+    {
+        for ( ; *s != '\0'; s++) {
+            tmbchar c = *s;
+            hashval = c + 31*hashval;
+        }
+    }
+    return hashval % ANCHOR_HASH_SIZE;
+}
+
+
+/*\ 
+ *  removes anchor for specific node 
+ *  Issue #185 - Treat elements ids as case-sensitive
+ *  if in HTML5 modes, make hash of value AS IS!
+\*/
 void TY_(RemoveAnchorByNode)( TidyDocImpl* doc, ctmbstr name, Node *node )
 {
     TidyAttribImpl* attribs = &doc->attribs;
     Anchor *delme = NULL, *curr, *prev = NULL;
-    uint h = anchorNameHash(name);
+    uint h;
+    if (TY_(HTMLVersion)(doc) == HT50)
+        h = anchorNameHash5(name);
+    else
+        h = anchorNameHash(name);
 
     for ( curr=attribs->anchor_hash[h]; curr!=NULL; curr=curr->next )
     {
@@ -993,12 +1043,20 @@ static Anchor* NewAnchor( TidyDocImpl* doc, ctmbstr name, Node* node )
     return a;
 }
 
-/* add new anchor to namespace */
+/*\
+ *  add new anchor to namespace 
+ *  Issue #185 - Treat elements ids as case-sensitive
+ *  if in HTML5 modes, make hash of value AS IS!
+\*/
 static Anchor* AddAnchor( TidyDocImpl* doc, ctmbstr name, Node *node )
 {
     TidyAttribImpl* attribs = &doc->attribs;
     Anchor *a = NewAnchor( doc, name, node );
-    uint h = anchorNameHash(name);
+    uint h;
+    if (TY_(HTMLVersion)(doc) == HT50)
+        h = anchorNameHash5(name);
+    else
+        h = anchorNameHash(name);
 
     if ( attribs->anchor_hash[h] == NULL)
          attribs->anchor_hash[h] = a;
@@ -1013,14 +1071,25 @@ static Anchor* AddAnchor( TidyDocImpl* doc, ctmbstr name, Node *node )
     return attribs->anchor_hash[h];
 }
 
-/* return node associated with anchor */
+/*\
+ *  return node associated with anchor 
+ *  Issue #185 - Treat elements ids as case-sensitive
+ *  if in HTML5 modes, make hash of value AS IS!
+\*/
 static Node* GetNodeByAnchor( TidyDocImpl* doc, ctmbstr name )
 {
     TidyAttribImpl* attribs = &doc->attribs;
     Anchor *found;
-    uint h = anchorNameHash(name);
+    uint h;
     tmbstr lname = TY_(tmbstrdup)(doc->allocator, name);
-    lname = TY_(tmbstrtolower)(lname);
+    if (TY_(HTMLVersion)(doc) == HT50) {
+        h = anchorNameHash5(name);
+    }
+    else
+    {
+        h = anchorNameHash(name);
+        lname = TY_(tmbstrtolower)(lname);
+    }
 
     for ( found = attribs->anchor_hash[h]; found != NULL; found = found->next )
     {

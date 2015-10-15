@@ -34,7 +34,7 @@ ctmbstr TY_(ReleaseDate)(void)
   return TY_(release_date);
 }
 
-ctmbstr tidyLibraryVersion(void)
+ctmbstr TIDY_CALL     tidyLibraryVersion(void)
 {
   return TY_(library_version);
 }
@@ -113,7 +113,8 @@ static struct _msgfmt
   /* HTML5 */
   { REMOVED_HTML5,                "%s element removed from HTML5"                                           }, /* Warning */
   { BAD_BODY_HTML5,               "Found attribute on body that is obsolete in HTML5. Use CSS"              }, /* Warning */
-  { BAD_ALIGN_HTML5,              "The align attribute on the %s element is obsolete, Use CSS"              }, /* Wanring */
+  { BAD_ALIGN_HTML5,              "The align attribute on the %s element is obsolete, Use CSS"              }, /* Warning */
+  { BAD_SUMMARY_HTML5,            "The summary attribute on the %s element is obsolete in HTML5"            }, /* Warning */
 
 /* ReportNotice */
   { TRIM_EMPTY_ELEMENT,           "trimming empty %s"                                                       }, /* Notice */
@@ -745,7 +746,7 @@ static const TidyOptionDoc option_docs[] =
   {TidyTabSize,
    "This option specifies the number of columns that Tidy uses between "
    "successive tab stops. It is used to map tabs to spaces when reading the "
-   "input. Tidy never outputs tabs. "
+   "input. "
   },
   {TidyVertSpace,
    "This option specifies if Tidy should add some empty lines for "
@@ -904,7 +905,7 @@ static const TidyOptionDoc option_docs[] =
    "some CSS markup to avoid indentation to the right. "
   },
   {TidyPreserveEntities,
-   "This option specifies if Tidy should preserve the well-formed entitites "
+   "This option specifies if Tidy should preserve the well-formed entities "
    "as found in the input. "
   },
   {TidyAnchorAsName,
@@ -914,6 +915,14 @@ static const TidyOptionDoc option_docs[] =
    "is added along an existing id attribute if the DTD allows it. "
    "If set to \"no\", any existing name attribute is removed "
    "if an id attribute exists or has been added. "
+  },
+   {TidyPPrintTabs,
+   "Set this option \"on\" to indent using tabs instead of the default "
+   "spaces. The option TidyIndentSpaces controls the number of tabs output "
+   "per level of indent, which is reset to 1, when this option is set on. "
+   "And of course, indent must be enabled for this to have any effect. "
+   "Note TidyTabSize controls converting input tabs to spaces. Set to zero "
+   "to retain input tabs. "
   },
   {N_TIDY_OPTIONS,
    NULL
@@ -1194,7 +1203,7 @@ void ShowVersion( TidyDocImpl* doc )
 #endif
 
     tidy_out( doc, "\nHTML Tidy%s%s (release date: %s; built on %s, at %s)\n"
-                   "See http://tidy.sourceforge.net/ for details.\n",
+                   "See http://www.html-tidy.org/ for details.\n",
               helper, platform, TY_(release_date), __DATE__, __TIME__ );
 }
 #endif
@@ -1491,6 +1500,7 @@ void TY_(ReportWarning)(TidyDocImpl* doc, Node *element, Node *node, uint code)
     case REMOVED_HTML5:
     case BAD_BODY_HTML5:
     case BAD_ALIGN_HTML5:
+    case BAD_SUMMARY_HTML5:
         messageNode(doc, TidyWarning, rpt, fmt, nodedesc);
         break;
     case COERCE_TO_ENDTAG_WARN:
@@ -1603,7 +1613,9 @@ void TY_(ReportError)(TidyDocImpl* doc, Node *element, Node *node, uint code)
         break;
 
     case DISCARDING_UNEXPECTED:
-        /* Force error if in a bad form */
+        /* Force error if in a bad form, or 
+           Issue #166 - repeated <main> element
+        */
         messageNode(doc, doc->badForm ? TidyError : TidyWarning, node, fmt, nodedesc);
         break;
 
@@ -1739,7 +1751,7 @@ void TY_(ErrorSummary)( TidyDocImpl* doc )
       }
     }
 
-    if (doc->badForm)
+    if (doc->badForm & flg_BadForm) /* Issue #166 - changed to BIT flag to support other errors */
     {
         tidy_out(doc, "You may need to move one or both of the <form> and </form>\n");
         tidy_out(doc, "tags. HTML elements should be properly nested and form elements\n");
@@ -1747,6 +1759,13 @@ void TY_(ErrorSummary)( TidyDocImpl* doc )
         tidy_out(doc, "in one table cell and the </form> in another. If the <form> is\n");
         tidy_out(doc, "placed before a table, the </form> cannot be placed inside the\n");
         tidy_out(doc, "table! Note that one form can't be nested inside another!\n\n");
+    }
+
+    if (doc->badForm & flg_BadMain) /* Issue #166 - repeated <main> element */
+    {
+        tidy_out(doc, "Only one <main> element is allowed in a document.\n");
+        tidy_out(doc, "Subsequent <main> elements have been discarded, which may\n");
+        tidy_out(doc, "render the document invalid.\n");
     }
     
     if (doc->badAccess)
@@ -1868,7 +1887,7 @@ void TY_(NeedsAuthorIntervention)( TidyDocImpl* doc )
 void TY_(GeneralInfo)( TidyDocImpl* doc )
 {
     if (!cfgBool(doc, TidyShowInfo)) return;
-    tidy_out(doc, "About HTML Tidy: https://github.com/htacg/tidy-html5/tree/develop-500\n");
+    tidy_out(doc, "About HTML Tidy: https://github.com/htacg/tidy-html5\n");
     tidy_out(doc, "Bug reports and comments: https://github.com/htacg/tidy-html5/issues\n");
     tidy_out(doc, "Or send questions and comments to: https://lists.w3.org/Archives/Public/public-htacg/\n");
     tidy_out(doc, "Latest HTML specification: http://dev.w3.org/html5/spec-author-view/\n");

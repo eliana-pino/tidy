@@ -5,7 +5,7 @@ REM
 REM (c) 1998-2006 (W3C) MIT, ERCIM, Keio University
 REM See tidy.c for the copyright notice.
 REM
-REM <URL:http://tidy.sourceforge.net/>
+REM <URL:http://www.html-tidy.org/>
 REM
 
 @if "%TIDY%." == "." goto Err1
@@ -13,6 +13,8 @@ REM
 @if "%TIDYOUT%." == "." goto Err3
 @if NOT EXIST %TIDYOUT%\nul goto Err4
 @if NOT EXIST input\nul goto Err5
+@if "%1x" == "x" goto Err8
+@if "%2x" == "x" goto Err9
 
 set TESTNO=%1
 set EXPECTED=%2
@@ -104,5 +106,14 @@ goto done
 @echo ==============================================================
 @pause
 @goto done
+
+:Err8
+@echo.
+@echo ERROR: No input test number given!
+:Err9
+@echo ERROR: No expected exit value given!
+@echo.
+@goto done
+
 
 :done
