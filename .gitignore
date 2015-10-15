@@ -24,18 +24,9 @@ DerivedData
 
 # CocoaPods
 Pods
-=======
-# xcode noise
-build/*
-*.pbxuser
-*.mode1v3
 
 # old skool
 .svn
-
-# osx noise
-.DS_Store
-profile
 
 Distribution
 
@@ -44,3 +35,6 @@ Documentation/html
 
 # Help Build System built content.
 Contents\ \(build\)
+
+# Auto-gen'd header file.
+HTMLTidy/xcode-version.h
