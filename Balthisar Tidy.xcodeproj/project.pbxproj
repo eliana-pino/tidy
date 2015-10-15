@@ -115,9 +115,8 @@
 		D0323B011A7DE25000A0A9FC /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323AC91A7DE25000A0A9FC /* version.h */; };
 		D0323B021A7DE25000A0A9FC /* win32tc.c in Sources */ = {isa = PBXBuildFile; fileRef = D0323ACA1A7DE25000A0A9FC /* win32tc.c */; };
 		D0323B031A7DE25000A0A9FC /* win32tc.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323ACB1A7DE25000A0A9FC /* win32tc.h */; };
-		D0323B061A7DE3E500A0A9FC /* liblib-tidy.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0323A891A7DE0D400A0A9FC /* liblib-tidy.dylib */; };
+		D0323B061A7DE3E500A0A9FC /* libtidy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0323A891A7DE0D400A0A9FC /* libtidy.a */; };
 		D0323B091A7DE53900A0A9FC /* version.txt in Sources */ = {isa = PBXBuildFile; fileRef = D0323B071A7DE48400A0A9FC /* version.txt */; };
-		D0323B0C1A7DE82500A0A9FC /* liblib-tidy.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0323A891A7DE0D400A0A9FC /* liblib-tidy.dylib */; };
 		D034D8131A621E5300821FE5 /* helper-icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = D04BC98D1A5AC714009AC43A /* helper-icon.icns */; };
 		D036E1E818F3D25E0009A9D4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D036E1D818F3D25E0009A9D4 /* Credits.rtf */; };
 		D036E1E918F3D25E0009A9D4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D036E1D818F3D25E0009A9D4 /* Credits.rtf */; };
@@ -291,6 +290,63 @@
 		D0A2E1FB197548D20015F667 /* ToolbarInfo.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0A2E1F7197548D20015F667 /* ToolbarInfo.tiff */; };
 		D0A2E1FC197548D20015F667 /* ToolbarInfo.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0A2E1F7197548D20015F667 /* ToolbarInfo.tiff */; };
 		D0A2E1FD197548D20015F667 /* ToolbarInfo.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0A2E1F7197548D20015F667 /* ToolbarInfo.tiff */; };
+		D0A482721BCF9BD000E0646F /* version.txt in Sources */ = {isa = PBXBuildFile; fileRef = D0323B071A7DE48400A0A9FC /* version.txt */; };
+		D0A482731BCF9BD000E0646F /* istack.c in Sources */ = {isa = PBXBuildFile; fileRef = D0323AB11A7DE25000A0A9FC /* istack.c */; };
+		D0A482741BCF9BD000E0646F /* tagask.c in Sources */ = {isa = PBXBuildFile; fileRef = D0323AC01A7DE25000A0A9FC /* tagask.c */; };
+		D0A482751BCF9BD000E0646F /* gdoc.c in Sources */ = {isa = PBXBuildFile; fileRef = D0323AAD1A7DE25000A0A9FC /* gdoc.c */; };
+		D0A482761BCF9BD000E0646F /* charsets.c in Sources */ = {isa = PBXBuildFile; fileRef = D0323AA21A7DE25000A0A9FC /* charsets.c */; };
+		D0A482771BCF9BD000E0646F /* attrs.c in Sources */ = {isa = PBXBuildFile; fileRef = D0323A9F1A7DE25000A0A9FC /* attrs.c */; };
+		D0A482781BCF9BD000E0646F /* mappedio.c in Sources */ = {isa = PBXBuildFile; fileRef = D0323AB51A7DE25000A0A9FC /* mappedio.c */; };
+		D0A482791BCF9BD000E0646F /* access.c in Sources */ = {isa = PBXBuildFile; fileRef = D0323A981A7DE25000A0A9FC /* access.c */; };
+		D0A4827A1BCF9BD000E0646F /* tidylib.c in Sources */ = {isa = PBXBuildFile; fileRef = D0323AC41A7DE25000A0A9FC /* tidylib.c */; };
+		D0A4827B1BCF9BD000E0646F /* parser.c in Sources */ = {isa = PBXBuildFile; fileRef = D0323AB81A7DE25000A0A9FC /* parser.c */; };
+		D0A4827C1BCF9BD000E0646F /* attrask.c in Sources */ = {isa = PBXBuildFile; fileRef = D0323A9B1A7DE25000A0A9FC /* attrask.c */; };
+		D0A4827D1BCF9BD000E0646F /* attrget.c in Sources */ = {isa = PBXBuildFile; fileRef = D0323A9E1A7DE25000A0A9FC /* attrget.c */; };
+		D0A4827E1BCF9BD000E0646F /* fileio.c in Sources */ = {isa = PBXBuildFile; fileRef = D0323AAA1A7DE25000A0A9FC /* fileio.c */; };
+		D0A4827F1BCF9BD000E0646F /* win32tc.c in Sources */ = {isa = PBXBuildFile; fileRef = D0323ACA1A7DE25000A0A9FC /* win32tc.c */; };
+		D0A482801BCF9BD000E0646F /* lexer.c in Sources */ = {isa = PBXBuildFile; fileRef = D0323AB21A7DE25000A0A9FC /* lexer.c */; };
+		D0A482811BCF9BD000E0646F /* buffio.c in Sources */ = {isa = PBXBuildFile; fileRef = D0323AA11A7DE25000A0A9FC /* buffio.c */; };
+		D0A482821BCF9BD000E0646F /* iconvtc.c in Sources */ = {isa = PBXBuildFile; fileRef = D0323AAF1A7DE25000A0A9FC /* iconvtc.c */; };
+		D0A482831BCF9BD000E0646F /* tags.c in Sources */ = {isa = PBXBuildFile; fileRef = D0323AC11A7DE25000A0A9FC /* tags.c */; };
+		D0A482841BCF9BD000E0646F /* clean.c in Sources */ = {isa = PBXBuildFile; fileRef = D0323AA41A7DE25000A0A9FC /* clean.c */; };
+		D0A482851BCF9BD000E0646F /* entities.c in Sources */ = {isa = PBXBuildFile; fileRef = D0323AA81A7DE25000A0A9FC /* entities.c */; };
+		D0A482861BCF9BD000E0646F /* sprtf.c in Sources */ = {isa = PBXBuildFile; fileRef = D0323ABC1A7DE25000A0A9FC /* sprtf.c */; };
+		D0A482871BCF9BD000E0646F /* attrdict.c in Sources */ = {isa = PBXBuildFile; fileRef = D0323A9C1A7DE25000A0A9FC /* attrdict.c */; };
+		D0A482881BCF9BD000E0646F /* localize.c in Sources */ = {isa = PBXBuildFile; fileRef = D0323AB41A7DE25000A0A9FC /* localize.c */; };
+		D0A482891BCF9BD000E0646F /* alloc.c in Sources */ = {isa = PBXBuildFile; fileRef = D0323A9A1A7DE25000A0A9FC /* alloc.c */; };
+		D0A4828A1BCF9BD000E0646F /* pprint.c in Sources */ = {isa = PBXBuildFile; fileRef = D0323ABA1A7DE25000A0A9FC /* pprint.c */; };
+		D0A4828B1BCF9BD000E0646F /* config.c in Sources */ = {isa = PBXBuildFile; fileRef = D0323AA61A7DE25000A0A9FC /* config.c */; };
+		D0A4828C1BCF9BD000E0646F /* utf8.c in Sources */ = {isa = PBXBuildFile; fileRef = D0323AC71A7DE25000A0A9FC /* utf8.c */; };
+		D0A4828D1BCF9BD000E0646F /* streamio.c in Sources */ = {isa = PBXBuildFile; fileRef = D0323ABE1A7DE25000A0A9FC /* streamio.c */; };
+		D0A4828E1BCF9BD000E0646F /* tmbstr.c in Sources */ = {isa = PBXBuildFile; fileRef = D0323AC51A7DE25000A0A9FC /* tmbstr.c */; };
+		D0A482911BCF9BD000E0646F /* tidy.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323A951A7DE25000A0A9FC /* tidy.h */; };
+		D0A482921BCF9BD000E0646F /* tidyenum.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323A961A7DE25000A0A9FC /* tidyenum.h */; };
+		D0A482931BCF9BD000E0646F /* access.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323A991A7DE25000A0A9FC /* access.h */; };
+		D0A482941BCF9BD000E0646F /* attrdict.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323A9D1A7DE25000A0A9FC /* attrdict.h */; };
+		D0A482951BCF9BD000E0646F /* attrs.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323AA01A7DE25000A0A9FC /* attrs.h */; };
+		D0A482961BCF9BD000E0646F /* charsets.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323AA31A7DE25000A0A9FC /* charsets.h */; };
+		D0A482971BCF9BD000E0646F /* clean.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323AA51A7DE25000A0A9FC /* clean.h */; };
+		D0A482981BCF9BD000E0646F /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323AA71A7DE25000A0A9FC /* config.h */; };
+		D0A482991BCF9BD000E0646F /* entities.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323AA91A7DE25000A0A9FC /* entities.h */; };
+		D0A4829A1BCF9BD000E0646F /* fileio.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323AAB1A7DE25000A0A9FC /* fileio.h */; };
+		D0A4829B1BCF9BD000E0646F /* forward.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323AAC1A7DE25000A0A9FC /* forward.h */; };
+		D0A4829C1BCF9BD000E0646F /* gdoc.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323AAE1A7DE25000A0A9FC /* gdoc.h */; };
+		D0A4829D1BCF9BD000E0646F /* iconvtc.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323AB01A7DE25000A0A9FC /* iconvtc.h */; };
+		D0A4829E1BCF9BD000E0646F /* lexer.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323AB31A7DE25000A0A9FC /* lexer.h */; };
+		D0A4829F1BCF9BD000E0646F /* mappedio.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323AB61A7DE25000A0A9FC /* mappedio.h */; };
+		D0A482A01BCF9BD000E0646F /* message.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323AB71A7DE25000A0A9FC /* message.h */; };
+		D0A482A11BCF9BD000E0646F /* parser.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323AB91A7DE25000A0A9FC /* parser.h */; };
+		D0A482A21BCF9BD000E0646F /* pprint.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323ABB1A7DE25000A0A9FC /* pprint.h */; };
+		D0A482A31BCF9BD000E0646F /* sprtf.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323ABD1A7DE25000A0A9FC /* sprtf.h */; };
+		D0A482A41BCF9BD000E0646F /* streamio.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323ABF1A7DE25000A0A9FC /* streamio.h */; };
+		D0A482A51BCF9BD000E0646F /* tags.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323AC21A7DE25000A0A9FC /* tags.h */; };
+		D0A482A61BCF9BD000E0646F /* tidy-int.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323AC31A7DE25000A0A9FC /* tidy-int.h */; };
+		D0A482A71BCF9BD000E0646F /* tmbstr.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323AC61A7DE25000A0A9FC /* tmbstr.h */; };
+		D0A482A81BCF9BD000E0646F /* utf8.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323AC81A7DE25000A0A9FC /* utf8.h */; };
+		D0A482A91BCF9BD000E0646F /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323AC91A7DE25000A0A9FC /* version.h */; };
+		D0A482AA1BCF9BD000E0646F /* win32tc.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323ACB1A7DE25000A0A9FC /* win32tc.h */; };
+		D0A482B21BCF9D0C00E0646F /* libtidy.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A482AF1BCF9BD000E0646F /* libtidy.dylib */; };
+		D0A482B71BCFA22E00E0646F /* libtidy.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = D0A482AF1BCF9BD000E0646F /* libtidy.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		D0B9F0F119585010008864D6 /* DCOAboutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0B9F0EE19585010008864D6 /* DCOAboutWindow.xib */; };
 		D0B9F0F219585010008864D6 /* DCOAboutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0B9F0EE19585010008864D6 /* DCOAboutWindow.xib */; };
 		D0B9F0F319585010008864D6 /* DCOAboutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0B9F0EE19585010008864D6 /* DCOAboutWindow.xib */; };
@@ -377,6 +433,17 @@
 
 /* Begin PBXBuildRule section */
 		D0323B081A7DE49100A0A9FC /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.txt";
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+				"$(SRCROOT)/HTMLTidy/xcode-version.h",
+			);
+			script = "echo \"Processing the date and version file to build a dynamic header.\"\nHEADER=\"${SRCROOT}/HTMLTidy/xcode-version.h\"\ncd ${SRCROOT}\necho \"// This file is generated automatically. Do not edit. Edit version.txt instead.\" > $HEADER\necho \"// The lib-tidy target Build Rules for *.txt files has produced this file.\" >> $HEADER\necho \"// Make sure you include this file as the lib-tidy target prefix header.\" >> $HEADER\n\nIFS=$'\\n' read -d '' -r -a LINES < \"${INPUT_FILE_PATH}\"\n\ncat << EOF >> $HEADER\n#ifdef LIBTIDY_VERSION\n#undef LIBTIDY_VERSION\n#endif\nEOF\n\necho \"#define LIBTIDY_VERSION \\\"${LINES[0]}\\\"\" >> $HEADER\n\necho \"// Updated on \"`date` >> $HEADER\n";
+		};
+		D0A482AB1BCF9BD000E0646F /* PBXBuildRule */ = {
 			isa = PBXBuildRule;
 			compilerSpec = com.apple.compilers.proxy.script;
 			filePatterns = "*.txt";
@@ -474,13 +541,6 @@
 			remoteGlobalIDString = D0323A881A7DE0D400A0A9FC;
 			remoteInfo = "lib-tidy";
 		};
-		D0323B0A1A7DE81C00A0A9FC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D016A91E182FD80700712C60 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D0323A881A7DE0D400A0A9FC;
-			remoteInfo = "lib-tidy";
-		};
 		D04BC9BA1A5ACCB1009AC43A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D016A91E182FD80700712C60 /* Project object */;
@@ -494,6 +554,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = D00661071A579BE700F73F85;
 			remoteInfo = JSDTidyFramework;
+		};
+		D0A482B01BCF9C6200E0646F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D016A91E182FD80700712C60 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D0A482701BCF9BD000E0646F;
+			remoteInfo = "lib-tidy.dylib";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -612,6 +679,16 @@
 			name = "Add Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D0A482B61BCFA21800E0646F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D0A482B71BCFA22E00E0646F /* libtidy.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -651,7 +728,7 @@
 		D025BD5D195856B6006D7356 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Base; path = Base.lproj/Acknowledgments.rtf; sourceTree = "<group>"; };
 		D028E8881A5670FB00C39852 /* Balthisar Tidy Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Balthisar Tidy Extension.entitlements"; sourceTree = "<group>"; };
 		D028E88C1A56721200C39852 /* Balthisar Tidy.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Balthisar Tidy.entitlements"; path = "Balthisar Tidy/Balthisar Tidy.entitlements"; sourceTree = "<group>"; };
-		D0323A891A7DE0D400A0A9FC /* liblib-tidy.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "liblib-tidy.dylib"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0323A891A7DE0D400A0A9FC /* libtidy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libtidy.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0323A8F1A7DE22F00A0A9FC /* tidy.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tidy.c; sourceTree = "<group>"; };
 		D0323A951A7DE25000A0A9FC /* tidy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tidy.h; sourceTree = "<group>"; };
 		D0323A961A7DE25000A0A9FC /* tidyenum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tidyenum.h; sourceTree = "<group>"; };
@@ -807,6 +884,7 @@
 		D0A2E1F7197548D20015F667 /* ToolbarInfo.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = ToolbarInfo.tiff; path = "Images for Toolbar/ToolbarInfo.tiff"; sourceTree = "<group>"; };
 		D0A4826E1BCF8E2900E0646F /* tidybuffio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tidybuffio.h; sourceTree = "<group>"; };
 		D0A4826F1BCF8E2900E0646F /* tidyplatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tidyplatform.h; sourceTree = "<group>"; };
+		D0A482AF1BCF9BD000E0646F /* libtidy.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libtidy.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0B9F0EE19585010008864D6 /* DCOAboutWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DCOAboutWindow.xib; path = DCOAboutWindow/DCOAboutWindow/DCOAboutWindow.xib; sourceTree = "<group>"; };
 		D0B9F0EF19585010008864D6 /* DCOAboutWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCOAboutWindowController.h; path = DCOAboutWindow/DCOAboutWindow/DCOAboutWindowController.h; sourceTree = "<group>"; };
 		D0B9F0F019585010008864D6 /* DCOAboutWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCOAboutWindowController.m; path = DCOAboutWindow/DCOAboutWindow/DCOAboutWindowController.m; sourceTree = "<group>"; };
@@ -850,7 +928,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0323B0C1A7DE82500A0A9FC /* liblib-tidy.dylib in Frameworks */,
+				D0A482B21BCF9D0C00E0646F /* libtidy.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -911,7 +989,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0323B061A7DE3E500A0A9FC /* liblib-tidy.dylib in Frameworks */,
+				D0323B061A7DE3E500A0A9FC /* libtidy.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -922,6 +1000,13 @@
 				D0913CC918B0AC06005DB2E4 /* Cocoa.framework in Frameworks */,
 				D0B9F1051958547A008864D6 /* QuartzCore.framework in Frameworks */,
 				D02DBCEB1A5950B8009C84CF /* JSDTidyFramework.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0A4828F1BCF9BD000E0646F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1048,7 +1133,8 @@
 				D01C70E91A5591A500CC5038 /* Balthisar Tidy (pro).appex */,
 				D00661081A579BE700F73F85 /* JSDTidyFramework.framework */,
 				D04BC9681A5AC5CB009AC43A /* Balthisar Tidy Service Helper.app */,
-				D0323A891A7DE0D400A0A9FC /* liblib-tidy.dylib */,
+				D0323A891A7DE0D400A0A9FC /* libtidy.a */,
+				D0A482AF1BCF9BD000E0646F /* libtidy.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1547,6 +1633,39 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D0A482901BCF9BD000E0646F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0A482911BCF9BD000E0646F /* tidy.h in Headers */,
+				D0A482921BCF9BD000E0646F /* tidyenum.h in Headers */,
+				D0A482931BCF9BD000E0646F /* access.h in Headers */,
+				D0A482941BCF9BD000E0646F /* attrdict.h in Headers */,
+				D0A482951BCF9BD000E0646F /* attrs.h in Headers */,
+				D0A482961BCF9BD000E0646F /* charsets.h in Headers */,
+				D0A482971BCF9BD000E0646F /* clean.h in Headers */,
+				D0A482981BCF9BD000E0646F /* config.h in Headers */,
+				D0A482991BCF9BD000E0646F /* entities.h in Headers */,
+				D0A4829A1BCF9BD000E0646F /* fileio.h in Headers */,
+				D0A4829B1BCF9BD000E0646F /* forward.h in Headers */,
+				D0A4829C1BCF9BD000E0646F /* gdoc.h in Headers */,
+				D0A4829D1BCF9BD000E0646F /* iconvtc.h in Headers */,
+				D0A4829E1BCF9BD000E0646F /* lexer.h in Headers */,
+				D0A4829F1BCF9BD000E0646F /* mappedio.h in Headers */,
+				D0A482A01BCF9BD000E0646F /* message.h in Headers */,
+				D0A482A11BCF9BD000E0646F /* parser.h in Headers */,
+				D0A482A21BCF9BD000E0646F /* pprint.h in Headers */,
+				D0A482A31BCF9BD000E0646F /* sprtf.h in Headers */,
+				D0A482A41BCF9BD000E0646F /* streamio.h in Headers */,
+				D0A482A51BCF9BD000E0646F /* tags.h in Headers */,
+				D0A482A61BCF9BD000E0646F /* tidy-int.h in Headers */,
+				D0A482A71BCF9BD000E0646F /* tmbstr.h in Headers */,
+				D0A482A81BCF9BD000E0646F /* utf8.h in Headers */,
+				D0A482A91BCF9BD000E0646F /* version.h in Headers */,
+				D0A482AA1BCF9BD000E0646F /* win32tc.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -1558,11 +1677,12 @@
 				D00661041A579BE700F73F85 /* Frameworks */,
 				D00661051A579BE700F73F85 /* Headers */,
 				D00661061A579BE700F73F85 /* Resources */,
+				D0A482B61BCFA21800E0646F /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				D0323B0B1A7DE81C00A0A9FC /* PBXTargetDependency */,
+				D0A482B11BCF9C6200E0646F /* PBXTargetDependency */,
 			);
 			name = JSDTidyFramework;
 			productName = JSDTidyFramework;
@@ -1648,9 +1768,9 @@
 			productReference = D01C70E91A5591A500CC5038 /* Balthisar Tidy (pro).appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		D0323A881A7DE0D400A0A9FC /* lib-tidy */ = {
+		D0323A881A7DE0D400A0A9FC /* libtidy.a */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D0323A8A1A7DE0D400A0A9FC /* Build configuration list for PBXNativeTarget "lib-tidy" */;
+			buildConfigurationList = D0323A8A1A7DE0D400A0A9FC /* Build configuration list for PBXNativeTarget "libtidy.a" */;
 			buildPhases = (
 				D0323A851A7DE0D400A0A9FC /* Sources */,
 				D0323A861A7DE0D400A0A9FC /* Frameworks */,
@@ -1661,9 +1781,9 @@
 			);
 			dependencies = (
 			);
-			name = "lib-tidy";
+			name = libtidy.a;
 			productName = "lib-tidy";
-			productReference = D0323A891A7DE0D400A0A9FC /* liblib-tidy.dylib */;
+			productReference = D0323A891A7DE0D400A0A9FC /* libtidy.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		D04BC9671A5AC5CB009AC43A /* Balthisar Tidy Service Helper */ = {
@@ -1724,6 +1844,24 @@
 			productName = "Balthisar Tidy";
 			productReference = D0913CDE18B0AC06005DB2E4 /* Balthisar Tidy.app */;
 			productType = "com.apple.product-type.application";
+		};
+		D0A482701BCF9BD000E0646F /* libtidy.dylib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0A482AC1BCF9BD000E0646F /* Build configuration list for PBXNativeTarget "libtidy.dylib" */;
+			buildPhases = (
+				D0A482711BCF9BD000E0646F /* Sources */,
+				D0A4828F1BCF9BD000E0646F /* Frameworks */,
+				D0A482901BCF9BD000E0646F /* Headers */,
+			);
+			buildRules = (
+				D0A482AB1BCF9BD000E0646F /* PBXBuildRule */,
+			);
+			dependencies = (
+			);
+			name = libtidy.dylib;
+			productName = "lib-tidy";
+			productReference = D0A482AF1BCF9BD000E0646F /* libtidy.dylib */;
+			productType = "com.apple.product-type.library.static";
 		};
 		D0BB67B6193C820A007A3EB0 /* Balthisar Tidy (pro) */ = {
 			isa = PBXNativeTarget;
@@ -1857,8 +1995,9 @@
 				D01C70DF1A5591A500CC5038 /* Balthisar Tidy Extension (pro) */,
 				D04BC9671A5AC5CB009AC43A /* Balthisar Tidy Service Helper */,
 				D00661071A579BE700F73F85 /* JSDTidyFramework */,
+				D0A482701BCF9BD000E0646F /* libtidy.dylib */,
 				D05C16E11A53B79700558F11 /* tidy */,
-				D0323A881A7DE0D400A0A9FC /* lib-tidy */,
+				D0323A881A7DE0D400A0A9FC /* libtidy.a */,
 			);
 		};
 /* End PBXProject section */
@@ -2274,6 +2413,42 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D0A482711BCF9BD000E0646F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0A482721BCF9BD000E0646F /* version.txt in Sources */,
+				D0A482731BCF9BD000E0646F /* istack.c in Sources */,
+				D0A482741BCF9BD000E0646F /* tagask.c in Sources */,
+				D0A482751BCF9BD000E0646F /* gdoc.c in Sources */,
+				D0A482761BCF9BD000E0646F /* charsets.c in Sources */,
+				D0A482771BCF9BD000E0646F /* attrs.c in Sources */,
+				D0A482781BCF9BD000E0646F /* mappedio.c in Sources */,
+				D0A482791BCF9BD000E0646F /* access.c in Sources */,
+				D0A4827A1BCF9BD000E0646F /* tidylib.c in Sources */,
+				D0A4827B1BCF9BD000E0646F /* parser.c in Sources */,
+				D0A4827C1BCF9BD000E0646F /* attrask.c in Sources */,
+				D0A4827D1BCF9BD000E0646F /* attrget.c in Sources */,
+				D0A4827E1BCF9BD000E0646F /* fileio.c in Sources */,
+				D0A4827F1BCF9BD000E0646F /* win32tc.c in Sources */,
+				D0A482801BCF9BD000E0646F /* lexer.c in Sources */,
+				D0A482811BCF9BD000E0646F /* buffio.c in Sources */,
+				D0A482821BCF9BD000E0646F /* iconvtc.c in Sources */,
+				D0A482831BCF9BD000E0646F /* tags.c in Sources */,
+				D0A482841BCF9BD000E0646F /* clean.c in Sources */,
+				D0A482851BCF9BD000E0646F /* entities.c in Sources */,
+				D0A482861BCF9BD000E0646F /* sprtf.c in Sources */,
+				D0A482871BCF9BD000E0646F /* attrdict.c in Sources */,
+				D0A482881BCF9BD000E0646F /* localize.c in Sources */,
+				D0A482891BCF9BD000E0646F /* alloc.c in Sources */,
+				D0A4828A1BCF9BD000E0646F /* pprint.c in Sources */,
+				D0A4828B1BCF9BD000E0646F /* config.c in Sources */,
+				D0A4828C1BCF9BD000E0646F /* utf8.c in Sources */,
+				D0A4828D1BCF9BD000E0646F /* streamio.c in Sources */,
+				D0A4828E1BCF9BD000E0646F /* tmbstr.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D0BB67B7193C820A007A3EB0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2373,13 +2548,8 @@
 		};
 		D0323B051A7DE37000A0A9FC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D0323A881A7DE0D400A0A9FC /* lib-tidy */;
+			target = D0323A881A7DE0D400A0A9FC /* libtidy.a */;
 			targetProxy = D0323B041A7DE37000A0A9FC /* PBXContainerItemProxy */;
-		};
-		D0323B0B1A7DE81C00A0A9FC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D0323A881A7DE0D400A0A9FC /* lib-tidy */;
-			targetProxy = D0323B0A1A7DE81C00A0A9FC /* PBXContainerItemProxy */;
 		};
 		D04BC9BB1A5ACCB1009AC43A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2390,6 +2560,11 @@
 			isa = PBXTargetDependency;
 			target = D00661071A579BE700F73F85 /* JSDTidyFramework */;
 			targetProxy = D04BC9C81A5BFB0D009AC43A /* PBXContainerItemProxy */;
+		};
+		D0A482B11BCF9C6200E0646F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D0A482701BCF9BD000E0646F /* libtidy.dylib */;
+			targetProxy = D0A482B01BCF9C6200E0646F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2558,7 +2733,7 @@
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = JSDTidyFramework/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) /usr/local/lib @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.balthisar.$(PRODUCT_NAME:rfc1034identifier)";
@@ -2590,7 +2765,7 @@
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = JSDTidyFramework/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) /usr/local/lib @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.balthisar.$(PRODUCT_NAME:rfc1034identifier)";
@@ -2917,8 +3092,8 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				EXECUTABLE_EXTENSION = dylib;
-				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_EXTENSION = a;
+				EXECUTABLE_PREFIX = "";
 				GCC_PREFIX_HEADER = "HTMLTidy/xcode-version.h";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"SUPPORT_UTF16_ENCODINGS=1",
@@ -2929,10 +3104,10 @@
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				MACH_O_TYPE = mh_dylib;
+				MACH_O_TYPE = staticlib;
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = libtidy;
 			};
 			name = Debug;
 		};
@@ -2946,8 +3121,8 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				EXECUTABLE_EXTENSION = dylib;
-				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_EXTENSION = a;
+				EXECUTABLE_PREFIX = "";
 				GCC_PREFIX_HEADER = "HTMLTidy/xcode-version.h";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"SUPPORT_UTF16_ENCODINGS=1",
@@ -2957,10 +3132,10 @@
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				MACH_O_TYPE = mh_dylib;
+				MACH_O_TYPE = staticlib;
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = libtidy;
 			};
 			name = Release;
 		};
@@ -3119,6 +3294,67 @@
 			};
 			name = Release;
 		};
+		D0A482AD1BCF9BD000E0646F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_INSTALL_NAME_BASE = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_EXTENSION = dylib;
+				EXECUTABLE_PREFIX = "";
+				GCC_PREFIX_HEADER = "HTMLTidy/xcode-version.h";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"SUPPORT_UTF16_ENCODINGS=1",
+					"SUPPORT_ACCESSIBILITY_CHECKS=1",
+					"SUPPORT_ASIAN_ENCODINGS=1",
+					"'LIBTIDY_VERSION=\"4.9.3\"'",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				LD_DYLIB_INSTALL_NAME = "@rpath/libtidy.dylib";
+				MACH_O_TYPE = mh_dylib;
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = libtidy;
+			};
+			name = Debug;
+		};
+		D0A482AE1BCF9BD000E0646F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_INSTALL_NAME_BASE = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_EXTENSION = dylib;
+				EXECUTABLE_PREFIX = "";
+				GCC_PREFIX_HEADER = "HTMLTidy/xcode-version.h";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"SUPPORT_UTF16_ENCODINGS=1",
+					"SUPPORT_ACCESSIBILITY_CHECKS=1",
+					"SUPPORT_ASIAN_ENCODINGS=1",
+					"'LIBTIDY_VERSION=\"4.9.3\"'",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				LD_DYLIB_INSTALL_NAME = "@rpath/libtidy.dylib";
+				MACH_O_TYPE = mh_dylib;
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = libtidy;
+			};
+			name = Release;
+		};
 		D0BB67FD193C820A007A3EB0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3238,7 +3474,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D0323A8A1A7DE0D400A0A9FC /* Build configuration list for PBXNativeTarget "lib-tidy" */ = {
+		D0323A8A1A7DE0D400A0A9FC /* Build configuration list for PBXNativeTarget "libtidy.a" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D0323A8B1A7DE0D400A0A9FC /* Debug */,
@@ -3270,6 +3506,15 @@
 			buildConfigurations = (
 				D0913CDC18B0AC06005DB2E4 /* Debug */,
 				D0913CDD18B0AC06005DB2E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D0A482AC1BCF9BD000E0646F /* Build configuration list for PBXNativeTarget "libtidy.dylib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0A482AD1BCF9BD000E0646F /* Debug */,
+				D0A482AE1BCF9BD000E0646F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
