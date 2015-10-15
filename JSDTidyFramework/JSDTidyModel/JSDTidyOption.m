@@ -494,17 +494,17 @@
 	{
 		if (self.optionId == TidyCharEncoding)
 		{
-			return [NSString stringWithFormat:@"%u", NSUTF8StringEncoding];
+			return [NSString stringWithFormat:@"%lu", (unsigned long)NSUTF8StringEncoding];
 		}
 		
 		if (self.optionId == TidyInCharEncoding)
 		{
-			return [NSString stringWithFormat:@"%u", NSUTF8StringEncoding];
+			return [NSString stringWithFormat:@"%lu", (unsigned long)NSUTF8StringEncoding];
 		}
 		
 		if (self.optionId == TidyOutCharEncoding)
 		{
-			return [NSString stringWithFormat:@"%u", NSUTF8StringEncoding];
+			return [NSString stringWithFormat:@"%lu", (unsigned long)NSUTF8StringEncoding];
 		}
 	}
 
