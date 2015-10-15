@@ -115,9 +115,9 @@
 		D0323B011A7DE25000A0A9FC /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323AC91A7DE25000A0A9FC /* version.h */; };
 		D0323B021A7DE25000A0A9FC /* win32tc.c in Sources */ = {isa = PBXBuildFile; fileRef = D0323ACA1A7DE25000A0A9FC /* win32tc.c */; };
 		D0323B031A7DE25000A0A9FC /* win32tc.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323ACB1A7DE25000A0A9FC /* win32tc.h */; };
-		D0323B061A7DE3E500A0A9FC /* liblib-tidy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0323A891A7DE0D400A0A9FC /* liblib-tidy.a */; };
+		D0323B061A7DE3E500A0A9FC /* liblib-tidy.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0323A891A7DE0D400A0A9FC /* liblib-tidy.dylib */; };
 		D0323B091A7DE53900A0A9FC /* version.txt in Sources */ = {isa = PBXBuildFile; fileRef = D0323B071A7DE48400A0A9FC /* version.txt */; };
-		D0323B0C1A7DE82500A0A9FC /* liblib-tidy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0323A891A7DE0D400A0A9FC /* liblib-tidy.a */; };
+		D0323B0C1A7DE82500A0A9FC /* liblib-tidy.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0323A891A7DE0D400A0A9FC /* liblib-tidy.dylib */; };
 		D034D8131A621E5300821FE5 /* helper-icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = D04BC98D1A5AC714009AC43A /* helper-icon.icns */; };
 		D036E1E818F3D25E0009A9D4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D036E1D818F3D25E0009A9D4 /* Credits.rtf */; };
 		D036E1E918F3D25E0009A9D4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D036E1D818F3D25E0009A9D4 /* Credits.rtf */; };
@@ -385,7 +385,7 @@
 			outputFiles = (
 				"$(SRCROOT)/HTMLTidy/xcode-version.h",
 			);
-			script = "echo \"Processing the date and version file to build a dynamic header.\"\nHEADER=\"${SRCROOT}/HTMLTidy/xcode-version.h\"\ncd ${SRCROOT}\necho \"// This file is generated automatically. Do not edit. Edit version.txt instead.\" > $HEADER\necho \"// Make sure you include this file as the lib-tidy target prefix header.\" > $HEADER\n\nIFS=$'\\n' read -d '' -r -a LINES < \"${INPUT_FILE_PATH}\"\n\ncat << EOF >> $HEADER\n#ifdef LIBTIDY_VERSION\n#undef LIBTIDY_VERSION\n#endif\nEOF\n\necho \"#define LIBTIDY_VERSION \\\"${LINES[0]}\\\"\" >> $HEADER\n\necho \"// Updated on \"`date` >> $HEADER\n";
+			script = "echo \"Processing the date and version file to build a dynamic header.\"\nHEADER=\"${SRCROOT}/HTMLTidy/xcode-version.h\"\ncd ${SRCROOT}\necho \"// This file is generated automatically. Do not edit. Edit version.txt instead.\" > $HEADER\necho \"// The lib-tidy target Build Rules for *.txt files has produced this file.\" >> $HEADER\necho \"// Make sure you include this file as the lib-tidy target prefix header.\" >> $HEADER\n\nIFS=$'\\n' read -d '' -r -a LINES < \"${INPUT_FILE_PATH}\"\n\ncat << EOF >> $HEADER\n#ifdef LIBTIDY_VERSION\n#undef LIBTIDY_VERSION\n#endif\nEOF\n\necho \"#define LIBTIDY_VERSION \\\"${LINES[0]}\\\"\" >> $HEADER\n\necho \"// Updated on \"`date` >> $HEADER\n";
 		};
 /* End PBXBuildRule section */
 
@@ -651,7 +651,7 @@
 		D025BD5D195856B6006D7356 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Base; path = Base.lproj/Acknowledgments.rtf; sourceTree = "<group>"; };
 		D028E8881A5670FB00C39852 /* Balthisar Tidy Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Balthisar Tidy Extension.entitlements"; sourceTree = "<group>"; };
 		D028E88C1A56721200C39852 /* Balthisar Tidy.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Balthisar Tidy.entitlements"; path = "Balthisar Tidy/Balthisar Tidy.entitlements"; sourceTree = "<group>"; };
-		D0323A891A7DE0D400A0A9FC /* liblib-tidy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "liblib-tidy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0323A891A7DE0D400A0A9FC /* liblib-tidy.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "liblib-tidy.dylib"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0323A8F1A7DE22F00A0A9FC /* tidy.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tidy.c; sourceTree = "<group>"; };
 		D0323A951A7DE25000A0A9FC /* tidy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tidy.h; sourceTree = "<group>"; };
 		D0323A961A7DE25000A0A9FC /* tidyenum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tidyenum.h; sourceTree = "<group>"; };
@@ -850,7 +850,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0323B0C1A7DE82500A0A9FC /* liblib-tidy.a in Frameworks */,
+				D0323B0C1A7DE82500A0A9FC /* liblib-tidy.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -911,7 +911,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0323B061A7DE3E500A0A9FC /* liblib-tidy.a in Frameworks */,
+				D0323B061A7DE3E500A0A9FC /* liblib-tidy.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1048,7 +1048,7 @@
 				D01C70E91A5591A500CC5038 /* Balthisar Tidy (pro).appex */,
 				D00661081A579BE700F73F85 /* JSDTidyFramework.framework */,
 				D04BC9681A5AC5CB009AC43A /* Balthisar Tidy Service Helper.app */,
-				D0323A891A7DE0D400A0A9FC /* liblib-tidy.a */,
+				D0323A891A7DE0D400A0A9FC /* liblib-tidy.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1663,7 +1663,7 @@
 			);
 			name = "lib-tidy";
 			productName = "lib-tidy";
-			productReference = D0323A891A7DE0D400A0A9FC /* liblib-tidy.a */;
+			productReference = D0323A891A7DE0D400A0A9FC /* liblib-tidy.dylib */;
 			productType = "com.apple.product-type.library.static";
 		};
 		D04BC9671A5AC5CB009AC43A /* Balthisar Tidy Service Helper */ = {
@@ -2104,7 +2104,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\n# Build up-to-date man pages and quick-reference documentation for the command-line too.\n# They will be output in the same directory as the executable.\n\nXSL_DIR=\"$SRCROOT/HTMLTidy/vendor/tidy-html5/htmldoc\"\n\necho \"------------------------------------------\"\necho \"$XSL_DIR\"\necho \"------------------------------------------\"\n\n# Use the newly-built tidy to get its config and help.\n$BUILT_PRODUCTS_DIR/tidy -xml-config > \"$XSL_DIR/tidy-config.xml\"\n$BUILT_PRODUCTS_DIR/tidy -xml-help > \"$XSL_DIR/tidy-help.xml\"\n\n# Process the output above into new files\nxsltproc \"$XSL_DIR/quickref-html.xsl\" \"$XSL_DIR/tidy-config.xml\" > \"$BUILT_PRODUCTS_DIR/Tidy Quick Reference.html\"\nxsltproc \"$XSL_DIR/tidy1.xsl\" \"$XSL_DIR/tidy-help.xml\" > \"$BUILT_PRODUCTS_DIR/tidy.1\"\n\n# Cleanup\nrm \"$XSL_DIR/tidy-config.xml\"\nrm \"$XSL_DIR/tidy-help.xml\"\n";
+			shellScript = "#!/bin/sh\n\n# Build up-to-date man pages and quick-reference documentation for the command-line too.\n# They will be output in the same directory as the executable.\n\nXSL_DIR=\"$SRCROOT/HTMLTidy/vendor/tidy-html5/build/documentation\"\n\necho \"------------------------------------------\"\necho \"$XSL_DIR\"\necho \"------------------------------------------\"\n\n# Use the newly-built tidy to get its config and help.\n$BUILT_PRODUCTS_DIR/tidy -xml-config > \"$XSL_DIR/tidy-config.xml\"\n$BUILT_PRODUCTS_DIR/tidy -xml-help > \"$XSL_DIR/tidy-help.xml\"\n\n# Process the output above into new files\nxsltproc \"$XSL_DIR/quickref.xsl\" \"$XSL_DIR/tidy-config.xml\" > \"$BUILT_PRODUCTS_DIR/Tidy Quick Reference.html\"\nxsltproc \"$XSL_DIR/tidy1.xsl\" \"$XSL_DIR/tidy-help.xml\" > \"$BUILT_PRODUCTS_DIR/tidy.1\"\n\n# Cleanup\nrm \"$XSL_DIR/tidy-config.xml\"\nrm \"$XSL_DIR/tidy-help.xml\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2910,12 +2910,14 @@
 		D0323A8B1A7DE0D400A0A9FC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_EXTENSION = dylib;
 				EXECUTABLE_PREFIX = lib;
 				GCC_PREFIX_HEADER = "HTMLTidy/xcode-version.h";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2927,6 +2929,7 @@
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MACH_O_TYPE = mh_dylib;
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2936,12 +2939,14 @@
 		D0323A8C1A7DE0D400A0A9FC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_EXTENSION = dylib;
 				EXECUTABLE_PREFIX = lib;
 				GCC_PREFIX_HEADER = "HTMLTidy/xcode-version.h";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2952,6 +2957,7 @@
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MACH_O_TYPE = mh_dylib;
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
