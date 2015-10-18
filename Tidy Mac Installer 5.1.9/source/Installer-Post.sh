@@ -10,9 +10,16 @@ cp "$RM" "$HOME/Desktop/"
 chown $USER "$QR"
 chown $USER "$RM"
 
-# Add path to .bash_profile if not already there.
+# Create symbolic links to dylib
+V_ORIG="libtidy.5.1.9.dylib"
+V_MAJOR="libtidy.5.dylib"
+V_GEN="libtidy.dylib"
 
+# 
+ln -sf "/usr/local/lib/$V_ORIG" "/usr/local/lib/$V_MAJOR"
+ln -sf "/usr/local/lib/$V_MAJOR" "/usr/local/lib/$V_GEN"
 
+# Add path to .bash_profile.
 new=/usr/local/bin
 BP="$HOME/.bash_profile"
 touch $BP
