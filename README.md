@@ -274,6 +274,29 @@ will still build the same product; it simply won’t be signed with a developer 
   Yes, this is the paid version that includes AppleScript support and the ability to export Tidy configuration
   files, as well as future, unspecified changes. If you want to build it yourself and avoid paying for it in
   the App Store, you can! 
+  
+  
+### Additional Build Targets
+
+The build targets above have dependencies on additional build targets. Dependencies will
+be built automatically when needed.
+
+- **Balthisar Tidy Extension (web/app/pro)** will build the action extension that _Balthisar Tidy_ makes
+  available to apps that support extensions. Each target builds identical code; the primary difference is
+  related to the requirement that extension bundle identifiers must match the host application.
+  
+- **Balthisar Tidy Service Helper** will build the separate application that handles Tidy as a system
+  service. This helper application within the main application bundle performs Tidying without the
+  need for the main _Balthisar Tidy_ application to open every time the service is invoked.
+  
+- **JSDTidyFramework** is used by most of the other targets. Many of the target types are restricted by
+  security protocols that prohibit dynamic binding meaning that this dependency is statically linked in
+  many of the modules. However it is allowed to use dynamically linked libraries.
+
+- **libtidy-balthisar.dylib** will build a dynamic library that JSDTidyFramework will use. Although the
+  implementation as a dylib helps reduce code redundancy within the bundle, the main reason for building
+  as a dylib is to allow the dynamic linker to use updated versions in /usr/local/lib. This allows
+  advanced users to upgrade _Balthisar Tidy_’s tidying engine in between _Balthisar Tidy_ releases.
 
 
 Legal Stuff
