@@ -33,7 +33,7 @@
 #import "JSDTidyCommonHeaders.h"
 #import "JSDTidyOption.h"
 
-#import "config.h"   // from vendor/tidylib/src/
+#import "config.h"   // from HTML Tidy
 
 
 #pragma mark - CATEGORY JSDTidyModel ()
@@ -41,7 +41,9 @@
 
 @interface JSDTidyModel ()
 
-@property (readwrite) NSArray  *errorArray;     // Message text as an array of NSDictionary of the errors.
+@property (readwrite) NSArray  *errorArray;     // Make read-write for internal use.
+
+@property (readwrite) NSString *tidyText;       // Make read-write for internal use.
 
 @end
 
@@ -58,8 +60,6 @@
 	NSData* _originalData;                     // The original data that the file was loaded from.
 
 	BOOL _sourceDidChange;                     // States whether whether _sourceText has changed.
-
-	NSString *_tidyText;                       // Buffer for the tidy result.
 }
 
 
@@ -555,16 +555,6 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	tidyText
-		Return the tidy'd text.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (NSString *)tidyText
-{
-	return _tidyText;
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	tidyTextAsData
 		Return the tidy'd text in the output-encoding format with
 		the correct line endings per `newline`.
@@ -594,7 +584,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)tidyTextToFile:(NSString *)path
 {
-	[[[self tidyText] dataUsingEncoding:self.outputEncoding] writeToFile:path atomically:YES];
+	[[self.tidyText dataUsingEncoding:self.outputEncoding] writeToFile:path atomically:YES];
 }
 
 
@@ -1048,11 +1038,11 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	tidyRelease(newTidy);
 
 
-	BOOL textDidChange = ![_tidyText isEqualToString:tidyResult];
+	BOOL textDidChange = ![self.tidyText isEqualToString:tidyResult];
 
 	if (textDidChange)
 	{
-		_tidyText = tidyResult;
+		self.tidyText = tidyResult;
 	}
 
 
