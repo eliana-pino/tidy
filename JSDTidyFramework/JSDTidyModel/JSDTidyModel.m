@@ -36,14 +36,22 @@
 #import "config.h"   // from vendor/tidylib/src/
 
 
+#pragma mark - CATEGORY JSDTidyModel ()
+
+
+@interface JSDTidyModel ()
+
+@property (readwrite) NSArray  *errorArray;     // Message text as an array of NSDictionary of the errors.
+
+@end
+
+
 #pragma mark - IMPLEMENTATION
 
 
 @implementation JSDTidyModel
 {
 	NSMutableDictionary *_tidyOptions;         // This backing iVar must be NSMutableDictionary (can't @synthesize)
-
-	NSMutableArray * _errorArray;              // This backing iVar must be NSMutableArray (can't @synthesize)
 
 	NSMutableArray *_tidyOptionHeaders;        // Holds fake options that can be used as headers.
 
@@ -646,15 +654,6 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
     return [NSSet setWithObjects:@"sourceText", @"tidyOptions", @"tidyOptionsBindable", nil];
 }
 
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	errorArray
-		Read the error array.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (NSArray *)errorArray
-{
-	return (NSArray *)_errorArray;
-}
-
 
 #pragma mark - Options Overall Management
 
@@ -979,7 +978,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 	/* Clear out all of the previous errors from our collection. */
 
-	_errorArray = [[NSMutableArray alloc] init];
+	self.errorArray = [[NSMutableArray alloc] init];
 
 
 	/* Setup tidy to use UTF8 for all internal operations. */
@@ -1177,7 +1176,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	errorDict[@"locationString"]   = locationString;
 	errorDict[@"message"]          = messageString;
 
-	[_errorArray addObject:errorDict];
+	self.errorArray = [self.errorArray arrayByAddingObject:errorDict];
 
 	return YES; // Always return yes otherwise _errorText will be surpressed by TidyLib.
 }
