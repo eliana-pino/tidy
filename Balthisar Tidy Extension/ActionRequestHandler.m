@@ -57,12 +57,13 @@
 	NSString *content = [item.attributedContentText string];
 
 	/* Set option and perform the Tidying */
-	JSDTidyModel *localModel = [[JSDTidyModel alloc] initWithString:content];
+	JSDTidyModel *localModel = [[JSDTidyModel alloc] init];
 	[localModel takeOptionValuesFromDefaults:localDefaults];
 	JSDTidyOption *localOption = localModel.tidyOptions[@"force-output"];
 	localOption.optionValue = @"YES";
 
 	/* Grab a current copy of tidyText */
+    localModel.sourceText = content;
 	NSString *localTidyText = localModel.tidyText;
 
 	if (localTidyText && localTidyText.length > 0)
