@@ -41,11 +41,18 @@
 
 @interface JSDTidyModel ()
 
-@property (readwrite) NSArray  *errorArray;     // Make read-write for internal use.
+/* Redefinitions for private read-write access. */
 
-@property (readwrite) NSString *tidyText;       // Make read-write for internal use.
+@property (readwrite) NSArray  *errorArray;
 
-@property (readwrite) NSData *originalData;     // The original data loaded from a file.
+@property (readwrite) NSString *tidyText;
+
+
+/* Private properties. */
+
+@property (readwrite) NSData *originalData;              // The original data loaded from a file.
+
+@property (readwrite) NSMutableArray *tidyOptionHeaders; // Holds fake options that can be used as headers.
 
 @end
 
@@ -56,8 +63,6 @@
 @implementation JSDTidyModel
 {
 	NSMutableDictionary *_tidyOptions;         // This backing iVar must be NSMutableDictionary (can't @synthesize)
-
-	NSMutableArray *_tidyOptionHeaders;        // Holds fake options that can be used as headers.
 
 	BOOL _sourceDidChange;                     // States whether whether _sourceText has changed.
 }
@@ -895,15 +900,15 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)optionsPopulateTidyOptionHeaders
 {
-	[_tidyOptionHeaders removeAllObjects];
+	[self.tidyOptionHeaders removeAllObjects];
 
 	for (JSDTidyOption *localOption in [self.tidyOptions allValues])
 	{
 		if ( (!localOption.optionIsHeader) && (!localOption.optionIsSuppressed) )
 		{
-			/* Check to make sure localOption.builtInCategory isn't already in _tidyOptionHeaders */
+			/* Check to make sure localOption.builtInCategory isn't already in self.tidyOptionHeaders. */
 
-			NSArray *unionOfCategories = [_tidyOptionHeaders valueForKeyPath:@"@unionOfObjects.builtInCategory"];
+			NSArray *unionOfCategories = [self.tidyOptionHeaders valueForKeyPath:@"@unionOfObjects.builtInCategory"];
 
 			if (![unionOfCategories containsObject:@(localOption.builtInCategory)])
 			{
@@ -911,7 +916,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 				headerOption.optionIsHeader = YES;
 
-				[_tidyOptionHeaders addObject:headerOption];
+				[self.tidyOptionHeaders addObject:headerOption];
 			}
 		}
 	}
@@ -1401,7 +1406,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSArray *)tidyOptionsBindable
 {
-	return [[_tidyOptions allValues] arrayByAddingObjectsFromArray:_tidyOptionHeaders];
+	return [[_tidyOptions allValues] arrayByAddingObjectsFromArray:self.tidyOptionHeaders];
 }
 
 
