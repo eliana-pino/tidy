@@ -38,12 +38,12 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	 tidySelection
+	 performTidySelection
 	 - Returns a Tidy'd version of the pasteboard text with a tidy'd
        version using the preferences defaults. We will try with
-       force-output if no response.
+       force-output if no response. Returns body-only if so flagged.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (void)tidySelection:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error
+- (void)performTidySelection:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error bodyOnly:(BOOL)bodyOnly
 {
     /* Test for strings on the pasteboard. */
 
@@ -75,6 +75,13 @@
 	localOption.optionValue = @"YES";
 
 
+    /* Force body-only if applicabe */
+    if (bodyOnly)
+    {
+        localOption = localModel.tidyOptions[@"show-body-only"];
+        localOption.optionValue = @"YES";
+    }
+
 	/* Grab a current copy of tidyText */
 
 	NSString *localTidyText = localModel.tidyText;
@@ -90,6 +97,30 @@
 		[pboard clearContents];
 		[pboard writeObjects:[NSArray arrayWithObject:localTidyText]];
 	}
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	 tidySelection
+	 - Returns a Tidy'd version of the pasteboard text with a tidy'd
+       version using the preferences defaults. We will try with
+       force-output if no response.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)tidySelection:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error
+{
+    [self performTidySelection:pboard userData:userData error:error bodyOnly:NO];
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	 tidySelectionBodyOnly
+	 - Returns a Tidy'd version of the pasteboard text with a tidy'd
+       version using the preferences defaults. We will try with
+       force-output if no response.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)tidySelectionBodyOnly:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error
+{
+    [self performTidySelection:pboard userData:userData error:error bodyOnly:YES];
 }
 
 

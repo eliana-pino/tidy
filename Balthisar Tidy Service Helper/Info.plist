@@ -58,6 +58,30 @@
 				<string>NSStringPboardType</string>
 			</array>
 		</dict>
+		<dict>
+			<key>NSKeyEquivalent</key>
+			<dict>
+				<key>default</key>
+				<string></string>
+			</dict>
+			<key>NSMenuItem</key>
+			<dict>
+				<key>default</key>
+				<string>Tidy selection using Balthisar Tidy (body only)</string>
+			</dict>
+			<key>NSMessage</key>
+			<string>tidySelectionBodyOnly</string>
+			<key>NSPortName</key>
+			<string>com.balthisar.service.port</string>
+			<key>NSReturnTypes</key>
+			<array>
+				<string>NSStringPboardType</string>
+			</array>
+			<key>NSSendTypes</key>
+			<array>
+				<string>NSStringPboardType</string>
+			</array>
+		</dict>
 	</array>
 </dict>
 </plist>

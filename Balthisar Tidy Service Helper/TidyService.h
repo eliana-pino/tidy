@@ -36,4 +36,7 @@
 /* Handle the "Tidy with Balthisar Tidy" system service. */
 - (void)tidySelection:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error;
 
+/* Handle the "Tidy with Balthisar Tidy (body only)" system service. */
+- (void)tidySelectionBodyOnly:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error;
+
 @end
