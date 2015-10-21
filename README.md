@@ -299,6 +299,38 @@ be built automatically when needed.
   advanced users to upgrade _Balthisar Tidy_’s tidying engine in between _Balthisar Tidy_ releases.
 
 
+Experimental Support for `/usr/local/lib/` versions of tidylib
+--------------------------------------------------------------
+
+Apple currently allows sandboxed apps to reference libraries (even unsigned) in certain
+protected OS directories, including within `/usr/local/lib/`, which is the traditional
+install location for Unix libraries.
+
+_Balthisar Tidy_ is now built to to use a `libtidy-balthisar.dylib` instead of the
+built-in library if one is found in `/usr/local/lib`. This means that if you install
+the console version of HTML Tidy with a different `libtidy.dylib`, then _Balthisar Tidy_
+can use it. This can be useful in cases where HTML Tidy is released at a faster pace than
+_Balthisar Tidy_, for example. Mac using HTML Tidy developers can also quickly switch
+between HTML Tidy versions without having to build _Balthisar Tidy_.
+
+I suggest creating a symlink within `/usr/local/lib/` to the specific version of tidylib
+that you want _Balthisar Tidy_ to use. For example:
+
+`ln -sf /usr/local/lib/libtidy.5.1.9.dylib /usr/local/lib/libtidy-balthisar.dylib`
+
+Because HTML Tidy installation scripts automatically create their own symlinks to the
+most recently installed libtidy, you could also link to this generic link, ensuring that
+_Balthisar Tidy_ will always use the most recently installed library:
+
+`ln -sf /usr/local/lib/libtidy.dylib /usr/local/lib/libtidy-balthisar.dylib`
+
+_Balthisar Tidy_ will _not_ support simply using the already-present `libtidy.dylib`.
+Apple's dynamic loader does not allow the application to choose a specific version or
+installed location of a dynamic library, and so namespacing in this way ensures that
+_Balthisar Tidy_ can always operate without regard to the version of HTML Tidy that is
+installed.
+
+
 Legal Stuff
 -----------
 

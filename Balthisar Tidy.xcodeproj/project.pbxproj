@@ -227,6 +227,7 @@
 		D086893C1948439700BDAD72 /* TidyDocumentSourceV.xib in Resources */ = {isa = PBXBuildFile; fileRef = D08689351948439700BDAD72 /* TidyDocumentSourceV.xib */; };
 		D0913CAF18B0AC06005DB2E4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D016A935182FD80700712C60 /* main.m */; };
 		D0913CC918B0AC06005DB2E4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D016A929182FD80700712C60 /* Cocoa.framework */; };
+		D09ED1421BD73933002AED94 /* libtidy-balthisar.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = D0A482AF1BCF9BD000E0646F /* libtidy-balthisar.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		D0A2E1F8197548D20015F667 /* ToolbarAdvanced.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0A2E1F6197548D20015F667 /* ToolbarAdvanced.tiff */; };
 		D0A2E1F9197548D20015F667 /* ToolbarAdvanced.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0A2E1F6197548D20015F667 /* ToolbarAdvanced.tiff */; };
 		D0A2E1FA197548D20015F667 /* ToolbarAdvanced.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0A2E1F6197548D20015F667 /* ToolbarAdvanced.tiff */; };
@@ -288,8 +289,7 @@
 		D0A482A81BCF9BD000E0646F /* utf8.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323AC81A7DE25000A0A9FC /* utf8.h */; };
 		D0A482A91BCF9BD000E0646F /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323AC91A7DE25000A0A9FC /* version.h */; };
 		D0A482AA1BCF9BD000E0646F /* win32tc.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323ACB1A7DE25000A0A9FC /* win32tc.h */; };
-		D0A482B21BCF9D0C00E0646F /* libtidy.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A482AF1BCF9BD000E0646F /* libtidy.dylib */; };
-		D0A482B71BCFA22E00E0646F /* libtidy.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = D0A482AF1BCF9BD000E0646F /* libtidy.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		D0A482B21BCF9D0C00E0646F /* libtidy-balthisar.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A482AF1BCF9BD000E0646F /* libtidy-balthisar.dylib */; };
 		D0B9F0F119585010008864D6 /* DCOAboutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0B9F0EE19585010008864D6 /* DCOAboutWindow.xib */; };
 		D0B9F0F219585010008864D6 /* DCOAboutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0B9F0EE19585010008864D6 /* DCOAboutWindow.xib */; };
 		D0B9F0F319585010008864D6 /* DCOAboutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0B9F0EE19585010008864D6 /* DCOAboutWindow.xib */; };
@@ -610,7 +610,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D0A482B71BCFA22E00E0646F /* libtidy.dylib in CopyFiles */,
+				D09ED1421BD73933002AED94 /* libtidy-balthisar.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -807,7 +807,7 @@
 		D0A2E1F7197548D20015F667 /* ToolbarInfo.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = ToolbarInfo.tiff; path = "Images for Toolbar/ToolbarInfo.tiff"; sourceTree = "<group>"; };
 		D0A4826E1BCF8E2900E0646F /* tidybuffio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tidybuffio.h; sourceTree = "<group>"; };
 		D0A4826F1BCF8E2900E0646F /* tidyplatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tidyplatform.h; sourceTree = "<group>"; };
-		D0A482AF1BCF9BD000E0646F /* libtidy.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libtidy.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0A482AF1BCF9BD000E0646F /* libtidy-balthisar.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libtidy-balthisar.dylib"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0B9F0EE19585010008864D6 /* DCOAboutWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DCOAboutWindow.xib; path = DCOAboutWindow/DCOAboutWindow/DCOAboutWindow.xib; sourceTree = "<group>"; };
 		D0B9F0EF19585010008864D6 /* DCOAboutWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCOAboutWindowController.h; path = DCOAboutWindow/DCOAboutWindow/DCOAboutWindowController.h; sourceTree = "<group>"; };
 		D0B9F0F019585010008864D6 /* DCOAboutWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCOAboutWindowController.m; path = DCOAboutWindow/DCOAboutWindow/DCOAboutWindowController.m; sourceTree = "<group>"; };
@@ -851,7 +851,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0A482B21BCF9D0C00E0646F /* libtidy.dylib in Frameworks */,
+				D0A482B21BCF9D0C00E0646F /* libtidy-balthisar.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1040,7 +1040,7 @@
 				D01C70E91A5591A500CC5038 /* Balthisar Tidy (pro).appex */,
 				D00661081A579BE700F73F85 /* JSDTidyFramework.framework */,
 				D04BC9681A5AC5CB009AC43A /* Balthisar Tidy Service Helper.app */,
-				D0A482AF1BCF9BD000E0646F /* libtidy.dylib */,
+				D0A482AF1BCF9BD000E0646F /* libtidy-balthisar.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1682,9 +1682,9 @@
 			productReference = D0913CDE18B0AC06005DB2E4 /* Balthisar Tidy.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D0A482701BCF9BD000E0646F /* libtidy.dylib */ = {
+		D0A482701BCF9BD000E0646F /* libtidy-balthisar.dylib */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D0A482AC1BCF9BD000E0646F /* Build configuration list for PBXNativeTarget "libtidy.dylib" */;
+			buildConfigurationList = D0A482AC1BCF9BD000E0646F /* Build configuration list for PBXNativeTarget "libtidy-balthisar.dylib" */;
 			buildPhases = (
 				D0A482711BCF9BD000E0646F /* Sources */,
 				D0A4828F1BCF9BD000E0646F /* Frameworks */,
@@ -1695,9 +1695,9 @@
 			);
 			dependencies = (
 			);
-			name = libtidy.dylib;
+			name = "libtidy-balthisar.dylib";
 			productName = "lib-tidy";
-			productReference = D0A482AF1BCF9BD000E0646F /* libtidy.dylib */;
+			productReference = D0A482AF1BCF9BD000E0646F /* libtidy-balthisar.dylib */;
 			productType = "com.apple.product-type.library.static";
 		};
 		D0BB67B6193C820A007A3EB0 /* Balthisar Tidy (pro) */ = {
@@ -1826,7 +1826,7 @@
 				D01C70DF1A5591A500CC5038 /* Balthisar Tidy Extension (pro) */,
 				D04BC9671A5AC5CB009AC43A /* Balthisar Tidy Service Helper */,
 				D00661071A579BE700F73F85 /* JSDTidyFramework */,
-				D0A482701BCF9BD000E0646F /* libtidy.dylib */,
+				D0A482701BCF9BD000E0646F /* libtidy-balthisar.dylib */,
 			);
 		};
 /* End PBXProject section */
@@ -2326,7 +2326,7 @@
 		};
 		D0A482B11BCF9C6200E0646F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D0A482701BCF9BD000E0646F /* libtidy.dylib */;
+			target = D0A482701BCF9BD000E0646F /* libtidy-balthisar.dylib */;
 			targetProxy = D0A482B01BCF9C6200E0646F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -2989,7 +2989,7 @@
 				MACH_O_TYPE = mh_dylib;
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = libtidy;
+				PRODUCT_NAME = "libtidy-balthisar";
 			};
 			name = Debug;
 		};
@@ -3019,7 +3019,7 @@
 				MACH_O_TYPE = mh_dylib;
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = libtidy;
+				PRODUCT_NAME = "libtidy-balthisar";
 			};
 			name = Release;
 		};
@@ -3160,7 +3160,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D0A482AC1BCF9BD000E0646F /* Build configuration list for PBXNativeTarget "libtidy.dylib" */ = {
+		D0A482AC1BCF9BD000E0646F /* Build configuration list for PBXNativeTarget "libtidy-balthisar.dylib" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D0A482AD1BCF9BD000E0646F /* Debug */,
