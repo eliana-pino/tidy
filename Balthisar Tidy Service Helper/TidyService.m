@@ -75,15 +75,17 @@
 	localOption.optionValue = @"YES";
 
 
-    /* Force body-only if applicabe */
+    /* Force body-only if applicable */
     if (bodyOnly)
     {
-        localOption = localModel.tidyOptions[@"show-body-only"];
-        localOption.optionValue = @"YES";
+        JSDTidyOption *localBody = localModel.tidyOptions[@"show-body-only"];
+        localBody.optionValue = @"1";
     }
+
 
 	/* Grab a current copy of tidyText */
 
+    localModel.sourceText = pboardString;
 	NSString *localTidyText = localModel.tidyText;
 
 

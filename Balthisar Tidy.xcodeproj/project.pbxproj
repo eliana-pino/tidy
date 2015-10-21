@@ -2994,7 +2994,7 @@
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				LD_DYLIB_INSTALL_NAME = "@rpath/libtidy.dylib";
+				LD_DYLIB_INSTALL_NAME = "@rpath/libtidy-balthisar.dylib";
 				MACH_O_TYPE = mh_dylib;
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -3025,7 +3025,7 @@
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				LD_DYLIB_INSTALL_NAME = "@rpath/libtidy.dylib";
+				LD_DYLIB_INSTALL_NAME = "@rpath/libtidy-balthisar.dylib";
 				MACH_O_TYPE = mh_dylib;
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
