@@ -45,15 +45,11 @@
 
 	NSMutableArray * _errorArray;              // This backing iVar must be NSMutableArray (can't @synthesize)
 
-	NSMutableArray * _bufferErrorArray;        // Used to buffer _errorArray during processTidy (thread-safer)
-
 	NSMutableArray *_tidyOptionHeaders;        // Holds fake options that can be used as headers.
 
 	NSData* _originalData;                     // The original data that the file was loaded from.
 
 	BOOL _sourceDidChange;                     // States whether whether _sourceText has changed.
-
-	dispatch_queue_t _tidyQueue;               // Dispatch and syncronization queue for processTidy.
 
 	NSString *_tidyText;                       // Buffer for the tidy result.
 }
@@ -82,16 +78,6 @@
 		[self errorFilter:Level:Line:Column:Message]
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
-/* Compatability with original TidyLib -- doesn't allow localization of messages. */
-
-BOOL tidyCallbackFilter ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col, ctmbstr mssg )
-{
-	return [(__bridge JSDTidyModel*)tidyGetAppData(tdoc) errorFilter:tdoc Level:lvl Line:line Column:col Message:mssg];
-}
-
-
-/* Requires my modifications to TidyLib, allowing localization of the messages. */
-
 BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col, ctmbstr mssg, va_list args )
 {
 	return [(__bridge JSDTidyModel*)tidyGetAppData(tdoc) errorFilterWithLocalization:tdoc Level:lvl Line:line Column:col Message:mssg Arguments:args];
@@ -116,8 +102,6 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		_tidyOptions       = [[NSMutableDictionary alloc] init];
 		_tidyOptionHeaders = [[NSMutableArray alloc] init];
 		_errorArray        = [[NSMutableArray alloc] init];
-		_bufferErrorArray  = [[NSMutableArray alloc] init];
-		_tidyQueue         = dispatch_queue_create("com.balthisar.processTidy", NULL);
 
 		[self optionsPopulateTidyOptions];
 	}
@@ -547,11 +531,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	[self notifyTidyModelSourceTextRestored];
 	[self notifyTidyModelSourceTextChanged];
 	[self processTidy];
-//	dispatch_async(_tidyQueue, ^{
-//		dispatch_async(dispatch_get_main_queue(), ^{
-			[self didChangeValueForKey:@"sourceText"];
-//		});
-//	});
+	[self didChangeValueForKey:@"sourceText"];
 }
 
 
@@ -572,11 +552,6 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSString *)tidyText
 {
-//	__block NSString *localTidyText;
-//	dispatch_sync(_tidyQueue, ^{
-//			localTidyText = _tidyText;
-//	});
-//	return localTidyText;
 	return _tidyText;
 }
 
@@ -966,197 +941,140 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)processTidy
 {
+	/* Create a TidyDoc and sets its options. */
+
+	TidyDoc newTidy = tidyCreate();
+
+	/* Capture the array locally. */
+	NSArray *localOptions = [[NSArray alloc] initWithArray:[self.tidyOptions allValues]];
+	for (JSDTidyOption *localOption in localOptions)
+	{
+		[localOption applyOptionToTidyDoc:newTidy];
+	}
+
+
+	/* Setup the `outBuffer` to copy later to an NSString instead of writing to stdout */
+
+	TidyBuffer *outBuffer = malloc(sizeof(TidyBuffer));
+	tidyBufInit( outBuffer );
+
+
+	/*
+		Setup for using and out-of-class C function as a callback
+		from TidyLib in order to collect cleanup and diagnostic
+		information. The C function is defined near the top of
+		this file.
+	 */
+	tidySetAppData(newTidy, (__bridge void *)(self));                          // Need to send a message from outside self to self.
+
+	tidySetReportFilter2(newTidy, (TidyReportFilter2)&tidyCallbackFilter2);
+
+
+	/* Setup the error buffer to catch errors here instead of stdout */
+
+	TidyBuffer *errBuffer = malloc(sizeof(TidyBuffer));                        // Allocate a buffer for our error text.
+	tidyBufInit(errBuffer);                                                    // Init the buffer.
+	tidySetErrorBuffer(newTidy, errBuffer);                                    // And let tidy know to use it.
+
+
+	/* Clear out all of the previous errors from our collection. */
+
+	_errorArray = [[NSMutableArray alloc] init];
+
+
+	/* Setup tidy to use UTF8 for all internal operations. */
+
+	tidyOptSetValue(newTidy, TidyCharEncoding, [@"utf8" UTF8String]);
+	tidyOptSetValue(newTidy, TidyInCharEncoding, [@"utf8" UTF8String]);
+	tidyOptSetValue(newTidy, TidyOutCharEncoding, [@"utf8" UTF8String]);
+
+
+	/* Parse the `_sourceText` and clean, repair, and diagnose it. */
+
+	tidyParseString(newTidy, [_sourceText UTF8String]);
+	tidyCleanAndRepair(newTidy);
+	tidyRunDiagnostics(newTidy);
+
+
+	/*
+		Write additional information to the error output sink.
+		Note that this information is NOT captured in the error filter.
+	 */
+	tidyErrorSummary(newTidy);
+	tidyGeneralInfo(newTidy);
+
+
+	/* Set ivars for properties. */
+
+	_tidyDetectedHtmlVersion = tidyDetectedHtmlVersion(newTidy);
+	_tidyDetectedXhtml       = tidyDetectedXhtml(newTidy);
+	_tidyDetectedGenericXml  = tidyDetectedGenericXml(newTidy);
+	_tidyStatus              = tidyStatus(newTidy);
+	_tidyErrorCount          = tidyErrorCount(newTidy);
+	_tidyWarningCount        = tidyWarningCount(newTidy);
+	_tidyAccessWarningCount  = tidyAccessWarningCount(newTidy);
+
+
+	/* Copy the error buffer into an NSString. */
+
+	if (errBuffer->size > 0)
+	{
+		_errorText = [[NSString alloc] initWithUTF8String:(char *)errBuffer->bp];
+	}
+	else
+	{
+		_errorText = @"";
+	}
+
+
+	/* Save the tidy'd text to an NSString. */
+
+	NSString *tidyResult;
+
+	tidySaveBuffer(newTidy, outBuffer);
+
+	if (outBuffer->size > 0)
+	{
+		tidyResult = [[NSString alloc] initWithUTF8String:(char *)outBuffer->bp];
+	}
+	else
+	{
+		tidyResult = @"";
+	}
+
+	/* Clean up. */
+
+	tidyBufFree(outBuffer);
+	tidyBufFree(errBuffer);
+	tidyRelease(newTidy);
+
+
+	BOOL textDidChange = ![_tidyText isEqualToString:tidyResult];
+
+	if (textDidChange)
+	{
+		_tidyText = tidyResult;
+	}
+
 
 	/*****************************************************
-		Perform all of the heavy lifting in this queue. 
+		Now do stuff that's likely to affect the UI.
 	 *****************************************************/
+	/* Only send notifications if the text changed. */
+	if ( textDidChange )
+	{
+		[self willChangeValueForKey:@"tidyText"];
+		[self didChangeValueForKey:@"tidyText"];
+		[self notifyTidyModelTidyTextChanged];
+	}
 
-//	dispatch_async(_tidyQueue, ^{
-
-		/* Create a TidyDoc and sets its options. */
-
-		TidyDoc newTidy = tidyCreate();
-
-		/* Capture the array locally. */
-		NSArray *localOptions = [[NSArray alloc] initWithArray:[self.tidyOptions allValues]];
-		for (JSDTidyOption *localOption in localOptions)
-		{
-			[localOption applyOptionToTidyDoc:newTidy];
-		}
-
-
-		/* Setup the `outBuffer` to copy later to an NSString instead of writing to stdout */
-
-		TidyBuffer *outBuffer = malloc(sizeof(TidyBuffer));
-		tidyBufInit( outBuffer );
-
-
-		/*
-			Setup for using and out-of-class C function as a callback
-			from TidyLib in order to collect cleanup and diagnostic
-			information. The C function is defined near the top of
-			this file.
-		 */
-		tidySetAppData(newTidy, (__bridge void *)(self));                          // Need to send a message from outside self to self.
-
-		/*
-			Official TidyLib generates a complete message string that
-			is difficult to localize. My fork introduces an additional
-		 report filter that passes back message components which
-		 can be localized and assembled in the app.
-
-			If you want to compile against virgin TidyLib source, then
-		 make sure you change the comments below.
-		 */
-
-		//tidySetReportFilter(newTidy, (TidyReportFilter)&tidyCallbackFilter);     // Use for virgin TidyLib compatability.
-		tidySetReportFilter2(newTidy, (TidyReportFilter2)&tidyCallbackFilter2);    // Use for my fork of TidyLib.
-
-
-		/* Setup the error buffer to catch errors here instead of stdout */
-
-		TidyBuffer *errBuffer = malloc(sizeof(TidyBuffer));                        // Allocate a buffer for our error text.
-		tidyBufInit(errBuffer);                                                    // Init the buffer.
-		tidySetErrorBuffer(newTidy, errBuffer);                                    // And let tidy know to use it.
-
-
-		/* Clear out all of the previous errors from our collection. */
-
-		_bufferErrorArray = [[NSMutableArray alloc] init];
-
-
-		/* Setup tidy to use UTF8 for all internal operations. */
-
-		tidyOptSetValue(newTidy, TidyCharEncoding, [@"utf8" UTF8String]);
-		tidyOptSetValue(newTidy, TidyInCharEncoding, [@"utf8" UTF8String]);
-		tidyOptSetValue(newTidy, TidyOutCharEncoding, [@"utf8" UTF8String]);
-
-
-		/* Parse the `_sourceText` and clean, repair, and diagnose it. */
-
-		tidyParseString(newTidy, [_sourceText UTF8String]);
-		tidyCleanAndRepair(newTidy);
-		tidyRunDiagnostics(newTidy);
-
-
-		/*
-			Write additional information to the error output sink.
-			Note that this information is NOT captured in the error filter.
-		 */
-		tidyErrorSummary(newTidy);
-		tidyGeneralInfo(newTidy);
-
-
-		/* Set ivars for properties. */
-
-		_tidyDetectedHtmlVersion = tidyDetectedHtmlVersion(newTidy);
-		_tidyDetectedXhtml       = tidyDetectedXhtml(newTidy);
-		_tidyDetectedGenericXml  = tidyDetectedGenericXml(newTidy);
-		_tidyStatus              = tidyStatus(newTidy);
-		_tidyErrorCount          = tidyErrorCount(newTidy);
-		_tidyWarningCount        = tidyWarningCount(newTidy);
-		_tidyAccessWarningCount  = tidyAccessWarningCount(newTidy);
-
-
-		/* Set the actual, external _errorArray. */
-		_errorArray = [[NSMutableArray alloc] initWithArray:_bufferErrorArray];
-
-
-		/* Copy the error buffer into an NSString. */
-
-		if (errBuffer->size > 0)
-		{
-			_errorText = [[NSString alloc] initWithUTF8String:(char *)errBuffer->bp];
-		}
-		else
-		{
-			_errorText = @"";
-		}
-
-
-		/* Save the tidy'd text to an NSString. */
-
-		NSString *tidyResult;
-
-		tidySaveBuffer(newTidy, outBuffer);
-
-		if (outBuffer->size > 0)
-		{
-			tidyResult = [[NSString alloc] initWithUTF8String:(char *)outBuffer->bp];
-		}
-		else
-		{
-			tidyResult = @"";
-		}
-
-		/* Clean up. */
-
-		tidyBufFree(outBuffer);
-		tidyBufFree(errBuffer);
-		tidyRelease(newTidy);
-
-
-		BOOL textDidChange = ![_tidyText isEqualToString:tidyResult];
-
-		if (textDidChange)
-		{
-			_tidyText = tidyResult;
-		}
-
-
-		/*****************************************************
-			Now do stuff that's likely to affect the UI.
-		 *****************************************************/
-//		dispatch_async(dispatch_get_main_queue(), ^{
-
-			/* Only send notifications if the text changed. */
-			if ( textDidChange )
-			{
-				[self willChangeValueForKey:@"tidyText"];
-				[self didChangeValueForKey:@"tidyText"];
-				[self notifyTidyModelTidyTextChanged];
-			}
-
-			/*
-			 Always post an error update notification so that apps have a
-			 chance to update their error tables. This covers a case where
-			 the source text may change but the TidyText stays identical
-			 anyway.
-			 */
-			[self notifyTidyModelMessagesChanged];
-
-//		}); // end dispatch_async block
-
-//	}); // end dispatch_async block
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	errorFilter:Level:Line:Column:Message:
-		This is the REAL TidyError filter, and is called by the
-		standard C `tidyCallBackFilter` function implemented at the
-		top of this file.
-
-		TidyLib doesn't maintain a structured list of all of its
-		errors so here we capture them one-by-one as Tidy tidy's.
-		In this way we build our own structured list.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (bool)errorFilter:(TidyDoc)tDoc
-			  Level:(TidyReportLevel)lvl
-			   Line:(uint)line
-			 Column:(uint)col
-			Message:(ctmbstr)mssg
-{
-	__strong NSMutableDictionary *errorDict = [[NSMutableDictionary alloc] init];
-	
-	errorDict[@"level"]   = @((int)lvl);	// lvl is a c enum
-	errorDict[@"line"]    = @(line);
-	errorDict[@"column"]  = @(col);
-	errorDict[@"message"] = @(mssg);
-
-	[_bufferErrorArray addObject:errorDict];
-	
-	return YES; // Always return yes otherwise _errorText will be surpressed by TidyLib.
+	/*
+	 Always post an error update notification so that apps have a
+	 chance to update their error tables. This covers a case where
+	 the source text may change but the TidyText stays identical
+	 anyway.
+	 */
+	[self notifyTidyModelMessagesChanged];
 }
 
 
@@ -1259,7 +1177,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	errorDict[@"locationString"]   = locationString;
 	errorDict[@"message"]          = messageString;
 
-	[_bufferErrorArray addObject:errorDict];
+	[_errorArray addObject:errorDict];
 
 	return YES; // Always return yes otherwise _errorText will be surpressed by TidyLib.
 }
