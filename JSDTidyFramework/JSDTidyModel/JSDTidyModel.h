@@ -76,7 +76,7 @@
 #pragma mark - Delegate Support
 
 
-@property (weak) id <JSDTidyModelDelegate> delegate;
+@property (nonatomic, weak) id <JSDTidyModelDelegate> delegate;
 
 
 #pragma mark - String Encoding Support
@@ -114,9 +114,9 @@
 	current input-encoding and output-encoding for this instance.
  */
 
-@property (readonly) NSStringEncoding inputEncoding;		
+@property (nonatomic, assign, readonly) NSStringEncoding inputEncoding;
 
-@property (readonly) NSStringEncoding outputEncoding;
+@property (nonatomic, assign, readonly) NSStringEncoding outputEncoding;
 
 
 #pragma mark - Text
@@ -132,7 +132,7 @@
 	setting in `input-encoding`.
  */
 
-@property NSString *sourceText;
+@property (nonatomic, strong) NSString *sourceText;
 
 - (void)setSourceTextWithData:(NSData *)data;
 
@@ -146,9 +146,9 @@
 	setting in `output-encoding`.
 */
 
-@property (readonly) NSString *tidyText;
+@property (nonatomic, strong, readonly) NSString *tidyText;
 
-@property (readonly) NSData *tidyTextAsData;
+@property (nonatomic, strong, readonly) NSData *tidyTextAsData;
 
 - (void)tidyTextToFile:(NSString *)path;
 
@@ -159,7 +159,7 @@
 	is not equal to the tidy'd-text.
 */
 
-@property (readonly) BOOL isDirty;
+@property (nonatomic, assign, readonly) BOOL isDirty;
 
 
 #pragma mark - Errors
@@ -169,9 +169,9 @@
 	MESSAGES reported by tidy
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
-@property (readonly) NSString *errorText;      // Return the error text in traditional tidy format.
+@property (nonatomic, strong, readonly) NSString *errorText;      // Return the error text in traditional tidy format.
 
-@property (readonly) NSArray  *errorArray;     // Message text as an array of NSDictionary of the errors.
+@property (nonatomic, strong, readonly) NSArray  *errorArray;     // Message text as an array of NSDictionary of the errors.
 
 
 #pragma mark - Options Overall management
@@ -195,7 +195,7 @@
 
 - (NSString *)tidyOptionsConfigFile:(NSString*)baseFileName;                  // Returns a string of current config.
 
-@property NSArray* optionsInUse;                   // Default is all options; otherwise is list of options.
+@property (nonatomic, strong) NSArray* optionsInUse;                          // Default is all options; otherwise is list of options.
 
 
 #pragma mark - Diagnostics and Repair
@@ -205,19 +205,19 @@
 	DIAGNOSTICS and REPAIR
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
-@property (readonly) int tidyDetectedHtmlVersion;   // Returns 0, 2, 3, 4, or 5.
+@property (nonatomic, assign, readonly) int tidyDetectedHtmlVersion;   // Returns 0, 2, 3, 4, or 5.
 
-@property (readonly) bool tidyDetectedXhtml;        // Indicates whether the document is XHTML.
+@property (nonatomic, assign, readonly) bool tidyDetectedXhtml;        // Indicates whether the document is XHTML.
 
-@property (readonly) bool tidyDetectedGenericXml;   // Indicates if the document is generic XML.
+@property (nonatomic, assign, readonly) bool tidyDetectedGenericXml;   // Indicates if the document is generic XML.
 
-@property (readonly) int tidyStatus;                // Returns 0 if there are no errors, 2 for doc errors, 1 for other.
+@property (nonatomic, assign, readonly) int tidyStatus;                // Returns 0 if there are no errors, 2 for doc errors, 1 for other.
 
-@property (readonly) uint tidyErrorCount;           // Returns number of document errors.
+@property (nonatomic, assign, readonly) uint tidyErrorCount;           // Returns number of document errors.
 
-@property (readonly) uint tidyWarningCount;         // Returns number of document warnings.
+@property (nonatomic, assign, readonly) uint tidyWarningCount;         // Returns number of document warnings.
 
-@property (readonly) uint tidyAccessWarningCount;   // Returns number of document accessibility warnings.
+@property (nonatomic, assign, readonly) uint tidyAccessWarningCount;   // Returns number of document accessibility warnings.
 
 
 #pragma mark - Miscelleneous
@@ -227,9 +227,9 @@
 	MISCELLENEOUS - Misc. Tidy methods supported
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
-@property (readonly) NSString *tidyReleaseDate;     // Returns the TidyLib release date.
+@property (nonatomic, assign, readonly) NSString *tidyReleaseDate;     // Returns the TidyLib release date.
 
-@property (readonly) NSString *tidyLibraryVersion;  // Returns the TidyLib semantic version.
+@property (nonatomic, assign, readonly) NSString *tidyLibraryVersion;  // Returns the TidyLib semantic version.
 
 
 #pragma mark - Configuration List Support
@@ -282,14 +282,14 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
 
-@property NSUserDefaults *userDefaults;              // The NSUserDefaults instance to get defaults from.
+@property (nonatomic, strong) NSUserDefaults *userDefaults;   // The NSUserDefaults instance to get defaults from.
 
 
 #pragma mark - Public API and General Properties
 
-@property (readonly) NSDictionary *tidyOptions;
+@property (nonatomic, strong, readonly) NSDictionary *tidyOptions;
 
-@property (readonly) NSArray *tidyOptionsBindable;
+@property (nonatomic, strong, readonly) NSArray *tidyOptionsBindable;
 
 @end
 

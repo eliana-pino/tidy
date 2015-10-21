@@ -50,9 +50,9 @@
 
 /* Private properties. */
 
-@property (readwrite) NSData *originalData;              // The original data loaded from a file.
+@property (nonatomic, strong) NSData *originalData;              // The original data loaded from a file.
 
-@property (readwrite) NSMutableArray *tidyOptionHeaders; // Holds fake options that can be used as headers.
+@property (nonatomic, strong) NSMutableArray *tidyOptionHeaders; // Holds fake options that can be used as headers.
 
 @end
 
