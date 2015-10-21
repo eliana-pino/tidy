@@ -19,13 +19,6 @@
 		D00661381A579DF300F73F85 /* JSDTidyOption.h in Headers */ = {isa = PBXBuildFile; fileRef = D00661321A579DF300F73F85 /* JSDTidyOption.h */; };
 		D00661391A579DF300F73F85 /* JSDTidyOption.m in Sources */ = {isa = PBXBuildFile; fileRef = D00661331A579DF300F73F85 /* JSDTidyOption.m */; };
 		D00661B41A579EA100F73F85 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D00661B01A579EA100F73F85 /* Localizable.strings */; };
-		D00661BD1A579EE000F73F85 /* messagesAccess.icns in Resources */ = {isa = PBXBuildFile; fileRef = D00661B61A579EE000F73F85 /* messagesAccess.icns */; };
-		D00661BE1A579EE000F73F85 /* messagesConfig.icns in Resources */ = {isa = PBXBuildFile; fileRef = D00661B71A579EE000F73F85 /* messagesConfig.icns */; };
-		D00661BF1A579EE000F73F85 /* messagesDocument.icns in Resources */ = {isa = PBXBuildFile; fileRef = D00661B81A579EE000F73F85 /* messagesDocument.icns */; };
-		D00661C01A579EE000F73F85 /* messagesError.icns in Resources */ = {isa = PBXBuildFile; fileRef = D00661B91A579EE000F73F85 /* messagesError.icns */; };
-		D00661C11A579EE000F73F85 /* messagesInfo.icns in Resources */ = {isa = PBXBuildFile; fileRef = D00661BA1A579EE000F73F85 /* messagesInfo.icns */; };
-		D00661C21A579EE000F73F85 /* messagesPanic.icns in Resources */ = {isa = PBXBuildFile; fileRef = D00661BB1A579EE000F73F85 /* messagesPanic.icns */; };
-		D00661C31A579EE000F73F85 /* messagesWarning.icns in Resources */ = {isa = PBXBuildFile; fileRef = D00661BC1A579EE000F73F85 /* messagesWarning.icns */; };
 		D008F0191930D9D700559F3B /* JSDAllCapsValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D008F0181930D9D700559F3B /* JSDAllCapsValueTransformer.m */; };
 		D008F01A1930D9D700559F3B /* JSDAllCapsValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D008F0181930D9D700559F3B /* JSDAllCapsValueTransformer.m */; };
 		D0097B0B19712F68001CCF94 /* Balthisar Tidy (pro).help in Resources */ = {isa = PBXBuildFile; fileRef = D04E8FAD195D964F00D1CEDC /* Balthisar Tidy (pro).help */; };
@@ -228,6 +221,13 @@
 		D0913CAF18B0AC06005DB2E4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D016A935182FD80700712C60 /* main.m */; };
 		D0913CC918B0AC06005DB2E4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D016A929182FD80700712C60 /* Cocoa.framework */; };
 		D09ED1421BD73933002AED94 /* libtidy-balthisar.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = D0A482AF1BCF9BD000E0646F /* libtidy-balthisar.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		D09ED14A1BD757C3002AED94 /* messagesAccess.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D09ED1431BD757C3002AED94 /* messagesAccess.pdf */; settings = {ASSET_TAGS = (); }; };
+		D09ED14B1BD757C3002AED94 /* messagesConfig.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D09ED1441BD757C3002AED94 /* messagesConfig.pdf */; settings = {ASSET_TAGS = (); }; };
+		D09ED14C1BD757C3002AED94 /* messagesDocument.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D09ED1451BD757C3002AED94 /* messagesDocument.pdf */; settings = {ASSET_TAGS = (); }; };
+		D09ED14D1BD757C3002AED94 /* messagesError.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D09ED1461BD757C3002AED94 /* messagesError.pdf */; settings = {ASSET_TAGS = (); }; };
+		D09ED14E1BD757C3002AED94 /* messagesInfo.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D09ED1471BD757C3002AED94 /* messagesInfo.pdf */; settings = {ASSET_TAGS = (); }; };
+		D09ED14F1BD757C3002AED94 /* messagesPanic.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D09ED1481BD757C3002AED94 /* messagesPanic.pdf */; settings = {ASSET_TAGS = (); }; };
+		D09ED1501BD757C3002AED94 /* messagesWarning.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D09ED1491BD757C3002AED94 /* messagesWarning.pdf */; settings = {ASSET_TAGS = (); }; };
 		D0A2E1F8197548D20015F667 /* ToolbarAdvanced.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0A2E1F6197548D20015F667 /* ToolbarAdvanced.tiff */; };
 		D0A2E1F9197548D20015F667 /* ToolbarAdvanced.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0A2E1F6197548D20015F667 /* ToolbarAdvanced.tiff */; };
 		D0A2E1FA197548D20015F667 /* ToolbarAdvanced.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0A2E1F6197548D20015F667 /* ToolbarAdvanced.tiff */; };
@@ -626,13 +626,6 @@
 		D00661321A579DF300F73F85 /* JSDTidyOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSDTidyOption.h; path = JSDTidyModel/JSDTidyOption.h; sourceTree = "<group>"; };
 		D00661331A579DF300F73F85 /* JSDTidyOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSDTidyOption.m; path = JSDTidyModel/JSDTidyOption.m; sourceTree = "<group>"; };
 		D00661B11A579EA100F73F85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Resources/Base.lproj/Localizable.strings; sourceTree = "<group>"; };
-		D00661B61A579EE000F73F85 /* messagesAccess.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = messagesAccess.icns; path = Resources/common/messagesAccess.icns; sourceTree = "<group>"; };
-		D00661B71A579EE000F73F85 /* messagesConfig.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = messagesConfig.icns; path = Resources/common/messagesConfig.icns; sourceTree = "<group>"; };
-		D00661B81A579EE000F73F85 /* messagesDocument.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = messagesDocument.icns; path = Resources/common/messagesDocument.icns; sourceTree = "<group>"; };
-		D00661B91A579EE000F73F85 /* messagesError.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = messagesError.icns; path = Resources/common/messagesError.icns; sourceTree = "<group>"; };
-		D00661BA1A579EE000F73F85 /* messagesInfo.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = messagesInfo.icns; path = Resources/common/messagesInfo.icns; sourceTree = "<group>"; };
-		D00661BB1A579EE000F73F85 /* messagesPanic.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = messagesPanic.icns; path = Resources/common/messagesPanic.icns; sourceTree = "<group>"; };
-		D00661BC1A579EE000F73F85 /* messagesWarning.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = messagesWarning.icns; path = Resources/common/messagesWarning.icns; sourceTree = "<group>"; };
 		D00661C41A57A06600F73F85 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D008F0171930D9D700559F3B /* JSDAllCapsValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSDAllCapsValueTransformer.h; sourceTree = "<group>"; };
 		D008F0181930D9D700559F3B /* JSDAllCapsValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSDAllCapsValueTransformer.m; sourceTree = "<group>"; };
@@ -803,6 +796,13 @@
 		D08689341948439700BDAD72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TidyDocumentSourceH.xib; sourceTree = "<group>"; };
 		D08689361948439700BDAD72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TidyDocumentSourceV.xib; sourceTree = "<group>"; };
 		D0913CDE18B0AC06005DB2E4 /* Balthisar Tidy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Balthisar Tidy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D09ED1431BD757C3002AED94 /* messagesAccess.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = messagesAccess.pdf; path = Resources/common/messagesAccess.pdf; sourceTree = "<group>"; };
+		D09ED1441BD757C3002AED94 /* messagesConfig.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = messagesConfig.pdf; path = Resources/common/messagesConfig.pdf; sourceTree = "<group>"; };
+		D09ED1451BD757C3002AED94 /* messagesDocument.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = messagesDocument.pdf; path = Resources/common/messagesDocument.pdf; sourceTree = "<group>"; };
+		D09ED1461BD757C3002AED94 /* messagesError.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = messagesError.pdf; path = Resources/common/messagesError.pdf; sourceTree = "<group>"; };
+		D09ED1471BD757C3002AED94 /* messagesInfo.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = messagesInfo.pdf; path = Resources/common/messagesInfo.pdf; sourceTree = "<group>"; };
+		D09ED1481BD757C3002AED94 /* messagesPanic.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = messagesPanic.pdf; path = Resources/common/messagesPanic.pdf; sourceTree = "<group>"; };
+		D09ED1491BD757C3002AED94 /* messagesWarning.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = messagesWarning.pdf; path = Resources/common/messagesWarning.pdf; sourceTree = "<group>"; };
 		D0A2E1F6197548D20015F667 /* ToolbarAdvanced.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = ToolbarAdvanced.tiff; path = "Images for Toolbar/ToolbarAdvanced.tiff"; sourceTree = "<group>"; };
 		D0A2E1F7197548D20015F667 /* ToolbarInfo.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = ToolbarInfo.tiff; path = "Images for Toolbar/ToolbarInfo.tiff"; sourceTree = "<group>"; };
 		D0A4826E1BCF8E2900E0646F /* tidybuffio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tidybuffio.h; sourceTree = "<group>"; };
@@ -1004,13 +1004,13 @@
 		D00661B51A579ED100F73F85 /* common */ = {
 			isa = PBXGroup;
 			children = (
-				D00661B61A579EE000F73F85 /* messagesAccess.icns */,
-				D00661B71A579EE000F73F85 /* messagesConfig.icns */,
-				D00661B81A579EE000F73F85 /* messagesDocument.icns */,
-				D00661B91A579EE000F73F85 /* messagesError.icns */,
-				D00661BA1A579EE000F73F85 /* messagesInfo.icns */,
-				D00661BB1A579EE000F73F85 /* messagesPanic.icns */,
-				D00661BC1A579EE000F73F85 /* messagesWarning.icns */,
+				D09ED1431BD757C3002AED94 /* messagesAccess.pdf */,
+				D09ED1441BD757C3002AED94 /* messagesConfig.pdf */,
+				D09ED1451BD757C3002AED94 /* messagesDocument.pdf */,
+				D09ED1461BD757C3002AED94 /* messagesError.pdf */,
+				D09ED1471BD757C3002AED94 /* messagesInfo.pdf */,
+				D09ED1481BD757C3002AED94 /* messagesPanic.pdf */,
+				D09ED1491BD757C3002AED94 /* messagesWarning.pdf */,
 			);
 			name = common;
 			sourceTree = "<group>";
@@ -1837,13 +1837,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D00661B41A579EA100F73F85 /* Localizable.strings in Resources */,
-				D00661BD1A579EE000F73F85 /* messagesAccess.icns in Resources */,
-				D00661BE1A579EE000F73F85 /* messagesConfig.icns in Resources */,
-				D00661BF1A579EE000F73F85 /* messagesDocument.icns in Resources */,
-				D00661C01A579EE000F73F85 /* messagesError.icns in Resources */,
-				D00661C11A579EE000F73F85 /* messagesInfo.icns in Resources */,
-				D00661C21A579EE000F73F85 /* messagesPanic.icns in Resources */,
-				D00661C31A579EE000F73F85 /* messagesWarning.icns in Resources */,
+				D09ED14A1BD757C3002AED94 /* messagesAccess.pdf in Resources */,
+				D09ED14B1BD757C3002AED94 /* messagesConfig.pdf in Resources */,
+				D09ED14D1BD757C3002AED94 /* messagesError.pdf in Resources */,
+				D09ED14E1BD757C3002AED94 /* messagesInfo.pdf in Resources */,
+				D09ED1501BD757C3002AED94 /* messagesWarning.pdf in Resources */,
+				D09ED14F1BD757C3002AED94 /* messagesPanic.pdf in Resources */,
+				D09ED14C1BD757C3002AED94 /* messagesDocument.pdf in Resources */,
 				D002EFE21A57B82500530D2F /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

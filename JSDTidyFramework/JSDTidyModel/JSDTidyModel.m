@@ -1204,7 +1204,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 	NSString *levelDescription = JSDLocalizedString(errorTypes[(int)lvl], nil);
 
-	NSImage *levelImage = [[NSImage alloc] initWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:errorTypes[(int)lvl] ofType:@"icns"]];
+	NSImage *levelImage = [[NSImage alloc] initWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:errorTypes[(int)lvl] ofType:@"pdf"]];
 
 
 	/* Localize the location strings */
