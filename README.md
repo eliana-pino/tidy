@@ -37,7 +37,7 @@ Change Log
 
 - New Features
     - New built-in version of Tidy. Now uses HTACG HTML Tidy 5.0.0 stable.
-    - Balthisar Tidy will automatically use /usr/local/lib/libtidy.dylib instead of the built-in version (if present). Note that this feature is potentially dangerous and subject to change before official public release. Thanks @strider72 for the suggestion.
+    - Balthisar Tidy will automatically use /usr/local/lib/libtidy-balthisar.dylib instead of the built-in version (if present). Note that this feature is potentially dangerous and subject to change before official public release. Thanks @strider72 for the suggestion.
 
 - Visible Changes
     - Fixed the horrible appearance in the Tidy options panel introduced in Mac OS X 10.11 El Capitán.
