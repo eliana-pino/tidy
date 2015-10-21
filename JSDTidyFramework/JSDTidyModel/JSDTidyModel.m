@@ -45,6 +45,8 @@
 
 @property (readwrite) NSString *tidyText;       // Make read-write for internal use.
 
+@property (readwrite) NSData *originalData;     // The original data loaded from a file.
+
 @end
 
 
@@ -56,8 +58,6 @@
 	NSMutableDictionary *_tidyOptions;         // This backing iVar must be NSMutableDictionary (can't @synthesize)
 
 	NSMutableArray *_tidyOptionHeaders;        // Holds fake options that can be used as headers.
-
-	NSData* _originalData;                     // The original data that the file was loaded from.
 
 	BOOL _sourceDidChange;                     // States whether whether _sourceText has changed.
 }
@@ -410,9 +410,9 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)fixSourceCoding
 {
-	if (_originalData && !_sourceDidChange)
+	if (self.originalData && !_sourceDidChange)
 	{
-		[self setSourceTextWithData:_originalData];
+		[self setSourceTextWithData:self.originalData];
 	}
 }
 
@@ -446,10 +446,10 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 {
 	_sourceText = [self normalizeLineEndings:value];
 	
-	if (!_originalData)
+	if (!self.originalData)
 	{
 		/* 
-			If this is a fresh instance, then _originalData will
+			If this is a fresh instance, then self.originalData will
 			be nil, so we can store an original copy of the string
 			as NSData. Unlike with the file- and data-based
 			setters, this is a one time event since presumably
@@ -457,7 +457,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 			with text editors.
 		*/
 				
-		_originalData = [[NSData alloc] initWithData:[_sourceText dataUsingEncoding:self.outputEncoding]];
+		self.originalData = [[NSData alloc] initWithData:[_sourceText dataUsingEncoding:self.outputEncoding]];
 		
 		_sourceDidChange = NO;
 		
@@ -492,18 +492,18 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)setSourceTextWithData:(NSData *)data
 {
-	if (data != _originalData)
+	if (data != self.originalData)
 	{
 		/*
 			Unlike with setting via NSString, the presumption for file-
 			and data-based setters is that this is a one-time occurrence,
-			and so `_originalData` will be overwritten. This supports
-			the use of TidyLib in a text editor so: the `_originalData`
+			and so `self.originalData` will be overwritten. This supports
+			the use of TidyLib in a text editor so: the `self.originalData`
 			is set only once; text changes set via NSString will not
 			overwrite the original data.
 		*/
 		
-		_originalData = [[NSData alloc] initWithData:data];
+		self.originalData = [[NSData alloc] initWithData:data];
 	}
 	
 	/*
