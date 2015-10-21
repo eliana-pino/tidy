@@ -71,9 +71,10 @@
 {
 	if ([keyPath isEqual:JSDKeyOptionsAlternateRowColors])
 	{
-		NSNumber *newNumber = [change objectForKey:NSKeyValueChangeNewKey];
+		bool usesAlternate = [[change objectForKey:NSKeyValueChangeNewKey] boolValue];
 		
-		self.usesAlternatingRowBackgroundColors = [newNumber boolValue];
+		self.usesAlternatingRowBackgroundColors = usesAlternate;
+        self.gridStyleMask = usesAlternate ? NSTableViewDashedHorizontalGridLineMask : NSTableViewGridNone;
 		
 		return;
     }
