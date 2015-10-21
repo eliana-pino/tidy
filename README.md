@@ -33,7 +33,7 @@ _Balthisar Tidy_ has been released with support for Mac OS X 10.8 and newer.
 Change Log
 ----------
 
-### Balthisar Tidy 2.1.4 (October 2015)
+### Balthisar Tidy 2.2.0 (October 2015)
 
 - New Features
     - New built-in version of Tidy. Now uses HTACG HTML Tidy 5.0.0 stable.
@@ -44,6 +44,7 @@ Change Log
 
 - Bug Fixes
     - Fixed a condition in which the messages table would not be updated in certain circumstances.
+    - Print now works again. We overlooked a sandbox permissions setting, which previously caused users who tried to print to see a message indicating that _Balthisar Tidy_ didn't have permission.
 
 
 ### Balthisar Tidy 2.1.3 (January 2015)
