@@ -47,14 +47,12 @@
 
 @property (readwrite) NSString *tidyText;
 
-@property (readwrite) NSDictionary *tidyOptions;
-
 
 /* Private properties. */
 
 @property (nonatomic, strong) NSData *originalData;              // The original data loaded from a file.
 
-@property (nonatomic, strong) NSArray *tidyOptionHeaders;        // Holds fake options that can be used as headers.
+@property (nonatomic, strong) NSMutableArray *tidyOptionHeaders; // Holds fake options that can be used as headers.
 
 @property (nonatomic, assign) BOOL sourceDidChange;              // Indicates whether _sourceText has changed.
 
@@ -65,6 +63,10 @@
 
 
 @implementation JSDTidyModel
+{
+	NSMutableDictionary *_tidyOptions;         // This backing iVar must be NSMutableDictionary (can't @synthesize)
+}
+
 
 #pragma mark - iVar Synthesis
 
@@ -110,9 +112,9 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		_sourceText        = @"";
 		_tidyText          = @"";
 		_errorText         = @"";
-		_tidyOptions       = [[NSDictionary alloc] init];
-		_errorArray        = [[NSArray alloc] init];
+		_tidyOptions       = [[NSMutableDictionary alloc] init];
 		_tidyOptionHeaders = [[NSMutableArray alloc] init];
+		_errorArray        = [[NSMutableArray alloc] init];
 
 		[self optionsPopulateTidyOptions];
 	}
@@ -898,7 +900,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)optionsPopulateTidyOptionHeaders
 {
-	self.tidyOptionHeaders = nil;
+	[self.tidyOptionHeaders removeAllObjects];
 
 	for (JSDTidyOption *localOption in [self.tidyOptions allValues])
 	{
@@ -913,8 +915,8 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 				JSDTidyOption *headerOption = [[JSDTidyOption alloc] initWithName:localOption.name sharingModel:self];
 
 				headerOption.optionIsHeader = YES;
-				
-				self.tidyOptionHeaders = [self.tidyOptionHeaders arrayByAddingObject:headerOption];
+
+				[self.tidyOptionHeaders addObject:headerOption];
 			}
 		}
 	}
