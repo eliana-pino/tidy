@@ -36,21 +36,27 @@ Change Log
 ### Balthisar Tidy 2.2.0 (October 2015)
 
 - New Features
-    - New built-in version of Tidy. Now uses HTACG HTML Tidy 5.0.0 stable.
-    - Balthisar Tidy will automatically use /usr/local/lib/libtidy-balthisar.dylib instead
-      of the built-in version (if present). Note that this feature is potentially
-      dangerous and subject to change before official public release. Thanks @strider72
-      for the suggestion.
+    - New built-in version of Tidy. Now uses HTACG HTML Tidy 5.1.9.
+    - Balthisar Tidy will automatically use `/usr/local/lib/libtidy-balthisar.dylib`
+      instead of the built-in version (if present).
     - New System Service and Extension can selectively Tidy text without producing a full
       document. As a result the existing System Service and Extension will _always_
       produce a full document, ignoring _Balthisar Tidy_’s `show-body-only` setting.
 
 - Visible Changes
-    - Fixed the horrible appearance in the Tidy options panel introduced in Mac OS X 10.11 El Capitán.
+    - Fixed the horrible appearance in the Tidy options panel introduced in 
+      Mac OS X 10.11 El Capitan.
 
 - Bug Fixes
-    - Fixed a condition in which the messages table would not be updated in certain circumstances.
-    - Print now works again. We overlooked a sandbox permissions setting, which previously caused users who tried to print to see a message indicating that _Balthisar Tidy_ didn't have permission.
+    - Fixed a condition in which the messages table would not be updated in certain
+      circumstances.
+    - Print now works again. We overlooked a sandbox permissions setting, which previously
+      caused users who tried to print to see a message indicating that _Balthisar Tidy_
+      didn't have permission.
+      
+- Other Changes
+    - Significantly reduced file size by using PDF instead of icns for the messages table
+      images.
 
 
 ### Balthisar Tidy 2.1.3 (January 2015)
