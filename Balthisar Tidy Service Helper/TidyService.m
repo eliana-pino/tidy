@@ -74,14 +74,8 @@
 	JSDTidyOption *localOption = localModel.tidyOptions[@"force-output"];
 	localOption.optionValue = @"YES";
 
-
-    /* Force body-only if applicable */
-    if (bodyOnly)
-    {
-        JSDTidyOption *localBody = localModel.tidyOptions[@"show-body-only"];
-        localBody.optionValue = @"1";
-    }
-
+	localOption = localModel.tidyOptions[@"show-body-only"];
+	localOption.optionValue = bodyOnly ? @"1" : @"0";
 
 	/* Grab a current copy of tidyText */
 
