@@ -50,11 +50,11 @@
 
 /* Private properties. */
 
-@property (nonatomic, strong) NSData *originalData;              // The original data loaded from a file.
+@property (nonatomic, strong) NSData *originalData;       // The original data loaded from a file.
 
-@property (nonatomic, strong) NSMutableArray *tidyOptionHeaders; // Holds fake options that can be used as headers.
+@property (nonatomic, strong) NSArray *tidyOptionHeaders; // Holds fake options that can be used as headers.
 
-@property (nonatomic, assign) BOOL sourceDidChange;              // Indicates whether _sourceText has changed.
+@property (nonatomic, assign) BOOL sourceDidChange;       // Indicates whether _sourceText has changed.
 
 @end
 
@@ -113,8 +113,8 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		_tidyText          = @"";
 		_errorText         = @"";
 		_tidyOptions       = [[NSMutableDictionary alloc] init];
-		_tidyOptionHeaders = [[NSMutableArray alloc] init];
-		_errorArray        = [[NSMutableArray alloc] init];
+		_tidyOptionHeaders = [[NSArray alloc] init];
+		_errorArray        = [[NSArray alloc] init];
 
 		[self optionsPopulateTidyOptions];
 	}
@@ -900,7 +900,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)optionsPopulateTidyOptionHeaders
 {
-	[self.tidyOptionHeaders removeAllObjects];
+	self.tidyOptionHeaders = nil;;
 
 	for (JSDTidyOption *localOption in [self.tidyOptions allValues])
 	{
@@ -916,7 +916,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 				headerOption.optionIsHeader = YES;
 
-				[self.tidyOptionHeaders addObject:headerOption];
+				self.tidyOptionHeaders = [self.tidyOptionHeaders arrayByAddingObject:headerOption];
 			}
 		}
 	}
