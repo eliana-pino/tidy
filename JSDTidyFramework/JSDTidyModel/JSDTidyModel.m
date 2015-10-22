@@ -47,6 +47,8 @@
 
 @property (readwrite) NSString *tidyText;
 
+@property (readwrite) NSMutableDictionary *tidyOptions;
+
 
 /* Private properties. */
 
@@ -63,10 +65,6 @@
 
 
 @implementation JSDTidyModel
-{
-	NSMutableDictionary *_tidyOptions;         // This backing iVar must be NSMutableDictionary (can't @synthesize)
-}
-
 
 #pragma mark - iVar Synthesis
 
@@ -1406,7 +1404,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSArray *)tidyOptionsBindable
 {
-	return [[_tidyOptions allValues] arrayByAddingObjectsFromArray:self.tidyOptionHeaders];
+	return [[self.tidyOptions allValues] arrayByAddingObjectsFromArray:self.tidyOptionHeaders];
 }
 
 
