@@ -47,6 +47,8 @@
 
 @property (readwrite) NSString *tidyText;
 
+@property (readwrite) NSDictionary *tidyOptions;
+
 
 /* Private properties. */
 
@@ -63,10 +65,6 @@
 
 
 @implementation JSDTidyModel
-{
-	NSMutableDictionary *_tidyOptions;         // This backing iVar must be NSMutableDictionary (can't @synthesize)
-}
-
 
 #pragma mark - iVar Synthesis
 
@@ -112,9 +110,9 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		_sourceText        = @"";
 		_tidyText          = @"";
 		_errorText         = @"";
-		_tidyOptions       = [[NSMutableDictionary alloc] init];
+		_tidyOptions       = [[NSDictionary alloc] init];
+		_errorArray        = [[NSArray alloc] init];
 		_tidyOptionHeaders = [[NSMutableArray alloc] init];
-		_errorArray        = [[NSMutableArray alloc] init];
 
 		[self optionsPopulateTidyOptions];
 	}
