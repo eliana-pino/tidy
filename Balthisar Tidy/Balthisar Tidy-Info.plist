@@ -153,5 +153,7 @@
 	<true/>
 	<key>SUFeedURL</key>
 	<string>${TIDY_UPDATE_URL}</string>
+	<key>SUPublicDSAKeyFile</key>
+	<string>balthisar_tidy-id_dsa.pub</string>
 </dict>
 </plist>

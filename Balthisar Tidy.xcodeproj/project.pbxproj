@@ -363,6 +363,7 @@
 		D0C9C1641BD8661B004C545A /* TidyBody Extension (app).appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D0C9C1451BD85FF4004C545A /* TidyBody Extension (app).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D0C9C1651BD8662E004C545A /* Tidy Extension (pro).appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D01C70E91A5591A500CC5038 /* Tidy Extension (pro).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D0C9C1661BD8662E004C545A /* TidyBody Extension (pro).appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D0C9C1581BD85FFB004C545A /* TidyBody Extension (pro).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D0C9C1681BD8CB55004C545A /* balthisar_tidy-id_dsa.pub in Resources */ = {isa = PBXBuildFile; fileRef = D0C9C1671BD8CB55004C545A /* balthisar_tidy-id_dsa.pub */; settings = {ASSET_TAGS = (); }; };
 		D0CA8F6E1953280700BBD54C /* LayoutBottomPaneTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F521953280700BBD54C /* LayoutBottomPaneTemplate.png */; };
 		D0CA8F6F1953280700BBD54C /* LayoutBottomPaneTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F521953280700BBD54C /* LayoutBottomPaneTemplate.png */; };
 		D0CA8F701953280700BBD54C /* LayoutBottomPaneTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F521953280700BBD54C /* LayoutBottomPaneTemplate.png */; };
@@ -929,6 +930,7 @@
 		D0C9C1451BD85FF4004C545A /* TidyBody Extension (app).appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "TidyBody Extension (app).appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0C9C1581BD85FFB004C545A /* TidyBody Extension (pro).appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "TidyBody Extension (pro).appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0C9C15A1BD860C5004C545A /* Info-Body.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Body.plist"; sourceTree = "<group>"; };
+		D0C9C1671BD8CB55004C545A /* balthisar_tidy-id_dsa.pub */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "balthisar_tidy-id_dsa.pub"; sourceTree = "<group>"; };
 		D0CA8F521953280700BBD54C /* LayoutBottomPaneTemplate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LayoutBottomPaneTemplate.png; path = "Images for Toolbar/LayoutBottomPaneTemplate.png"; sourceTree = "<group>"; };
 		D0CA8F531953280700BBD54C /* LayoutLeftPaneTemplate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LayoutLeftPaneTemplate.png; path = "Images for Toolbar/LayoutLeftPaneTemplate.png"; sourceTree = "<group>"; };
 		D0CA8F541953280700BBD54C /* LayoutSourceHTemplate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LayoutSourceHTemplate.png; path = "Images for Toolbar/LayoutSourceHTemplate.png"; sourceTree = "<group>"; };
@@ -1508,6 +1510,7 @@
 				D04E8FAC195D964F00D1CEDC /* Balthisar Tidy (app).help */,
 				D04E8FAD195D964F00D1CEDC /* Balthisar Tidy (pro).help */,
 				D036E21718F3D81E0009A9D4 /* TidyScripting.sdef */,
+				D0C9C1671BD8CB55004C545A /* balthisar_tidy-id_dsa.pub */,
 				D036E20718F3D2F20009A9D4 /* File Icons */,
 				D06C9A83195FE82D004D6C27 /* Images for Prefs */,
 				D01AACBC193DEA4900C4E5B2 /* Images for UI */,
@@ -2066,6 +2069,7 @@
 				D036E1EC18F3D25E0009A9D4 /* InfoPlist.strings in Resources */,
 				D0CA8F6E1953280700BBD54C /* LayoutBottomPaneTemplate.png in Resources */,
 				D0CA8F711953280700BBD54C /* LayoutLeftPaneTemplate.png in Resources */,
+				D0C9C1681BD8CB55004C545A /* balthisar_tidy-id_dsa.pub in Resources */,
 				D0CA8F741953280700BBD54C /* LayoutSourceHTemplate.png in Resources */,
 				D0CA8F771953280700BBD54C /* LayoutSourceVTemplate.png in Resources */,
 				D036E1EE18F3D25E0009A9D4 /* Localizable.strings in Resources */,
