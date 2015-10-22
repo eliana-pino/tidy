@@ -54,7 +54,7 @@
 
 @property (nonatomic, strong) NSData *originalData;              // The original data loaded from a file.
 
-@property (nonatomic, strong) NSMutableArray *tidyOptionHeaders; // Holds fake options that can be used as headers.
+@property (nonatomic, strong) NSArray *tidyOptionHeaders;        // Holds fake options that can be used as headers.
 
 @property (nonatomic, assign) BOOL sourceDidChange;              // Indicates whether _sourceText has changed.
 
@@ -898,7 +898,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)optionsPopulateTidyOptionHeaders
 {
-	[self.tidyOptionHeaders removeAllObjects];
+	self.tidyOptionHeaders = nil;
 
 	for (JSDTidyOption *localOption in [self.tidyOptions allValues])
 	{
@@ -913,8 +913,8 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 				JSDTidyOption *headerOption = [[JSDTidyOption alloc] initWithName:localOption.name sharingModel:self];
 
 				headerOption.optionIsHeader = YES;
-
-				[self.tidyOptionHeaders addObject:headerOption];
+				
+				self.tidyOptionHeaders = [self.tidyOptionHeaders arrayByAddingObject:headerOption];
 			}
 		}
 	}
