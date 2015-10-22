@@ -54,6 +54,8 @@
 
 @property (nonatomic, strong) NSMutableArray *tidyOptionHeaders; // Holds fake options that can be used as headers.
 
+@property (nonatomic, assign) BOOL sourceDidChange;              // Indicates whether _sourceText has changed.
+
 @end
 
 
@@ -63,8 +65,6 @@
 @implementation JSDTidyModel
 {
 	NSMutableDictionary *_tidyOptions;         // This backing iVar must be NSMutableDictionary (can't @synthesize)
-
-	BOOL _sourceDidChange;                     // States whether whether _sourceText has changed.
 }
 
 
@@ -415,7 +415,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)fixSourceCoding
 {
-	if (self.originalData && !_sourceDidChange)
+	if (self.originalData && !self.sourceDidChange)
 	{
 		[self setSourceTextWithData:self.originalData];
 	}
@@ -464,7 +464,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 				
 		self.originalData = [[NSData alloc] initWithData:[_sourceText dataUsingEncoding:self.outputEncoding]];
 		
-		_sourceDidChange = NO;
+		self.sourceDidChange = NO;
 		
 		/*
 			This is the only circumstance in which we will ever
@@ -483,7 +483,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 			original document if input-encoding is changed.
 		*/
 		
-		_sourceDidChange = YES;
+		self.sourceDidChange = YES;
 	}
 	
 	[self processTidy];
@@ -539,7 +539,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		[self notifyTidyModelDetectedInputEncodingIssue:suggestedEncoding];
 	}
 
-	_sourceDidChange = NO;
+	self.sourceDidChange = NO;
 
 	[self notifyTidyModelSourceTextRestored];
 	[self notifyTidyModelSourceTextChanged];
@@ -602,7 +602,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (BOOL)isDirty
 {
-	return (_sourceDidChange) || (![_sourceText isEqualToString:self.tidyText]);
+	return (self.sourceDidChange) || (![_sourceText isEqualToString:self.tidyText]);
 }
 
 
