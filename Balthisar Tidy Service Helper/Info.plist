@@ -43,7 +43,7 @@
 			<key>NSMenuItem</key>
 			<dict>
 				<key>default</key>
-				<string>Tidy selection using Balthisar Tidy</string>
+				<string>Tidy selection with Balthisar Tidy</string>
 			</dict>
 			<key>NSMessage</key>
 			<string>tidySelection</string>
@@ -67,7 +67,7 @@
 			<key>NSMenuItem</key>
 			<dict>
 				<key>default</key>
-				<string>Tidy selection using Balthisar Tidy (body only)</string>
+				<string>Tidy selection with Balthisar Tidy (body only)</string>
 			</dict>
 			<key>NSMessage</key>
 			<string>tidySelectionBodyOnly</string>
