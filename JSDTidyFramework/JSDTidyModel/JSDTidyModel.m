@@ -45,6 +45,8 @@
 
 @property (readwrite) NSArray  *errorArray;
 
+@property (readwrite) NSString  *errorText;
+
 @property (readwrite) NSString *tidyText;
 
 @property (readwrite) NSDictionary *tidyOptions;
@@ -70,7 +72,6 @@
 
 
 @synthesize sourceText      = _sourceText;
-@synthesize errorText       = _errorText;
 @synthesize optionsInUse	= _optionsInUse;
 @synthesize userDefaults    = _userDefaults;
 
@@ -629,16 +630,6 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	errorText
-		Read the error text.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (NSString *)errorText
-{
-	return _errorText;
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	keyPathsForValuesAffectingErrorArray
 		All of listed keys affect the error array.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
@@ -1015,11 +1006,11 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 	if (errBuffer->size > 0)
 	{
-		_errorText = [[NSString alloc] initWithUTF8String:(char *)errBuffer->bp];
+		self.errorText = [[NSString alloc] initWithUTF8String:(char *)errBuffer->bp];
 	}
 	else
 	{
-		_errorText = @"";
+		self.errorText = @"";
 	}
 
 
@@ -1175,7 +1166,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 	self.errorArray = [self.errorArray arrayByAddingObject:errorDict];
 
-	return YES; // Always return yes otherwise _errorText will be surpressed by TidyLib.
+	return YES; // Always return yes otherwise self.errorText will be surpressed by TidyLib.
 }
 
 
