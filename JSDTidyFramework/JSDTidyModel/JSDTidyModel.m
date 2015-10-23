@@ -47,7 +47,7 @@
 
 @property (readwrite) NSString *tidyText;
 
-@property (readwrite) NSMutableDictionary *tidyOptions;
+@property (readwrite) NSDictionary *tidyOptions;
 
 
 /* Private properties. */
@@ -78,7 +78,7 @@
 #pragma mark - Standard C Functions
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	tidyCallbackFilter (regular C-function)
+	tidyCallbackFilter2 (regular C-function)
 		In order to support TidyLib's callback function for
 		building an error list on the fly, we need to set up
 		this standard C function to handle the callback.
@@ -110,7 +110,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		_sourceText        = @"";
 		_tidyText          = @"";
 		_errorText         = @"";
-		_tidyOptions       = [[NSMutableDictionary alloc] init];
+		_tidyOptions       = [[NSDictionary alloc] init];
 		_tidyOptionHeaders = [[NSArray alloc] init];
 		_errorArray        = [[NSArray alloc] init];
 
@@ -869,6 +869,8 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	[self willChangeValueForKey:@"tidyOptionsBindable"];
 
 	NSArray *optionsList = [[self class] optionsBuiltInOptionList];
+	
+	NSMutableDictionary *localOptions = [[NSMutableDictionary alloc] init];
 		
 	for (NSString *optionName in optionsList)
 	{
@@ -876,9 +878,11 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		
 		if (!([newOption optionId] == TidyUnknownOption))
 		{
-			[self.tidyOptions setValue:newOption forKey:newOption.name];
+			[localOptions setValue:newOption forKey:newOption.name];
 		}
 	}
+	
+	self.tidyOptions = localOptions;
 
 	[self optionsPopulateTidyOptionHeaders];
 
