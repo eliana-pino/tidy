@@ -353,7 +353,7 @@ _Balthisar Tidy_ and all of its source code (including third party libraries) ha
 license, or similar licenses. You can refer to the licenses in the source code.
 
 Items that are not source code, such as artwork and the name "Balthisar" and "Balthisar Tidy" are not licensed
-and remain the property of James S. Derry. See the Trademark and Artwork Policy, next.
+and remain the property of Jim Derry. See the Trademark and Artwork Policy, next.
 
 
 Trademark and Artwork Policy
