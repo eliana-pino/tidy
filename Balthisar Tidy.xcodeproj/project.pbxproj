@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		D0F4A50A1BDA2C520051327D /* JSDTidyFramework Documentation */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = D0F4A50B1BDA2C520051327D /* Build configuration list for PBXAggregateTarget "JSDTidyFramework Documentation" */;
+			buildPhases = (
+				D0F4A50E1BDA2C970051327D /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "JSDTidyFramework Documentation";
+			productName = Doc;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		D002EFD61A57AC3C00530D2F /* JSDTidyFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D00661081A579BE700F73F85 /* JSDTidyFramework.framework */; };
 		D002EFD91A57AC6500530D2F /* JSDTidyFramework.framework in Add Frameworks */ = {isa = PBXBuildFile; fileRef = D00661081A579BE700F73F85 /* JSDTidyFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -2018,6 +2032,9 @@
 							};
 						};
 					};
+					D0F4A50A1BDA2C520051327D = {
+						CreatedOnToolsVersion = 7.1;
+					};
 				};
 			};
 			buildConfigurationList = D016A921182FD80700712C60 /* Build configuration list for PBXProject "Balthisar Tidy" */;
@@ -2045,6 +2062,7 @@
 				D04BC9671A5AC5CB009AC43A /* Balthisar Tidy Service Helper */,
 				D00661071A579BE700F73F85 /* JSDTidyFramework */,
 				D0A482701BCF9BD000E0646F /* libtidy-balthisar.dylib */,
+				D0F4A50A1BDA2C520051327D /* JSDTidyFramework Documentation */,
 			);
 		};
 /* End PBXProject section */
@@ -2307,6 +2325,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D0F4A50E1BDA2C970051327D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/appledoc \\\n--project-name JSDTidyFramework \\\n--project-company \"Jim Derry and balthisar.com\" \\\n--company-id com.balthisar \\\n--no-repeat-first-par \\\n--logformat xcode \\\n--no-install-docset \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--keep-intermediate-files \\\n--ignore \"Pods\" \\\n--ignore \".md\" \\\n--ignore \".m\" \\\n--ignore \"Applications\" \\\n--output \"$PROJECT_DIR/JSDTidyFramework/AppleDoc\" \\\n--exit-threshold \"2\" \\\n$PROJECT_DIR/JSDTidyFramework\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D00661031A579BE700F73F85 /* Sources */ = {
@@ -3590,6 +3624,20 @@
 			};
 			name = Release;
 		};
+		D0F4A50C1BDA2C520051327D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D0F4A50D1BDA2C520051327D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -3709,6 +3757,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		D0F4A50B1BDA2C520051327D /* Build configuration list for PBXAggregateTarget "JSDTidyFramework Documentation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0F4A50C1BDA2C520051327D /* Debug */,
+				D0F4A50D1BDA2C520051327D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

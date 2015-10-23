@@ -28,6 +28,7 @@ Pods
 # old skool
 .svn
 
+AppleDoc
 Distribution
 
 Documentation/Doxygen
