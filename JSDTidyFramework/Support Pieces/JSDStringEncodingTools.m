@@ -2,7 +2,7 @@
 
 	JSDStringEncodingTools
 
-	Provides auxilliary methods for dealing with different string encodings.
+	Copyright © 2003-2015 by Jim Derry. All rights reserved.
 
  **************************************************************************************************/
 

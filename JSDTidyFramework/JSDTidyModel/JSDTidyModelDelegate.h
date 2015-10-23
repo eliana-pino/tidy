@@ -2,9 +2,7 @@
 
 	JSDTidyModelDelegate.h
 
-	JSDTidyModel is a nice, Mac OS X wrapper for TidyLib. It uses instances of JSDTidyOption
-	to contain TidyOptions. The model works with every built-in	TidyOption, although applications
-	can suppress multiple individual TidyOptions if desired.
+	Copyright © 2003-2015 by Jim Derry. All rights reserved.
 	
  **************************************************************************************************/
 

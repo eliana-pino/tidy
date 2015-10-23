@@ -2,6 +2,8 @@
 
 	JSDTidyCommonHeaders.h
 
+	Copyright © 2003-2015 by Jim Derry. All rights reserved.
+
  **************************************************************************************************/
 
 #ifndef JSDTidyCommonHeaders_h

@@ -11,6 +11,7 @@
 
 @import Cocoa;
 
+/** HELLO */
 
 //! Project version number for JSDTidyFramework.
 FOUNDATION_EXPORT double JSDTidyFrameworkVersionNumber;
