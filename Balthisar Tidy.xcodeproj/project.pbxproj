@@ -218,13 +218,13 @@
 		D0913CAF18B0AC06005DB2E4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D016A935182FD80700712C60 /* main.m */; };
 		D0913CC918B0AC06005DB2E4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D016A929182FD80700712C60 /* Cocoa.framework */; };
 		D09ED1421BD73933002AED94 /* libtidy-balthisar.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = D0A482AF1BCF9BD000E0646F /* libtidy-balthisar.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		D09ED14A1BD757C3002AED94 /* messagesAccess.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D09ED1431BD757C3002AED94 /* messagesAccess.pdf */; settings = {ASSET_TAGS = (); }; };
-		D09ED14B1BD757C3002AED94 /* messagesConfig.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D09ED1441BD757C3002AED94 /* messagesConfig.pdf */; settings = {ASSET_TAGS = (); }; };
-		D09ED14C1BD757C3002AED94 /* messagesDocument.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D09ED1451BD757C3002AED94 /* messagesDocument.pdf */; settings = {ASSET_TAGS = (); }; };
-		D09ED14D1BD757C3002AED94 /* messagesError.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D09ED1461BD757C3002AED94 /* messagesError.pdf */; settings = {ASSET_TAGS = (); }; };
-		D09ED14E1BD757C3002AED94 /* messagesInfo.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D09ED1471BD757C3002AED94 /* messagesInfo.pdf */; settings = {ASSET_TAGS = (); }; };
-		D09ED14F1BD757C3002AED94 /* messagesPanic.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D09ED1481BD757C3002AED94 /* messagesPanic.pdf */; settings = {ASSET_TAGS = (); }; };
-		D09ED1501BD757C3002AED94 /* messagesWarning.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D09ED1491BD757C3002AED94 /* messagesWarning.pdf */; settings = {ASSET_TAGS = (); }; };
+		D09ED14A1BD757C3002AED94 /* messagesAccess.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D09ED1431BD757C3002AED94 /* messagesAccess.pdf */; };
+		D09ED14B1BD757C3002AED94 /* messagesConfig.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D09ED1441BD757C3002AED94 /* messagesConfig.pdf */; };
+		D09ED14C1BD757C3002AED94 /* messagesDocument.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D09ED1451BD757C3002AED94 /* messagesDocument.pdf */; };
+		D09ED14D1BD757C3002AED94 /* messagesError.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D09ED1461BD757C3002AED94 /* messagesError.pdf */; };
+		D09ED14E1BD757C3002AED94 /* messagesInfo.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D09ED1471BD757C3002AED94 /* messagesInfo.pdf */; };
+		D09ED14F1BD757C3002AED94 /* messagesPanic.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D09ED1481BD757C3002AED94 /* messagesPanic.pdf */; };
+		D09ED1501BD757C3002AED94 /* messagesWarning.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D09ED1491BD757C3002AED94 /* messagesWarning.pdf */; };
 		D0A2E1F8197548D20015F667 /* ToolbarAdvanced.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0A2E1F6197548D20015F667 /* ToolbarAdvanced.tiff */; };
 		D0A2E1F9197548D20015F667 /* ToolbarAdvanced.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0A2E1F6197548D20015F667 /* ToolbarAdvanced.tiff */; };
 		D0A2E1FA197548D20015F667 /* ToolbarAdvanced.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0A2E1F6197548D20015F667 /* ToolbarAdvanced.tiff */; };
@@ -363,7 +363,7 @@
 		D0C9C1641BD8661B004C545A /* TidyBody Extension (app).appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D0C9C1451BD85FF4004C545A /* TidyBody Extension (app).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D0C9C1651BD8662E004C545A /* Tidy Extension (pro).appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D01C70E91A5591A500CC5038 /* Tidy Extension (pro).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D0C9C1661BD8662E004C545A /* TidyBody Extension (pro).appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D0C9C1581BD85FFB004C545A /* TidyBody Extension (pro).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		D0C9C1681BD8CB55004C545A /* balthisar_tidy-id_dsa.pub in Resources */ = {isa = PBXBuildFile; fileRef = D0C9C1671BD8CB55004C545A /* balthisar_tidy-id_dsa.pub */; settings = {ASSET_TAGS = (); }; };
+		D0C9C1681BD8CB55004C545A /* balthisar_tidy-id_dsa.pub in Resources */ = {isa = PBXBuildFile; fileRef = D0C9C1671BD8CB55004C545A /* balthisar_tidy-id_dsa.pub */; };
 		D0CA8F6E1953280700BBD54C /* LayoutBottomPaneTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F521953280700BBD54C /* LayoutBottomPaneTemplate.png */; };
 		D0CA8F6F1953280700BBD54C /* LayoutBottomPaneTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F521953280700BBD54C /* LayoutBottomPaneTemplate.png */; };
 		D0CA8F701953280700BBD54C /* LayoutBottomPaneTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F521953280700BBD54C /* LayoutBottomPaneTemplate.png */; };
@@ -397,6 +397,8 @@
 		D0E6AE1B190C9FAC00B49779 /* ShowDescriptionTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE17190C9FAC00B49779 /* ShowDescriptionTemplate.pdf */; };
 		D0E6AE20190CB34500B49779 /* PaneBottomShadow.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE1F190CB34500B49779 /* PaneBottomShadow.tiff */; };
 		D0E6AE21190CB34500B49779 /* PaneBottomShadow.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE1F190CB34500B49779 /* PaneBottomShadow.tiff */; };
+		D0F4A5041BDA0ADC0051327D /* JSDStringEncodingTools.h in Headers */ = {isa = PBXBuildFile; fileRef = D0F4A5021BDA0ADC0051327D /* JSDStringEncodingTools.h */; };
+		D0F4A5051BDA0ADC0051327D /* JSDStringEncodingTools.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F4A5031BDA0ADC0051327D /* JSDStringEncodingTools.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -952,6 +954,8 @@
 		D0E6AE16190C9FAC00B49779 /* HideDescriptionTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = HideDescriptionTemplate.pdf; path = "Balthisar Tidy/Resources/Images for UI/HideDescriptionTemplate.pdf"; sourceTree = SOURCE_ROOT; };
 		D0E6AE17190C9FAC00B49779 /* ShowDescriptionTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = ShowDescriptionTemplate.pdf; path = "Balthisar Tidy/Resources/Images for UI/ShowDescriptionTemplate.pdf"; sourceTree = SOURCE_ROOT; };
 		D0E6AE1F190CB34500B49779 /* PaneBottomShadow.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = PaneBottomShadow.tiff; path = "Balthisar Tidy/Resources/Images for UI/PaneBottomShadow.tiff"; sourceTree = SOURCE_ROOT; };
+		D0F4A5021BDA0ADC0051327D /* JSDStringEncodingTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSDStringEncodingTools.h; path = "Support Pieces/JSDStringEncodingTools.h"; sourceTree = "<group>"; };
+		D0F4A5031BDA0ADC0051327D /* JSDStringEncodingTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSDStringEncodingTools.m; path = "Support Pieces/JSDStringEncodingTools.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1091,6 +1095,7 @@
 			children = (
 				D006610C1A579BE700F73F85 /* JSDTidyFramework.h */,
 				D006612D1A579DE200F73F85 /* JSDTidyModel */,
+				D0F4A5011BDA0AA50051327D /* Support Pieces */,
 				D00661AA1A579E3D00F73F85 /* Resources */,
 				D006610A1A579BE700F73F85 /* Supporting Files */,
 			);
@@ -1632,6 +1637,15 @@
 			path = vendor;
 			sourceTree = "<group>";
 		};
+		D0F4A5011BDA0AA50051327D /* Support Pieces */ = {
+			isa = PBXGroup;
+			children = (
+				D0F4A5021BDA0ADC0051327D /* JSDStringEncodingTools.h */,
+				D0F4A5031BDA0ADC0051327D /* JSDStringEncodingTools.m */,
+			);
+			name = "Support Pieces";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1642,6 +1656,7 @@
 				D006610D1A579BE700F73F85 /* JSDTidyFramework.h in Headers */,
 				D00661341A579DF300F73F85 /* JSDTidyModel.h in Headers */,
 				D00661381A579DF300F73F85 /* JSDTidyOption.h in Headers */,
+				D0F4A5041BDA0ADC0051327D /* JSDStringEncodingTools.h in Headers */,
 				D00661371A579DF300F73F85 /* JSDTidyModelDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2298,6 +2313,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0F4A5051BDA0ADC0051327D /* JSDStringEncodingTools.m in Sources */,
 				D00661351A579DF300F73F85 /* JSDTidyModel.m in Sources */,
 				D00661391A579DF300F73F85 /* JSDTidyOption.m in Sources */,
 			);
