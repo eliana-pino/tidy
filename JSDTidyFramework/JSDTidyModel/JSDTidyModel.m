@@ -71,7 +71,6 @@
 #pragma mark - iVar Synthesis
 
 @synthesize optionsInUse	= _optionsInUse;
-@synthesize userDefaults    = _userDefaults;
 
 
 #pragma mark - Standard C Functions
@@ -1354,11 +1353,6 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	{
 		return [NSUserDefaults standardUserDefaults];
 	}
-}
-
-- (void)setUserDefaults:(NSUserDefaults *)userDefaults
-{
-	_userDefaults = userDefaults;
 }
 
 
