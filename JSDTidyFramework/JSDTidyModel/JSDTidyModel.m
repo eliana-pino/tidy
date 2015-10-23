@@ -124,9 +124,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (instancetype)initWithString:(NSString *)value
 {
-	self = [self init];
-	
-	if (self)
+	if (self = [self init])
 	{
 		self.sourceText = value;
 	}
@@ -140,9 +138,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (instancetype)initWithString:(NSString *)value copyOptionValuesFromModel:(JSDTidyModel *)theModel
 {
-	self = [self init];
-	
-	if (self)
+	if (self = [self init])
 	{
 		[self optionsCopyValuesFromModel:theModel];
 		self.sourceText = value;
@@ -157,9 +153,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (instancetype)initWithData:(NSData *)data
 {
-	self = [self init];
-	
-	if (self)
+	if (self = [self init])
 	{
 		[self setSourceTextWithData:data];
 	}
@@ -173,9 +167,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (instancetype)initWithData:(NSData *)data copyOptionValuesFromModel:(JSDTidyModel *)theModel
 {
-	self = [self init];
-	
-	if (self)
+	if (self = [self init])
 	{
 		[self optionsCopyValuesFromModel:theModel];
 		[self setSourceTextWithData:data];
@@ -190,9 +182,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (instancetype)initWithFile:(NSString *)path
 {
-	self = [self init];
-	
-	if (self)
+	if (self = [self init])
 	{
 		[self setSourceTextWithFile:path];
 	}
@@ -206,9 +196,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (instancetype)initWithFile:(NSString *)path copyOptionValuesFromModel:(JSDTidyModel *)theModel
 {
-	self = [self init];
-	
-	if (self)
+	if (self = [self init])
 	{
 		[self optionsCopyValuesFromModel:theModel];
 		[self setSourceTextWithFile:path];
