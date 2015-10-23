@@ -2,7 +2,7 @@
 
 	JSDStringEncodingTools
 
-	Provides easy-to-use auxilliary methods for dealign with different string encodings.
+	Provides auxilliary methods for dealing with different string encodings.
 	
 
 	The MIT License (MIT)
