@@ -30,6 +30,7 @@
 #import "JSDTidyCommonHeaders.h"
 
 #import "JSDTidyModel.h"
+#import "JSDStringEncodingTools.h"
 
 
 #pragma mark - IMPLEMENTATION
@@ -216,7 +217,7 @@
 	
 	if (self.optionIsEncodingOption)
 	{
-		return [JSDTidyModel allAvailableEncodingLocalizedNames];
+		return [JSDStringEncodingTools encodingNames];
 	}
 	else
 	{
@@ -336,9 +337,9 @@
 {
 	if (self.optionIsEncodingOption)
 	{
-		/* Our value is an NSStringEncoding, but we want to return  the menu index in the current locale. */
+		/* Our value is an NSStringEncoding, but we want to return the menu index in the current locale. */
 
-		return [JSDTidyModel availableEncodingDictionariesByNSStringEncoding][@([self.optionValue integerValue])][@"LocalizedIndex"];
+		return [JSDStringEncodingTools encodingsByEncoding][@([self.optionValue integerValue])][@"LocalizedIndex"];
 	}
 	else if ([_name isEqualToString:@"doctype"])
 	{
@@ -375,7 +376,7 @@
 				We have the alphabetical index, but need to find the NSStringEncoding.
 				The real optionValue will be the NSString encoding.
 			 */
-			NSString *tmp = [JSDTidyModel availableEncodingDictionariesByLocalizedIndex][@([optionValue integerValue])][@"NSStringEncoding"];
+			NSString *tmp = [JSDStringEncodingTools encodingsByIndex][@([optionValue integerValue])][@"NSStringEncoding"];
 			
 			/*
 				For some reason Objective-C wants to convert this to __NSCFNumber.

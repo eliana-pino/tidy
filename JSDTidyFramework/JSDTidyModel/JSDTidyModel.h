@@ -87,29 +87,6 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
 /*
-	These class methods return convenience collections that
-	might be useful in implementing a user interface for the
-	encoding support of JSDTidyModel. The dictionaries all
-	return dictionaries with potentially useful information.
-
-	The simple array is a list of all available encoding names
-	in the localized language sorted in a localized manner.
- 
-	The dictionaries are dictionaries of the same data differing
-	only by the key. They all contain `NSStringEncoding`,
-	`LocalizedIndex`, and `LocalizedName`.
-*/
-
-+ (NSArray *)allAvailableEncodingLocalizedNames;
-
-+ (NSDictionary *)availableEncodingDictionariesByLocalizedName;
-
-+ (NSDictionary *)availableEncodingDictionariesByNSStringEncoding;
-
-+ (NSDictionary *)availableEncodingDictionariesByLocalizedIndex;
-
-
-/*
 	These convenience properties are just shortcuts for reading the
 	current input-encoding and output-encoding for this instance.
  */
