@@ -70,8 +70,6 @@
 
 #pragma mark - iVar Synthesis
 
-
-@synthesize sourceText      = _sourceText;
 @synthesize optionsInUse	= _optionsInUse;
 @synthesize userDefaults    = _userDefaults;
 
@@ -131,7 +129,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	
 	if (self)
 	{
-		[self setSourceText:value];
+		self.sourceText = value;
 	}
 	
 	return self;
@@ -148,7 +146,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	if (self)
 	{
 		[self optionsCopyValuesFromModel:theModel];
-		[self setSourceText:value];
+		self.sourceText = value;
 	}
 	
 	return self;
@@ -425,16 +423,6 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	sourceText
-		Read the source text as an NSString.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (NSString *)sourceText
-{
-	return _sourceText;
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	setSourceText:
 		Set the source text from an NSString. It's up to the client
 		application to ensure that a correct NSString is used; no
@@ -461,7 +449,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 			with text editors.
 		*/
 				
-		self.originalData = [[NSData alloc] initWithData:[_sourceText dataUsingEncoding:self.outputEncoding]];
+		self.originalData = [[NSData alloc] initWithData:[self.sourceText dataUsingEncoding:self.outputEncoding]];
 		
 		self.sourceDidChange = NO;
 		
@@ -601,7 +589,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (BOOL)isDirty
 {
-	return (self.sourceDidChange) || (![_sourceText isEqualToString:self.tidyText]);
+	return (self.sourceDidChange) || (![self.sourceText isEqualToString:self.tidyText]);
 }
 
 
@@ -978,7 +966,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 	/* Parse the `_sourceText` and clean, repair, and diagnose it. */
 
-	tidyParseString(newTidy, [_sourceText UTF8String]);
+	tidyParseString(newTidy, [self.sourceText UTF8String]);
 	tidyCleanAndRepair(newTidy);
 	tidyRunDiagnostics(newTidy);
 
@@ -1385,12 +1373,6 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 #pragma mark - Public API and General Properties
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	tidyOptions
-		Note that accessors are synthesized.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
