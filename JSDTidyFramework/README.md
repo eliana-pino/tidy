@@ -1,7 +1,6 @@
 JSDTidyFramework
 ================
 
-by Jim Derry, <http://www.balthisar.com>
 Copyright © 2003-2015 by Jim Derry. All rights reserved.
 See “License” below for license details.
 
@@ -13,6 +12,7 @@ About
 Objective-C and Cocoa. It consists of a thin wrapper for interacting with `tidylib` at a
 low level and a fat wrapper geared towards GUI development.
 
+[1]: http://www.html-tidy.org
 
 Legal Stuff
 -----------
@@ -20,7 +20,8 @@ Legal Stuff
 The license below applies to the source code for JSDTidyFramework. Other software such as
 _Balthisar Tidy_, _HTML Tidy_, and `tidylib` may have their own licesnes.
 
-### The MIT License (MIT)
+The MIT License (MIT)
+---------------------
 
 Copyright (c) 2003 to 2015 Jim Derry <http://www.balthisar.com>
 

@@ -2338,7 +2338,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/appledoc \\\n--project-name JSDTidyFramework \\\n--project-company \"Jim Derry and balthisar.com\" \\\n--company-id com.balthisar \\\n--no-repeat-first-par \\\n--logformat xcode \\\n--no-install-docset \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--keep-intermediate-files \\\n--ignore \"Pods\" \\\n--ignore \".md\" \\\n--ignore \".m\" \\\n--ignore \"Applications\" \\\n--output \"$PROJECT_DIR/JSDTidyFramework/AppleDoc\" \\\n--exit-threshold \"2\" \\\n$PROJECT_DIR/JSDTidyFramework\n";
+			shellScript = "/usr/local/bin/appledoc \\\n--project-name JSDTidyFramework \\\n--project-company \"Jim Derry and balthisar.com\" \\\n--company-id com.balthisar \\\n--no-repeat-first-par \\\n--logformat xcode \\\n--no-install-docset \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--keep-intermediate-files \\\n--ignore \"Pods\" \\\n--ignore \".md\" \\\n--ignore \".m\" \\\n--ignore \"Applications\" \\\n--output \"$PROJECT_DIR/JSDTidyFramework/AppleDoc\" \\\n--exit-threshold \"2\" \\\n--index-desc $PROJECT_DIR/JSDTidyFramework/README.md \\\n$PROJECT_DIR/JSDTidyFramework\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -3765,6 +3765,7 @@
 				D0F4A50D1BDA2C520051327D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

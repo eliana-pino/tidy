@@ -22,10 +22,8 @@
 
 
 #pragma mark - JSDLocalizedString
-/*=======================================================*
-  Simple NSLocalizedString substitute.
- *=======================================================*/
 
+/* Simple NSLocalizedString substitute. */
 #define JSDLocalizedString(key, val) [[NSBundle bundleForClass:[self class]] localizedStringForKey:(key) value:(val) table:nil]
 
 
