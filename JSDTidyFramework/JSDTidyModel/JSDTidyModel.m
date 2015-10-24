@@ -121,7 +121,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	if (self = [self init])
 	{
 		[self optionsCopyValuesFromModel:theModel];
-		self.sourceText = value;
+		self.sourceText = sourceText;
 	}
 	
 	return self;
@@ -1077,9 +1077,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		Accomplish this by parsing through instances of 
 		JSDTidyOption and getting each of the built in default
 		values and adding them to the passed-in dictionary.
-		defined in TidyLib to ascertain its	value and add it to the
-		passed-in dictionary.
- 
+
 		We DON'T register the defaults because the implementing
 		application may have other defaults to add to the dictionary
 		and register. This is just a dictionary.
@@ -1184,24 +1182,6 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	userDefaults
-		Points to an alternate set of user defaults in case the
-		application does not want to use `standardUserDefaults`.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (NSUserDefaults *)userDefaults
-{
-	if (_userDefaults)
-	{
-		return _userDefaults;
-	}
-	else
-	{
-		return [NSUserDefaults standardUserDefaults];
-	}
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	accessInstanceVariablesDirectly
 		Ensure that we keep Cocoa from direct access to our ivars.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
@@ -1226,23 +1206,17 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	tidyOptionsConfigFile
-		Returns a string representation of the current configuration
-		suitable for use with command-line Tidy. We will only output
-		the values of non-supressed options, and we will set any
-		encoding options to UTF8 (because we can't match between
-		TidyLib's options and Mac OS X' options).
- 
-		We are NOT going to use TidyLib's approach of only exporting
-		non-default values, because we can't count on other versions
-		of Tidy using the same defaults. It's a good practice to set
-		all values.
-  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSString*)tidyOptionsConfigFile:(NSString*)baseFileName
 {
 	NSMutableString *result = [[NSMutableString alloc] init];
 
+    if (!baseFileName)
+    {
+        baseFileName = @"example.cfg";
+    }
 
-	NSString *tempString = [NSString stringWithFormat:@"# %@\n", JSDLocalizedString(@"export-byline", nil)];
+	NSString *tempString = [NSString stringWithFormat:@"%@\n", JSDLocalizedString(@"export-byline", nil)];
 
 	[result appendString:[NSString stringWithFormat:tempString, baseFileName]];
 

@@ -236,60 +236,154 @@
 #pragma mark - Options Overall Management
 /** @name Options Overall Management */
 
+/**
+ *  This method dumps all `tidylib` option descriptions to the console. This is probably mostly
+ *  useful to developers who want to develop localizations. 
+ */
++ (void)      optionsBuiltInDumpDocsToConsole;
 
-+ (void)      optionsBuiltInDumpDocsToConsole;     // Dumps all TidyLib descriptions to error console.
+/**
+ *  Returns the number of options built into `tidylib`.
+ *  @returns Returns the number of options.
+ */
++ (int)       optionsBuiltInOptionCount;
 
-+ (int)       optionsBuiltInOptionCount;           // Returns the number of options built into Tidy.
+/**
+ *  Returns an NSArray of NSString for all options built into Tidy.
+ *  @returns Returns an NSArray of NSString for all options built into Tidy.
+ */
++ (NSArray *) optionsBuiltInOptionList;
 
-+ (NSArray *) optionsBuiltInOptionList;            // Returns an NSArray of NSString for all options built into Tidy.
+/**
+ *  Sets this instance's tidyOptions from another instance.
+ *  @param theModel The instance of **JSDTidyModel** from which to copy to tidyOptions.
+ */
+- (void)      optionsCopyValuesFromModel:(JSDTidyModel *)theModel;
 
-- (void)      optionsCopyValuesFromModel:(JSDTidyModel *)theModel;            // Sets options based on those in theModel.
+/**
+ *  Sets this instance's tidyOptions from an instance of **NSDictionary**. Each key must be
+ *  an **NSString** with the name of a tidy option, e.g., `input-encoding`.
+ *  @param theDictionary Contains they key-value pairs representing the tidy options to set.
+ */
+- (void)      optionsCopyValuesFromDictionary:(NSDictionary *)theDictionary;
 
-- (void)      optionsCopyValuesFromDictionary:(NSDictionary *)theDictionary;  // Sets options from values in a dictionary.
+/**
+ *  Resets all of the options in tidyOptions back to `tidylib`'s built-in defaults.
+ */
+- (void)      optionsResetAllToBuiltInDefaults;
 
-- (void)      optionsResetAllToBuiltInDefaults;							      // Resets all options to factory default.
 
-- (NSString *)tidyOptionsConfigFile:(NSString*)baseFileName;                  // Returns a string of current config.
+/**
+ *  Returns a string representation of the current configuration suitable for use with
+ *  command-line Tidy. It will only output the values of non-supressed options, and it
+ *  will set any encoding options to UTF8 (because we can't match between `tidylib`'s
+ *  options and Mac OS X' options yet).
+ *
+ *  It will _not_ use `tidylib`'s approach of only exporting non-default values 
+ *  because we can't count on other versions of Tidy using the same defaults.
+ *
+ *  The configuration will be pre- and append instructions taken from `Localizable.strings`,
+ *  and these instructions include using the name of the eventual config file which you
+ *  can specify with `baseFileName` parameter.
+ *
+ *  @param baseFileName Indicates the name of the file to use in the example instructions
+ *  appended to the text. If not specific the non-localized value "example.cfg" will be used.
+ *
+ *  @returns Returns a string that can be saved to a file that is suitable for use as
+ *  a command line Tidy configuration file.
+ */
+- (NSString *)tidyOptionsConfigFile:(NSString*)baseFileName;
 
-@property (nonatomic, strong) NSArray* optionsInUse;                          // Default is all options; otherwise is list of options.
+/**
+ *  Indicates all of the Tidy options that should be considered "in-use" by **JSDTidyModel**.
+ *  Unless set the default is _all_ `libtidy` options will be used and available in methods
+ *  that use Tidy options. In GUI applications it may be preferable to hide from the user
+ *  redundant Tidy options (there are a few), or to hide options that you don't want the
+ *  user to have control over.
+ *  
+ *  Note that `tidylib` will still use all of its own built-in option values if they have
+ *  not been set with **JSDTidyModel**.
+ */
+@property (nonatomic, strong) NSArray* optionsInUse;
 
 
 #pragma mark - Diagnostics and Repair
 /** @name Diagnostics and Repair */
 
 
-@property (nonatomic, assign, readonly) int tidyDetectedHtmlVersion;   // Returns 0, 2, 3, 4, or 5.
+/**
+ *  Echoes 'tidylib`'s version of the same, indicating the HTML version number.
+ *  @returns Returns 0, 2, 3, 4, or 5 to reflect the HTML version.
+ */
+@property (nonatomic, assign, readonly) int tidyDetectedHtmlVersion;
 
-@property (nonatomic, assign, readonly) bool tidyDetectedXhtml;        // Indicates whether the document is XHTML.
+/**
+ *  Echoes 'tidylib`'s version of the same, indicating whether the document
+ *  is XHTML.
+ */
+@property (nonatomic, assign, readonly) bool tidyDetectedXhtml;
 
-@property (nonatomic, assign, readonly) bool tidyDetectedGenericXml;   // Indicates if the document is generic XML.
+/**
+ *  Echoes 'tidylib`'s version of the same, indicating whether the document
+ *  is generic XML.
+ */
+@property (nonatomic, assign, readonly) bool tidyDetectedGenericXml;
 
-@property (nonatomic, assign, readonly) int tidyStatus;                // Returns 0 if there are no errors, 2 for doc errors, 1 for other.
+/**
+ *  Echoes 'tidylib`'s version of the same, indicating the document
+ *  error status.
+ *  @returns Returns 0 if there are no errors, 2 for doc errors, 1 for other.
+ */
+@property (nonatomic, assign, readonly) int tidyStatus;
 
-@property (nonatomic, assign, readonly) uint tidyErrorCount;           // Returns number of document errors.
+/**
+ *  Echoes 'tidylib`'s version of the same, indicating the number of document errors.
+ */
+@property (nonatomic, assign, readonly) uint tidyErrorCount;
 
-@property (nonatomic, assign, readonly) uint tidyWarningCount;         // Returns number of document warnings.
+/**
+ *  Echoes 'tidylib`'s version of the same, indicating the number of document warnings.
+ */
+@property (nonatomic, assign, readonly) uint tidyWarningCount;
 
-@property (nonatomic, assign, readonly) uint tidyAccessWarningCount;   // Returns number of document accessibility warnings.
+/**
+ *  Echoes 'tidylib`'s version of the same, returning the number of accessibility warnings.
+ */
+@property (nonatomic, assign, readonly) uint tidyAccessWarningCount;
 
 
 #pragma mark - Miscelleneous
 /** @name Miscelleneous */
 
 
-@property (nonatomic, assign, readonly) NSString *tidyReleaseDate;     // Returns the TidyLib release date.
+/**
+ *  Returns the `tidylib` release date.
+ */
+@property (nonatomic, assign, readonly) NSString *tidyReleaseDate;
 
-@property (nonatomic, assign, readonly) NSString *tidyLibraryVersion;  // Returns the TidyLib semantic version.
+/**
+ *  Returns the `tidylib` semantic release version.
+ */
+@property (nonatomic, assign, readonly) NSString *tidyLibraryVersion;
 
 
 #pragma mark - Configuration List Support
 /** @name Configuration List Support */
 
 
-/*
-	Loads a list of named potential tidy options from a file, compares
-	them to what TidyLib supports, and returns the array containing
-	only the names of the supported options.
+/**
+ *  Loads a list of named potential tidy options from a resourcefile,
+ *  compares them to what `tidylib` supports, and returns the array 
+ *  containing only the names of the supported options. One might then
+ *  feed this into optionsInUse.
+ *
+ *  @param fileName The name of the resource file to load. Because
+ *   the file is only loaded from the application bundle and so no
+ *   path is required.
+ *  @param fileType The file extension of the resource file to load.
+ *
+ *  The resource file is simply a text file with tidy option names
+ *  on each line.
  */
 + (NSArray *)loadOptionsInUseListFromResource:(NSString *)fileName
 									   ofType:(NSString *)fileType;
@@ -299,33 +393,73 @@
 /** @name Mac OS X Prefs Support */
 
 
-/* Puts *all* TidyLib defaults values into a dictionary. */
+/**
+ *  Adds TidyLib's default option values to the passed in **NSMutableDictionary**
+ *  for ALL `tidylib` options. This is accomplished by parsing through
+ *  an instance of `tidylib` and retrieving each of the built in default
+ *  values and adding them to the passed-in dictionary.
+ *
+ *  @param defaultDictionary The dictionary to add the `libtidy` defaults to.
+ */
 + (void)addDefaultsToDictionary:(NSMutableDictionary *)defaultDictionary;
 
-/* Puts only the TidyLib defaults specified in a resource file into a dictionary. */
+/**
+ *  Similar to addDefaultsToDictionary, but only adds defaults that are
+ *  specified in a resource file.
+ *
+ *  @param defaultDictionary The dictionary to add the `libtidy` defaults to.
+ *  @param fileName The name of the resource file to load. Because
+ *   the file is only loaded from the application bundle and so no
+ *   path is required.
+ *  @param fileType The file extension of the resource file to load.
+ *
+ *  The resource file is simply a text file with tidy option names
+ *  on each line.
+ */
 + (void)addDefaultsToDictionary:(NSMutableDictionary *)defaultDictionary
                    fromResource:(NSString *)fileName
                          ofType:(NSString *)fileType;
 
-/* Puts only the TidyLib defaults specified in an array of strings into a dictionary. */
+/**
+ *  Similar to addDefaultsToDictionary, but only adds defaults that are
+ *  specified in an array.
+ *
+ *  @param defaultDictionary The dictionary to add the `libtidy` defaults to.
+ *  @param stringArray The array of `tidylib` option names.
+ */
 + (void)addDefaultsToDictionary:(NSMutableDictionary *)defaultDictionary
                       fromArray:(NSArray *)stringArray;
 
-/* Places the current option values into the specified user defaults instance. */
+/**
+ *  Places the current option values into the specified user defaults instance.
+ *
+ *  @param defaults The instance of **NSUserDefaults** on which to write the
+ *  current Tidy option values.
+ */
 - (void)writeOptionValuesWithDefaults:(NSUserDefaults *)defaults;
 
-/* Takes option values from the specified user defaults instance. */
+/**
+ *  Sets the Tidy option values for this instance from the specified user
+ *  defaults instance.
+ *
+ *  @param defaults The instance of **NSUserDefaults** on which to write the
+ *  current Tidy option values.
+ */
 - (void)takeOptionValuesFromDefaults:(NSUserDefaults *)defaults;
-
-@property (nonatomic, strong) NSUserDefaults *userDefaults;   // The NSUserDefaults instance to get defaults from.
 
 
 #pragma mark - Tidy Options
 /** @name Tidy Options */
 
 
+/**
+ *  @todo HAVE TO REFACTOR THIS.
+ */
 @property (nonatomic, strong, readonly) NSDictionary *tidyOptions;
 
+/**
+ *  @todo HAVE TO REFACTOR THIS.
+ */
 @property (nonatomic, strong, readonly) NSArray *tidyOptionsBindable;
 
 @end
