@@ -2,60 +2,93 @@
  
 	JSDTidyOption
 
-	Provides most of the options-related services to JSDTidyModel.
- 
+	Copyright © 2003-2015 by Jim Derry. All rights reserved.
+
  **************************************************************************************************/
 
 @import Cocoa;
 
-#import "config.h"   // from vendor/tidylib/src/
-
+#import "config.h"   // from HTMLTidy
 
 @class JSDTidyModel;
 
-/*
-	Instances of JSDTidyOption belong to a sharedTidyModel, but are largely self aware and
-	handle most aspects of their operation on their own. They also provide good exposure
-	to implementing user interfaces.
- 
-	The principle purpose is to hold and store options, and return information about options.
-	There is some interactivity among options (e.g., where we override character encodings),
-	but this is always mediated back through to the `sharedTidyModel`. Setting an instance of
-	an option does not cause tidying per se; this is all managed by the JSDTidyModel, which
-	receives notifications that an item has changed.
+
+/**
+ *  **JSDTidyOption** encapsulates a lot of GUI-oriented functionality around `tidylib`
+ *  options.
+ *
+ *  Instances of **JSDTidyOption** belong to a sharedTidyModel, but are largely self aware and
+ *  handle most aspects of their operation on their own. They also provide good exposure
+ *  to implementing user interfaces.
+ *
+ *  The principle purpose is to hold and store options, and return information about options.
+ *  There is some interactivity among options (e.g., where we override character encodings),
+ *  but this is always mediated back through to the sharedTidyModel. Setting an instance of
+ *  an option does not cause tidying per se; this is all managed by the JSDTidyModel, which
+ *  receives notifications that an item has changed.
  */
 @interface JSDTidyOption : NSObject
 
 
-#pragma mark - Intializers
+#pragma mark - Initializers
+/** @name Initializers */
 
+
+/**
+ *  Initializes an instance of **JSDTidyOption**, assigning it to an owning instance of
+ *  **JSDTidyModel**.
+ *
+ *  @param sharedTidyModel The **JSDTidyModel** that this option instance belongs to.
+ */
 - (instancetype)initSharingModel:(JSDTidyModel *)sharedTidyModel;
 
-- (instancetype)initWithName:(NSString *)name sharingModel:(JSDTidyModel *)sharedTidyModel;
+/**
+ *  Initializes an instance of **JSDTidyOption**, assigning it to an owning instance of
+ *  **JSDTidyModel**, and assigning the option name.
+ *
+ *  @param name The name of the Tidy option that this instance represents, e.g., `wrap`.
+ *  @param sharedTidyModel The **JSDTidyModel** that this option instance belongs to.
+ */
+- (instancetype)initWithName:(NSString *)name
+                sharingModel:(JSDTidyModel *)sharedTidyModel;
 
-- (instancetype)initWithName:(NSString *)name optionValue:(NSString *)value sharingModel:(JSDTidyModel *)sharedTidyModel;
+/**
+ *  Initializes an instance of **JSDTidyOption**, assigning it to an owning instance of
+ *  **JSDTidyModel**, and assigning the option name and initial value.
+ *
+ *  @param name The name of the Tidy option that this instance represents, e.g., `wrap`.
+ *  @param value The Tidy option value to set.
+ *  @param sharedTidyModel The **JSDTidyModel** that this option instance belongs to.
+ */
+- (instancetype)initWithName:(NSString *)name
+                 optionValue:(NSString *)value
+                sharingModel:(JSDTidyModel *)sharedTidyModel;
 
 
-#pragma mark - Main properties
-
-@property (readonly)         NSString *name;                            // Built-in option name.
-
-@property                    NSString *optionValue;                     // Current value of this option.
-
-@property (readonly)         NSString *defaultOptionValue;              // Default value of this option (from user options).
-
-@property (readonly)         NSArray *possibleOptionValues;             // Array of string values for possible option values.
-
-@property (readonly)         BOOL optionIsReadOnly;                     // Indicates whether or not option is read-only.
-
-@property (readonly)         NSString *localizedHumanReadableName;      // Localized, humanized name of the option.
-
-@property (readonly)         NSAttributedString *localizedHumanReadableDescription; // Localized description of the option.
-
-@property (readonly)         NSString *localizedHumanReadableCategory;  // Localized name of the option category.
+#pragma mark - Main Properties
+/** @name Main Properties */
 
 
-#pragma mark - Properties useful for implementing user interfaces
+@property (nonatomic, strong, readonly)         NSString *name;                            // Built-in option name.
+
+@property (nonatomic, strong)                   NSString *optionValue;                     // Current value of this option.
+
+@property (nonatomic, assign, readonly)         NSString *defaultOptionValue;              // Default value of this option (from user options).
+
+@property (nonatomic, assign, readonly)         NSArray *possibleOptionValues;             // Array of string values for possible option values.
+
+@property (nonatomic, assign, readonly)         BOOL optionIsReadOnly;                     // Indicates whether or not option is read-only.
+
+@property (nonatomic, strong, readonly)         NSString *localizedHumanReadableName;      // Localized, humanized name of the option.
+
+@property (nonatomic, strong, readonly)         NSAttributedString *localizedHumanReadableDescription; // Localized description of the option.
+
+@property (nonatomic, strong, readonly)         NSString *localizedHumanReadableCategory;  // Localized name of the option category.
+
+
+#pragma mark - Properties Useful for Implementing User Interfaces
+/** @name Properties Useful for Implementing User Interfaces */
+
 
 @property                    NSString *optionUIValue;                   // Current value of this option used by UI's.
 
@@ -66,7 +99,9 @@
 @property                    NSUserDefaults *userDefaults;              // The NSUserDefaults instance to get defaults from.
 
 
-#pragma mark - Properties maintained for original TidyLib compatability (may be used internally)
+#pragma mark - Properties Maintained for Original TidyLib compatability (may be used internally)
+/** @name Properties Maintained for Original TidyLib compatability (may be used internally) */
+
 
 @property (readonly)         TidyOptionId optionId;                     // Tidy's internal TidyOptionId for this option.
 
@@ -79,7 +114,9 @@
 @property (readonly)         TidyConfigCategory builtInCategory;        // Tidy's built-in category for this option.
 
 
-#pragma mark - Properties used mostly internally or for implementing user interfaces
+#pragma mark - Properties Used Mostly Internally or for Implementing User Interfaces
+/** @name Properties Used Mostly Internally or for Implementing User Interfaces */
+
 
 @property (readonly, assign) JSDTidyModel *sharedTidyModel;             // Model to which this option belongs.
 
@@ -93,6 +130,8 @@
 
 
 #pragma mark - Other Public Methods
+/** @name Other Public Methods */
+
 
 - (BOOL)applyOptionToTidyDoc:(TidyDoc)destinationTidyDoc;               // Applies this option to a TidyDoc instance.
 
