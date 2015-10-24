@@ -69,79 +69,160 @@
 /** @name Main Properties */
 
 
-@property (nonatomic, strong, readonly)         NSString *name;                            // Built-in option name.
+/**
+ *  Built-in option name.
+ */
+@property (nonatomic, strong, readonly)         NSString *name;
 
-@property (nonatomic, strong)                   NSString *optionValue;                     // Current value of this option.
+/**
+ *  Current value of this option.
+ */
+@property (nonatomic, strong)                   NSString *optionValue;
 
-@property (nonatomic, assign, readonly)         NSString *defaultOptionValue;              // Default value of this option (from user options).
+/**
+ *  Default value of this option (from user options).
+ */
+@property (nonatomic, assign, readonly)         NSString *defaultOptionValue;
 
-@property (nonatomic, assign, readonly)         NSArray *possibleOptionValues;             // Array of string values for possible option values.
+/**
+ *  Array of string values for possible option values.
+ */
+@property (nonatomic, assign, readonly)         NSArray *possibleOptionValues;
 
-@property (nonatomic, assign, readonly)         BOOL optionIsReadOnly;                     // Indicates whether or not option is read-only.
+/**
+ *  Indicates whether or not option is read-only.
+ */
+@property (nonatomic, assign, readonly)         BOOL optionIsReadOnly;
 
-@property (nonatomic, strong, readonly)         NSString *localizedHumanReadableName;      // Localized, humanized name of the option.
+/**
+ *  Localized, humanized name of the option.
+ */
+@property (nonatomic, strong, readonly)         NSString *localizedHumanReadableName;
 
-@property (nonatomic, strong, readonly)         NSAttributedString *localizedHumanReadableDescription; // Localized description of the option.
+/**
+ *  Localized description of the option.
+ */
+@property (nonatomic, strong, readonly)         NSAttributedString *localizedHumanReadableDescription;
 
-@property (nonatomic, strong, readonly)         NSString *localizedHumanReadableCategory;  // Localized name of the option category.
+/**
+ *  Localized name of the option category.
+ */
+@property (nonatomic, strong, readonly)         NSString *localizedHumanReadableCategory;
 
 
 #pragma mark - Properties Useful for Implementing User Interfaces
 /** @name Properties Useful for Implementing User Interfaces */
 
 
-@property                    NSString *optionUIValue;                   // Current value of this option used by UI's.
+/**
+ *  Current value of this option used by UI's.
+ */
+@property                    NSString *optionUIValue;
 
-@property (readonly)         NSString *optionUIType;                    // Suggested UI type for setting options.
+/**
+ *  Suggested UI type for setting options.
+ */
+@property (readonly)         NSString *optionUIType;
 
-@property (readonly)         NSString *optionConfigString;              // Option suitable for use in a config file.
+/**
+ *  Option suitable for use in a config file.
+ */
+@property (readonly)         NSString *optionConfigString;
 
-@property                    NSUserDefaults *userDefaults;              // The NSUserDefaults instance to get defaults from.
+/**
+ *  The NSUserDefaults instance to get defaults from.
+ */
+@property                    NSUserDefaults *userDefaults;
 
 
 #pragma mark - Properties Maintained for Original TidyLib compatability (may be used internally)
 /** @name Properties Maintained for Original TidyLib compatability (may be used internally) */
 
 
-@property (readonly)         TidyOptionId optionId;                     // Tidy's internal TidyOptionId for this option.
+/**
+ *  Tidy's internal TidyOptionId for this option.
+ */
+@property (readonly)         TidyOptionId optionId;
 
-@property (readonly)         TidyOptionType optionType;                 // Actual type that TidyLib expects.
+/**
+ *  Actual type that TidyLib expects.
+ */
+@property (readonly)         TidyOptionType optionType;
 
-@property (readonly)         NSString *builtInDefaultValue;             // Tidy's built-in default value for this option.
+/**
+ *  Tidy's built-in default value for this option.
+ */
+@property (readonly)         NSString *builtInDefaultValue;
 
-@property (readonly)         NSString *builtInDescription;              // Tidy's built-in description for this option.
+/**
+ *  Tidy's built-in description for this option.
+ */
+@property (readonly)         NSString *builtInDescription;
 
-@property (readonly)         TidyConfigCategory builtInCategory;        // Tidy's built-in category for this option.
+/**
+ *  Tidy's built-in category for this option.
+ */
+@property (readonly)         TidyConfigCategory builtInCategory;
 
 
 #pragma mark - Properties Used Mostly Internally or for Implementing User Interfaces
 /** @name Properties Used Mostly Internally or for Implementing User Interfaces */
 
 
-@property (readonly, assign) JSDTidyModel *sharedTidyModel;             // Model to which this option belongs.
+/**
+ *  Model to which this option belongs.
+ */
+@property (readonly, assign) JSDTidyModel *sharedTidyModel;
 
-@property (readonly, assign) BOOL optionCanAcceptNULLSTR;               // Indicates whether or not this option can accept NULLSTR.
+/**
+ *  Indicates whether or not this option can accept NULLSTR.
+ */
+@property (readonly, assign) BOOL optionCanAcceptNULLSTR;
 
-@property (readonly, assign) BOOL optionIsEncodingOption;               // Indicates whether or not this option is an encoding option.
+/**
+ *  Indicates whether or not this option is an encoding option.
+ */
+@property (readonly, assign) BOOL optionIsEncodingOption;
 
-@property (assign)           BOOL optionIsHeader;                       // Fake option is only a header row for UI use.
+/**
+ *  Fake option is only a header row for UI use.
+ */
+@property (assign)           BOOL optionIsHeader;
 
-@property (assign)           BOOL optionIsSuppressed;                   // Indicates whether or not this option is unused by JSDTidyModel.
+/**
+ *  Indicates whether or not this option is unused by JSDTidyModel.
+ */
+@property (assign)           BOOL optionIsSuppressed;
 
 
 #pragma mark - Other Public Methods
 /** @name Other Public Methods */
 
 
-- (BOOL)applyOptionToTidyDoc:(TidyDoc)destinationTidyDoc;               // Applies this option to a TidyDoc instance.
+/**
+ *  Applies this option to a TidyDoc instance.
+ */
+- (BOOL)applyOptionToTidyDoc:(TidyDoc)destinationTidyDoc;
 
-- (void)optionUIValueIncrement;                                         // Possibly useful for UI's, increments to next possible option value.
+/**
+ *  Possibly useful for UI's, increments to next possible option value.
+ */
+- (void)optionUIValueIncrement;
 
-- (void)optionUIValueDecrement;                                         // Possibly useful for UI's, decrements to next possible option value.
+/**
+ *  Possibly useful for UI's, decrements to next possible option value.
+ */
+- (void)optionUIValueDecrement;
 
--(NSComparisonResult)tidyGroupedNameCompare:(JSDTidyOption *)tidyOption;	    // Comparitor for localized sorting and grouping of tidyOptions.
+/**
+ *  Comparitor for localized sorting and grouping of tidyOptions.
+ */
+-(NSComparisonResult)tidyGroupedNameCompare:(JSDTidyOption *)tidyOption;
 
--(NSComparisonResult)tidyGroupedHumanNameCompare:(JSDTidyOption *)tidyOption;   // Comparitor for localized sorting and grouping of tidyOptions.
+/**
+ *  Comparitor for localized sorting and grouping of tidyOptions.
+ */
+-(NSComparisonResult)tidyGroupedHumanNameCompare:(JSDTidyOption *)tidyOption;
 
 
 @end
