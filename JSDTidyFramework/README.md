@@ -9,8 +9,7 @@ About
 -----
 
 **JSDTidyFramework** provides a wrapper for the [HTML Tidy project][1]’s `tidylib` for
-Objective-C and Cocoa. It consists of a thin wrapper for interacting with `tidylib` at a
-low level and a fat wrapper geared towards GUI development.
+Objective-C and Cocoa. It consists of a fat wrapper geared towards GUI development.
 
 [1]: http://www.html-tidy.org
 

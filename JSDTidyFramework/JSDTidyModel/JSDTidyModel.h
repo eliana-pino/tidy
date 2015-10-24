@@ -2,9 +2,7 @@
 
 	JSDTidyModel
 
-	JSDTidyModel is a nice, Mac OS X wrapper for TidyLib. It uses instances of JSDTidyOption
-	to contain TidyOptions. The model works with every built-in	TidyOption, although applications
-	can suppress multiple individual TidyOptions if desired.
+	Copyright © 2003-2015 by Jim Derry. All rights reserved.
 
  **************************************************************************************************/
 
@@ -18,120 +16,204 @@
 #pragma mark - class JSDTidyModel
 
 
+/**
+ *  **JSDTidyFramework** provides a wrapper for the [HTML Tidy project][1]’s `tidylib` for
+ *  Objective-C and Cocoa. It consists of a fat wrapper geared towards GUI development.
+ *
+ *  In general once an instance of **JSDTidyModel** is instantiated it's easy to use.
+ *
+ *  - Set sourceText with untidy data.
+ *  - Use tidyOptions to set the tidy options that you want.
+ *  - Retrieve the Tidy'd text from tidyText.
+ *
+ *  In addition there is wide support for GUI applications both in **JSDTidyModel** and
+ *  **JSDTidyOption**.
+ *
+ *  [1]: http://www.html-tidy.org
+ *
+ *  See also JSDTidyModelDelegate for delegate methods and **NSNotification**s.
+ */
 @interface JSDTidyModel : NSObject
 
 
 #pragma mark - Initialization and Deallocation
+/** @name Initialization and Deallocation */
 
 
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	INITIALIZATION and DEALLOCATION
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+/**
+ *  Initializes an instance of **JSDTidyModel** with no default data. This method is the designated intializer
+ */
+- (instancetype)init NS_DESIGNATED_INITIALIZER;
 
-- (instancetype)init;
+/**
+ *  Initializes an instance of **JSDTidyModel** with initial source text.
+ *  **JSDTidyModel** assumes that this string is already a satisfactory string with no
+ *  encoding issues, and no efforts to decode the string are made.
+ *  @param sourceText Initial, untidy'd source text.
+ */
+- (instancetype)initWithString:(NSString *)sourceText;
 
-/*
-	The convenience initializers assume that strings and data
-	are already processed to NSString standard. File-based intializers
-	will try to convert to NSString standard using the default tidy
-	option `input-encoding`.
-	
-	Given original text in these initalizers, the working text will
-	be generated immediately.
-*/
+/**
+ *  Initializes an instance of **JSDTidyModel** with initial source text, and also copies
+ *  option values from another specified instance of **JSDTidyModel**.
+ *  **JSDTidyModel** assumes that this string is already a satisfactory string with no
+ *  encoding issues, and no efforts to decode the string are made.
+ *  @param sourceText Initial, untidy'd source text.
+ *  @param theModel The **JSDTidyModel** instance from which to copy option values.
+ */
+- (instancetype)initWithString:(NSString *)sourceText copyOptionValuesFromModel:(JSDTidyModel *)theModel;
 
-- (instancetype)initWithString:(NSString *)value;
+/**
+ *  Initializes an instance of **JSDTidyModel** with initial source text in an **NSData** instance.
+ *  **JSDTidyModel** will use its `input-encoding` option value to decode this file, and
+ *  will sanity check the decoded text.
+ *
+ *  If **JSDTidyModel** thinks that the specified `input-encoding` is not correct, then
+ *  `tidyNotifyPossibleInputEncodingProblem` notification will be sent, and the delegate
+ *  [JSDTidyModelDelegate tidyModelDetectedInputEncodingIssue:currentEncoding:suggestedEncoding:] will be called.
+ *  @param data An NSData instance containing a string of the initial, untidy'd source text.
+ */
+- (instancetype)initWithData:(NSData *)data;
 
-- (instancetype)initWithString:(NSString *)value copyOptionValuesFromModel:(JSDTidyModel *)theModel;
-
-- (instancetype)initWithData:(NSData *)data;														
-
+/**
+ *  Initializes an instance of **JSDTidyModel** with initial source text in an **NSData** instance,
+ *  and also copies option values from another specified instance of **JSDTidyModel**.
+ *  **JSDTidyModel** will use its `input-encoding` option value to decode this file, and
+ *  will sanity check the decoded text.
+ *
+ *  If **JSDTidyModel** thinks that the specified `input-encoding` is not correct, then
+ *  `tidyNotifyPossibleInputEncodingProblem` notification will be sent, and the delegate
+ *  [JSDTidyModelDelegate tidyModelDetectedInputEncodingIssue:currentEncoding:suggestedEncoding:] will be called.
+ *  @param data An **NSData** instance containing a string of the initial, untidy'd source text.
+ *  @param theModel The **JSDTidyModel** instance from which to copy option values.
+ */
 - (instancetype)initWithData:(NSData *)data copyOptionValuesFromModel:(JSDTidyModel *)theModel;
 
-- (instancetype)initWithFile:(NSString *)path;														
+/**
+ *  Initializes an instance of **JSDTidyModel** with initial source text from a file.
+ *  **JSDTidyModel** will use its `input-encoding` option value to decode this file, and
+ *  will sanity check the decoded text.
+ *
+ *  If **JSDTidyModel** thinks that the specified `input-encoding` is not correct, then
+ *  `tidyNotifyPossibleInputEncodingProblem` notification will be sent, and the delegate
+ *  [JSDTidyModelDelegate tidyModelDetectedInputEncodingIssue:currentEncoding:suggestedEncoding:] will be called.
+ *  @param path The complete path to the file containing the initial, untidy'd source text.
+ */
+- (instancetype)initWithFile:(NSString *)path;
 
+/**
+ *  Initializes an instance of **JSDTidyModel** with initial source text from a file.
+ *  **JSDTidyModel** will use its `input-encoding` option value to decode this file, and
+ *  will sanity check the decoded text.
+ *
+ *  If **JSDTidyModel** thinks that the specified `input-encoding` is not correct, then
+ *  `tidyNotifyPossibleInputEncodingProblem` notification will be sent, and the delegate
+ *  [JSDTidyModelDelegate tidyModelDetectedInputEncodingIssue:currentEncoding:suggestedEncoding:] will be called.
+ *  @param path The complete path to the file containing the initial, untidy'd source text.
+ *  @param theModel The **JSDTidyModel** instance from which to copy option values.
+ */
 - (instancetype)initWithFile:(NSString *)path copyOptionValuesFromModel:(JSDTidyModel *)theModel;
 
 
 #pragma mark - Delegate Support
+/** @name Delegate Support */
 
-
+/**
+ *  Assigns the delegate for this instance of **JSDTidyModel**. Refer to JSDTidyModelDelegate to
+ *  see what delegate methods (and **NSNotification**s) are used.
+ */
 @property (nonatomic, weak) id <JSDTidyModelDelegate> delegate;
 
 
 #pragma mark - String Encoding Support
+/** @name String Encoding Support */
 
 
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	ENCODING SUPPORT
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-
-/*
-	These convenience properties are just shortcuts for reading the
-	current input-encoding and output-encoding for this instance.
+/**
+ *  A convenience method for accessing this instance's `input-encoding` Tidy option.
  */
-
 @property (nonatomic, assign, readonly) NSStringEncoding inputEncoding;
 
+/**
+ *  A convenience method for accessing this instance's `output-encoding` Tidy option.
+ */
 @property (nonatomic, assign, readonly) NSStringEncoding outputEncoding;
 
 
 #pragma mark - Text
+/** @name Text (the important, good stuff) */
 
 
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	TEXT - the important, good stuff.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-
-/*
-	sourceText -- this is the text that Tidy will actually tidy up.
-	The non-string set methods decode using the current encoding
-	setting in `input-encoding`.
+/**
+ *  This is the text that Tidy will actually tidy up.
+ *  **JSDTidyModel** assumes that this string is already a satisfactory string with no
+ *  encoding issues, and no efforts to decode the string are made.
  */
-
 @property (nonatomic, strong) NSString *sourceText;
 
+/**
+ *  This sets the text that Tidy will actually tidy up, encapsulated as **NSData**.
+ *  **JSDTidyModel** will use its `input-encoding` option value to decode this file, and
+ *  will sanity check the decoded text.
+ *
+ *  If **JSDTidyModel** thinks that the specified `input-encoding` is not correct, then
+ *  `tidyNotifyPossibleInputEncodingProblem` notification will be sent, and the delegate
+ *  [JSDTidyModelDelegate tidyModelDetectedInputEncodingIssue:currentEncoding:suggestedEncoding:] will be called.
+ *  @param data The **NSData** object containing the source text string.
+ */
 - (void)setSourceTextWithData:(NSData *)data;
 
+/**
+ *  This sets the text that Tidy will actually tidy up, loaded from a file.
+ *  **JSDTidyModel** will use its `input-encoding` option value to decode this file, and
+ *  will sanity check the decoded text.
+ *
+ *  If **JSDTidyModel** thinks that the specified `input-encoding` is not correct, then
+ *  `tidyNotifyPossibleInputEncodingProblem` notification will be sent, and the delegate
+ *  [JSDTidyModelDelegate tidyModelDetectedInputEncodingIssue:currentEncoding:suggestedEncoding:] will be called.
+ *  @param path Indicates the complete path to the file containing the source text.
+ */
 - (void)setSourceTextWithFile:(NSString *)path;
 
-
-/*
-	tidyText -- this is the text that Tidy generates from the
-	sourceText. Note that these are read-only.
-	The non-string set methods decode using the current encoding
-	setting in `output-encoding`.
-*/
-
+/**
+ *  The result of the tidying operation.
+ */
 @property (nonatomic, strong, readonly) NSString *tidyText;
 
+/**
+ *  The result of the tidying operation, available as an **NSData** object, using
+ *  the instance's current `output-encoding` Tidy option.
+ */
 @property (nonatomic, strong, readonly) NSData *tidyTextAsData;
 
+/**
+ *  Writes the result of the tidying operation to the file system, using
+ *  the instance's current `output-encoding` Tidy option.
+ *
+ *  This method writes using native Cocoa file-writing, and not any file-writing
+ *  methods from `libtidy`.
+ *  @param path The complete path and filename to write.
+ */
 - (void)tidyTextToFile:(NSString *)path;
 
-
-/*
-	isDirty - indicates that the source text is considered "dirty",
-	meaning that the source-text has changed, or the source-text
-	is not equal to the tidy'd-text.
+/**
+ *  Indicates whether or not sourceText is considered "dirty", meaning that sourceText has changed,
+ *  or sourceText is not equal to tidyText.
 */
-
 @property (nonatomic, assign, readonly) BOOL isDirty;
 
 
-#pragma mark - Errors
+#pragma mark - Messages
+/** @name Messages */
 
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	MESSAGES reported by tidy
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
 @property (nonatomic, strong, readonly) NSString *errorText;      // Return the error text in traditional tidy format.
 
 @property (nonatomic, strong, readonly) NSArray  *errorArray;     // Message text as an array of NSDictionary of the errors.
 
 
-#pragma mark - Options Overall management
+#pragma mark - Options Overall Management
+/** @name Options Overall Management */
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
@@ -156,11 +238,8 @@
 
 
 #pragma mark - Diagnostics and Repair
+/** @name Diagnostics and Repair */
 
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	DIAGNOSTICS and REPAIR
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
 @property (nonatomic, assign, readonly) int tidyDetectedHtmlVersion;   // Returns 0, 2, 3, 4, or 5.
 
@@ -178,11 +257,8 @@
 
 
 #pragma mark - Miscelleneous
+/** @name Miscelleneous */
 
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	MISCELLENEOUS - Misc. Tidy methods supported
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
 @property (nonatomic, assign, readonly) NSString *tidyReleaseDate;     // Returns the TidyLib release date.
 
@@ -190,11 +266,8 @@
 
 
 #pragma mark - Configuration List Support
+/** @name Configuration List Support */
 
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	SUPPORTED CONFIG LIST SUPPORT
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
 /*
 	Loads a list of named potential tidy options from a file, compares
@@ -206,11 +279,8 @@
 
 
 #pragma mark - Mac OS X Prefs Support
+/** @name Mac OS X Prefs Support */
 
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	MAC OS PREFS SUPPORT
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
 /* Puts *all* TidyLib defaults values into a dictionary. */
 + (void)addDefaultsToDictionary:(NSMutableDictionary *)defaultDictionary;
@@ -230,19 +300,12 @@
 /* Takes option values from the specified user defaults instance. */
 - (void)takeOptionValuesFromDefaults:(NSUserDefaults *)defaults;
 
-
-#pragma mark - TidyOptions
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	TIDYOPTIONS
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-
-
 @property (nonatomic, strong) NSUserDefaults *userDefaults;   // The NSUserDefaults instance to get defaults from.
 
 
-#pragma mark - Public API and General Properties
+#pragma mark - Tidy Options
+/** @name Tidy Options */
+
 
 @property (nonatomic, strong, readonly) NSDictionary *tidyOptions;
 

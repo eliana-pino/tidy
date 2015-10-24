@@ -64,7 +64,7 @@
                               text:(NSString *)text;
 
 /**
- *  **tidyModelSourceTextRestored** will be called when one or more tidy options are changed. The corresponding
+ *  **tidyModelSourceTextRestored** will be called when the source text is restored. The corresponding
  *  `NSNotification` is defined by `tidyNotifySourceTextRestored`.
  *  @param tidyModel Indicates the instance of the **JSDTidyModel** that is calling the delegate.
  *  @param text Provides the text that was restored.

@@ -102,11 +102,11 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	initWithString:
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (instancetype)initWithString:(NSString *)value
+- (instancetype)initWithString:(NSString *)sourceText
 {
 	if (self = [self init])
 	{
-		self.sourceText = value;
+		self.sourceText = sourceText;
 	}
 	
 	return self;
@@ -116,7 +116,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	initWithString:copyOptionValuesFromModel:
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (instancetype)initWithString:(NSString *)value copyOptionValuesFromModel:(JSDTidyModel *)theModel
+- (instancetype)initWithString:(NSString *)sourceText copyOptionValuesFromModel:(JSDTidyModel *)theModel
 {
 	if (self = [self init])
 	{
