@@ -207,9 +207,30 @@
 /** @name Messages */
 
 
-@property (nonatomic, strong, readonly) NSString *errorText;      // Return the error text in traditional tidy format.
+/**
+ *  Returns tidylib's error report text in traditional tidy format, directly from `tidylib`.
+ *
+ *  For delegate and notifications, see [JSDTidyModelDelegate tidyModelTidyMessagesChanged:messages:].
+ */
+@property (nonatomic, strong, readonly) NSString *errorText;
 
-@property (nonatomic, strong, readonly) NSArray  *errorArray;     // Message text as an array of NSDictionary of the errors.
+/**
+ *  Makes available tidylib's error report as an **NSArray** of **NSDictionary** of the errors.
+ *
+ *  Each **NSDictionary** contains the following keys, the values of which are localized:
+ *
+ *  - `level`, an **NSNumber**-encapsulated **int** representing the **TidyReportLevel** from `tidylib`.
+ *  - `levelDescription`, an **NSString** (localizable) description of the error level, such as "warning," etc.
+ *  - `line`, an **NSNumber** with the line number in [JSDTidyModel sourceText] where the error occurs.
+ *  - `lineString`, an **NSString** version of `line`.
+ *  - `column`, an **NSNumber** with the column number where the error occurs.
+ *  - `columnString`, an **NSString** version of `column`.
+ *  - `locationString`, a localizable **NSString** indicating "Row x, Column y".
+ *  - `message`, an **NSString** (localizable) indicating the issue. This comes from `tidylib`.
+ *
+ *  For delegate and notifications, see [JSDTidyModelDelegate tidyModelTidyMessagesChanged:messages:].
+ */
+@property (nonatomic, strong, readonly) NSArray  *errorArray;
 
 
 #pragma mark - Options Overall Management

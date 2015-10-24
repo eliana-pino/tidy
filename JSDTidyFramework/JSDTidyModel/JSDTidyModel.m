@@ -461,19 +461,6 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 }
 
 
-#pragma mark - Errors
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	keyPathsForValuesAffectingErrorArray
-		All of listed keys affect the error array.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-+ (NSSet *)keyPathsForValuesAffectingErrorArray
-{
-    return [NSSet setWithObjects:@"sourceText", @"tidyOptions", @"tidyOptionsBindable", nil];
-}
-
-
 #pragma mark - Options Overall Management
 
 
@@ -897,6 +884,16 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	 anyway.
 	 */
 	[self notifyTidyModelMessagesChanged];
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	keyPathsForValuesAffectingErrorArray
+		All of listed keys affect the error array.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
++ (NSSet *)keyPathsForValuesAffectingErrorArray
+{
+    return [NSSet setWithObjects:@"sourceText", @"tidyOptions", @"tidyOptionsBindable", nil];
 }
 
 
