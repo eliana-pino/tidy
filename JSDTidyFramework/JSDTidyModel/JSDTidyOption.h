@@ -72,42 +72,42 @@
 /**
  *  Built-in option name.
  */
-@property (nonatomic, strong, readonly)         NSString *name;
+@property (nonatomic, strong, readonly) NSString *name;
 
 /**
  *  Current value of this option.
  */
-@property (nonatomic, strong)                   NSString *optionValue;
+@property (nonatomic, strong) NSString *optionValue;
 
 /**
  *  Default value of this option (from user options).
  */
-@property (nonatomic, assign, readonly)         NSString *defaultOptionValue;
+@property (nonatomic, assign, readonly) NSString *defaultOptionValue;
 
 /**
  *  Array of string values for possible option values.
  */
-@property (nonatomic, assign, readonly)         NSArray *possibleOptionValues;
+@property (nonatomic, assign, readonly) NSArray *possibleOptionValues;
 
 /**
  *  Indicates whether or not option is read-only.
  */
-@property (nonatomic, assign, readonly)         BOOL optionIsReadOnly;
+@property (nonatomic, assign, readonly) BOOL optionIsReadOnly;
 
 /**
  *  Localized, humanized name of the option.
  */
-@property (nonatomic, strong, readonly)         NSString *localizedHumanReadableName;
+@property (nonatomic, strong, readonly) NSString *localizedHumanReadableName;
 
 /**
  *  Localized description of the option.
  */
-@property (nonatomic, strong, readonly)         NSAttributedString *localizedHumanReadableDescription;
+@property (nonatomic, strong, readonly) NSAttributedString *localizedHumanReadableDescription;
 
 /**
  *  Localized name of the option category.
  */
-@property (nonatomic, strong, readonly)         NSString *localizedHumanReadableCategory;
+@property (nonatomic, strong, readonly) NSString *localizedHumanReadableCategory;
 
 
 #pragma mark - Properties Useful for Implementing User Interfaces
@@ -117,22 +117,22 @@
 /**
  *  Current value of this option used by UI's.
  */
-@property                    NSString *optionUIValue;
+@property NSString *optionUIValue;
 
 /**
  *  Suggested UI type for setting options.
  */
-@property (readonly)         NSString *optionUIType;
+@property (readonly) NSString *optionUIType;
 
 /**
  *  Option suitable for use in a config file.
  */
-@property (readonly)         NSString *optionConfigString;
+@property (readonly) NSString *optionConfigString;
 
 /**
  *  The NSUserDefaults instance to get defaults from.
  */
-@property                    NSUserDefaults *userDefaults;
+@property NSUserDefaults *userDefaults;
 
 
 #pragma mark - Properties Maintained for Original TidyLib compatability (may be used internally)
@@ -142,27 +142,27 @@
 /**
  *  Tidy's internal TidyOptionId for this option.
  */
-@property (readonly)         TidyOptionId optionId;
+@property (readonly) TidyOptionId optionId;
 
 /**
  *  Actual type that TidyLib expects.
  */
-@property (readonly)         TidyOptionType optionType;
+@property (readonly) TidyOptionType optionType;
 
 /**
  *  Tidy's built-in default value for this option.
  */
-@property (readonly)         NSString *builtInDefaultValue;
+@property (readonly) NSString *builtInDefaultValue;
 
 /**
  *  Tidy's built-in description for this option.
  */
-@property (readonly)         NSString *builtInDescription;
+@property (readonly) NSString *builtInDescription;
 
 /**
  *  Tidy's built-in category for this option.
  */
-@property (readonly)         TidyConfigCategory builtInCategory;
+@property (readonly) TidyConfigCategory builtInCategory;
 
 
 #pragma mark - Properties Used Mostly Internally or for Implementing User Interfaces
@@ -187,12 +187,12 @@
 /**
  *  Fake option is only a header row for UI use.
  */
-@property (assign)           BOOL optionIsHeader;
+@property (assign) BOOL optionIsHeader;
 
 /**
  *  Indicates whether or not this option is unused by JSDTidyModel.
  */
-@property (assign)           BOOL optionIsSuppressed;
+@property (assign) BOOL optionIsSuppressed;
 
 
 #pragma mark - Other Public Methods
