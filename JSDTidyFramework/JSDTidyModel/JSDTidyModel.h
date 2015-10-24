@@ -216,10 +216,6 @@
 /** @name Options Overall Management */
 
 
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	OPTIONS - methods for dealing with options overall
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-
 + (void)      optionsBuiltInDumpDocsToConsole;     // Dumps all TidyLib descriptions to error console.
 
 + (int)       optionsBuiltInOptionCount;           // Returns the number of options built into Tidy.

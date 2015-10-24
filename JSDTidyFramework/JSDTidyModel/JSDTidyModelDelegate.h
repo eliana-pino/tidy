@@ -46,8 +46,9 @@
 @optional
 
 /**
- *  **tidyModelOptionChange** will be called when one or more tidy options are changed. The corresponding
- *  `NSNotification` is defined by `tidyNotifyOptionChanged`.
+ *  **tidyModelOptionChange** will be called when one or more [JSDTidyModel tidyOptions] are changed.
+ *
+ *  The corresponding `NSNotification` is defined by `tidyNotifyOptionChanged`.
  *  @param tidyModel Indicates the instance of the **JSDTidyModel** that is calling the delegate.
  *  @param tidyOption Indicates which instance of **JSDTidyOption** was changed.
  */
@@ -55,8 +56,9 @@
                         option:(JSDTidyOption *)tidyOption;
 
 /**
- *  **tidyModelSourceTextChanged** will be called when the source text is changed. The corresponding
- *  `NSNotification` is defined by `tidyNotifySourceTextChanged`.
+ *  **tidyModelSourceTextChanged** will be called when [JSDTidyModel sourceText] is changed.
+ *
+ *  The corresponding `NSNotification` is defined by `tidyNotifySourceTextChanged`.
  *  @param tidyModel Indicates the instance of the **JSDTidyModel** that is calling the delegate.
  *  @param text Provides the new source text.
  */
@@ -64,8 +66,10 @@
                               text:(NSString *)text;
 
 /**
- *  **tidyModelSourceTextRestored** will be called when the source text is restored. The corresponding
- *  `NSNotification` is defined by `tidyNotifySourceTextRestored`.
+ *  **tidyModelSourceTextRestored** will be called when [JSDTidyModel sourceText] is restored, 
+ *  source text is set via [JSDTidyModel setSourceTextWithData:] or [JSDTidyModel setSourceTextWithFile:].
+ *
+ *  The corresponding `NSNotification` is defined by `tidyNotifySourceTextRestored`.
  *  @param tidyModel Indicates the instance of the **JSDTidyModel** that is calling the delegate.
  *  @param text Provides the text that was restored.
  */
@@ -73,8 +77,10 @@
 							  text:(NSString *)text;
 
 /**
- *  **tidyModelTidyTextChanged** will be called when one or more tidy options are changed. The corresponding
- *  `NSNotification` is defined by `tidyNotifyTidyTextChanged`.
+ *  **tidyModelTidyTextChanged** will be called when [JSDTidyModel tidyText] is changed, which is usually
+ *  the result of setting [JSDTidyModel sourceText] or one of the options in [JSDTidyModel tidyOptions].
+ *
+ *  The corresponding `NSNotification` is defined by `tidyNotifyTidyTextChanged`.
  *  @param tidyModel Indicates the instance of the **JSDTidyModel** that is calling the delegate.
  *  @param text Provides the new tidy'd text.
  */
@@ -82,8 +88,11 @@
                             text:(NSString *)text;
 
 /**
- *  **tidyModelTidyMessagesChanged** will be called when one or more tidy options are changed. The corresponding
- *  `NSNotification` is defined by `tidyNotifyTidyErrorsChanged`.
+ *  **tidyModelTidyMessagesChanged** will be called when the [JSDTidyModel errorText]
+ *  and [JSDTidyModel errorArray] changes (these represet the same information and always
+ *  change together).
+ *
+ *  The corresponding `NSNotification` is defined by `tidyNotifyTidyErrorsChanged`.
  *  @param tidyModel Indicates the instance of the **JSDTidyModel** that is calling the delegate.
  *  @param messages Provides the array of error messages.
  */
@@ -91,8 +100,11 @@
                             messages:(NSArray *)messages;
 
 /**
- *  **tidyModelDetectedInputEncodingIssue** will be called when one or more tidy options are changed. The corresponding
- *  `NSNotification` is defined by `tidyNotifyPossibleInputEncodingProblem`.
+ *  **tidyModelDetectedInputEncodingIssue** will be called when an `input-encoding` problem is detected
+ *  when attempting to use [JSDTidyModel setSourceTextWithData:] or [JSDTidyModel setSourceTextWithFile:],
+ *  as well with and of the **NSObject** or file-based initializers.
+ *
+ *  The corresponding `NSNotification` is defined by `tidyNotifyPossibleInputEncodingProblem`.
  *  @param tidyModel Indicates the instance of the **JSDTidyModel** that is calling the delegate.
  *  @param currentEncoding Indicates the `NSStringEncoding` that was provided that it causing an encoding issue.
  *  @param suggestedEncoding Indicates the suggested `NSStringEncoding` that should be used instead of that provided.
