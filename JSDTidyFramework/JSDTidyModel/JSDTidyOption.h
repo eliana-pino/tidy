@@ -200,7 +200,8 @@
 
 
 /**
- *  Applies this option to a TidyDoc instance.
+ *  Applies this option value to anothr a TidyDoc (from `tiylib`) instance.
+ *  @param destinationTidyDoc The TidyDoc (from `tidylib`) instance.
  */
 - (BOOL)applyOptionToTidyDoc:(TidyDoc)destinationTidyDoc;
 
@@ -216,11 +217,21 @@
 
 /**
  *  Comparitor for localized sorting and grouping of tidyOptions.
+ *  Can be uses as a selector for an NSSortDescriptor. This will
+ *  ensure that collections (typically an array controller) will
+ *  be grouped into categories, sorted within each category,
+ *  with a head item being the first item in the category.
+ *  @param tidyOption The JSDTidyOption that is being compared.
  */
 -(NSComparisonResult)tidyGroupedNameCompare:(JSDTidyOption *)tidyOption;
 
 /**
  *  Comparitor for localized sorting and grouping of tidyOptions.
+ *  Can be uses as a selector for an NSSortDescriptor. This will
+ *  ensure that collections (typically an array controller) will
+ *  be grouped into categories, sorted within each category,
+ *  with a head item being the first item in the category.
+ *  @param tidyOption The JSDTidyOption that is being compared.
  */
 -(NSComparisonResult)tidyGroupedHumanNameCompare:(JSDTidyOption *)tidyOption;
 

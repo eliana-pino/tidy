@@ -737,10 +737,6 @@
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	tidyGroupedNameCompare:
-		Can be uses as a selector for an NSSortDescriptor. This will
-		ensure that collections (typically an array controller) will
-		be grouped into categories, sorted within each category,
-		with a head item being the first item in the category.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 -(NSComparisonResult)tidyGroupedNameCompare:(JSDTidyOption *)tidyOption
 {
@@ -750,10 +746,6 @@
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	tidyGroupedHumanNameCompare:
-		Can be uses as a selector for an NSSortDescriptor. This will
-		ensure that collections (typically an array controller) will
-		be grouped into categories, sorted within each category,
-		with a head item being the first item in the category.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 -(NSComparisonResult)tidyGroupedHumanNameCompare:(JSDTidyOption *)tidyOption
 {
