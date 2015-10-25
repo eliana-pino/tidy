@@ -91,8 +91,8 @@ static void Show_Node( TidyDocImpl* doc, const char *msg, Node *node )
     }
     if (lexer && lexer->token && (lexer->token->type == TextNode)) {
         if (show_attrs) {
-            uint len = node->end - node->start;
-            tmbstr cp = get_text_string( lexer, node );
+            uint len = node ? node->end - node->start : 0;
+            tmbstr cp = node ? get_text_string( lexer, node ) : "NULL";
             SPRTF("Returning %s TextNode [%s]%u %s\n", msg, cp, len,
                 lex ? "lexer" : "stream");
         } else {
@@ -102,14 +102,16 @@ static void Show_Node( TidyDocImpl* doc, const char *msg, Node *node )
     } else {
         if (show_attrs) {
             AttVal* av;
-            tmbstr name = node->element ? node->element : "blank";
+            tmbstr name = node ? node->element ? node->element : "blank" : "NULL";
             SPRTF("Returning %s node <%s", msg, name);
-            for (av = node->attributes; av; av = av->next) {
-                name = av->attribute;
-                if (name) {
-                    SPRTF(" %s",name);
-                    if (av->value) {
-                        SPRTF("=\"%s\"", av->value);
+            if (node) {
+                for (av = node->attributes; av; av = av->next) {
+                    name = av->attribute;
+                    if (name) {
+                        SPRTF(" %s",name);
+                        if (av->value) {
+                            SPRTF("=\"%s\"", av->value);
+                        }
                     }
                 }
             }
@@ -983,7 +985,8 @@ static void ParseEntity( TidyDocImpl* doc, GetTokenMode mode )
     if ( TY_(tmbstrcmp)(lexer->lexbuf+start, "&apos") == 0
          && !cfgBool(doc, TidyXmlOut)
          && !lexer->isvoyager
-         && !cfgBool(doc, TidyXhtmlOut) )
+         && !cfgBool(doc, TidyXhtmlOut)
+         && !(TY_(HTMLVersion)(doc) == HT50) ) /* Issue #239 - no warning if in HTML5++ mode */
         TY_(ReportEntityError)( doc, APOS_UNDEFINED, lexer->lexbuf+start, 39 );
 
     if (( mode == OtherNamespace ) && ( c == ';' ))
@@ -2624,6 +2627,16 @@ static Node* GetTokenFromStream( TidyDocImpl* doc, GetTokenMode mode )
                 /* special check needed for CRLF sequence */
                 /* this doesn't apply to empty elements */
                 /* nor to preformatted content that needs escaping */
+                /*\
+                 * Issue #230: Need to KEEP this user newline character in certain 
+                 * circumstances, certainly for <pre>, <script>, <style>...
+                 * Any others?
+                 * Issue #238: maybe **ONLY** for <pre>
+                \*/
+                if ( nodeIsPRE(lexer->token) )
+                {
+                    mode = Preformatted;
+                }
 
                 if ((mode != Preformatted && ExpectsContent(lexer->token))
                     || nodeIsBR(lexer->token) || nodeIsHR(lexer->token))

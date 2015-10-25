@@ -36,9 +36,49 @@ In windows the default install is to C:\Program Files\tidy5, or C:/Program Files
 
 If you do **not** need the tidy library built as a 'shared' (DLL) library, then in 2. add the command -DBUILD_SHARED_LIB:BOOL=OFF. This option is ON by default. The static library is always built and linked with the command line tool for convenience in windows, and so the binary can be run as part of the man page build without the shared library being installed in unix.
 
-## Prebuilt Binaries
+## Build PHP with the tidy-html5 library
 
-An attempt is being made to publish pre-built binaries to http://www.htacg.org/binaries - This is still a work in progress, but getting there..
+Due to API changes in the PHP source, "buffio.h" needs to be changed to "tidybuffio.h" in the file ext/tidy/tidy.c.
+
+That is - prior to configuring php run this in the php source directory:
+```
+sed -i 's/buffio.h/tidybuffio.h/' ext/tidy/*.c
+```
+
+And then continue with (just an example here, use your own php config options):
+
+```
+./configure --with-tidy=/usr/local
+make
+make test
+make install
+```
+
+## Important Links
+
+ - site: http://www.html-tidy.org/
+ - source: https://github.com/htacg/tidy-html5
+ - binaries: http://www.htacg.org/binaries/
+ - bugs: https://github.com/htacg/tidy-html5/issues
+ - list: https://lists.w3.org/Archives/Public/html-tidy/
+ - api: http://www.htacg.org/tidy-html5/tidylib_api/
+ - quickref: http://www.htacg.org/tidy-html5/quickref.html
+
+## Development
+
+The default branch of this repository is `master`. This is the development branch, hopefully always `stable` source.
+
+It will identify as library version X.odd.X. Use it to help us on the forever `bug` quest, addition of new features, options, ..., etc.
+
+However, if you seek **release** code, then do `git branch -r`, and choose one of the `release/X.even.0` branches for your build and install...
+
+This will always be the latest release branch. Important `bug` fixes thought relevant to this release, pushed back, may bump the library version to X.even.1, ..., etc, but will be remain known as `X.even`...
+
+Some more details of the `Tidy Version` can be found in [VERSION.md](VERSION.md).
+
+Concerning the `Tidy Code Style`, some notes can be found in [CODESTYLE.md](CODESTYLE.md).
+
+If you want to contribute to Tidy, then read [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## History
 
