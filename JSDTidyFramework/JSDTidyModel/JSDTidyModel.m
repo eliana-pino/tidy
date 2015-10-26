@@ -715,8 +715,6 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)optionsPopulateTidyOptionHeaders
 {
-	self.tidyOptionHeaders = nil;;
-
 	for (JSDTidyOption *localOption in [self.tidyOptions allValues])
 	{
 		if ( (!localOption.optionIsHeader) && (!localOption.optionIsSuppressed) )
