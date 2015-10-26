@@ -70,22 +70,29 @@
 
 
 /**
- *  Built-in option name.
+ *  Returns the `tidylib` built-in option name.
  */
 @property (nonatomic, strong, readonly) NSString *name;
 
 /**
- *  Current value of this option.
+ *  The current value of this option. See also optionUIValue.
+ *
+ *  Note that this property is an NSString regardless of the data type in `tidylib`, and
+ *  because **JSDTidyFramework** takes over character encoding from `tidylib`,
+ *  encoding-related Tidy options must be specified as an `NSStringEncoding` (the NSString
+ *  representation thereof, e.g. @"12345").
  */
 @property (nonatomic, strong) NSString *optionValue;
 
 /**
- *  Default value of this option (from user options).
+ *  Default value of this option. This value will be read from NSUserDefaults. Compare
+ *  with builtInDefaultValue, and see also `JSDKeyTidyTidyOptionsKey` in `JSDTidyCommonHeaders.h`.
  */
 @property (nonatomic, assign, readonly) NSString *defaultOptionValue;
 
 /**
- *  Array of string values for possible option values.
+ *  Array of string values for possible option values, for options that have pick-lists.
+ *  Items without pick-lists will return an array with zero elements.
  */
 @property (nonatomic, assign, readonly) NSArray *possibleOptionValues;
 
@@ -96,16 +103,20 @@
 
 /**
  *  Localized, humanized name of the option.
+ *
+ *  Localized strings come from `Localizable.strings`.
  */
 @property (nonatomic, strong, readonly) NSString *localizedHumanReadableName;
 
 /**
- *  Localized description of the option.
+ *  Localized description of the option in RTF format.
+ *  Localized strings come from `Localizable.strings`.
  */
 @property (nonatomic, strong, readonly) NSAttributedString *localizedHumanReadableDescription;
 
 /**
  *  Localized name of the option category.
+ *  Localized strings come from `Localizable.strings`.
  */
 @property (nonatomic, strong, readonly) NSString *localizedHumanReadableCategory;
 
@@ -115,24 +126,46 @@
 
 
 /**
- *  Current value of this option used by UI's.
+ *  Provides option values suitable for use in user-interfaces. See also optionValue.
+ *
+ *  The standard optionValue uses a human readable string to represent the option, regardless
+ *  of datatype. When implementing UI applications it can be convenient to get or set the value
+ *  in a more convenient format, and so this alternate property allows such. Specifically:
+ *
+ *  - NSStringEncoding is converted back and forth to index positions within
+ *   [JSDStringEncodingTools encodingNames], making menu implementations simpler.
+ *  - `doctype` option is transformed back and forth to menu index positions.
+ *
+ *  (A modern implementation might use Data Transformers instead of providing alternate
+ *  accessors, but these haven't been implemented.)
  */
-@property NSString *optionUIValue;
+@property (nonatomic, assign) NSString *optionUIValue;
 
 /**
- *  Suggested UI type for setting options.
+ *  Suggests an object class to use for setting Tidy options. This is returned as a string
+ *  to make bindings very easy, and can be converted back to a class (if needed) in code.
+ *
+ *  TidyLib option types can be `TidyString`, `TidyInteger`, or `TidyBoolean`. Consequently
+ *  **JSDTidyOption** will return one of three classes suitable for using in a UI:
+ *
+ *  - **NSPopupButton** if the type has a non-empty pick list.
+ *  - **NSStepper**, if the type is TidyInteger.
+ *  - **NSTextField**, if none of the two work.
  */
-@property (readonly) NSString *optionUIType;
+@property (nonatomic, assign, readonly) NSString *optionUIType;
 
 /**
- *  Option suitable for use in a config file.
+ *  String representation of a tidy option with value suitable for use in a Tidy options
+ *  configuration document.
+ *
+ *  Note that currently any encoding options are set to utf8 as the value.
  */
-@property (readonly) NSString *optionConfigString;
+@property (nonatomic, assign, readonly) NSString *optionConfigString;
 
 /**
  *  The NSUserDefaults instance to get defaults from.
  */
-@property NSUserDefaults *userDefaults;
+@property (nonatomic, strong) NSUserDefaults *userDefaults;
 
 
 #pragma mark - Properties Maintained for Original TidyLib compatability (may be used internally)
@@ -140,29 +173,32 @@
 
 
 /**
- *  Tidy's internal TidyOptionId for this option.
+ *  Tidy's internal `TidyOptionId` for this option.
  */
-@property (readonly) TidyOptionId optionId;
+@property (nonatomic, assign, readonly) TidyOptionId optionId;
 
 /**
- *  Actual type that TidyLib expects.
+ *  Actual type that `tidylib` expects.
  */
-@property (readonly) TidyOptionType optionType;
+@property (nonatomic, assign, readonly) TidyOptionType optionType;
 
 /**
- *  Tidy's built-in default value for this option.
+ *  `tidylib`'s built-in default value for this option.
  */
-@property (readonly) NSString *builtInDefaultValue;
+@property (nonatomic, assign, readonly) NSString *builtInDefaultValue;
 
 /**
- *  Tidy's built-in description for this option.
+ *  `tidylib`'s built-in description for this option. The text may be different than
+ *  that returned by localizedHumanReadableDescription, as `Localized.strings` requires
+ *  manual syncronization with `tidylib` releases, and **builtInDescription** is provided
+ *  directly by `tidylib`.
  */
-@property (readonly) NSString *builtInDescription;
+@property (nonatomic, assign, readonly) NSString *builtInDescription;
 
 /**
- *  Tidy's built-in category for this option.
+ *  `tidylib`'s built-in category for this option.
  */
-@property (readonly) TidyConfigCategory builtInCategory;
+@property (nonatomic, assign, readonly) TidyConfigCategory builtInCategory;
 
 
 #pragma mark - Properties Used Mostly Internally or for Implementing User Interfaces
@@ -170,29 +206,46 @@
 
 
 /**
- *  Model to which this option belongs.
+ *  **JSDTidyModel** instance to which this option belongs.
  */
-@property (readonly, assign) JSDTidyModel *sharedTidyModel;
+@property (nonatomic, assign, readonly) JSDTidyModel *sharedTidyModel;
 
 /**
  *  Indicates whether or not this option can accept NULLSTR.
+ *
+ *  Some TidyLib options can have a NULLSTR value, but they can't accept a NULLSTR
+ *  assignment. This convenience property flags the condition.
  */
-@property (readonly, assign) BOOL optionCanAcceptNULLSTR;
+@property (nonatomic, assign, readonly) BOOL optionCanAcceptNULLSTR;
 
 /**
  *  Indicates whether or not this option is an encoding option.
+ *
+ *  **JSDTidyFramework** takes control of all encoding options from `tidylib` because
+ *  Mac OS X offers many more encoding options.
  */
-@property (readonly, assign) BOOL optionIsEncodingOption;
+@property (nonatomic, assign, readonly) BOOL optionIsEncodingOption;
 
 /**
  *  Fake option is only a header row for UI use.
+ *
+ *  The implementing application may want to include header rows mixed in with the
+ *  options array. This flag indicates that an options instance isn't a real option
+ *  at all, and can be used to flag header behavior if desired.
+ *
+ *  If using bindings, make sure you exclude options with this flag set.
  */
-@property (assign) BOOL optionIsHeader;
+@property (nonatomic, assign) BOOL optionIsHeader;
 
 /**
- *  Indicates whether or not this option is unused by JSDTidyModel.
+ *  Indicates whether or not this option is unused by **JSDTidyModel**.
+ *
+ *  The implementing application may want to suppress certain built-in `tidylib` options.
+ *  Setting this to true will hide instances of this option from most operations.
+ *
+ *  If using bindings, make sure you exclude options with this flag set.
  */
-@property (assign) BOOL optionIsSuppressed;
+@property (nonatomic, assign) BOOL optionIsSuppressed;
 
 
 #pragma mark - Other Public Methods
@@ -206,12 +259,18 @@
 - (BOOL)applyOptionToTidyDoc:(TidyDoc)destinationTidyDoc;
 
 /**
- *  Possibly useful for UI's, increments to next possible option value.
+ *  Increments the current option value to the next option value in UI order. There's
+ *  either a picklist, or there's not. If there's a picklist, then we cycle through the
+ *  picklist values. If there's not a picklist, then if it's `TidyInteger` we will allow
+ *  changes and not allow values less than 0.
  */
 - (void)optionUIValueIncrement;
 
 /**
- *  Possibly useful for UI's, decrements to next possible option value.
+ *  Decrements the current option value to the previous option value in UI order. There's
+ *  either a picklist, or there's not. If there's a picklist, then we cycle through the
+ *  picklist values. If there's not a picklist, then if it's `TidyInteger` we will allow
+ *  changes and not allow values less than 0.
  */
 - (void)optionUIValueDecrement;
 

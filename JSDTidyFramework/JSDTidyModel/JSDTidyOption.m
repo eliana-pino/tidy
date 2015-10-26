@@ -2,7 +2,7 @@
  
 	JSDTidyOption
 
-	Provides most of the options-related services to JSDTidyModel.
+	Copyright © 2003-2015 by Jim Derry. All rights reserved.
  
  **************************************************************************************************/
 
@@ -24,7 +24,6 @@
 
 #pragma mark - iVar Synthesis
 
-@synthesize name         = _name;
 @synthesize optionValue  = _optionValue;
 @synthesize userDefaults = _userDefaults;
 
@@ -85,14 +84,6 @@
 
 
 #pragma mark - Main properties
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	name
-		The name of the Tidy option as given in TidyLib.
- 
-		This method is implemented automatically by compiler.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
@@ -164,9 +155,7 @@
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	defaultOptionValue
 		Returns the default option value from the Cocoa preferences
-		system. We're doing a little bit of cheating by counting
-		on the use of the constant defined in the JSDTidyModel
-		class.
+		system.
  
 		If no Cocoa preference is available, then the built-in
 		value will be returned instead.
@@ -568,16 +557,6 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	sharedTidyModel
-		When created we are assigned a sharedTidyModel so that
-		we know who owns us. This allows us to send notifications
-		to our owner.
- 
-		This method is implemented automatically by compiler.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
 	optionCanAcceptNULLSTR
 		Some TidyLib options can have a NULLSTR value, but they can't
 		accept a NULLSTR assignment. This convenience property flags
@@ -598,33 +577,6 @@
 			(self.optionId == TidyInCharEncoding) ||
 			(self.optionId == TidyOutCharEncoding));
 }
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	optionIsHeader
-		The implementing application may want to include header
-		rows mixed in with the options array. This flag indicates
-		that an options instance isn't a real option at all, and
-		can be used to flag header behavior if desired.
- 
-		If using bindings, make sure you exclude options with
-		this flag set.
-
-		This method is implemented automatically by compiler.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	optionIsSuppressed
-		The implementing application may want to suppress certain
-		built-in TidyLib options. Setting this to true will hide
-		instances of this option from most operations.
-		
-		If using bindings, make sure you exclude options with
-		this flag set.
- 
-		This method is implemented automatically by compiler.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
