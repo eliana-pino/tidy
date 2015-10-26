@@ -2856,6 +2856,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -2999,6 +3000,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy.entitlements";
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/**";
 				GCC_PREPROCESSOR_DEFINITIONS = TARGET_WEB;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
@@ -3057,6 +3059,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar Tidy Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3118,6 +3121,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar Tidy Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"BODY_ONLY=0",
@@ -3178,6 +3182,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar Tidy Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"BODY_ONLY=0",
@@ -3239,6 +3244,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Service Helper/Balthisar Tidy Service Helper.entitlements";
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PREPROCESSOR_DEFINITIONS = TARGET_WEB;
@@ -3299,6 +3305,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy.entitlements";
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/**";
 				GCC_PREPROCESSOR_DEFINITIONS = TARGET_APP;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
@@ -3346,6 +3353,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "libtidy-balthisar";
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -3377,6 +3385,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "libtidy-balthisar";
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
@@ -3424,6 +3433,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy.entitlements";
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/**";
 				GCC_PREPROCESSOR_DEFINITIONS = TARGET_PRO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
@@ -3483,6 +3493,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar Tidy Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3544,6 +3555,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar Tidy Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"BODY_ONLY=1",
@@ -3604,6 +3616,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Extension/Balthisar Tidy Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"BODY_ONLY=1",
