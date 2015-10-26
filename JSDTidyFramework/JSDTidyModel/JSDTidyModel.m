@@ -788,6 +788,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 	/* Clear out all of the previous errors from our collection. */
 
+    NSArray *oldArray = self.errorArray;
 	self.errorArray = [[NSMutableArray alloc] init];
 
 
@@ -877,15 +878,11 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		[self notifyTidyModelTidyTextChanged];
 	}
 
-	/*
-	 Always post an error update notification so that apps have a
-	 chance to update their error tables. This covers a case where
-	 the source text may change but the TidyText stays identical
-	 anyway.
-	 @todo We actually want to compare the old and new, and
-	 make this notification discriminately.
-	 */
-	[self notifyTidyModelMessagesChanged];
+	/* Send messages changed notification if applicable. */
+    if ([self.errorArray isEqualToArray:oldArray])
+    {
+        [self notifyTidyModelMessagesChanged];
+    }
 }
 
 
