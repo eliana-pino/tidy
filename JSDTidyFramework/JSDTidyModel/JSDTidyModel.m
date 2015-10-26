@@ -882,6 +882,8 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	 chance to update their error tables. This covers a case where
 	 the source text may change but the TidyText stays identical
 	 anyway.
+	 @todo We actually want to compare the old and new, and
+	 make this notification discriminately.
 	 */
 	[self notifyTidyModelMessagesChanged];
 }
