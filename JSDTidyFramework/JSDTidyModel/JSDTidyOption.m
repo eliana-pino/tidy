@@ -37,7 +37,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	initSharingModel:
+  - initSharingModel:
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (instancetype)initSharingModel:(JSDTidyModel *)sharedTidyModel
 {
@@ -46,7 +46,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	initWithName:sharingModel:
+  - initWithName:sharingModel:
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (instancetype)initWithName:(NSString *)name
       sharingModel:(JSDTidyModel *)sharedTidyModel
@@ -56,7 +56,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	initWithName:optionValue:sharingModel: - designated initializer
+  - initWithName:optionValue:sharingModel: - designated initializer
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (instancetype)initWithName:(NSString *)name
        optionValue:(NSString *)value
@@ -87,9 +87,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	optionValue
-		If the current value is nil, then ensure we return the
-		built-in default value instead.
+  @property optionValue
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSString*)optionValue
 {
@@ -103,14 +101,6 @@
 	}
 }
 
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	setOptionValue:
-		Sets the optionValue, and intercepts special circumstances.
-		Note that you must always ensure the encoding option values
-		always contain the NSStringEncoding value, and not the
-		localized name.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)setOptionValue:(NSString *)optionValue
 {
 	if ((!self.optionIsReadOnly) && (!self.optionIsSuppressed))
@@ -153,12 +143,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	defaultOptionValue
-		Returns the default option value from the Cocoa preferences
-		system.
- 
-		If no Cocoa preference is available, then the built-in
-		value will be returned instead.
+  @property defaultOptionValue
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSString*)defaultOptionValue
 {
@@ -176,9 +161,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	possibleOptionValues
-		Returns an array of strings consisting of the possible
-		option values for this TidyOption.
+  @property possibleOptionValues
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSArray*)possibleOptionValues
 {
@@ -211,7 +194,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	optionIsReadOnly
+  @property optionIsReadOnly
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (BOOL)optionIsReadOnly
 {
@@ -220,7 +203,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	localizedHumanReadableName
+  @property localizedHumanReadableName
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSString*)localizedHumanReadableName
 {
@@ -233,7 +216,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	localizedHumanReadableDescription
+  @property localizedHumanReadableDescription
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSAttributedString*)localizedHumanReadableDescription
 {
@@ -273,7 +256,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	localizedHumanReadableCategory
+  @property localizedHumanReadableCategory
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSString*)localizedHumanReadableCategory
 {
@@ -289,18 +272,18 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	keyPathsForValuesAffectingOptionUIValue
-		Signal to KVO that if one of the included keys changes,
-		then it should also be aware that UIValue changed.
+  + keyPathsForValuesAffectingOptionUIValue
+    Signal to KVO that if one of the included keys changes,
+    then it should also be aware that UIValue changed.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 + (NSSet *)keyPathsForValuesAffectingOptionUIValue
 {
     return [NSSet setWithObjects:@"optionValue", nil];
 }
 
+
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	optionUIValue
-		Gets option values suitable for use in user-interfaces.
+  @property optionUIValue
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSString*)optionUIValue
 {
@@ -324,17 +307,6 @@
 	}
 }
 
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	setOptionUIValue:
-		Sets option values using values from the user-interface
-		instead of setting the TidyLib TidyOption values directly.
-		Most TidyOptions have the same UI value and native value,
-		but `doctype` and the encoding options require some
-		special treatment. 
- 
-		If you're building a UI for TidyLib, then you can set the
-		UI value directly, and the correct optionValue will be set.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)setOptionUIValue:(NSString *)optionValue
 {
 	if ((!self.optionIsReadOnly) && (!self.optionIsSuppressed))
@@ -371,19 +343,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	 optionUIType
-		Suggests an object class to use for setting Tidy options.
-		This is returned as a string to make bindings very easy,
-		and can be converted back to a class (if needed) in code.
-
-		TidyLib option types can be TidyString, TidyInteger, or
-		TidyBoolean. JSDTidyOption will return one of three classes
-		suitable for using in a UI:
- 
-		- NSPopupButton if the type has a non-empty pick list.
-		- NSStepper, if the type is TidyInteger.
-		- NSTextField, if none of the two work.
-
+  @property optionUIType
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSString*)optionUIType
 {
@@ -402,9 +362,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	optionConfigString
-		String representation of a tidy option with value suitable
-		for use in a tidy options configuration document.
+  @property optionConfigString
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSString*)optionConfigString
 {
@@ -430,7 +388,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	 optionId
+  @property optionId
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (TidyOptionId)optionId
 {
@@ -446,7 +404,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	 optionType
+  @property optionType
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (TidyOptionType)optionType
 {
@@ -455,7 +413,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	builtInDefaultValue
+  @property builtInDefaultValue
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSString*)builtInDefaultValue
 {
@@ -512,7 +470,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	builtInDescription
+  @property builtInDescription
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSString*)builtInDescription
 {
@@ -539,7 +497,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	builtInCategory
+  @property builtInCategory
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (TidyConfigCategory)builtInCategory
 {
@@ -557,10 +515,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	optionCanAcceptNULLSTR
-		Some TidyLib options can have a NULLSTR value, but they can't
-		accept a NULLSTR assignment. This convenience property flags
-		the condition.
+  @property optionCanAcceptNULLSTR
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (BOOL)optionCanAcceptNULLSTR
 {
@@ -569,7 +524,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	optionIsEncodingOption
+  @property optionIsEncodingOption
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (BOOL)optionIsEncodingOption
 {
@@ -580,9 +535,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	userDefaults
-		Points to an alternate set of user defaults in case the
-		application does not want to use `standardUserDefaults`.
+  @property userDefaults
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSUserDefaults *)userDefaults
 {
@@ -606,8 +559,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	applyOptionToTidyDoc:
-		Given a TidyDoc instance, apply our setting to the TidyDoc.
+  - applyOptionToTidyDoc:
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (BOOL)applyOptionToTidyDoc:(TidyDoc)destinationTidyDoc
 {
@@ -660,12 +612,7 @@
 }
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	optionUIValueIncrement
-		Increments the current option value to the next option value
-		in UI order. There's either a picklist, or there's not.
-		If there's a picklist, then we cycle through the picklist
-		values. If there's not a picklist, then if it's TidyInteger
-		we will allow changes and not allow values less than 0.
+  - optionUIValueIncrement
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)optionUIValueIncrement
 {
@@ -674,12 +621,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	optionUIValueDecrement
-		Increments the current option value to the next option value
-		in UI order. There's either a picklist, or there's not.
-		If there's a picklist, then we cycle through the picklist
-		values. If there's not a picklist, then if it's TidyInteger
-		we will allow changes and not allow values less than 0.
+  - optionUIValueDecrement
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)optionUIValueDecrement
 {
@@ -709,8 +651,8 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	copyWithZone
-		Needed for KVO.
+  - copyWithZone
+    Needed for KVO.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 -(id)copyWithZone:(NSZone *)zone
 {
@@ -730,12 +672,12 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	optionUIValueAdjust: (private)
-		Increments the current option value to the next option value
-		in UI order. There's either a picklist, or there's not.
-		If there's a picklist, then we cycle through the picklist
-		values. If there's not a picklist, then if it's TidyInteger
-		we will allow changes and not allow values less than 0.
+  - optionUIValueAdjust: (private)
+    Increments the current option value to the next option value
+    in UI order. There's either a picklist, or there's not.
+    If there's a picklist, then we cycle through the picklist
+    values. If there's not a picklist, then if it's TidyInteger
+    we will allow changes and not allow values less than 0.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)optionUIValueAdjust:(NSInteger)byAmount
 {
@@ -785,10 +727,10 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	createTidyOptionInstance:
-		Given an option id, return an instance of a tidy option.
-		This is required because many of the TidyLib functions
-		require an instance in order to return data.
+  - createTidyOptionInstance: (private)
+    Given an option id, return an instance of a tidy option.
+    This is required because many of the TidyLib functions
+    require an instance in order to return data.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (TidyOption)createTidyOptionInstance:(TidyOptionId)idf
 {
@@ -803,11 +745,11 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	tidyGroupedCompareCommon:useLocalizedName: (private)
-		Common sorting for tidyGroupedNameCompare and
-		tidyGroupedHumanNameCompare.
+  - tidyGroupedCompareCommon:useLocalizedName: (private)
+    Common sorting for tidyGroupedNameCompare and
+    tidyGroupedHumanNameCompare.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
--(NSComparisonResult)tidyGroupedCompareCommon:(JSDTidyOption *)tidyOption useLocalizedName:(BOOL)useLocalizedName;
+- (NSComparisonResult)tidyGroupedCompareCommon:(JSDTidyOption *)tidyOption useLocalizedName:(BOOL)useLocalizedName;
 {
 	NSComparisonResult result;
 
