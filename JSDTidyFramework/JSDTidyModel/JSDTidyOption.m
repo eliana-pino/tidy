@@ -630,7 +630,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	tidyGroupedNameCompare:
+  - tidyGroupedNameCompare:
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 -(NSComparisonResult)tidyGroupedNameCompare:(JSDTidyOption *)tidyOption
 {
@@ -639,7 +639,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	tidyGroupedHumanNameCompare:
+  - tidyGroupedHumanNameCompare:
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 -(NSComparisonResult)tidyGroupedHumanNameCompare:(JSDTidyOption *)tidyOption
 {
