@@ -182,13 +182,15 @@
 
 /**
  *  The result of the tidying operation, available as an **NSData** object, using
- *  the instance's current `output-encoding` Tidy option.
+ *  the instance's current `output-encoding` Tidy option and the correct line endings
+ *  per `newline`.
  */
 @property (nonatomic, strong, readonly) NSData *tidyTextAsData;
 
 /**
  *  Writes the result of the tidying operation to the file system, using
- *  the instance's current `output-encoding` Tidy option.
+ *  the instance's current `output-encoding` Tidy option and the correct line endings
+ *  per `newline`.
  *
  *  This method writes using native Cocoa file-writing, and not any file-writing
  *  methods from `libtidy`.
@@ -238,7 +240,10 @@
 
 /**
  *  This method dumps all `tidylib` option descriptions to the console. This is probably mostly
- *  useful to developers who want to develop localizations. 
+ *  useful to developers who want to develop localizations. This is a cheap way to get the descriptions
+ *  for Localizable.strings. This will produce a fairly nice, formatted list of strings that you might
+ *  use directly. Double-check quotes, etc., before building. There are probably a couple of entities
+ *  that are missed.
  */
 + (void)      optionsBuiltInDumpDocsToConsole;
 

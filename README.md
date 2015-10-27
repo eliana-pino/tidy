@@ -349,11 +349,39 @@ Legal Stuff
 
 ### Open Source
 
-_Balthisar Tidy_ and all of its source code (including third party libraries) have been released under the MIT
-license, or similar licenses. You can refer to the licenses in the source code.
+_Balthisar Tidy_ and all of its source code (including third party source code) have been
+released under free and open source licenses.
 
-Items that are not source code, such as artwork and the name "Balthisar" and "Balthisar Tidy" are not licensed
-and remain the property of Jim Derry. See the Trademark and Artwork Policy, next.
+Refer to licenses in third party source code for rights and responsibilities related to
+that source code.
+
+All source code in this project copyrighted by Jim Derry is available to you under license
+via the standard MIT License, reproduced below. Items that are not source code, such as
+artwork and the name "Balthisar" and "Balthisar Tidy" are not licensed for your private
+or public use and remain the property of Jim Derry. See the Trademark and Artwork Policy,
+below.
+
+
+The MIT License (MIT)
+---------------------
+
+Copyright (c) 2003 to 2015 Jim Derry <http://www.balthisar.com>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this
+software and associated documentation files (the "Software"), to deal in the Software
+without restriction, including without limitation the rights to use, copy, modify, merge,
+publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons
+to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or
+substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
 
 
 Trademark and Artwork Policy
@@ -371,7 +399,7 @@ used stylistically as "Balthisar Tidy."
 written content via electronic and other media. This trademark is used
 stylistically as "balthisar," "balthisar.com," and "www.balthisar.com."
 
-The entirety of _Balthisar Tidy_ is Copyright ©2003-2014 by Jim Derry. The
+The entirety of _Balthisar Tidy_ is Copyright ©2003-2015 by Jim Derry. The
 source code (including HTML files that constitute the Apple Help system) has
 been released under the MIT License. Although you may use the source code for
 any purpose allowed by the license, you may not use Jim Derry's artwork or
