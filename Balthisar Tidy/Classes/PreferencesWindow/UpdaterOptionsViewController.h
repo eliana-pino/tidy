@@ -17,16 +17,28 @@
 @interface UpdaterOptionsViewController : NSViewController <MASPreferencesViewController>
 
 
-/* Software Updater Pane Preferences and Objects */
+#pragma mark - Software Updater Pane Outlets
+/** @name Software Updater Pane Outlets */
 
 @property (weak) IBOutlet NSButton      *buttonAllowUpdateChecks;
 @property (weak) IBOutlet NSButton      *buttonAllowSystemProfile;
 @property (weak) IBOutlet NSPopUpButton *buttonUpdateInterval;
 
 
-/* <MASPreferencesViewController> */
+#pragma mark - <MASPreferencesViewController>
+/** @name <MASPreferencesViewController> */
 
+
+/**
+ * Indicates to the window controller whether this view can be widened.
+ * This is complying with <MASPreferencesViewController>.
+ */
 @property (nonatomic, readonly) BOOL hasResizableWidth;
+
+/**
+ * Indicates to the window controller whether this view can be heightened.
+ * This is complying with <MASPreferencesViewController>.
+ */
 @property (nonatomic, readonly) BOOL hasResizableHeight;
 
 

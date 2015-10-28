@@ -16,7 +16,17 @@
  */
 @interface OptionListViewController : NSViewController <MASPreferencesViewController>
 
-@property (nonatomic, readonly) BOOL hasResizableWidth;
-@property (nonatomic, readonly) BOOL hasResizableHeight;
+
+/**
+ * Indicates to the window controller whether this view can be widened.
+ * This is complying with <MASPreferencesViewController>.
+ */
+@property (nonatomic, assign, readonly) BOOL hasResizableWidth;
+
+/**
+ * Indicates to the window controller whether this view can be heightened.
+ * This is complying with <MASPreferencesViewController>.
+ */
+@property (nonatomic, assign, readonly) BOOL hasResizableHeight;
 
 @end

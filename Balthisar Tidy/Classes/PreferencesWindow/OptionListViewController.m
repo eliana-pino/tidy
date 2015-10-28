@@ -35,7 +35,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	init
+  - init
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (id)init
 {
@@ -45,9 +45,9 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	awakeFromNib
-		- Setup the option panel controller.
-		- Give the OptionPaneController its optionsInEffect
+  - awakeFromNib
+    - Setup the option panel controller.
+    - Give the OptionPaneController its optionsInEffect.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)awakeFromNib
 {
@@ -85,12 +85,12 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	handleTidyOptionChange:
-		We're here because we registered for NSNotification.
-		One of the preferences changed in the option pane.
-		We're going to record the preference, but we're not
-		going to post a notification, because new documents
-		will read the preferences themselves.
+  - handleTidyOptionChange:
+    We're here because we registered for NSNotification.
+    One of the preferences changed in the option pane.
+    We're going to record the preference, but we're not
+    going to post a notification, because new documents
+    will read the preferences themselves.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)handleTidyOptionChange:(NSNotification *)note
 {
@@ -111,7 +111,6 @@
 {
 	return YES;
 }
-
 
 
 - (NSString *)identifier
