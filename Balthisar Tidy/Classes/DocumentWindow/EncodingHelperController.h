@@ -17,8 +17,17 @@
 @interface EncodingHelperController : NSViewController
 
 
+/**
+ *  Initializes the helper.
+ *  @param note The notification. See JSDTidyFramwork for format.
+ *  @param document The tidy document that the notification applies to.
+ *  @param view The associated view that the helper view should be bound to.
+ */
 - (instancetype)initWithNote:(NSNotification*)note fromDocument:(TidyDocument*)document forView:(NSView*)view;
 
+/**
+ *  Starts the helper.
+ */
 - (void)startHelper;
 
 @end

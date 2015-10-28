@@ -13,19 +13,19 @@
 
 /* Internal Properties */
 
-@property (strong) TidyDocument *documentReference;
-@property (strong) NSView *documentViewReference;
-@property (assign) NSStringEncoding currentEncoding;
-@property (assign) NSStringEncoding suggestedEncoding;
+@property (nonatomic, strong) TidyDocument *documentReference;
+@property (nonatomic, strong) NSView *documentViewReference;
+@property (nonatomic, assign) NSStringEncoding currentEncoding;
+@property (nonatomic, assign) NSStringEncoding suggestedEncoding;
 
 
 /* Outlets and Actions */
 
-@property (weak) IBOutlet NSPopover   *popoverEncoding;
-@property (weak) IBOutlet NSButton    *buttonEncodingDoNotWarnAgain;
-@property (weak) IBOutlet NSButton    *buttonEncodingAllowChange;
-@property (weak) IBOutlet NSButton    *buttonEncodingIgnoreSuggestion;
-@property (weak) IBOutlet NSTextField *textFieldEncodingExplanation;
+@property (nonatomic, weak) IBOutlet NSPopover   *popoverEncoding;
+@property (nonatomic, weak) IBOutlet NSButton    *buttonEncodingDoNotWarnAgain;
+@property (nonatomic, weak) IBOutlet NSButton    *buttonEncodingAllowChange;
+@property (nonatomic, weak) IBOutlet NSButton    *buttonEncodingIgnoreSuggestion;
+@property (nonatomic, weak) IBOutlet NSTextField *textFieldEncodingExplanation;
 
 - (IBAction)popoverEncodingHandler:(id)sender;
 
@@ -36,7 +36,7 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
-	initWithNote:fromDocument:
+  - initWithNote:fromDocument:
  *———————————————————————————————————————————————————————————————————*/
 - (instancetype)initWithNote:(NSNotification*)note fromDocument:(TidyDocument*)document forView:(NSView*)view
 {
@@ -58,8 +58,8 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
-	awakeFromNib
-		called only as a result of loadView.
+  - awakeFromNib
+    Called only as a result of loadView.
  *———————————————————————————————————————————————————————————————————*/
 - (void)awakeFromNib
 {
@@ -78,9 +78,7 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
-	startHelper
-		Starts the helper with loadView and positions it near
-		the targetView;
+  - startHelper
  *———————————————————————————————————————————————————————————————————*/
 - (void)startHelper;
 {
@@ -98,10 +96,10 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
-	popoverEncodingHandler:
-		Handles all possibles actions from the input-encoding
-		helper popover. The only two senders should be
-		buttonAllowChange and buttonIgnoreSuggestion.
+  - popoverEncodingHandler:
+    Handles all possibles actions from the input-encoding
+    helper popover. The only two senders should be
+    buttonAllowChange and buttonIgnoreSuggestion.
  *———————————————————————————————————————————————————————————————————*/
 - (IBAction)popoverEncodingHandler:(id)sender
 {
