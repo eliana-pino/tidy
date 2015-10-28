@@ -10,15 +10,22 @@
 
 
 /**
- *  This main application controller handles the preferences and most of the Sparkle vs.
- *  non-sparkle builds.
+ *  This main application controller handles application startup, Preference, and target conditional
+ *  differences such as Sparkle vs. non-sparkle.
  */
 @interface AppController : NSObject <NSApplicationDelegate>
 
 
-- (IBAction)showPreferences:(id)sender;   // User wants to see Preferences window.
+/**
+ *  Show the Preferences window.
+ */
+- (IBAction)showPreferences:(id)sender;
 
-- (IBAction)showAboutWindow:(id)sender;   // User wants to see the About window.
+
+/**
+ *  Show the About window.
+ */
+- (IBAction)showAboutWindow:(id)sender;
 
 
 @end
