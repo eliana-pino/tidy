@@ -22,7 +22,7 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
-	initVertical: - designated initializer
+  - initVertical:
  *———————————————————————————————————————————————————————————————————*/
 - (instancetype)initVertical:(BOOL)initVertical
 {
@@ -40,7 +40,7 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
-	init
+  - init
  *———————————————————————————————————————————————————————————————————*/
 - (instancetype)init
 {
@@ -49,7 +49,7 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
-	dealloc
+  - dealloc
  *———————————————————————————————————————————————————————————————————*/
 - (void)dealloc
 {
@@ -59,7 +59,7 @@
 }
 
 /*———————————————————————————————————————————————————————————————————*
-	awakeFromNib
+  - awakeFromNib
  *———————————————————————————————————————————————————————————————————*/
 - (void)awakeFromNib
 {
@@ -84,11 +84,11 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
-	textDidChange:
-		We arrived here by virtue of being the delegate of
-		`sourcetextView`. Simply update the tidyProcess sourceText,
-		and the event chain will eventually update everything
-		else.
+  - textDidChange:
+	We arrived here by virtue of being the delegate of
+	`sourcetextView`. Simply update the tidyProcess sourceText,
+	and the event chain will eventually update everything
+	else.
  *———————————————————————————————————————————————————————————————————*/
 - (void)textDidChange:(NSNotification *)aNotification
 {
@@ -111,9 +111,9 @@
 }
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	textView:doCommandBySelector:
-		We're here because we're the delegate of `sourceTextView`.
-		Allow the tab key to back in and out of this view.
+  - textView:doCommandBySelector:
+	We're here because we're the delegate of `sourceTextView`.
+	Allow the tab key to back in and out of this view.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (BOOL)textView:(NSTextView *)aTextView doCommandBySelector:(SEL)aSelector
 {
@@ -137,9 +137,9 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
-	observeValueForKeyPath:ofObject:change:context:
-		Handle KVC Notifications:
-		- the processor's sourceText changed.
+  - observeValueForKeyPath:ofObject:change:context:
+	Handle KVC Notifications:
+	  - the processor's sourceText changed.
  *———————————————————————————————————————————————————————————————————*/
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
@@ -154,13 +154,13 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
-	handleTidySourceTextRestored:
-		Handle changes to the tidyProcess's sourceText property.
-		The tidyProcess changed the sourceText for some reason,
-		probably because the user changed input-encoding. Note
-		that this event is only received if Tidy itself changes
-		the sourceText, not as the result of outside setting.
-		The event chain will eventually update everything else.
+  - handleTidySourceTextRestored:
+	Handle changes to the tidyProcess's sourceText property.
+	The tidyProcess changed the sourceText for some reason,
+	probably because the user changed input-encoding. Note
+	that this event is only received if Tidy itself changes
+	the sourceText, not as the result of outside setting.
+	The event chain will eventually update everything else.
  *———————————————————————————————————————————————————————————————————*/
 - (void)handleTidySourceTextRestored:(NSNotification *)note
 {
@@ -175,7 +175,7 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
-	setupViewAppearance
+  - setupViewAppearance
  *———————————————————————————————————————————————————————————————————*/
 - (void)setupViewAppearance
 {
@@ -189,9 +189,9 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
-	highlightSourceTextUsingArrayController
-		Perform error highlighting on the source text using
-		appropriate values from arrayController.
+  - highlightSourceTextUsingArrayController
+	Perform error highlighting on the source text using
+	appropriate values from arrayController.
  *———————————————————————————————————————————————————————————————————*/
 - (void)highlightSourceTextUsingArrayController:(NSArrayController*)arrayController
 {
@@ -219,8 +219,8 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
-	configureViewSettings: (private)
-		Configure text view `aView` with uniform settings.
+  - configureViewSettings: (private)
+	Configure text view `aView` with uniform settings.
  *———————————————————————————————————————————————————————————————————*/
 - (void)configureViewSettings:(NSTextView *)aView
 {
