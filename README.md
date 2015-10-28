@@ -33,6 +33,13 @@ _Balthisar Tidy_ has been released with support for Mac OS X 10.8 and newer.
 Change Log
 ----------
 
+### Balthisar Tidy 2.2.1 (tbd)
+
+- Changes developers will notice
+	- Header and implementation documentation improved.
+	- Updated bundled binaries' bundle versions to match the containing application,
+	  as the App Store verification process now flags differences.
+
 ### Balthisar Tidy 2.2.0 (October 2015)
 
 - New Features
