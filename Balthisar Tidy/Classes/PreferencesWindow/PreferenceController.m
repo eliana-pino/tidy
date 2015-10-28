@@ -35,7 +35,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	init
+  - init
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (instancetype)init
 {
@@ -82,8 +82,8 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	sharedPreferences (class)
-		Implement this class as a singleton.
+  + sharedPreferences
+    Implement this class as a singleton.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 + (id)sharedPreferences
 {
@@ -98,15 +98,16 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	optionsInEffect (class)
-		Because JSDTidyModel pretty successfully integrates with the
-		native TidyLib without having to hardcode everything, it
-		will use *all* tidy options if we let it. We don't want
-		to use every tidy option, though, so here we will provide
-		an array of tidy options that we will support.
- 
-		Note that this replaces the old `optionsInEffect.txt` file
-		that was previously used for this purpose.
+  + optionsInEffect
+    Because JSDTidyModel pretty successfully integrates with the
+    native `libtidy` without having to hardcode everything, it
+    will use *all* tidy options if we let it. We don't want
+    to use every tidy option, though, so here we will provide
+    an array of tidy options that we will support.
+   @TODO Check current 5.0.0+ libtidy for added selectors. We can
+    check the library version. In general, now that we support the
+    use of /usr/local/lib, we should have a general version check
+    to ensure a certain minimum version is used.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 + (NSArray*)optionsInEffect
 {
@@ -218,9 +219,9 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	registerUserDefaults
-		Register all of the user defaults. Implemented as a CLASS
-		method in order to keep this with the preferences controller.
+  - registerUserDefaults
+    Register all of the user defaults. Implemented as a CLASS
+    method in order to keep this with the preferences controller.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)registerUserDefaults
 {
@@ -271,14 +272,16 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	handleUserDefaultsChanged:
-       Mirror standardUserDefaults to the App Group defaults, uni-
-       directionally only. The user interface uses several instances
-       of NSUserDefaultsController which cannot be tied to anything
-       other than standardUserDefaults. Rather than subclass it and
-       change all of Balthisar Tidy's source code to use a different
-       defaults domain, we will use the same defaults as always but
-       copy them out to the shared domain as needed.
+  - handleUserDefaultsChanged:
+    Support App Groups so that our Service app and Action extensions
+    have access to Balthisar Tidy's preferences. The strategy is to
+    mirror standardUserDefaults to the App Group defaults, uni-
+    directionally only. The user interface uses several instances
+    of NSUserDefaultsController which cannot be tied to anything
+    other than standardUserDefaults. Rather than subclass it and
+    change all of Balthisar Tidy's source code to use a different
+    defaults domain, we will use the same defaults as always but
+    copy them out to the shared domain as needed.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)handleUserDefaultsChanged:(NSNotification*)note
 {

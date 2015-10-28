@@ -30,16 +30,21 @@
 #pragma mark - Class Methods
 
 
-+ (id)sharedPreferences;             // Singleton accessor for this class.
+/** Singleton accessor for this class. */
++ (id)sharedPreferences;
 
-+ (NSArray*)optionsInEffect;         // An array of the tidy options that Balthisar Tidy supports.
+/** An array of the tidy options that Balthisar Tidy supports. */
++ (NSArray*)optionsInEffect;
 
 
 #pragma mark - Instance Methods
 
-- (void)registerUserDefaults;        // Registers Balthisar Tidy's defaults with Mac OS X' defaults system.
 
-- (void)handleUserDefaultsChanged:(NSNotification*)note;   // Mirror standardUserDefaults into the application group preferences.
+/** Registers Balthisar Tidy's defaults with Mac OS X' defaults system. */
+- (void)registerUserDefaults;
+
+/** Mirror standardUserDefaults into the application group preferences. */
+- (void)handleUserDefaultsChanged:(NSNotification*)note; 
 
 
 @end
