@@ -19,16 +19,21 @@
 @interface FirstRunController : NSObject
 
 
-@property NSArray *steps;                      // Steps array, as described above.
+/** Steps array, as documented in the class header. */
+@property (nonatomic, strong) NSArray *steps;
 
-@property NSString *preferencesKeyName;        // Preferences key to record whether or not helper finished.
+/** Preferences key to record whether or not helper finished. */
+@property (nonatomic, strong) NSString *preferencesKeyName;
 
-@property (readonly, assign) BOOL isVisible;   // Indicates whether or not the helper is currently shown.
+/** Indicates whether or not the helper is currently shown. */
+@property (nonatomic, assign, readonly) BOOL isVisible;
 
 
-- (instancetype)initWithSteps:(NSArray*)steps;   // Inital with a steps array directly.
+/** Initalize with a steps array directly. */
+- (instancetype)initWithSteps:(NSArray*)steps;
 
-- (void)beginFirstRunSequence;                   // Start the sequence.
+/** Start the sequence. */
+- (void)beginFirstRunSequence;                   
 
 
 @end

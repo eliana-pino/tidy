@@ -12,17 +12,17 @@
 
 @interface FirstRunController ()
 
-@property (weak) IBOutlet NSPopover   *popoverFirstRun;
-@property (weak) IBOutlet NSButton    *buttonPrevious;
-@property (weak) IBOutlet NSButton    *buttonCancel;
-@property (weak) IBOutlet NSButton    *buttonNext;
-@property (weak) IBOutlet NSButton    *checkboxShowAgain;
-@property (weak) IBOutlet NSTextField *textFieldExplanation;
-@property (weak) IBOutlet NSTextField *textFieldProgress;
+@property (nonatomic, weak) IBOutlet NSPopover   *popoverFirstRun;
+@property (nonatomic, weak) IBOutlet NSButton    *buttonPrevious;
+@property (nonatomic, weak) IBOutlet NSButton    *buttonCancel;
+@property (nonatomic, weak) IBOutlet NSButton    *buttonNext;
+@property (nonatomic, weak) IBOutlet NSButton    *checkboxShowAgain;
+@property (nonatomic, weak) IBOutlet NSTextField *textFieldExplanation;
+@property (nonatomic, weak) IBOutlet NSTextField *textFieldProgress;
 
-@property (assign) BOOL userHasTouchedCheckbox;
+@property (nonatomic, assign) BOOL userHasTouchedCheckbox;
 
-@property (assign) NSInteger currentStep;
+@property (nonatomic, assign) NSInteger currentStep;
 
 - (IBAction)handleButtonPrevious:(NSButton *)sender;
 - (IBAction)handleButtonCancel:(NSButton *)sender;
@@ -41,7 +41,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	init - designated initializer
+  - init
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (instancetype)init
 {
@@ -58,7 +58,7 @@
 }
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	initWithSteps:
+  - initWithSteps:
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (instancetype)initWithSteps:(NSArray*)steps
 {
@@ -71,7 +71,7 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
-	dealloc
+  - dealloc
  *———————————————————————————————————————————————————————————————————*/
 - (void)dealloc
 {
@@ -83,7 +83,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	beginFirstRunSequence
+  - beginFirstRunSequence
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)beginFirstRunSequence
 {
@@ -101,7 +101,7 @@
 }
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	showPopoverHavingTag: (private)
+  - showPopoverHavingTag: (private)
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)showPopoverHavingTag:(NSInteger)tag
 {
@@ -174,7 +174,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	handleButtonPrevious:
+  - handleButtonPrevious:
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (IBAction)handleButtonPrevious:(NSButton *)sender
 {
@@ -183,7 +183,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	handleButtonCancel:
+  - handleButtonCancel:
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (IBAction)handleButtonCancel:(NSButton *)sender
 {
@@ -198,7 +198,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	handleButtonNext:
+  - handleButtonNext:
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (IBAction)handleButtonNext:(NSButton *)sender
 {
@@ -214,10 +214,10 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	handleCheckboxShowAgain:
-		We'll simply remember if the user has ever manually touched
-		the checkbox so that we don't change the state at the end
-		of the helper sequence.
+  - handleCheckboxShowAgain:
+    We'll simply remember if the user has ever manually touched
+    the checkbox so that we don't change the state at the end
+    of the helper sequence.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (IBAction)handleCheckboxShowAgain:(NSButton *)sender
 {
@@ -229,8 +229,8 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	isVisible
-		Indicates whether or not the popup is currently displayed.
+  - isVisible
+    Indicates whether or not the popup is currently displayed.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (BOOL)isVisible
 {
@@ -242,7 +242,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	makeRTFStringFromString: (private)
+  - makeRTFStringFromString: (private)
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSAttributedString*)makeRTFStringFromString:(NSString*)rawString
 {
