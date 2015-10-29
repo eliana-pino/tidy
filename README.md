@@ -36,6 +36,7 @@ Change Log
 ### Balthisar Tidy 2.2.1 (tbd)
 
 - Changes developers will notice
+    - README updated with information about building the project.
 	- Header and implementation documentation improved.
 	- Updated bundled binaries' bundle versions to match the containing application,
 	  as the App Store verification process now flags differences.
@@ -177,8 +178,6 @@ Change Log
     - It now has some pretty icons to help distinguish severity.
     - Columns are now all sortable.
 
-
-
 #### Invisible changes
 - Project directory layout changes.
 - Back to icns files for all icons.
@@ -273,27 +272,27 @@ Change Log
 Building From Source
 --------------------
 
-If you’re building from source, be aware that there are now three (3) different build targets setup:
+If you’re building from source, be aware that there are three different build targets:
 
     - Balthisar Tidy (web)
     - Balthisar Tidy (app)
     - Balthisar Tidy (pro)
 
-_Note that you will probably have to turn off code-signing unless you have an Apple Developer Account_. You
-will still build the same product; it simply won’t be signed with a developer certificate.
+Refer to How To Build, below, for important information.
 
-### Build Targets
+### Main Build Targets
 
-- **Balthisar Tidy (web)** will build the version distributed on the www.balthisar.com website, and will
-  include support for Sparkle for auto-updating.
+- **Balthisar Tidy (web)** will build the version distributed on the www.balthisar.com 
+  website, and will include support for Sparkle for auto-updating.
 
-- **Balthisar Tidy (app)** will be build the version distributed on Apple's App Store, and does not include
-  anything remotely associated with Sparkle. It is otherwise identical with the `(web)` build.
+- **Balthisar Tidy (app)** will be build the version distributed on Apple's App Store, and
+  does not include anything remotely associated with Sparkle. It is otherwise identical
+  with the `(web)` build.
 
-- **Balthisar Tidy (pro)** will build the version distributed as “Balthisar Tidy for Work” on the App Store.
-  Yes, this is the paid version that includes AppleScript support and the ability to export Tidy configuration
-  files, as well as future, unspecified changes. If you want to build it yourself and avoid paying for it in
-  the App Store, you can! 
+- **Balthisar Tidy (pro)** will build the version distributed as “Balthisar Tidy for Work”
+  on the App Store. Yes, this is the paid version that includes AppleScript support and
+  the ability to export Tidy configuration files, as well as future, unspecified changes.
+  If you want to build it yourself and avoid paying for it in the App Store, you can! 
   
   
 ### Additional Build Targets
@@ -317,6 +316,46 @@ be built automatically when needed.
   implementation as a dylib helps reduce code redundancy within the bundle, the main reason for building
   as a dylib is to allow the dynamic linker to use updated versions in /usr/local/lib. This allows
   advanced users to upgrade _Balthisar Tidy_’s tidying engine in between _Balthisar Tidy_ releases.
+
+
+### How to Build
+
+If you try to build any of the targets immediately upon opening the project the first
+time, the build _will_ fail. All versions of _Balthisar Tidy_ include System Services and
+Action Extensions, and this means that Apple _requires_ a code signing identity and
+provisioning profile.
+
+#### If you’re an Apple Developer
+If you’re already an Apple Developer simply ensure that your developer Apple ID is added
+to **Preferences** > **Accounts** in Xcode. Then for each build target, in the
+**General** tab, **Identity** section, select your own team. 
+
+The first time you build Xcode will probably complain about provisioning profiles. Go
+ahead and use the **Fix** button to let Xcode make its changes. 
+
+At this point XCode will build any of the targets and you are all set.
+
+#### If you’re _not_ an Apple Developer
+If you’re not an Apple Developer then don’t worry. Starting with Xcode 7 Apple supports
+free provisioning profiles associated with your Apple ID. This means that you do have to
+use Xcode 7 or newer, and have an Apple ID though.
+
+The first step is to add your Apple ID to **Preferences** > **Accounts** in Xcode, which
+should be straightforward enough. After completing this use the **View Details…** button
+on the same screen. This will cause a sheet to open. In the upper pane 
+(“Signing Identities”) use the **Create** button for “Mac Development” and then use the
+**Done** button. You can close **Preferences** now.
+
+Next, for each build target, go to the **Build Settings** panel and look for the **Code
+Signing** section. Change the **Code Signing Identity** to “Mac Developer” for each
+target. Then for each target, verify that in the **General** tab, **Identity** section, 
+your own team is selected.
+
+The first time you build Xcode will probably complain about provisioning profiles. Go
+ahead and use the **Fix** button to let Xcode make its changes. 
+
+At this point XCode will build any of the targets and you are all set.
+
 
 
 Experimental Support for `/usr/local/lib/` versions of tidylib
