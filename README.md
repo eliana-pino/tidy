@@ -33,7 +33,11 @@ _Balthisar Tidy_ has been released with support for Mac OS X 10.8 and newer.
 Change Log
 ----------
 
-### Balthisar Tidy 2.2.1 (tbd)
+### Balthisar Tidy 2.2.1 (October 2015)
+
+- Bug Fixes
+    - Updated Apple Transport Security settings so that _Balthisar Tidy_ web version
+      can check for updates.
 
 - Changes developers will notice
     - README updated with information about building the project.
