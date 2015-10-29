@@ -35,6 +35,10 @@ Change Log
 
 ### Balthisar Tidy 2.2.1 (October 2015)
 
+Please note that this release is made only for _Balthisar Tidy_ distributed from
+**balthisar.com**, as the only functional difference does not apply to App Store
+versions.
+
 - Bug Fixes
     - Updated Apple Transport Security settings so that _Balthisar Tidy_ web version
       can check for updates.
