@@ -136,7 +136,7 @@
 			 //@"doctype-mode",                 // Read-only; should use `doctype`.
 			 @"drop-empty-elements",
 			 @"drop-empty-paras",
-			 @"drop-font-tags",
+             //@"drop-font-tags",               // marked as `obsolete` in TidyLib source code.
 			 @"drop-proprietary-attributes",
 			 @"enclose-block-text",
 			 @"enclose-text",

@@ -181,7 +181,7 @@
 
 "description-char-encoding"               = "---This option specifies the character encoding Tidy uses for both the input and output. For ASCII, Tidy will accept Latin-1 (ISO-8859-1) character values, but will use entities for all characters whose value > 127. For raw, Tidy will output values above 127 without translating them into entities. For latin1, characters above 255 will be written as entities. For utf8, Tidy assumes that both input and output is encoded as UTF-8. You can use iso2022 for files encoded using the ISO-2022 family of encodings e.g. ISO-2022-JP. For mac and win1252, Tidy will accept vendor specific character values, but will use entities for all characters whose value > 127. For unsupported encodings, use an external utility to convert to and from UTF-8.";
 
-"description-clean"                       = "*This option specifies if Tidy should strip out surplus presentational tags and attributes replacing them by style rules and structural markup as appropriate.\\par It works well on the HTML saved by Microsoft Office products.";
+"description-clean"                       = "*This option specifies if Tidy should perform cleaning of some legacy presentational tags (currently {\\f0 <i>}, {\\f0 <b>}, {\\f0 <center>} when enclosed within appropriate inline tags, and {\\f0 <font>}). If set to {\\f0\\b YES} then legacy tags will be replaced with CSS {\\f0 <style>} tags and structural markup as appropriate.";
 
 "description-coerce-endtags"              = "*This option specifies if Tidy should coerce a start tag into an end tag in cases where it looks like an end tag was probably intended; for example, given \\line {\\f0 <span>foo <b>bar<b> baz</span>} \\line Tidy will output \\line {\\f0 <span>foo <b>bar</b> baz</span>}";
 
@@ -197,7 +197,7 @@
 
 "description-drop-empty-paras"            = "*This option specifies if Tidy should discard empty paragraphs.";
 
-"description-drop-font-tags"              = "*This option specifies if Tidy should discard {\\f0 <font>} and {\\f0 <center>} tags without creating the corresponding style rules. This option can be set independently of the {\\f0 clean} option.";
+"description-drop-font-tags"              = "---Deprecated; {\\b do not use}. This option is destructive to {\\f0 <font>} tags, and it will be removed from future versions of Tidy. Use the {\\f0 clean} option instead.\\par If you do set this option despite the warning it will perform as {\\f0 clean} except styles will be inline instead of put into a CSS class. {\\f0 <font>} tags will be dropped completely and their styles will not be preserved.\\par If both {\\f0 clean} and this option are enabled, {\\f0 <font>} tags will still be dropped completely, and other styles will be preserved in a CSS class instead of inline.\\par See {\\f0 clean} for more information.";
 
 "description-drop-proprietary-attributes" = "*This option specifies if Tidy should strip out proprietary attributes, such as Microsoft data binding attributes.";
 
