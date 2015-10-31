@@ -249,7 +249,7 @@
 
 "description-literal-attributes"          = "*This option specifies how Tidy deals with whitespace characters within attribute values.\\par If the value is {\\f0\\b no} Tidy normalizes attribute values by replacing any newline or tab with a single space, and further by replacing any contiguous whitespace with a single space.\\par To force tidy to preserve the original, literal values of all attributes and ensure that whitespace within attribute values is passed through unchanged, set this option to {\\f0\\b yes}.";
 
-"description-logical-emphasis"            = "*This option specifies if Tidy should replace any occurrence of {\\f0 <i>} with {\\f0 <em>} and any occurrence of {\\f0 <b>} with {\\f0 <strong>}. Any attributes are preserved unchanged.\\par This option can be set independently of the {\\f0 clean} and {\\f0 drop-font-tags} options.";
+"description-logical-emphasis"            = "*This option specifies if Tidy should replace any occurrence of {\\f0 <i>} with {\\f0 <em>} and any occurrence of {\\f0 <b>} with {\\f0 <strong>}. Any attributes are preserved unchanged.\\par This option can be set independently of the {\\f0 clean} option.";
 
 "description-lower-literals"              = "*This option specifies if Tidy should convert the value of an attribute that takes a list of predefined values to lower case.\\par This is required for XHTML documents.";
 
