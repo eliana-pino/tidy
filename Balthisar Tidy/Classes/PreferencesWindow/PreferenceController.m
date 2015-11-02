@@ -155,6 +155,7 @@
 			 @"indent-attributes",
 			 @"indent-cdata",
 			 @"indent-spaces",
+             //@"indent-with-tabs",             // @TODO: new, will support, must test.
 			 @"input-encoding",
 			 @"input-xml",
 			 @"join-classes",
@@ -194,6 +195,8 @@
 			 //@"show-error",                   // Balthisar Tidy handles this directly.
 			 //@"show-info",                    // Balthisar Tidy handles this directly.
 			 //@"show-warnings",                // Balthisar Tidy handles this directly.
+             //@"skip-quotes",                  // NOT IMPLEMENTED YES - need update Tidy
+             //@"skip-nested",                  // Possible future name of skip-quotes.
 			 //@"slide-style",                  // marked as `obsolete` in TidyLib source code.
 			 @"sort-attributes",
 			 //@"split",                        // marked as `obsolete` in TidyLib source code.
