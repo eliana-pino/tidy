@@ -127,7 +127,6 @@
 						   @"gnu-emacs",                    // Balthisar Tidy handles this directly.
 						   @"gnu-emacs-file",               // Balthisar Tidy handles this directly.
 						   @"hide-endtags",                 // Is a dupe of `omit-optional-tags`
-						   //@"indent-with-tabs",             // @TODO: new, will support, must test.
 						   @"keep-time",                    // Balthisar Tidy handles this directly.
 						   @"language",                     // Not currently used; Mac OS X supports localization natively.
 						   @"output-bom",                   // Balthisar Tidy handles this directly.
@@ -136,8 +135,6 @@
 						   @"show-errors",                   // Balthisar Tidy handles this directly.
 						   @"show-info",                    // Balthisar Tidy handles this directly.
 						   @"show-warnings",                // Balthisar Tidy handles this directly.
-						   @"skip-quotes",                  // @TODO NOT IMPLEMENTED YES - need update Tidy
-						   @"skip-nested",                  // @TODO Possible future name of skip-quotes.
 						   @"slide-style",                  // marked as `obsolete` in TidyLib source code.
 						   @"split",                        // marked as `obsolete` in TidyLib source code.
 						   @"write-back",                   // Balthisar Tidy handles this directly.
