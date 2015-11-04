@@ -66,7 +66,6 @@
 		D02DBCF01A59512E009C84CF /* JSDTidyFramework.framework in Add Frameworks */ = {isa = PBXBuildFile; fileRef = D00661081A579BE700F73F85 /* JSDTidyFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D034D8131A621E5300821FE5 /* helper-icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = D04BC98D1A5AC714009AC43A /* helper-icon.icns */; };
 		D036E1E818F3D25E0009A9D4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D036E1D818F3D25E0009A9D4 /* Credits.rtf */; };
-		D036E1E918F3D25E0009A9D4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D036E1D818F3D25E0009A9D4 /* Credits.rtf */; };
 		D036E1EA18F3D25E0009A9D4 /* FirstRunHelper.xib in Resources */ = {isa = PBXBuildFile; fileRef = D036E1DA18F3D25E0009A9D4 /* FirstRunHelper.xib */; };
 		D036E1EB18F3D25E0009A9D4 /* FirstRunHelper.xib in Resources */ = {isa = PBXBuildFile; fileRef = D036E1DA18F3D25E0009A9D4 /* FirstRunHelper.xib */; };
 		D036E1EC18F3D25E0009A9D4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D036E1DC18F3D25E0009A9D4 /* InfoPlist.strings */; };
@@ -120,6 +119,8 @@
 		D04E8FBB195DAA9500D1CEDC /* DiffViewTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D03B89D91955474700E9B4D5 /* DiffViewTemplate.png */; };
 		D04E8FBC195DAA9500D1CEDC /* DiffsTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D03B89D319553E5D00E9B4D5 /* DiffsTemplate.png */; };
 		D04E8FBD195DAA9500D1CEDC /* ScrollLockTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D03B89D71955457500E9B4D5 /* ScrollLockTemplate.png */; };
+		D05F71D51BEA2DE300F584C4 /* Credits (app).rtf in Resources */ = {isa = PBXBuildFile; fileRef = D05F71D11BEA2DE300F584C4 /* Credits (app).rtf */; };
+		D05F71D81BEA2DE300F584C4 /* Credits (pro).rtf in Resources */ = {isa = PBXBuildFile; fileRef = D05F71D31BEA2DE300F584C4 /* Credits (pro).rtf */; };
 		D06C9A43195FB4A4004D6C27 /* MASPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A40195FB4A4004D6C27 /* MASPreferencesWindow.xib */; };
 		D06C9A44195FB4A4004D6C27 /* MASPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A40195FB4A4004D6C27 /* MASPreferencesWindow.xib */; };
 		D06C9A45195FB4A4004D6C27 /* MASPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A40195FB4A4004D6C27 /* MASPreferencesWindow.xib */; };
@@ -343,7 +344,6 @@
 		D0BB67F0193C820A007A3EB0 /* XML.icns in Resources */ = {isa = PBXBuildFile; fileRef = D036E20C18F3D2F20009A9D4 /* XML.icns */; };
 		D0BB67F3193C820A007A3EB0 /* Application.icns in Resources */ = {isa = PBXBuildFile; fileRef = D036E20818F3D2F20009A9D4 /* Application.icns */; };
 		D0BB67F4193C820A007A3EB0 /* OptionPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = D036E1E218F3D25E0009A9D4 /* OptionPane.xib */; };
-		D0BB67F5193C820A007A3EB0 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D036E1D818F3D25E0009A9D4 /* Credits.rtf */; };
 		D0BB67F6193C820A007A3EB0 /* TidyDocumentWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D036E1E618F3D25E0009A9D4 /* TidyDocumentWindow.xib */; };
 		D0BB67F7193C820A007A3EB0 /* Tidy.icns in Resources */ = {isa = PBXBuildFile; fileRef = D036E20B18F3D2F20009A9D4 /* Tidy.icns */; };
 		D0BB67F8193C820A007A3EB0 /* HTML.icns in Resources */ = {isa = PBXBuildFile; fileRef = D036E20918F3D2F20009A9D4 /* HTML.icns */; };
@@ -861,6 +861,8 @@
 		D04E8FAC195D964F00D1CEDC /* Balthisar Tidy (app).help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Balthisar Tidy (app).help"; sourceTree = "<group>"; };
 		D04E8FAD195D964F00D1CEDC /* Balthisar Tidy (pro).help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Balthisar Tidy (pro).help"; sourceTree = "<group>"; };
 		D04E8FAE195D964F00D1CEDC /* Balthisar Tidy (web).help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Balthisar Tidy (web).help"; sourceTree = "<group>"; };
+		D05F71D21BEA2DE300F584C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Base; path = "Base.lproj/Credits (app).rtf"; sourceTree = "<group>"; };
+		D05F71D41BEA2DE300F584C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Base; path = "Base.lproj/Credits (pro).rtf"; sourceTree = "<group>"; };
 		D06626CE18B09B330091CBD8 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = "Balthisar Tidy/Frameworks/Sparkle.framework"; sourceTree = "<group>"; };
 		D06657C01A5D8BDB002DCD2F /* CommonHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = CommonHeaders.h; path = "Balthisar Common Headers/CommonHeaders.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		D06C9A3F195FB4A4004D6C27 /* MASPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MASPreferencesViewController.h; path = MASPreferences/MASPreferencesViewController.h; sourceTree = "<group>"; };
@@ -1510,6 +1512,8 @@
 				D036E1E218F3D25E0009A9D4 /* OptionPane.xib */,
 				D025BD5C195856B6006D7356 /* Acknowledgments.rtf */,
 				D036E1D818F3D25E0009A9D4 /* Credits.rtf */,
+				D05F71D11BEA2DE300F584C4 /* Credits (app).rtf */,
+				D05F71D31BEA2DE300F584C4 /* Credits (pro).rtf */,
 				D036E1DC18F3D25E0009A9D4 /* InfoPlist.strings */,
 				D036E1DE18F3D25E0009A9D4 /* Localizable.strings */,
 			);
@@ -2192,7 +2196,6 @@
 				D025BD5F195856C0006D7356 /* Acknowledgments.rtf in Resources */,
 				D036E20E18F3D2F20009A9D4 /* Application.icns in Resources */,
 				D04E8FB0195D964F00D1CEDC /* Balthisar Tidy (app).help in Resources */,
-				D036E1E918F3D25E0009A9D4 /* Credits.rtf in Resources */,
 				D0B9F0F219585010008864D6 /* DCOAboutWindow.xib in Resources */,
 				D04E8FB9195DAA9400D1CEDC /* DiffsTemplate.png in Resources */,
 				D04E8FB8195DAA9400D1CEDC /* DiffViewTemplate.png in Resources */,
@@ -2236,6 +2239,7 @@
 				D074B78C1942BEE200F2E6F1 /* TidyEncodingHelper.xib in Resources */,
 				D0A2E1F9197548D20015F667 /* ToolbarAdvanced.tiff in Resources */,
 				D0A2E1FC197548D20015F667 /* ToolbarInfo.tiff in Resources */,
+				D05F71D51BEA2DE300F584C4 /* Credits (app).rtf in Resources */,
 				D06C9A80195FBA3F004D6C27 /* UpdaterOptionsViewController.xib in Resources */,
 				D036E21618F3D2F20009A9D4 /* XML.icns in Resources */,
 			);
@@ -2248,7 +2252,6 @@
 				D025BD60195856C1006D7356 /* Acknowledgments.rtf in Resources */,
 				D0BB67F3193C820A007A3EB0 /* Application.icns in Resources */,
 				D0097B0B19712F68001CCF94 /* Balthisar Tidy (pro).help in Resources */,
-				D0BB67F5193C820A007A3EB0 /* Credits.rtf in Resources */,
 				D0B9F0F319585010008864D6 /* DCOAboutWindow.xib in Resources */,
 				D04E8FBC195DAA9500D1CEDC /* DiffsTemplate.png in Resources */,
 				D04E8FBB195DAA9500D1CEDC /* DiffViewTemplate.png in Resources */,
@@ -2283,6 +2286,7 @@
 				D06C9AA3195FE854004D6C27 /* prefsUpdate@2x.png in Resources */,
 				D06C9A6F195FB9F2004D6C27 /* SavingOptionsViewController.xib in Resources */,
 				D04E8FBD195DAA9500D1CEDC /* ScrollLockTemplate.png in Resources */,
+				D05F71D81BEA2DE300F584C4 /* Credits (pro).rtf in Resources */,
 				D01AACB9193DE56000C4E5B2 /* ShowDescriptionTemplate.pdf in Resources */,
 				D0BB67F7193C820A007A3EB0 /* Tidy.icns in Resources */,
 				D074B7AC1944035800F2E6F1 /* TidyDocumentMessagesView.xib in Resources */,
@@ -2769,6 +2773,22 @@
 				D04BC9CD1A5C2A22009AC43A /* Base */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		D05F71D11BEA2DE300F584C4 /* Credits (app).rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D05F71D21BEA2DE300F584C4 /* Base */,
+			);
+			name = "Credits (app).rtf";
+			sourceTree = "<group>";
+		};
+		D05F71D31BEA2DE300F584C4 /* Credits (pro).rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D05F71D41BEA2DE300F584C4 /* Base */,
+			);
+			name = "Credits (pro).rtf";
 			sourceTree = "<group>";
 		};
 		D074B7891942BEE200F2E6F1 /* TidyEncodingHelper.xib */ = {

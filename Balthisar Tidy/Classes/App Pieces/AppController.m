@@ -192,6 +192,19 @@
     if (!_aboutWindowController)
 	{
         _aboutWindowController = [[DCOAboutWindowController alloc] init];
+
+#if defined(TARGET_WEB)
+        NSString *creditsFile = @"Credits";
+#elif defined(TARGET_APP)
+        NSString *creditsFile = @"Credits (app)";
+#elif defined(TARGET_PRO)
+        NSString *creditsFile = @"Credits (pro)";
+#else
+        NSString *creditsFile = @"Credits";
+#endif
+
+        NSString *creditsPath = [[NSBundle mainBundle] pathForResource:creditsFile ofType:@"rtf"];
+        _aboutWindowController.appCredits = [[NSAttributedString alloc] initWithPath:creditsPath documentAttributes:nil];
     }
     return _aboutWindowController;
 }
