@@ -127,7 +127,7 @@
 						   @"gnu-emacs",                    // Balthisar Tidy handles this directly.
 						   @"gnu-emacs-file",               // Balthisar Tidy handles this directly.
 						   @"hide-endtags",                 // Is a dupe of `omit-optional-tags`
-						   @"indent-with-tabs",             // @TODO: new, will support, must test.
+						   //@"indent-with-tabs",             // @TODO: new, will support, must test.
 						   @"keep-time",                    // Balthisar Tidy handles this directly.
 						   @"language",                     // Not currently used; Mac OS X supports localization natively.
 						   @"output-bom",                   // Balthisar Tidy handles this directly.
