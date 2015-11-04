@@ -122,7 +122,7 @@
 	NSArray *blacklist = @[
 						   @"char-encoding",                // Balthisar Tidy handles this directly
 						   @"doctype-mode",                 // Read-only; should use `doctype`.
-						   @"drop-font-tags",               // marked as `obsolete` in TidyLib source code.
+						   @"drop-font-tags",               // marked as `obsolete` in libtidy source code.
 						   @"error-file",                   // Balthisar Tidy handles this directly.
 						   @"gnu-emacs",                    // Balthisar Tidy handles this directly.
 						   @"gnu-emacs-file",               // Balthisar Tidy handles this directly.
@@ -135,8 +135,8 @@
 						   @"show-errors",                   // Balthisar Tidy handles this directly.
 						   @"show-info",                    // Balthisar Tidy handles this directly.
 						   @"show-warnings",                // Balthisar Tidy handles this directly.
-						   @"slide-style",                  // marked as `obsolete` in TidyLib source code.
-						   @"split",                        // marked as `obsolete` in TidyLib source code.
+						   @"slide-style",                  // marked as `obsolete` in libtidy source code.
+						   @"split",                        // marked as `obsolete` in libtidy source code.
 						   @"write-back",                   // Balthisar Tidy handles this directly.
 			 ];
 	

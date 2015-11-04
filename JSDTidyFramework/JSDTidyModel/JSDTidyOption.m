@@ -384,7 +384,7 @@
 }
 
 
-#pragma mark - Properties maintained for original TidyLib compatability (may be used internally)
+#pragma mark - Properties maintained for original libtidy compatability (may be used internally)
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
@@ -483,7 +483,7 @@
 	
 	if (!tidyResultCString)
 	{
-		tidyResultString = @"No description provided by TidyLib.";
+		tidyResultString = @"No description provided by libtidy.";
 	}
 	else
 	{
@@ -566,7 +566,7 @@
 	if (self.optionIsEncodingOption)
 	{
 		/*
-			Force TidyLib to use UTF8 internally. Mac OS X will handle
+			Force libtidy to use UTF8 internally. Mac OS X will handle
 			file encoding and file input-output.
 		 */
 		return tidyOptSetValue(destinationTidyDoc, self.optionId, [@"utf8" UTF8String]);
@@ -729,7 +729,7 @@
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
   - createTidyOptionInstance: (private)
     Given an option id, return an instance of a tidy option.
-    This is required because many of the TidyLib functions
+    This is required because many of the libtidy functions
     require an instance in order to return data.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (TidyOption)createTidyOptionInstance:(TidyOptionId)idf

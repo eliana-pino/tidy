@@ -17,7 +17,7 @@
 
 
 /**
- *  **JSDTidyFramework** provides a wrapper for the [HTML Tidy project][1]’s `tidylib` for
+ *  **JSDTidyFramework** provides a wrapper for the [HTML Tidy project][1]’s `libtidy` for
  *  Objective-C and Cocoa. It consists of a fat wrapper geared towards GUI development.
  *
  *  In general once an instance of **JSDTidyModel** is instantiated it's easy to use.
@@ -210,7 +210,7 @@
 
 
 /**
- *  Returns tidylib's error report text in traditional tidy format, directly from `tidylib`.
+ *  Returns tidylib's error report text in traditional tidy format, directly from `libtidy`.
  *
  *  For delegate and notifications, see [JSDTidyModelDelegate tidyModelTidyMessagesChanged:messages:].
  */
@@ -221,14 +221,14 @@
  *
  *  Each **NSDictionary** contains the following keys, the values of which are localized:
  *
- *  - `level`, an **NSNumber**-encapsulated **int** representing the **TidyReportLevel** from `tidylib`.
+ *  - `level`, an **NSNumber**-encapsulated **int** representing the **TidyReportLevel** from `libtidy`.
  *  - `levelDescription`, an **NSString** (localizable) description of the error level, such as "warning," etc.
  *  - `line`, an **NSNumber** with the line number in [JSDTidyModel sourceText] where the error occurs.
  *  - `lineString`, an **NSString** version of `line`.
  *  - `column`, an **NSNumber** with the column number where the error occurs.
  *  - `columnString`, an **NSString** version of `column`.
  *  - `locationString`, a localizable **NSString** indicating "Row x, Column y".
- *  - `message`, an **NSString** (localizable) indicating the issue. This comes from `tidylib`.
+ *  - `message`, an **NSString** (localizable) indicating the issue. This comes from `libtidy`.
  *
  *  For delegate and notifications, see [JSDTidyModelDelegate tidyModelTidyMessagesChanged:messages:].
  */
@@ -239,7 +239,7 @@
 /** @name Options Overall Management */
 
 /**
- *  This method dumps all `tidylib` option descriptions to the console. This is probably mostly
+ *  This method dumps all `libtidy` option descriptions to the console. This is probably mostly
  *  useful to developers who want to develop localizations. This is a cheap way to get the descriptions
  *  for Localizable.strings. This will produce a fairly nice, formatted list of strings that you might
  *  use directly. Double-check quotes, etc., before building. There are probably a couple of entities
@@ -248,7 +248,7 @@
 + (void)      optionsBuiltInDumpDocsToConsole;
 
 /**
- *  Returns the number of options built into `tidylib`.
+ *  Returns the number of options built into `libtidy`.
  *  @returns Returns the number of options.
  */
 + (int)       optionsBuiltInOptionCount;
@@ -273,7 +273,7 @@
 - (void)      optionsCopyValuesFromDictionary:(NSDictionary *)theDictionary;
 
 /**
- *  Resets all of the options in tidyOptions back to `tidylib`'s built-in defaults.
+ *  Resets all of the options in tidyOptions back to `libtidy`'s built-in defaults.
  */
 - (void)      optionsResetAllToBuiltInDefaults;
 
@@ -281,10 +281,10 @@
 /**
  *  Returns a string representation of the current configuration suitable for use with
  *  command-line Tidy. It will only output the values of non-supressed options, and it
- *  will set any encoding options to UTF8 (because we can't match between `tidylib`'s
+ *  will set any encoding options to UTF8 (because we can't match between `libtidy`'s
  *  options and Mac OS X' options yet).
  *
- *  It will _not_ use `tidylib`'s approach of only exporting non-default values 
+ *  It will _not_ use `libtidy`'s approach of only exporting non-default values
  *  because we can't count on other versions of Tidy using the same defaults.
  *
  *  The configuration will be pre- and append instructions taken from `Localizable.strings`,
@@ -306,7 +306,7 @@
  *  redundant Tidy options (there are a few), or to hide options that you don't want the
  *  user to have control over.
  *  
- *  Note that `tidylib` will still use all of its own built-in option values if they have
+ *  Note that `libtidy` will still use all of its own built-in option values if they have
  *  not been set with **JSDTidyModel**.
  */
 @property (nonatomic, strong) NSArray* optionsInUse;
@@ -317,42 +317,42 @@
 
 
 /**
- *  Echoes 'tidylib`'s version of the same, indicating the HTML version number.
+ *  Echoes 'libtidy`'s version of the same, indicating the HTML version number.
  *  @returns Returns 0, 2, 3, 4, or 5 to reflect the HTML version.
  */
 @property (nonatomic, assign, readonly) int tidyDetectedHtmlVersion;
 
 /**
- *  Echoes 'tidylib`'s version of the same, indicating whether the document
+ *  Echoes 'libtidy`'s version of the same, indicating whether the document
  *  is XHTML.
  */
 @property (nonatomic, assign, readonly) bool tidyDetectedXhtml;
 
 /**
- *  Echoes 'tidylib`'s version of the same, indicating whether the document
+ *  Echoes 'libtidy`'s version of the same, indicating whether the document
  *  is generic XML.
  */
 @property (nonatomic, assign, readonly) bool tidyDetectedGenericXml;
 
 /**
- *  Echoes 'tidylib`'s version of the same, indicating the document
+ *  Echoes 'libtidy`'s version of the same, indicating the document
  *  error status.
  *  @returns Returns 0 if there are no errors, 2 for doc errors, 1 for other.
  */
 @property (nonatomic, assign, readonly) int tidyStatus;
 
 /**
- *  Echoes 'tidylib`'s version of the same, indicating the number of document errors.
+ *  Echoes 'libtidy`'s version of the same, indicating the number of document errors.
  */
 @property (nonatomic, assign, readonly) uint tidyErrorCount;
 
 /**
- *  Echoes 'tidylib`'s version of the same, indicating the number of document warnings.
+ *  Echoes 'libtidy`'s version of the same, indicating the number of document warnings.
  */
 @property (nonatomic, assign, readonly) uint tidyWarningCount;
 
 /**
- *  Echoes 'tidylib`'s version of the same, returning the number of accessibility warnings.
+ *  Echoes 'libtidy`'s version of the same, returning the number of accessibility warnings.
  */
 @property (nonatomic, assign, readonly) uint tidyAccessWarningCount;
 
@@ -362,12 +362,12 @@
 
 
 /**
- *  Returns the `tidylib` release date.
+ *  Returns the `libtidy` release date.
  */
 @property (nonatomic, assign, readonly) NSString *tidyReleaseDate;
 
 /**
- *  Returns the `tidylib` semantic release version.
+ *  Returns the `libtidy` semantic release version.
  */
 @property (nonatomic, assign, readonly) NSString *tidyLibraryVersion;
 
@@ -386,7 +386,7 @@
 
 /**
  *  Loads a list of named potential tidy options from a resourcefile,
- *  compares them to what `tidylib` supports, and returns the array 
+ *  compares them to what `libtidy` supports, and returns the array
  *  containing only the names of the supported options. One might then
  *  feed this into optionsInUse.
  *
@@ -407,9 +407,9 @@
 
 
 /**
- *  Adds TidyLib's default option values to the passed in **NSMutableDictionary**
- *  for ALL `tidylib` options. This is accomplished by parsing through
- *  an instance of `tidylib` and retrieving each of the built in default
+ *  Adds libtidy's default option values to the passed in **NSMutableDictionary**
+ *  for ALL `libtidy` options. This is accomplished by parsing through
+ *  an instance of `libtidy` and retrieving each of the built in default
  *  values and adding them to the passed-in dictionary.
  *
  *  @param defaultDictionary The dictionary to add the `libtidy` defaults to.
@@ -438,7 +438,7 @@
  *  specified in an array.
  *
  *  @param defaultDictionary The dictionary to add the `libtidy` defaults to.
- *  @param stringArray The array of `tidylib` option names.
+ *  @param stringArray The array of `libtidy` option names.
  */
 + (void)addDefaultsToDictionary:(NSMutableDictionary *)defaultDictionary
                       fromArray:(NSArray *)stringArray;

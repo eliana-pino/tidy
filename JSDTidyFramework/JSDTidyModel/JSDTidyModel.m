@@ -56,7 +56,7 @@
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
     tidyCallbackFilter2 (regular C-function)
-      In order to support TidyLib's callback function for
+      In order to support libtidy's callback function for
       building an error list on the fly, we need to set up
       this standard C function to handle the callback.
 
@@ -335,9 +335,9 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 			Unlike with setting via NSString, the presumption for file-
 			and data-based setters is that this is a one-time occurrence,
 			and so `self.originalData` will be overwritten. This supports
-			the use of TidyLib in a text editor so: the `self.originalData`
-			is set only once; text changes set via NSString will not
-			overwrite the original data.
+			the use of JSDTidyFramework in a text editor so: 
+		    the `self.originalData` is set only once; text changes set
+		    via NSString will not overwrite the original data.
 		*/
 		
 		self.originalData = [[NSData alloc] initWithData:data];
@@ -496,7 +496,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 + (int)optionsBuiltInOptionCount
 {
-	return N_TIDY_OPTIONS;	// defined in config.c of TidyLib
+	return N_TIDY_OPTIONS;	// defined in config.c of libtidy
 }
 
 
@@ -636,7 +636,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
   - optionsPopulateTidyOptions (private)
     Builds the tidyOptions dictionary structure using all of
-    TidyLib's available options.
+    libtidy's available options.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)optionsPopulateTidyOptions
 {
@@ -729,7 +729,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 	/*
 		Setup for using and out-of-class C function as a callback
-		from TidyLib in order to collect cleanup and diagnostic
+		from libtidy in order to collect cleanup and diagnostic
 		information. The C function is defined near the top of
 		this file.
 	 */
@@ -861,7 +861,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
     standard C `tidyCallBackFilter2` function implemented at the
     top of this file.
 
-    TidyLib doesn't maintain a structured list of all of its
+    libtidy doesn't maintain a structured list of all of its
     errors so here we capture them one-by-one as Tidy tidy's.
     In this way we build our own structured list.
 
@@ -956,7 +956,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 	self.errorArray = [self.errorArray arrayByAddingObject:errorDict];
 
-	return YES; // Always return yes otherwise self.errorText will be surpressed by TidyLib.
+	return YES; // Always return yes otherwise self.errorText will be surpressed by libtidy.
 }
 
 
