@@ -371,6 +371,14 @@
  */
 @property (nonatomic, assign, readonly) NSString *tidyLibraryVersion;
 
+/**
+ *  Indicates whether or not the linked `libtidy` is at least the
+ *  version specified by `semanticVersion`.
+ *  @param semanticVersion The semantic version string against
+ *    which to check.
+ */
+- (BOOL) tidyLibraryVersionAtLeast:(NSString *)semanticVersion;
+
 
 #pragma mark - Configuration List Support
 /** @name Configuration List Support */

@@ -11,7 +11,8 @@
 #import "JSDTidyCommonHeaders.h"
 #import "JSDTidyOption.h"
 
-#import "config.h"   // from HTML Tidy
+#import "config.h"             // from HTML Tidy
+#import "SWFSemanticVersion.h" // for version checking.
 
 
 #pragma mark - CATEGORY JSDTidyModel ()
@@ -976,6 +977,17 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 - (NSString *)tidyLibraryVersion
 {
 	return @(tidyLibraryVersion());
+}
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+  - tidyLibraryVersionAtLeast:
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (BOOL) tidyLibraryVersionAtLeast:(NSString *)semanticVersion;
+{
+	SWFSemanticVersion *min = [SWFSemanticVersion semanticVersionWithString:semanticVersion];
+	SWFSemanticVersion *current = [SWFSemanticVersion semanticVersionWithString:self.tidyLibraryVersion];
+	
+	return ([min compare:current] == NSOrderedSame || [min compare:current] == NSOrderedAscending);
 }
 
 

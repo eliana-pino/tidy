@@ -15,7 +15,7 @@
 
 #import "DCOAboutWindowController.h"
 #import "PreferenceController.h"
-#import "TidyDocument.h"
+#import "JSDTidyModel.h"
 
 #ifdef FEATURE_SUPPORTS_SERVICE
 	#import "TidyDocumentService.h"
@@ -64,27 +64,46 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 + (void)initialize
 {
-	/* When the app is initialized pass off registering of the user
-	   defaults to the `PreferenceController`. This must occur before
-	   any documents open.
-	 */
-	
-	[[PreferenceController sharedPreferences] registerUserDefaults];
-
-	/* Initialize the value transformers used throughout the
-	   application bindings.
-	 */
-
-	NSValueTransformer *localTransformer;
-
-	localTransformer = [[JSDIntegerValueTransformer alloc] init];
-    [NSValueTransformer setValueTransformer:localTransformer forName:@"JSDIntegerValueTransformer"];
-
-	localTransformer = [[JSDAllCapsValueTransformer alloc] init];
-    [NSValueTransformer setValueTransformer:localTransformer forName:@"JSDAllCapsValueTransformer"];
-
-	localTransformer = [[JSDBoolToStringValueTransformer alloc] init];
-    [NSValueTransformer setValueTransformer:localTransformer forName:@"JSDBoolToStringValueTransformer"];
+	static dispatch_once_t once;
+	dispatch_once(&once, ^{
+		
+		/* Linked tidy library version check. To ensure compatibility with
+		 * certain API matters in `libtidy` warn the user if the linker
+		 * connected us to an old version of `libtidy`.
+		 * - require 5.1.19 so that `indent-with-tabs `works properly.
+		 * @TODO: change from logging to user interactivity.
+		 */
+		JSDTidyModel *localModel = [[JSDTidyModel alloc] init];
+		NSString *versionWant = @"5.1.19";
+		NSString *versionHave = localModel.tidyLibraryVersion;
+		
+		if (![localModel tidyLibraryVersionAtLeast:versionWant])
+		{
+			NSLog(@"libtidy version is %@, but for compatability %@ or newer should be used.", versionHave, versionWant);
+		}
+		
+		/* When the app is initialized pass off registering of the user
+		 * defaults to the `PreferenceController`. This must occur before
+		 * any documents open.
+		 */
+		
+		[[PreferenceController sharedPreferences] registerUserDefaults];
+		
+		/* Initialize the value transformers used throughout the
+		 * application bindings.
+		 */
+		
+		NSValueTransformer *localTransformer;
+		
+		localTransformer = [[JSDIntegerValueTransformer alloc] init];
+		[NSValueTransformer setValueTransformer:localTransformer forName:@"JSDIntegerValueTransformer"];
+		
+		localTransformer = [[JSDAllCapsValueTransformer alloc] init];
+		[NSValueTransformer setValueTransformer:localTransformer forName:@"JSDAllCapsValueTransformer"];
+		
+		localTransformer = [[JSDBoolToStringValueTransformer alloc] init];
+		[NSValueTransformer setValueTransformer:localTransformer forName:@"JSDBoolToStringValueTransformer"];
+	});
 }
 
 
