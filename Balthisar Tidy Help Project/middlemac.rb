@@ -492,6 +492,16 @@ helpers do
 
 
   #--------------------------------------------------------
+  # product_version
+  #   Returns the ProductVersion for the current target
+  #--------------------------------------------------------
+  def product_version
+    options = extensions[:Middlemac].options
+    options.Targets[options.Target][:ProductVersion]
+  end
+
+
+  #--------------------------------------------------------
   # product_uri
   #   Returns the ProductURI for the current target
   #--------------------------------------------------------

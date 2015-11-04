@@ -3,7 +3,8 @@
     %div
       %div
         = image_tag '/Resources/shared/icon_256x256@2x.png', :alt => 'logo'
-        %h1= "#{product_name} Help"
+        %h1= "#{product_name}"
+        %h2= "version #{product_version}"
         %a{:href => product_uri}= product_uri
 
       - if content_for?(:seeAlso)
