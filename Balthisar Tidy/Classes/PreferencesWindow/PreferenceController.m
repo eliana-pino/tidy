@@ -112,109 +112,40 @@
 + (NSArray*)optionsInEffect
 {
 	/*
-		Note that EVERY tidy option available (as of the current
-		linked in version) is listed below; we're excluding the
-		ones we don't want simply by commenting them out.
+		To better support new libtidy versions, we're going to
+		start blacklist options instead of the previous approach
+		of whitelisting.
 	 */
-
-	return @[
-			 @"add-xml-decl",
-			 @"add-xml-space",
-			 @"accessibility-check",
-			 @"alt-text",
-			 @"anchor-as-name",
-			 @"ascii-chars",
-			 @"assume-xml-procins",
-			 @"bare",
-			 @"break-before-br",
-			 //@"char-encoding",                // Balthisar Tidy handles this directly
-			 @"clean",
-			 @"coerce-endtags",
-			 @"css-prefix",
-			 @"decorate-inferred-ul",
-			 @"doctype",
-			 //@"doctype-mode",                 // Read-only; should use `doctype`.
-			 @"drop-empty-elements",
-			 @"drop-empty-paras",
-             //@"drop-font-tags",               // marked as `obsolete` in TidyLib source code.
-			 @"drop-proprietary-attributes",
-			 @"enclose-block-text",
-			 @"enclose-text",
-			 //@"error-file",                   // Balthisar Tidy handles this directly.
-			 @"escape-cdata",
-			 @"fix-backslash",
-			 @"fix-bad-comments",
-			 @"fix-uri",
-			 @"force-output",
-			 @"gdoc",
-			 //@"gnu-emacs".                    // Balthisar Tidy handles this directly.
-			 //@"gnu-emacs-file",               // Balthisar Tidy handles this directly.
-			 @"hide-comments",
-			 //@"hide-endtags",                 // Is a dupe of `omit-optional-tags`
-			 @"indent",
-			 @"indent-attributes",
-			 @"indent-cdata",
-			 @"indent-spaces",
-             //@"indent-with-tabs",             // @TODO: new, will support, must test.
-			 @"input-encoding",
-			 @"input-xml",
-			 @"join-classes",
-			 @"join-styles",
-			 //@"keep-time",                    // Balthisar Tidy handles this directly.
-			 //@"language",                     // Not currently used; Mac OS X supports localization natively.
-			 @"literal-attributes",
-			 @"logical-emphasis",
-			 @"lower-literals",
-			 @"markup",
-			 @"merge-divs",
-			 @"merge-emphasis",
-			 @"merge-spans",
-			 @"ncr",
-			 @"new-blocklevel-tags",
-			 @"new-empty-tags",
-			 @"new-inline-tags",
-			 @"new-pre-tags",
-			 @"newline",
-			 @"numeric-entities",
-			 @"omit-optional-tags",
-			 //@"output-bom",                   // Balthisar Tidy handles this directly.
-			 @"output-encoding",
-			 //@"output-file",                  // Balthisar Tidy handles this directly.
-			 @"output-html",
-			 @"output-xhtml",
-			 @"output-xml",
-			 @"preserve-entities",
-			 @"punctuation-wrap",
-			 //@"quiet",                        // Balthisar Tidy handles this directly.
-			 @"quote-ampersand",
-			 @"quote-marks",
-			 @"quote-nbsp",
-			 @"repeated-attributes",
-			 @"replace-color",
-			 @"show-body-only",
-			 //@"show-error",                   // Balthisar Tidy handles this directly.
-			 //@"show-info",                    // Balthisar Tidy handles this directly.
-			 //@"show-warnings",                // Balthisar Tidy handles this directly.
-             //@"skip-quotes",                  // NOT IMPLEMENTED YES - need update Tidy
-             //@"skip-nested",                  // Possible future name of skip-quotes.
-			 //@"slide-style",                  // marked as `obsolete` in TidyLib source code.
-			 @"sort-attributes",
-			 //@"split",                        // marked as `obsolete` in TidyLib source code.
-			 @"tab-size",
-			 @"uppercase-attributes",
-			 @"uppercase-tags",
-			 @"vertical-space",
-			 @"word-2000",
-			 @"wrap",
-			 @"wrap-asp",
-			 @"wrap-attributes",
-			 @"wrap-jste",
-			 @"wrap-php",
-			 @"wrap-script-literals",
-			 @"wrap-sections",
-			 @"tidy-mark",
-			 //@"write-back",                   // Balthisar Tidy handles this directly.
+	
+	NSMutableArray *allOptions = [NSMutableArray arrayWithArray:[JSDTidyModel optionsBuiltInOptionList]];
+	
+	NSArray *blacklist = @[
+						   @"char-encoding",                // Balthisar Tidy handles this directly
+						   @"doctype-mode",                 // Read-only; should use `doctype`.
+						   @"drop-font-tags",               // marked as `obsolete` in TidyLib source code.
+						   @"error-file",                   // Balthisar Tidy handles this directly.
+						   @"gnu-emacs",                    // Balthisar Tidy handles this directly.
+						   @"gnu-emacs-file",               // Balthisar Tidy handles this directly.
+						   @"hide-endtags",                 // Is a dupe of `omit-optional-tags`
+						   @"indent-with-tabs",             // @TODO: new, will support, must test.
+						   @"keep-time",                    // Balthisar Tidy handles this directly.
+						   @"language",                     // Not currently used; Mac OS X supports localization natively.
+						   @"output-bom",                   // Balthisar Tidy handles this directly.
+						   @"output-file",                  // Balthisar Tidy handles this directly.
+						   @"quiet",                        // Balthisar Tidy handles this directly.
+						   @"show-errors",                   // Balthisar Tidy handles this directly.
+						   @"show-info",                    // Balthisar Tidy handles this directly.
+						   @"show-warnings",                // Balthisar Tidy handles this directly.
+						   @"skip-quotes",                  // @TODO NOT IMPLEMENTED YES - need update Tidy
+						   @"skip-nested",                  // @TODO Possible future name of skip-quotes.
+						   @"slide-style",                  // marked as `obsolete` in TidyLib source code.
+						   @"split",                        // marked as `obsolete` in TidyLib source code.
+						   @"write-back",                   // Balthisar Tidy handles this directly.
 			 ];
+	
+	[allOptions removeObjectsInArray:blacklist];
+	
+	return allOptions;
 }
 
 
