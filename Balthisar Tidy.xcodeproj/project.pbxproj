@@ -765,7 +765,6 @@
 		D025BD5D195856B6006D7356 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Base; path = Base.lproj/Acknowledgments.rtf; sourceTree = "<group>"; };
 		D028E8881A5670FB00C39852 /* Balthisar Tidy Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Balthisar Tidy Extension.entitlements"; sourceTree = "<group>"; };
 		D028E88C1A56721200C39852 /* Balthisar Tidy.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Balthisar Tidy.entitlements"; path = "Balthisar Tidy/Balthisar Tidy.entitlements"; sourceTree = "<group>"; };
-		D0323A8F1A7DE22F00A0A9FC /* tidy.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tidy.c; sourceTree = "<group>"; };
 		D0323A951A7DE25000A0A9FC /* tidy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tidy.h; sourceTree = "<group>"; };
 		D0323A961A7DE25000A0A9FC /* tidyenum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tidyenum.h; sourceTree = "<group>"; };
 		D0323A981A7DE25000A0A9FC /* access.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = access.c; sourceTree = "<group>"; };
@@ -1096,7 +1095,6 @@
 			isa = PBXGroup;
 			children = (
 				D0323B071A7DE48400A0A9FC /* version.txt */,
-				D0323A8D1A7DE22F00A0A9FC /* console */,
 				D0323A921A7DE25000A0A9FC /* include */,
 				D0323A971A7DE25000A0A9FC /* src */,
 			);
@@ -1265,15 +1263,6 @@
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
-		};
-		D0323A8D1A7DE22F00A0A9FC /* console */ = {
-			isa = PBXGroup;
-			children = (
-				D0323A8F1A7DE22F00A0A9FC /* tidy.c */,
-			);
-			name = console;
-			path = "HTMLTidy/vendor/tidy-html5/console";
-			sourceTree = SOURCE_ROOT;
 		};
 		D0323A921A7DE25000A0A9FC /* include */ = {
 			isa = PBXGroup;
