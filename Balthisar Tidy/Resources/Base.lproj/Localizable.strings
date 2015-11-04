@@ -11,6 +11,10 @@
 "cancel"		= "Cancel";
 
 
+/* libtidy compatibility checking */
+"libTidy-compatability-message" = "Ccompatibility Warning for libtidy";
+"libTidy-compatability-inform"  = "Balthisar Tidy is using libtidy version %@, but version %@ is the minimum recommended version.\nThis is probably because you have an older libtidy‑balthisar.dylib installed in /usr/local/lib/.\nSee \"Use a different version of libtidy\" in Help.";
+
 /* FirstRunController */
 
 "firstRun-stepXofY"		= "Step %u of %u";

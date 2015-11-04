@@ -67,21 +67,6 @@
 	static dispatch_once_t once;
 	dispatch_once(&once, ^{
 		
-		/* Linked tidy library version check. To ensure compatibility with
-		 * certain API matters in `libtidy` warn the user if the linker
-		 * connected us to an old version of `libtidy`.
-		 * - require 5.1.19 so that `indent-with-tabs `works properly.
-		 * @TODO: change from logging to user interactivity.
-		 */
-		JSDTidyModel *localModel = [[JSDTidyModel alloc] init];
-		NSString *versionWant = @"5.1.19";
-		NSString *versionHave = localModel.tidyLibraryVersion;
-		
-		if (![localModel tidyLibraryVersionAtLeast:versionWant])
-		{
-			NSLog(@"libtidy version is %@, but for compatability %@ or newer should be used.", versionHave, versionWant);
-		}
-		
 		/* When the app is initialized pass off registering of the user
 		 * defaults to the `PreferenceController`. This must occur before
 		 * any documents open.
@@ -161,6 +146,26 @@
 #else
 	[[self menuCheckForUpdates] setHidden:YES];
 #endif
+
+	/* Linked tidy library version check. To ensure compatibility with
+	 * certain API matters in `libtidy` warn the user if the linker
+	 * connected us to an old version of `libtidy`.
+	 * - require 5.1.19 so that `indent-with-tabs `works properly.
+	 */
+	JSDTidyModel *localModel = [[JSDTidyModel alloc] init];
+	NSString *versionWant = @"5.1.19";
+	NSString *versionHave = localModel.tidyLibraryVersion;
+	
+	if (![localModel tidyLibraryVersionAtLeast:versionWant])
+	{
+		NSString *message = [NSString stringWithFormat:JSDLocalizedString(@"libTidy-compatability-inform", nil), versionHave, versionWant];
+		NSLog(@"%@", message);
+		NSAlert *alert = [[NSAlert alloc] init];
+		[alert setMessageText:JSDLocalizedString(@"libTidy-compatability-message", nil)];
+		[alert setInformativeText:message];
+		[alert addButtonWithTitle:@"OK"];
+		[alert runModal];
+	}
 }
 
 
