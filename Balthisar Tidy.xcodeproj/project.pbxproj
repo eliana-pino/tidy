@@ -304,6 +304,12 @@
 		D0A482A91BCF9BD000E0646F /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323AC91A7DE25000A0A9FC /* version.h */; };
 		D0A482AA1BCF9BD000E0646F /* win32tc.h in Headers */ = {isa = PBXBuildFile; fileRef = D0323ACB1A7DE25000A0A9FC /* win32tc.h */; };
 		D0A482B21BCF9D0C00E0646F /* libtidy-balthisar.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A482AF1BCF9BD000E0646F /* libtidy-balthisar.dylib */; };
+		D0B7D0B01BEAFC500040694B /* Fragaria.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B7D0AF1BEAFC500040694B /* Fragaria.framework */; };
+		D0B7D0B11BEAFC500040694B /* Fragaria.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B7D0AF1BEAFC500040694B /* Fragaria.framework */; };
+		D0B7D0B21BEAFC500040694B /* Fragaria.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B7D0AF1BEAFC500040694B /* Fragaria.framework */; };
+		D0B7D0B31BEAFC740040694B /* Fragaria.framework in Add Frameworks */ = {isa = PBXBuildFile; fileRef = D0B7D0AF1BEAFC500040694B /* Fragaria.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D0B7D0B41BEAFC7F0040694B /* Fragaria.framework in Add Frameworks */ = {isa = PBXBuildFile; fileRef = D0B7D0AF1BEAFC500040694B /* Fragaria.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D0B7D0B51BEAFC8A0040694B /* Fragaria.framework in Add Frameworks */ = {isa = PBXBuildFile; fileRef = D0B7D0AF1BEAFC500040694B /* Fragaria.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D0B9F0F119585010008864D6 /* DCOAboutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0B9F0EE19585010008864D6 /* DCOAboutWindow.xib */; };
 		D0B9F0F219585010008864D6 /* DCOAboutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0B9F0EE19585010008864D6 /* DCOAboutWindow.xib */; };
 		D0B9F0F319585010008864D6 /* DCOAboutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0B9F0EE19585010008864D6 /* DCOAboutWindow.xib */; };
@@ -653,6 +659,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				D0B7D0B41BEAFC7F0040694B /* Fragaria.framework in Add Frameworks */,
 				D02DBCEE1A595104009C84CF /* JSDTidyFramework.framework in Add Frameworks */,
 			);
 			name = "Add Frameworks";
@@ -664,6 +671,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				D0B7D0B51BEAFC8A0040694B /* Fragaria.framework in Add Frameworks */,
 				D02DBCF01A59512E009C84CF /* JSDTidyFramework.framework in Add Frameworks */,
 			);
 			name = "Add Frameworks";
@@ -686,6 +694,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				D0B7D0B31BEAFC740040694B /* Fragaria.framework in Add Frameworks */,
 				D074D43D19CEF94C00FC6340 /* Sparkle.framework in Add Frameworks */,
 				D002EFDB1A57AC9000530D2F /* JSDTidyFramework.framework in Add Frameworks */,
 			);
@@ -932,6 +941,7 @@
 		D0A4826E1BCF8E2900E0646F /* tidybuffio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tidybuffio.h; sourceTree = "<group>"; };
 		D0A4826F1BCF8E2900E0646F /* tidyplatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tidyplatform.h; sourceTree = "<group>"; };
 		D0A482AF1BCF9BD000E0646F /* libtidy-balthisar.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libtidy-balthisar.dylib"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0B7D0AF1BEAFC500040694B /* Fragaria.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fragaria.framework; path = "Balthisar Tidy/Frameworks/Fragaria.framework"; sourceTree = "<group>"; };
 		D0B9F0EE19585010008864D6 /* DCOAboutWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DCOAboutWindow.xib; path = DCOAboutWindow/DCOAboutWindow/DCOAboutWindow.xib; sourceTree = "<group>"; };
 		D0B9F0EF19585010008864D6 /* DCOAboutWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCOAboutWindowController.h; path = DCOAboutWindow/DCOAboutWindow/DCOAboutWindowController.h; sourceTree = "<group>"; };
 		D0B9F0F019585010008864D6 /* DCOAboutWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCOAboutWindowController.m; path = DCOAboutWindow/DCOAboutWindow/DCOAboutWindowController.m; sourceTree = "<group>"; };
@@ -994,6 +1004,7 @@
 				D0B9F10419585474008864D6 /* QuartzCore.framework in Frameworks */,
 				D002EFDA1A57AC9000530D2F /* JSDTidyFramework.framework in Frameworks */,
 				D074D43E19CEF99B00FC6340 /* Sparkle.framework in Frameworks */,
+				D0B7D0B01BEAFC500040694B /* Fragaria.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1039,6 +1050,7 @@
 				D0913CC918B0AC06005DB2E4 /* Cocoa.framework in Frameworks */,
 				D0B9F1051958547A008864D6 /* QuartzCore.framework in Frameworks */,
 				D02DBCEB1A5950B8009C84CF /* JSDTidyFramework.framework in Frameworks */,
+				D0B7D0B11BEAFC500040694B /* Fragaria.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1056,6 +1068,7 @@
 				D0BB67E6193C820A007A3EB0 /* Cocoa.framework in Frameworks */,
 				D0B9F1061958547B008864D6 /* QuartzCore.framework in Frameworks */,
 				D02DBCEC1A5950BE009C84CF /* JSDTidyFramework.framework in Frameworks */,
+				D0B7D0B21BEAFC500040694B /* Fragaria.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1210,6 +1223,7 @@
 		D016A928182FD80700712C60 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D0B7D0AF1BEAFC500040694B /* Fragaria.framework */,
 				D0B9F10319585474008864D6 /* QuartzCore.framework */,
 				D06626CE18B09B330091CBD8 /* Sparkle.framework */,
 				D016A929182FD80700712C60 /* Cocoa.framework */,
@@ -2994,7 +3008,11 @@
 				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy.entitlements";
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/**";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/**",
+					"$(PROJECT_DIR)/Balthisar",
+					Tidy/Frameworks,
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					TARGET_WEB,
 					"$(inherited)",
@@ -3026,7 +3044,11 @@
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/**";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/**",
+					"$(PROJECT_DIR)/Balthisar",
+					Tidy/Frameworks,
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = TARGET_WEB;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				INFOPLIST_FILE = "Balthisar Tidy/Balthisar Tidy-Info.plist";
@@ -3298,7 +3320,11 @@
 				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy.entitlements";
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/**";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/**",
+					"$(PROJECT_DIR)/Balthisar",
+					Tidy/Frameworks,
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					TARGET_APP,
 					"$(inherited)",
@@ -3331,7 +3357,11 @@
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/**";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/**",
+					"$(PROJECT_DIR)/Balthisar",
+					Tidy/Frameworks,
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = TARGET_APP;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_UNUSED_PARAMETER = NO;
@@ -3426,7 +3456,11 @@
 				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy/Balthisar Tidy.entitlements";
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/**";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/**",
+					"$(PROJECT_DIR)/Balthisar",
+					Tidy/Frameworks,
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					TARGET_PRO,
 					"$(inherited)",
@@ -3459,7 +3493,11 @@
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/**";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/**",
+					"$(PROJECT_DIR)/Balthisar",
+					Tidy/Frameworks,
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = TARGET_PRO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_UNUSED_PARAMETER = NO;
