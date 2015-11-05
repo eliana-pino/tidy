@@ -55,7 +55,7 @@
 - (instancetype)initVertical:(BOOL)initVertical;
 
 /**
- *  After the Window Controller swaps out the views, it must let thea view controller
+ *  After the Window Controller swaps out the views, it must let the view controller
  *  know that it is ready and in place by calling this method.
  */
 - (void)setupViewAppearance;
@@ -65,7 +65,6 @@
  *  the current record in the specified array controller.
  *  @param arrayController The array controller with the message data.
  */
-//- (void)highlightSourceTextUsingArrayController:(NSArrayController*)arrayController;
 - (void)centerSourceTextErrorUsingArrayController:(NSArrayController*)arrayController;
 
 
