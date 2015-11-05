@@ -169,6 +169,7 @@
 	[defaultValues setObject:@YES forKey:JSDKeyOptionsUseHoverEffect];
 
 	/** Document Appearance */
+	[defaultValues setObject:@YES forKey:JSDKeyShowNewDocumentHighlighting];
 	[defaultValues setObject:@YES forKey:JSDKeyShowNewDocumentLineNumbers];
 	[defaultValues setObject:@YES forKey:JSDKeyShowNewDocumentMessages];
 	[defaultValues setObject:@YES forKey:JSDKeyShowNewDocumentTidyOptions];

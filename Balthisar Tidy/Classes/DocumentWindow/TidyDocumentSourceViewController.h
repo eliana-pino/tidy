@@ -8,20 +8,22 @@
 
 @import Cocoa;
 
-@class JSDTextView;
+#import <Fragaria/MGSDragOperationDelegate.h>
+
+@class MGSFragariaView;
 
 
 /**
  *  The controller for the source panel, which includes the text fields for both untidy and
  *  tidy text. This controller manages interactions and the display orientation.
  */
-@interface TidyDocumentSourceViewController : NSViewController <NSTextViewDelegate>
+@interface TidyDocumentSourceViewController : NSViewController <NSTextViewDelegate, MGSDragOperationDelegate>
 
 /** Outlet for the source TextView. */
-@property (nonatomic, assign) IBOutlet JSDTextView *sourceTextView;
+@property (nonatomic, assign) IBOutlet MGSFragariaView *sourceTextView;
 
 /** Outlet for the tidy TextView. */
-@property (nonatomic, assign) IBOutlet NSTextView *tidyTextView;
+@property (nonatomic, assign) IBOutlet MGSFragariaView *tidyTextView;
 
 /** Outlet for the splitter. */
 @property (nonatomic, assign) IBOutlet NSSplitView *splitterViews;
@@ -43,6 +45,9 @@
 @property (nonatomic, assign) BOOL viewsAreDiffed;
 
 
+@property (nonatomic, assign) NSUInteger pageGuidePosition;
+
+
 /**
  *  Initializes a new instance, specifying whether or not the view is vertical.
  *  @param initVertical If YES, the view is vertical; if NO, the view is horizontal.
@@ -60,7 +65,8 @@
  *  the current record in the specified array controller.
  *  @param arrayController The array controller with the message data.
  */
-- (void)highlightSourceTextUsingArrayController:(NSArrayController*)arrayController;
+//- (void)highlightSourceTextUsingArrayController:(NSArrayController*)arrayController;
+- (void)centerSourceTextErrorUsingArrayController:(NSArrayController*)arrayController;
 
 
 /**

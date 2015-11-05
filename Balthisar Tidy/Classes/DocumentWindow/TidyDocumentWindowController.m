@@ -46,16 +46,16 @@
 
 #import "PreferenceController.h"
 
+#import <Fragaria/Fragaria.h>
+
 #import "EncodingHelperController.h"
 #import "FirstRunController.h"
 #import "JSDTableViewController.h"
-#import "JSDTextView.h"
-#import "NSTextView+JSDExtensions.h"
 #import "OptionPaneController.h"
-#import "TidyDocument.h"
 #import "TidyDocumentSourceViewController.h"
 
 #import "JSDTidyModel.h"
+#import "JSDTidyOption.h"
 
 
 @implementation TidyDocumentWindowController
@@ -66,6 +66,8 @@
 
 
 @synthesize sourcePaneLineNumbersAreVisible = _sourcePaneLineNumbersAreVisible;
+@synthesize sourcePaneShowsSyntaxHighlighting = _sourcePaneShowsSyntaxHighlighting;
+
 
 #pragma mark - Initialization and Deallocation
 
@@ -92,11 +94,22 @@
 - (void)dealloc
 {
 	TidyDocument *localDocument = self.document;
-
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyOptionChanged object:self.optionController.tidyDocument];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyPossibleInputEncodingProblem object:localDocument.tidyProcess];
-
+	
+	[[NSNotificationCenter defaultCenter] removeObserver:self
+													name:tidyNotifyOptionChanged
+												  object:self.optionController.tidyDocument];
+	
+	[[NSNotificationCenter defaultCenter] removeObserver:self
+													name:tidyNotifyPossibleInputEncodingProblem
+												  object:localDocument.tidyProcess];
+	
 	[self.messagesController.arrayController removeObserver:self forKeyPath:@"selection"];
+//	TidyDocument *localDocument = self.document;
+//
+//	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyOptionChanged object:self.optionController.tidyDocument];
+//	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyPossibleInputEncodingProblem object:localDocument.tidyProcess];
+//
+//	[self.messagesController.arrayController removeObserver:self forKeyPath:@"selection"];
 }
 
 
@@ -109,76 +122,78 @@
 - (void)awakeFromNib
 {
 	/******************************************************
-		Setup the optionController and its view settings. 
+		Setup the optionController and its view settings.
 	 ******************************************************/
-
+	
 	self.optionController = [[OptionPaneController alloc] init];
-
+	
 	[self.optionPane addSubview:self.optionController.view];
 	
 	[self.optionController.view setFrame:self.optionPane.bounds]; //view.superview.bounds];
-
+	
 	self.optionController.optionsInEffect = [PreferenceController optionsInEffect];
-
+	
 	/*
 		Make the optionController take the default values. This actually
 		causes the empty document to go through processTidy one time.
 	 */
 	[self.optionController.tidyDocument takeOptionValuesFromDefaults:[NSUserDefaults standardUserDefaults]];
-
-
+	
+	
 	/******************************************************
 		Setup the messagesController and its view settings.
 	 ******************************************************/
-
+	
 	self.messagesController = [[JSDTableViewController alloc] initWithNibName:@"TidyDocumentMessagesView" bundle:nil];
-
+	
 	self.messagesController.representedObject = self.document;
-
+	
 	[self.messagesPane addSubview:self.messagesController.view];
-
+	
 	self.messagesController.view.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
-
+	
 	[self.messagesController.view setFrame:self.messagesPane.bounds];
-
-
+	
+	
 	/******************************************************
 		Setup the sourceController and its view settings.
 	 ******************************************************/
-
+	
 	self.sourcePanelIsVertical  = [[[NSUserDefaults standardUserDefaults] objectForKey:JSDKeyShowNewDocumentSideBySide] boolValue];
 	self.sourcePaneLineNumbersAreVisible = [[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyShowNewDocumentLineNumbers] boolValue];
-
+	self.sourcePaneShowsSyntaxHighlighting = [[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyShowNewDocumentHighlighting] boolValue];
+	
+	
 	
 	/******************************************************
 		Remaining initial document conditions.
 	 ******************************************************/
-
+	
 	/*
 		Make the local processor take the default values. This causes
 		the empty document to go through processTidy a second time.
 	 */
 	[((TidyDocument*)self.document).tidyProcess takeOptionValuesFromDefaults:[NSUserDefaults standardUserDefaults]];
-
-
+	
+	
 	/*
 		Delay setting up notifications until now, because otherwise
 		all of the earlier options setup is simply going to result
 		in a huge cascade of notifications and updates.
 	 */
-
+	
 	/* NSNotifications from the `optionController` indicate that one or more options changed. */
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(handleTidyOptionChange:)
 												 name:tidyNotifyOptionChanged
 											   object:[[self optionController] tidyDocument]];
-
+	
 	/* NSNotifications from the `tidyProcess` indicate that the input-encoding might be wrong. */
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(handleTidyInputEncodingProblem:)
 												 name:tidyNotifyPossibleInputEncodingProblem
 											   object:((TidyDocument*)self.document).tidyProcess];
-
+	
 	/*
 		KVO on the `arrayController` indicate that a message table row was selected.
 		Will use KVO on the array controller instead of a delegate method to capture changes
@@ -194,12 +209,104 @@
 	/* Manually adjust the view sizes. For some reason automatic restoration isn't working. */
 	NSRect localRect = NSRectFromString([[NSUserDefaults standardUserDefaults] objectForKey:@"NSSplitView Subview Frames UIPositionsSplitter01"][0]);
 	[self.splitterOptions setPosition:localRect.size.width ofDividerAtIndex:0];
-
+	
 	localRect = NSRectFromString([[NSUserDefaults standardUserDefaults] objectForKey:@"NSSplitView Subview Frames UIPositionsSplitter02"][0]);
 	if (localRect.size.height > 0.0f)
 	{
 		[self.splitterMessages setPosition:localRect.size.height ofDividerAtIndex:0];
 	}
+//	/******************************************************
+//		Setup the optionController and its view settings. 
+//	 ******************************************************/
+//
+//	self.optionController = [[OptionPaneController alloc] init];
+//
+//	[self.optionPane addSubview:self.optionController.view];
+//	
+//	[self.optionController.view setFrame:self.optionPane.bounds]; //view.superview.bounds];
+//
+//	self.optionController.optionsInEffect = [PreferenceController optionsInEffect];
+//
+//	/*
+//		Make the optionController take the default values. This actually
+//		causes the empty document to go through processTidy one time.
+//	 */
+//	[self.optionController.tidyDocument takeOptionValuesFromDefaults:[NSUserDefaults standardUserDefaults]];
+//
+//
+//	/******************************************************
+//		Setup the messagesController and its view settings.
+//	 ******************************************************/
+//
+//	self.messagesController = [[JSDTableViewController alloc] initWithNibName:@"TidyDocumentMessagesView" bundle:nil];
+//
+//	self.messagesController.representedObject = self.document;
+//
+//	[self.messagesPane addSubview:self.messagesController.view];
+//
+//	self.messagesController.view.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+//
+//	[self.messagesController.view setFrame:self.messagesPane.bounds];
+//
+//
+//	/******************************************************
+//		Setup the sourceController and its view settings.
+//	 ******************************************************/
+//
+//	self.sourcePanelIsVertical  = [[[NSUserDefaults standardUserDefaults] objectForKey:JSDKeyShowNewDocumentSideBySide] boolValue];
+//	self.sourcePaneLineNumbersAreVisible = [[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyShowNewDocumentLineNumbers] boolValue];
+//
+//	
+//	/******************************************************
+//		Remaining initial document conditions.
+//	 ******************************************************/
+//
+//	/*
+//		Make the local processor take the default values. This causes
+//		the empty document to go through processTidy a second time.
+//	 */
+//	[((TidyDocument*)self.document).tidyProcess takeOptionValuesFromDefaults:[NSUserDefaults standardUserDefaults]];
+//
+//
+//	/*
+//		Delay setting up notifications until now, because otherwise
+//		all of the earlier options setup is simply going to result
+//		in a huge cascade of notifications and updates.
+//	 */
+//
+//	/* NSNotifications from the `optionController` indicate that one or more options changed. */
+//	[[NSNotificationCenter defaultCenter] addObserver:self
+//											 selector:@selector(handleTidyOptionChange:)
+//												 name:tidyNotifyOptionChanged
+//											   object:[[self optionController] tidyDocument]];
+//
+//	/* NSNotifications from the `tidyProcess` indicate that the input-encoding might be wrong. */
+//	[[NSNotificationCenter defaultCenter] addObserver:self
+//											 selector:@selector(handleTidyInputEncodingProblem:)
+//												 name:tidyNotifyPossibleInputEncodingProblem
+//											   object:((TidyDocument*)self.document).tidyProcess];
+//
+//	/*
+//		KVO on the `arrayController` indicate that a message table row was selected.
+//		Will use KVO on the array controller instead of a delegate method to capture changes
+//		because the delegate doesn't catch when the table unselects all rows (meaning that
+//		highlighted text in the sourceText stays behind). This prevents that.
+//	 */
+//	[self.messagesController.arrayController addObserver:self
+//											  forKeyPath:@"selection"
+//												 options:(NSKeyValueObservingOptionNew)
+//												 context:NULL];
+//	
+//	
+//	/* Manually adjust the view sizes. For some reason automatic restoration isn't working. */
+//	NSRect localRect = NSRectFromString([[NSUserDefaults standardUserDefaults] objectForKey:@"NSSplitView Subview Frames UIPositionsSplitter01"][0]);
+//	[self.splitterOptions setPosition:localRect.size.width ofDividerAtIndex:0];
+//
+//	localRect = NSRectFromString([[NSUserDefaults standardUserDefaults] objectForKey:@"NSSplitView Subview Frames UIPositionsSplitter02"][0]);
+//	if (localRect.size.height > 0.0f)
+//	{
+//		[self.splitterMessages setPosition:localRect.size.height ofDividerAtIndex:0];
+//	}
 }
 
 
@@ -249,7 +356,14 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)handleTidyOptionChange:(NSNotification *)note
 {
-	[((TidyDocument*)self.document).tidyProcess optionsCopyValuesFromModel:self.optionController.tidyDocument];
+	TidyDocument *localDocument = self.document;
+	
+	[localDocument.tidyProcess optionsCopyValuesFromModel:self.optionController.tidyDocument];
+	
+	JSDTidyOption *localOption = localDocument.tidyProcess.tidyOptions[@"wrap"];
+	
+	self.sourceController.pageGuidePosition = [[localOption optionValue] integerValue];
+//	[((TidyDocument*)self.document).tidyProcess optionsCopyValuesFromModel:self.optionController.tidyDocument];
 }
 
 
@@ -296,11 +410,17 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
 	/* Handle changes to the selection of the messages table. */
-
+	
 	if ((object == self.messagesController.arrayController) && ([keyPath isEqualToString:@"selection"]))
 	{
-		[self.sourceController highlightSourceTextUsingArrayController:self.messagesController.arrayController];
+		[self.sourceController centerSourceTextErrorUsingArrayController:self.messagesController.arrayController];
 	}
+//	/* Handle changes to the selection of the messages table. */
+//
+//	if ((object == self.messagesController.arrayController) && ([keyPath isEqualToString:@"selection"]))
+//	{
+//		[self.sourceController highlightSourceTextUsingArrayController:self.messagesController.arrayController];
+//	}
 }
 
 
@@ -348,32 +468,69 @@
 		[menuItem setState:self.firstRunHelper.isVisible];
 		return !self.firstRunHelper.isVisible;
 	}
-
+	
 	if (menuItem.action == @selector(toggleOptionsPanelIsVisible:))
 	{
 		[menuItem setState:self.optionsPanelIsVisible];
 		return !self.firstRunHelper.isVisible;
 	}
-
+	
 	if (menuItem.action == @selector(toggleMessagesPanelIsVisible:))
 	{
 		[menuItem setState:self.messagesPanelIsVisible];
 		return !self.firstRunHelper.isVisible;
 	}
-
+	
 	if (menuItem.action == @selector(toggleSourcePanelIsVertical:))
 	{
 		[menuItem setState:self.sourcePanelIsVertical];
 		return !self.firstRunHelper.isVisible;
 	}
-
+	
 	if (menuItem.action == @selector(toggleSourcePaneShowsLineNumbers:))
 	{
 		[menuItem setState:self.sourcePaneLineNumbersAreVisible];
 		return YES;
 	}
-
+	
+	if (menuItem.action == @selector(toggleSourcePaneShowsSyntaxHighlighting:))
+	{
+		[menuItem setState:self.sourcePaneShowsSyntaxHighlighting];
+		return YES;
+	}
+	
 	return NO;
+//	if (menuItem.action == @selector(kickOffFirstRunSequence:))
+//	{
+//		[menuItem setState:self.firstRunHelper.isVisible];
+//		return !self.firstRunHelper.isVisible;
+//	}
+//
+//	if (menuItem.action == @selector(toggleOptionsPanelIsVisible:))
+//	{
+//		[menuItem setState:self.optionsPanelIsVisible];
+//		return !self.firstRunHelper.isVisible;
+//	}
+//
+//	if (menuItem.action == @selector(toggleMessagesPanelIsVisible:))
+//	{
+//		[menuItem setState:self.messagesPanelIsVisible];
+//		return !self.firstRunHelper.isVisible;
+//	}
+//
+//	if (menuItem.action == @selector(toggleSourcePanelIsVertical:))
+//	{
+//		[menuItem setState:self.sourcePanelIsVertical];
+//		return !self.firstRunHelper.isVisible;
+//	}
+//
+//	if (menuItem.action == @selector(toggleSourcePaneShowsLineNumbers:))
+//	{
+//		[menuItem setState:self.sourcePaneLineNumbersAreVisible];
+//		return YES;
+//	}
+//
+//	return NO;
 }
 
 
@@ -512,8 +669,12 @@
 
 
 	/* In case something is selected in the messages table, highlight it again. */
+	
+	[self.sourceController centerSourceTextErrorUsingArrayController:self.messagesController.arrayController];
 
-	[self.sourceController highlightSourceTextUsingArrayController:self.messagesController.arrayController];
+	//	/* In case something is selected in the messages table, highlight it again. */
+//
+//	[self.sourceController highlightSourceTextUsingArrayController:self.messagesController.arrayController];
 }
 
 /*———————————————————————————————————————————————————————————————————*
@@ -529,6 +690,22 @@
 	self.sourceController.sourceTextView.showsLineNumbers = sourcePaneLineNumbersAreVisible;
 	self.sourceController.tidyTextView.showsLineNumbers = sourcePaneLineNumbersAreVisible;
 	_sourcePaneLineNumbersAreVisible = sourcePaneLineNumbersAreVisible;
+}
+
+
+/*———————————————————————————————————————————————————————————————————*
+	sourcePaneShowsSyntaxHighlighting
+ *———————————————————————————————————————————————————————————————————*/
+- (BOOL)sourcePaneShowsSyntaxHighlighting
+{
+	return _sourcePaneShowsSyntaxHighlighting;
+}
+
+- (void)setSourcePaneShowsSyntaxHighlighting:(BOOL)sourcePaneShowsSyntaxHighlighting
+{
+	self.sourceController.sourceTextView.syntaxColoured = sourcePaneShowsSyntaxHighlighting;
+	self.sourceController.tidyTextView.syntaxColoured = sourcePaneShowsSyntaxHighlighting;
+	_sourcePaneShowsSyntaxHighlighting = sourcePaneShowsSyntaxHighlighting;
 }
 
 
@@ -567,6 +744,12 @@
 - (IBAction)toggleSourcePaneShowsLineNumbers:(id)sender
 {
 	self.sourcePaneLineNumbersAreVisible = !self.sourcePaneLineNumbersAreVisible;
+}
+
+
+- (IBAction)toggleSourcePaneShowsSyntaxHighlighting:(id)sender
+{
+	self.sourcePaneShowsSyntaxHighlighting = !self.sourcePaneShowsSyntaxHighlighting;
 }
 
 

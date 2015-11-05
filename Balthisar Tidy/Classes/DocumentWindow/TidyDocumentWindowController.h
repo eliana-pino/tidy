@@ -114,6 +114,8 @@
 /** Specifies whether or not the source panel line numbers are visble. */
 @property (nonatomic, assign) BOOL sourcePaneLineNumbersAreVisible;
 
+@property BOOL sourcePaneShowsSyntaxHighlighting;
+
 
 #pragma mark - Actions to support properties from Menus
 /** @name Actions to support properties from Menus */

@@ -9,9 +9,10 @@
 #import "TidyDocumentSourceViewController.h"
 #import "CommonHeaders.h"
 
-#import "JSDTextView.h"
+#import <Fragaria/Fragaria.h>
+//#import "Fragaria/SMLSyntaxError.h"
+
 #import "JSDTidyModel.h"
-#import "NSTextView+JSDExtensions.h"
 #import "TidyDocument.h"
 
 
@@ -77,6 +78,9 @@
 											forKeyPath:JSDKeyAllowMacOSTextSubstitutions
 											   options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial)
 											   context:NULL];
+	
+	/* Interface Builder doesn't allow us to define custom bindings, so we have to bind the tidyTextView manually. */
+	[self.tidyTextView bind:@"string" toObject:self.representedObject withKeyPath:@"tidyProcess.tidyText" options:nil];
 }
 
 
@@ -133,6 +137,61 @@
 }
 
 
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+	concludeDragOperation:
+ We're here because we're the concludeDragOperationDelegte
+ of `sourceTextView`.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)concludeDragOperation:(id <NSDraggingInfo>)sender
+{
+	NSPasteboard *pasteBoard = [sender draggingPasteboard];
+	
+	/**************************************************
+	 The pasteboard contains a list of file names
+	 **************************************************/
+	if ( [[pasteBoard types] containsObject:NSFilenamesPboardType] )
+	{
+		NSArray *fileNames = [pasteBoard propertyListForType:@"NSFilenamesPboardType"];
+		
+		for (NSString *path in fileNames)
+		{
+			NSString *contents;
+			
+			/*************************************
+			 Mac OS X 10.10+: Will try to guess
+			 the encoding of the dragged in file
+			 *************************************/
+			if ([NSString respondsToSelector:@selector(stringEncodingForData:encodingOptions:convertedString:usedLossyConversion:)])
+			{
+				NSData *rawData;
+				if ((rawData = [NSData dataWithContentsOfFile:path]))
+				{
+					[NSString stringEncodingForData:rawData encodingOptions:nil convertedString:&contents usedLossyConversion:nil];
+				}
+			}
+			/*************************************
+			 Older Mac OS X can only accept UTF.
+			 *************************************/
+			else
+			{
+				NSError *error;
+				contents = [NSString stringWithContentsOfFile:path usedEncoding:nil error:&error];
+				if (error)
+				{
+					contents = nil;
+				}
+			}
+			
+			if (contents)
+			{
+				[self.sourceTextView.textView insertText:contents];
+			}
+			
+		}
+	}
+}
+
+
 #pragma mark - KVC and Notification Handling
 
 
@@ -146,9 +205,31 @@
 	/* Handle changes to the preferences for allowing or disallowing Mac OS X Text Substitutions */
 	if ((object == [NSUserDefaults standardUserDefaults]) && ([keyPath isEqualToString:JSDKeyAllowMacOSTextSubstitutions]))
 	{
-		[self.sourceTextView setAutomaticQuoteSubstitutionEnabled:[[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
-		[self.sourceTextView setAutomaticTextReplacementEnabled:[[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
-		[self.sourceTextView setAutomaticDashSubstitutionEnabled:[[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
+		[self.sourceTextView.textView setAutomaticQuoteSubstitutionEnabled:[[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
+		[self.sourceTextView.textView setAutomaticTextReplacementEnabled:[[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
+		[self.sourceTextView.textView setAutomaticDashSubstitutionEnabled:[[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
+	}
+	
+	if ((object == ((TidyDocument*)self.representedObject).tidyProcess) && ([keyPath isEqualToString:@"errorArray"]))
+	{
+		NSArray *localErrors = ((TidyDocument*)self.representedObject).tidyProcess.errorArray;
+		NSMutableArray *highlightErrors = [[NSMutableArray alloc] init];
+		
+		for (NSDictionary *localError in localErrors)
+		{
+			SMLSyntaxError *newError = [SMLSyntaxError new];
+			newError.errorDescription = localError[@"message"];
+			newError.line = [localError[@"line"] intValue];
+			newError.character = [localError[@"column"] intValue];
+			newError.length = 1;
+			newError.hidden = NO;
+			[highlightErrors addObject:newError];
+		}
+		
+		self.sourceTextView.syntaxErrors = highlightErrors;
+		
+		NSLog(@"%@", @"KVO ON THE ERROR ARRAY WORKS.");
+		
 	}
 }
 
@@ -180,59 +261,180 @@
 - (void)setupViewAppearance
 {
 	self.view.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
-
 	[self.view setFrame:self.view.superview.bounds];
+	
+	void (^configureCommonViewSettings)(MGSFragariaView *) = ^(MGSFragariaView *aView) {
+		
+		NSUserDefaults *localDefaults = [NSUserDefaults standardUserDefaults];
+		
+		// @todo: rewrite Fragaria to avoid this bullshit. Can't set options without using defaults?
+		[localDefaults setObject:[NSArchiver archivedDataWithRootObject:[NSFont fontWithName:@"Menlo" size:[NSFont systemFontSize]]] forKey:MGSFragariaDefaultsTextFont];
+		[localDefaults setObject:@(40) forKey:MGSFragariaDefaultsMinimumGutterWidth];
+		
+		aView.lineWrap = NO;
+		aView.syntaxDefinitionName = @"html";
+		
+		[aView.textView setAutomaticQuoteSubstitutionEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
+		[aView.textView setAutomaticTextReplacementEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
+		[aView.textView setAutomaticDashSubstitutionEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
+		[aView.textView setImportsGraphics:NO];
+		[aView.textView setAllowsImageEditing:NO];
+		[aView.textView setUsesFontPanel:NO];
+		[aView.textView setUsesRuler:NO];
+		[aView.textView setUsesInspectorBar:NO];
+		[aView.textView setUsesFindBar:NO];
+		[aView.textView setUsesFindPanel:NO];
+		[self.tidyTextView.textView setSelectable:YES];
+		[self.tidyTextView.textView setRichText:NO];
+	};
+	
+	configureCommonViewSettings(self.sourceTextView);
+	configureCommonViewSettings(self.tidyTextView);
+	
+	/* tidyTextView special settings. */
+	
+	[self.tidyTextView.textView setEditable:NO];
+	[self.tidyTextView.textView setAllowsUndo:NO];
+	
+	// @todo: stupid Fragaria's preferences make this impossible to apply only to one instance currently.
+	//	[[NSUserDefaults standardUserDefaults] setObject:@(YES) forKey:MGSFragariaPrefsShowPageGuide];
+	//	[[NSUserDefaults standardUserDefaults] setObject:@(80) forKey:MGSFragariaPrefsShowPageGuideAtColumn];
+	
+	
+	/* sourceTextView shouldn't accept every drop type */
+	[self.sourceTextView.textView registerForDraggedTypes:@[NSFilenamesPboardType]];
+	
 
-	[self configureViewSettings:self.sourceTextView];
-	[self configureViewSettings:self.tidyTextView];
+//	self.view.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+//	[self.view setFrame:self.view.superview.bounds];
+//	
+//	void (^configureCommonViewSettings)(MGSFragariaView *) = ^(MGSFragariaView *aView) {
+//		
+//		NSUserDefaults *localDefaults = [NSUserDefaults standardUserDefaults];
+//		
+//		// @todo: rewrite Fragaria to avoid this bullshit. Can't set options without using defaults?
+//		[localDefaults setObject:[NSArchiver archivedDataWithRootObject:[NSFont fontWithName:@"Menlo" size:[NSFont systemFontSize]]] forKey:MGSFragariaPrefsTextFont];
+//		[localDefaults setObject:@(40) forKey:MGSFragariaPrefsGutterWidth];
+//		
+//		aView.lineWrap = NO;
+//		aView.syntaxDefinitionName = @"html";
+//		
+//		[aView.textView setAutomaticQuoteSubstitutionEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
+//		[aView.textView setAutomaticTextReplacementEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
+//		[aView.textView setAutomaticDashSubstitutionEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
+//		[aView.textView setImportsGraphics:NO];
+//		[aView.textView setAllowsImageEditing:NO];
+//		[aView.textView setUsesFontPanel:NO];
+//		[aView.textView setUsesRuler:NO];
+//		[aView.textView setUsesInspectorBar:NO];
+//		[aView.textView setUsesFindBar:NO];
+//		[aView.textView setUsesFindPanel:NO];
+//		[self.tidyTextView.textView setSelectable:YES];
+//		[self.tidyTextView.textView setRichText:NO];
+//	};
+//	
+//	configureCommonViewSettings(self.sourceTextView);
+//	configureCommonViewSettings(self.tidyTextView);
+//	
+//	/* tidyTextView special settings. */
+//	
+//	[self.tidyTextView.textView setEditable:NO];
+//	[self.tidyTextView.textView setAllowsUndo:NO];
+//	
+//	// @todo: stupid Fragaria's preferences make this impossible to apply only to one instance currently.
+//	//	[[NSUserDefaults standardUserDefaults] setObject:@(YES) forKey:MGSFragariaPrefsShowPageGuide];
+//	//	[[NSUserDefaults standardUserDefaults] setObject:@(80) forKey:MGSFragariaPrefsShowPageGuideAtColumn];
+//	
+//	
+//	/* sourceTextView shouldn't accept every drop type */
+//	[self.sourceTextView.textView registerForDraggedTypes:@[NSFilenamesPboardType]];
+//	[self configureViewSettings:self.tidyTextView];
 }
 
 
 /*———————————————————————————————————————————————————————————————————*
-  - highlightSourceTextUsingArrayController
-	Perform error highlighting on the source text using
-	appropriate values from arrayController.
+	centerSourceTextErrorUsingArrayController
+ Perform error highlighting on the selected item in the
+ arrayController, and center that line if possible. This is
+ NOT the error highlighter, and is a response to the user
+ selecting a row in the messages table.
  *———————————————————————————————————————————————————————————————————*/
-- (void)highlightSourceTextUsingArrayController:(NSArrayController*)arrayController
+- (void)centerSourceTextErrorUsingArrayController:(NSArrayController*)arrayController
 {
-	self.sourceTextView.showsHighlight = NO;
-
 	NSArray *localObjects = arrayController.arrangedObjects;
-
-	NSInteger errorViewRow = arrayController.selectionIndex;
-
-	if ((errorViewRow >= 0) && (errorViewRow < [localObjects count]))
+	
+	NSUInteger errorViewRow = arrayController.selectionIndex;
+	
+	if (errorViewRow < [localObjects count])
 	{
 		NSInteger row = [localObjects[errorViewRow][@"line"] intValue];
-
-		NSInteger col = [localObjects[errorViewRow][@"column"] intValue];
-
+		
 		if (row > 0)
 		{
-			[self.sourceTextView highlightLine:row Column:col];
+			[self.sourceTextView goToLine:row centered:YES highlight:YES];
 		}
 	}
+	
 }
+
+///*———————————————————————————————————————————————————————————————————*
+//  - highlightSourceTextUsingArrayController
+//	Perform error highlighting on the source text using
+//	appropriate values from arrayController.
+// *———————————————————————————————————————————————————————————————————*/
+//- (void)highlightSourceTextUsingArrayController:(NSArrayController*)arrayController
+//{
+//	self.sourceTextView.showsHighlight = NO;
+//
+//	NSArray *localObjects = arrayController.arrangedObjects;
+//
+//	NSInteger errorViewRow = arrayController.selectionIndex;
+//
+//	if ((errorViewRow >= 0) && (errorViewRow < [localObjects count]))
+//	{
+//		NSInteger row = [localObjects[errorViewRow][@"line"] intValue];
+//
+//		NSInteger col = [localObjects[errorViewRow][@"column"] intValue];
+//
+//		if (row > 0)
+//		{
+//			[self.sourceTextView highlightLine:row Column:col];
+//		}
+//	}
+//}
 
 
 #pragma mark - Private Methods
+
+
+- (void)setPageGuidePosition:(NSUInteger)pageGuidePosition
+{
+	// @todo: stupid Fragaria's preferences need to be reworked.
+	[[NSUserDefaults standardUserDefaults] setObject:@(pageGuidePosition>0) forKey:MGSFragariaDefaultsShowsPageGuide];
+	[[NSUserDefaults standardUserDefaults] setObject:@(pageGuidePosition) forKey:MGSFragariaDefaultsPageGuideColumn];
+}
+
+- (NSUInteger)pageGuidePosition
+{
+	return [[NSUserDefaults standardUserDefaults] integerForKey:MGSFragariaDefaultsPageGuideColumn];
+}
 
 
 /*———————————————————————————————————————————————————————————————————*
   - configureViewSettings: (private)
 	Configure text view `aView` with uniform settings.
  *———————————————————————————————————————————————————————————————————*/
-- (void)configureViewSettings:(NSTextView *)aView
-{
-	NSUserDefaults *localDefaults = [NSUserDefaults standardUserDefaults];
-
-	[aView setFont:[NSFont fontWithName:@"Menlo" size:[NSFont systemFontSize]]];
-	[aView setAutomaticQuoteSubstitutionEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
-	[aView setAutomaticTextReplacementEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
-	[aView setAutomaticDashSubstitutionEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
-
-	[aView setWordwrapsText:NO];
-}
+//- (void)configureViewSettings:(NSTextView *)aView
+//{
+//	NSUserDefaults *localDefaults = [NSUserDefaults standardUserDefaults];
+//
+//	[aView setFont:[NSFont fontWithName:@"Menlo" size:[NSFont systemFontSize]]];
+//	[aView setAutomaticQuoteSubstitutionEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
+//	[aView setAutomaticTextReplacementEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
+//	[aView setAutomaticDashSubstitutionEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
+//
+//	[aView setWordwrapsText:NO];
+//}
 
 
 @end

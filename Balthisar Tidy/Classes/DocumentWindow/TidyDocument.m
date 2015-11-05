@@ -9,9 +9,9 @@
 #import "TidyDocument.h"
 #import "CommonHeaders.h"
 
+#import <Fragaria/Fragaria.h>
 #import "TidyDocumentWindowController.h"
 #import "TidyDocumentSourceViewController.h"
-#import "JSDTextView.h"
 
 #import "JSDTidyModel.h"
 
