@@ -134,10 +134,10 @@
 	}
 #endif
 
-	/*	The `Balthisar Tidy (no sparkle)` target has NOSPARKLE=1 defined.
-		Because we're building completely without Sparkle, we have to
-		make sure there are no references to it in the MainMenu nib,
-		and set its target-action programmatically.
+	/* The `Balthisar Tidy (no sparkle)` target has NOSPARKLE=1 defined.
+	 * Because we're building completely without Sparkle, we have to
+	 * make sure there are no references to it in the MainMenu nib,
+	 * and set its target-action programmatically.
 	 */
 #ifdef FEATURE_SPARKLE
 	[[self menuCheckForUpdates] setTarget:[SUUpdater sharedUpdater]];
@@ -203,8 +203,13 @@
         NSString *creditsFile = @"Credits";
 #endif
 
-        NSString *creditsPath = [[NSBundle mainBundle] pathForResource:creditsFile ofType:@"rtf"];
-        _aboutWindowController.appCredits = [[NSAttributedString alloc] initWithPath:creditsPath documentAttributes:nil];
+		JSDTidyModel *localModel = [[JSDTidyModel alloc] init];
+		NSString *version = localModel.tidyLibraryVersion;
+
+		NSString *creditsPath = [[NSBundle mainBundle] pathForResource:creditsFile ofType:@"rtf"];
+		NSAttributedString *creditsText = [[NSAttributedString alloc] initWithPath:creditsPath documentAttributes:nil];
+
+        _aboutWindowController.appCredits = creditsText;
     }
     return _aboutWindowController;
 }
