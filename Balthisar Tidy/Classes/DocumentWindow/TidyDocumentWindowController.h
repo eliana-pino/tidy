@@ -11,9 +11,7 @@
 @class EncodingHelperController;
 @class FirstRunController;
 @class JSDTableViewController;
-@class JSDTidyModel;
 @class OptionPaneController;
-@class TidyMessagesViewController;
 @class TidyDocumentSourceViewController;
 
 
@@ -94,7 +92,7 @@
 /** @name React after saving a file */
 
 
-/** */
+/** This is called when the TidyDocument indicates that it wrong a file. */
 - (void)documentDidWriteFile;
 
 
@@ -114,11 +112,13 @@
 /** Specifies whether or not the source panel line numbers are visble. */
 @property (nonatomic, assign) BOOL sourcePaneLineNumbersAreVisible;
 
-@property BOOL sourcePaneShowsSyntaxHighlighting;
+/** Specifies whether or not the source panel editors show syntax highlighting. */
+@property (nonatomic, assign) BOOL sourcePaneShowsSyntaxHighlighting;
 
 
 #pragma mark - Actions to support properties from Menus
 /** @name Actions to support properties from Menus */
+
 
 // @TODO: MAKE ALL OF THE STUFF BELOW INTO PROPERTIES.
 
