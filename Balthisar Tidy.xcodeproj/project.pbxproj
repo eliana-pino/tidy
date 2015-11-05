@@ -88,9 +88,6 @@
 		D036E21418F3D2F20009A9D4 /* Tidy.icns in Resources */ = {isa = PBXBuildFile; fileRef = D036E20B18F3D2F20009A9D4 /* Tidy.icns */; };
 		D036E21518F3D2F20009A9D4 /* XML.icns in Resources */ = {isa = PBXBuildFile; fileRef = D036E20C18F3D2F20009A9D4 /* XML.icns */; };
 		D036E21618F3D2F20009A9D4 /* XML.icns in Resources */ = {isa = PBXBuildFile; fileRef = D036E20C18F3D2F20009A9D4 /* XML.icns */; };
-		D038A0D81A2180EC009A874A /* JSDTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D038A0D71A2180EC009A874A /* JSDTextView.m */; };
-		D038A0D91A2180EC009A874A /* JSDTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D038A0D71A2180EC009A874A /* JSDTextView.m */; };
-		D038A0DA1A2180EC009A874A /* JSDTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D038A0D71A2180EC009A874A /* JSDTextView.m */; };
 		D03B89D419553E5D00E9B4D5 /* DiffsTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D03B89D319553E5D00E9B4D5 /* DiffsTemplate.png */; };
 		D03B89D81955457500E9B4D5 /* ScrollLockTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D03B89D71955457500E9B4D5 /* ScrollLockTemplate.png */; };
 		D03B89DA1955474700E9B4D5 /* DiffViewTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D03B89D91955474700E9B4D5 /* DiffViewTemplate.png */; };
@@ -325,22 +322,15 @@
 		D0B9F10419585474008864D6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B9F10319585474008864D6 /* QuartzCore.framework */; };
 		D0B9F1051958547A008864D6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B9F10319585474008864D6 /* QuartzCore.framework */; };
 		D0B9F1061958547B008864D6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B9F10319585474008864D6 /* QuartzCore.framework */; };
-		D0BB67AC193AB382007A3EB0 /* NoodleLineNumberMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = D0BB67A9193AB382007A3EB0 /* NoodleLineNumberMarker.m */; };
-		D0BB67AD193AB382007A3EB0 /* NoodleLineNumberMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = D0BB67A9193AB382007A3EB0 /* NoodleLineNumberMarker.m */; };
-		D0BB67AE193AB382007A3EB0 /* NoodleLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0BB67AB193AB382007A3EB0 /* NoodleLineNumberView.m */; };
-		D0BB67AF193AB382007A3EB0 /* NoodleLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0BB67AB193AB382007A3EB0 /* NoodleLineNumberView.m */; };
 		D0BB67C4193C820A007A3EB0 /* JSDTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D047C72E1915FBF100B70A94 /* JSDTableCellView.m */; };
 		D0BB67C5193C820A007A3EB0 /* JSDIntegerValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D081CBDA1917C1510041B2C5 /* JSDIntegerValueTransformer.m */; };
 		D0BB67C9193C820A007A3EB0 /* JSDTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9EAD118E6680F008A55D5 /* JSDTextField.m */; };
 		D0BB67CF193C820A007A3EB0 /* PreferenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9EAC618E6680F008A55D5 /* PreferenceController.m */; };
 		D0BB67D0193C820A007A3EB0 /* OptionPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9EAC418E6680F008A55D5 /* OptionPaneController.m */; };
 		D0BB67D2193C820A007A3EB0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D016A935182FD80700712C60 /* main.m */; };
-		D0BB67D4193C820A007A3EB0 /* NSTextView+JSDExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9EAD718E6680F008A55D5 /* NSTextView+JSDExtensions.m */; };
 		D0BB67D5193C820A007A3EB0 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9EAC218E6680F008A55D5 /* AppController.m */; };
-		D0BB67D6193C820A007A3EB0 /* NoodleLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0BB67AB193AB382007A3EB0 /* NoodleLineNumberView.m */; };
 		D0BB67D7193C820A007A3EB0 /* JSDBoolToStringValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D04753B61938A19D00BB7163 /* JSDBoolToStringValueTransformer.m */; };
 		D0BB67DA193C820A007A3EB0 /* JSDAllCapsValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D008F0181930D9D700559F3B /* JSDAllCapsValueTransformer.m */; };
-		D0BB67E0193C820A007A3EB0 /* NoodleLineNumberMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = D0BB67A9193AB382007A3EB0 /* NoodleLineNumberMarker.m */; };
 		D0BB67E1193C820A007A3EB0 /* JSDTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9F1A218E6BF8D008A55D5 /* JSDTableView.m */; };
 		D0BB67E4193C820A007A3EB0 /* NSApplication+TidyApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = D04D5F981902459500F77901 /* NSApplication+TidyApplication.m */; };
 		D0BB67E6193C820A007A3EB0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D016A929182FD80700712C60 /* Cocoa.framework */; };
@@ -406,8 +396,6 @@
 		D0D9ED3018E66810008A55D5 /* PreferenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9EAC618E6680F008A55D5 /* PreferenceController.m */; };
 		D0D9ED3918E66810008A55D5 /* JSDTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9EAD118E6680F008A55D5 /* JSDTextField.m */; };
 		D0D9ED3A18E66810008A55D5 /* JSDTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9EAD118E6680F008A55D5 /* JSDTextField.m */; };
-		D0D9ED3F18E66810008A55D5 /* NSTextView+JSDExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9EAD718E6680F008A55D5 /* NSTextView+JSDExtensions.m */; };
-		D0D9ED4018E66810008A55D5 /* NSTextView+JSDExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9EAD718E6680F008A55D5 /* NSTextView+JSDExtensions.m */; };
 		D0D9F1A318E6BF8D008A55D5 /* JSDTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9F1A218E6BF8D008A55D5 /* JSDTableView.m */; };
 		D0D9F1A418E6BF8D008A55D5 /* JSDTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9F1A218E6BF8D008A55D5 /* JSDTableView.m */; };
 		D0DCEFB21A5FC40100E8A2AE /* TidyDocumentService.m in Sources */ = {isa = PBXBuildFile; fileRef = D0DCEFB11A5FC40100E8A2AE /* TidyDocumentService.m */; };
@@ -844,8 +832,6 @@
 		D036E20B18F3D2F20009A9D4 /* Tidy.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Tidy.icns; sourceTree = "<group>"; };
 		D036E20C18F3D2F20009A9D4 /* XML.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = XML.icns; sourceTree = "<group>"; };
 		D036E21718F3D81E0009A9D4 /* TidyScripting.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TidyScripting.sdef; sourceTree = "<group>"; };
-		D038A0D61A2180EC009A874A /* JSDTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = JSDTextView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		D038A0D71A2180EC009A874A /* JSDTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = JSDTextView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		D03B89D319553E5D00E9B4D5 /* DiffsTemplate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DiffsTemplate.png; path = "Images for Toolbar/DiffsTemplate.png"; sourceTree = "<group>"; };
 		D03B89D71955457500E9B4D5 /* ScrollLockTemplate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ScrollLockTemplate.png; path = "Images for Toolbar/ScrollLockTemplate.png"; sourceTree = "<group>"; };
 		D03B89D91955474700E9B4D5 /* DiffViewTemplate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DiffViewTemplate.png; path = "Images for Toolbar/DiffViewTemplate.png"; sourceTree = "<group>"; };
@@ -950,10 +936,6 @@
 		D0B9F0FA19585060008864D6 /* DCOTransparentScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCOTransparentScrollView.h; path = DCOTransparentScroller/DCOTransparentScroller/DCOTransparentScrollView.h; sourceTree = "<group>"; };
 		D0B9F0FB19585060008864D6 /* DCOTransparentScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCOTransparentScrollView.m; path = DCOTransparentScroller/DCOTransparentScroller/DCOTransparentScrollView.m; sourceTree = "<group>"; };
 		D0B9F10319585474008864D6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		D0BB67A8193AB382007A3EB0 /* NoodleLineNumberMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoodleLineNumberMarker.h; sourceTree = "<group>"; };
-		D0BB67A9193AB382007A3EB0 /* NoodleLineNumberMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoodleLineNumberMarker.m; sourceTree = "<group>"; };
-		D0BB67AA193AB382007A3EB0 /* NoodleLineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoodleLineNumberView.h; sourceTree = "<group>"; };
-		D0BB67AB193AB382007A3EB0 /* NoodleLineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoodleLineNumberView.m; sourceTree = "<group>"; };
 		D0BB67B1193AB45A007A3EB0 /* JSDTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = JSDTableViewDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		D0BB67FF193C820A007A3EB0 /* Balthisar Tidy for Work.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Balthisar Tidy for Work.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0BF29E01A7347580062B01A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = ActionRequestHandler.xib; sourceTree = "<group>"; };
@@ -974,8 +956,6 @@
 		D0D9EAC618E6680F008A55D5 /* PreferenceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferenceController.m; path = ../PreferencesWindow/PreferenceController.m; sourceTree = "<group>"; };
 		D0D9EAD018E6680F008A55D5 /* JSDTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = JSDTextField.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		D0D9EAD118E6680F008A55D5 /* JSDTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = JSDTextField.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		D0D9EAD618E6680F008A55D5 /* NSTextView+JSDExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextView+JSDExtensions.h"; sourceTree = "<group>"; };
-		D0D9EAD718E6680F008A55D5 /* NSTextView+JSDExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+JSDExtensions.m"; sourceTree = "<group>"; };
 		D0D9F1A118E6BF8D008A55D5 /* JSDTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = JSDTableView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		D0D9F1A218E6BF8D008A55D5 /* JSDTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = JSDTableView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		D0DCEFB01A5FC40100E8A2AE /* TidyDocumentService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TidyDocumentService.h; sourceTree = "<group>"; };
@@ -1581,17 +1561,6 @@
 			name = DCOTransparentScroller;
 			sourceTree = "<group>";
 		};
-		D0BB67A7193AB382007A3EB0 /* NoodleKit */ = {
-			isa = PBXGroup;
-			children = (
-				D0BB67A8193AB382007A3EB0 /* NoodleLineNumberMarker.h */,
-				D0BB67A9193AB382007A3EB0 /* NoodleLineNumberMarker.m */,
-				D0BB67AA193AB382007A3EB0 /* NoodleLineNumberView.h */,
-				D0BB67AB193AB382007A3EB0 /* NoodleLineNumberView.m */,
-			);
-			path = NoodleKit;
-			sourceTree = "<group>";
-		};
 		D0CA8F091953168500BBD54C /* Images for Toolbar */ = {
 			isa = PBXGroup;
 			children = (
@@ -1653,10 +1622,6 @@
 				D074B7B31947D93800F2E6F1 /* JSDTableViewController.m */,
 				D0D9EAD018E6680F008A55D5 /* JSDTextField.h */,
 				D0D9EAD118E6680F008A55D5 /* JSDTextField.m */,
-				D0D9EAD618E6680F008A55D5 /* NSTextView+JSDExtensions.h */,
-				D0D9EAD718E6680F008A55D5 /* NSTextView+JSDExtensions.m */,
-				D038A0D61A2180EC009A874A /* JSDTextView.h */,
-				D038A0D71A2180EC009A874A /* JSDTextView.m */,
 			);
 			path = "Support Pieces";
 			sourceTree = "<group>";
@@ -1667,7 +1632,6 @@
 				D0B9F0F719585018008864D6 /* DCOAboutWindow */,
 				D0B9F1021958506B008864D6 /* DCOTransparentScroller */,
 				D06C9A49195FB4AB004D6C27 /* MASPreferences */,
-				D0BB67A7193AB382007A3EB0 /* NoodleKit */,
 			);
 			path = vendor;
 			sourceTree = "<group>";
@@ -2383,10 +2347,8 @@
 				D06C9A58195FB997004D6C27 /* OptionListAppearanceViewController.m in Sources */,
 				D074B7A11942CF0300F2E6F1 /* TidyDocument.m in Sources */,
 				D0B9F0FC19585060008864D6 /* DCOTransparentScroller.m in Sources */,
-				D0BB67AC193AB382007A3EB0 /* NoodleLineNumberMarker.m in Sources */,
 				D06C9A61195FB9D0004D6C27 /* DocumentAppearanceViewController.m in Sources */,
 				D0868930194842A400BDAD72 /* TidyDocumentSourceViewController.m in Sources */,
-				D038A0D81A2180EC009A874A /* JSDTextView.m in Sources */,
 				D047C72F1915FBF100B70A94 /* JSDTableCellView.m in Sources */,
 				D081CBDB1917C1510041B2C5 /* JSDIntegerValueTransformer.m in Sources */,
 				D0D9ED3918E66810008A55D5 /* JSDTextField.m in Sources */,
@@ -2396,7 +2358,6 @@
 				D074B7B41947D93800F2E6F1 /* JSDTableViewController.m in Sources */,
 				D0B9F0FF19585060008864D6 /* DCOTransparentScrollView.m in Sources */,
 				D016A936182FD80700712C60 /* main.m in Sources */,
-				D0D9ED3F18E66810008A55D5 /* NSTextView+JSDExtensions.m in Sources */,
 				D06C9A4F195FB955004D6C27 /* OptionListViewController.m in Sources */,
 				D0D9ED2B18E66810008A55D5 /* AppController.m in Sources */,
 				D0B9F0F419585010008864D6 /* DCOAboutWindowController.m in Sources */,
@@ -2408,7 +2369,6 @@
 				D06C9A7C195FBA3F004D6C27 /* UpdaterOptionsViewController.m in Sources */,
 				D0DCEFB21A5FC40100E8A2AE /* TidyDocumentService.m in Sources */,
 				D074B79B1942CF0300F2E6F1 /* EncodingHelperController.m in Sources */,
-				D0BB67AE193AB382007A3EB0 /* NoodleLineNumberView.m in Sources */,
 				D008F0191930D9D700559F3B /* JSDAllCapsValueTransformer.m in Sources */,
 				D0D9F1A318E6BF8D008A55D5 /* JSDTableView.m in Sources */,
 				D04D5F991902459500F77901 /* NSApplication+TidyApplication.m in Sources */,
@@ -2458,7 +2418,6 @@
 				D0B9F0FD19585060008864D6 /* DCOTransparentScroller.m in Sources */,
 				D06C9A62195FB9D0004D6C27 /* DocumentAppearanceViewController.m in Sources */,
 				D0868931194842A400BDAD72 /* TidyDocumentSourceViewController.m in Sources */,
-				D038A0D91A2180EC009A874A /* JSDTextView.m in Sources */,
 				D047C7301915FBF100B70A94 /* JSDTableCellView.m in Sources */,
 				D081CBDC1917C1510041B2C5 /* JSDIntegerValueTransformer.m in Sources */,
 				D0D9ED3A18E66810008A55D5 /* JSDTextField.m in Sources */,
@@ -2468,10 +2427,8 @@
 				D074B7B51947D93800F2E6F1 /* JSDTableViewController.m in Sources */,
 				D0913CAF18B0AC06005DB2E4 /* main.m in Sources */,
 				D0B9F10019585060008864D6 /* DCOTransparentScrollView.m in Sources */,
-				D0D9ED4018E66810008A55D5 /* NSTextView+JSDExtensions.m in Sources */,
 				D0D9ED2C18E66810008A55D5 /* AppController.m in Sources */,
 				D06C9A50195FB955004D6C27 /* OptionListViewController.m in Sources */,
-				D0BB67AF193AB382007A3EB0 /* NoodleLineNumberView.m in Sources */,
 				D0B9F0F519585010008864D6 /* DCOAboutWindowController.m in Sources */,
 				D06C9A47195FB4A4004D6C27 /* MASPreferencesWindowController.m in Sources */,
 				D04753B81938A19D00BB7163 /* JSDBoolToStringValueTransformer.m in Sources */,
@@ -2482,7 +2439,6 @@
 				D0DCEFB31A5FC40100E8A2AE /* TidyDocumentService.m in Sources */,
 				D074B79C1942CF0300F2E6F1 /* EncodingHelperController.m in Sources */,
 				D008F01A1930D9D700559F3B /* JSDAllCapsValueTransformer.m in Sources */,
-				D0BB67AD193AB382007A3EB0 /* NoodleLineNumberMarker.m in Sources */,
 				D0D9F1A418E6BF8D008A55D5 /* JSDTableView.m in Sources */,
 				D04D5F9A1902459500F77901 /* NSApplication+TidyApplication.m in Sources */,
 			);
@@ -2533,7 +2489,6 @@
 				D0B9F0FE19585060008864D6 /* DCOTransparentScroller.m in Sources */,
 				D06C9A63195FB9D0004D6C27 /* DocumentAppearanceViewController.m in Sources */,
 				D0868932194842A400BDAD72 /* TidyDocumentSourceViewController.m in Sources */,
-				D038A0DA1A2180EC009A874A /* JSDTextView.m in Sources */,
 				D0BB67C4193C820A007A3EB0 /* JSDTableCellView.m in Sources */,
 				D0BB67C5193C820A007A3EB0 /* JSDIntegerValueTransformer.m in Sources */,
 				D0BB67C9193C820A007A3EB0 /* JSDTextField.m in Sources */,
@@ -2543,10 +2498,8 @@
 				D074B7B61947D93800F2E6F1 /* JSDTableViewController.m in Sources */,
 				D0BB67D2193C820A007A3EB0 /* main.m in Sources */,
 				D0B9F10119585060008864D6 /* DCOTransparentScrollView.m in Sources */,
-				D0BB67D4193C820A007A3EB0 /* NSTextView+JSDExtensions.m in Sources */,
 				D0BB67D5193C820A007A3EB0 /* AppController.m in Sources */,
 				D06C9A51195FB955004D6C27 /* OptionListViewController.m in Sources */,
-				D0BB67D6193C820A007A3EB0 /* NoodleLineNumberView.m in Sources */,
 				D0B9F0F619585010008864D6 /* DCOAboutWindowController.m in Sources */,
 				D06C9A48195FB4A4004D6C27 /* MASPreferencesWindowController.m in Sources */,
 				D0BB67D7193C820A007A3EB0 /* JSDBoolToStringValueTransformer.m in Sources */,
@@ -2557,7 +2510,6 @@
 				D0DCEFB41A5FC40100E8A2AE /* TidyDocumentService.m in Sources */,
 				D074B79D1942CF0300F2E6F1 /* EncodingHelperController.m in Sources */,
 				D0BB67DA193C820A007A3EB0 /* JSDAllCapsValueTransformer.m in Sources */,
-				D0BB67E0193C820A007A3EB0 /* NoodleLineNumberMarker.m in Sources */,
 				D0BB67E1193C820A007A3EB0 /* JSDTableView.m in Sources */,
 				D0BB67E4193C820A007A3EB0 /* NSApplication+TidyApplication.m in Sources */,
 			);
