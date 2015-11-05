@@ -16,6 +16,13 @@
 #import "JSDTidyModel.h"
 
 
+@interface TidyDocument ()
+
+@property (nonatomic, assign) BOOL fileWantsProtection; // flag indication special save is required.
+
+@end
+
+
 @implementation TidyDocument
 
 
