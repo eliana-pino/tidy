@@ -207,7 +207,11 @@
 		NSString *version = localModel.tidyLibraryVersion;
 
 		NSString *creditsPath = [[NSBundle mainBundle] pathForResource:creditsFile ofType:@"rtf"];
-		NSAttributedString *creditsText = [[NSAttributedString alloc] initWithPath:creditsPath documentAttributes:nil];
+		NSMutableAttributedString *creditsText = [[NSMutableAttributedString alloc] initWithPath:creditsPath documentAttributes:nil];
+        [creditsText.mutableString replaceOccurrencesOfString:@"%@"
+                                                   withString:version
+                                                      options:NSLiteralSearch
+                                                        range:NSMakeRange(0, [creditsText.mutableString length])];
 
         _aboutWindowController.appCredits = creditsText;
     }
