@@ -118,6 +118,8 @@
 		D04E8FBD195DAA9500D1CEDC /* ScrollLockTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D03B89D71955457500E9B4D5 /* ScrollLockTemplate.png */; };
 		D05F71D51BEA2DE300F584C4 /* Credits (app).rtf in Resources */ = {isa = PBXBuildFile; fileRef = D05F71D11BEA2DE300F584C4 /* Credits (app).rtf */; };
 		D05F71D81BEA2DE300F584C4 /* Credits (pro).rtf in Resources */ = {isa = PBXBuildFile; fileRef = D05F71D31BEA2DE300F584C4 /* Credits (pro).rtf */; };
+		D06045FB1BF07DF000D69673 /* JSDTidyModel+Developer.h in Headers */ = {isa = PBXBuildFile; fileRef = D06045F91BF07DF000D69673 /* JSDTidyModel+Developer.h */; };
+		D06045FC1BF07DF000D69673 /* JSDTidyModel+Developer.m in Sources */ = {isa = PBXBuildFile; fileRef = D06045FA1BF07DF000D69673 /* JSDTidyModel+Developer.m */; };
 		D06C9A43195FB4A4004D6C27 /* MASPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A40195FB4A4004D6C27 /* MASPreferencesWindow.xib */; };
 		D06C9A44195FB4A4004D6C27 /* MASPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A40195FB4A4004D6C27 /* MASPreferencesWindow.xib */; };
 		D06C9A45195FB4A4004D6C27 /* MASPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A40195FB4A4004D6C27 /* MASPreferencesWindow.xib */; };
@@ -858,6 +860,8 @@
 		D04E8FAE195D964F00D1CEDC /* Balthisar Tidy (web).help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Balthisar Tidy (web).help"; sourceTree = "<group>"; };
 		D05F71D21BEA2DE300F584C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Base; path = "Base.lproj/Credits (app).rtf"; sourceTree = "<group>"; };
 		D05F71D41BEA2DE300F584C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Base; path = "Base.lproj/Credits (pro).rtf"; sourceTree = "<group>"; };
+		D06045F91BF07DF000D69673 /* JSDTidyModel+Developer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "JSDTidyModel+Developer.h"; path = "JSDTidyModel/JSDTidyModel+Developer.h"; sourceTree = "<group>"; };
+		D06045FA1BF07DF000D69673 /* JSDTidyModel+Developer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "JSDTidyModel+Developer.m"; path = "JSDTidyModel/JSDTidyModel+Developer.m"; sourceTree = "<group>"; };
 		D06626CE18B09B330091CBD8 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = "Balthisar Tidy/Frameworks/Sparkle.framework"; sourceTree = "<group>"; };
 		D06657C01A5D8BDB002DCD2F /* CommonHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = CommonHeaders.h; path = "Balthisar Common Headers/CommonHeaders.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		D06C9A3F195FB4A4004D6C27 /* MASPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MASPreferencesViewController.h; path = MASPreferences/MASPreferencesViewController.h; sourceTree = "<group>"; };
@@ -1131,6 +1135,8 @@
 				D006612F1A579DF300F73F85 /* JSDTidyModel.m */,
 				D00661321A579DF300F73F85 /* JSDTidyOption.h */,
 				D00661331A579DF300F73F85 /* JSDTidyOption.m */,
+				D06045F91BF07DF000D69673 /* JSDTidyModel+Developer.h */,
+				D06045FA1BF07DF000D69673 /* JSDTidyModel+Developer.m */,
 			);
 			name = JSDTidyModel;
 			sourceTree = "<group>";
@@ -1655,6 +1661,7 @@
 				D006610D1A579BE700F73F85 /* JSDTidyFramework.h in Headers */,
 				D00661341A579DF300F73F85 /* JSDTidyModel.h in Headers */,
 				D00661381A579DF300F73F85 /* JSDTidyOption.h in Headers */,
+				D06045FB1BF07DF000D69673 /* JSDTidyModel+Developer.h in Headers */,
 				D0F4A5041BDA0ADC0051327D /* JSDStringEncodingTools.h in Headers */,
 				D0979D8A1BE9E488002ACD04 /* SWFSemanticVersion.h in Headers */,
 				D00661371A579DF300F73F85 /* JSDTidyModelDelegate.h in Headers */,
@@ -2336,6 +2343,7 @@
 				D0F4A5051BDA0ADC0051327D /* JSDStringEncodingTools.m in Sources */,
 				D0979D8B1BE9E488002ACD04 /* SWFSemanticVersion.m in Sources */,
 				D00661351A579DF300F73F85 /* JSDTidyModel.m in Sources */,
+				D06045FC1BF07DF000D69673 /* JSDTidyModel+Developer.m in Sources */,
 				D00661391A579DF300F73F85 /* JSDTidyOption.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

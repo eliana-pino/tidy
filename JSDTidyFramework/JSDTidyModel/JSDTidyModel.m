@@ -457,47 +457,6 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-  + optionsBuiltInDumpDocsToConsole (class)
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-+ (void) optionsBuiltInDumpDocsToConsole
-{
-	NSArray* optionList = [[self class] optionsBuiltInOptionList];
-	NSString* paddedOptionName;
-	NSString* filteredDescription;
-	NSAttributedString* convertingString;
-	
-	NSLog(@"%@", @"----START----");
-	
-	for (NSString* optionName in optionList)
-	{
-		paddedOptionName = [[NSString stringWithFormat:@"\"%@\"", optionName]
-							stringByPaddingToLength:40
-							withString:@" "
-							startingAtIndex:0];
-		
-		filteredDescription = [[[[JSDTidyOption alloc] initWithName:optionName sharingModel:nil] builtInDescription]
-							   stringByReplacingOccurrencesOfString:@"\""
-							   withString:@"'"];
-		
-		filteredDescription = [filteredDescription
-							   stringByReplacingOccurrencesOfString:@"<br />"
-							   withString:@"\\n"];
-		
-		convertingString = [[NSAttributedString alloc]
-							initWithHTML:[filteredDescription dataUsingEncoding:NSUnicodeStringEncoding]
-							documentAttributes:nil];
-		
-		filteredDescription = [convertingString string];
-		
-		NSLog(@"%@= \"%@: %@\";", paddedOptionName, optionName, filteredDescription);
-	}
-	
-	NSLog(@"%@", @"----STOP----");
-	
-}
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
   + optionsBuiltInOptionCount (class)
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 + (int)optionsBuiltInOptionCount
@@ -849,16 +808,6 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
         [self notifyTidyModelMessagesChanged];
     }
 }
-
-
-///*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-//  + keyPathsForValuesAffectingErrorArray
-//    All of listed keys affect the error array.
-// *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-//+ (NSSet *)keyPathsForValuesAffectingErrorArray
-//{
-//    return [NSSet setWithObjects:@"sourceText", @"tidyOptions", @"tidyOptionsBindable", nil];
-//}
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
