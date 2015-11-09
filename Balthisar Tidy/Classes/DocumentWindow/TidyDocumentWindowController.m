@@ -113,7 +113,7 @@
 {
 	/******************************************************
 		Setup the optionController and its view settings.
-@property (nonatomic) ***********************************************/
+     ******************************************************/
 	
 	self.optionController = [[OptionPaneController alloc] init];
 	
@@ -305,11 +305,7 @@
 	
 	if ((object == self.messagesController.arrayController) && ([keyPath isEqualToString:@"selection"]))
 	{
-        /* @TODO: this is probably happening because I'm changing the errorArray, so every time it's rebuilt the
-         * selectino changes several times while rebuilt.
-         */
-		NSLog(@"ERROR TABLE SELECTION CHANGED");
-		[self.sourceController centerSourceTextErrorUsingArrayController:self.messagesController.arrayController];
+		[self.sourceController goToSourceErrorUsingArrayController:self.messagesController.arrayController];
 	}
 }
 
@@ -527,7 +523,7 @@
 
 	/* In case something is selected in the messages table, highlight it again. */
 	
-	[self.sourceController centerSourceTextErrorUsingArrayController:self.messagesController.arrayController];
+	[self.sourceController goToSourceErrorUsingArrayController:self.messagesController.arrayController];
 }
 
 /*———————————————————————————————————————————————————————————————————*

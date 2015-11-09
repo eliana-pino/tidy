@@ -61,11 +61,11 @@
 - (void)setupViewAppearance;
 
 /** 
- *  Will highlight message-producing text in the source TextView based on
+ *  Will go to the message-producing text in the source TextView based on
  *  the current record in the specified array controller.
  *  @param arrayController The array controller with the message data.
  */
-- (void)centerSourceTextErrorUsingArrayController:(NSArrayController*)arrayController;
+- (void)goToSourceErrorUsingArrayController:(NSArrayController*)arrayController;
 
 
 /**

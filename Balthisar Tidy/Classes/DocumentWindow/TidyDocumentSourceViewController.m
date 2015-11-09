@@ -77,6 +77,12 @@
 											   options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial)
 											   context:NULL];
 	
+	/* KVO on the errorArray so we can display inline errors. */
+	[((TidyDocument*)self.representedObject).tidyProcess addObserver:self
+														  forKeyPath:@"errorArray"
+															 options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial)
+															 context:NULL];
+	
 	/* Interface Builder doesn't allow us to define custom bindings, so we have to bind the tidyTextView manually. */
 	[self.tidyTextView bind:@"string" toObject:self.representedObject withKeyPath:@"tidyProcess.tidyText" options:nil];
 }
@@ -197,7 +203,6 @@
  - observeValueForKeyPath:ofObject:change:context:
    Handle KVO Notifications:
    - certain preferences changed.
-   - the processor's sourceText changed.
    - the errorArray changed.
  *———————————————————————————————————————————————————————————————————*/
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -224,14 +229,11 @@
 			newError.character = [localError[@"column"] intValue];
 			newError.length = 1;
 			newError.hidden = NO;
+			newError.warningImage = localError[@"levelImage"];
 			[highlightErrors addObject:newError];
 		}
 		
 		self.sourceTextView.syntaxErrors = highlightErrors;
-		
-		/* @TODO: doesn't seem to be registering for KVO. */
-		NSLog(@"%@", @"KVO ON THE ERROR ARRAY WORKS.");
-		
 	}
 }
 
@@ -298,6 +300,10 @@
 	[self.tidyTextView.textView setEditable:NO];
 	[self.tidyTextView.textView setAllowsUndo:NO];
 	
+	/* sourceTextView special settings. */
+	self.sourceTextView.showsSyntaxErrors = YES;
+	self.sourceTextView.showsIndividualErrors = YES;
+	
 	// @todo: stupid Fragaria's preferences make this impossible to apply only to one instance currently.
 	//	[[NSUserDefaults standardUserDefaults] setObject:@(YES) forKey:MGSFragariaPrefsShowPageGuide];
 	//	[[NSUserDefaults standardUserDefaults] setObject:@(80) forKey:MGSFragariaPrefsShowPageGuideAtColumn];
@@ -309,30 +315,25 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
-  - centerSourceTextErrorUsingArrayController:
-    Perform error highlighting on the selected item in the
-    arrayController, and center that line if possible. This is
-    NOT the error highlighter, and is a response to the user
-    selecting a row in the messages table.
+  - goToSourceErrorUsingArrayController:
+    Will go to the line containing an error when the messages
+    table selection index changes.
  *———————————————————————————————————————————————————————————————————*/
-- (void)centerSourceTextErrorUsingArrayController:(NSArrayController*)arrayController
+- (void)goToSourceErrorUsingArrayController:(NSArrayController*)arrayController
 {
 	NSArray *localObjects = arrayController.arrangedObjects;
 	
 	NSUInteger errorViewRow = arrayController.selectionIndex;
-	
+
 	if (errorViewRow < [localObjects count])
 	{
 		NSInteger row = [localObjects[errorViewRow][@"line"] intValue];
-		
-		NSInteger col = [localObjects[errorViewRow][@"column"] intValue];
 		
 		if (row > 0)
 		{
 			[self.sourceTextView goToLine:row centered:NO highlight:NO];
 		}
 	}
-	
 }
 
 
