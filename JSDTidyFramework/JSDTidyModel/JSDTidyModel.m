@@ -22,9 +22,9 @@
 
 /* Redefinitions for private read-write access. */
 
-@property (readwrite) NSArray  *errorArray;
+@property (readwrite) NSMutableArray *errorArray;
 
-@property (readwrite) NSString  *errorText;
+@property (readwrite) NSString *errorText;
 
 @property (readwrite) NSString *tidyText;
 
@@ -33,11 +33,15 @@
 
 /* Private properties. */
 
-@property (nonatomic, strong) NSData *originalData;       // The original data loaded from a file.
+@property (nonatomic, strong) NSMutableArray *errorArrayB;        // Internal error array.
 
-@property (nonatomic, strong) NSArray *tidyOptionHeaders; // Holds fake options that can be used as headers.
+@property (nonatomic, strong) NSMutableDictionary * errorImages;  // Dictionary of error images.
 
-@property (nonatomic, assign) BOOL sourceDidChange;       // Indicates whether _sourceText has changed.
+@property (nonatomic, strong) NSData *originalData;               // The original data loaded from a file.
+
+@property (nonatomic, strong) NSArray *tidyOptionHeaders;         // Holds fake options that can be used as headers.
+
+@property (nonatomic, assign) BOOL sourceDidChange;               // Indicates whether _sourceText has changed.
 
 @end
 
@@ -89,7 +93,9 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 		_errorText         = @"";
 		_tidyOptions       = [[NSDictionary alloc] init];
 		_tidyOptionHeaders = [[NSArray alloc] init];
-		_errorArray        = [[NSArray alloc] init];
+		_errorArray        = [[NSMutableArray alloc] init];
+		_errorArrayB       = nil;
+		_errorImages       = [[NSMutableDictionary alloc] init];
 
 		[self optionsPopulateTidyOptions];
 	}
@@ -747,8 +753,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 
 	/* Clear out all of the previous errors from our collection. */
 
-    NSArray *oldArray = self.errorArray;
-	self.errorArray = [[NSMutableArray alloc] init];
+	self.errorArrayB = [[NSMutableArray alloc] init];
 
 
 	/* Setup tidy to use UTF8 for all internal operations. */
@@ -838,21 +843,22 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	}
 
 	/* Send messages changed notification if applicable. */
-    if ([self.errorArray isEqualToArray:oldArray])
+    if (![self.errorArray isEqualToArray:self.errorArrayB])
     {
+		self.errorArray = self.errorArrayB;
         [self notifyTidyModelMessagesChanged];
     }
 }
 
 
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-  + keyPathsForValuesAffectingErrorArray
-    All of listed keys affect the error array.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-+ (NSSet *)keyPathsForValuesAffectingErrorArray
-{
-    return [NSSet setWithObjects:@"sourceText", @"tidyOptions", @"tidyOptionsBindable", nil];
-}
+///*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+//  + keyPathsForValuesAffectingErrorArray
+//    All of listed keys affect the error array.
+// *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+//+ (NSSet *)keyPathsForValuesAffectingErrorArray
+//{
+//    return [NSSet setWithObjects:@"sourceText", @"tidyOptions", @"tidyOptionsBindable", nil];
+//}
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
@@ -893,13 +899,25 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	NSString *messageString = JSDLocalizedString(intermediateString, nil);
 
 
-	/* Localize the levelDescription and get an image */
+	/* Localize the levelDescription */
 
 	NSArray *errorTypes = @[@"messagesInfo", @"messagesWarning", @"messagesConfig", @"messagesAccess", @"messagesError", @"messagesDocument", @"messagesPanic"];
 
 	NSString *levelDescription = JSDLocalizedString(errorTypes[(int)lvl], nil);
+	
+	
+	/* Get an image */
+	
+	if (![self.errorImages count])
+	{
+		for (NSString *errorType in errorTypes)
+		{
+			NSImage *img = [[NSImage alloc] initWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:errorType ofType:@"pdf"]];
+			[self.errorImages setObject:img forKey:errorType];
+		}
+	}
 
-	NSImage *levelImage = [[NSImage alloc] initWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:errorTypes[(int)lvl] ofType:@"pdf"]];
+	NSImage *levelImage = self.errorImages[errorTypes[(int)lvl]];
 
 
 	/* Localize the location strings */
@@ -954,7 +972,7 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	errorDict[@"locationString"]   = locationString;
 	errorDict[@"message"]          = messageString;
 
-	self.errorArray = [self.errorArray arrayByAddingObject:errorDict];
+	[self.errorArrayB addObject:errorDict];
 
 	return YES; // Always return yes otherwise self.errorText will be surpressed by libtidy.
 }
