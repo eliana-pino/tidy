@@ -63,6 +63,37 @@
  *———————————————————————————————————————————————————————————————————*/
 - (void)awakeFromNib
 {
+	
+	/********************************************************
+	 * Fragaria Groups
+	 * Modern Fragaria includes a sophisticated property
+	 * coordination feature with optional caching to user
+	 * defaults. In Balthisar Tidy we will manage global
+	 * (application-wide) defaults that are set in user
+	 * preferences, and per-document defaults that do not
+	 * cache their settings to user prefers. We *will*
+	 * cache default state of these per-document prefs in
+	 * user defaults, however.
+	 ********************************************************/
+	
+	NSString *instancePrefs = [[NSProcessInfo processInfo] globallyUniqueString];
+	MGSUserDefaultsController *sourceGroup = [MGSUserDefaultsController sharedControllerForGroupID:instancePrefs];
+	MGSUserDefaultsController *globalGroup = [MGSUserDefaultsController sharedController];
+
+	sourceGroup.managedProperties = [self managedPropertiesDocument];
+	globalGroup.managedProperties = [self managedPropertiesGlobal];
+	
+	sourceGroup.persistent = NO;
+	globalGroup.persistent = YES;
+	
+	[sourceGroup addFragariaToManagedSet:self.sourceTextView];
+	[sourceGroup addFragariaToManagedSet:self.tidyTextView];
+	
+	
+	/********************************************************
+	 * Notifications, etc.
+	 ********************************************************/
+	
 	/* NSNotifications from the document's sourceText, in case tidyProcess
 	 * changes the sourceText.
 	 */
@@ -258,14 +289,79 @@
 
 #pragma mark - Appearance Setup
 
+/*———————————————————————————————————————————————————————————————————*
+  - managedPropertiesGlobal
+    Returns a list of Fragaria properties to apply application-wide.
+ 
+    Application-wide we want to ensure a consistent set of editor
+    and syntax highlighting colors.
+ *———————————————————————————————————————————————————————————————————*/
+- (NSSet *)managedPropertiesGlobal
+{
+	static NSMutableSet *managedPropertiesGlobal;
+	
+	if (!managedPropertiesGlobal)
+	{
+		managedPropertiesGlobal = [[NSMutableSet alloc] initWithArray:[[MGSFragariaView propertyGroupTheme] allObjects]];
+		[managedPropertiesGlobal addObjectsFromArray:[[MGSFragariaView propertyGroupTextFont] allObjects]];
+		[managedPropertiesGlobal addObjectsFromArray:[[MGSFragariaView propertyGroupAutocomplete] allObjects]];
+		[managedPropertiesGlobal addObjectsFromArray:[[MGSFragariaView propertyGroupIndenting] allObjects]];
+	}
+	
+	return managedPropertiesGlobal;
+}
+
+
+/*———————————————————————————————————————————————————————————————————*
+ - managedPropertiesDocument
+   Returns a list of Fragaria properties to apply to a document.
+ 
+   Within a single document we want to ensure that the two editors
+   maintain a consistent appearance for line numbers, etc.
+ *———————————————————————————————————————————————————————————————————*/
+- (NSSet *)managedPropertiesDocument
+{
+	static NSMutableSet *managedPropertiesDocument;
+	
+	if (!managedPropertiesDocument)
+	{
+		managedPropertiesDocument = [[NSMutableSet alloc] initWithArray:[[MGSFragariaView propertyGroupEditing] allObjects]];
+		[managedPropertiesDocument addObjectsFromArray:[[MGSFragariaView propertyGroupGutter] allObjects]];
+	}
+	
+	return managedPropertiesDocument;
+}
+
+/*———————————————————————————————————————————————————————————————————*
+ - managedPropertiesIndividual
+   Returns a list of Fragaria properties that are left unmanaged.
+ *———————————————————————————————————————————————————————————————————*/
+- (NSSet *)managedPropertiesIndividual
+{
+	static NSMutableSet *managedPropertiesIndividual;
+	
+	if (!managedPropertiesIndividual)
+	{
+		managedPropertiesIndividual = [[NSMutableSet alloc] initWithArray:[[MGSFragariaView defaultsDictionary] allKeys]];
+		[managedPropertiesIndividual minusSet:[self managedPropertiesGlobal]];
+		[managedPropertiesIndividual minusSet:[self managedPropertiesDocument]];
+	}
+	
+	return managedPropertiesIndividual;
+}
+
+
 
 /*———————————————————————————————————————————————————————————————————*
   - setupViewAppearance
  *———————————————————————————————————————————————————————————————————*/
 - (void)setupViewAppearance
 {
+	/* Force the view to fill its containing view. */
 	self.view.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
 	[self.view setFrame:self.view.superview.bounds];
+	
+	/* This closure acts as a subroutine to avoid being repetitive. */
 	
 	void (^configureCommonViewSettings)(MGSFragariaView *) = ^(MGSFragariaView *aView) {
 		
@@ -295,6 +391,7 @@
 	configureCommonViewSettings(self.sourceTextView);
 	configureCommonViewSettings(self.tidyTextView);
 	
+	
 	/* tidyTextView special settings. */
 	
 	[self.tidyTextView.textView setEditable:NO];
@@ -303,6 +400,9 @@
 	/* sourceTextView special settings. */
 	self.sourceTextView.showsSyntaxErrors = YES;
 	self.sourceTextView.showsIndividualErrors = YES;
+	
+//	self.tidyTextView.backgroundColor = [NSColor redColor];
+	
 	
 	// @todo: stupid Fragaria's preferences make this impossible to apply only to one instance currently.
 	//	[[NSUserDefaults standardUserDefaults] setObject:@(YES) forKey:MGSFragariaPrefsShowPageGuide];
