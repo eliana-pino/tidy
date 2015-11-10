@@ -265,4 +265,26 @@
 }
 
 
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+  - tidyMessageLocationCompare
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+-(NSComparisonResult)tidyMessageLocationCompare:(JSDTidyMessage *)message
+{
+	NSComparisonResult result;
+	
+	result = [@(self.line) compare:@(message.line)];
+	
+	if (result == NSOrderedSame)
+	{
+		result = [@(self.column) compare:@(message.column)];
+		
+		if (result == NSOrderedSame)
+		{
+			result = [self.message localizedStandardCompare:message.message];
+		}
+	}
+	
+	return result;
+}
+
 @end

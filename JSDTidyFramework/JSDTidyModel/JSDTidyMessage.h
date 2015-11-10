@@ -107,4 +107,11 @@
 - (BOOL)isEqualToJSDTidyMessage:(JSDTidyMessage *)JSDTidyMessage;
 
 
+/**
+ *  A comparator that can be used for sorting messages based on
+ *  location: line, column, and message (as a tie-breaker).
+ */
+-(NSComparisonResult)tidyMessageLocationCompare:(JSDTidyMessage *)message;
+
+
 @end
