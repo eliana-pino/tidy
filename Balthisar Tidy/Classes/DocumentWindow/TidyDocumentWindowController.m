@@ -149,8 +149,8 @@
 	 ******************************************************/
 	
 	self.sourcePanelIsVertical  = [[[NSUserDefaults standardUserDefaults] objectForKey:JSDKeyShowNewDocumentSideBySide] boolValue];
-	self.sourcePaneLineNumbersAreVisible = [[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyShowNewDocumentLineNumbers] boolValue];
-	self.sourcePaneShowsSyntaxHighlighting = [[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyShowNewDocumentHighlighting] boolValue];
+//	self.sourcePaneLineNumbersAreVisible = [[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyShowNewDocumentLineNumbers] boolValue];
+//	self.sourcePaneShowsSyntaxHighlighting = [[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyShowNewDocumentHighlighting] boolValue];
 	
 	
 	

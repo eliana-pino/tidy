@@ -38,8 +38,6 @@
 
 	/* Document - Appearance */
 
-	#define JSDKeyShowNewDocumentHighlighting     @"ShowNewDocumentHighlighting"
-	#define JSDKeyShowNewDocumentLineNumbers      @"ShowNewDocumentLineNumbers"
 	#define JSDKeyShowNewDocumentMessages         @"ShowNewDocumentMessages"
 	#define JSDKeyShowNewDocumentTidyOptions      @"ShowNewDocumentTidyOptions"
 	#define JSDKeyShowNewDocumentSideBySide       @"ShowNewDocumentSideBySide"
@@ -49,6 +47,9 @@
 	/* Saving - File Saving Options */
 
 	#define JSDKeySavingPrefStyle                 @"SavingPrefStyle"
+
+	/* Editor - Preferences Group and Key for Editor and Color */
+	#define JSDKeyTidyEditorOptions               @"JSDTidyEditorOptions"
 
 
 	/* Advanced - Options */
@@ -93,6 +94,7 @@
 //	#define FEATURE_SUPPORTS_APPLESCRIPT
 	#define FEATURE_SUPPORTS_SERVICE
 	#define FEATURE_SUPPORTS_EXTENSIONS
+//	#define FEATURE_SUPPORTS_THEMES
     #define APP_GROUP_PREFS @"9PN2JXXG7Y.com.balthisar.Balthisar-Tidy.prefs"
 //	#define FEATURE_SUPPORTS_SXS_DIFFS
 #elif defined(TARGET_APP)
@@ -102,6 +104,7 @@
 //	#define FEATURE_SUPPORTS_APPLESCRIPT
 	#define FEATURE_SUPPORTS_SERVICE
 	#define FEATURE_SUPPORTS_EXTENSIONS
+//	#define FEATURE_SUPPORTS_THEMES
     #define APP_GROUP_PREFS @"9PN2JXXG7Y.com.balthisar.Balthisar-Tidy.prefs"
 //	#define FEATURE_SUPPORTS_SXS_DIFFS
 #elif defined(TARGET_PRO)
@@ -111,6 +114,7 @@
 	#define FEATURE_SUPPORTS_APPLESCRIPT
 	#define FEATURE_SUPPORTS_SERVICE
 	#define FEATURE_SUPPORTS_EXTENSIONS
+	#define FEATURE_SUPPORTS_THEMES
     #define APP_GROUP_PREFS @"9PN2JXXG7Y.com.balthisar.Balthisar-Tidy.prefs"
 	#define FEATURE_SUPPORTS_SXS_DIFFS
 #else

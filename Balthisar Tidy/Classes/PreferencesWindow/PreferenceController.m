@@ -47,32 +47,32 @@
 	NSViewController *optionListAppearanceViewController = [[OptionListAppearanceViewController alloc] init];
 	NSViewController *documentAppearanceViewController = [[DocumentAppearanceViewController alloc] init];
 	NSViewController *fragariaEditorViewController = [[FragariaEditorViewController alloc] initWithController:[[MGSPrefsEditorPropertiesViewController alloc] init]];
-	NSViewController *fragariaColorsViewController = [[FragariaColorsViewController alloc] initWithController:[[MGSPrefsColourPropertiesViewController alloc] init]];
 	NSViewController *savingOptionsViewController = [[SavingOptionsViewController alloc] init];
 	NSViewController *miscOptionsViewController = [[MiscOptionsViewController alloc] init];
 	
 #if defined(FEATURE_SPARKLE) || defined(FEATURE_FAKE_SPARKLE)
-
 	NSViewController *updaterOptionsViewController = [[UpdaterOptionsViewController alloc] init];
-
+#endif
+	
+#if defined(FEATURE_SUPPORTS_THEMES)
+	NSViewController *fragariaColorsViewController = [[FragariaColorsViewController alloc] initWithController:[[MGSPrefsColourPropertiesViewController alloc] init]];
+#endif
+	
 	NSArray *controllers = @[optionListViewController,
 							 optionListAppearanceViewController,
 							 documentAppearanceViewController,
-							 fragariaEditorViewController,
-							 fragariaColorsViewController,
-							 savingOptionsViewController,
-							 miscOptionsViewController,
-							 updaterOptionsViewController
-							 ];
-#else
-	NSArray *controllers = @[optionListViewController,
-							 optionListAppearanceViewController,
-							 documentAppearanceViewController,
-							 fragariaEditorViewController,
-							 fragariaColorsViewController,
-							 savingOptionsViewController,
-							 miscOptionsViewController
-							 ];
+							 fragariaEditorViewController];
+	
+#if defined(FEATURE_SUPPORTS_THEMES)
+	controllers = [controllers arrayByAddingObjectsFromArray:@[fragariaColorsViewController]];
+#endif
+	
+	controllers = [controllers arrayByAddingObjectsFromArray:@[savingOptionsViewController,
+															   miscOptionsViewController]];
+	
+	
+#if defined(FEATURE_SPARKLE) || defined(FEATURE_FAKE_SPARKLE)
+	controllers = [controllers arrayByAddingObjectsFromArray:@[updaterOptionsViewController]];
 #endif
 	
 	
@@ -178,8 +178,6 @@
 	[defaultValues setObject:@YES forKey:JSDKeyOptionsUseHoverEffect];
 
 	/** Document Appearance */
-	[defaultValues setObject:@YES forKey:JSDKeyShowNewDocumentHighlighting];
-	[defaultValues setObject:@YES forKey:JSDKeyShowNewDocumentLineNumbers];
 	[defaultValues setObject:@YES forKey:JSDKeyShowNewDocumentMessages];
 	[defaultValues setObject:@YES forKey:JSDKeyShowNewDocumentTidyOptions];
 	[defaultValues setObject:@NO  forKey:JSDKeyShowNewDocumentSideBySide];

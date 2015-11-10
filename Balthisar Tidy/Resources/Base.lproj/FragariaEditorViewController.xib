@@ -18,17 +18,16 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SS0-2u-qla" userLabel="Panel Description" customClass="JSDTextField">
-                    <rect key="frame" x="18" y="548" width="464" height="42"/>
+                    <rect key="frame" x="18" y="576" width="464" height="14"/>
                     <animations/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" id="Mmf-R0-cTJ">
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="These preferences set editor appearance and behavior." id="Mmf-R0-cTJ">
                         <font key="font" metaFont="smallSystem"/>
-                        <string key="title">These preferences set default editor appearance and behavior for new documents and documents that you open. Preferences in bold text affect every document, including opened documents.</string>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="d2N-L5-CaA">
-                    <rect key="frame" x="0.0" y="0.0" width="500" height="540"/>
+                    <rect key="frame" x="0.0" y="0.0" width="500" height="568"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="500" id="KMH-y7-yJx"/>
                     </constraints>
