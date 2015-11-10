@@ -920,6 +920,11 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	errorDict[@"columnString"]     = columnString;
 	errorDict[@"locationString"]   = locationString;
 	errorDict[@"message"]          = messageString;
+	
+	/* @TODO: This kludge is pragmatic, but it would be better to
+	   turn error dictionary entries into a class, and implement
+	   a custom sorting comparitor on the class for locationString. */
+	errorDict[@"sortKey"]          = [NSString stringWithFormat:@"%08u%08u%@", line, col, messageString];
 
 	[self.errorArrayB addObject:errorDict];
 
