@@ -417,6 +417,7 @@
 		D0CDB2441BF197A300735EE4 /* prefsEditor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CDB2401BF1979C00735EE4 /* prefsEditor@2x.png */; };
 		D0CDB2451BF197A300735EE4 /* prefsEditor.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CDB23F1BF1979C00735EE4 /* prefsEditor.png */; };
 		D0CDB2461BF197A300735EE4 /* prefsEditor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CDB2401BF1979C00735EE4 /* prefsEditor@2x.png */; };
+		D0CDB24C1BF1DE1C00735EE4 /* JSDTidyMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = D0CDB2471BF1CD4A00735EE4 /* JSDTidyMessage.m */; };
 		D0D9ED2B18E66810008A55D5 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9EAC218E6680F008A55D5 /* AppController.m */; };
 		D0D9ED2C18E66810008A55D5 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9EAC218E6680F008A55D5 /* AppController.m */; };
 		D0D9ED2D18E66810008A55D5 /* OptionPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9EAC418E6680F008A55D5 /* OptionPaneController.m */; };
@@ -991,6 +992,8 @@
 		D0CDB2381BF191B900735EE4 /* prefsColor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "prefsColor@2x.png"; path = "Images for Prefs/prefsColor@2x.png"; sourceTree = "<group>"; };
 		D0CDB23F1BF1979C00735EE4 /* prefsEditor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = prefsEditor.png; path = "Images for Prefs/prefsEditor.png"; sourceTree = "<group>"; };
 		D0CDB2401BF1979C00735EE4 /* prefsEditor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "prefsEditor@2x.png"; path = "Images for Prefs/prefsEditor@2x.png"; sourceTree = "<group>"; };
+		D0CDB2471BF1CD4A00735EE4 /* JSDTidyMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSDTidyMessage.m; path = JSDTidyModel/JSDTidyMessage.m; sourceTree = "<group>"; };
+		D0CDB24B1BF1CD7C00735EE4 /* JSDTidyMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSDTidyMessage.h; path = JSDTidyModel/JSDTidyMessage.h; sourceTree = "<group>"; };
 		D0D9EAC118E6680F008A55D5 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		D0D9EAC218E6680F008A55D5 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		D0D9EAC318E6680F008A55D5 /* OptionPaneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionPaneController.h; sourceTree = "<group>"; };
@@ -1174,6 +1177,8 @@
 				D006612F1A579DF300F73F85 /* JSDTidyModel.m */,
 				D00661321A579DF300F73F85 /* JSDTidyOption.h */,
 				D00661331A579DF300F73F85 /* JSDTidyOption.m */,
+				D0CDB24B1BF1CD7C00735EE4 /* JSDTidyMessage.h */,
+				D0CDB2471BF1CD4A00735EE4 /* JSDTidyMessage.m */,
 				D06045F91BF07DF000D69673 /* JSDTidyModel+Developer.h */,
 				D06045FA1BF07DF000D69673 /* JSDTidyModel+Developer.m */,
 			);
@@ -2414,6 +2419,7 @@
 				D00661351A579DF300F73F85 /* JSDTidyModel.m in Sources */,
 				D06045FC1BF07DF000D69673 /* JSDTidyModel+Developer.m in Sources */,
 				D00661391A579DF300F73F85 /* JSDTidyOption.m in Sources */,
+				D0CDB24C1BF1DE1C00735EE4 /* JSDTidyMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

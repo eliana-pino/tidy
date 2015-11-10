@@ -10,6 +10,7 @@
 
 #import "JSDTidyCommonHeaders.h"
 #import "JSDTidyOption.h"
+#import "JSDTidyMessage.h"
 
 #import "config.h"             // from HTML Tidy
 #import "SWFSemanticVersion.h" // for version checking.
@@ -819,15 +820,6 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
     libtidy doesn't maintain a structured list of all of its
     errors so here we capture them one-by-one as Tidy tidy's.
     In this way we build our own structured list.
-
-    We're localizing the string a couple of times, because the
-    message might arrive in the Message parameter, or it might
-    arrive as one of the args. For example, A lot of messages
-    are simply %s, and once the args are applied we want to
-    localize this single string. In other cases, e.g.,
-    "replacing %s by %s" we want to localize that message before
-    applying the args. This new string won't be found in the
-    .strings file, so it will be used as is.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (bool)errorFilterWithLocalization:(TidyDoc)tDoc
 							  Level:(TidyReportLevel)lvl
@@ -836,97 +828,13 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 							Message:(ctmbstr)mssg
 						  Arguments:(va_list)args
 {
-	NSMutableDictionary *errorDict = [[NSMutableDictionary alloc] init];
+	JSDTidyMessage *message = [[JSDTidyMessage alloc] initWithLevel:lvl
+															   Line:line
+															 Column:col
+															Message:mssg
+														  Arguments:args];
 
-
-	/* Localize the message */
-
-	NSString *formatString = JSDLocalizedString(@(mssg), nil);
-
-	NSString *intermediateString = [[NSString alloc] initWithFormat:formatString arguments:args];
-	
-	NSString *messageString = JSDLocalizedString(intermediateString, nil);
-
-
-	/* Localize the levelDescription */
-
-	NSArray *errorTypes = @[@"messagesInfo", @"messagesWarning", @"messagesConfig", @"messagesAccess", @"messagesError", @"messagesDocument", @"messagesPanic"];
-
-	NSString *levelDescription = JSDLocalizedString(errorTypes[(int)lvl], nil);
-	
-	
-	/* Get an image */
-	
-	if (![self.errorImages count])
-	{
-		for (NSString *errorType in errorTypes)
-		{
-			NSImage *img = [[NSImage alloc] initWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:errorType ofType:@"pdf"]];
-			[self.errorImages setObject:img forKey:errorType];
-		}
-	}
-
-	NSImage *levelImage = self.errorImages[errorTypes[(int)lvl]];
-
-
-	/* Localize the location strings */
-
-	NSString *lineString;
-
-	if (line == 0)
-	{
-		lineString = JSDLocalizedString(@"N/A", @"");
-	}
-	else
-	{
-		lineString = [NSString stringWithFormat:@"%@ %u", JSDLocalizedString(@"line", nil), line];
-	}
-
-	NSString *columnString;
-
-	if (col == 0)
-	{
-		columnString = JSDLocalizedString(@"N/A", @"");
-	}
-	else
-	{
-		columnString = [NSString stringWithFormat:@"%@ %u", JSDLocalizedString(@"column", nil), col];
-	}
-
-	NSString *locationString;
-
-	if ((line == 0) || (col == 0))
-	{
-		locationString = JSDLocalizedString(@"N/A", @"");
-	}
-	else
-	{
-		locationString = [NSString stringWithFormat:@"%@, %@", lineString, columnString];
-	}
-
-
-	/* Build the finished array */
-
-	if (levelImage)
-    {
-        [errorDict setObject:levelImage forKey:@"levelImage"];
-    }
-
-	errorDict[@"level"]            = @((int)lvl);	// lvl is a c enum
-	errorDict[@"levelDescription"] = levelDescription;
-	errorDict[@"line"]             = @(line);
-	errorDict[@"lineString"]       = lineString;
-	errorDict[@"column"]           = @(col);
-	errorDict[@"columnString"]     = columnString;
-	errorDict[@"locationString"]   = locationString;
-	errorDict[@"message"]          = messageString;
-	
-	/* @TODO: This kludge is pragmatic, but it would be better to
-	   turn error dictionary entries into a class, and implement
-	   a custom sorting comparitor on the class for locationString. */
-	errorDict[@"sortKey"]          = [NSString stringWithFormat:@"%08u%08u%@", line, col, messageString];
-
-	[self.errorArrayB addObject:errorDict];
+	[self.errorArrayB addObject:message];
 
 	return YES; // Always return yes otherwise self.errorText will be surpressed by libtidy.
 }

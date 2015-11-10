@@ -217,18 +217,9 @@
 @property (nonatomic, strong, readonly) NSString *errorText;
 
 /**
- *  Makes available tidylib's error report as an **NSArray** of **NSDictionary** of the errors.
- *
- *  Each **NSDictionary** contains the following keys, the values of which are localized:
- *
- *  - `level`, an **NSNumber**-encapsulated **int** representing the **TidyReportLevel** from `libtidy`.
- *  - `levelDescription`, an **NSString** (localizable) description of the error level, such as "warning," etc.
- *  - `line`, an **NSNumber** with the line number in [JSDTidyModel sourceText] where the error occurs.
- *  - `lineString`, an **NSString** version of `line`.
- *  - `column`, an **NSNumber** with the column number where the error occurs.
- *  - `columnString`, an **NSString** version of `column`.
- *  - `locationString`, a localizable **NSString** indicating "Row x, Column y".
- *  - `message`, an **NSString** (localizable) indicating the issue. This comes from `libtidy`.
+ *  Makes available tidylib's error report as an **NSArray** of **JSDTidyMessage** of the errors.
+ *  For backwards compatability purposes instances of JSDTidyMessage support custom keyed
+ *  subscripting, so it's perfectly safe to treat instances as if they were NSDictionary.
  *
  *  For delegate and notifications, see [JSDTidyModelDelegate tidyModelTidyMessagesChanged:messages:].
  */
