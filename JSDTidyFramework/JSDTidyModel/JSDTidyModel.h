@@ -459,20 +459,12 @@
 /**
  *  Provides an NSDictionary where each key consists of a Tidy option name,
  *  e.g., @"wrap", and each corresponding value is an instance of JSDTidyOption.
- *
- *  @todo HAVE TO REFACTOR THIS. Don't get too stuck on this interface as it's
- *  sloppy to have both of these accessors. Will develop a single unifying
- *  accessor that satisfies both cases.
  */
 @property (nonatomic, strong, readonly) NSDictionary *tidyOptions;
 
 /**
  *  Provides a KVO-compatible NSArray of JSDTidyOptions representing all of
  *  the in-use Tidy options.
- *
- *  @todo HAVE TO REFACTOR THIS. Don't get too stuck on this interface as it's
- *  sloppy to have both of these accessors. Will develop a single unifying
- *  accessor that satisfies both cases.
  */
 @property (nonatomic, strong, readonly) NSArray *tidyOptionsBindable;
 

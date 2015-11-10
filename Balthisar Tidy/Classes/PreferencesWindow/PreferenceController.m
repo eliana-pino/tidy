@@ -117,10 +117,6 @@
     will use *all* tidy options if we let it. We don't want
     to use every tidy option, though, so here we will provide
     an array of tidy options that we will support.
-   @TODO Check current 5.0.0+ libtidy for added selectors. We can
-    check the library version. In general, now that we support the
-    use of /usr/local/lib, we should have a general version check
-    to ensure a certain minimum version is used.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 + (NSArray*)optionsInEffect
 {
