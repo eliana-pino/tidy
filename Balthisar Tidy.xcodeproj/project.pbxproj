@@ -120,6 +120,21 @@
 		D05F71D81BEA2DE300F584C4 /* Credits (pro).rtf in Resources */ = {isa = PBXBuildFile; fileRef = D05F71D31BEA2DE300F584C4 /* Credits (pro).rtf */; };
 		D06045FB1BF07DF000D69673 /* JSDTidyModel+Developer.h in Headers */ = {isa = PBXBuildFile; fileRef = D06045F91BF07DF000D69673 /* JSDTidyModel+Developer.h */; };
 		D06045FC1BF07DF000D69673 /* JSDTidyModel+Developer.m in Sources */ = {isa = PBXBuildFile; fileRef = D06045FA1BF07DF000D69673 /* JSDTidyModel+Developer.m */; };
+		D06046011BF0BDB400D69673 /* FragariaEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06045FE1BF0BD9F00D69673 /* FragariaEditorViewController.m */; };
+		D06046021BF0BDB500D69673 /* FragariaEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06045FE1BF0BD9F00D69673 /* FragariaEditorViewController.m */; };
+		D06046031BF0BDB600D69673 /* FragariaEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06045FE1BF0BD9F00D69673 /* FragariaEditorViewController.m */; };
+		D06046071BF0BFC000D69673 /* FragariaEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06046041BF0BE0100D69673 /* FragariaEditorViewController.xib */; };
+		D06046081BF0BFC100D69673 /* FragariaEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06046041BF0BE0100D69673 /* FragariaEditorViewController.xib */; };
+		D06046091BF0BFC200D69673 /* FragariaEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06046041BF0BE0100D69673 /* FragariaEditorViewController.xib */; };
+		D060460E1BF0DAAB00D69673 /* FragariaBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D060460B1BF0DA8D00D69673 /* FragariaBaseViewController.m */; };
+		D060460F1BF0DAAC00D69673 /* FragariaBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D060460B1BF0DA8D00D69673 /* FragariaBaseViewController.m */; };
+		D06046101BF0DAAD00D69673 /* FragariaBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D060460B1BF0DA8D00D69673 /* FragariaBaseViewController.m */; };
+		D06046141BF0DDCA00D69673 /* FragariaColorsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06046111BF0DDB400D69673 /* FragariaColorsViewController.xib */; };
+		D06046151BF0DDCB00D69673 /* FragariaColorsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06046111BF0DDB400D69673 /* FragariaColorsViewController.xib */; };
+		D06046161BF0DDCC00D69673 /* FragariaColorsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06046111BF0DDB400D69673 /* FragariaColorsViewController.xib */; };
+		D060461B1BF0DDF000D69673 /* FragariaColorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06046181BF0DDDD00D69673 /* FragariaColorsViewController.m */; };
+		D060461C1BF0DDF100D69673 /* FragariaColorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06046181BF0DDDD00D69673 /* FragariaColorsViewController.m */; };
+		D060461D1BF0DDF200D69673 /* FragariaColorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06046181BF0DDDD00D69673 /* FragariaColorsViewController.m */; };
 		D06C9A43195FB4A4004D6C27 /* MASPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A40195FB4A4004D6C27 /* MASPreferencesWindow.xib */; };
 		D06C9A44195FB4A4004D6C27 /* MASPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A40195FB4A4004D6C27 /* MASPreferencesWindow.xib */; };
 		D06C9A45195FB4A4004D6C27 /* MASPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06C9A40195FB4A4004D6C27 /* MASPreferencesWindow.xib */; };
@@ -390,6 +405,18 @@
 		D0CA8F771953280700BBD54C /* LayoutSourceVTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F551953280700BBD54C /* LayoutSourceVTemplate.png */; };
 		D0CA8F781953280700BBD54C /* LayoutSourceVTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F551953280700BBD54C /* LayoutSourceVTemplate.png */; };
 		D0CA8F791953280700BBD54C /* LayoutSourceVTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CA8F551953280700BBD54C /* LayoutSourceVTemplate.png */; };
+		D0CDB2391BF191B900735EE4 /* prefsColor.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CDB2371BF191B900735EE4 /* prefsColor.png */; };
+		D0CDB23A1BF191B900735EE4 /* prefsColor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CDB2381BF191B900735EE4 /* prefsColor@2x.png */; };
+		D0CDB23B1BF191C500735EE4 /* prefsColor.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CDB2371BF191B900735EE4 /* prefsColor.png */; };
+		D0CDB23C1BF191C600735EE4 /* prefsColor.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CDB2371BF191B900735EE4 /* prefsColor.png */; };
+		D0CDB23D1BF191CB00735EE4 /* prefsColor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CDB2381BF191B900735EE4 /* prefsColor@2x.png */; };
+		D0CDB23E1BF191CC00735EE4 /* prefsColor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CDB2381BF191B900735EE4 /* prefsColor@2x.png */; };
+		D0CDB2411BF1979C00735EE4 /* prefsEditor.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CDB23F1BF1979C00735EE4 /* prefsEditor.png */; };
+		D0CDB2421BF1979C00735EE4 /* prefsEditor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CDB2401BF1979C00735EE4 /* prefsEditor@2x.png */; };
+		D0CDB2431BF197A300735EE4 /* prefsEditor.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CDB23F1BF1979C00735EE4 /* prefsEditor.png */; };
+		D0CDB2441BF197A300735EE4 /* prefsEditor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CDB2401BF1979C00735EE4 /* prefsEditor@2x.png */; };
+		D0CDB2451BF197A300735EE4 /* prefsEditor.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CDB23F1BF1979C00735EE4 /* prefsEditor.png */; };
+		D0CDB2461BF197A300735EE4 /* prefsEditor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0CDB2401BF1979C00735EE4 /* prefsEditor@2x.png */; };
 		D0D9ED2B18E66810008A55D5 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9EAC218E6680F008A55D5 /* AppController.m */; };
 		D0D9ED2C18E66810008A55D5 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9EAC218E6680F008A55D5 /* AppController.m */; };
 		D0D9ED2D18E66810008A55D5 /* OptionPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D9EAC418E6680F008A55D5 /* OptionPaneController.m */; };
@@ -862,6 +889,14 @@
 		D05F71D41BEA2DE300F584C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Base; path = "Base.lproj/Credits (pro).rtf"; sourceTree = "<group>"; };
 		D06045F91BF07DF000D69673 /* JSDTidyModel+Developer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "JSDTidyModel+Developer.h"; path = "JSDTidyModel/JSDTidyModel+Developer.h"; sourceTree = "<group>"; };
 		D06045FA1BF07DF000D69673 /* JSDTidyModel+Developer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "JSDTidyModel+Developer.m"; path = "JSDTidyModel/JSDTidyModel+Developer.m"; sourceTree = "<group>"; };
+		D06045FD1BF0BD9F00D69673 /* FragariaEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FragariaEditorViewController.h; path = "Balthisar Tidy/Classes/PreferencesWindow/FragariaEditorViewController.h"; sourceTree = SOURCE_ROOT; };
+		D06045FE1BF0BD9F00D69673 /* FragariaEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FragariaEditorViewController.m; path = "Balthisar Tidy/Classes/PreferencesWindow/FragariaEditorViewController.m"; sourceTree = SOURCE_ROOT; };
+		D06046051BF0BE0100D69673 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = "Balthisar Tidy/Resources/Base.lproj/FragariaEditorViewController.xib"; sourceTree = SOURCE_ROOT; };
+		D060460A1BF0DA8D00D69673 /* FragariaBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FragariaBaseViewController.h; path = "Balthisar Tidy/Classes/PreferencesWindow/FragariaBaseViewController.h"; sourceTree = SOURCE_ROOT; };
+		D060460B1BF0DA8D00D69673 /* FragariaBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FragariaBaseViewController.m; path = "Balthisar Tidy/Classes/PreferencesWindow/FragariaBaseViewController.m"; sourceTree = SOURCE_ROOT; };
+		D06046121BF0DDB400D69673 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = "Balthisar Tidy/Resources/Base.lproj/FragariaColorsViewController.xib"; sourceTree = SOURCE_ROOT; };
+		D06046171BF0DDDD00D69673 /* FragariaColorsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FragariaColorsViewController.h; path = "Balthisar Tidy/Classes/PreferencesWindow/FragariaColorsViewController.h"; sourceTree = SOURCE_ROOT; };
+		D06046181BF0DDDD00D69673 /* FragariaColorsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FragariaColorsViewController.m; path = "Balthisar Tidy/Classes/PreferencesWindow/FragariaColorsViewController.m"; sourceTree = SOURCE_ROOT; };
 		D06626CE18B09B330091CBD8 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = "Balthisar Tidy/Frameworks/Sparkle.framework"; sourceTree = "<group>"; };
 		D06657C01A5D8BDB002DCD2F /* CommonHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = CommonHeaders.h; path = "Balthisar Common Headers/CommonHeaders.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		D06C9A3F195FB4A4004D6C27 /* MASPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MASPreferencesViewController.h; path = MASPreferences/MASPreferencesViewController.h; sourceTree = "<group>"; };
@@ -952,6 +987,10 @@
 		D0CA8F531953280700BBD54C /* LayoutLeftPaneTemplate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LayoutLeftPaneTemplate.png; path = "Images for Toolbar/LayoutLeftPaneTemplate.png"; sourceTree = "<group>"; };
 		D0CA8F541953280700BBD54C /* LayoutSourceHTemplate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LayoutSourceHTemplate.png; path = "Images for Toolbar/LayoutSourceHTemplate.png"; sourceTree = "<group>"; };
 		D0CA8F551953280700BBD54C /* LayoutSourceVTemplate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LayoutSourceVTemplate.png; path = "Images for Toolbar/LayoutSourceVTemplate.png"; sourceTree = "<group>"; };
+		D0CDB2371BF191B900735EE4 /* prefsColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = prefsColor.png; path = "Images for Prefs/prefsColor.png"; sourceTree = "<group>"; };
+		D0CDB2381BF191B900735EE4 /* prefsColor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "prefsColor@2x.png"; path = "Images for Prefs/prefsColor@2x.png"; sourceTree = "<group>"; };
+		D0CDB23F1BF1979C00735EE4 /* prefsEditor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = prefsEditor.png; path = "Images for Prefs/prefsEditor.png"; sourceTree = "<group>"; };
+		D0CDB2401BF1979C00735EE4 /* prefsEditor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "prefsEditor@2x.png"; path = "Images for Prefs/prefsEditor@2x.png"; sourceTree = "<group>"; };
 		D0D9EAC118E6680F008A55D5 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		D0D9EAC218E6680F008A55D5 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		D0D9EAC318E6680F008A55D5 /* OptionPaneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionPaneController.h; sourceTree = "<group>"; };
@@ -1426,6 +1465,12 @@
 				D06C9A71195FBA0F004D6C27 /* MiscOptionsViewController.m */,
 				D06C9A79195FBA3F004D6C27 /* UpdaterOptionsViewController.h */,
 				D06C9A7A195FBA3F004D6C27 /* UpdaterOptionsViewController.m */,
+				D060460A1BF0DA8D00D69673 /* FragariaBaseViewController.h */,
+				D060460B1BF0DA8D00D69673 /* FragariaBaseViewController.m */,
+				D06045FD1BF0BD9F00D69673 /* FragariaEditorViewController.h */,
+				D06045FE1BF0BD9F00D69673 /* FragariaEditorViewController.m */,
+				D06046171BF0DDDD00D69673 /* FragariaColorsViewController.h */,
+				D06046181BF0DDDD00D69673 /* FragariaColorsViewController.m */,
 			);
 			name = PreferencesWindow;
 			path = "App Pieces";
@@ -1453,6 +1498,8 @@
 				D06C9A69195FB9F2004D6C27 /* SavingOptionsViewController.xib */,
 				D06C9A72195FBA0F004D6C27 /* MiscOptionsViewController.xib */,
 				D06C9A7B195FBA3F004D6C27 /* UpdaterOptionsViewController.xib */,
+				D06046041BF0BE0100D69673 /* FragariaEditorViewController.xib */,
+				D06046111BF0DDB400D69673 /* FragariaColorsViewController.xib */,
 			);
 			name = PreferencesWindow;
 			path = "../Classes/App Pieces";
@@ -1471,6 +1518,10 @@
 				D06C9A85195FE854004D6C27 /* prefsSave@2x.png */,
 				D06C9A8A195FE854004D6C27 /* prefsUpdate.png */,
 				D06C9A8B195FE854004D6C27 /* prefsUpdate@2x.png */,
+				D0CDB23F1BF1979C00735EE4 /* prefsEditor.png */,
+				D0CDB2401BF1979C00735EE4 /* prefsEditor@2x.png */,
+				D0CDB2371BF191B900735EE4 /* prefsColor.png */,
+				D0CDB2381BF191B900735EE4 /* prefsColor@2x.png */,
 			);
 			name = "Images for Prefs";
 			sourceTree = "<group>";
@@ -2087,8 +2138,10 @@
 				D036E1E818F3D25E0009A9D4 /* Credits.rtf in Resources */,
 				D0B9F0F119585010008864D6 /* DCOAboutWindow.xib in Resources */,
 				D03B89D419553E5D00E9B4D5 /* DiffsTemplate.png in Resources */,
+				D0CDB2421BF1979C00735EE4 /* prefsEditor@2x.png in Resources */,
 				D03B89DA1955474700E9B4D5 /* DiffViewTemplate.png in Resources */,
 				D06C9A64195FB9D0004D6C27 /* DocumentAppearanceViewController.xib in Resources */,
+				D06046071BF0BFC000D69673 /* FragariaEditorViewController.xib in Resources */,
 				D036E1EA18F3D25E0009A9D4 /* FirstRunHelper.xib in Resources */,
 				D0E6AE18190C9FAC00B49779 /* HideDescriptionTemplate.pdf in Resources */,
 				D036E20F18F3D2F20009A9D4 /* HTML.icns in Resources */,
@@ -2096,6 +2149,7 @@
 				D0CA8F6E1953280700BBD54C /* LayoutBottomPaneTemplate.png in Resources */,
 				D0CA8F711953280700BBD54C /* LayoutLeftPaneTemplate.png in Resources */,
 				D0C9C1681BD8CB55004C545A /* balthisar_tidy-id_dsa.pub in Resources */,
+				D0CDB2411BF1979C00735EE4 /* prefsEditor.png in Resources */,
 				D0CA8F741953280700BBD54C /* LayoutSourceHTemplate.png in Resources */,
 				D0CA8F771953280700BBD54C /* LayoutSourceVTemplate.png in Resources */,
 				D036E1EE18F3D25E0009A9D4 /* Localizable.strings in Resources */,
@@ -2115,6 +2169,7 @@
 				D06C9A92195FE854004D6C27 /* prefsTidy.png in Resources */,
 				D06C9A95195FE854004D6C27 /* prefsTidy@2x.png in Resources */,
 				D06C9A98195FE854004D6C27 /* prefsTidyAppearance.png in Resources */,
+				D0CDB2391BF191B900735EE4 /* prefsColor.png in Resources */,
 				D06C9A9B195FE854004D6C27 /* prefsTidyAppearance@2x.png in Resources */,
 				D06C9A9E195FE854004D6C27 /* prefsUpdate.png in Resources */,
 				D06C9AA1195FE854004D6C27 /* prefsUpdate@2x.png in Resources */,
@@ -2122,7 +2177,9 @@
 				D03B89D81955457500E9B4D5 /* ScrollLockTemplate.png in Resources */,
 				D0E6AE1A190C9FAC00B49779 /* ShowDescriptionTemplate.pdf in Resources */,
 				D036E21318F3D2F20009A9D4 /* Tidy.icns in Resources */,
+				D06046141BF0DDCA00D69673 /* FragariaColorsViewController.xib in Resources */,
 				D074B7AA1944035800F2E6F1 /* TidyDocumentMessagesView.xib in Resources */,
+				D0CDB23A1BF191B900735EE4 /* prefsColor@2x.png in Resources */,
 				D08689371948439700BDAD72 /* TidyDocumentSourceH.xib in Resources */,
 				D086893A1948439700BDAD72 /* TidyDocumentSourceV.xib in Resources */,
 				D036E1F618F3D25E0009A9D4 /* TidyDocumentWindow.xib in Resources */,
@@ -2198,6 +2255,8 @@
 				D06C9A44195FB4A4004D6C27 /* MASPreferencesWindow.xib in Resources */,
 				D06C9A77195FBA0F004D6C27 /* MiscOptionsViewController.xib in Resources */,
 				D06C9A5C195FB997004D6C27 /* OptionListAppearanceViewController.xib in Resources */,
+				D0CDB23B1BF191C500735EE4 /* prefsColor.png in Resources */,
+				D0CDB2441BF197A300735EE4 /* prefsEditor@2x.png in Resources */,
 				D06C9A53195FB955004D6C27 /* OptionListViewController.xib in Resources */,
 				D036E1F318F3D25E0009A9D4 /* OptionPane.xib in Resources */,
 				D0E6AE21190CB34500B49779 /* PaneBottomShadow.tiff in Resources */,
@@ -2205,6 +2264,7 @@
 				D036E21218F3D2F20009A9D4 /* PHP.icns in Resources */,
 				D06C9AA7195FEC11004D6C27 /* prefsDoc.png in Resources */,
 				D06C9AAA195FEC11004D6C27 /* prefsDoc@2x.png in Resources */,
+				D0CDB23D1BF191CB00735EE4 /* prefsColor@2x.png in Resources */,
 				D06C9A8D195FE854004D6C27 /* prefsSave.png in Resources */,
 				D06C9A90195FE854004D6C27 /* prefsSave@2x.png in Resources */,
 				D06C9A93195FE854004D6C27 /* prefsTidy.png in Resources */,
@@ -2215,9 +2275,12 @@
 				D06C9AA2195FE854004D6C27 /* prefsUpdate@2x.png in Resources */,
 				D06C9A6E195FB9F2004D6C27 /* SavingOptionsViewController.xib in Resources */,
 				D04E8FBA195DAA9400D1CEDC /* ScrollLockTemplate.png in Resources */,
+				D0CDB2431BF197A300735EE4 /* prefsEditor.png in Resources */,
 				D0E6AE1B190C9FAC00B49779 /* ShowDescriptionTemplate.pdf in Resources */,
 				D036E21418F3D2F20009A9D4 /* Tidy.icns in Resources */,
 				D074B7AB1944035800F2E6F1 /* TidyDocumentMessagesView.xib in Resources */,
+				D06046151BF0DDCB00D69673 /* FragariaColorsViewController.xib in Resources */,
+				D06046081BF0BFC100D69673 /* FragariaEditorViewController.xib in Resources */,
 				D08689381948439700BDAD72 /* TidyDocumentSourceH.xib in Resources */,
 				D086893B1948439700BDAD72 /* TidyDocumentSourceV.xib in Resources */,
 				D036E1F718F3D25E0009A9D4 /* TidyDocumentWindow.xib in Resources */,
@@ -2240,8 +2303,10 @@
 				D0B9F0F319585010008864D6 /* DCOAboutWindow.xib in Resources */,
 				D04E8FBC195DAA9500D1CEDC /* DiffsTemplate.png in Resources */,
 				D04E8FBB195DAA9500D1CEDC /* DiffViewTemplate.png in Resources */,
+				D0CDB2461BF197A300735EE4 /* prefsEditor@2x.png in Resources */,
 				D06C9A66195FB9D0004D6C27 /* DocumentAppearanceViewController.xib in Resources */,
 				D0BB67EB193C820A007A3EB0 /* FirstRunHelper.xib in Resources */,
+				D06046091BF0BFC200D69673 /* FragariaEditorViewController.xib in Resources */,
 				D01AACB8193DE56000C4E5B2 /* HideDescriptionTemplate.pdf in Resources */,
 				D0BB67F8193C820A007A3EB0 /* HTML.icns in Resources */,
 				D0BB67F9193C820A007A3EB0 /* InfoPlist.strings in Resources */,
@@ -2249,6 +2314,7 @@
 				D0CA8F731953280700BBD54C /* LayoutLeftPaneTemplate.png in Resources */,
 				D0CA8F761953280700BBD54C /* LayoutSourceHTemplate.png in Resources */,
 				D0CA8F791953280700BBD54C /* LayoutSourceVTemplate.png in Resources */,
+				D0CDB2451BF197A300735EE4 /* prefsEditor.png in Resources */,
 				D0BB67ED193C820A007A3EB0 /* Localizable.strings in Resources */,
 				D0BB67FA193C820A007A3EB0 /* MainMenu.xib in Resources */,
 				D06C9A45195FB4A4004D6C27 /* MASPreferencesWindow.xib in Resources */,
@@ -2268,6 +2334,7 @@
 				D06C9A9A195FE854004D6C27 /* prefsTidyAppearance.png in Resources */,
 				D06C9A9D195FE854004D6C27 /* prefsTidyAppearance@2x.png in Resources */,
 				D06C9AA0195FE854004D6C27 /* prefsUpdate.png in Resources */,
+				D0CDB23C1BF191C600735EE4 /* prefsColor.png in Resources */,
 				D06C9AA3195FE854004D6C27 /* prefsUpdate@2x.png in Resources */,
 				D06C9A6F195FB9F2004D6C27 /* SavingOptionsViewController.xib in Resources */,
 				D04E8FBD195DAA9500D1CEDC /* ScrollLockTemplate.png in Resources */,
@@ -2275,7 +2342,9 @@
 				D01AACB9193DE56000C4E5B2 /* ShowDescriptionTemplate.pdf in Resources */,
 				D0BB67F7193C820A007A3EB0 /* Tidy.icns in Resources */,
 				D074B7AC1944035800F2E6F1 /* TidyDocumentMessagesView.xib in Resources */,
+				D06046161BF0DDCC00D69673 /* FragariaColorsViewController.xib in Resources */,
 				D08689391948439700BDAD72 /* TidyDocumentSourceH.xib in Resources */,
+				D0CDB23E1BF191CC00735EE4 /* prefsColor@2x.png in Resources */,
 				D086893C1948439700BDAD72 /* TidyDocumentSourceV.xib in Resources */,
 				D0BB67F6193C820A007A3EB0 /* TidyDocumentWindow.xib in Resources */,
 				D074B78D1942BEE200F2E6F1 /* TidyEncodingHelper.xib in Resources */,
@@ -2352,6 +2421,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D060460E1BF0DAAB00D69673 /* FragariaBaseViewController.m in Sources */,
 				D06C9A58195FB997004D6C27 /* OptionListAppearanceViewController.m in Sources */,
 				D074B7A11942CF0300F2E6F1 /* TidyDocument.m in Sources */,
 				D0B9F0FC19585060008864D6 /* DCOTransparentScroller.m in Sources */,
@@ -2366,6 +2436,7 @@
 				D074B7B41947D93800F2E6F1 /* JSDTableViewController.m in Sources */,
 				D0B9F0FF19585060008864D6 /* DCOTransparentScrollView.m in Sources */,
 				D016A936182FD80700712C60 /* main.m in Sources */,
+				D06046011BF0BDB400D69673 /* FragariaEditorViewController.m in Sources */,
 				D06C9A4F195FB955004D6C27 /* OptionListViewController.m in Sources */,
 				D0D9ED2B18E66810008A55D5 /* AppController.m in Sources */,
 				D0B9F0F419585010008864D6 /* DCOAboutWindowController.m in Sources */,
@@ -2376,6 +2447,7 @@
 				D074B79E1942CF0300F2E6F1 /* FirstRunController.m in Sources */,
 				D06C9A7C195FBA3F004D6C27 /* UpdaterOptionsViewController.m in Sources */,
 				D0DCEFB21A5FC40100E8A2AE /* TidyDocumentService.m in Sources */,
+				D060461B1BF0DDF000D69673 /* FragariaColorsViewController.m in Sources */,
 				D074B79B1942CF0300F2E6F1 /* EncodingHelperController.m in Sources */,
 				D008F0191930D9D700559F3B /* JSDAllCapsValueTransformer.m in Sources */,
 				D0D9F1A318E6BF8D008A55D5 /* JSDTableView.m in Sources */,
@@ -2421,6 +2493,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D060460F1BF0DAAC00D69673 /* FragariaBaseViewController.m in Sources */,
 				D06C9A59195FB997004D6C27 /* OptionListAppearanceViewController.m in Sources */,
 				D074B7A21942CF0300F2E6F1 /* TidyDocument.m in Sources */,
 				D0B9F0FD19585060008864D6 /* DCOTransparentScroller.m in Sources */,
@@ -2435,6 +2508,7 @@
 				D074B7B51947D93800F2E6F1 /* JSDTableViewController.m in Sources */,
 				D0913CAF18B0AC06005DB2E4 /* main.m in Sources */,
 				D0B9F10019585060008864D6 /* DCOTransparentScrollView.m in Sources */,
+				D06046021BF0BDB500D69673 /* FragariaEditorViewController.m in Sources */,
 				D0D9ED2C18E66810008A55D5 /* AppController.m in Sources */,
 				D06C9A50195FB955004D6C27 /* OptionListViewController.m in Sources */,
 				D0B9F0F519585010008864D6 /* DCOAboutWindowController.m in Sources */,
@@ -2445,6 +2519,7 @@
 				D074B79F1942CF0300F2E6F1 /* FirstRunController.m in Sources */,
 				D06C9A7D195FBA3F004D6C27 /* UpdaterOptionsViewController.m in Sources */,
 				D0DCEFB31A5FC40100E8A2AE /* TidyDocumentService.m in Sources */,
+				D060461C1BF0DDF100D69673 /* FragariaColorsViewController.m in Sources */,
 				D074B79C1942CF0300F2E6F1 /* EncodingHelperController.m in Sources */,
 				D008F01A1930D9D700559F3B /* JSDAllCapsValueTransformer.m in Sources */,
 				D0D9F1A418E6BF8D008A55D5 /* JSDTableView.m in Sources */,
@@ -2492,6 +2567,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D06046101BF0DAAD00D69673 /* FragariaBaseViewController.m in Sources */,
 				D06C9A5A195FB997004D6C27 /* OptionListAppearanceViewController.m in Sources */,
 				D074B7A31942CF0300F2E6F1 /* TidyDocument.m in Sources */,
 				D0B9F0FE19585060008864D6 /* DCOTransparentScroller.m in Sources */,
@@ -2506,6 +2582,7 @@
 				D074B7B61947D93800F2E6F1 /* JSDTableViewController.m in Sources */,
 				D0BB67D2193C820A007A3EB0 /* main.m in Sources */,
 				D0B9F10119585060008864D6 /* DCOTransparentScrollView.m in Sources */,
+				D06046031BF0BDB600D69673 /* FragariaEditorViewController.m in Sources */,
 				D0BB67D5193C820A007A3EB0 /* AppController.m in Sources */,
 				D06C9A51195FB955004D6C27 /* OptionListViewController.m in Sources */,
 				D0B9F0F619585010008864D6 /* DCOAboutWindowController.m in Sources */,
@@ -2516,6 +2593,7 @@
 				D074B7A01942CF0300F2E6F1 /* FirstRunController.m in Sources */,
 				D06C9A7E195FBA3F004D6C27 /* UpdaterOptionsViewController.m in Sources */,
 				D0DCEFB41A5FC40100E8A2AE /* TidyDocumentService.m in Sources */,
+				D060461D1BF0DDF200D69673 /* FragariaColorsViewController.m in Sources */,
 				D074B79D1942CF0300F2E6F1 /* EncodingHelperController.m in Sources */,
 				D0BB67DA193C820A007A3EB0 /* JSDAllCapsValueTransformer.m in Sources */,
 				D0BB67E1193C820A007A3EB0 /* JSDTableView.m in Sources */,
@@ -2763,6 +2841,23 @@
 				D05F71D41BEA2DE300F584C4 /* Base */,
 			);
 			name = "Credits (pro).rtf";
+			sourceTree = "<group>";
+		};
+		D06046041BF0BE0100D69673 /* FragariaEditorViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D06046051BF0BE0100D69673 /* Base */,
+			);
+			name = FragariaEditorViewController.xib;
+			path = ../../Resources;
+			sourceTree = "<group>";
+		};
+		D06046111BF0DDB400D69673 /* FragariaColorsViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D06046121BF0DDB400D69673 /* Base */,
+			);
+			name = FragariaColorsViewController.xib;
 			sourceTree = "<group>";
 		};
 		D074B7891942BEE200F2E6F1 /* TidyEncodingHelper.xib */ = {

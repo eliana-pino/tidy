@@ -17,6 +17,10 @@
 #import "MiscOptionsViewController.h"
 #import "SavingOptionsViewController.h"
 #import "UpdaterOptionsViewController.h"
+#import "FragariaEditorViewController.h"
+#import "FragariaColorsViewController.h"
+
+#import <Fragaria/Fragaria.h>
 
 
 #pragma mark - IMPLEMENTATION
@@ -42,9 +46,11 @@
 	NSViewController *optionListViewController = [[OptionListViewController alloc] init];
 	NSViewController *optionListAppearanceViewController = [[OptionListAppearanceViewController alloc] init];
 	NSViewController *documentAppearanceViewController = [[DocumentAppearanceViewController alloc] init];
+	NSViewController *fragariaEditorViewController = [[FragariaEditorViewController alloc] initWithController:[[MGSPrefsEditorPropertiesViewController alloc] init]];
+	NSViewController *fragariaColorsViewController = [[FragariaColorsViewController alloc] initWithController:[[MGSPrefsColourPropertiesViewController alloc] init]];
 	NSViewController *savingOptionsViewController = [[SavingOptionsViewController alloc] init];
 	NSViewController *miscOptionsViewController = [[MiscOptionsViewController alloc] init];
-
+	
 #if defined(FEATURE_SPARKLE) || defined(FEATURE_FAKE_SPARKLE)
 
 	NSViewController *updaterOptionsViewController = [[UpdaterOptionsViewController alloc] init];
@@ -52,17 +58,24 @@
 	NSArray *controllers = @[optionListViewController,
 							 optionListAppearanceViewController,
 							 documentAppearanceViewController,
+							 fragariaEditorViewController,
+							 fragariaColorsViewController,
 							 savingOptionsViewController,
 							 miscOptionsViewController,
-							 updaterOptionsViewController];
+							 updaterOptionsViewController
+							 ];
 #else
 	NSArray *controllers = @[optionListViewController,
 							 optionListAppearanceViewController,
 							 documentAppearanceViewController,
+							 fragariaEditorViewController,
+							 fragariaColorsViewController,
 							 savingOptionsViewController,
-							 miscOptionsViewController];
+							 miscOptionsViewController
+							 ];
 #endif
-
+	
+	
     self = [super initWithViewControllers:controllers];
 
     /* Handle Preferences Mirroring -- @NOTE: only on OS X 10.9 and above. */

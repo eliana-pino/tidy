@@ -59,6 +59,8 @@
 "File Saving"            = "Saving";
 "Miscellaneous"          = "Advanced";
 "Software Updates"       = "Updates";
+"Editor Options"         = "Editor";
+"Theme Options"          = "Colors";
 
 /* App Title for Menus */
 "Quit Balthisar Tidy"          = "Quit Balthisar Tidy";

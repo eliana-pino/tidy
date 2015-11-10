@@ -532,9 +532,9 @@
 - (void)setSourcePaneLineNumbersAreVisible:(BOOL)sourcePaneLineNumbersAreVisible
 {
 	self.sourceController.sourceTextView.showsLineNumbers = sourcePaneLineNumbersAreVisible;
-	self.sourceController.tidyTextView.showsLineNumbers = sourcePaneLineNumbersAreVisible;
+	//self.sourceController.tidyTextView.showsLineNumbers = sourcePaneLineNumbersAreVisible;
 	self.sourceController.sourceTextView.showsGutter = sourcePaneLineNumbersAreVisible;
-	self.sourceController.tidyTextView.showsGutter = sourcePaneLineNumbersAreVisible;
+	//self.sourceController.tidyTextView.showsGutter = sourcePaneLineNumbersAreVisible;
 	_sourcePaneLineNumbersAreVisible = sourcePaneLineNumbersAreVisible;
 }
 
