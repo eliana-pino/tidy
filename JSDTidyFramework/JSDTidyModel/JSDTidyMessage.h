@@ -90,7 +90,7 @@
  *  the line number, column number, and localized description
  *  of a particular message.
  *
- *  It's suggested to use the @TODO custom comparitor instead.
+ *  It's suggested to use the custom comparitor instead.
  */
 @property (nonatomic, strong, readonly) NSString *sortKey;
 
