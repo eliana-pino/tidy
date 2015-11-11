@@ -241,18 +241,33 @@
                                         <menuItem title="Inline Errors" id="pP7-lM-J2Y">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
+                                                <binding destination="236" name="enabled" keyPath="sharedDocumentController.currentDocument" id="E1a-hD-hNG">
+                                                    <dictionary key="options">
+                                                        <string key="NSValueTransformerName">NSIsNotNil</string>
+                                                    </dictionary>
+                                                </binding>
                                                 <binding destination="OrA-WX-oLI" name="value" keyPath="selection.showsIndividualErrors" id="yTJ-VH-B7D"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Invisible Characters" id="7Fp-gW-igS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
+                                                <binding destination="236" name="enabled" keyPath="sharedDocumentController.currentDocument" id="A1u-En-RRc">
+                                                    <dictionary key="options">
+                                                        <string key="NSValueTransformerName">NSIsNotNil</string>
+                                                    </dictionary>
+                                                </binding>
                                                 <binding destination="OrA-WX-oLI" name="value" keyPath="selection.showsInvisibleCharacters" id="BT8-89-bmE"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Gutter" id="1j2-3I-GS6">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
+                                                <binding destination="236" name="enabled" keyPath="sharedDocumentController.currentDocument" id="EvU-5v-csU">
+                                                    <dictionary key="options">
+                                                        <string key="NSValueTransformerName">NSIsNotNil</string>
+                                                    </dictionary>
+                                                </binding>
                                                 <binding destination="OrA-WX-oLI" name="value" keyPath="selection.showsGutter" id="Nh8-iF-hFm"/>
                                             </connections>
                                         </menuItem>
@@ -260,6 +275,11 @@
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="toggleSourcePaneShowsSyntaxHighlighting:" target="-1" id="J0s-On-X84"/>
+                                                <binding destination="236" name="enabled" keyPath="sharedDocumentController.currentDocument" id="kut-Sy-qgX">
+                                                    <dictionary key="options">
+                                                        <string key="NSValueTransformerName">NSIsNotNil</string>
+                                                    </dictionary>
+                                                </binding>
                                                 <binding destination="OrA-WX-oLI" name="value" keyPath="selection.syntaxColoured" id="2Zl-Ws-Elh"/>
                                             </connections>
                                         </menuItem>

@@ -28,5 +28,11 @@
 - (IBAction)showAboutWindow:(id)sender;
 
 
+/**
+ *  Provide bindings access to the sharedDocumentController.
+ */
+@property (nonatomic, assign, readonly) NSDocumentController *sharedDocumentController;
+
+
 @end
 

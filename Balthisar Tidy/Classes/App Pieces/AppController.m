@@ -248,6 +248,15 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+  @property sharedDocumentController
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (NSDocumentController *)sharedDocumentController
+{
+	return [NSDocumentController sharedDocumentController];
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
   @property menuQuitTitle
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSString*)menuQuitTitle
