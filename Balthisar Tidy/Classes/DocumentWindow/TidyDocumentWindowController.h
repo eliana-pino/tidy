@@ -109,10 +109,6 @@
 /** Specifies whether or not the source panel is visible. */
 @property (nonatomic, assign) BOOL sourcePanelIsVertical;
 
-/** Specifies whether or not the source panel editors show syntax highlighting. */
-@property (nonatomic, assign) BOOL sourcePaneShowsSyntaxHighlighting;
-
-
 #pragma mark - Actions to support properties from Menus
 /** @name Actions to support properties from Menus */
 

@@ -238,10 +238,29 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Source Code" id="MnE-Sg-au2">
                                     <items>
+                                        <menuItem title="Inline Errors" id="pP7-lM-J2Y">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <binding destination="OrA-WX-oLI" name="value" keyPath="selection.showsIndividualErrors" id="yTJ-VH-B7D"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Invisible Characters" id="7Fp-gW-igS">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <binding destination="OrA-WX-oLI" name="value" keyPath="selection.showsInvisibleCharacters" id="BT8-89-bmE"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Gutter" id="1j2-3I-GS6">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <binding destination="OrA-WX-oLI" name="value" keyPath="selection.showsGutter" id="Nh8-iF-hFm"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Syntax Highlighting" id="xa7-Zj-BT2">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="toggleSourcePaneShowsSyntaxHighlighting:" target="-1" id="J0s-On-X84"/>
+                                                <binding destination="OrA-WX-oLI" name="value" keyPath="selection.syntaxColoured" id="2Zl-Ws-Elh"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Vertical Source Code" id="ryP-vf-ZZn">
@@ -314,5 +333,15 @@
                 <outlet property="menuCheckForUpdates" destination="5yb-1q-fgS" id="1Lz-mD-U0u"/>
             </connections>
         </customObject>
+        <userDefaultsController representsSharedInstance="YES" id="vBZ-ot-uRE"/>
+        <objectController automaticallyPreparesContent="YES" id="OrA-WX-oLI" userLabel="Global">
+            <connections>
+                <binding destination="vBZ-ot-uRE" name="contentObject" keyPath="values.Global" id="QqD-YY-TA3">
+                    <dictionary key="options">
+                        <bool key="NSHandlesContentAsCompoundValue" value="YES"/>
+                    </dictionary>
+                </binding>
+            </connections>
+        </objectController>
     </objects>
 </document>

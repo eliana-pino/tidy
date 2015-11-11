@@ -370,12 +370,6 @@
 		return !self.firstRunHelper.isVisible; // don't allow when helper open.
 	}
 	
-	if (menuItem.action == @selector(toggleSourcePaneShowsSyntaxHighlighting:))
-	{
-		[menuItem setState:self.sourcePaneShowsSyntaxHighlighting];
-		return YES;
-	}
-	
 	return NO;
 }
 
@@ -517,17 +511,6 @@
 }
 
 
-/*———————————————————————————————————————————————————————————————————*
-  @property sourcePaneShowsSyntaxHighlighting
- *———————————————————————————————————————————————————————————————————*/
-- (void)setSourcePaneShowsSyntaxHighlighting:(BOOL)sourcePaneShowsSyntaxHighlighting
-{
-	self.sourceController.sourceTextView.syntaxColoured = sourcePaneShowsSyntaxHighlighting;
-	self.sourceController.tidyTextView.syntaxColoured = sourcePaneShowsSyntaxHighlighting;
-	_sourcePaneShowsSyntaxHighlighting = sourcePaneShowsSyntaxHighlighting;
-}
-
-
 #pragma mark - Menu Actions
 
 
@@ -555,15 +538,6 @@
 - (IBAction)toggleSourcePanelIsVertical:(id)sender
 {
 	self.sourcePanelIsVertical = !self.sourcePanelIsVertical;
-}
-
-
-/*———————————————————————————————————————————————————————————————————*
-  - toggleSourcePaneShowsSyntaxHighlighting:
- *———————————————————————————————————————————————————————————————————*/
-- (IBAction)toggleSourcePaneShowsSyntaxHighlighting:(id)sender
-{
-	self.sourcePaneShowsSyntaxHighlighting = !self.sourcePaneShowsSyntaxHighlighting;
 }
 
 
