@@ -113,15 +113,22 @@
 /** @name Actions to support properties from Menus */
 
 
-// @TODO: MAKE ALL OF THE STUFF BELOW INTO PROPERTIES.
-
-/** Toggle visibility of the option panel. */
+/** 
+ *  Toggle visibility of the option panel.
+ *  Provided so that menu actions can invoke the first responder.
+ */
 - (IBAction)toggleOptionsPanelIsVisible:(id)sender;
 
-/** Toggle visibility of the messages panel. */
+/**
+ *  Toggle visibility of the messages panel.
+ *  Provided so that menu actions can invoke the first responder.
+ */
 - (IBAction)toggleMessagesPanelIsVisible:(id)sender;
 
-/** Toggle orientation of the source panel. */
+/**
+ *  Toggle orientation of the source panel.
+ *  Provided so that menu actions can invoke the first responder.
+ */
 - (IBAction)toggleSourcePanelIsVertical:(id)sender;
 
 
