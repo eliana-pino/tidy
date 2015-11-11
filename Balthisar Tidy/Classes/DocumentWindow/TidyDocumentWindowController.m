@@ -148,10 +148,7 @@
 		Setup the sourceController and its view settings.
 	 ******************************************************/
 	
-	self.sourcePanelIsVertical  = [[[NSUserDefaults standardUserDefaults] objectForKey:JSDKeyShowNewDocumentSideBySide] boolValue];
-//	self.sourcePaneLineNumbersAreVisible = [[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyShowNewDocumentLineNumbers] boolValue];
-//	self.sourcePaneShowsSyntaxHighlighting = [[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyShowNewDocumentHighlighting] boolValue];
-	
+	self.sourcePanelIsVertical  = [[[NSUserDefaults standardUserDefaults] objectForKey:JSDKeyShowNewDocumentSideBySide] boolValue];	
 	
 	
 	/******************************************************
@@ -221,7 +218,7 @@
 
 	/* We will set the tidyProcess' source text (nil assigment is
 	 * okay). If we try this in awakeFromNib, we might receive a
-	 * notification before the	nibs are all done loading, so we
+	 * notification before thenibs are all done loading, so we
 	 * will do this here.
 	 */
 	[((TidyDocument*)self.document).tidyProcess setSourceTextWithData:((TidyDocument*)self.document).documentOpenedData];
@@ -373,12 +370,6 @@
 		return !self.firstRunHelper.isVisible; // don't allow when helper open.
 	}
 	
-	if (menuItem.action == @selector(toggleSourcePaneShowsLineNumbers:))
-	{
-		[menuItem setState:self.sourcePaneLineNumbersAreVisible];
-		return YES;
-	}
-	
 	if (menuItem.action == @selector(toggleSourcePaneShowsSyntaxHighlighting:))
 	{
 		[menuItem setState:self.sourcePaneShowsSyntaxHighlighting];
@@ -514,7 +505,6 @@
 	[self.sourcePane addSubview:self.sourceController.view];
 
 	[self.sourceController setupViewAppearance];
-	self.sourcePaneLineNumbersAreVisible = _sourcePaneLineNumbersAreVisible;
 
 	/* Ensure that the correct text is in the source */
 
@@ -524,18 +514,6 @@
 	/* In case something is selected in the messages table, highlight it again. */
 	
 	[self.sourceController goToSourceErrorUsingArrayController:self.messagesController.arrayController];
-}
-
-/*———————————————————————————————————————————————————————————————————*
-  @property lineNumbersAreVisible
- *———————————————————————————————————————————————————————————————————*/
-- (void)setSourcePaneLineNumbersAreVisible:(BOOL)sourcePaneLineNumbersAreVisible
-{
-	self.sourceController.sourceTextView.showsLineNumbers = sourcePaneLineNumbersAreVisible;
-	//self.sourceController.tidyTextView.showsLineNumbers = sourcePaneLineNumbersAreVisible;
-	self.sourceController.sourceTextView.showsGutter = sourcePaneLineNumbersAreVisible;
-	//self.sourceController.tidyTextView.showsGutter = sourcePaneLineNumbersAreVisible;
-	_sourcePaneLineNumbersAreVisible = sourcePaneLineNumbersAreVisible;
 }
 
 
@@ -579,15 +557,10 @@
 	self.sourcePanelIsVertical = !self.sourcePanelIsVertical;
 }
 
+
 /*———————————————————————————————————————————————————————————————————*
-  - toggleSourcePaneShowsLineNumbers:
+  - toggleSourcePaneShowsSyntaxHighlighting:
  *———————————————————————————————————————————————————————————————————*/
-- (IBAction)toggleSourcePaneShowsLineNumbers:(id)sender
-{
-	self.sourcePaneLineNumbersAreVisible = !self.sourcePaneLineNumbersAreVisible;
-}
-
-
 - (IBAction)toggleSourcePaneShowsSyntaxHighlighting:(id)sender
 {
 	self.sourcePaneShowsSyntaxHighlighting = !self.sourcePaneShowsSyntaxHighlighting;

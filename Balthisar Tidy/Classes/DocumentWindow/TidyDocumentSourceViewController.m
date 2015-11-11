@@ -66,30 +66,14 @@
 	
 	/********************************************************
 	 * Fragaria Groups
-	 * Modern Fragaria includes a sophisticated property
-	 * coordination feature with optional caching to user
-	 * defaults. In Balthisar Tidy we will manage global
-	 * (application-wide) defaults that are set in user
-	 * preferences, and per-document defaults that do not
-	 * cache their settings to user prefers. We *will*
-	 * cache default state of these per-document prefs in
-	 * user defaults, however.
 	 ********************************************************/
 	
-	NSString *instancePrefs = [[NSProcessInfo processInfo] globallyUniqueString];
-	MGSUserDefaultsController *sourceGroup = [MGSUserDefaultsController sharedControllerForGroupID:instancePrefs];
-	MGSUserDefaultsController *globalGroup = [MGSUserDefaultsController sharedController];
+	MGSUserDefaultsController *sourceGroup = [MGSUserDefaultsController sharedControllerForGroupID:JSDKeyTidyEditorSourceOptions];
+	MGSUserDefaultsController *tidyGroup = [MGSUserDefaultsController sharedControllerForGroupID:JSDKeyTidyEditorTidyOptions];
 
-	sourceGroup.managedProperties = [self managedPropertiesDocument];
-	globalGroup.managedProperties = [self managedPropertiesGlobal];
-	
-	sourceGroup.persistent = NO;
-	globalGroup.persistent = YES;
-	
 	[sourceGroup addFragariaToManagedSet:self.sourceTextView];
-	[sourceGroup addFragariaToManagedSet:self.tidyTextView];
-	
-	
+	[tidyGroup addFragariaToManagedSet:self.tidyTextView];
+
 	/********************************************************
 	 * Notifications, etc.
 	 ********************************************************/
@@ -289,71 +273,11 @@
 
 #pragma mark - Appearance Setup
 
-/*———————————————————————————————————————————————————————————————————*
-  - managedPropertiesGlobal
-    Returns a list of Fragaria properties to apply application-wide.
- 
-    Application-wide we want to ensure a consistent set of editor
-    and syntax highlighting colors.
- *———————————————————————————————————————————————————————————————————*/
-- (NSSet *)managedPropertiesGlobal
-{
-	static NSMutableSet *managedPropertiesGlobal;
-	
-	if (!managedPropertiesGlobal)
-	{
-		managedPropertiesGlobal = [[NSMutableSet alloc] initWithArray:[[MGSFragariaView propertyGroupTheme] allObjects]];
-		[managedPropertiesGlobal addObjectsFromArray:[[MGSFragariaView propertyGroupTextFont] allObjects]];
-		[managedPropertiesGlobal addObjectsFromArray:[[MGSFragariaView propertyGroupAutocomplete] allObjects]];
-		[managedPropertiesGlobal addObjectsFromArray:[[MGSFragariaView propertyGroupIndenting] allObjects]];
-	}
-	
-	return managedPropertiesGlobal;
-}
-
-
-/*———————————————————————————————————————————————————————————————————*
- - managedPropertiesDocument
-   Returns a list of Fragaria properties to apply to a document.
- 
-   Within a single document we want to ensure that the two editors
-   maintain a consistent appearance for line numbers, etc.
- *———————————————————————————————————————————————————————————————————*/
-- (NSSet *)managedPropertiesDocument
-{
-	static NSMutableSet *managedPropertiesDocument;
-	
-	if (!managedPropertiesDocument)
-	{
-		managedPropertiesDocument = [[NSMutableSet alloc] initWithArray:[[MGSFragariaView propertyGroupEditing] allObjects]];
-		[managedPropertiesDocument addObjectsFromArray:[[MGSFragariaView propertyGroupGutter] allObjects]];
-	}
-	
-	return managedPropertiesDocument;
-}
-
-/*———————————————————————————————————————————————————————————————————*
- - managedPropertiesIndividual
-   Returns a list of Fragaria properties that are left unmanaged.
- *———————————————————————————————————————————————————————————————————*/
-- (NSSet *)managedPropertiesIndividual
-{
-	static NSMutableSet *managedPropertiesIndividual;
-	
-	if (!managedPropertiesIndividual)
-	{
-		managedPropertiesIndividual = [[NSMutableSet alloc] initWithArray:[[MGSFragariaView defaultsDictionary] allKeys]];
-		[managedPropertiesIndividual minusSet:[self managedPropertiesGlobal]];
-		[managedPropertiesIndividual minusSet:[self managedPropertiesDocument]];
-	}
-	
-	return managedPropertiesIndividual;
-}
-
-
 
 /*———————————————————————————————————————————————————————————————————*
   - setupViewAppearance
+    We're here after the WindowController sets up the correct
+    sourceview in horizontal or vertical orientation.
  *———————————————————————————————————————————————————————————————————*/
 - (void)setupViewAppearance
 {
@@ -367,11 +291,6 @@
 		
 		NSUserDefaults *localDefaults = [NSUserDefaults standardUserDefaults];
 		
-		// @TODO: rewrite Fragaria to avoid this bullshit. Can't set options without using defaults?
-		[localDefaults setObject:[NSArchiver archivedDataWithRootObject:[NSFont fontWithName:@"Menlo" size:[NSFont systemFontSize]]] forKey:MGSFragariaDefaultsTextFont];
-		[localDefaults setObject:@(40) forKey:MGSFragariaDefaultsMinimumGutterWidth];
-		
-		aView.lineWrap = NO;
 		aView.syntaxDefinitionName = @"html";
 		
 		[aView.textView setAutomaticQuoteSubstitutionEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
@@ -380,12 +299,13 @@
 		[aView.textView setImportsGraphics:NO];
 		[aView.textView setAllowsImageEditing:NO];
 		[aView.textView setUsesFontPanel:NO];
-		[aView.textView setUsesRuler:NO];
 		[aView.textView setUsesInspectorBar:NO];
 		[aView.textView setUsesFindBar:NO];
 		[aView.textView setUsesFindPanel:NO];
-		[self.tidyTextView.textView setSelectable:YES];
-		[self.tidyTextView.textView setRichText:NO];
+
+		/* The gutter and line numbers aren't being shown for some reason. */
+		
+
 	};
 	
 	configureCommonViewSettings(self.sourceTextView);
@@ -394,21 +314,11 @@
 	
 	/* tidyTextView special settings. */
 	
-	[self.tidyTextView.textView setEditable:NO];
 	[self.tidyTextView.textView setAllowsUndo:NO];
-	
-	/* sourceTextView special settings. */
-	self.sourceTextView.showsSyntaxErrors = YES;
-	self.sourceTextView.showsIndividualErrors = YES;
-	
-//	self.tidyTextView.backgroundColor = [NSColor redColor];
-	
-	
-	// @todo: stupid Fragaria's preferences make this impossible to apply only to one instance currently.
-	//	[[NSUserDefaults standardUserDefaults] setObject:@(YES) forKey:MGSFragariaPrefsShowPageGuide];
-	//	[[NSUserDefaults standardUserDefaults] setObject:@(80) forKey:MGSFragariaPrefsShowPageGuideAtColumn];
-	
-	
+	[self.tidyTextView.textView setEditable:NO];
+	[self.tidyTextView.textView setRichText:NO];
+	[self.tidyTextView.textView setSelectable:YES];
+
 	/* sourceTextView shouldn't accept every drop type */
 	[self.sourceTextView.textView registerForDraggedTypes:@[NSFilenamesPboardType]];
 }

@@ -23,6 +23,24 @@
 #import <Fragaria/Fragaria.h>
 
 
+#pragma mark - Category
+
+
+@interface PreferenceController ()
+
+@property (nonatomic, strong) NSViewController *optionListViewController;
+@property (nonatomic, strong) NSViewController *optionListAppearanceViewController;
+@property (nonatomic, strong) NSViewController *documentAppearanceViewController;
+@property (nonatomic, strong) FragariaBaseViewController *fragariaEditorViewController;
+@property (nonatomic, strong) FragariaBaseViewController *fragariaColorsViewController;
+@property (nonatomic, strong) NSViewController *savingOptionsViewController;
+@property (nonatomic, strong) NSViewController *miscOptionsViewController;
+@property (nonatomic, strong) NSViewController *updaterOptionsViewController;
+
+@end
+
+
+
 #pragma mark - IMPLEMENTATION
 
 
@@ -43,36 +61,36 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (instancetype)init
 {
-	NSViewController *optionListViewController = [[OptionListViewController alloc] init];
-	NSViewController *optionListAppearanceViewController = [[OptionListAppearanceViewController alloc] init];
-	NSViewController *documentAppearanceViewController = [[DocumentAppearanceViewController alloc] init];
-	NSViewController *fragariaEditorViewController = [[FragariaEditorViewController alloc] initWithController:[[MGSPrefsEditorPropertiesViewController alloc] init]];
-	NSViewController *savingOptionsViewController = [[SavingOptionsViewController alloc] init];
-	NSViewController *miscOptionsViewController = [[MiscOptionsViewController alloc] init];
+	self.optionListViewController = [[OptionListViewController alloc] init];
+	self.optionListAppearanceViewController = [[OptionListAppearanceViewController alloc] init];
+	self.documentAppearanceViewController = [[DocumentAppearanceViewController alloc] init];
+	self.fragariaEditorViewController = [[FragariaEditorViewController alloc] initWithController:[[MGSPrefsEditorPropertiesViewController alloc] init]];
+	self.savingOptionsViewController = [[SavingOptionsViewController alloc] init];
+	self.miscOptionsViewController = [[MiscOptionsViewController alloc] init];
 	
 #if defined(FEATURE_SPARKLE) || defined(FEATURE_FAKE_SPARKLE)
-	NSViewController *updaterOptionsViewController = [[UpdaterOptionsViewController alloc] init];
+	self.updaterOptionsViewController = [[UpdaterOptionsViewController alloc] init];
 #endif
 	
 #if defined(FEATURE_SUPPORTS_THEMES)
-	NSViewController *fragariaColorsViewController = [[FragariaColorsViewController alloc] initWithController:[[MGSPrefsColourPropertiesViewController alloc] init]];
+	self.fragariaColorsViewController = [[FragariaColorsViewController alloc] initWithController:[[MGSPrefsColourPropertiesViewController alloc] init]];
 #endif
 	
-	NSArray *controllers = @[optionListViewController,
-							 optionListAppearanceViewController,
-							 documentAppearanceViewController,
-							 fragariaEditorViewController];
+	NSArray *controllers = @[self.optionListViewController,
+							 self.optionListAppearanceViewController,
+							 self.documentAppearanceViewController,
+							 self.fragariaEditorViewController];
 	
 #if defined(FEATURE_SUPPORTS_THEMES)
-	controllers = [controllers arrayByAddingObjectsFromArray:@[fragariaColorsViewController]];
+	controllers = [controllers arrayByAddingObjectsFromArray:@[self.fragariaColorsViewController]];
 #endif
 	
-	controllers = [controllers arrayByAddingObjectsFromArray:@[savingOptionsViewController,
-															   miscOptionsViewController]];
+	controllers = [controllers arrayByAddingObjectsFromArray:@[self.savingOptionsViewController,
+															   self.miscOptionsViewController]];
 	
 	
 #if defined(FEATURE_SPARKLE) || defined(FEATURE_FAKE_SPARKLE)
-	controllers = [controllers arrayByAddingObjectsFromArray:@[updaterOptionsViewController]];
+	controllers = [controllers arrayByAddingObjectsFromArray:@[self.updaterOptionsViewController]];
 #endif
 	
 	
@@ -193,6 +211,9 @@
 	[defaultValues setObject:@NO forKey:JSDKeyAllowServiceHelperTSR];
 	[defaultValues setObject:@NO forKey:JSDKeyAlreadyAskedServiceHelperTSR];
 
+	/* Editor Options */
+	[self configureEditorDefaults];
+
 	/* Updates */
 	// none - handled by Sparkle
 
@@ -206,9 +227,63 @@
 
 	/* Perform the registration. */
 	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
-
 }
 
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+  - configureEditorDefaults
+    Modern Fragaria has its own defaults coordination system that
+    we will leverage via three sets of managed groups. The "Global"
+    group manages user defaults for every FragariaView in the
+    application. We will also use a sourceGroup and a tidyGroup to
+    manage those few differences between those two views.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (void)configureEditorDefaults
+{
+
+	/* Fragaria's user defaults are registerd upon first access. */
+	MGSUserDefaultsController *groupGlobal = [MGSUserDefaultsController sharedController];
+	MGSUserDefaultsController *groupSource = [MGSUserDefaultsController sharedControllerForGroupID:JSDKeyTidyEditorSourceOptions];
+	MGSUserDefaultsController *groupTidy = [MGSUserDefaultsController sharedControllerForGroupID:JSDKeyTidyEditorTidyOptions];
+
+	/* The sourceGroup and tidyGroup will handle these items non-globally. */
+	NSMutableSet *managedGroup = [[NSMutableSet alloc] initWithArray:@[
+																	   MGSFragariaDefaultsLineWrap,
+																	   MGSFragariaDefaultsLineWrapsAtPageGuide,
+																	   MGSFragariaDefaultsShowsPageGuide,
+																	   MGSFragariaDefaultsPageGuideColumn,
+																	   MGSFragariaDefaultsHighlightsCurrentLine
+																	   ]];
+
+	/* The Global group will handle everything else. */
+	NSMutableSet *managedGlobal = [[NSMutableSet alloc] initWithArray:[[MGSFragariaView defaultsDictionary] allKeys]];
+	[managedGlobal minusSet:managedGroup];
+
+	/* Let the controllers know which Fragaria properties they handle. */
+	groupGlobal.managedProperties = managedGlobal;
+	groupSource.managedProperties = managedGroup;
+	groupTidy.managedProperties = managedGroup;
+
+	/* And all of these properties should be persistent in user defaults. */
+	groupGlobal.persistent = YES;
+	groupSource.persistent = YES;
+	groupTidy.persistent = YES;
+
+	/* Now let the viewControllers know which groups they are managing.
+	 * When using MGSHybridUserDefaultsController Global is included.
+	 */
+	if (self.fragariaEditorViewController)
+	{
+		MGSPrefsEditorPropertiesViewController *controller = (MGSPrefsEditorPropertiesViewController*)self.fragariaEditorViewController.embeddedController;
+		controller.userDefaultsController = [MGSHybridUserDefaultsController sharedControllerForGroupID:JSDKeyTidyEditorSourceOptions];
+	}
+
+	if (self.fragariaColorsViewController)
+	{
+		MGSPrefsColourPropertiesViewController *controller = (MGSPrefsColourPropertiesViewController*)self.fragariaColorsViewController.embeddedController;
+		controller.userDefaultsController = [MGSHybridUserDefaultsController sharedControllerForGroupID:JSDKeyTidyEditorSourceOptions];
+	}
+}
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
   - handleUserDefaultsChanged:

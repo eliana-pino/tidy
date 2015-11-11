@@ -49,7 +49,8 @@
 	#define JSDKeySavingPrefStyle                 @"SavingPrefStyle"
 
 	/* Editor - Preferences Group and Key for Editor and Color */
-	#define JSDKeyTidyEditorOptions               @"JSDTidyEditorOptions"
+	#define JSDKeyTidyEditorSourceOptions         @"JSDTidyEditorSourceOptions"
+	#define JSDKeyTidyEditorTidyOptions           @"JSDTidyEditorTidyOptions"
 
 
 	/* Advanced - Options */

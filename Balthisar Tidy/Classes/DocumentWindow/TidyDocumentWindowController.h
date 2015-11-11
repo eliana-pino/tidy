@@ -109,9 +109,6 @@
 /** Specifies whether or not the source panel is visible. */
 @property (nonatomic, assign) BOOL sourcePanelIsVertical;
 
-/** Specifies whether or not the source panel line numbers are visble. */
-@property (nonatomic, assign) BOOL sourcePaneLineNumbersAreVisible;
-
 /** Specifies whether or not the source panel editors show syntax highlighting. */
 @property (nonatomic, assign) BOOL sourcePaneShowsSyntaxHighlighting;
 
@@ -130,9 +127,6 @@
 
 /** Toggle orientation of the source panel. */
 - (IBAction)toggleSourcePanelIsVertical:(id)sender;
-
-/** Toggle visibility of the line numbers. */
-- (IBAction)toggleSourcePaneShowsLineNumbers:(id)sender;
 
 
 #pragma mark - Toolbar Actions
