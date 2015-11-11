@@ -230,9 +230,22 @@
 	{
 		[self kickOffFirstRunSequence:nil];
 	}
-	
 }
 
+
+/*———————————————————————————————————————————————————————————————————*
+  - setViewPageGuidePosition
+		Use our knowledge of the `wrap` option to set the page
+        guide position of the subview.
+ *———————————————————————————————————————————————————————————————————*/
+- (void)setViewPageGuidePosition
+{
+	TidyDocument *localDocument = self.document;
+
+	JSDTidyOption *localOption = localDocument.tidyProcess.tidyOptions[@"wrap"];
+
+	self.sourceController.pageGuidePosition = [[localOption optionValue] integerValue];
+}
 
 #pragma mark - Event and KVO Notification Handling
 
@@ -249,10 +262,8 @@
 	TidyDocument *localDocument = self.document;
 	
 	[localDocument.tidyProcess optionsCopyValuesFromModel:self.optionController.tidyDocument];
-	
-	JSDTidyOption *localOption = localDocument.tidyProcess.tidyOptions[@"wrap"];
-	
-	self.sourceController.pageGuidePosition = [[localOption optionValue] integerValue];
+
+	[self setViewPageGuidePosition];
 }
 
 
@@ -499,6 +510,8 @@
 	[self.sourcePane addSubview:self.sourceController.view];
 
 	[self.sourceController setupViewAppearance];
+	[self setViewPageGuidePosition];
+
 
 	/* Ensure that the correct text is in the source */
 

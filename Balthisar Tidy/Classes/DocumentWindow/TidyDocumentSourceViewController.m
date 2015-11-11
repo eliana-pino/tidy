@@ -355,14 +355,14 @@
  *———————————————————————————————————————————————————————————————————*/
 - (NSUInteger)pageGuidePosition
 {
-	return [[NSUserDefaults standardUserDefaults] integerForKey:MGSFragariaDefaultsPageGuideColumn];
+	return self.tidyTextView.pageGuideColumn;
 }
 
 - (void)setPageGuidePosition:(NSUInteger)pageGuidePosition
 {
-	// @TODO: stupid Fragaria's preferences need to be reworked.
-	[[NSUserDefaults standardUserDefaults] setObject:@(pageGuidePosition>0) forKey:MGSFragariaDefaultsShowsPageGuide];
-	[[NSUserDefaults standardUserDefaults] setObject:@(pageGuidePosition) forKey:MGSFragariaDefaultsPageGuideColumn];
+	self.tidyTextView.pageGuideColumn = pageGuidePosition;
+
+	self.tidyTextView.showsPageGuide = (pageGuidePosition > 0);
 }
 
 

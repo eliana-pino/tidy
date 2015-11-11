@@ -38,14 +38,15 @@
 /** Indicates that this instance is a vertically oriented view. */
 @property (nonatomic, assign, readonly) BOOL isVertical;
 
+/** Indicates the column in the tidyText where wrapping will occur. */
+@property (nonatomic, assign) NSUInteger pageGuidePosition;
+
+
 /** Specifies whether or not the views are synchronized. @TODO place holder. */
 @property (nonatomic, assign) BOOL viewsAreSynced;
 
 /** Specifies whether or not the views are showing DIFFs. @TODO place holder. */
 @property (nonatomic, assign) BOOL viewsAreDiffed;
-
-
-@property (nonatomic, assign) NSUInteger pageGuidePosition;
 
 
 /**
