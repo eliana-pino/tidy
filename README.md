@@ -33,6 +33,11 @@ _Balthisar Tidy_ has been released with support for Mac OS X 10.8 and newer.
 Change Log
 ----------
 
+### Balthisar Tidy 3.0.0 (November 2015)
+
+- Coming soon!
+
+
 ### Balthisar Tidy 2.2.1 (October 2015)
 
 Please note that this release is made only for _Balthisar Tidy_ distributed from
@@ -60,7 +65,7 @@ versions.
       produce a full document, ignoring _Balthisar Tidy_’s `show-body-only` setting.
 
 - Visible Changes
-    - Fixed the horrible appearance in the Tidy options panel introduced in 
+    - Fixed the horrible appearance in the Tidy options panel introduced in
       Mac OS X 10.11 El Capitan.
 
 - Bug Fixes
@@ -69,7 +74,7 @@ versions.
     - Print now works again. We overlooked a sandbox permissions setting, which previously
       caused users who tried to print to see a message indicating that _Balthisar Tidy_
       didn't have permission.
-      
+
 - Other Changes
     - Significantly reduced file size by using PDF instead of icns for the messages table
       images.
@@ -149,7 +154,7 @@ versions.
     - Tidy options are much more beautiful with groups headers to indicate option categories.
     - New, modern Preferences system with lots of new options.
     - Brand new, improved help file.
-    - New application and document icons. 
+    - New application and document icons.
     - New main menu items to support new functionality.
     - Fixed a bug that allows two first-run helpers to be opened at the same time, which caused a crash.
     - Renamed the "first run helper" to "Quick Tutorial."
@@ -162,9 +167,9 @@ versions.
     - The entire TidyDocument architecture has been re-written from the ground up in order to implement a better MVC object model and break apart the massive DocumentController.
     - OptionPaneController has been slightly refactored to become a ViewController.
     - Bit the bullet and use my own fork of TidyLib. Source is still compatible. This was done in order to incorporate the community pull requests that haven't been accepted by the maintainer yet.
-    - New help building automation system. 
+    - New help building automation system.
     - Some build flags meant to be used temporarily in order to facilitate screen shots, etc.
-    
+
 
 ### Balthisar Tidy 1.5.0 (May 2014)
 
@@ -290,7 +295,7 @@ Refer to How To Build, below, for important information.
 
 ### Main Build Targets
 
-- **Balthisar Tidy (web)** will build the version distributed on the www.balthisar.com 
+- **Balthisar Tidy (web)** will build the version distributed on the www.balthisar.com
   website, and will include support for Sparkle for auto-updating.
 
 - **Balthisar Tidy (app)** will be build the version distributed on Apple's App Store, and
@@ -300,9 +305,9 @@ Refer to How To Build, below, for important information.
 - **Balthisar Tidy (pro)** will build the version distributed as “Balthisar Tidy for Work”
   on the App Store. Yes, this is the paid version that includes AppleScript support and
   the ability to export Tidy configuration files, as well as future, unspecified changes.
-  If you want to build it yourself and avoid paying for it in the App Store, you can! 
-  
-  
+  If you want to build it yourself and avoid paying for it in the App Store, you can!
+
+
 ### Additional Build Targets
 
 The build targets above have dependencies on additional build targets. Dependencies will
@@ -311,11 +316,11 @@ be built automatically when needed.
 - **Balthisar Tidy Extension (web/app/pro)** will build the action extension that _Balthisar Tidy_ makes
   available to apps that support extensions. Each target builds identical code; the primary difference is
   related to the requirement that extension bundle identifiers must match the host application.
-  
+
 - **Balthisar Tidy Service Helper** will build the separate application that handles Tidy as a system
   service. This helper application within the main application bundle performs Tidying without the
   need for the main _Balthisar Tidy_ application to open every time the service is invoked.
-  
+
 - **JSDTidyFramework** is used by most of the other targets. Many of the target types are restricted by
   security protocols that prohibit dynamic binding meaning that this dependency is statically linked in
   many of the modules. However it is allowed to use dynamically linked libraries.
@@ -336,10 +341,10 @@ provisioning profile.
 #### If you’re an Apple Developer
 If you’re already an Apple Developer simply ensure that your developer Apple ID is added
 to **Preferences** > **Accounts** in Xcode. Then for each build target, in the
-**General** tab, **Identity** section, select your own team. 
+**General** tab, **Identity** section, select your own team.
 
 The first time you build Xcode will probably complain about provisioning profiles. Go
-ahead and use the **Fix** button to let Xcode make its changes. 
+ahead and use the **Fix** button to let Xcode make its changes.
 
 At this point XCode will build any of the targets and you are all set.
 
@@ -350,17 +355,17 @@ use Xcode 7 or newer, and have an Apple ID though.
 
 The first step is to add your Apple ID to **Preferences** > **Accounts** in Xcode, which
 should be straightforward enough. After completing this use the **View Details…** button
-on the same screen. This will cause a sheet to open. In the upper pane 
+on the same screen. This will cause a sheet to open. In the upper pane
 (“Signing Identities”) use the **Create** button for “Mac Development” and then use the
 **Done** button. You can close **Preferences** now.
 
 Next, for each build target, go to the **Build Settings** panel and look for the **Code
 Signing** section. Change the **Code Signing Identity** to “Mac Developer” for each
-target. Then for each target, verify that in the **General** tab, **Identity** section, 
+target. Then for each target, verify that in the **General** tab, **Identity** section,
 your own team is selected.
 
 The first time you build Xcode will probably complain about provisioning profiles. Go
-ahead and use the **Fix** button to let Xcode make its changes. 
+ahead and use the **Fix** button to let Xcode make its changes.
 
 At this point XCode will build any of the targets and you are all set.
 
