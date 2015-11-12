@@ -143,6 +143,12 @@ activate :Middlemac do |options|
   # proper retina image width.
   options.Build_Image_Width_Css = true
 
+  # Include automatic @2x images with srcset? If true then the image_tag
+  # helper (including images specified in markdown) will will include a
+  # srcset attribute if not already present. For example the image
+  # image.png will be included in the srcset as "image@2x.png 2x".
+  options.Retina_Srcset
+
   # These options are available but you should not change any of them if you
   # follow the conventions for Middlemac. Defaults are shown for reference.
 

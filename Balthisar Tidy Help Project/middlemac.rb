@@ -189,6 +189,7 @@ option :Targets, nil, 'A data structure that defines many characteristics of the
 option :Build_Markdown_Links, true, 'Whether or not to generate `_markdown-links.erb`'
 option :Build_Markdown_Images, true, 'Whether or not to generate `_markdown-images.erb`'
 option :Build_Image_Width_Css, true, 'Whether or not to generate `_image_widths.scss`'
+option :Retina_Srcset, true, 'Whether or not to generate srcset attributes automatically.'
 
 option :File_Markdown_Images, '_markdown-images.erb', 'Filename for the generated images markdown file.'
 option :File_Markdown_Links,  '_markdown-links.erb',  'Filename for the generated links markdown file.'
@@ -539,6 +540,32 @@ helpers do
     features.key?(feature) && features[feature]
   end
 
+
+  #--------------------------------------------------------
+  # image_tag
+  #   Override the built-in version in order to support
+  #   automatic @2x assets.
+  #--------------------------------------------------------
+  def image_tag(path, params={})
+    params.symbolize_keys!
+
+    if extensions[:Middlemac].options.Retina_Srcset
+
+      # If srcset is specified, then don't specify automatic behavior.
+      unless params.key?(:srcset)
+          file_path = File.dirname( path )
+          file_extn = File.extname( path )
+          file_name = File.basename( path, '.*' )
+
+          attribute_2x = File.join(file_path, "#{file_name}@2x#{file_extn} 2x")
+
+          params[:srcset] = "#{attribute_2x}"
+      end
+
+    end # if extensions
+
+    super(path, params)
+  end
 
 end #helpers
 
