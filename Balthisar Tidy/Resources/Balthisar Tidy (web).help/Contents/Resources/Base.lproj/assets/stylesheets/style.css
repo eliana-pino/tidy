@@ -3390,20 +3390,36 @@ div.image_article:after {
   clear: both;
 }
 
-img[src$='action-invoke.png'] {
+img[src$='all-action-invoke.png'] {
   max-width: 154px;
 }
 
-img[src$='action-invoke@2x.png'] {
+img[src$='all-action-invoke@2x.png'] {
   max-width: 156px;
 }
 
-img[src$='action-menu.png'] {
+img[src$='all-action-menu.png'] {
   max-width: 380px;
 }
 
-img[src$='action-menu@2x.png'] {
+img[src$='all-action-menu@2x.png'] {
   max-width: 380px;
+}
+
+img[src$='all-context-options-prefs.png'] {
+  max-width: 213px;
+}
+
+img[src$='all-context-options-prefs@2x.png'] {
+  max-width: 213px;
+}
+
+img[src$='all-context-options.png'] {
+  max-width: 261px;
+}
+
+img[src$='all-context-options@2x.png'] {
+  max-width: 261px;
 }
 
 img[src$='all-docpart-source.png'] {
@@ -3420,38 +3436,6 @@ img[src$='all-docpart-tidyd.png'] {
 
 img[src$='all-docpart-tidyd@2x.png'] {
   max-width: 851px;
-}
-
-img[src$='context-options-prefs-pro.png'] {
-  max-width: 278px;
-}
-
-img[src$='context-options-prefs-pro@2x.png'] {
-  max-width: 278px;
-}
-
-img[src$='context-options-prefs.png'] {
-  max-width: 213px;
-}
-
-img[src$='context-options-prefs@2x.png'] {
-  max-width: 213px;
-}
-
-img[src$='context-options-pro.png'] {
-  max-width: 278px;
-}
-
-img[src$='context-options-pro@2x.png'] {
-  max-width: 278px;
-}
-
-img[src$='context-options.png'] {
-  max-width: 261px;
-}
-
-img[src$='context-options@2x.png'] {
-  max-width: 261px;
 }
 
 img[src$='context-toolbar.png'] {
@@ -3630,12 +3614,20 @@ img[src$='menu-window@2x.png'] {
   max-width: 166px;
 }
 
-img[src$='pro-docpart-source.png'] {
-  max-width: 851px;
+img[src$='pro-context-options-prefs.png'] {
+  max-width: 278px;
 }
 
-img[src$='pro-docpart-source@2x.png'] {
-  max-width: 851px;
+img[src$='pro-context-options-prefs@2x.png'] {
+  max-width: 278px;
+}
+
+img[src$='pro-context-options.png'] {
+  max-width: 278px;
+}
+
+img[src$='pro-context-options@2x.png'] {
+  max-width: 278px;
 }
 
 img[src$='save-save-as-required.png'] {
