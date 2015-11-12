@@ -556,6 +556,13 @@ helpers do
     file_extn = File.extname( path )
     file_path = File.dirname( path )
 
+    # Here's we're going to log missing images, i.e., images that
+    # were requested for for which no file was found.
+    checking_path = File.join(source_dir, path)
+    unless File.exist?( checking_path )
+      puts_red "#{file_name} was requested but is not in the source!"
+    end
+
     # Here we're going to automatically substitute a target-specific image
     # if the specified image includes the magic prefix `all-`. We have to
     # make this check prior to the srcset below, so that srcset can check
