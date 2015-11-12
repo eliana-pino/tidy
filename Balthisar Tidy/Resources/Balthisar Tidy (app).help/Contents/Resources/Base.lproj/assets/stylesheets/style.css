@@ -2997,21 +2997,24 @@ html {
 }
 
 body {
-  font-family: "Helvetica Neue", "Lucida Grande", sans-serif;
+  font-family: -apple-system-font, -webkit-system-font, "HelveticaNeue", "Helvetica Neue", "Helvetica", sans-serif;
   height: 100%;
   min-width: 600px;
 }
 
 h1 {
   font-size: 1.7em;
+  font-weight: normal;
 }
 
 h2 {
   font-size: 1.5em;
+  font-weight: normal;
 }
 
 h3 {
   font-size: 1.3em;
+  font-weight: normal;
 }
 
 p {
@@ -3021,7 +3024,6 @@ p {
 
 a {
   text-decoration: none;
-  font-weight: bold;
   font-size: 1.05em;
   color: #6388c1;
 }
@@ -3030,6 +3032,10 @@ a:visited {
 }
 a:hover {
   text-decoration: underline;
+}
+
+strong {
+  color: #4b4b4b;
 }
 
 hr {
@@ -3117,7 +3123,7 @@ nav#breadcrumbs ul li a {
   font-size: 11px;
   line-height: 22px;
   height: 22px;
-  font-weight: normal;
+  font-weight: 100;
   margin: 0;
   padding: 0;
 }
@@ -3400,6 +3406,22 @@ img[src$='action-menu@2x.png'] {
   max-width: 380px;
 }
 
+img[src$='all-docpart-source.png'] {
+  max-width: 851px;
+}
+
+img[src$='all-docpart-source@2x.png'] {
+  max-width: 851px;
+}
+
+img[src$='all-docpart-tidyd.png'] {
+  max-width: 851px;
+}
+
+img[src$='all-docpart-tidyd@2x.png'] {
+  max-width: 851px;
+}
+
 img[src$='context-options-prefs-pro.png'] {
   max-width: 278px;
 }
@@ -3469,22 +3491,6 @@ img[src$='docpart-messages.png'] {
 }
 
 img[src$='docpart-messages@2x.png'] {
-  max-width: 851px;
-}
-
-img[src$='docpart-source.png'] {
-  max-width: 851px;
-}
-
-img[src$='docpart-source@2x.png'] {
-  max-width: 851px;
-}
-
-img[src$='docpart-tidyd.png'] {
-  max-width: 851px;
-}
-
-img[src$='docpart-tidyd@2x.png'] {
   max-width: 851px;
 }
 
@@ -3622,6 +3628,14 @@ img[src$='menu-window.png'] {
 
 img[src$='menu-window@2x.png'] {
   max-width: 166px;
+}
+
+img[src$='pro-docpart-source.png'] {
+  max-width: 851px;
+}
+
+img[src$='pro-docpart-source@2x.png'] {
+  max-width: 851px;
 }
 
 img[src$='save-save-as-required.png'] {
