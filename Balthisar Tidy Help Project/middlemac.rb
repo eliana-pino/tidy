@@ -778,16 +778,29 @@ end #helpers
   #    present in place of files prefixed with `all-`,
   #    and we want to ensure that other targets' files
   #    aren't included in the output.
+  #    @TODO: We really do need to delete an all- file
+  #           for which a target- file exists.
   #--------------------------------------------------------
   def cleanup_nontarget_files
+
+    delete_dir = File.expand_path(File.join(app.build_dir, 'Resources/', 'Base.lproj/', 'assets/', 'images/'))
+
     puts_blue "Cleaning up excess image files from target '#{options.Target}'"
     puts_red "Images for the following targets are being deleted from the build directory:"
 
     (options.Targets.keys - [options.Target]).each do |target|
 
       puts_red "#{target.to_s}"
-      delete_dir = File.expand_path(File.join(app.build_dir, 'Resources/', 'Base.lproj/', 'assets/', 'images/'))
       Dir.glob("#{delete_dir}/**/#{target}-*.{jpg,png,gif}").each do |f|
+        puts_red " Deleting #{File.basename(f)}"
+        File.delete(f)
+      end
+    end
+
+    puts_red "\nImages prefixed all- are being deleted if a corresponding #{options.Target}- exists."
+
+    Dir.glob("#{delete_dir}/**/all-*.{jpg,png,gif}").each do |f|
+      if File.exist?( f.sub("all-", "#{options.Target}-") )
         puts_red " Deleting #{File.basename(f)}"
         File.delete(f)
       end
