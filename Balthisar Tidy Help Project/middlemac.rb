@@ -272,6 +272,7 @@ end
 #    We will perform all of the finishing touches.
 #===============================================================
 def after_build
+    cleanup_nontarget_files
     run_help_indexer
 end
 
@@ -549,17 +550,39 @@ helpers do
   def image_tag(path, params={})
     params.symbolize_keys!
 
+    # We'll use these for different purposes below.
+    file_name = File.basename( path )
+    file_base = File.basename( path, '.*' )
+    file_extn = File.extname( path )
+    file_path = File.dirname( path )
+
+    # Here we're going to automatically substitute a target-specific image
+    # if the specified image includes the magic prefix `all-`. We have to
+    # make this check prior to the srcset below, so that srcset can check
+    # for the existence of the correct, target-specific file we determine
+    # here.
+    if file_name.start_with?("all-")
+      proposed_name = file_name.sub("all-", "#{target_name}-")
+      checking_path = File.join(source_dir, file_path, proposed_name)
+
+      if File.exist?( checking_path )
+        file_name = proposed_name
+        file_base = File.basename( file_name, '.*' )
+      end
+    end
+
+    # Here we're going to automatically include an @2x image in <img> tags
+    # as a `srcset` attribute if there's not already a `srcset` present.
     if extensions[:Middlemac].options.Retina_Srcset
 
-      # If srcset is specified, then don't specify automatic behavior.
       unless params.key?(:srcset)
-          file_path = File.dirname( path )
-          file_extn = File.extname( path )
-          file_name = File.basename( path, '.*' )
+          proposed_name = "#{file_base}@2x#{file_extn}"
+          checking_path = File.join(source_dir, file_path, proposed_name)
 
-          attribute_2x = File.join(file_path, "#{file_name}@2x#{file_extn} 2x")
-
-          params[:srcset] = "#{attribute_2x}"
+          if File.exist?( checking_path )
+            srcset_img = File.join(file_path, "#{file_base}@2x#{file_extn} 2x")
+            params[:srcset] = srcset_img
+          end
       end
 
     end # if extensions
@@ -747,6 +770,31 @@ end #helpers
 
     end
   end #def
+
+
+  #--------------------------------------------------------
+  #  cleanup_nontarget_files
+  #    We support substituting target-specific files when
+  #    present in place of files prefixed with `all-`,
+  #    and we want to ensure that other targets' files
+  #    aren't included in the output.
+  #--------------------------------------------------------
+  def cleanup_nontarget_files
+    puts_blue "Cleaning up excess image files from target '#{options.Target}'"
+    puts_red "Images for the following targets are being deleted from the build directory:"
+
+    (options.Targets.keys - [options.Target]).each do |target|
+
+      puts_red "#{target.to_s}"
+      delete_dir = File.expand_path(File.join(app.build_dir, 'Resources/', 'Base.lproj/', 'assets/', 'images/'))
+      Dir.glob("#{delete_dir}/**/#{target}-*.{jpg,png,gif}").each do |f|
+        puts_red " Deleting #{File.basename(f)}"
+        File.delete(f)
+      end
+    end
+
+
+  end
 
 
   #--------------------------------------------------------
