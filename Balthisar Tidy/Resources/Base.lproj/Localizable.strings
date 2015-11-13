@@ -51,6 +51,13 @@
 "ExportMessage"    = "You will export a configuration file suitable for use with the built-in terminal version of Tidy.";
 
 
+/* RTF Exporting NSSavePanel strings */
+
+"ExportAs"         = "Export As:";
+"Export"           = "Export";
+"ExportMessage"    = "You will export the Tidy HTML text as a rich text format (RTF) document.";
+
+
 /* Preferences Window Strings */
 "Preferences"            = "Balthisar Tidy Preferences";
 "Tidy Options"           = "Tidy";

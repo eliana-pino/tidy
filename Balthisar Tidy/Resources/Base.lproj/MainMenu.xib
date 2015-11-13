@@ -113,6 +113,22 @@
                                     <action selector="saveDocumentAs:" target="-1" id="197"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Export as RTF…" id="ePp-aU-NTB">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="exportRTF:" target="-1" id="0v1-f6-4hb"/>
+                                    <binding destination="236" name="enabled" keyPath="sharedDocumentController.currentDocument" id="WKC-Bx-tqT">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="236" name="hidden" keyPath="self.featureExportsRTF" previousBinding="WKC-Bx-tqT" id="qLR-tt-WUH">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </menuItem>
                             <menuItem title="Revert" id="112">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
@@ -241,46 +257,46 @@
                                         <menuItem title="Inline Errors" id="pP7-lM-J2Y">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
+                                                <binding destination="OrA-WX-oLI" name="value" keyPath="selection.showsIndividualErrors" id="yTJ-VH-B7D"/>
                                                 <binding destination="236" name="enabled" keyPath="sharedDocumentController.currentDocument" id="E1a-hD-hNG">
                                                     <dictionary key="options">
                                                         <string key="NSValueTransformerName">NSIsNotNil</string>
                                                     </dictionary>
                                                 </binding>
-                                                <binding destination="OrA-WX-oLI" name="value" keyPath="selection.showsIndividualErrors" id="yTJ-VH-B7D"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Invisible Characters" id="7Fp-gW-igS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
+                                                <binding destination="OrA-WX-oLI" name="value" keyPath="selection.showsInvisibleCharacters" id="BT8-89-bmE"/>
                                                 <binding destination="236" name="enabled" keyPath="sharedDocumentController.currentDocument" id="A1u-En-RRc">
                                                     <dictionary key="options">
                                                         <string key="NSValueTransformerName">NSIsNotNil</string>
                                                     </dictionary>
                                                 </binding>
-                                                <binding destination="OrA-WX-oLI" name="value" keyPath="selection.showsInvisibleCharacters" id="BT8-89-bmE"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Gutter" id="1j2-3I-GS6">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
+                                                <binding destination="OrA-WX-oLI" name="value" keyPath="selection.showsGutter" id="Nh8-iF-hFm"/>
                                                 <binding destination="236" name="enabled" keyPath="sharedDocumentController.currentDocument" id="EvU-5v-csU">
                                                     <dictionary key="options">
                                                         <string key="NSValueTransformerName">NSIsNotNil</string>
                                                     </dictionary>
                                                 </binding>
-                                                <binding destination="OrA-WX-oLI" name="value" keyPath="selection.showsGutter" id="Nh8-iF-hFm"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Syntax Highlighting" id="xa7-Zj-BT2">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="toggleSourcePaneShowsSyntaxHighlighting:" target="-1" id="J0s-On-X84"/>
+                                                <binding destination="OrA-WX-oLI" name="value" keyPath="selection.syntaxColoured" id="2Zl-Ws-Elh"/>
                                                 <binding destination="236" name="enabled" keyPath="sharedDocumentController.currentDocument" id="kut-Sy-qgX">
                                                     <dictionary key="options">
                                                         <string key="NSValueTransformerName">NSIsNotNil</string>
                                                     </dictionary>
                                                 </binding>
-                                                <binding destination="OrA-WX-oLI" name="value" keyPath="selection.syntaxColoured" id="2Zl-Ws-Elh"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Vertical Source Code" id="ryP-vf-ZZn">

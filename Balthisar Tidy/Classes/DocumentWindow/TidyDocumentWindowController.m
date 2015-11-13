@@ -380,7 +380,7 @@
 		[menuItem setState:self.sourcePanelIsVertical];
 		return !self.firstRunHelper.isVisible; // don't allow when helper open.
 	}
-	
+
 	return NO;
 }
 

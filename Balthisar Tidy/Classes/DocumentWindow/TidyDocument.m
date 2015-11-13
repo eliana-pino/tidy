@@ -212,6 +212,44 @@
 }
 
 
+/*———————————————————————————————————————————————————————————————————*
+  - exportRTF:
+ *———————————————————————————————————————————————————————————————————*/
+- (IBAction)exportRTF:(id)sender
+{
+#ifdef FEATURE_EXPORTS_RTF
+	NSSavePanel *savePanel = [NSSavePanel savePanel];
+
+	[savePanel setNameFieldStringValue:[NSString stringWithFormat:@"%@", self.displayName]];
+	[savePanel setAllowedFileTypes:@[@"rtf"]];
+	[savePanel setAllowsOtherFileTypes:NO];
+	[savePanel setNameFieldLabel:NSLocalizedString(@"ExportAs", nil)];
+	[savePanel setPrompt:NSLocalizedString(@"Export", nil)];
+	[savePanel setMessage:NSLocalizedString(@"ExportMessage", nil)];
+	[savePanel setShowsHiddenFiles:YES];
+	[savePanel setExtensionHidden:NO];
+	[savePanel setCanSelectHiddenExtension: NO];
+
+	[savePanel beginSheetModalForWindow:self.windowForSheet completionHandler:^(NSInteger result) {
+		if (result == NSFileHandlingPanelOKButton)
+		{
+			[savePanel orderOut:self];
+
+			TidyDocumentSourceViewController *sourceViewController = self.windowController.sourceController;
+
+			NSAttributedString *outString = sourceViewController.tidyTextView.attributedStringWithTemporaryAttributesApplied;
+
+			NSData *outData = [outString dataFromRange:NSMakeRange(0, outString.length)
+									documentAttributes:@{NSDocumentTypeDocumentAttribute:NSRTFTextDocumentType}
+												 error:NULL];
+
+			[outData writeToURL:savePanel.URL options:NSDataWritingAtomic error:NULL];
+		}
+	}];
+#endif
+}
+
+
 #pragma mark - Printing Support
 
 

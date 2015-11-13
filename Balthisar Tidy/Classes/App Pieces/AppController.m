@@ -44,6 +44,9 @@
 /* Exposes conditional define FEATURE_EXPORTS_CONFIG for binding. */
 @property (nonatomic, assign, readonly) BOOL featureExportsConfig;
 
+/* Exposes conditional define FEATURE_EXPORTS_RTF for binding. */
+@property (nonatomic, assign, readonly) BOOL featureExportsRTF;
+
 /* Exposes conditional define FEATURE_SUPPORTS_SXS_DIFFS for binding. */
 @property (nonatomic, assign, readonly) BOOL featureSyncedDiffs;
 
@@ -275,6 +278,19 @@
 - (BOOL)featureExportsConfig
 {
 #ifdef FEATURE_EXPORTS_CONFIG
+	return YES;
+#else
+	return NO;
+#endif
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+  @property featureExportsRTF
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (BOOL)featureExportsRTF
+{
+#ifdef FEATURE_EXPORTS_RTF
 	return YES;
 #else
 	return NO;
