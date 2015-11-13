@@ -1,10 +1,10 @@
 /* File Saving */
 
 "WarnSaveDisabled"			= "You must use “Save As…” to save this document.";
-"WarnSaveDisabledExplain"	= "Direct saving of documents is currently disabled in Preferences in order to prevent inadvertent overwriting of original documents. After you’ve done a “Save As…,” this warning will no longer appear, since it will no longer apply.";
+"WarnSaveDisabledExplain"	= "Direct saving of documents is currently disabled in Preferences in order to prevent inadvertent overwriting of original documents. After you have performed “Save As…,” this warning will no longer appear, since it will no longer apply.";
 
 "WarnSaveOverwrite"			= "The original document will be replaced with the Tidy’d document.";
-"WarnSaveOverwriteExplain"	= "You are seeing this message because you’ve set the option in Preferences. Once you’ve saved or saved-as one time, though, this warning will no longer appear, since it will no longer apply.";
+"WarnSaveOverwriteExplain"	= "You are seeing this message because you’ve set the option in Preferences. Once you have performed “Save” or “Save As…” one time, this warning will no longer appear, since it will no longer apply.";
 
 "continue save"	= "Save";
 "do not save"	= "Don’t Save";
