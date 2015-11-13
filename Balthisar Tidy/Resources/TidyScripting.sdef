@@ -72,6 +72,14 @@
 				<cocoa key="indexOfVisiblePrefsWindowPanel"/>
 			</property>
 
+			<property name="identifierOfVisiblePrefsWindowPanel" code="JDpd" description="Indicates which preferences panel is shown." type="text" access="r">
+				<cocoa key="identifierOfVisiblePrefsWindowPanel"/>
+			</property>
+
+			<property name="titleOfVisiblePrefsWindowPanel" code="JDpt" description="Indicates which preferences panel is shown." type="text" access="r">
+				<cocoa key="titleOfVisiblePrefsWindowPanel"/>
+			</property>
+
 			<property name="countOfPrefsWindowPanels" code="JDpc" description="Indicates the number of preferences panels." type="integer" access="r">
 				<cocoa key="countOfPrefsWindowPanels"/>
 			</property>

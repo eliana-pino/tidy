@@ -62,6 +62,41 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+  @property identifierOfVisiblePrefsWindowPanel
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (NSString *)identifierOfVisiblePrefsWindowPanel
+{
+	BOOL isWindowVisible = [[[PreferenceController sharedPreferences] window ] isVisible];
+	if (isWindowVisible)
+	{
+		return [[[PreferenceController sharedPreferences] selectedViewController] identifier];
+	}
+	else
+	{
+		return nil;
+	}
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+  @property titleOfVisiblePrefsWindowPanel
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (NSString *)titleOfVisiblePrefsWindowPanel
+{
+	PreferenceController *controller = [PreferenceController sharedPreferences];
+
+	if (controller.window.visible)
+	{
+		return [controller.window title];
+	}
+	else
+	{
+		return nil;
+	}
+}
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
   @property countOfPrefsWindowPanels
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSInteger)countOfPrefsWindowPanels

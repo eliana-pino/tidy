@@ -26,18 +26,34 @@
 /**
  *  Handles AppleScript `countOfPrefsWindowPanels` property.
  *
- *  @returns Returns 0 if the window isn't visible, or else a 1-based
- *  index of the currently-visible panel.
+ *  @returns Returns the number of preferences panels, which is useful
+ *  when we don't know how many we have, such as nosparkle builds.
  */
 @property (nonatomic, assign, readonly) NSInteger countOfPrefsWindowPanels;
 
 /**
  *  Handles AppleScript `indexOfVisiblePrefsWindowPanel` property.
  *
- *  @returns Returns the number of preferences panels, which is useful
- *  when we don't know how many we have, such as nosparkle builds.
+ *  @returns Returns 0 if the window isn't visible, or else a 1-based
+ *  index of the currently-visible panel.
  */
 @property (nonatomic, assign) NSInteger indexOfVisiblePrefsWindowPanel;
+
+/**
+ *  Handles AppleScript `identifierOfVisiblePrefsWindowPanel` property.
+ *
+ *  @returns Returns the identifier of the currently visible preferences
+ *  window, or nill if the window isn't open.
+ */
+@property (nonatomic, assign, readonly) NSString *identifierOfVisiblePrefsWindowPanel;
+
+/**
+ *  Handles AppleScript `titleOfVisiblePrefsWindowPanel` property.
+ *
+ *  @returns Returns the title of the currently visible preferences
+ *  window, or nill if the window isn't open.
+ */
+@property (nonatomic, assign, readonly) NSString *titleOfVisiblePrefsWindowPanel;
 
 /**
  *  Handles AppleScript `saveAsDestination` property.
