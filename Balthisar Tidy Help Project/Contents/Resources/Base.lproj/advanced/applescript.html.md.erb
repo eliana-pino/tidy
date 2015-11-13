@@ -24,7 +24,7 @@ target:
 <%= current_page.data.title %>
 ==============================
 
-_Balthisar Tidy_’s support for AppleScript empowers you to put the power of
+_<%= product_name %>_’s support for AppleScript empowers you to put the power of
 automation to work for you. Here are just a few ideas of the things you can
 do:
 
@@ -37,16 +37,16 @@ do:
  - Use Mac OS X’ **Folder Actions** to Tidy a file every time you save or copy
    it into the folders of your choice.
 
-To get started, simply look at _Balthisar Tidy_’s AppleScript dictionary in the
-AppleScript editor of your choice.
+To get started, simply look at _<%= product_name %>_’s AppleScript dictionary in
+the AppleScript editor of your choice.
 
 
 The Standard Suite
 ------------------
 
-_Balthisar Tidy_ supports the entire Standard Suite. Please consult Apples’s
-AppleScript documentation (see the sidebar for links) for a description of all
-of these features.
+_<%= product_name %>_ supports the entire Standard Suite. Please consult
+Apple’s AppleScript documentation (see the sidebar for links) for a description
+of all of these features.
 
 
 The Document Suite
@@ -69,16 +69,16 @@ workflow.
 Developer Scripting Suite
 -------------------------
 
-The developer suite is primarily useful to the developers of _Balthisar Tidy_,
-but can offer some utility to you if also used with UI Scripting. In addition,
-because of application sandboxing, there is one critical property available in
-the developer suite that will be useful if you want to perform the equivalent
-of **Save As…** using AppleScript.
+The developer suite is primarily useful to the developers of
+_<%= product_name %>_, but can offer some utility to you if also used with
+UI&nbsp;Scripting. In addition, because of application sandboxing, there is one
+critical property available in the developer suite that will be useful if you
+want to perform the equivalent of **Save As…** using AppleScript.
 
 `countOfPrefsWindowPanels`
  : This read-only property displays the number of Preferences panels that are
-   available in _Balthisar Tidy_’s [Preferences][prefs] window. Some variations of
-   _Balthisar Tidy_ have a different number of panels.
+   available in _<%= product_name %>_’s [Preferences][prefs] window. Some
+   variations of _Balthisar Tidy_ have a different number of panels.
 
 `indexOfVisiblePrefsWindowPanel`
  : This property indicates/sets the currently visible preference panel. It uses
@@ -90,18 +90,18 @@ of **Save As…** using AppleScript.
 
 `saveAsDestination`
  : Returns the POSIX path of the user-chosen directory after presenting a file
-   open dialog to the user. Because _Balthisar Tidy_ is sandboxed, the operating
-   system prevents it from saving files to paths not specifically chosen by
-   the user. Therefore instead of using AppleScript to ask the user to select
-   a destination, ask _Balthisar Tidy_ to ask the user instead. This path will
-   remain valid until the next time _Balthisar Tidy_ launches.
+   open dialog to the user. Because _<%= product_name %>_ is sandboxed, the
+   operating system prevents it from saving files to paths not specifically
+   chosen by the user. Therefore instead of using AppleScript to ask the user to
+   select a destination, ask _<%= product_name %>_ to ask the user instead. This
+   path will remain valid until the next time _<%= product_name %>_ launches.
 
 
 AppleScript UI Scripting
 ------------------------
 
-In addition to its built-in AppleScript support, _Balthisar Tidy_ also plays
-nicely with UI Scripting. See the link in the sidebar for more information
-about using UI Scripting.
+In addition to its built-in AppleScript support, _<%= product_name %>_ also
+plays nicely with UI&nbsp;Scripting. See the link in the sidebar for more information
+about using UI&nbsp;Scripting.
 
 <% end %>

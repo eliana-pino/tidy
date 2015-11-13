@@ -557,7 +557,8 @@ helpers do
     file_path = File.dirname( path )
 
     # Here's we're going to log missing images, i.e., images that
-    # were requested for for which no file was found.
+    # were requested for for which no file was found. Note that this
+    # won't detect images requested via md ![tag][reference].
     checking_path = File.join(source_dir, path)
     unless File.exist?( checking_path )
       puts_red "#{file_name} was requested but is not in the source!"
