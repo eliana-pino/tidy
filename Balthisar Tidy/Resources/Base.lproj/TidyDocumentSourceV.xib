@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6751"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="TidyDocumentSourceViewController">
@@ -30,6 +30,7 @@
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="PDw-Ba-aQD">
                                     <rect key="frame" x="8" y="144" width="236" height="16"/>
+                                    <animations/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="SOURCE HTML" id="P8m-NK-TJD">
                                         <font key="font" metaFont="cellTitle"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -38,10 +39,13 @@
                                 </textField>
                                 <imageView autoresizesSubviews="NO" horizontalHuggingPriority="5" verticalHuggingPriority="5" horizontalCompressionResistancePriority="5" verticalCompressionResistancePriority="5" translatesAutoresizingMaskIntoConstraints="NO" id="h7s-g6-Yh6">
                                     <rect key="frame" x="0.0" y="140" width="242" height="5"/>
+                                    <animations/>
                                     <imageCell key="cell" controlSize="small" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="PaneTopShadow" id="md2-zd-sEX"/>
                                 </imageView>
                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="jca-Cx-q5b" customClass="MGSFragariaView">
                                     <rect key="frame" x="0.0" y="0.0" width="242" height="144"/>
+                                    <animations/>
+                                    <accessibility description="source text" identifier="sourceTextFragariaView"/>
                                     <connections>
                                         <outlet property="textViewDelegate" destination="-2" id="6Ak-oY-lnj"/>
                                     </connections>
@@ -60,6 +64,7 @@
                                 <constraint firstItem="PDw-Ba-aQD" firstAttribute="top" secondItem="Wtd-Ct-su1" secondAttribute="top" id="qD7-UN-agb"/>
                                 <constraint firstAttribute="trailing" secondItem="jca-Cx-q5b" secondAttribute="trailing" id="wDb-wU-U8K"/>
                             </constraints>
+                            <animations/>
                         </customView>
                         <customView id="aYp-BA-fxv" userLabel="Tidy HTML">
                             <rect key="frame" x="243" y="0.0" width="257" height="160"/>
@@ -67,6 +72,7 @@
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="aE3-Zp-GCM">
                                     <rect key="frame" x="8" y="144" width="251" height="16"/>
+                                    <animations/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="TIDY HTML" id="gwD-MO-XDm">
                                         <font key="font" metaFont="cellTitle"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -75,10 +81,13 @@
                                 </textField>
                                 <imageView autoresizesSubviews="NO" horizontalHuggingPriority="5" verticalHuggingPriority="5" horizontalCompressionResistancePriority="5" verticalCompressionResistancePriority="5" translatesAutoresizingMaskIntoConstraints="NO" id="Lft-Qt-k2r">
                                     <rect key="frame" x="0.0" y="140" width="257" height="5"/>
+                                    <animations/>
                                     <imageCell key="cell" controlSize="small" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="PaneTopShadow" id="bew-Rr-FuH"/>
                                 </imageView>
                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="1zM-YS-HSc" customClass="MGSFragariaView">
                                     <rect key="frame" x="0.0" y="0.0" width="257" height="144"/>
+                                    <animations/>
+                                    <accessibility description="tidy text"/>
                                 </customView>
                             </subviews>
                             <constraints>
@@ -94,8 +103,10 @@
                                 <constraint firstItem="aE3-Zp-GCM" firstAttribute="top" secondItem="aYp-BA-fxv" secondAttribute="top" id="rok-NI-WCJ"/>
                                 <constraint firstAttribute="trailing" secondItem="aE3-Zp-GCM" secondAttribute="trailing" id="sEA-Zp-3pK"/>
                             </constraints>
+                            <animations/>
                         </customView>
                     </subviews>
+                    <animations/>
                     <holdingPriorities>
                         <real value="250"/>
                         <real value="250"/>
@@ -108,6 +119,7 @@
                 <constraint firstAttribute="trailing" secondItem="Y6t-Ex-3lq" secondAttribute="trailing" id="sMd-dp-1SB"/>
                 <constraint firstItem="Y6t-Ex-3lq" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="vwq-vI-cN5"/>
             </constraints>
+            <animations/>
         </customView>
     </objects>
     <resources>
