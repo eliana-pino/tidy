@@ -145,14 +145,7 @@
 	
 	
 	/******************************************************
-		Setup the sourceController and its view settings.
-	 ******************************************************/
-	
-	self.sourcePanelIsVertical  = [[[NSUserDefaults standardUserDefaults] objectForKey:JSDKeyShowNewDocumentSideBySide] boolValue];	
-	
-	
-	/******************************************************
-		Remaining initial document conditions.
+		Get the correct tidy options.
 	 ******************************************************/
 	
 	/* Make the local processor take the default values. This causes
@@ -161,6 +154,16 @@
 	[((TidyDocument*)self.document).tidyProcess takeOptionValuesFromDefaults:[NSUserDefaults standardUserDefaults]];
 	
 	
+	/******************************************************
+		Setup the sourceController and its view settings.
+	 ******************************************************/
+	
+	self.sourcePanelIsVertical  = [[[NSUserDefaults standardUserDefaults] objectForKey:JSDKeyShowNewDocumentSideBySide] boolValue];	
+	
+	
+	/******************************************************
+		Notifications, etc.
+	 ******************************************************/
 	/* Delay setting up notifications until now, because otherwise
 	 * all of the earlier options setup is simply going to result
 	 * in a huge cascade of notifications and updates.
@@ -189,7 +192,9 @@
 												 context:NULL];
 	
 	
-	/* Manually adjust the view sizes. For some reason automatic restoration isn't working. */
+	/******************************************************
+		Remaining manual view adjustments.
+	 ******************************************************/
 	NSRect localRect = NSRectFromString([[NSUserDefaults standardUserDefaults] objectForKey:@"NSSplitView Subview Frames UIPositionsSplitter01"][0]);
 	[self.splitterOptions setPosition:localRect.size.width ofDividerAtIndex:0];
 	
@@ -244,7 +249,7 @@
 
 	JSDTidyOption *localOption = localDocument.tidyProcess.tidyOptions[@"wrap"];
 
-	self.sourceController.pageGuidePosition = [[localOption optionValue] integerValue];
+	self.sourceController.pageGuidePosition = [[localOption optionValue] intValue];
 }
 
 #pragma mark - Event and KVO Notification Handling
