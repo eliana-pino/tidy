@@ -335,7 +335,7 @@
 {
 	if (sender == self.firstRunHelper)
 	{
-		if ([[PreferenceController sharedPreferences] documentWindowIsInScreenshotMode])
+		if (![[PreferenceController sharedPreferences] documentWindowIsInScreenshotMode])
 		{
 			[self.window setAlphaValue:1.0f];
 		}
@@ -343,7 +343,7 @@
 	
 	if (sender == self.encodingHelper)
 	{
-		if ([[PreferenceController sharedPreferences] documentWindowIsInScreenshotMode])
+		if (![[PreferenceController sharedPreferences] documentWindowIsInScreenshotMode])
 		{
 			[self.window setAlphaValue:1.0f];
 		}
