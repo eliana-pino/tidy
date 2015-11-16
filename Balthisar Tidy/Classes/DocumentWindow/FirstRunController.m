@@ -189,6 +189,13 @@
 {
 	[[NSUserDefaults standardUserDefaults] setObject:@(!self.checkboxShowAgain.state) forKey:self.preferencesKeyName];
 
+	// @TODO: add a delegate to this class so we don't have to do this here.
+	if ([[PreferenceController sharedPreferences] documentWindowIsInScreenshotMode])
+	{
+		NSView *view = self.steps[0][@"ofView"];
+		[view.window setAlphaValue:1.0f];
+	}
+
 	[self.popoverFirstRun performClose:self];
 
 	[self willChangeValueForKey:@"isVisible"];

@@ -56,6 +56,15 @@
 @property (nonatomic, assign, readonly) NSString *titleOfVisiblePrefsWindowPanel;
 
 /**
+ *  Handles AppleScript `documentWindowIsInScreenshotMode` property.
+ *
+ *  @returns Indicates whether or not document windows are in screenshot
+ *  mode or not (i.e., invisible so that popups and sheets can be
+ *  captured).
+ */
+@property (nonatomic, assign) BOOL documentWindowIsInScreenshotMode;
+
+/**
  *  Handles AppleScript `saveAsDestination` property.
  *
  *  Sandboxed applications won't let AppleScript choose destination

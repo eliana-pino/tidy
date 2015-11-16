@@ -284,9 +284,10 @@
 	if (((TidyDocument*)self.document).documentIsLoading && ![[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyIgnoreInputEncodingWhenOpening] boolValue])
 	{
 		self.encodingHelper = [[EncodingHelperController alloc] initWithNote:note fromDocument:self.document forView:self.sourceController.sourceTextView];
-#ifdef FEATURE_EMPHASIZE_HELPER
-		[self.window setAlphaValue:0.0f];
-#endif
+		if ([[PreferenceController sharedPreferences] documentWindowIsInScreenshotMode])
+		{
+			[self.window setAlphaValue:0.0f];
+		}
 		[self.encodingHelper startHelper];
 	}
 }
@@ -661,10 +662,12 @@
 	{
 		self.messagesPanelIsVisible = YES;
 	}
-#ifdef FEATURE_EMPHASIZE_HELPER
+
+	if ([[PreferenceController sharedPreferences] documentWindowIsInScreenshotMode])
+	{
 		[self.window setAlphaValue:0.0f];
-#endif
-	
+	}
+
 	[self.firstRunHelper beginFirstRunSequence];
 }
 

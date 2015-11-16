@@ -7,6 +7,7 @@
  **************************************************************************************************/
 
 #import "EncodingHelperController.h"
+#import "PreferenceController.h"
 
 
 @interface EncodingHelperController ()
@@ -113,6 +114,13 @@
 	{
 		[(NSTextView*)self.documentViewReference setEditable:YES];
 	}
+	
+	// @TODO: add a delegate to this class so we don't have to do this here.
+	if ([[PreferenceController sharedPreferences] documentWindowIsInScreenshotMode])
+	{
+		[self.view.window setAlphaValue:1.0f];
+	}
+
 
 	[self.popoverEncoding performClose:self];
 }

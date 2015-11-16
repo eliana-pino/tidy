@@ -84,6 +84,10 @@
 				<cocoa key="countOfPrefsWindowPanels"/>
 			</property>
 
+			<property name="documentWindowIsInScreenshotMode" code="JDpm" description="Indicates whether or not document windows behave in screenshot mode." type="boolean" access="rw">
+				<cocoa key="documentWindowIsInScreenshotMode"/>
+			</property>
+
 			<property name="saveAsDestination" code="JDsd" type="text" access="r" description="Indicates the location the user has provided permission to save.">
 				<cocoa key="saveAsDestination"/>
 			</property>

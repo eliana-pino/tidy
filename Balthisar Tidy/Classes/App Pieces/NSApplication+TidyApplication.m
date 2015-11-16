@@ -106,6 +106,19 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+  @property documentWindowIsInScreenshotMode
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (BOOL)documentWindowIsInScreenshotMode
+{
+	return [[PreferenceController sharedPreferences] documentWindowIsInScreenshotMode];
+}
+
+- (void)setDocumentWindowIsInScreenshotMode:(BOOL)documentWindowIsInScreenshotMode
+{
+	[[PreferenceController sharedPreferences] setDocumentWindowIsInScreenshotMode:documentWindowIsInScreenshotMode];
+}
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
   @property saveAsDestination
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSString*)saveAsDestination

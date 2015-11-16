@@ -165,8 +165,5 @@ typedef enum : NSInteger
 /* FAKE Sparkle so Pro Version can use Applescript to take screenshots. */
 //#define FEATURE_FAKE_SPARKLE
 
-/* Make the document window transparent when the encoding helper starts. */
-//#define FEATURE_EMPHASIZE_HELPER
-
 
 #endif
