@@ -174,9 +174,6 @@
 		 (self.fileWantsProtection) &&
 		 (self.fileURL.path.length > 0) )
 	{
-#ifdef FEATURE_EMPHASIZE_HELPER
-		[self.windowController.window setAlphaValue:0.0f];
-#endif
 		NSInteger i = NSRunAlertPanel(NSLocalizedString(@"WarnSaveOverwrite", nil),
 									  @"%@",
 									  NSLocalizedString(@"continue save", nil),
@@ -195,9 +192,6 @@
 	if ( ([[localDefaults valueForKey:JSDKeySavingPrefStyle] longValue] == kJSDSaveAsOnly) &&
 		(self.fileWantsProtection) )
 	{
-#ifdef FEATURE_EMPHASIZE_HELPER
-		[self.windowController.window setAlphaValue:0.0f];
-#endif
 		NSRunAlertPanel(NSLocalizedString(@"WarnSaveDisabled", nil),
 						@"%@",
 						NSLocalizedString(@"cancel", nil),
