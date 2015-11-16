@@ -264,10 +264,10 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSString*)menuQuitTitle
 {
-#ifdef TARGET_PRO
-	return NSLocalizedString(@"Quit Balthisar Tidy for Work", nil);
+#ifdef USE_STANDARD_QUIT_MENU_NAME
+    return NSLocalizedString(@"Quit Balthisar Tidy", nil);
 #else
-	return NSLocalizedString(@"Quit Balthisar Tidy", nil);
+    return NSLocalizedString(@"Quit Balthisar Tidy for Work", nil);
 #endif
 }
 

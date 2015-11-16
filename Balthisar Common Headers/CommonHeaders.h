@@ -89,47 +89,41 @@
 
 
 #if defined(TARGET_WEB)
-	#define FEATURE_ADVERTISE_PRO
-	#define FEATURE_SPARKLE
+    #define FEATURE_SPARKLE
+    #define USE_STANDARD_QUIT_MENU_NAME
+//  #define FEATURE_FAKE_SPARKLE
+    #define FEATURE_SUPPORTS_SERVICE
+    #define FEATURE_SUPPORTS_EXTENSIONS
 //	#define FEATURE_EXPORTS_CONFIG
 //	#define FEATURE_SUPPORTS_APPLESCRIPT
-	#define FEATURE_SUPPORTS_SERVICE
-	#define FEATURE_SUPPORTS_EXTENSIONS
 //	#define FEATURE_SUPPORTS_THEMES
 //  #define FEATURE_EXPORTS_RTF
-    #define APP_GROUP_PREFS @"9PN2JXXG7Y.com.balthisar.Balthisar-Tidy.prefs"
 //	#define FEATURE_SUPPORTS_SXS_DIFFS
+    #define APP_GROUP_PREFS @"9PN2JXXG7Y.com.balthisar.Balthisar-Tidy.prefs"
 #elif defined(TARGET_APP)
-	#define FEATURE_ADVERTISE_PRO
 //	#define FEATURE_SPARKLE
+    #define USE_STANDARD_QUIT_MENU_NAME
+//  #define FEATURE_FAKE_SPARKLE
+    #define FEATURE_SUPPORTS_SERVICE
+    #define FEATURE_SUPPORTS_EXTENSIONS
 //	#define FEATURE_EXPORTS_CONFIG
 //	#define FEATURE_SUPPORTS_APPLESCRIPT
-	#define FEATURE_SUPPORTS_SERVICE
-	#define FEATURE_SUPPORTS_EXTENSIONS
 //	#define FEATURE_SUPPORTS_THEMES
 //  #define FEATURE_EXPORTS_RTF
-    #define APP_GROUP_PREFS @"9PN2JXXG7Y.com.balthisar.Balthisar-Tidy.prefs"
 //	#define FEATURE_SUPPORTS_SXS_DIFFS
+    #define APP_GROUP_PREFS @"9PN2JXXG7Y.com.balthisar.Balthisar-Tidy.prefs"
 #elif defined(TARGET_PRO)
-//	#define FEATURE_ADVERTISE_PRO
 //	#define FEATURE_SPARKLE
+//  #define USE_STANDARD_QUIT_MENU_NAME
+//  #define FEATURE_FAKE_SPARKLE
+    #define FEATURE_SUPPORTS_SERVICE
+    #define FEATURE_SUPPORTS_EXTENSIONS
 	#define FEATURE_EXPORTS_CONFIG
 	#define FEATURE_SUPPORTS_APPLESCRIPT
-	#define FEATURE_SUPPORTS_SERVICE
-	#define FEATURE_SUPPORTS_EXTENSIONS
 	#define FEATURE_SUPPORTS_THEMES
     #define FEATURE_EXPORTS_RTF
-    #define APP_GROUP_PREFS @"9PN2JXXG7Y.com.balthisar.Balthisar-Tidy.prefs"
 	#define FEATURE_SUPPORTS_SXS_DIFFS
-#else
-//	#define FEATURE_ADVERTISE_PRO
-//	#define FEATURE_SPARKLE
-//	#define FEATURE_EXPORTS_CONFIG
-//	#define FEATURE_SUPPORTS_APPLESCRIPT
-	#define FEATURE_SUPPORTS_SERVICE
-//	#define FEATURE_SUPPORTS_EXTENSIONS
     #define APP_GROUP_PREFS @"9PN2JXXG7Y.com.balthisar.Balthisar-Tidy.prefs"
-//	#define FEATURE_SUPPORTS_SXS_DIFFS
 #endif
 
 
@@ -155,15 +149,6 @@ typedef enum : NSInteger
  *=======================================================*/
 
 #define JSDLocalizedString(key, val) [[NSBundle bundleForClass:[self class]] localizedStringForKey:(key) value:(val) table:nil]
-
-
-#pragma mark - Special Development Tasks
-/*=======================================================*
-   These defs are used for special development tasks.
- *=======================================================*/
-
-/* FAKE Sparkle so Pro Version can use Applescript to take screenshots. */
-//#define FEATURE_FAKE_SPARKLE
 
 
 #endif
