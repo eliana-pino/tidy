@@ -115,14 +115,23 @@
 		[(NSTextView*)self.documentViewReference setEditable:YES];
 	}
 	
-	// @TODO: add a delegate to this class so we don't have to do this here.
-	if ([[PreferenceController sharedPreferences] documentWindowIsInScreenshotMode])
-	{
-		[self.view.window setAlphaValue:1.0f];
-	}
-
-
+	[self auxilliaryViewWillClose];
 	[self.popoverEncoding performClose:self];
+}
+
+
+/*———————————————————————————————————————————————————————————————————*
+  - auxilliaryViewWillClose
+    Handles all possibles actions from the input-encoding
+    helper popover. The only two senders should be
+    buttonAllowChange and buttonIgnoreSuggestion.
+ *———————————————————————————————————————————————————————————————————*/
+- (void)auxilliaryViewWillClose
+{
+	if (self.delegate && [self.delegate respondsToSelector:@selector(auxilliaryViewWillClose:)])
+	{
+		[[self delegate] auxilliaryViewWillClose:self];
+	}
 }
 
 

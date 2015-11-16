@@ -1025,6 +1025,7 @@
 		D0E6AE16190C9FAC00B49779 /* HideDescriptionTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = HideDescriptionTemplate.pdf; path = "Balthisar Tidy/Resources/Images for UI/HideDescriptionTemplate.pdf"; sourceTree = SOURCE_ROOT; };
 		D0E6AE17190C9FAC00B49779 /* ShowDescriptionTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = ShowDescriptionTemplate.pdf; path = "Balthisar Tidy/Resources/Images for UI/ShowDescriptionTemplate.pdf"; sourceTree = SOURCE_ROOT; };
 		D0E6AE1F190CB34500B49779 /* PaneBottomShadow.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = PaneBottomShadow.tiff; path = "Balthisar Tidy/Resources/Images for UI/PaneBottomShadow.tiff"; sourceTree = SOURCE_ROOT; };
+		D0F398681BF9CDCB0050A9B8 /* AuxilliaryViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuxilliaryViewDelegate.h; path = DocumentWindow/AuxilliaryViewDelegate.h; sourceTree = "<group>"; };
 		D0F4A5021BDA0ADC0051327D /* JSDStringEncodingTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSDStringEncodingTools.h; path = "JSDTidyModel/Support Pieces/JSDStringEncodingTools.h"; sourceTree = "<group>"; };
 		D0F4A5031BDA0ADC0051327D /* JSDStringEncodingTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSDStringEncodingTools.m; path = "JSDTidyModel/Support Pieces/JSDStringEncodingTools.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1556,6 +1557,7 @@
 				D074B79A1942CF0300F2E6F1 /* TidyDocumentWindowController.m */,
 				D086892E194842A400BDAD72 /* TidyDocumentSourceViewController.h */,
 				D086892F194842A400BDAD72 /* TidyDocumentSourceViewController.m */,
+				D0F398681BF9CDCB0050A9B8 /* AuxilliaryViewDelegate.h */,
 				D074B7931942CF0300F2E6F1 /* EncodingHelperController.h */,
 				D074B7941942CF0300F2E6F1 /* EncodingHelperController.m */,
 				D074B7951942CF0300F2E6F1 /* FirstRunController.h */,

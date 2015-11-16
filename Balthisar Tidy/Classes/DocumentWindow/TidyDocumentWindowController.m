@@ -284,6 +284,8 @@
 	if (((TidyDocument*)self.document).documentIsLoading && ![[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyIgnoreInputEncodingWhenOpening] boolValue])
 	{
 		self.encodingHelper = [[EncodingHelperController alloc] initWithNote:note fromDocument:self.document forView:self.sourceController.sourceTextView];
+		self.encodingHelper.delegate = self;
+		
 		if ([[PreferenceController sharedPreferences] documentWindowIsInScreenshotMode])
 		{
 			[self.window setAlphaValue:0.0f];
@@ -323,6 +325,30 @@
 	}
 }
 
+
+/*———————————————————————————————————————————————————————————————————*
+  - auxilliaryViewWillClose:
+		We're here because we're the delegate of the encoding helper
+        and the first run controller, and they are about to close.
+ *———————————————————————————————————————————————————————————————————*/
+- (void)auxilliaryViewWillClose:(id)sender
+{
+	if (sender == self.firstRunHelper)
+	{
+		if ([[PreferenceController sharedPreferences] documentWindowIsInScreenshotMode])
+		{
+			[self.window setAlphaValue:1.0f];
+		}
+	}
+	
+	if (sender == self.encodingHelper)
+	{
+		if ([[PreferenceController sharedPreferences] documentWindowIsInScreenshotMode])
+		{
+			[self.window setAlphaValue:1.0f];
+		}
+	}
+}
 
 #pragma mark - Split View Handling
 
@@ -652,6 +678,8 @@
 	self.firstRunHelper = [[FirstRunController alloc] initWithSteps:firstRunSteps];
 
 	self.firstRunHelper.preferencesKeyName = JSDKeyFirstRunComplete;
+	
+	self.firstRunHelper.delegate = self;
 
 	if (!self.optionsPanelIsVisible)
 	{
