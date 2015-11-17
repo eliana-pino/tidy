@@ -2,7 +2,7 @@
 ===============================
 
 by Jim Derry, <http://www.balthisar.com>  
-Copyright © 2014 by Jim Derry. All rights reserved.  
+Copyright © 2014-2015 by Jim Derry. All rights reserved.  
 See “Legal Stuff” below for license details.  
 
 
@@ -13,11 +13,10 @@ This folder contains a few sample AppleScripts for working with _Balthisar Tidy_
 They’re not intended for real-world production use, but they do describe how to
 use _Balthisar Tidy_’s AppleScript options.
 
-Each of the scripts is available in a few formats:
+Some of the scripts are available in different formats:
 
 - .app to make it work directly from Finder.
 - .scpt to make it load into your script editor first, from where it can be run.
-- .applescript as a text file you can view it e.g. in github.
 
 
 ## `Sample Dirty Document (original).html` and `Sample Dirty Document.html`
@@ -28,6 +27,7 @@ in the same folder location as the script, so it's a good idea to leave this fil
 The `_Sample Dirty Document (original).html` isn’t used by any of the scripts, but
 I leave it in this directory in case I accidentally overwrite the sample document.
 
+There are some other HTML files in the same vein.
 
 
 The Scripts
