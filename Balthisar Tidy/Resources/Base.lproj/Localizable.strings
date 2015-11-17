@@ -27,7 +27,7 @@
 	First-run helper.
 	See the TidyOption descriptions for an explanation of the RTF vs non-RTF text.
  */
-"popOverExplainWelcome"					= "*Welcome to {\\b Balthisar Tidy!}\\par This introduction is very quick and will only appear this one time. In just a few short steps, you will know how to use Balthisr Tidy.\\par Press {\\f0 Begin} to get started.";
+"popOverExplainWelcome"					= "*Welcome to {\\b Balthisar Tidy!}\\par This introduction is very quick and will only appear this one time. In just a few short steps, you will know how to use Balthisar Tidy.\\par Press {\\f0 Begin} to get started.";
 
 "popOverExplainTidyOptions"				= "*All of Tidy’s power lies in the vast array of options that you can set.\\par These settings affect how Tidy pretty-prints as well as what types of errors to correct (and how to correct them).";
 
