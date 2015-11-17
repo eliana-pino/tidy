@@ -15,6 +15,28 @@
 
 #ifdef FEATURE_SUPPORTS_APPLESCRIPT
 
+#pragma mark - Properties useful to implementors
+/** @name Properties useful to implementors */
+
+/**
+ *  Handles AppleScript `saveAsDestination` property.
+ *
+ *  Sandboxed applications won't let AppleScript choose destination
+ *  directories for Save As… operations, however the sandboxed
+ *  application _does_ have this privilege.
+ *
+ *  Upon reading this property Bathisar Tidy will ask the user to
+ *  choose a directory, giving it permission to save to the
+ *  user-chosen directory. At this point the directory is available
+ *  to Balthisar Tidy until the application quits, giving AppleScripts
+ *  the ability to tell Balthisar Tidy to save to these directories.
+ */
+@property (nonatomic, strong, readonly) NSString *saveAsDestination;
+
+
+#pragma mark - Properties useful to Balthisar Tidy developers
+/** @name Properties useful to Balthisar Tidy developers */
+
 /**
  *  Handles AppleScript `preferencesWindowIsVisible` property.
  *
@@ -64,20 +86,10 @@
  */
 @property (nonatomic, assign) BOOL documentWindowIsInScreenshotMode;
 
-/**
- *  Handles AppleScript `saveAsDestination` property.
- *
- *  Sandboxed applications won't let AppleScript choose destination
- *  directories for Save As… operations, however the sandboxed
- *  application _does_ have this privilege.
- *
- *  Upon reading this property Bathisar Tidy will ask the user to
- *  choose a directory, giving it permission to save to the
- *  user-chosen directory. At this point the directory is available
- *  to Balthisar Tidy until the application quits, giving AppleScripts
- *  the ability to tell Balthisar Tidy to save to these directories.
- */
-@property (nonatomic, strong, readonly) NSString *saveAsDestination;
+
+#pragma mark - Commands useful to Balthisar Tidy developers
+/** @name Commands useful to Balthisar Tidy developers */
+
 
 #endif
 

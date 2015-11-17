@@ -15,6 +15,38 @@
 
 #ifdef FEATURE_SUPPORTS_APPLESCRIPT
 
+
+#pragma mark - Properties useful to implementors
+
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+ @property saveAsDestination
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (NSString*)saveAsDestination
+{
+	NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+	
+	[openPanel setCanChooseDirectories:YES];
+	[openPanel setCanChooseFiles:NO];
+	[openPanel setCanCreateDirectories:YES];
+	[openPanel setAllowsMultipleSelection:NO];
+	[openPanel setTitle:NSLocalizedString(@"Select Destination", nil)];
+	[openPanel setMessage:NSLocalizedString(@"ChooseFolderMessage", nil)];
+	
+	if ([openPanel runModal] == NSFileHandlingPanelOKButton)
+	{
+		return [[openPanel URLs][0] path];
+	}
+	else
+	{
+		return @"";
+	}
+}
+
+
+#pragma mark - Properties useful to Balthisar Tidy developers
+
+
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
   @property preferencesWindowIsVisible
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
@@ -118,29 +150,9 @@
 	[[PreferenceController sharedPreferences] setDocumentWindowIsInScreenshotMode:documentWindowIsInScreenshotMode];
 }
 
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-  @property saveAsDestination
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (NSString*)saveAsDestination
-{
-    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
 
-	[openPanel setCanChooseDirectories:YES];
-	[openPanel setCanChooseFiles:NO];
-	[openPanel setCanCreateDirectories:YES];
-	[openPanel setAllowsMultipleSelection:NO];
-	[openPanel setTitle:NSLocalizedString(@"Select Destination", nil)];
-	[openPanel setMessage:NSLocalizedString(@"ChooseFolderMessage", nil)];
+#pragma mark - Commands useful to Balthisar Tidy developers
 
-	if ([openPanel runModal] == NSFileHandlingPanelOKButton)
-	{
-		return [[openPanel URLs][0] path];
-	}
-	else
-	{
-		return @"";
-	}
-}
 
 #endif
 
