@@ -3122,6 +3122,7 @@
 				TIDY_APP_BUNDLE_ID = "com.balthisar.web.free.balthisar-tidy";
 				TIDY_HELP_BOOK_FOLDER = "Balthisar Tidy (web).help";
 				TIDY_HELP_BOOK_KEY = "com.balthisar.Balthisar-Tidy.web.help";
+				TIDY_SDEF = "";
 				TIDY_UPDATE_URL = "http://localhost:4567/softwareupdates/updatecheck/tidy/index.xml";
 			};
 			name = Debug;
@@ -3154,6 +3155,7 @@
 				TIDY_APP_BUNDLE_ID = "com.balthisar.web.free.balthisar-tidy";
 				TIDY_HELP_BOOK_FOLDER = "Balthisar Tidy (web).help";
 				TIDY_HELP_BOOK_KEY = "com.balthisar.Balthisar-Tidy.web.help";
+				TIDY_SDEF = "";
 				TIDY_UPDATE_URL = "http://www.balthisar.com/softwareupdates/updatecheck/tidy/index.xml";
 			};
 			name = Release;
@@ -3433,6 +3435,7 @@
 				TIDY_APP_BUNDLE_ID = "com.balthisar.Balthisar-Tidy";
 				TIDY_HELP_BOOK_FOLDER = "Balthisar Tidy (app).help";
 				TIDY_HELP_BOOK_KEY = "com.balthisar.Balthisar-Tidy.help";
+				TIDY_SDEF = "";
 				TIDY_UPDATE_URL = "http://localhost:4567/softwareupdates/updatecheck/tidy/index.xml";
 			};
 			name = Debug;
@@ -3466,6 +3469,7 @@
 				TIDY_APP_BUNDLE_ID = "com.balthisar.Balthisar-Tidy";
 				TIDY_HELP_BOOK_FOLDER = "Balthisar Tidy (app).help";
 				TIDY_HELP_BOOK_KEY = "com.balthisar.Balthisar-Tidy.help";
+				TIDY_SDEF = "";
 				TIDY_UPDATE_URL = "http://www.balthisar.com/softwareupdates/updatecheck/tidy/index.xml";
 			};
 			name = Release;
@@ -3567,6 +3571,7 @@
 				TIDY_APP_BUNDLE_ID = "com.balthisar.Balthisar-Tidy.pro";
 				TIDY_HELP_BOOK_FOLDER = "Balthisar Tidy (pro).help";
 				TIDY_HELP_BOOK_KEY = "com.balthisar.Balthisar-Tidy.pro.help";
+				TIDY_SDEF = TidyScripting.sdef;
 				TIDY_UPDATE_URL = "http://localhost:4567/softwareupdates/updatecheck/tidy/index.xml";
 			};
 			name = Debug;
@@ -3600,6 +3605,7 @@
 				TIDY_APP_BUNDLE_ID = "com.balthisar.Balthisar-Tidy.pro";
 				TIDY_HELP_BOOK_FOLDER = "Balthisar Tidy (pro).help";
 				TIDY_HELP_BOOK_KEY = "com.balthisar.Balthisar-Tidy.pro.help";
+				TIDY_SDEF = TidyScripting.sdef;
 				TIDY_UPDATE_URL = "http://www.balthisar.com/softwareupdates/updatecheck/tidy/index.xml";
 			};
 			name = Release;

@@ -174,7 +174,7 @@
 		</dict>
 	</array>
 	<key>OSAScriptingDefinition</key>
-	<string>TidyScripting.sdef</string>
+	<string>${TIDY_SDEF}</string>
 	<key>SUAllowsAutomaticUpdates</key>
 	<false/>
 	<key>SUEnableSystemProfiling</key>
