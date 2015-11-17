@@ -142,9 +142,13 @@
 	 * make sure there are no references to it in the MainMenu nib,
 	 * and set its target-action programmatically.
 	 */
-#ifdef FEATURE_SPARKLE
+#if defined(FEATURE_SPARKLE)
 	[[self menuCheckForUpdates] setTarget:[SUUpdater sharedUpdater]];
 	[[self menuCheckForUpdates] setAction:@selector(checkForUpdates:)];
+	[[self menuCheckForUpdates] setEnabled:YES];
+#elif defined(FEATURE_FAKE_SPARKLE)
+	[[self menuCheckForUpdates] setTarget:self];
+	[[self menuCheckForUpdates] setAction:@selector(showPreferences:)];
 	[[self menuCheckForUpdates] setEnabled:YES];
 #else
 	[[self menuCheckForUpdates] setHidden:YES];

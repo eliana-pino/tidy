@@ -87,6 +87,25 @@
  *=======================================================*/
 #pragma mark - Feature Definitions
 
+/*************************************
+ * Target Macros
+ *
+ * Note that not all of these macros will include a feature on thier own;
+ * the only affect the compiled code. For example to enable AppleScript
+ * you also have to include the SDEF in the target and set the name in
+ * user-defined build settings.
+ *
+ * FEATURE_SPARKLE              Includes Sparkle into the build.
+ * USE_STANDARD_QUIT_MENU_NAME  Quit menu item name "for Work" versus not.
+ * FEATURE_FAKE_SPARKLE         Fakes Sparkle. Useful for automating screenshots.
+ * FEATURE_SUPPORTS_SERVICE     Include support for our System Services.
+ * FEATURE_SUPPORTS_EXTENSIONS  Include support for our Action Extensions.
+ * FEATURE_EXPORTS_CONFIG       Target will export tidy.cfg files.
+ * FEATURE_SUPPORTS_APPLESCRIPT Target will support AppleScript.
+ * FEATURE_SUPPORTS_THEMES      Target allows use of Color preference panel.
+ * FEATURE_EXPORTS_RTF          Target will export RTF files of Tidy'd text.
+ * FEATURE_SUPPORTS_SXS_DIFFS   Not implemented yet. Side by Side diffs.
+ */
 
 #if defined(TARGET_WEB)
     #define FEATURE_SPARKLE
