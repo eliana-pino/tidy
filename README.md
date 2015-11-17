@@ -317,9 +317,11 @@ be built automatically when needed.
   available to apps that support extensions. Each target builds identical code; the primary difference is
   related to the requirement that extension bundle identifiers must match the host application.
 
-- **Balthisar Tidy Service Helper** will build the separate application that handles Tidy as a system
+- **Balthisar Tidy Service Helper (pro)** will build the separate application that handles Tidy as a system
   service. This helper application within the main application bundle performs Tidying without the
-  need for the main _Balthisar Tidy_ application to open every time the service is invoked.
+  need for the main _Balthisar Tidy_ application to open every time the service is invoked. The *pro*
+  version of the target includes the AppleScript sdef and the build-settings to program the Info.plist
+  to use it.
 
 - **JSDTidyFramework** is used by most of the other targets. Many of the target types are restricted by
   security protocols that prohibit dynamic binding meaning that this dependency is statically linked in
