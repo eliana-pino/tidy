@@ -458,6 +458,7 @@
 		D0F398751BFB03790050A9B8 /* helper-icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = D04BC98D1A5AC714009AC43A /* helper-icon.icns */; };
 		D0F398771BFB03790050A9B8 /* JSDTidyFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D00661081A579BE700F73F85 /* JSDTidyFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D0F398801BFB05480050A9B8 /* TidyService.sdef in Resources */ = {isa = PBXBuildFile; fileRef = D0F3987F1BFB05480050A9B8 /* TidyService.sdef */; };
+		D0F398831BFB0BF60050A9B8 /* NSApplication+ServiceApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F398821BFB0BF60050A9B8 /* NSApplication+ServiceApplication.m */; };
 		D0F4A5041BDA0ADC0051327D /* JSDStringEncodingTools.h in Headers */ = {isa = PBXBuildFile; fileRef = D0F4A5021BDA0ADC0051327D /* JSDStringEncodingTools.h */; };
 		D0F4A5051BDA0ADC0051327D /* JSDStringEncodingTools.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F4A5031BDA0ADC0051327D /* JSDStringEncodingTools.m */; };
 /* End PBXBuildFile section */
@@ -1055,6 +1056,8 @@
 		D0F398681BF9CDCB0050A9B8 /* AuxilliaryViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuxilliaryViewDelegate.h; path = DocumentWindow/AuxilliaryViewDelegate.h; sourceTree = "<group>"; };
 		D0F3987B1BFB03790050A9B8 /* Balthisar Tidy Service Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Balthisar Tidy Service Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0F3987F1BFB05480050A9B8 /* TidyService.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TidyService.sdef; sourceTree = "<group>"; };
+		D0F398811BFB0BF60050A9B8 /* NSApplication+ServiceApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSApplication+ServiceApplication.h"; sourceTree = "<group>"; };
+		D0F398821BFB0BF60050A9B8 /* NSApplication+ServiceApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSApplication+ServiceApplication.m"; sourceTree = "<group>"; };
 		D0F4A5021BDA0ADC0051327D /* JSDStringEncodingTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSDStringEncodingTools.h; path = "JSDTidyModel/Support Pieces/JSDStringEncodingTools.h"; sourceTree = "<group>"; };
 		D0F4A5031BDA0ADC0051327D /* JSDStringEncodingTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSDStringEncodingTools.m; path = "JSDTidyModel/Support Pieces/JSDStringEncodingTools.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1459,6 +1462,8 @@
 			isa = PBXGroup;
 			children = (
 				D04BC96F1A5AC5CB009AC43A /* main.m */,
+				D0F398811BFB0BF60050A9B8 /* NSApplication+ServiceApplication.h */,
+				D0F398821BFB0BF60050A9B8 /* NSApplication+ServiceApplication.m */,
 				D04BC96C1A5AC5CB009AC43A /* AppDelegate.h */,
 				D04BC96D1A5AC5CB009AC43A /* AppDelegate.m */,
 				D04BC98E1A5AC7A2009AC43A /* TidyService.h */,
@@ -2741,6 +2746,7 @@
 			files = (
 				D0F3986D1BFB03790050A9B8 /* main.m in Sources */,
 				D0F3986E1BFB03790050A9B8 /* AppDelegate.m in Sources */,
+				D0F398831BFB0BF60050A9B8 /* NSApplication+ServiceApplication.m in Sources */,
 				D0F3986F1BFB03790050A9B8 /* TidyService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
