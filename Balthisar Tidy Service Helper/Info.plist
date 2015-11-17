@@ -83,5 +83,10 @@
 			</array>
 		</dict>
 	</array>
+	<key>OSAScriptingDefinition</key>
+	<string>${TIDY_SDEF}</string>
+	<key>NSAppleScriptEnabled</key>
+	<string>${JSD_APPLESCRIPT_VALUE}</string>
+
 </dict>
 </plist>

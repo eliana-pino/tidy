@@ -449,6 +449,15 @@
 		D0E6AE1B190C9FAC00B49779 /* ShowDescriptionTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE17190C9FAC00B49779 /* ShowDescriptionTemplate.pdf */; };
 		D0E6AE20190CB34500B49779 /* PaneBottomShadow.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE1F190CB34500B49779 /* PaneBottomShadow.tiff */; };
 		D0E6AE21190CB34500B49779 /* PaneBottomShadow.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0E6AE1F190CB34500B49779 /* PaneBottomShadow.tiff */; };
+		D0F3986D1BFB03790050A9B8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D04BC96F1A5AC5CB009AC43A /* main.m */; };
+		D0F3986E1BFB03790050A9B8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D04BC96D1A5AC5CB009AC43A /* AppDelegate.m */; };
+		D0F3986F1BFB03790050A9B8 /* TidyService.m in Sources */ = {isa = PBXBuildFile; fileRef = D04BC98F1A5AC7A2009AC43A /* TidyService.m */; };
+		D0F398711BFB03790050A9B8 /* JSDTidyFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D00661081A579BE700F73F85 /* JSDTidyFramework.framework */; };
+		D0F398731BFB03790050A9B8 /* HelperMainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D04BC9B71A5ACB7D009AC43A /* HelperMainMenu.xib */; };
+		D0F398741BFB03790050A9B8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D04BC9CC1A5C2A22009AC43A /* Localizable.strings */; };
+		D0F398751BFB03790050A9B8 /* helper-icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = D04BC98D1A5AC714009AC43A /* helper-icon.icns */; };
+		D0F398771BFB03790050A9B8 /* JSDTidyFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D00661081A579BE700F73F85 /* JSDTidyFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D0F398801BFB05480050A9B8 /* TidyService.sdef in Resources */ = {isa = PBXBuildFile; fileRef = D0F3987F1BFB05480050A9B8 /* TidyService.sdef */; };
 		D0F4A5041BDA0ADC0051327D /* JSDStringEncodingTools.h in Headers */ = {isa = PBXBuildFile; fileRef = D0F4A5021BDA0ADC0051327D /* JSDStringEncodingTools.h */; };
 		D0F4A5051BDA0ADC0051327D /* JSDStringEncodingTools.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F4A5031BDA0ADC0051327D /* JSDStringEncodingTools.m */; };
 /* End PBXBuildFile section */
@@ -483,13 +492,6 @@
 			remoteInfo = JSDTidyFramework;
 		};
 		D013165B1A5D871500AB1456 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D016A91E182FD80700712C60 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D04BC9671A5AC5CB009AC43A;
-			remoteInfo = "Balthisar Tidy Service Helper";
-		};
-		D013165F1A5D874A00AB1456 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D016A91E182FD80700712C60 /* Project object */;
 			proxyType = 1;
@@ -607,6 +609,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = D0C9C1471BD85FFB004C545A;
 			remoteInfo = "TidyBody Extension (pro)";
+		};
+		D0F3986B1BFB03790050A9B8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D016A91E182FD80700712C60 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D00661071A579BE700F73F85;
+			remoteInfo = JSDTidyFramework;
+		};
+		D0F3987D1BFB03BD0050A9B8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D016A91E182FD80700712C60 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D0F398691BFB03790050A9B8;
+			remoteInfo = "Balthisar Tidy Service Helper (pro)";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -772,6 +788,17 @@
 				D0C9C1541BD85FFB004C545A /* JSDTidyFramework.framework in Add Frameworks */,
 			);
 			name = "Add Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0F398761BFB03790050A9B8 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D0F398771BFB03790050A9B8 /* JSDTidyFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -1026,6 +1053,8 @@
 		D0E6AE17190C9FAC00B49779 /* ShowDescriptionTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = ShowDescriptionTemplate.pdf; path = "Balthisar Tidy/Resources/Images for UI/ShowDescriptionTemplate.pdf"; sourceTree = SOURCE_ROOT; };
 		D0E6AE1F190CB34500B49779 /* PaneBottomShadow.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = PaneBottomShadow.tiff; path = "Balthisar Tidy/Resources/Images for UI/PaneBottomShadow.tiff"; sourceTree = SOURCE_ROOT; };
 		D0F398681BF9CDCB0050A9B8 /* AuxilliaryViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuxilliaryViewDelegate.h; path = DocumentWindow/AuxilliaryViewDelegate.h; sourceTree = "<group>"; };
+		D0F3987B1BFB03790050A9B8 /* Balthisar Tidy Service Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Balthisar Tidy Service Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0F3987F1BFB05480050A9B8 /* TidyService.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TidyService.sdef; sourceTree = "<group>"; };
 		D0F4A5021BDA0ADC0051327D /* JSDStringEncodingTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSDStringEncodingTools.h; path = "JSDTidyModel/Support Pieces/JSDStringEncodingTools.h"; sourceTree = "<group>"; };
 		D0F4A5031BDA0ADC0051327D /* JSDStringEncodingTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSDStringEncodingTools.m; path = "JSDTidyModel/Support Pieces/JSDStringEncodingTools.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1139,6 +1168,14 @@
 			files = (
 				D0C9C14D1BD85FFB004C545A /* Cocoa.framework in Frameworks */,
 				D0C9C14E1BD85FFB004C545A /* JSDTidyFramework.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0F398701BFB03790050A9B8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0F398711BFB03790050A9B8 /* JSDTidyFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1263,6 +1300,7 @@
 				D0C9C1321BD85FEA004C545A /* TidyBody Extension (web).appex */,
 				D0C9C1451BD85FF4004C545A /* TidyBody Extension (app).appex */,
 				D0C9C1581BD85FFB004C545A /* TidyBody Extension (pro).appex */,
+				D0F3987B1BFB03790050A9B8 /* Balthisar Tidy Service Helper.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1425,6 +1463,7 @@
 				D04BC96D1A5AC5CB009AC43A /* AppDelegate.m */,
 				D04BC98E1A5AC7A2009AC43A /* TidyService.h */,
 				D04BC98F1A5AC7A2009AC43A /* TidyService.m */,
+				D0F3987F1BFB05480050A9B8 /* TidyService.sdef */,
 				D04BC9891A5AC6F4009AC43A /* Base.lproj */,
 				D04BC96A1A5AC5CB009AC43A /* Supporting Files */,
 			);
@@ -1955,8 +1994,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				D0F3987E1BFB03BD0050A9B8 /* PBXTargetDependency */,
 				D02DBCF41A5951B1009C84CF /* PBXTargetDependency */,
-				D01316601A5D874A00AB1456 /* PBXTargetDependency */,
 				D017A13D1A56D1E5003DDE6C /* PBXTargetDependency */,
 				D0C9C1601BD862BE004C545A /* PBXTargetDependency */,
 			);
@@ -2021,6 +2060,25 @@
 			productName = "Balthisar Tidy Extension";
 			productReference = D0C9C1581BD85FFB004C545A /* TidyBody Extension (pro).appex */;
 			productType = "com.apple.product-type.app-extension";
+		};
+		D0F398691BFB03790050A9B8 /* Balthisar Tidy Service Helper (pro) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0F398781BFB03790050A9B8 /* Build configuration list for PBXNativeTarget "Balthisar Tidy Service Helper (pro)" */;
+			buildPhases = (
+				D0F3986C1BFB03790050A9B8 /* Sources */,
+				D0F398701BFB03790050A9B8 /* Frameworks */,
+				D0F398721BFB03790050A9B8 /* Resources */,
+				D0F398761BFB03790050A9B8 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D0F3986A1BFB03790050A9B8 /* PBXTargetDependency */,
+			);
+			name = "Balthisar Tidy Service Helper (pro)";
+			productName = "Balthisar Tidy Service Helper";
+			productReference = D0F3987B1BFB03790050A9B8 /* Balthisar Tidy Service Helper.app */;
+			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
@@ -2131,6 +2189,7 @@
 				D0C9C1341BD85FF4004C545A /* TidyBody Extension (app) */,
 				D0C9C1471BD85FFB004C545A /* TidyBody Extension (pro) */,
 				D04BC9671A5AC5CB009AC43A /* Balthisar Tidy Service Helper */,
+				D0F398691BFB03790050A9B8 /* Balthisar Tidy Service Helper (pro) */,
 				D00661071A579BE700F73F85 /* JSDTidyFramework */,
 				D0A482701BCF9BD000E0646F /* libtidy-balthisar.dylib */,
 				D0F4A50A1BDA2C520051327D /* JSDTidyFramework Documentation */,
@@ -2425,6 +2484,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D0F398721BFB03790050A9B8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0F398731BFB03790050A9B8 /* HelperMainMenu.xib in Resources */,
+				D0F398741BFB03790050A9B8 /* Localizable.strings in Resources */,
+				D0F398751BFB03790050A9B8 /* helper-icon.icns in Resources */,
+				D0F398801BFB05480050A9B8 /* TidyService.sdef in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -2665,6 +2735,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D0F3986C1BFB03790050A9B8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0F3986D1BFB03790050A9B8 /* main.m in Sources */,
+				D0F3986E1BFB03790050A9B8 /* AppDelegate.m in Sources */,
+				D0F3986F1BFB03790050A9B8 /* TidyService.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -2682,11 +2762,6 @@
 			isa = PBXTargetDependency;
 			target = D04BC9671A5AC5CB009AC43A /* Balthisar Tidy Service Helper */;
 			targetProxy = D013165B1A5D871500AB1456 /* PBXContainerItemProxy */;
-		};
-		D01316601A5D874A00AB1456 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D04BC9671A5AC5CB009AC43A /* Balthisar Tidy Service Helper */;
-			targetProxy = D013165F1A5D874A00AB1456 /* PBXContainerItemProxy */;
 		};
 		D01316661A5D885F00AB1456 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2767,6 +2842,16 @@
 			isa = PBXTargetDependency;
 			target = D0C9C1471BD85FFB004C545A /* TidyBody Extension (pro) */;
 			targetProxy = D0C9C15F1BD862BE004C545A /* PBXContainerItemProxy */;
+		};
+		D0F3986A1BFB03790050A9B8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D00661071A579BE700F73F85 /* JSDTidyFramework */;
+			targetProxy = D0F3986B1BFB03790050A9B8 /* PBXContainerItemProxy */;
+		};
+		D0F3987E1BFB03BD0050A9B8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D0F398691BFB03790050A9B8 /* Balthisar Tidy Service Helper (pro) */;
+			targetProxy = D0F3987D1BFB03BD0050A9B8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -3359,19 +3444,21 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					TARGET_WEB,
+					"TARGET_PRO=0",
 					"$(inherited)",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = "Balthisar Tidy Service Helper/Info.plist";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
+				JSD_APPLESCRIPT_VALUE = NO;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.balthisar.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				TIDY_SDEF = "";
 			};
 			name = Debug;
 		};
@@ -3389,17 +3476,22 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
-				GCC_PREPROCESSOR_DEFINITIONS = TARGET_WEB;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"TARGET_PRO=0",
+					"$(inherited)",
+				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = "Balthisar Tidy Service Helper/Info.plist";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
+				JSD_APPLESCRIPT_VALUE = NO;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.balthisar.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				TIDY_SDEF = "";
 			};
 			name = Release;
 		};
@@ -3436,7 +3528,7 @@
 				TIDY_HELP_BOOK_FOLDER = "Balthisar Tidy (app).help";
 				TIDY_HELP_BOOK_KEY = "com.balthisar.Balthisar-Tidy.help";
 				TIDY_SDEF = "";
-				TIDY_UPDATE_URL = "http://localhost:4567/softwareupdates/updatecheck/tidy/index.xml";
+				TIDY_UPDATE_URL = "";
 			};
 			name = Debug;
 		};
@@ -3470,7 +3562,7 @@
 				TIDY_HELP_BOOK_FOLDER = "Balthisar Tidy (app).help";
 				TIDY_HELP_BOOK_KEY = "com.balthisar.Balthisar-Tidy.help";
 				TIDY_SDEF = "";
-				TIDY_UPDATE_URL = "http://www.balthisar.com/softwareupdates/updatecheck/tidy/index.xml";
+				TIDY_UPDATE_URL = "";
 			};
 			name = Release;
 		};
@@ -3572,7 +3664,7 @@
 				TIDY_HELP_BOOK_FOLDER = "Balthisar Tidy (pro).help";
 				TIDY_HELP_BOOK_KEY = "com.balthisar.Balthisar-Tidy.pro.help";
 				TIDY_SDEF = TidyScripting.sdef;
-				TIDY_UPDATE_URL = "http://localhost:4567/softwareupdates/updatecheck/tidy/index.xml";
+				TIDY_UPDATE_URL = "";
 			};
 			name = Debug;
 		};
@@ -3606,7 +3698,7 @@
 				TIDY_HELP_BOOK_FOLDER = "Balthisar Tidy (pro).help";
 				TIDY_HELP_BOOK_KEY = "com.balthisar.Balthisar-Tidy.pro.help";
 				TIDY_SDEF = TidyScripting.sdef;
-				TIDY_UPDATE_URL = "http://www.balthisar.com/softwareupdates/updatecheck/tidy/index.xml";
+				TIDY_UPDATE_URL = "";
 			};
 			name = Release;
 		};
@@ -3795,6 +3887,71 @@
 			};
 			name = Release;
 		};
+		D0F398791BFB03790050A9B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Service Helper/Balthisar Tidy Service Helper.entitlements";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"TARGET_PRO=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "Balthisar Tidy Service Helper/Info.plist";
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
+				JSD_APPLESCRIPT_VALUE = YES;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.balthisar.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "Balthisar Tidy Service Helper";
+				SKIP_INSTALL = YES;
+				TIDY_SDEF = TidyService.sdef;
+			};
+			name = Debug;
+		};
+		D0F3987A1BFB03790050A9B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = "Balthisar Tidy Service Helper/Balthisar Tidy Service Helper.entitlements";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"TARGET_PRO=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "Balthisar Tidy Service Helper/Info.plist";
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
+				JSD_APPLESCRIPT_VALUE = YES;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.balthisar.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "Balthisar Tidy Service Helper";
+				SKIP_INSTALL = YES;
+				TIDY_SDEF = TidyService.sdef;
+			};
+			name = Release;
+		};
 		D0F4A50C1BDA2C520051327D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3925,6 +4082,15 @@
 			buildConfigurations = (
 				D0C9C1561BD85FFB004C545A /* Debug */,
 				D0C9C1571BD85FFB004C545A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D0F398781BFB03790050A9B8 /* Build configuration list for PBXNativeTarget "Balthisar Tidy Service Helper (pro)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0F398791BFB03790050A9B8 /* Debug */,
+				D0F3987A1BFB03790050A9B8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
