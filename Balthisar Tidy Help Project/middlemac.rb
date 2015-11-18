@@ -637,15 +637,14 @@ end #helpers
         files_array << { :shortcut => shortcut, :path => path }
 
         longest_shortcut = shortcut.length if shortcut.length > longest_shortcut
-        longest_path = path.length if path.length > longest_path
 
     end
 
     files_array = files_array.sort_by { |key| [File.split(key[:path])[0], key[:path]] }
     files_array.uniq.each do |item|
+        # Just a reminder to myself that this is a format string. 
         item[:shortcut] = "%-#{longest_shortcut}.#{longest_shortcut}s" % item[:shortcut]
-        item[:path] = "%-#{longest_path}.#{longest_path}s" % item[:path]
-        out_array << "#{item[:shortcut]}  #{item[:path]}   "
+        out_array << "#{item[:shortcut]}  #{item[:path]}"
     end
 
     File.open(options.File_Markdown_Images, 'w') { |f| out_array.each { |line| f.puts(line) } }
