@@ -120,10 +120,6 @@
             <dd>This option specifies if Tidy should discard empty elements.</dd>
             <dt><code>drop-empty-paras</code></dt>
             <dd>This option specifies if Tidy should discard empty paragraphs.</dd>
-            <dt><code>drop-font-tags</code></dt>
-            <dd>This option specifies if Tidy should discard <code>&lt;font&gt;</code> and <code>&lt;center&gt;</code>
-          tags without creating the corresponding style rules. This option can be set
-          independently of the <code>clean</code> option.</dd>
             <dt><code>drop-proprietary-attributes</code></dt>
             <dd>This option specifies if Tidy should strip out proprietary attributes, such as
           Microsoft data binding attributes.</dd>
@@ -393,6 +389,9 @@
           
               <p>This option has no effect if XML output is requested.</p>
             </dd>
+            <dt><code>skip-quotes</code></dt>
+            <dt><code>skip-nested</code></dt>
+            <dd>@TODO</dd>
             <dt><code>sort-attribute</code></dt>
             <dd>This option specifies that tidy should sort attributes within an element using
           the specified sort algorithm. If set to <strong>alpha</strong> the algorithm is an
