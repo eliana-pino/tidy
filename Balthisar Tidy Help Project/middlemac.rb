@@ -35,17 +35,6 @@ require 'yaml'
 
 
 #---------------------------------------------------------------
-# ANSI terminal codes for use in documentation strings.
-#---------------------------------------------------------------
-A_BLUE      = "\033[34m"
-A_CYAN      = "\033[36m"
-A_GREEN     = "\033[32m"
-A_RED       = "\033[31m"
-A_RESET     = "\033[0m"
-A_UNDERLINE = "\033[4m"
-
-
-#---------------------------------------------------------------
 # Output in color and abstract standard out.
 #---------------------------------------------------------------
 def puts_blue(string)
@@ -70,22 +59,22 @@ end
 #---------------------------------------------------------------
 def documentation(targets_array)
 <<-HEREDOC
-#{A_CYAN}This tool generates a complete Apple Help Book using Middleman as
+This tool generates a complete Apple Help Book using Middleman as
 a static generator, and supports multiple build targets. It is
 necessary to specify one or more build targets.
 
-  #{A_UNDERLINE}Use:#{A_RESET}#{A_CYAN}
+  Use:
 #{targets_array.sort.collect { |item| "    middlemac #{item}"}.join("\n")}
     middlemac all
 
 Also, any combination of #{targets_array.join(', ')} or all can be used to build
 multiple targets at the same time.
 
-  #{A_UNDERLINE}Switches:#{A_RESET}#{A_CYAN}
+  Switches:
     -v, --verbose    Executes Middleman in verbose mode for each build target.
     -q, --quiet      Silences Middleman output, even if --verbose is specified.
     -s, --server     Runs Middleman in server mode. Server target is undefined if more than one or all is specified!
-    -h, --help       Displays this help and doesn’t process files or run server.#{A_RESET}
+    -h, --help       Displays this help and doesn’t process files or run server.
 
 HEREDOC
 end
@@ -207,14 +196,14 @@ def initialize(app, options_hash={}, &block)
   # Ensure target exists. Value `options.Target` is supplied to middleman
   # via the HBTARGET environment variable, or the default set in config.rb.
   if options.Targets.key?(options.Target)
-    puts "\n#{A_BLUE}Using target `#{options.Target}`#{A_RESET}"
+    puts_blue "\nUsing target `#{options.Target}`"
   elsif options.Target == :improbable_value
     options.Targets.keys.each {|key| puts "#{key}"}
     exit 0
   else
-    puts "\n#{A_RED}`#{options.Target}` is not a valid target. Choose from one of:#{A_CYAN}"
+    puts_red "\n`#{options.Target}` is not a valid target. Choose from one of:"
     options.Targets.keys.each {|key| puts "\t#{key}"}
-    puts "#{A_RED}Or use nothing for the default target.#{A_RESET}"
+    puts_red "Or use nothing for the default target."
     exit 1
   end
 
@@ -572,7 +561,6 @@ helpers do
     if file_name.start_with?("all-")
       proposed_name = file_name.sub("all-", "#{target_name}-")
       checking_path = File.join(source_dir, file_path, proposed_name)
-      puts_yellow "checking_path     = #{checking_path}"
 
       if File.exist?( checking_path )
         file_name = proposed_name
@@ -588,7 +576,6 @@ helpers do
       unless params.key?(:srcset)
           proposed_name = "#{file_base}@2x#{file_extn}"
           checking_path = File.join(source_dir, file_path, proposed_name)
-          puts_yellow "checking_path @2x = #{checking_path}"
 
           if File.exist?( checking_path )
             srcset_img = File.join(file_path, "#{file_base}@2x#{file_extn} 2x")
@@ -661,10 +648,7 @@ end #helpers
         current_set.each do |item|
         
             seek_for = item[:shortcut].sub("#{target.to_s}-", "all-")
-            if files_array.any? { |hash| hash[:shortcut] == seek_for }
-   			    # puts_yellow "#{seek_for} already present."
-   			else
-   			    # puts_yellow "#{seek_for} NOT present. Will add."
+            unless files_array.any? { |hash| hash[:shortcut] == seek_for }
    			    path = item[:path].sub("#{target.to_s}-", "all-")
    			    files_array << { :shortcut => seek_for, :path => path }
    			end
@@ -754,7 +738,7 @@ end #helpers
   def build_imagecss
     return unless options.Build_Image_Width_Css
 
-    puts "#{A_CYAN}Middlemac is creating `#{options.File_Image_Width_Css}`.#{A_RESET}"
+    puts_cyan "Middlemac is creating `#{options.File_Image_Width_Css}`."
 
     out_array = []
 
@@ -788,7 +772,7 @@ end #helpers
 
     Dir.glob("#{app.source}/**/_*.{plist,strings}").each do |fileName|
 
-      puts "#{A_CYAN}Middlemac is processing plist file #{fileName}.#{A_RESET}"
+      puts_cyan "Middlemac is processing plist file #{fileName}."
 
         file = File.open(fileName)
         doc = Nokogiri.XML(file)
@@ -860,12 +844,12 @@ end #helpers
       index_dir = File.expand_path(File.join(app.build_dir, 'Resources/', 'Base.lproj/' ))
       index_dst = File.expand_path(File.join(index_dir, "#{options.CFBundleName}.helpindex"))
 
-      puts "#{A_CYAN}'#{index_dir}' #{A_BLUE}(indexing)#{A_RESET}"
-      puts "#{A_CYAN}'#{index_dst}' #{A_BLUE}(final file)#{A_RESET}"
+      puts_cyan "'…#{index_dir.split(//).last(50).join}' (indexing)"
+      puts_cyan "'…#{index_dst.split(//).last(50).join}' (final file)"
 
       `hiutil -Cf "#{index_dst}" "#{index_dir}"`
     else
-      puts "#{A_RED}NOTE: `hiutil` is not on path or not installed. No index will exist for target '#{options.Target}'.#{A_RESET}"
+      puts_red "NOTE: `hiutil` is not on path or not installed. No index will exist for target '#{options.Target}'."
     end
   end #def
 
