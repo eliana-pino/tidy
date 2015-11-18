@@ -614,12 +614,11 @@ end #helpers
 
     return unless options.Build_Markdown_Images
 
-    puts "#{A_CYAN}Middlemac is creating `#{options.File_Markdown_Images}`.#{A_RESET}"
+    puts_cyan "Middlemac is creating `#{options.File_Markdown_Images}`."
 
     files_array = []
     out_array = []
     longest_shortcut = 0
-    longest_path = 0
 
     Dir.glob("#{app.source}/Resources/**/*.{jpg,png,gif}").each do |fileName|
 
@@ -629,22 +628,50 @@ end #helpers
             base_name = File.basename( base_name, '.*' )
         end
         next if base_name.start_with?('_')
-        shortcut = "[#{base_name}]:"
+        shortcut = "#{base_name}"
 
-        # Make a fake absolute path
+        # Make a fake absolute path `/Resources/...`. Middleman will convert
+        # these to appropriate relative paths later, and this will just
+        # magically work in the helpbooks. 
         path = File::SEPARATOR + Pathname.new(fileName).relative_path_from(Pathname.new(app.source)).to_s
 
         files_array << { :shortcut => shortcut, :path => path }
 
-        longest_shortcut = shortcut.length if shortcut.length > longest_shortcut
+        # We will format the destination file nicely with spaces.
+        # +3 to account for bracketing []:
+        longest_shortcut = shortcut.length + 3 if shortcut.length + 3 > longest_shortcut
 
     end
 
-    files_array = files_array.sort_by { |key| [File.split(key[:path])[0], key[:path]] }
-    files_array.uniq.each do |item|
+    files_array = files_array.uniq.sort_by { |key| [File.split(key[:path])[0], key[:path]] }
+    
+    # Now add virtual `all-` items for target-specific items for which no `all-` exists.
+    # Middlemac will intelligently support target-specific image files, but it will
+    # never have the chance unless a markdown reference is present in this file. Of
+    # course this only applies if you're using reference notation.
+    options.Targets.keys.each do |target|
+    
+        # Build an array of all files starting with `target-`
+        current_set = files_array.select { |item| item[:shortcut].start_with?("#{target.to_s}-") }
+        
+        # For each of these items, check to see if `all-` exists.
+        current_set.each do |item|
+        
+            seek_for = item[:shortcut].sub("#{target.to_s}-", "all-")
+            if files_array.any? { |hash| hash[:shortcut] == seek_for }
+   			    # puts_yellow "#{seek_for} already present."
+   			else
+   			    # puts_yellow "#{seek_for} NOT present. Will add."
+   			    files_array << { :shortcut => seek_for, :path => '/VirtualFile' }
+   			end
+        end
+    end
+
+    # Create the actual output from the files_array.
+    files_array.each do |item|
         # Just a reminder to myself that this is a format string. 
-        item[:shortcut] = "%-#{longest_shortcut}.#{longest_shortcut}s" % item[:shortcut]
-        out_array << "#{item[:shortcut]}  #{item[:path]}"
+        shortcut_out = "%-#{longest_shortcut}.#{longest_shortcut}s" % "[#{item[:shortcut]}]:"
+        out_array << "#{shortcut_out}  #{item[:path]}"
     end
 
     File.open(options.File_Markdown_Images, 'w') { |f| out_array.each { |line| f.puts(line) } }
@@ -660,7 +687,7 @@ end #helpers
   def build_mdlinks
     return unless options.Build_Markdown_Links
 
-    puts "#{A_CYAN}Middlemac is creating `#{options.File_Markdown_Links}`.#{A_RESET}"
+    puts_cyan "Middlemac is creating `#{options.File_Markdown_Links}`."
 
     files_array = []
     out_array = []
