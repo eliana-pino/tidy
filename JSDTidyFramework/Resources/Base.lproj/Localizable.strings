@@ -57,7 +57,7 @@
 "tag-doctype"                               = "DOCTYPE Declaration";
 "tag-drop-empty-elements"                   = "Drop Empty Elements";
 "tag-drop-empty-paras"                      = "Drop Empty Paragraphs";
-"tag-drop-font-tags"                        = "Drop <font> and <center> Tags";
+"tag-drop-font-tags"                        = "--Drop <font> and <center> Tags";
 "tag-drop-proprietary-attributes"           = "Drop Proprietary Attributes";
 "tag-enclose-block-text"                    = "Enclose Block Text";
 "tag-enclose-text"                          = "Enclose Naked Text";
@@ -76,6 +76,7 @@
 "tag-indent-cdata"                          = "Indent CDATA";
 "tag-indent-spaces"                         = "Indent Number of Spaces";
 "tag-indent"                                = "Indent";
+"tag-indent-with-tabs"                      = "Indent with Tabs";
 "tag-input-encoding"                        = "input-encoding";
 "tag-input-xml"                             = "Input is XML";
 "tag-join-classes"                          = "Join Classes";
@@ -115,6 +116,8 @@
 "tag-show-errors"                           = "--show-errors";
 "tag-show-info"                             = "--show-info";
 "tag-show-warnings"                         = "--show-warnings";
+"tag-skip-nested"                           = "Skip Script-Nested Tags";
+"tag-skip-quoted"                           = "Skip Script-Nested Tags";
 "tag-slide-style"                           = "--slide-style";
 "tag-sort-attributes"                       = "Sort Attributes";
 "tag-split"                                 = "--split";
