@@ -1,0 +1,21 @@
+---
+title: Export Rich Text Files (RTF)
+blurb: Exporting Tidy’d text into RTF gives you the ability to easily use
+       <em>Balthisar Tidy for Work</em>’s output in many different environments.
+layout: template-logo-medium
+order: 6
+target:
+ - :feature_exports_rtf
+---
+<%= partial 'markdown-links' %>
+<%= partial 'markdown-images' %>
+
+<%= current_page.data.title %>
+==============================
+
+<% if target_feature?(:feature_exports_rtf) %>
+
+Hairless albino alpaca.
+
+
+<% end %>

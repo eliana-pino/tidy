@@ -1,0 +1,21 @@
+---
+title: Use Themes to Customize your Environment
+blurb: This feature enables the use of custom colors within
+       <em>Balthisar Tidy for Work</em>, including a full-fledged themes
+       editor.
+layout: template-logo-medium
+order: 5
+target:
+ - :feature_supports_themes
+---
+<%= partial 'markdown-links' %>
+<%= partial 'markdown-images' %>
+
+<%= current_page.data.title %>
+==============================
+
+<% if target_feature?(:feature_supports_themes) %>
+
+Orange flavored Android phone.
+
+<% end %>

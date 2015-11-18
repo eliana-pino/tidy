@@ -131,12 +131,6 @@ options.
 : This option specifies if Tidy should discard empty paragraphs.
 
 
-`drop-font-tags`
-: This option specifies if Tidy should discard `<font>` and `<center>`
-  tags without creating the corresponding style rules. This option can be set
-  independently of the `clean` option.
-
-
 `drop-proprietary-attributes`
 : This option specifies if Tidy should strip out proprietary attributes, such as
   Microsoft data binding attributes.
@@ -474,6 +468,9 @@ options.
 
   This option has no effect if XML output is requested.
 
+`skip-quotes`
+`skip-nested`
+: @TODO
 
 `sort-attribute`
 : This option specifies that tidy should sort attributes within an element using

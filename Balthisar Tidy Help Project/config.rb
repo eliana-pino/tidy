@@ -75,12 +75,14 @@ activate :Middlemac do |options|
                           :feature_advertise_pro        => true,
                           :feature_sparkle              => true,
                           :feature_exports_config       => false,
+                          :feature_exports_rtf          => false,
                           :feature_supports_applescript => false,
                           :feature_supports_diffs       => false, # eventually.
                           :feature_supports_preview     => false, # eventually.
                           :feature_supports_extensions  => true,
                           :feature_supports_service     => true,
                           :feature_supports_SxS_diffs   => false,
+                          :feature_supports_themes      => false,
                           :feature_supports_validation  => false,
                       }
               },
@@ -96,12 +98,14 @@ activate :Middlemac do |options|
                           :feature_advertise_pro        => true,
                           :feature_sparkle              => false,
                           :feature_exports_config       => false,
+                          :feature_exports_rtf          => false,
                           :feature_supports_applescript => false,
                           :feature_supports_diffs       => false, # eventually.
                           :feature_supports_preview     => false, # eventually.
                           :feature_supports_extensions  => true,
                           :feature_supports_service     => true,
                           :feature_supports_SxS_diffs   => false,
+                          :feature_supports_themes      => false,
                           :feature_supports_validation  => false,
                       }
               },
@@ -117,12 +121,14 @@ activate :Middlemac do |options|
                           :feature_advertise_pro        => false,
                           :feature_sparkle              => false,
                           :feature_exports_config       => true,
+                          :feature_exports_rtf          => true,
                           :feature_supports_applescript => true,
                           :feature_supports_diffs       => false, # eventually.
                           :feature_supports_preview     => false, # eventually.
                           :feature_supports_extensions  => true,
                           :feature_supports_service     => true,
                           :feature_supports_SxS_diffs   => false, # eventually.
+                          :feature_supports_themes      => true,
                           :feature_supports_validation  => false, # eventually.
                       }
               },

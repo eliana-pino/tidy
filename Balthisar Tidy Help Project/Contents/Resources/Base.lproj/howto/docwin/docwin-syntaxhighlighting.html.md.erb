@@ -1,0 +1,58 @@
+---
+title: Work with Syntax Highlighting
+blurb: Learn how syntax highlighting can make it even easier to work with
+       <em>Balthisar Tidy</em>.
+layout: template-logo-medium
+order: 14
+---
+<%= partial 'markdown-links' %>
+<%= partial 'markdown-images' %>
+
+<%= current_page.data.title %>
+==============================
+
+_<%= product_name %>_ has a very configurable display. To toggle syntax
+highlighting on and off, follow the steps below.
+
+<div class="steps" markdown="1">
+
+1. Select **Syntax Highlighting** from the **Source Code** submenu of the
+   **View** menu.
+   ![view menu][all-menu-view-sourcecode]
+
+2. You can also easily toggle the orientation using the **Highlight** button
+   on the document window’s toolbar.
+   ![view menu][all-docpart-toolbar]
+
+</div>
+
+Discussion
+==========
+
+What is syntax highlighting?
+----------------------------
+Syntax highlighting makes it much easier to understand the source code that you
+are editing as well as the Tidy’d code that _<%= product_name %>_ produces.
+
+It works by identifying the different parts of the source and Tidy’d documents
+and coloring them by their function.
+
+Is syntax highlighting part of HTML Tidy now?
+---------------------------------------------
+No, it’s a function provided exclusively by _<%= product_name %>_ to help you
+work better.
+
+How can I change the colors used for highlighting?
+--------------------------------------------------
+<% if target_feature?(:feature_supports_themes) %>
+Preferences.
+<% else %>
+Buy Pro version.
+<% end %>
+
+<% if target_feature?(:feature_supports_themes) %>
+Can I export the syntax colored text to a document for my boss?
+---------------------------------------------------------------
+Yup.
+<% end %>
+
