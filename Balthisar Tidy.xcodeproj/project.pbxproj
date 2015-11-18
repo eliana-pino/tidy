@@ -256,6 +256,7 @@
 		D09ED14E1BD757C3002AED94 /* messagesInfo.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D09ED1471BD757C3002AED94 /* messagesInfo.pdf */; };
 		D09ED14F1BD757C3002AED94 /* messagesPanic.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D09ED1481BD757C3002AED94 /* messagesPanic.pdf */; };
 		D09ED1501BD757C3002AED94 /* messagesWarning.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D09ED1491BD757C3002AED94 /* messagesWarning.pdf */; };
+		D0A143CC1BFCC2580006C533 /* AppleScriptsforTidy.dmg in Resources */ = {isa = PBXBuildFile; fileRef = D0A143CA1BFCC2500006C533 /* AppleScriptsforTidy.dmg */; };
 		D0A2E1F8197548D20015F667 /* ToolbarAdvanced.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0A2E1F6197548D20015F667 /* ToolbarAdvanced.tiff */; };
 		D0A2E1F9197548D20015F667 /* ToolbarAdvanced.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0A2E1F6197548D20015F667 /* ToolbarAdvanced.tiff */; };
 		D0A2E1FA197548D20015F667 /* ToolbarAdvanced.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D0A2E1F6197548D20015F667 /* ToolbarAdvanced.tiff */; };
@@ -1002,6 +1003,7 @@
 		D09ED1471BD757C3002AED94 /* messagesInfo.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = messagesInfo.pdf; path = Resources/common/messagesInfo.pdf; sourceTree = "<group>"; };
 		D09ED1481BD757C3002AED94 /* messagesPanic.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = messagesPanic.pdf; path = Resources/common/messagesPanic.pdf; sourceTree = "<group>"; };
 		D09ED1491BD757C3002AED94 /* messagesWarning.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = messagesWarning.pdf; path = Resources/common/messagesWarning.pdf; sourceTree = "<group>"; };
+		D0A143CA1BFCC2500006C533 /* AppleScriptsforTidy.dmg */ = {isa = PBXFileReference; lastKnownFileType = file; path = AppleScriptsforTidy.dmg; sourceTree = "<group>"; };
 		D0A2E1F6197548D20015F667 /* ToolbarAdvanced.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = ToolbarAdvanced.tiff; path = "Images for Toolbar/ToolbarAdvanced.tiff"; sourceTree = "<group>"; };
 		D0A2E1F7197548D20015F667 /* ToolbarInfo.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = ToolbarInfo.tiff; path = "Images for Toolbar/ToolbarInfo.tiff"; sourceTree = "<group>"; };
 		D0A4826E1BCF8E2900E0646F /* tidybuffio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tidybuffio.h; sourceTree = "<group>"; };
@@ -1641,6 +1643,7 @@
 		D08A7C9118D442AD00341DCB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D0A143CA1BFCC2500006C533 /* AppleScriptsforTidy.dmg */,
 				D04E8FAE195D964F00D1CEDC /* Balthisar Tidy (web).help */,
 				D04E8FAC195D964F00D1CEDC /* Balthisar Tidy (app).help */,
 				D04E8FAD195D964F00D1CEDC /* Balthisar Tidy (pro).help */,
@@ -2398,6 +2401,7 @@
 			files = (
 				D025BD60195856C1006D7356 /* Acknowledgments.rtf in Resources */,
 				D0BB67F3193C820A007A3EB0 /* Application.icns in Resources */,
+				D0A143CC1BFCC2580006C533 /* AppleScriptsforTidy.dmg in Resources */,
 				D0097B0B19712F68001CCF94 /* Balthisar Tidy (pro).help in Resources */,
 				D0B9F0F319585010008864D6 /* DCOAboutWindow.xib in Resources */,
 				D04E8FBC195DAA9500D1CEDC /* DiffsTemplate.png in Resources */,
