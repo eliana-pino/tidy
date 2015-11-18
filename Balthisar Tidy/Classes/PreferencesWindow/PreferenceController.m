@@ -159,7 +159,7 @@
 						   @"output-bom",                   // Balthisar Tidy handles this directly.
 						   @"output-file",                  // Balthisar Tidy handles this directly.
 						   @"quiet",                        // Balthisar Tidy handles this directly.
-						   @"show-errors",                   // Balthisar Tidy handles this directly.
+						   @"show-errors",                  // Balthisar Tidy handles this directly.
 						   @"show-info",                    // Balthisar Tidy handles this directly.
 						   @"show-warnings",                // Balthisar Tidy handles this directly.
 						   @"slide-style",                  // marked as `obsolete` in libtidy source code.
