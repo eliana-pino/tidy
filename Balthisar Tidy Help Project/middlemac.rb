@@ -572,10 +572,12 @@ helpers do
     if file_name.start_with?("all-")
       proposed_name = file_name.sub("all-", "#{target_name}-")
       checking_path = File.join(source_dir, file_path, proposed_name)
+      puts_yellow "checking_path     = #{checking_path}"
 
       if File.exist?( checking_path )
         file_name = proposed_name
         file_base = File.basename( file_name, '.*' )
+        path = file_name
       end
     end
 
@@ -586,6 +588,7 @@ helpers do
       unless params.key?(:srcset)
           proposed_name = "#{file_base}@2x#{file_extn}"
           checking_path = File.join(source_dir, file_path, proposed_name)
+          puts_yellow "checking_path @2x = #{checking_path}"
 
           if File.exist?( checking_path )
             srcset_img = File.join(file_path, "#{file_base}@2x#{file_extn} 2x")
@@ -662,7 +665,8 @@ end #helpers
    			    # puts_yellow "#{seek_for} already present."
    			else
    			    # puts_yellow "#{seek_for} NOT present. Will add."
-   			    files_array << { :shortcut => seek_for, :path => '/VirtualFile' }
+   			    path = item[:path].sub("#{target.to_s}-", "all-")
+   			    files_array << { :shortcut => seek_for, :path => path }
    			end
         end
     end
