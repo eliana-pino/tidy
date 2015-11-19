@@ -32,6 +32,11 @@ better:
 - Some of _<%= product_name %>_’s System Services are run as background
   processes so that _<%= product_name %>_ application doesn’t have to startup
   and run every time you want to use a Service.
+<% if target_feature?(:feature_supports_applescript) %>
+-  _<%= product_name %>_’s most useful AppleScript properties are delivered by
+  the background process, meaning you don't have to wait for the entire
+  application to load in order to use them.
+<% end %>
 
 Note that because Mac OS X is protecting you, if you move _<%= product_name %>_
 or rename it, then Mac OS X will ask for your confirmation again.
