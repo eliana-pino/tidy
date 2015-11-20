@@ -117,7 +117,6 @@
 "tag-show-info"                             = "--show-info";
 "tag-show-warnings"                         = "--show-warnings";
 "tag-skip-nested"                           = "Skip Script-Nested Tags";
-"tag-skip-quoted"                           = "Skip Script-Nested Tags";
 "tag-slide-style"                           = "--slide-style";
 "tag-sort-attributes"                       = "Sort Attributes";
 "tag-split"                                 = "--split";
@@ -318,7 +317,6 @@
 
 "description-show-warnings"               = "---This option specifies if Tidy should suppress warnings. This can be useful when a few errors are hidden in a flurry of warnings.";
 
-"description-skip-quotes"                 = "*This option specifies that Tidy should skip nested tags when parsing script and style data.";
 "description-skip-nested"                 = "*This option specifies that Tidy should skip nested tags when parsing script and style data.";
 
 "description-slide-style"                 = "---Currently not used. Tidy Classic only.";
