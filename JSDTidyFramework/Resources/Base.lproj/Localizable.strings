@@ -235,11 +235,11 @@
 
 "description-indent-spaces"               = "*This option specifies the number of spaces or tabs that Tidy uses to indent content when {\\f0 indent} is enabled.";
 
+"description-indent-with-tabs"            = "*This option specifies if Tidy should indent with tabs instead of spaces, assuming {\\f0 indent} is {\\f0\\b yes}. Set it to {\\f0\\b yes} to indent using tabs instead of the default spaces.\\par Use the option {\\f0 indent-spaces} to control the number of tabs output per level of indent.\\par Note {\\f0 tab-size} controls converting input tabs to spaces. Set it to zero to retain input tabs.";
+
 "description-indent"                      = "*Specifies if Tidy should indent block-level tags.\\par If set to {\\f0\\b auto} Tidy will decide whether or not to indent the content of tags such as {\\f0 <title>}, {\\f0 <h1>}-{\\f0 <h6>}, {\\f0 <li>}, {\\f0 <td>}, or {\\f0 <p>} based on the content including a block-level element.\\par Setting indent to {\\f0\\b yes} can expose layout bugs in some older browsers.\\par Use the option {\\f0 indent-spaces} to control the number of spaces or tabs output per level of indent, and {\\f0 indent-with-tabs} to specify whether spaces or tabs are used.";
 
 "description-input-encoding"              = "*This option specifies the character encoding Balthisar Tidy uses for the source file.";
-
-"description-indent-with-tabs"            = "*This option specifies if Tidy should indent with tabs instead of spaces, assuming {\\f0 indent} is {\\f0\\b yes}. Set it to {\\f0\\b yes} to indent using tabs instead of the default spaces.\\par Use the option {\\f0 indent-spaces} to control the number of tabs output per level of indent.\\par Note {\\f0 tab-size} controls converting input tabs to spaces. Set it to zero to retain input tabs.";
 
 "description-input-xml"                   = "*This option specifies if Tidy should use the XML parser rather than the error correcting HTML parser.";
 
@@ -325,7 +325,7 @@
 
 "description-split"                       = "---Currently not used. Tidy Classic only.";
 
-"description-tab-size"                    = "*This option specifies the number of columns that Tidy uses between successive tab stops. It is used to map tabs to spaces when reading the input.\\par Tidy never outputs tabs.";
+"description-tab-size"                    = "*This option specifies the number of columns that Tidy uses between successive tab stops. It is used to map tabs to spaces when reading the input.";
 
 "description-tidy-mark"                   = "*This option specifies if Tidy should add a {\\f0\\b meta} element to the document head to indicate that the document has been Tidy’d.\\par Tidy won’t add a meta element if one is already present.";
 
