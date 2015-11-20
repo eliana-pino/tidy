@@ -157,10 +157,10 @@
 	/* Linked tidy library version check. To ensure compatibility with
 	 * certain API matters in `libtidy` warn the user if the linker
 	 * connected us to an old version of `libtidy`.
-	 * - require 5.1.19 so that `indent-with-tabs `works properly.
+	 * - require 5.1.24 so that `indent-with-tabs` works properly.
 	 */
 	JSDTidyModel *localModel = [[JSDTidyModel alloc] init];
-	NSString *versionWant = @"5.1.19";
+	NSString *versionWant = LIBTIDY_V_WANT;
 	NSString *versionHave = localModel.tidyLibraryVersion;
 	
 	if (![localModel tidyLibraryVersionAtLeast:versionWant])
