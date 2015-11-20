@@ -80,12 +80,10 @@ options.
 
 
 `clean`
-: This option specifies if Tidy should strip out surplus presentational tags and
-  attributes replacing them by style rules and structural markup as
-  appropriate.
-
-  It works well on the HTML saved by Microsoft Office products.
-
+: This option specifies if Tidy should perform cleaning of some legacy 
+  presentational tags (currently `<i>`, `<b>`, `<center>` when enclosed within
+  appropriate inline tags, and `<font>`). If set to **YES** then legacy tags
+  will be replaced with CSS `<style>` tags and structural markup as appropriate.
 
 `coerce-endtags`
 : This option specifies if Tidy should coerce a start tag into an end tag in
