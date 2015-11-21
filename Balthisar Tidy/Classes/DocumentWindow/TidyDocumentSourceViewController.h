@@ -39,6 +39,13 @@
 /** Outlet for the current label above the tidy TextView. */
 @property (nonatomic, assign) IBOutlet NSTextField *tidyLabel;
 
+
+/** A reference to an NSArrayController to monitor for selection changes.
+ *  This should be set by a superior controller so that we know which NSArray
+ *  controller to monitor.
+ */
+@property (nonatomic, weak) NSArrayController *messagesArrayController;
+
 /** Specifies whether or not the views are synchronized. @TODO place holder. */
 @property (nonatomic, assign) BOOL viewsAreSynced;
 
@@ -47,15 +54,6 @@
 
 
 #pragma mark - Other
-/** @name Other */
-
-
-/** 
- *  Will go to the message-producing text in the source TextView based on
- *  the current record in the specified array controller.
- *  @param arrayController The array controller with the message data.
- */
-- (void)goToSourceErrorUsingArrayController:(NSArrayController*)arrayController;
 
 
 /**

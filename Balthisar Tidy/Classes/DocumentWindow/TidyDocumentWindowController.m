@@ -158,8 +158,9 @@
 
     [self.sourceController.view setFrame:self.sourcePane.bounds];
 
-    /* Ensure that the correct text is in the source */
     self.sourceController.sourceTextView.string = ((TidyDocument*)self.document).tidyProcess.sourceText;
+
+    self.sourceController.messagesArrayController = self.messagesController.arrayController;
 
 
     /******************************************************
@@ -191,18 +192,8 @@
 											 selector:@selector(handleTidyInputEncodingProblem:)
 												 name:tidyNotifyPossibleInputEncodingProblem
 											   object:((TidyDocument*)self.document).tidyProcess];
-	
-	/* KVO on the `arrayController` indicate that a message table row was selected.
-	 * Will use KVO on the array controller instead of a delegate method to capture changes
-	 * because the delegate doesn't catch when the table unselects all rows (meaning that
-	 * highlighted text in the sourceText stays behind). This prevents that.
-	 */
-	[self.messagesController.arrayController addObserver:self
-											  forKeyPath:@"selection"
-												 options:(NSKeyValueObservingOptionNew)
-												 context:NULL];
-	
-	
+
+
 	/******************************************************
 		Remaining manual view adjustments.
 	 ******************************************************/
@@ -302,22 +293,6 @@
 
 	/* force the event cycle so errors can be updated. */
 	((TidyDocument*)self.document).tidyProcess.sourceText = self.sourceController.sourceTextView.string;
-}
-
-
-/*———————————————————————————————————————————————————————————————————*
-  - observeValueForKeyPath:ofObject:change:context:
-		Handle KVC Notifications:
-		- error view selection changed.
- *———————————————————————————————————————————————————————————————————*/
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-	/* Handle changes to the selection of the messages table. */
-	
-	if ((object == self.messagesController.arrayController) && ([keyPath isEqualToString:@"selection"]))
-	{
-		[self.sourceController goToSourceErrorUsingArrayController:self.messagesController.arrayController];
-	}
 }
 
 

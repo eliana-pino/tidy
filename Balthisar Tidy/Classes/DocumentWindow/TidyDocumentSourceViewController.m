@@ -49,6 +49,8 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyOptionChanged object:[self.representedObject tidyProcess]];
 
 	[[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:JSDKeyAllowMacOSTextSubstitutions];
+
+    self.messagesArrayController = nil;
 }
 
 /*———————————————————————————————————————————————————————————————————*
@@ -121,8 +123,7 @@
   - textDidChange:
 	We arrived here by virtue of being the delegate of
 	`sourcetextView`. Simply update the tidyProcess sourceText,
-	and the event chain will eventually update everything
-	else.
+	and the event chain will eventually update everything else.
  *———————————————————————————————————————————————————————————————————*/
 - (void)textDidChange:(NSNotification *)aNotification
 {
@@ -143,6 +144,7 @@
 		[localDocument updateChangeCount:NSChangeDone];
 	}
 }
+
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
   - textView:doCommandBySelector:
@@ -230,6 +232,7 @@
    Handle KVO Notifications:
    - certain preferences changed.
    - the errorArray changed.
+   - the messages table selection changed.
  *———————————————————————————————————————————————————————————————————*/
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
@@ -247,7 +250,7 @@
         self.tidyTextView.showsPageGuide = ![[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyShowWrapMarginNot] boolValue];
     }
 
-	/* Handle changes from the errorArray. */
+	/* Handle changes from the errorArray so that we can setup our errors in the gutter. */
 	if ((object == ((TidyDocument*)self.representedObject).tidyProcess) && ([keyPath isEqualToString:@"errorArray"]))
 	{
 		NSArray *localErrors = ((TidyDocument*)self.representedObject).tidyProcess.errorArray;
@@ -267,6 +270,25 @@
 		
 		self.sourceTextView.syntaxErrors = highlightErrors;
 	}
+
+    /* Handle changes to the selection of the messages table. */
+    if ((object == self.messagesArrayController) && ([keyPath isEqualToString:@"selection"]))
+    {
+        NSArray *localObjects = self.messagesArrayController.arrangedObjects;
+
+        NSUInteger errorViewRow = self.messagesArrayController.selectionIndex;
+
+        if (errorViewRow < [localObjects count])
+        {
+            NSInteger row = [localObjects[errorViewRow][@"line"] intValue];
+
+            if (row > 0)
+            {
+                [self.sourceTextView goToLine:row centered:NO highlight:NO];
+            }
+        }
+    }
+
 }
 
 
@@ -291,10 +313,9 @@
 /*———————————————————————————————————————————————————————————————————*
   - handleTidyOptionChange:
 	One or more options changed in `optionController`.
-    We're interested in the value of `wrap` so we can adjust
-    our margin indicator. Note that we hit that at startup,
-    too, because the window controller sets options after we
-    are created.
+    We're interested in the value of `wrap` so we can adjust our
+    margin indicator. Note that we hit this at startup, too, because
+    the window controller sets options after we are created.
  *———————————————————————————————————————————————————————————————————*/
 - (void)handleTidyOptionChange:(NSNotification *)note
 {
@@ -311,29 +332,32 @@
 }
 
 
-#pragma mark - Other
+#pragma mark - Properties
 
 
 /*———————————————————————————————————————————————————————————————————*
-  - goToSourceErrorUsingArrayController:
-    Will go to the line containing an error when the messages
-    table selection index changes.
+  @property messagesArrayController
  *———————————————————————————————————————————————————————————————————*/
-- (void)goToSourceErrorUsingArrayController:(NSArrayController*)arrayController
+- (void)setMessagesArrayController:(NSArrayController *)messagesArrayController
 {
-	NSArray *localObjects = arrayController.arrangedObjects;
-	
-	NSUInteger errorViewRow = arrayController.selectionIndex;
+    if (_messagesArrayController)
+    {
+        [_messagesArrayController removeObserver:self forKeyPath:@"selection"];
+    }
 
-	if (errorViewRow < [localObjects count])
-	{
-		NSInteger row = [localObjects[errorViewRow][@"line"] intValue];
-		
-		if (row > 0)
-		{
-			[self.sourceTextView goToLine:row centered:NO highlight:NO];
-		}
-	}
+    if (messagesArrayController)
+    {
+        /* KVO on the `messagesArrayController` indicate that a message table row was selected.
+         * Will use KVO on the array controller instead of a delegate method to capture changes
+         * because the delegate doesn't catch when the table unselects all rows.
+         */
+        [messagesArrayController addObserver:self
+                                  forKeyPath:@"selection"
+                                     options:(NSKeyValueObservingOptionNew)
+                                     context:NULL];
+    }
+
+    _messagesArrayController = messagesArrayController;
 }
 
 
@@ -342,8 +366,6 @@
 
 /*———————————————————————————————————————————————————————————————————*
  - setupViewAppearance
-   We're here after the WindowController sets up the correct
-   sourceview in horizontal or vertical orientation.
  *———————————————————————————————————————————————————————————————————*/
 - (void)setupViewAppearance
 {
