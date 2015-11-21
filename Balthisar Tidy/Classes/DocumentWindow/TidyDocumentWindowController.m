@@ -247,8 +247,8 @@
   - handleTidyOptionChange:
 		One or more options changed in `optionController`. Copy
 		those options to our `tidyProcess`. The event chain will
-		eventually update everything else because this should
-		cause the tidyText to change.
+		eventually update everything else because this will cause
+		the tidyText to change.
  *———————————————————————————————————————————————————————————————————*/
 - (void)handleTidyOptionChange:(NSNotification *)note
 {
