@@ -27,6 +27,15 @@
  *  This is the designated initialzer for the class. Given that all of the
  *  properties are read-only, this is the only practical way to create an
  *  instance.
+ *  
+ *  The parameter types given make it uneccessary to bridge the data
+ *  provided by `libtidy`; they can be used directly.
+ *
+ *  @param level The TidyReportLevel of the message.
+ *  @param line The line in the source text where the message occurs.
+ *  @param column The column number in `line` where the message occurs.
+ *  @param message The message text.
+ *  @param arguments A va_list of arguments.
  */
 - (instancetype) initWithLevel:(TidyReportLevel)level
 						  Line:(uint)line
@@ -103,6 +112,8 @@
  *  Compares the receiver with JSDTidyMessage to determine if they
  *  are equal. They are considered equal if the line, column, and
  *  message contain the same values.
+ *  @param JSDTidyMessage An instance of JSDTidyMessage to compare
+ *  for equality.
  */
 - (BOOL)isEqualToJSDTidyMessage:(JSDTidyMessage *)JSDTidyMessage;
 
@@ -110,8 +121,10 @@
 /**
  *  A comparator that can be used for sorting messages based on
  *  location: line, column, and message (as a tie-breaker).
+ *  @param JSDTidyMessage An instance of JSDTidyMessage to be 
+ *  compared against.
  */
--(NSComparisonResult)tidyMessageLocationCompare:(JSDTidyMessage *)message;
+-(NSComparisonResult)tidyMessageLocationCompare:(JSDTidyMessage *)JSDTidyMessage;
 
 
 @end
