@@ -223,7 +223,7 @@
 
 	/* We will set the tidyProcess' source text (nil assigment is
 	 * okay). If we try this in awakeFromNib, we might receive a
-	 * notification before thenibs are all done loading, so we
+	 * notification before the nibs are all done loading, so we
 	 * will do this here.
 	 */
 	[((TidyDocument*)self.document).tidyProcess setSourceTextWithData:((TidyDocument*)self.document).documentOpenedData];
