@@ -22,16 +22,16 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES"/>
             <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
             <rect key="contentRect" x="52" y="0.0" width="800" height="512"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <value key="minSize" type="size" width="512" height="384"/>
             <view key="contentView" focusRingType="none" id="6" userLabel="Back View">
                 <rect key="frame" x="0.0" y="0.0" width="800" height="512"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <splitView identifier="IDUIPositionsSplitter01" focusRingType="none" autosaveName="UIPositionsSplitter01" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="385">
+                    <splitView identifier="IDUIPositionsSplitter01" focusRingType="none" autosaveName="UIPositionsSplitter01" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="385" userLabel="splitterOptions">
                         <rect key="frame" x="0.0" y="0.0" width="800" height="512"/>
                         <subviews>
-                            <customView focusRingType="none" id="384">
+                            <customView focusRingType="none" id="384" userLabel="optionPaneContainer">
                                 <rect key="frame" x="0.0" y="0.0" width="300" height="512"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
@@ -49,7 +49,7 @@
                                         <animations/>
                                         <imageCell key="cell" controlSize="small" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="PaneTopShadow" id="GBP-EJ-Nv5"/>
                                     </imageView>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="kOf-B8-B6Q" userLabel="OptionPaneController's View">
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="kOf-B8-B6Q" userLabel="optionPane">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="496"/>
                                         <animations/>
                                     </customView>
@@ -69,7 +69,7 @@
                                 </constraints>
                                 <animations/>
                             </customView>
-                            <splitView identifier="IDUIPositionsSplitter02" autosaveName="UIPositionsSplitter02" dividerStyle="thin" id="244">
+                            <splitView identifier="IDUIPositionsSplitter02" autosaveName="UIPositionsSplitter02" dividerStyle="thin" id="244" userLabel="splitterMessages">
                                 <rect key="frame" x="301" y="0.0" width="499" height="512"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
@@ -194,7 +194,7 @@
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
                             <connections>
-                                <binding destination="-2" name="value" keyPath="self.sourcePanelIsVertical" id="KM7-0i-suP"/>
+                                <binding destination="-2" name="value" keyPath="self.sourceController.splitterViews.vertical" id="agy-vZ-aPu"/>
                             </connections>
                         </button>
                         <connections>
@@ -412,7 +412,7 @@
             </button>
             <connections>
                 <action selector="toggleSyncronizedDiffs:" target="-2" id="HgJ-w5-XZb"/>
-                <binding destination="-2" name="enabled" keyPath="self.sourcePanelIsVertical" id="8Na-p5-9CY"/>
+                <binding destination="-2" name="enabled" keyPath="self.sourceController.splitterViews.vertical" id="RMI-Qk-2Yh"/>
             </connections>
         </toolbarItem>
         <toolbarItem implicitItemIdentifier="244560D0-3789-4DA1-89E3-1D3405BD9DF2" label="Scrolling" paletteLabel="Synchronized Scrolling" image="ScrollLockTemplate" id="nF7-hW-P1X">

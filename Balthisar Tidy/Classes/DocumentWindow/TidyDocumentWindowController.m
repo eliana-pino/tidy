@@ -119,7 +119,7 @@
 	
 	[self.optionPane addSubview:self.optionController.view];
 	
-	[self.optionController.view setFrame:self.optionPane.bounds]; //view.superview.bounds];
+	[self.optionController.view setFrame:self.optionPane.bounds];
 	
 	self.optionController.optionsInEffect = [PreferenceController optionsInEffect];
 	
@@ -158,9 +158,20 @@
 		Setup the sourceController and its view settings.
 	 ******************************************************/
 	
-	self.sourcePanelIsVertical  = [[[NSUserDefaults standardUserDefaults] objectForKey:JSDKeyShowNewDocumentSideBySide] boolValue];	
-	
-	
+    self.sourceController = [[TidyDocumentSourceViewController alloc] init];
+
+    self.sourceController.representedObject = self.document;
+
+    [self.sourcePane addSubview:self.sourceController.view];
+
+    self.sourceController.view.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+
+    [self.sourceController.view setFrame:self.sourcePane.bounds];
+
+    /* Ensure that the correct text is in the source */
+    self.sourceController.sourceTextView.string = ((TidyDocument*)self.document).tidyProcess.sourceText;
+
+
 	/******************************************************
 		Notifications, etc.
 	 ******************************************************/
@@ -238,20 +249,6 @@
 }
 
 
-/*———————————————————————————————————————————————————————————————————*
-  - setViewPageGuidePosition
-		Use our knowledge of the `wrap` option to set the page
-        guide position of the subview.
- *———————————————————————————————————————————————————————————————————*/
-- (void)setViewPageGuidePosition
-{
-	TidyDocument *localDocument = self.document;
-
-	JSDTidyOption *localOption = localDocument.tidyProcess.tidyOptions[@"wrap"];
-
-	self.sourceController.pageGuidePosition = [[localOption optionValue] intValue];
-}
-
 #pragma mark - Event and KVO Notification Handling
 
 
@@ -267,8 +264,6 @@
 	TidyDocument *localDocument = self.document;
 	
 	[localDocument.tidyProcess optionsCopyValuesFromModel:self.optionController.tidyDocument];
-
-	[self setViewPageGuidePosition];
 }
 
 
@@ -407,12 +402,6 @@
 		return !self.firstRunHelper.isVisible; // don't allow when helper open.
 	}
 	
-	if (menuItem.action == @selector(toggleSourcePanelIsVertical:))
-	{
-		[menuItem setState:self.sourcePanelIsVertical];
-		return !self.firstRunHelper.isVisible; // don't allow when helper open.
-	}
-
 	return NO;
 }
 
@@ -505,57 +494,6 @@
 }
 
 
-/*———————————————————————————————————————————————————————————————————*
-  @property sourcePanelIsVertical
- *———————————————————————————————————————————————————————————————————*/
-- (BOOL)sourcePanelIsVertical
-{
-	return self.sourceController.isVertical;
-}
-
-- (void)setSourcePanelIsVertical:(BOOL)sourcePanelIsVertical
-{
-	/* Setup (and create if necessary) the appropriate subview controller */
-
-	if (!sourcePanelIsVertical)
-	{
-		if (!self.sourceControllerHorizontal)
-		{
-			self.sourceControllerHorizontal = [[TidyDocumentSourceViewController alloc] initVertical:NO];
-			self.sourceControllerHorizontal.representedObject = self.document;
-		}
-
-		self.sourceController = self.sourceControllerHorizontal;
-	}
-	else
-	{
-		if (!self.sourceControllerVertical)
-		{
-			self.sourceControllerVertical = [[TidyDocumentSourceViewController alloc] initVertical:YES];
-			self.sourceControllerVertical.representedObject = self.document;
-		}
-
-		self.sourceController = self.sourceControllerVertical;
-	}
-
-	[self.sourcePane setSubviews:[NSArray array]];
-	[self.sourcePane addSubview:self.sourceController.view];
-
-	[self.sourceController setupViewAppearance];
-	[self setViewPageGuidePosition];
-
-
-	/* Ensure that the correct text is in the source */
-
-	self.sourceController.sourceTextView.string = ((TidyDocument*)self.document).tidyProcess.sourceText;
-
-
-	/* In case something is selected in the messages table, highlight it again. */
-	
-	[self.sourceController goToSourceErrorUsingArrayController:self.messagesController.arrayController];
-}
-
-
 #pragma mark - Menu Actions
 
 
@@ -574,15 +512,6 @@
 - (IBAction)toggleMessagesPanelIsVisible:(id)sender
 {
 	self.messagesPanelIsVisible = !self.messagesPanelIsVisible;
-}
-
-
-/*———————————————————————————————————————————————————————————————————*
-  - toggleSourcePanelIsVertical:
- *———————————————————————————————————————————————————————————————————*/
-- (IBAction)toggleSourcePanelIsVertical:(id)sender
-{
-	self.sourcePanelIsVertical = !self.sourcePanelIsVertical;
 }
 
 

@@ -117,14 +117,14 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="exportRTF:" target="-1" id="0v1-f6-4hb"/>
-                                    <binding destination="236" name="enabled" keyPath="sharedDocumentController.currentDocument" id="WKC-Bx-tqT">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSIsNotNil</string>
-                                        </dictionary>
-                                    </binding>
                                     <binding destination="236" name="hidden" keyPath="self.featureExportsRTF" previousBinding="WKC-Bx-tqT" id="qLR-tt-WUH">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="236" name="enabled" keyPath="sharedDocumentController.currentDocument" id="WKC-Bx-tqT">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
                                         </dictionary>
                                     </binding>
                                 </connections>
@@ -302,7 +302,12 @@
                                         <menuItem title="Vertical Source Code" id="ryP-vf-ZZn">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="toggleSourcePanelIsVertical:" target="-1" id="Ary-kb-vyM"/>
+                                                <binding destination="236" name="enabled" keyPath="sharedDocumentController.currentDocument" id="tEf-gM-oBE">
+                                                    <dictionary key="options">
+                                                        <string key="NSValueTransformerName">NSIsNotNil</string>
+                                                    </dictionary>
+                                                </binding>
+                                                <binding destination="236" name="value" keyPath="self.sharedDocumentController.currentDocument.windowControllers.sourceController.splitterViews.vertical" id="aw7-7o-5f8"/>
                                             </connections>
                                         </menuItem>
                                     </items>

@@ -238,12 +238,9 @@
 		D0868930194842A400BDAD72 /* TidyDocumentSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D086892F194842A400BDAD72 /* TidyDocumentSourceViewController.m */; };
 		D0868931194842A400BDAD72 /* TidyDocumentSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D086892F194842A400BDAD72 /* TidyDocumentSourceViewController.m */; };
 		D0868932194842A400BDAD72 /* TidyDocumentSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D086892F194842A400BDAD72 /* TidyDocumentSourceViewController.m */; };
-		D08689371948439700BDAD72 /* TidyDocumentSourceH.xib in Resources */ = {isa = PBXBuildFile; fileRef = D08689331948439700BDAD72 /* TidyDocumentSourceH.xib */; };
-		D08689381948439700BDAD72 /* TidyDocumentSourceH.xib in Resources */ = {isa = PBXBuildFile; fileRef = D08689331948439700BDAD72 /* TidyDocumentSourceH.xib */; };
-		D08689391948439700BDAD72 /* TidyDocumentSourceH.xib in Resources */ = {isa = PBXBuildFile; fileRef = D08689331948439700BDAD72 /* TidyDocumentSourceH.xib */; };
-		D086893A1948439700BDAD72 /* TidyDocumentSourceV.xib in Resources */ = {isa = PBXBuildFile; fileRef = D08689351948439700BDAD72 /* TidyDocumentSourceV.xib */; };
-		D086893B1948439700BDAD72 /* TidyDocumentSourceV.xib in Resources */ = {isa = PBXBuildFile; fileRef = D08689351948439700BDAD72 /* TidyDocumentSourceV.xib */; };
-		D086893C1948439700BDAD72 /* TidyDocumentSourceV.xib in Resources */ = {isa = PBXBuildFile; fileRef = D08689351948439700BDAD72 /* TidyDocumentSourceV.xib */; };
+		D08689371948439700BDAD72 /* TidyDocumentSourceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D08689331948439700BDAD72 /* TidyDocumentSourceView.xib */; };
+		D08689381948439700BDAD72 /* TidyDocumentSourceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D08689331948439700BDAD72 /* TidyDocumentSourceView.xib */; };
+		D08689391948439700BDAD72 /* TidyDocumentSourceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D08689331948439700BDAD72 /* TidyDocumentSourceView.xib */; };
 		D0913CAF18B0AC06005DB2E4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D016A935182FD80700712C60 /* main.m */; };
 		D0913CC918B0AC06005DB2E4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D016A929182FD80700712C60 /* Cocoa.framework */; };
 		D0979D8A1BE9E488002ACD04 /* SWFSemanticVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = D0979D881BE9E488002ACD04 /* SWFSemanticVersion.h */; };
@@ -991,8 +988,7 @@
 		D081CBDA1917C1510041B2C5 /* JSDIntegerValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = JSDIntegerValueTransformer.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		D086892E194842A400BDAD72 /* TidyDocumentSourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TidyDocumentSourceViewController.h; path = DocumentWindow/TidyDocumentSourceViewController.h; sourceTree = "<group>"; };
 		D086892F194842A400BDAD72 /* TidyDocumentSourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TidyDocumentSourceViewController.m; path = DocumentWindow/TidyDocumentSourceViewController.m; sourceTree = "<group>"; };
-		D08689341948439700BDAD72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TidyDocumentSourceH.xib; sourceTree = "<group>"; };
-		D08689361948439700BDAD72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TidyDocumentSourceV.xib; sourceTree = "<group>"; };
+		D08689341948439700BDAD72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TidyDocumentSourceView.xib; sourceTree = "<group>"; };
 		D0913CDE18B0AC06005DB2E4 /* Balthisar Tidy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Balthisar Tidy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0979D881BE9E488002ACD04 /* SWFSemanticVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWFSemanticVersion.h; path = JSDTidyModel/vendor/SWFSemanticVersion.h; sourceTree = "<group>"; };
 		D0979D891BE9E488002ACD04 /* SWFSemanticVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWFSemanticVersion.m; path = JSDTidyModel/vendor/SWFSemanticVersion.m; sourceTree = "<group>"; };
@@ -1550,8 +1546,7 @@
 				D036E1DA18F3D25E0009A9D4 /* FirstRunHelper.xib */,
 				D036E1E618F3D25E0009A9D4 /* TidyDocumentWindow.xib */,
 				D074B7A81944035800F2E6F1 /* TidyDocumentMessagesView.xib */,
-				D08689331948439700BDAD72 /* TidyDocumentSourceH.xib */,
-				D08689351948439700BDAD72 /* TidyDocumentSourceV.xib */,
+				D08689331948439700BDAD72 /* TidyDocumentSourceView.xib */,
 				D074B7891942BEE200F2E6F1 /* TidyEncodingHelper.xib */,
 			);
 			name = DocumentWindow;
@@ -2277,8 +2272,7 @@
 				D06046141BF0DDCA00D69673 /* FragariaColorsViewController.xib in Resources */,
 				D074B7AA1944035800F2E6F1 /* TidyDocumentMessagesView.xib in Resources */,
 				D0CDB23A1BF191B900735EE4 /* prefsColor@2x.png in Resources */,
-				D08689371948439700BDAD72 /* TidyDocumentSourceH.xib in Resources */,
-				D086893A1948439700BDAD72 /* TidyDocumentSourceV.xib in Resources */,
+				D08689371948439700BDAD72 /* TidyDocumentSourceView.xib in Resources */,
 				D0CDB25B1BF3394300735EE4 /* HighlightingTemplate.png in Resources */,
 				D036E1F618F3D25E0009A9D4 /* TidyDocumentWindow.xib in Resources */,
 				D074B78B1942BEE200F2E6F1 /* TidyEncodingHelper.xib in Resources */,
@@ -2383,8 +2377,7 @@
 				D074B7AB1944035800F2E6F1 /* TidyDocumentMessagesView.xib in Resources */,
 				D06046151BF0DDCB00D69673 /* FragariaColorsViewController.xib in Resources */,
 				D06046081BF0BFC100D69673 /* FragariaEditorViewController.xib in Resources */,
-				D08689381948439700BDAD72 /* TidyDocumentSourceH.xib in Resources */,
-				D086893B1948439700BDAD72 /* TidyDocumentSourceV.xib in Resources */,
+				D08689381948439700BDAD72 /* TidyDocumentSourceView.xib in Resources */,
 				D036E1F718F3D25E0009A9D4 /* TidyDocumentWindow.xib in Resources */,
 				D074B78C1942BEE200F2E6F1 /* TidyEncodingHelper.xib in Resources */,
 				D0A2E1F9197548D20015F667 /* ToolbarAdvanced.tiff in Resources */,
@@ -2449,9 +2442,8 @@
 				D0BB67F7193C820A007A3EB0 /* Tidy.icns in Resources */,
 				D074B7AC1944035800F2E6F1 /* TidyDocumentMessagesView.xib in Resources */,
 				D06046161BF0DDCC00D69673 /* FragariaColorsViewController.xib in Resources */,
-				D08689391948439700BDAD72 /* TidyDocumentSourceH.xib in Resources */,
+				D08689391948439700BDAD72 /* TidyDocumentSourceView.xib in Resources */,
 				D0CDB23E1BF191CC00735EE4 /* prefsColor@2x.png in Resources */,
-				D086893C1948439700BDAD72 /* TidyDocumentSourceV.xib in Resources */,
 				D0BB67F6193C820A007A3EB0 /* TidyDocumentWindow.xib in Resources */,
 				D0CDB25D1BF3394300735EE4 /* HighlightingTemplate.png in Resources */,
 				D074B78D1942BEE200F2E6F1 /* TidyEncodingHelper.xib in Resources */,
@@ -3011,20 +3003,12 @@
 			name = TidyDocumentMessagesView.xib;
 			sourceTree = "<group>";
 		};
-		D08689331948439700BDAD72 /* TidyDocumentSourceH.xib */ = {
+		D08689331948439700BDAD72 /* TidyDocumentSourceView.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				D08689341948439700BDAD72 /* Base */,
 			);
-			name = TidyDocumentSourceH.xib;
-			sourceTree = "<group>";
-		};
-		D08689351948439700BDAD72 /* TidyDocumentSourceV.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D08689361948439700BDAD72 /* Base */,
-			);
-			name = TidyDocumentSourceV.xib;
+			name = TidyDocumentSourceView.xib;
 			sourceTree = "<group>";
 		};
 		D0BF29DF1A7347580062B01A /* ActionRequestHandler.xib */ = {

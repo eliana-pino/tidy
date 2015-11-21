@@ -12,6 +12,7 @@
 #import <Fragaria/Fragaria.h>
 
 #import "JSDTidyModel.h"
+#import "JSDTidyOption.h"
 #import "TidyDocument.h"
 
 
@@ -22,29 +23,19 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
-  - initVertical:
- *———————————————————————————————————————————————————————————————————*/
-- (instancetype)initVertical:(BOOL)initVertical
-{
-	NSString *nibName = initVertical ? @"TidyDocumentSourceV" : @"TidyDocumentSourceH";
-
-	if ((self = [super initWithNibName:nibName bundle:nil]))
-	{
-		_isVertical = initVertical;
-		_viewsAreSynced = NO;
-		_viewsAreDiffed = NO;
-	}
-
-	return self;
-}
-
-
-/*———————————————————————————————————————————————————————————————————*
   - init
  *———————————————————————————————————————————————————————————————————*/
 - (instancetype)init
 {
-	return [self initVertical:NO];
+    NSString *nibName = @"TidyDocumentSourceView";
+
+    if ((self = [super initWithNibName:nibName bundle:nil]))
+    {
+        _viewsAreSynced = NO;
+        _viewsAreDiffed = NO;
+    }
+    
+    return self;
 }
 
 
@@ -54,6 +45,8 @@
 - (void)dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifySourceTextRestored object:[self.representedObject tidyProcess]];
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyOptionChanged object:[self.representedObject tidyProcess]];
 
 	[[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:JSDKeyAllowMacOSTextSubstitutions];
 }
@@ -81,10 +74,18 @@
 	/* NSNotifications from the document's sourceText, in case tidyProcess
 	 * changes the sourceText.
 	 */
-	[[NSNotificationCenter defaultCenter] addObserver:self
+    [[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(handleTidySourceTextRestored:)
 												 name:tidyNotifySourceTextRestored
 											   object:[[self representedObject] tidyProcess]];
+
+    /* NSNotifications from the `optionController` indicate that one or more options changed. 
+     * We will use this to manage the page guide position.
+     */
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleTidyOptionChange:)
+                                                 name:tidyNotifyOptionChanged
+                                               object:[self.representedObject tidyProcess]];
 
 	/* KVO on user prefs to look for Text Substitution Preference Changes */
 	[[NSUserDefaults standardUserDefaults] addObserver:self
@@ -100,6 +101,10 @@
 	
 	/* Interface Builder doesn't allow us to define custom bindings, so we have to bind the tidyTextView manually. */
 	[self.tidyTextView bind:@"string" toObject:self.representedObject withKeyPath:@"tidyProcess.tidyText" options:nil];
+
+
+    self.splitterViews.vertical = [[[NSUserDefaults standardUserDefaults] objectForKey:JSDKeyShowNewDocumentSideBySide] boolValue];
+    [self  setupViewAppearance];
 }
 
 
@@ -271,57 +276,26 @@
 }
 
 
-#pragma mark - Appearance Setup
-
-
 /*———————————————————————————————————————————————————————————————————*
-  - setupViewAppearance
-    We're here after the WindowController sets up the correct
-    sourceview in horizontal or vertical orientation.
+  - handleTidyOptionChange:
+	One or more options changed in `optionController`.
+    We're interested in the value of `wrap` so we can adjust
+    our margin indicator.
  *———————————————————————————————————————————————————————————————————*/
-- (void)setupViewAppearance
+- (void)handleTidyOptionChange:(NSNotification *)note
 {
-	/* Force the view to fill its containing view. */
-	self.view.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
-	[self.view setFrame:self.view.superview.bounds];
-	
-	/* This closure acts as a subroutine to avoid being repetitive. */
-	
-	void (^configureCommonViewSettings)(MGSFragariaView *) = ^(MGSFragariaView *aView) {
-		
-		NSUserDefaults *localDefaults = [NSUserDefaults standardUserDefaults];
-		
-		aView.syntaxDefinitionName = @"html";
-		
-		[aView.textView setAutomaticQuoteSubstitutionEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
-		[aView.textView setAutomaticTextReplacementEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
-		[aView.textView setAutomaticDashSubstitutionEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
-		[aView.textView setImportsGraphics:NO];
-		[aView.textView setAllowsImageEditing:NO];
-		[aView.textView setUsesFontPanel:NO];
-		[aView.textView setUsesInspectorBar:NO];
-		[aView.textView setUsesFindBar:NO];
-		[aView.textView setUsesFindPanel:NO];
-
-		/* The gutter and line numbers aren't being shown for some reason. */
-		
-
-	};
-	
-	configureCommonViewSettings(self.sourceTextView);
-	configureCommonViewSettings(self.tidyTextView);
-	
-	
-	/* tidyTextView special settings. */
-	
-	[self.tidyTextView.textView setAllowsUndo:NO];
-	[self.tidyTextView.textView setEditable:NO];
-	[self.tidyTextView.textView setRichText:NO];
-	[self.tidyTextView.textView setSelectable:YES];
-
-	/* sourceTextView shouldn't accept every drop type */
-	[self.sourceTextView.textView registerForDraggedTypes:@[NSFilenamesPboardType]];
+    if (note)
+    {
+        NSString *wrapValue = [note.userInfo valueForKey:@"wrap"];
+        if (wrapValue)
+        {
+            self.pageGuidePosition = [wrapValue intValue];
+        }
+    }
 }
+
+
+#pragma mark - Other
 
 
 /*———————————————————————————————————————————————————————————————————*
@@ -346,10 +320,6 @@
 	}
 }
 
-
-#pragma mark - Private Methods
-
-
 /*———————————————————————————————————————————————————————————————————*
   @property pageGuidePosition
  *———————————————————————————————————————————————————————————————————*/
@@ -363,6 +333,51 @@
 	self.tidyTextView.pageGuideColumn = pageGuidePosition;
 
 	self.tidyTextView.showsPageGuide = (pageGuidePosition > 0);
+}
+
+
+#pragma mark - Private Methods
+
+
+/*———————————————————————————————————————————————————————————————————*
+ - setupViewAppearance
+   We're here after the WindowController sets up the correct
+   sourceview in horizontal or vertical orientation.
+ *———————————————————————————————————————————————————————————————————*/
+- (void)setupViewAppearance
+{
+    /* This closure acts as a subroutine to avoid being repetitive. */
+
+    void (^configureCommonViewSettings)(MGSFragariaView *) = ^(MGSFragariaView *aView) {
+
+        NSUserDefaults *localDefaults = [NSUserDefaults standardUserDefaults];
+
+        aView.syntaxDefinitionName = @"html";
+
+        [aView.textView setAutomaticQuoteSubstitutionEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
+        [aView.textView setAutomaticTextReplacementEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
+        [aView.textView setAutomaticDashSubstitutionEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
+        [aView.textView setImportsGraphics:NO];
+        [aView.textView setAllowsImageEditing:NO];
+        [aView.textView setUsesFontPanel:NO];
+        [aView.textView setUsesInspectorBar:NO];
+        [aView.textView setUsesFindBar:NO];
+        [aView.textView setUsesFindPanel:NO];
+    };
+
+    configureCommonViewSettings(self.sourceTextView);
+    configureCommonViewSettings(self.tidyTextView);
+
+
+    /* tidyTextView special settings. */
+
+    [self.tidyTextView.textView setAllowsUndo:NO];
+    [self.tidyTextView.textView setEditable:NO];
+    [self.tidyTextView.textView setRichText:NO];
+    [self.tidyTextView.textView setSelectable:YES];
+
+    /* sourceTextView shouldn't accept every drop type */
+    [self.sourceTextView.textView registerForDraggedTypes:@[NSFilenamesPboardType]];
 }
 
 

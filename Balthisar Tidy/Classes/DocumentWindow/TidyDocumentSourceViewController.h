@@ -19,24 +19,25 @@
  */
 @interface TidyDocumentSourceViewController : NSViewController <NSTextViewDelegate, MGSDragOperationDelegate>
 
-/** Outlet for the source TextView. */
+
+#pragma mark - Properties
+/** @name Properties */
+
+
+/** Outlet for the current source TextView. */
 @property (nonatomic, assign) IBOutlet MGSFragariaView *sourceTextView;
 
-/** Outlet for the tidy TextView. */
+/** Outlet for the current tidy TextView. */
 @property (nonatomic, assign) IBOutlet MGSFragariaView *tidyTextView;
 
-/** Outlet for the splitter. */
+/** Outlet for the current splitter. */
 @property (nonatomic, assign) IBOutlet NSSplitView *splitterViews;
 
-/** Outlet for the label above the source TextView. */
+/** Outlet for the current label above the source TextView. */
 @property (nonatomic, assign) IBOutlet NSTextField *sourceLabel;
 
-/** Outlet for the label above the tidy TextView. */
+/** Outlet for the current label above the tidy TextView. */
 @property (nonatomic, assign) IBOutlet NSTextField *tidyLabel;
-
-
-/** Indicates that this instance is a vertically oriented view. */
-@property (nonatomic, assign, readonly) BOOL isVertical;
 
 /** Indicates the column in the tidyText where wrapping will occur. */
 @property (nonatomic, assign) NSUInteger pageGuidePosition;
@@ -49,17 +50,9 @@
 @property (nonatomic, assign) BOOL viewsAreDiffed;
 
 
-/**
- *  Initializes a new instance, specifying whether or not the view is vertical.
- *  @param initVertical If YES, the view is vertical; if NO, the view is horizontal.
- */
-- (instancetype)initVertical:(BOOL)initVertical;
+#pragma mark - Other
+/** @name Other */
 
-/**
- *  After the Window Controller swaps out the views, it must let the view controller
- *  know that it is ready and in place by calling this method.
- */
-- (void)setupViewAppearance;
 
 /** 
  *  Will go to the message-producing text in the source TextView based on
