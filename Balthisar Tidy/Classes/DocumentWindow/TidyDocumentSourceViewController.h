@@ -39,10 +39,6 @@
 /** Outlet for the current label above the tidy TextView. */
 @property (nonatomic, assign) IBOutlet NSTextField *tidyLabel;
 
-/** Indicates the column in the tidyText where wrapping will occur. */
-@property (nonatomic, assign) NSUInteger pageGuidePosition;
-
-
 /** Specifies whether or not the views are synchronized. @TODO place holder. */
 @property (nonatomic, assign) BOOL viewsAreSynced;
 

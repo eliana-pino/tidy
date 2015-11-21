@@ -145,16 +145,6 @@
 	
 	
 	/******************************************************
-		Get the correct tidy options.
-	 ******************************************************/
-	
-	/* Make the local processor take the default values. This causes
-	 * the empty document to go through processTidy a second time.
-	 */
-	[((TidyDocument*)self.document).tidyProcess takeOptionValuesFromDefaults:[NSUserDefaults standardUserDefaults]];
-	
-	
-	/******************************************************
 		Setup the sourceController and its view settings.
 	 ******************************************************/
 	
@@ -172,6 +162,16 @@
     self.sourceController.sourceTextView.string = ((TidyDocument*)self.document).tidyProcess.sourceText;
 
 
+    /******************************************************
+     Get the correct tidy options.
+     ******************************************************/
+
+    /* Make the local processor take the default values. This causes
+     * the empty document to go through processTidy a second time.
+     */
+    [((TidyDocument*)self.document).tidyProcess takeOptionValuesFromDefaults:[NSUserDefaults standardUserDefaults]];
+    
+    
 	/******************************************************
 		Notifications, etc.
 	 ******************************************************/

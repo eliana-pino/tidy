@@ -93,7 +93,13 @@
 											   options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial)
 											   context:NULL];
 	
-	/* KVO on the errorArray so we can display inline errors. */
+    /* KVO on user prefs to look for Wrap Margin Indicator Preference Changes */
+    [[NSUserDefaults standardUserDefaults] addObserver:self
+                                            forKeyPath:JSDKeyShowWrapMarginNot
+                                               options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial)
+                                               context:NULL];
+
+    /* KVO on the errorArray so we can display inline errors. */
 	[((TidyDocument*)self.representedObject).tidyProcess addObserver:self
 														  forKeyPath:@"errorArray"
 															 options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial)
@@ -234,7 +240,13 @@
 		[self.sourceTextView.textView setAutomaticTextReplacementEnabled:[[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
 		[self.sourceTextView.textView setAutomaticDashSubstitutionEnabled:[[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
 	}
-	
+
+    /* Handle changes to the preferences for the `wrap` option margin indictor. */
+    if ((object == [NSUserDefaults standardUserDefaults]) && ([keyPath isEqualToString:JSDKeyShowWrapMarginNot]))
+    {
+        self.tidyTextView.showsPageGuide = ![[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyShowWrapMarginNot] boolValue];
+    }
+
 	/* Handle changes from the errorArray. */
 	if ((object == ((TidyDocument*)self.representedObject).tidyProcess) && ([keyPath isEqualToString:@"errorArray"]))
 	{
@@ -280,7 +292,9 @@
   - handleTidyOptionChange:
 	One or more options changed in `optionController`.
     We're interested in the value of `wrap` so we can adjust
-    our margin indicator.
+    our margin indicator. Note that we hit that at startup,
+    too, because the window controller sets options after we
+    are created.
  *———————————————————————————————————————————————————————————————————*/
 - (void)handleTidyOptionChange:(NSNotification *)note
 {
@@ -289,7 +303,9 @@
         NSString *wrapValue = [note.userInfo valueForKey:@"wrap"];
         if (wrapValue)
         {
-            self.pageGuidePosition = [wrapValue intValue];
+            int pageGuidePosition = [wrapValue intValue];
+            self.tidyTextView.pageGuideColumn = pageGuidePosition;
+            self.tidyTextView.showsPageGuide = (pageGuidePosition > 0) && (![[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyShowWrapMarginNot] boolValue]);
         }
     }
 }
@@ -318,21 +334,6 @@
 			[self.sourceTextView goToLine:row centered:NO highlight:NO];
 		}
 	}
-}
-
-/*———————————————————————————————————————————————————————————————————*
-  @property pageGuidePosition
- *———————————————————————————————————————————————————————————————————*/
-- (NSUInteger)pageGuidePosition
-{
-	return self.tidyTextView.pageGuideColumn;
-}
-
-- (void)setPageGuidePosition:(NSUInteger)pageGuidePosition
-{
-	self.tidyTextView.pageGuideColumn = pageGuidePosition;
-
-	self.tidyTextView.showsPageGuide = (pageGuidePosition > 0);
 }
 
 

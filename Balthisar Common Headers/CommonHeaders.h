@@ -50,6 +50,7 @@
 	#define JSDKeyShowNewDocumentTidyOptions      @"ShowNewDocumentTidyOptions"
 	#define JSDKeyShowNewDocumentSideBySide       @"ShowNewDocumentSideBySide"
 	#define JSDKeyShowNewDocumentSyncInOut        @"ShowNewDocumentSyncInOut"
+    #define JSDKeyShowWrapMarginNot               @"ShowWrapMarginNot"
 
 
 	/* Saving - File Saving Options */
