@@ -131,8 +131,9 @@
 			_optionValue = optionValue;
 		}
 
-		
-		[[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyOptionChanged object:self.sharedTidyModel];
+        [[NSNotificationCenter defaultCenter] postNotificationName:tidyNotifyOptionChanged
+                                                            object:self.sharedTidyModel
+                                                          userInfo:@{self.name : self.optionValue}];
 
 		if ([self.sharedTidyModel.delegate respondsToSelector:@selector(tidyModelOptionChanged:option:)])
 		{
