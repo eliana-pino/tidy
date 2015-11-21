@@ -96,7 +96,7 @@
                     <animations/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="Ual-ev-sA1">
                         <font key="font" metaFont="smallSystem"/>
-                        <string key="title">The options lets you control the preferred viewing style for Source HTML and Tidy HTML. When this option is unselected the traditional over-under style will be used.</string>
+                        <string key="title">This option lets you control the preferred viewing style for Source HTML and Tidy HTML. When this option is unselected the traditional over-under style will be used.</string>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
