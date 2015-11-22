@@ -51,6 +51,7 @@
 #import "EncodingHelperController.h"
 #import "FirstRunController.h"
 #import "JSDTableViewController.h"
+#import "TidyDocumentFeedbackViewController.h"
 #import "OptionPaneController.h"
 #import "TidyDocumentSourceViewController.h"
 
@@ -98,8 +99,6 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self
 													name:tidyNotifyPossibleInputEncodingProblem
 												  object:localDocument.tidyProcess];
-	
-	[self.messagesController.arrayController removeObserver:self forKeyPath:@"selection"];
 }
 
 
@@ -129,21 +128,21 @@
 	[self.optionController.tidyDocument takeOptionValuesFromDefaults:[NSUserDefaults standardUserDefaults]];
 	
 	
-	/******************************************************
-		Setup the messagesController and its view settings.
-	 ******************************************************/
-	
-	self.messagesController = [[JSDTableViewController alloc] initWithNibName:@"TidyDocumentMessagesView" bundle:nil];
-	
-	self.messagesController.representedObject = self.document;
-	
-	[self.messagesPane addSubview:self.messagesController.view];
-	
-	self.messagesController.view.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
-	
-	[self.messagesController.view setFrame:self.messagesPane.bounds];
-	
-	
+    /******************************************************
+     Setup the feedbackController and its view settings.
+     ******************************************************/
+
+    self.feedbackController = [[TidyDocumentFeedbackViewController alloc] initWithNibName:@"TidyDocumentFeedbackView" bundle:nil];
+
+    self.feedbackController.representedObject = self.document;
+
+    [self.feedbackPane addSubview:self.feedbackController.view];
+
+    self.feedbackController.view.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+
+    [self.feedbackController.view setFrame:self.feedbackPane.bounds];
+
+    
 	/******************************************************
 		Setup the sourceController and its view settings.
 	 ******************************************************/
@@ -160,7 +159,7 @@
 
     self.sourceController.sourceTextView.string = ((TidyDocument*)self.document).tidyProcess.sourceText;
 
-    self.sourceController.messagesArrayController = self.messagesController.arrayController;
+    self.sourceController.messagesArrayController = self.feedbackController.messagesController.arrayController;
 
 
     /******************************************************
@@ -432,47 +431,47 @@
 }
 
 
-/*———————————————————————————————————————————————————————————————————*
-  @property messagesPanelIsVisible
- *———————————————————————————————————————————————————————————————————*/
-+ (NSSet*)keyPathsForValuesAffectingMessagesPanelIsVisible
-{
-	return [NSSet setWithObject:@"self.messagesPane.hidden"];
-}
-
-- (BOOL)messagesPanelIsVisible
-{
-	NSView *viewOfInterest = [[self.splitterMessages subviews] objectAtIndex:1];
-
-	BOOL isCollapsed = [self.splitterMessages isSubviewCollapsed:viewOfInterest];
-
-	return !isCollapsed;
-}
-
-- (void)setMessagesPanelIsVisible:(BOOL)messagesPanelIsVisible
-{
-	/* If the savedPosition is zero, this is the first time we've been here. In that
-	 * case let's get the value from the actual pane, which should be either the
-	 * IB default or whatever came in from user defaults.
-	 */
-
-	if (_savedPositionHeight == 0.0f)
-	{
-		_savedPositionHeight = ((NSView*)[[self.splitterMessages subviews] objectAtIndex:1]).frame.size.height;
-	}
-
-
-    if (messagesPanelIsVisible)
-	{
-		CGFloat splitterHeight = self.splitterMessages.frame.size.height;
-		[self.splitterMessages setPosition:(splitterHeight - _savedPositionHeight) ofDividerAtIndex:0];
-    }
-	else
-	{
-		_savedPositionHeight = ((NSView*)[[self.splitterMessages subviews] objectAtIndex:1]).frame.size.height;
-		[self.splitterMessages setPosition:self.splitterMessages.frame.size.height ofDividerAtIndex:0];
-    }
-}
+///*———————————————————————————————————————————————————————————————————*
+//  @property messagesPanelIsVisible
+// *———————————————————————————————————————————————————————————————————*/
+//+ (NSSet*)keyPathsForValuesAffectingMessagesPanelIsVisible
+//{
+//	return [NSSet setWithObject:@"self.messagesPane.hidden"];
+//}
+//
+//- (BOOL)messagesPanelIsVisible
+//{
+//	NSView *viewOfInterest = [[self.splitterMessages subviews] objectAtIndex:1];
+//
+//	BOOL isCollapsed = [self.splitterMessages isSubviewCollapsed:viewOfInterest];
+//
+//	return !isCollapsed;
+//}
+//
+//- (void)setMessagesPanelIsVisible:(BOOL)messagesPanelIsVisible
+//{
+//	/* If the savedPosition is zero, this is the first time we've been here. In that
+//	 * case let's get the value from the actual pane, which should be either the
+//	 * IB default or whatever came in from user defaults.
+//	 */
+//
+//	if (_savedPositionHeight == 0.0f)
+//	{
+//		_savedPositionHeight = ((NSView*)[[self.splitterMessages subviews] objectAtIndex:1]).frame.size.height;
+//	}
+//
+//
+//    if (messagesPanelIsVisible)
+//	{
+//		CGFloat splitterHeight = self.splitterMessages.frame.size.height;
+//		[self.splitterMessages setPosition:(splitterHeight - _savedPositionHeight) ofDividerAtIndex:0];
+//    }
+//	else
+//	{
+//		_savedPositionHeight = ((NSView*)[[self.splitterMessages subviews] objectAtIndex:1]).frame.size.height;
+//		[self.splitterMessages setPosition:self.splitterMessages.frame.size.height ofDividerAtIndex:0];
+//    }
+//}
 
 
 #pragma mark - Menu Actions
@@ -574,8 +573,8 @@
 								  @"preferredEdge": @(NSMinXEdge) },
 
 							   @{ @"message": NSLocalizedString(@"popOverExplainErrorView", nil),
-								  @"showRelativeToRect": NSStringFromRect(self.messagesPane.bounds),
-								  @"ofView": self.messagesPane,
+								  @"showRelativeToRect": NSStringFromRect(self.feedbackPane.bounds),
+								  @"ofView": self.feedbackPane,
 								  @"preferredEdge": @(NSMinXEdge) },
 
 							   @{ @"message": NSLocalizedString(@"popOverExplainPreferences", nil),

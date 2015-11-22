@@ -13,6 +13,7 @@
 @class JSDTableViewController;
 @class OptionPaneController;
 @class TidyDocumentSourceViewController;
+@class TidyDocumentFeedbackViewController;
 
 
 /**
@@ -45,15 +46,16 @@
 @property (nonatomic, strong) OptionPaneController *optionController;
 
 
-#pragma mark - Messages Controller
-/** @name Messages Controller */
+#pragma mark - Feedback Controller
+/** @name Feedback Controller */
 
 
-/** The pane in the NIB where the message pane exists. */
-@property (nonatomic, assign) IBOutlet NSView *messagesPane;
+/** The pane in the BIN where the feedback pane exists. */
+@property (nonatomic, assign) IBOutlet NSView *feedbackPane;
 
-/** The JSDTableViewController instance associated with this window controller. */
-@property (nonatomic, strong) JSDTableViewController *messagesController;
+/** The TidyDocumentFeedbackViewController 
+ *  instance associated wit this window controller. */
+@property (nonatomic, strong) TidyDocumentFeedbackViewController *feedbackController;
 
 
 #pragma mark - Source Controller

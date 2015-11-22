@@ -7,7 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="JSDTableViewController">
             <connections>
-                <outlet property="arrayController" destination="eaM-lk-H1t" id="tmg-QX-brk"/>
+                <outlet property="arrayController" destination="eaM-lk-H1t" id="Nbg-m0-QkD"/>
                 <outlet property="view" destination="7A9-HJ-lyR" id="dGb-EU-n6i"/>
             </connections>
         </customObject>

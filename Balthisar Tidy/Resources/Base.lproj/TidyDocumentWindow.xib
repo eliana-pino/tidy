@@ -7,7 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="TidyDocumentWindowController">
             <connections>
-                <outlet property="messagesPane" destination="0jN-hG-2u0" id="wfo-Fn-P0t"/>
+                <outlet property="feedbackPane" destination="0jN-hG-2u0" id="Z9z-hh-8ZX"/>
                 <outlet property="optionPane" destination="kOf-B8-B6Q" id="4hO-cc-Qi1"/>
                 <outlet property="optionPaneContainer" destination="384" id="pDs-sQ-VLR"/>
                 <outlet property="sourcePane" destination="2BO-Mf-Rqb" id="Ddh-xA-bJd"/>
@@ -81,7 +81,7 @@
                                         </constraints>
                                         <animations/>
                                     </customView>
-                                    <customView verticalHuggingPriority="300" id="0jN-hG-2u0">
+                                    <customView verticalHuggingPriority="300" id="0jN-hG-2u0" userLabel="feedbackPane">
                                         <rect key="frame" x="0.0" y="383" width="499" height="129"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <constraints>
