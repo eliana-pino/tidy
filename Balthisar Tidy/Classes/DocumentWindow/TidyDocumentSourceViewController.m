@@ -379,6 +379,7 @@
     [self.tidyTextView.textView setEditable:NO];
     [self.tidyTextView.textView setRichText:NO];
     [self.tidyTextView.textView setSelectable:YES];
+    [self.tidyTextView.textView setLineWrap:NO];
 
     /* sourceTextView shouldn't accept every drop type */
     [self.sourceTextView.textView registerForDraggedTypes:@[NSFilenamesPboardType]];
