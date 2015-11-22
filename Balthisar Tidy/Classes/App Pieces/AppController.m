@@ -17,6 +17,8 @@
 #import "PreferenceController.h"
 #import "JSDTidyModel.h"
 
+#import "TidyDocumentWindowController.h"
+
 #ifdef FEATURE_SUPPORTS_SERVICE
 	#import "TidyDocumentService.h"
 #endif
@@ -259,9 +261,15 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSDocumentController *)sharedDocumentController
 {
+    NSLog(@"%@", [[[NSDocumentController sharedDocumentController] currentDocument] sourceText]);
+    NSDocument *currentDocument = [[NSDocumentController sharedDocumentController] currentDocument];
+    TidyDocumentWindowController *currentWindowController = currentDocument.windowControllers[0];
+
+    NSLog(@"%hhd", [currentWindowController optionsPanelIsVisible]);
+
+
 	return [NSDocumentController sharedDocumentController];
 }
-
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
   @property menuQuitTitle

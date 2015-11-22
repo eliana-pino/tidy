@@ -103,17 +103,23 @@
 /** @name Actions to support properties from Menus */
 
 
-/** 
+/**
+ *  Toggle visibility of the messages panel.
+ *  Provided so that menu actions can invoke the first responder.
+ */
+- (IBAction)toggleMessagesPanelIsVisible:(id)sender;
+
+/**
  *  Toggle visibility of the option panel.
  *  Provided so that menu actions can invoke the first responder.
  */
 - (IBAction)toggleOptionsPanelIsVisible:(id)sender;
 
 /**
- *  Toggle visibility of the messages panel.
+ *  Toggle aspect of the source panel.
  *  Provided so that menu actions can invoke the first responder.
  */
-- (IBAction)toggleMessagesPanelIsVisible:(id)sender;
+- (IBAction)toggleSourcePanelIsVertical:(id)sender;
 
 
 #pragma mark - Toolbar Actions

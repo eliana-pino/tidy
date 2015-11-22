@@ -365,18 +365,24 @@
 		return !self.firstRunHelper.isVisible; // don't allow when helper open.
 	}
 	
-	if (menuItem.action == @selector(toggleOptionsPanelIsVisible:))
+    if (menuItem.action == @selector(toggleMessagesPanelIsVisible:))
+    {
+        [menuItem setState:self.messagesPanelIsVisible];
+        return !self.firstRunHelper.isVisible; // don't allow when helper open.
+    }
+
+    if (menuItem.action == @selector(toggleOptionsPanelIsVisible:))
 	{
 		[menuItem setState:self.optionsPanelIsVisible];
 		return !self.firstRunHelper.isVisible; // don't allow when helper open.
 	}
 	
-	if (menuItem.action == @selector(toggleMessagesPanelIsVisible:))
+	if (menuItem.action == @selector(toggleSourcePanelIsVertical:))
 	{
-		[menuItem setState:self.messagesPanelIsVisible];
+		[menuItem setState:self.sourceController.splitterViews.vertical];
 		return !self.firstRunHelper.isVisible; // don't allow when helper open.
 	}
-	
+
 	return NO;
 }
 
@@ -389,7 +395,7 @@
  *———————————————————————————————————————————————————————————————————*/
 + (NSSet*)keyPathsForValuesAffectingOptionsPanelIsVisible
 {
-	return [NSSet setWithObject:@"self.optionPaneContainer.hidden"];
+	return [NSSet setWithArray:@[@"self.optionPaneContainer.hidden"]];
 }
 
 - (BOOL)optionsPanelIsVisible
@@ -473,6 +479,15 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
+ - toggleMessagesPanelIsVisible:
+ *———————————————————————————————————————————————————————————————————*/
+- (IBAction)toggleMessagesPanelIsVisible:(id)sender
+{
+    self.messagesPanelIsVisible = !self.messagesPanelIsVisible;
+}
+
+
+/*———————————————————————————————————————————————————————————————————*
   - toggleOptionsPanelIsVisible:
  *———————————————————————————————————————————————————————————————————*/
 - (IBAction)toggleOptionsPanelIsVisible:(id)sender
@@ -482,11 +497,11 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
-  - toggleMessagesPanelIsVisible:
+ - toggleSourcePanelIsVertical:
  *———————————————————————————————————————————————————————————————————*/
-- (IBAction)toggleMessagesPanelIsVisible:(id)sender
+- (IBAction)toggleSourcePanelIsVertical:(id)sender
 {
-	self.messagesPanelIsVisible = !self.messagesPanelIsVisible;
+    self.sourceController.splitterViews.vertical = !self.sourceController.splitterViews.vertical;
 }
 
 

@@ -8,6 +8,8 @@
 
 @import Cocoa;
 
+@class TidyDocumentWindowController;
+
 
 /**
  *  This main application controller handles application startup, Preference, and target conditional
@@ -29,7 +31,9 @@
 
 
 /**
- *  Provide bindings access to the sharedDocumentController.
+ *  Provide bindings access to the sharedDocumentController. It's best not to bind to its
+ *  currentDocument items for anything other than global states because bindings are not
+ *  changed when currentDocument changes.
  */
 @property (nonatomic, assign, readonly) NSDocumentController *sharedDocumentController;
 
