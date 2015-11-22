@@ -217,7 +217,7 @@
 	[super windowDidLoad];
     
     self.optionsPanelIsVisible = [[[NSUserDefaults standardUserDefaults] objectForKey:JSDKeyShowNewDocumentTidyOptions] boolValue];
-    self.messagesPanelIsVisible = [[[NSUserDefaults standardUserDefaults] objectForKey:JSDKeyShowNewDocumentMessages] boolValue];
+    self.feedbackPanelIsVisible = [[[NSUserDefaults standardUserDefaults] objectForKey:JSDKeyShowNewDocumentMessages] boolValue];
 
 
 	[self.window setInitialFirstResponder:self.optionController.view];
@@ -364,9 +364,9 @@
 		return !self.firstRunHelper.isVisible; // don't allow when helper open.
 	}
 	
-    if (menuItem.action == @selector(toggleMessagesPanelIsVisible:))
+    if (menuItem.action == @selector(toggleFeedbackPanelIsVisible:))
     {
-        [menuItem setState:self.messagesPanelIsVisible];
+        [menuItem setState:self.feedbackPanelIsVisible];
         return !self.firstRunHelper.isVisible; // don't allow when helper open.
     }
 
@@ -431,47 +431,47 @@
 }
 
 
-///*———————————————————————————————————————————————————————————————————*
-//  @property messagesPanelIsVisible
-// *———————————————————————————————————————————————————————————————————*/
-//+ (NSSet*)keyPathsForValuesAffectingMessagesPanelIsVisible
-//{
-//	return [NSSet setWithObject:@"self.messagesPane.hidden"];
-//}
-//
-//- (BOOL)messagesPanelIsVisible
-//{
-//	NSView *viewOfInterest = [[self.splitterMessages subviews] objectAtIndex:1];
-//
-//	BOOL isCollapsed = [self.splitterMessages isSubviewCollapsed:viewOfInterest];
-//
-//	return !isCollapsed;
-//}
-//
-//- (void)setMessagesPanelIsVisible:(BOOL)messagesPanelIsVisible
-//{
-//	/* If the savedPosition is zero, this is the first time we've been here. In that
-//	 * case let's get the value from the actual pane, which should be either the
-//	 * IB default or whatever came in from user defaults.
-//	 */
-//
-//	if (_savedPositionHeight == 0.0f)
-//	{
-//		_savedPositionHeight = ((NSView*)[[self.splitterMessages subviews] objectAtIndex:1]).frame.size.height;
-//	}
-//
-//
-//    if (messagesPanelIsVisible)
-//	{
-//		CGFloat splitterHeight = self.splitterMessages.frame.size.height;
-//		[self.splitterMessages setPosition:(splitterHeight - _savedPositionHeight) ofDividerAtIndex:0];
-//    }
-//	else
-//	{
-//		_savedPositionHeight = ((NSView*)[[self.splitterMessages subviews] objectAtIndex:1]).frame.size.height;
-//		[self.splitterMessages setPosition:self.splitterMessages.frame.size.height ofDividerAtIndex:0];
-//    }
-//}
+/*———————————————————————————————————————————————————————————————————*
+  @property feedbackPanelIsVisible
+ *———————————————————————————————————————————————————————————————————*/
++ (NSSet*)keyPathsForValuesAffectingFeedbackPanelIsVisible
+{
+	return [NSSet setWithObject:@"self.feedbackPane.hidden"];
+}
+
+- (BOOL)feedbackPanelIsVisible
+{
+	NSView *viewOfInterest = [[self.splitterMessages subviews] objectAtIndex:1];
+
+	BOOL isCollapsed = [self.splitterMessages isSubviewCollapsed:viewOfInterest];
+
+	return !isCollapsed;
+}
+
+- (void)setFeedbackPanelIsVisible:(BOOL)feedbackPanelIsVisible
+{
+	/* If the savedPosition is zero, this is the first time we've been here. In that
+	 * case let's get the value from the actual pane, which should be either the
+	 * IB default or whatever came in from user defaults.
+	 */
+
+	if (_savedPositionHeight == 0.0f)
+	{
+		_savedPositionHeight = ((NSView*)[[self.splitterMessages subviews] objectAtIndex:1]).frame.size.height;
+	}
+
+
+    if (feedbackPanelIsVisible)
+	{
+		CGFloat splitterHeight = self.splitterMessages.frame.size.height;
+		[self.splitterMessages setPosition:(splitterHeight - _savedPositionHeight) ofDividerAtIndex:0];
+    }
+	else
+	{
+		_savedPositionHeight = ((NSView*)[[self.splitterMessages subviews] objectAtIndex:1]).frame.size.height;
+		[self.splitterMessages setPosition:self.splitterMessages.frame.size.height ofDividerAtIndex:0];
+    }
+}
 
 
 #pragma mark - Menu Actions
@@ -480,9 +480,9 @@
 /*———————————————————————————————————————————————————————————————————*
  - toggleMessagesPanelIsVisible:
  *———————————————————————————————————————————————————————————————————*/
-- (IBAction)toggleMessagesPanelIsVisible:(id)sender
+- (IBAction)toggleFeedbackPanelIsVisible:(id)sender
 {
-    self.messagesPanelIsVisible = !self.messagesPanelIsVisible;
+    self.feedbackPanelIsVisible = !self.feedbackPanelIsVisible;
 }
 
 
@@ -604,9 +604,9 @@
 		self.optionsPanelIsVisible = YES;
 	}
 
-	if (!self.messagesPanelIsVisible)
+	if (!self.feedbackPanelIsVisible)
 	{
-		self.messagesPanelIsVisible = YES;
+		self.feedbackPanelIsVisible = YES;
 	}
 
 	if ([[PreferenceController sharedPreferences] documentWindowIsInScreenshotMode])

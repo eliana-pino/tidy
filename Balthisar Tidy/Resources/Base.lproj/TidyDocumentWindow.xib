@@ -165,12 +165,7 @@
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
                             <connections>
-                                <binding destination="-2" name="value" keyPath="self.messagesPanelIsVisible" id="qSu-ea-n62">
-                                    <dictionary key="options">
-                                        <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
-                                        <bool key="NSConditionallySetsEnabled" value="NO"/>
-                                    </dictionary>
-                                </binding>
+                                <binding destination="-2" name="value" keyPath="self.feedbackPanelIsVisible" id="Gol-o7-aDh"/>
                             </connections>
                         </button>
                         <connections>

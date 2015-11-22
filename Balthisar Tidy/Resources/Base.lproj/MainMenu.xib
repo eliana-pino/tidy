@@ -247,7 +247,7 @@
                             <menuItem title="Tidy Messages" id="jm7-pi-wMh">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="toggleMessagesPanelIsVisible:" target="-1" id="FOh-UJ-vfq"/>
+                                    <action selector="toggleFeedbackPanelIsVisible:" target="-1" id="kIu-wE-JyI"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Source Code" id="QIG-9u-3jn">

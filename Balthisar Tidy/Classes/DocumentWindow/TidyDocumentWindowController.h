@@ -97,8 +97,8 @@
 /** Specifies whether or not the options panel is visible. */
 @property (nonatomic, assign) BOOL optionsPanelIsVisible;
 
-/** Specifies whether or not the messages panel is visible. */
-@property (nonatomic, assign) BOOL messagesPanelIsVisible;
+/** Specifies whether or not the feedback panel is visible. */
+@property (nonatomic, assign) BOOL feedbackPanelIsVisible;
 
 
 #pragma mark - Actions to support properties from Menus
@@ -109,7 +109,7 @@
  *  Toggle visibility of the messages panel.
  *  Provided so that menu actions can invoke the first responder.
  */
-- (IBAction)toggleMessagesPanelIsVisible:(id)sender;
+- (IBAction)toggleFeedbackPanelIsVisible:(id)sender;
 
 /**
  *  Toggle visibility of the option panel.
