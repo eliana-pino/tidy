@@ -18,7 +18,7 @@
 
 @interface TidyDocument ()
 
-@property (nonatomic, assign) BOOL fileWantsProtection; // flag indication special save is required.
+@property (nonatomic, assign) BOOL fileWantsProtection; // flag indicating special save is required.
 
 @end
 

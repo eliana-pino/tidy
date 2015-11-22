@@ -7,7 +7,6 @@
  **************************************************************************************************/
 
 #import "EncodingHelperController.h"
-#import "PreferenceController.h"
 
 
 @interface EncodingHelperController ()

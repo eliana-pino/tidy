@@ -50,7 +50,7 @@
 
 	[[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:JSDKeyAllowMacOSTextSubstitutions];
 
-    self.messagesArrayController = nil;
+    self.messagesArrayController = nil; // removes observer if one is present.
 }
 
 /*———————————————————————————————————————————————————————————————————*
@@ -271,7 +271,7 @@
 		self.sourceTextView.syntaxErrors = highlightErrors;
 	}
 
-    /* Handle changes to the selection of the messages table. */
+    /* Handle changes to the selection of the messages table; go to line selected. */
     if ((object == self.messagesArrayController) && ([keyPath isEqualToString:@"selection"]))
     {
         NSArray *localObjects = self.messagesArrayController.arrangedObjects;

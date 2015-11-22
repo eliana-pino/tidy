@@ -261,13 +261,6 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSDocumentController *)sharedDocumentController
 {
-    NSLog(@"%@", [[[NSDocumentController sharedDocumentController] currentDocument] sourceText]);
-    NSDocument *currentDocument = [[NSDocumentController sharedDocumentController] currentDocument];
-    TidyDocumentWindowController *currentWindowController = currentDocument.windowControllers[0];
-
-    NSLog(@"%hhd", [currentWindowController optionsPanelIsVisible]);
-
-
 	return [NSDocumentController sharedDocumentController];
 }
 

@@ -35,7 +35,6 @@
 
 @implementation FirstRunController
 
-@synthesize isVisible = _isVisible;
 
 #pragma mark - Initialization and Deallocation
 
@@ -223,19 +222,6 @@
 - (IBAction)handleCheckboxShowAgain:(NSButton *)sender
 {
 	self.userHasTouchedCheckbox = YES;
-}
-
-
-#pragma mark - Property Accessors
-
-
-/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-  - isVisible
-    Indicates whether or not the popup is currently displayed.
- *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (BOOL)isVisible
-{
-	return _isVisible;
 }
 
 
