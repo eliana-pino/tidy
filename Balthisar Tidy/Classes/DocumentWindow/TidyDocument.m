@@ -165,26 +165,30 @@
 - (IBAction)saveDocument:(id)sender
 {
 	NSUserDefaults *localDefaults = [NSUserDefaults standardUserDefaults];
-	
-	/*
-		Warning will only apply if there's a current file
-		and it's NOT been saved yet, and it's not new.
+    NSModalResponse userChoice;
+
+	/* Warning will only apply if there's a current file
+     * and it's NOT been saved yet, and it's not new.
 	 */
 	if ( ([[localDefaults valueForKey:JSDKeySavingPrefStyle] longValue] == kJSDSaveButWarn) &&
 		 (self.fileWantsProtection) &&
 		 (self.fileURL.path.length > 0) )
 	{
-		NSInteger i = NSRunAlertPanel(NSLocalizedString(@"WarnSaveOverwrite", nil),
-									  @"%@",
-									  NSLocalizedString(@"continue save", nil),
-									  NSLocalizedString(@"do not save", nil),
-									  nil,
-									  NSLocalizedString(@"WarnSaveOverwriteExplain", nil));
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:NSLocalizedString(@"continue save", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"do not save", nil)];
+        [alert setMessageText:NSLocalizedString(@"WarnSaveOverwrite", nil)];
+        [alert setInformativeText:NSLocalizedString(@"WarnSaveOverwriteExplain", nil)];
+        [alert setAlertStyle:NSWarningAlertStyle];
+        [alert beginSheetModalForWindow:self.windowController.window completionHandler:^(NSModalResponse result) {
+            [NSApp stopModalWithCode:result];
+        }];
+        userChoice = [NSApp runModalForWindow:self.windowController.window];
 
-		if (i == NSAlertAlternateReturn)
-		{
-			return; // User chose don't save.
-		}
+        if (userChoice == NSAlertSecondButtonReturn)
+        {
+            return; // User cancelled the save.
+        }
 	}
 
 	/* Save is completely disabled -- tell user to Save As… */
@@ -192,14 +196,17 @@
 	if ( ([[localDefaults valueForKey:JSDKeySavingPrefStyle] longValue] == kJSDSaveAsOnly) &&
 		(self.fileWantsProtection) )
 	{
-		NSRunAlertPanel(NSLocalizedString(@"WarnSaveDisabled", nil),
-						@"%@",
-						NSLocalizedString(@"cancel", nil),
-						nil,
-						nil,
-						NSLocalizedString(@"WarnSaveDisabledExplain", nil));
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:NSLocalizedString(@"cancel", nil)];
+        [alert setMessageText:NSLocalizedString(@"WarnSaveDisabled", nil)];
+        [alert setInformativeText:NSLocalizedString(@"WarnSaveDisabledExplain", nil)];
+        [alert setAlertStyle:NSWarningAlertStyle];
+        [alert beginSheetModalForWindow:self.windowController.window completionHandler:^(NSModalResponse result) {
+            [NSApp stopModalWithCode:result];
+        }];
+        [NSApp runModalForWindow:self.windowController.window];
 
-		return; // Don't continue the save operation
+        return; // Don't continue the save operation
 	}
 
 	return [super saveDocument:sender];
