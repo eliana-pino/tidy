@@ -22,10 +22,7 @@
 /** @name Base Properties */
 
 
-/** The enclosing container for all of the feedback subviews this controller will manage.
- *  While the `view` for this view controller is the tabView, this outlet is provided as
- *  a convenience to avoid having to cast to NSTabView all the time.
- */
+/** The enclosing container for all of the feedback subviews this controller will manage. */
 @property (nonatomic, assign) IBOutlet NSTabView *tabView;
 
 
