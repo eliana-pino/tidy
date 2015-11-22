@@ -189,31 +189,12 @@
 		{
 			NSString *contents;
 			
-			/*************************************
-			 Mac OS X 10.10+: Will try to guess
-			 the encoding of the dragged in file
-			 *************************************/
-			if ([NSString respondsToSelector:@selector(stringEncodingForData:encodingOptions:convertedString:usedLossyConversion:)])
-			{
-				NSData *rawData;
-				if ((rawData = [NSData dataWithContentsOfFile:path]))
-				{
-					[NSString stringEncodingForData:rawData encodingOptions:nil convertedString:&contents usedLossyConversion:nil];
-				}
-			}
-			/*************************************
-			 Older Mac OS X can only accept UTF.
-			 *************************************/
-			else
-			{
-				NSError *error;
-				contents = [NSString stringWithContentsOfFile:path usedEncoding:nil error:&error];
-				if (error)
-				{
-					contents = nil;
-				}
-			}
-			
+            NSData *rawData;
+            if ((rawData = [NSData dataWithContentsOfFile:path]))
+            {
+                [NSString stringEncodingForData:rawData encodingOptions:nil convertedString:&contents usedLossyConversion:nil];
+            }
+
 			if (contents)
 			{
 				[self.sourceTextView.textView insertText:contents];
