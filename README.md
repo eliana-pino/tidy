@@ -95,7 +95,7 @@ Change Log
 - Invisible Changes
   - If using a custom dylib Balthisar Tidy will pick up new Tidy options 
     automatically.
-  - libtidy version checking -- minimum 5.1.19
+  - libtidy version checking -- minimum 5.1.24
 
 - Bug Fixes
   - `tidy-mark` once again properly displays Balthisar Tidy.
