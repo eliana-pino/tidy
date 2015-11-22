@@ -119,7 +119,7 @@
 	
 	[self.optionPane addSubview:self.optionController.view];
 	
-	[self.optionController.view setFrame:self.optionPane.bounds]; //view.superview.bounds];
+	[self.optionController.view setFrame:self.optionPane.bounds];
 	
 	self.optionController.optionsInEffect = [PreferenceController optionsInEffect];
 	
@@ -145,22 +145,34 @@
 	
 	
 	/******************************************************
-		Get the correct tidy options.
-	 ******************************************************/
-	
-	/* Make the local processor take the default values. This causes
-	 * the empty document to go through processTidy a second time.
-	 */
-	[((TidyDocument*)self.document).tidyProcess takeOptionValuesFromDefaults:[NSUserDefaults standardUserDefaults]];
-	
-	
-	/******************************************************
 		Setup the sourceController and its view settings.
 	 ******************************************************/
 	
-	self.sourcePanelIsVertical  = [[[NSUserDefaults standardUserDefaults] objectForKey:JSDKeyShowNewDocumentSideBySide] boolValue];	
-	
-	
+    self.sourceController = [[TidyDocumentSourceViewController alloc] init];
+
+    self.sourceController.representedObject = self.document;
+
+    [self.sourcePane addSubview:self.sourceController.view];
+
+    self.sourceController.view.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+
+    [self.sourceController.view setFrame:self.sourcePane.bounds];
+
+    self.sourceController.sourceTextView.string = ((TidyDocument*)self.document).tidyProcess.sourceText;
+
+    self.sourceController.messagesArrayController = self.messagesController.arrayController;
+
+
+    /******************************************************
+     Get the correct tidy options.
+     ******************************************************/
+
+    /* Make the local processor take the default values. This causes
+     * the empty document to go through processTidy a second time.
+     */
+    [((TidyDocument*)self.document).tidyProcess takeOptionValuesFromDefaults:[NSUserDefaults standardUserDefaults]];
+    
+    
 	/******************************************************
 		Notifications, etc.
 	 ******************************************************/
@@ -180,18 +192,8 @@
 											 selector:@selector(handleTidyInputEncodingProblem:)
 												 name:tidyNotifyPossibleInputEncodingProblem
 											   object:((TidyDocument*)self.document).tidyProcess];
-	
-	/* KVO on the `arrayController` indicate that a message table row was selected.
-	 * Will use KVO on the array controller instead of a delegate method to capture changes
-	 * because the delegate doesn't catch when the table unselects all rows (meaning that
-	 * highlighted text in the sourceText stays behind). This prevents that.
-	 */
-	[self.messagesController.arrayController addObserver:self
-											  forKeyPath:@"selection"
-												 options:(NSKeyValueObservingOptionNew)
-												 context:NULL];
-	
-	
+
+
 	/******************************************************
 		Remaining manual view adjustments.
 	 ******************************************************/
@@ -238,20 +240,6 @@
 }
 
 
-/*———————————————————————————————————————————————————————————————————*
-  - setViewPageGuidePosition
-		Use our knowledge of the `wrap` option to set the page
-        guide position of the subview.
- *———————————————————————————————————————————————————————————————————*/
-- (void)setViewPageGuidePosition
-{
-	TidyDocument *localDocument = self.document;
-
-	JSDTidyOption *localOption = localDocument.tidyProcess.tidyOptions[@"wrap"];
-
-	self.sourceController.pageGuidePosition = [[localOption optionValue] intValue];
-}
-
 #pragma mark - Event and KVO Notification Handling
 
 
@@ -259,16 +247,14 @@
   - handleTidyOptionChange:
 		One or more options changed in `optionController`. Copy
 		those options to our `tidyProcess`. The event chain will
-		eventually update everything else because this should
-		cause the tidyText to change.
+		eventually update everything else because this will cause
+		the tidyText to change.
  *———————————————————————————————————————————————————————————————————*/
 - (void)handleTidyOptionChange:(NSNotification *)note
 {
 	TidyDocument *localDocument = self.document;
 	
 	[localDocument.tidyProcess optionsCopyValuesFromModel:self.optionController.tidyDocument];
-
-	[self setViewPageGuidePosition];
 }
 
 
@@ -307,22 +293,6 @@
 
 	/* force the event cycle so errors can be updated. */
 	((TidyDocument*)self.document).tidyProcess.sourceText = self.sourceController.sourceTextView.string;
-}
-
-
-/*———————————————————————————————————————————————————————————————————*
-  - observeValueForKeyPath:ofObject:change:context:
-		Handle KVC Notifications:
-		- error view selection changed.
- *———————————————————————————————————————————————————————————————————*/
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-	/* Handle changes to the selection of the messages table. */
-	
-	if ((object == self.messagesController.arrayController) && ([keyPath isEqualToString:@"selection"]))
-	{
-		[self.sourceController goToSourceErrorUsingArrayController:self.messagesController.arrayController];
-	}
 }
 
 
@@ -395,21 +365,21 @@
 		return !self.firstRunHelper.isVisible; // don't allow when helper open.
 	}
 	
-	if (menuItem.action == @selector(toggleOptionsPanelIsVisible:))
+    if (menuItem.action == @selector(toggleMessagesPanelIsVisible:))
+    {
+        [menuItem setState:self.messagesPanelIsVisible];
+        return !self.firstRunHelper.isVisible; // don't allow when helper open.
+    }
+
+    if (menuItem.action == @selector(toggleOptionsPanelIsVisible:))
 	{
 		[menuItem setState:self.optionsPanelIsVisible];
 		return !self.firstRunHelper.isVisible; // don't allow when helper open.
 	}
 	
-	if (menuItem.action == @selector(toggleMessagesPanelIsVisible:))
-	{
-		[menuItem setState:self.messagesPanelIsVisible];
-		return !self.firstRunHelper.isVisible; // don't allow when helper open.
-	}
-	
 	if (menuItem.action == @selector(toggleSourcePanelIsVertical:))
 	{
-		[menuItem setState:self.sourcePanelIsVertical];
+		[menuItem setState:self.sourceController.splitterViews.vertical];
 		return !self.firstRunHelper.isVisible; // don't allow when helper open.
 	}
 
@@ -425,7 +395,7 @@
  *———————————————————————————————————————————————————————————————————*/
 + (NSSet*)keyPathsForValuesAffectingOptionsPanelIsVisible
 {
-	return [NSSet setWithObject:@"self.optionPaneContainer.hidden"];
+	return [NSSet setWithArray:@[@"self.optionPaneContainer.hidden"]];
 }
 
 - (BOOL)optionsPanelIsVisible
@@ -505,58 +475,16 @@
 }
 
 
-/*———————————————————————————————————————————————————————————————————*
-  @property sourcePanelIsVertical
- *———————————————————————————————————————————————————————————————————*/
-- (BOOL)sourcePanelIsVertical
-{
-	return self.sourceController.isVertical;
-}
-
-- (void)setSourcePanelIsVertical:(BOOL)sourcePanelIsVertical
-{
-	/* Setup (and create if necessary) the appropriate subview controller */
-
-	if (!sourcePanelIsVertical)
-	{
-		if (!self.sourceControllerHorizontal)
-		{
-			self.sourceControllerHorizontal = [[TidyDocumentSourceViewController alloc] initVertical:NO];
-			self.sourceControllerHorizontal.representedObject = self.document;
-		}
-
-		self.sourceController = self.sourceControllerHorizontal;
-	}
-	else
-	{
-		if (!self.sourceControllerVertical)
-		{
-			self.sourceControllerVertical = [[TidyDocumentSourceViewController alloc] initVertical:YES];
-			self.sourceControllerVertical.representedObject = self.document;
-		}
-
-		self.sourceController = self.sourceControllerVertical;
-	}
-
-	[self.sourcePane setSubviews:[NSArray array]];
-	[self.sourcePane addSubview:self.sourceController.view];
-
-	[self.sourceController setupViewAppearance];
-	[self setViewPageGuidePosition];
-
-
-	/* Ensure that the correct text is in the source */
-
-	self.sourceController.sourceTextView.string = ((TidyDocument*)self.document).tidyProcess.sourceText;
-
-
-	/* In case something is selected in the messages table, highlight it again. */
-	
-	[self.sourceController goToSourceErrorUsingArrayController:self.messagesController.arrayController];
-}
-
-
 #pragma mark - Menu Actions
+
+
+/*———————————————————————————————————————————————————————————————————*
+ - toggleMessagesPanelIsVisible:
+ *———————————————————————————————————————————————————————————————————*/
+- (IBAction)toggleMessagesPanelIsVisible:(id)sender
+{
+    self.messagesPanelIsVisible = !self.messagesPanelIsVisible;
+}
 
 
 /*———————————————————————————————————————————————————————————————————*
@@ -569,20 +497,11 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
-  - toggleMessagesPanelIsVisible:
- *———————————————————————————————————————————————————————————————————*/
-- (IBAction)toggleMessagesPanelIsVisible:(id)sender
-{
-	self.messagesPanelIsVisible = !self.messagesPanelIsVisible;
-}
-
-
-/*———————————————————————————————————————————————————————————————————*
-  - toggleSourcePanelIsVertical:
+ - toggleSourcePanelIsVertical:
  *———————————————————————————————————————————————————————————————————*/
 - (IBAction)toggleSourcePanelIsVertical:(id)sender
 {
-	self.sourcePanelIsVertical = !self.sourcePanelIsVertical;
+    self.sourceController.splitterViews.vertical = !self.sourceController.splitterViews.vertical;
 }
 
 

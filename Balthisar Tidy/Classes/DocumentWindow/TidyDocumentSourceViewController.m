@@ -12,6 +12,7 @@
 #import <Fragaria/Fragaria.h>
 
 #import "JSDTidyModel.h"
+#import "JSDTidyOption.h"
 #import "TidyDocument.h"
 
 
@@ -22,29 +23,19 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
-  - initVertical:
- *———————————————————————————————————————————————————————————————————*/
-- (instancetype)initVertical:(BOOL)initVertical
-{
-	NSString *nibName = initVertical ? @"TidyDocumentSourceV" : @"TidyDocumentSourceH";
-
-	if ((self = [super initWithNibName:nibName bundle:nil]))
-	{
-		_isVertical = initVertical;
-		_viewsAreSynced = NO;
-		_viewsAreDiffed = NO;
-	}
-
-	return self;
-}
-
-
-/*———————————————————————————————————————————————————————————————————*
   - init
  *———————————————————————————————————————————————————————————————————*/
 - (instancetype)init
 {
-	return [self initVertical:NO];
+    NSString *nibName = @"TidyDocumentSourceView";
+
+    if ((self = [super initWithNibName:nibName bundle:nil]))
+    {
+        _viewsAreSynced = NO;
+        _viewsAreDiffed = NO;
+    }
+    
+    return self;
 }
 
 
@@ -55,7 +46,11 @@
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifySourceTextRestored object:[self.representedObject tidyProcess]];
 
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:tidyNotifyOptionChanged object:[self.representedObject tidyProcess]];
+
 	[[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:JSDKeyAllowMacOSTextSubstitutions];
+
+    self.messagesArrayController = nil; // removes observer if one is present.
 }
 
 /*———————————————————————————————————————————————————————————————————*
@@ -81,10 +76,18 @@
 	/* NSNotifications from the document's sourceText, in case tidyProcess
 	 * changes the sourceText.
 	 */
-	[[NSNotificationCenter defaultCenter] addObserver:self
+    [[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(handleTidySourceTextRestored:)
 												 name:tidyNotifySourceTextRestored
 											   object:[[self representedObject] tidyProcess]];
+
+    /* NSNotifications from the `optionController` indicate that one or more options changed. 
+     * We will use this to manage the page guide position.
+     */
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleTidyOptionChange:)
+                                                 name:tidyNotifyOptionChanged
+                                               object:[self.representedObject tidyProcess]];
 
 	/* KVO on user prefs to look for Text Substitution Preference Changes */
 	[[NSUserDefaults standardUserDefaults] addObserver:self
@@ -92,7 +95,13 @@
 											   options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial)
 											   context:NULL];
 	
-	/* KVO on the errorArray so we can display inline errors. */
+    /* KVO on user prefs to look for Wrap Margin Indicator Preference Changes */
+    [[NSUserDefaults standardUserDefaults] addObserver:self
+                                            forKeyPath:JSDKeyShowWrapMarginNot
+                                               options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial)
+                                               context:NULL];
+
+    /* KVO on the errorArray so we can display inline errors. */
 	[((TidyDocument*)self.representedObject).tidyProcess addObserver:self
 														  forKeyPath:@"errorArray"
 															 options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial)
@@ -100,6 +109,10 @@
 	
 	/* Interface Builder doesn't allow us to define custom bindings, so we have to bind the tidyTextView manually. */
 	[self.tidyTextView bind:@"string" toObject:self.representedObject withKeyPath:@"tidyProcess.tidyText" options:nil];
+
+
+    self.splitterViews.vertical = [[[NSUserDefaults standardUserDefaults] objectForKey:JSDKeyShowNewDocumentSideBySide] boolValue];
+    [self  setupViewAppearance];
 }
 
 
@@ -110,8 +123,7 @@
   - textDidChange:
 	We arrived here by virtue of being the delegate of
 	`sourcetextView`. Simply update the tidyProcess sourceText,
-	and the event chain will eventually update everything
-	else.
+	and the event chain will eventually update everything else.
  *———————————————————————————————————————————————————————————————————*/
 - (void)textDidChange:(NSNotification *)aNotification
 {
@@ -132,6 +144,7 @@
 		[localDocument updateChangeCount:NSChangeDone];
 	}
 }
+
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
   - textView:doCommandBySelector:
@@ -219,6 +232,7 @@
    Handle KVO Notifications:
    - certain preferences changed.
    - the errorArray changed.
+   - the messages table selection changed.
  *———————————————————————————————————————————————————————————————————*/
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
@@ -229,8 +243,14 @@
 		[self.sourceTextView.textView setAutomaticTextReplacementEnabled:[[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
 		[self.sourceTextView.textView setAutomaticDashSubstitutionEnabled:[[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
 	}
-	
-	/* Handle changes from the errorArray. */
+
+    /* Handle changes to the preferences for the `wrap` option margin indictor. */
+    if ((object == [NSUserDefaults standardUserDefaults]) && ([keyPath isEqualToString:JSDKeyShowWrapMarginNot]))
+    {
+        self.tidyTextView.showsPageGuide = ![[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyShowWrapMarginNot] boolValue];
+    }
+
+	/* Handle changes from the errorArray so that we can setup our errors in the gutter. */
 	if ((object == ((TidyDocument*)self.representedObject).tidyProcess) && ([keyPath isEqualToString:@"errorArray"]))
 	{
 		NSArray *localErrors = ((TidyDocument*)self.representedObject).tidyProcess.errorArray;
@@ -250,6 +270,25 @@
 		
 		self.sourceTextView.syntaxErrors = highlightErrors;
 	}
+
+    /* Handle changes to the selection of the messages table; go to line selected. */
+    if ((object == self.messagesArrayController) && ([keyPath isEqualToString:@"selection"]))
+    {
+        NSArray *localObjects = self.messagesArrayController.arrangedObjects;
+
+        NSUInteger errorViewRow = self.messagesArrayController.selectionIndex;
+
+        if (errorViewRow < [localObjects count])
+        {
+            NSInteger row = [localObjects[errorViewRow][@"line"] intValue];
+
+            if (row > 0)
+            {
+                [self.sourceTextView goToLine:row centered:NO highlight:NO];
+            }
+        }
+    }
+
 }
 
 
@@ -271,79 +310,54 @@
 }
 
 
-#pragma mark - Appearance Setup
-
-
 /*———————————————————————————————————————————————————————————————————*
-  - setupViewAppearance
-    We're here after the WindowController sets up the correct
-    sourceview in horizontal or vertical orientation.
+  - handleTidyOptionChange:
+	One or more options changed in `optionController`.
+    We're interested in the value of `wrap` so we can adjust our
+    margin indicator. Note that we hit this at startup, too, because
+    the window controller sets options after we are created.
  *———————————————————————————————————————————————————————————————————*/
-- (void)setupViewAppearance
+- (void)handleTidyOptionChange:(NSNotification *)note
 {
-	/* Force the view to fill its containing view. */
-	self.view.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
-	[self.view setFrame:self.view.superview.bounds];
-	
-	/* This closure acts as a subroutine to avoid being repetitive. */
-	
-	void (^configureCommonViewSettings)(MGSFragariaView *) = ^(MGSFragariaView *aView) {
-		
-		NSUserDefaults *localDefaults = [NSUserDefaults standardUserDefaults];
-		
-		aView.syntaxDefinitionName = @"html";
-		
-		[aView.textView setAutomaticQuoteSubstitutionEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
-		[aView.textView setAutomaticTextReplacementEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
-		[aView.textView setAutomaticDashSubstitutionEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
-		[aView.textView setImportsGraphics:NO];
-		[aView.textView setAllowsImageEditing:NO];
-		[aView.textView setUsesFontPanel:NO];
-		[aView.textView setUsesInspectorBar:NO];
-		[aView.textView setUsesFindBar:NO];
-		[aView.textView setUsesFindPanel:NO];
-
-		/* The gutter and line numbers aren't being shown for some reason. */
-		
-
-	};
-	
-	configureCommonViewSettings(self.sourceTextView);
-	configureCommonViewSettings(self.tidyTextView);
-	
-	
-	/* tidyTextView special settings. */
-	
-	[self.tidyTextView.textView setAllowsUndo:NO];
-	[self.tidyTextView.textView setEditable:NO];
-	[self.tidyTextView.textView setRichText:NO];
-	[self.tidyTextView.textView setSelectable:YES];
-
-	/* sourceTextView shouldn't accept every drop type */
-	[self.sourceTextView.textView registerForDraggedTypes:@[NSFilenamesPboardType]];
+    if (note)
+    {
+        NSString *wrapValue = [note.userInfo valueForKey:@"wrap"];
+        if (wrapValue)
+        {
+            int pageGuidePosition = [wrapValue intValue];
+            self.tidyTextView.pageGuideColumn = pageGuidePosition;
+            self.tidyTextView.showsPageGuide = (pageGuidePosition > 0) && (![[[NSUserDefaults standardUserDefaults] valueForKey:JSDKeyShowWrapMarginNot] boolValue]);
+        }
+    }
 }
 
 
-/*———————————————————————————————————————————————————————————————————*
-  - goToSourceErrorUsingArrayController:
-    Will go to the line containing an error when the messages
-    table selection index changes.
- *———————————————————————————————————————————————————————————————————*/
-- (void)goToSourceErrorUsingArrayController:(NSArrayController*)arrayController
-{
-	NSArray *localObjects = arrayController.arrangedObjects;
-	
-	NSUInteger errorViewRow = arrayController.selectionIndex;
+#pragma mark - Properties
 
-	if (errorViewRow < [localObjects count])
-	{
-		NSInteger row = [localObjects[errorViewRow][@"line"] intValue];
-		
-		if (row > 0)
-		{
-			[self.sourceTextView goToLine:row centered:NO highlight:NO];
-		}
-	}
+
+/*———————————————————————————————————————————————————————————————————*
+  @property messagesArrayController
+ *———————————————————————————————————————————————————————————————————*/
+- (void)setMessagesArrayController:(NSArrayController *)messagesArrayController
+{
+    if (_messagesArrayController)
+    {
+        [_messagesArrayController removeObserver:self forKeyPath:@"selection"];
+    }
+
+    if (messagesArrayController)
+    {
+        /* KVO on the `messagesArrayController` indicate that a message table row was selected.
+         * Will use KVO on the array controller instead of a delegate method to capture changes
+         * because the delegate doesn't catch when the table unselects all rows.
+         */
+        [messagesArrayController addObserver:self
+                                  forKeyPath:@"selection"
+                                     options:(NSKeyValueObservingOptionNew)
+                                     context:NULL];
+    }
+
+    _messagesArrayController = messagesArrayController;
 }
 
 
@@ -351,18 +365,42 @@
 
 
 /*———————————————————————————————————————————————————————————————————*
-  @property pageGuidePosition
+ - setupViewAppearance
  *———————————————————————————————————————————————————————————————————*/
-- (NSUInteger)pageGuidePosition
+- (void)setupViewAppearance
 {
-	return self.tidyTextView.pageGuideColumn;
-}
+    /* This closure acts as a subroutine to avoid being repetitive. */
 
-- (void)setPageGuidePosition:(NSUInteger)pageGuidePosition
-{
-	self.tidyTextView.pageGuideColumn = pageGuidePosition;
+    void (^configureCommonViewSettings)(MGSFragariaView *) = ^(MGSFragariaView *aView) {
 
-	self.tidyTextView.showsPageGuide = (pageGuidePosition > 0);
+        NSUserDefaults *localDefaults = [NSUserDefaults standardUserDefaults];
+
+        aView.syntaxDefinitionName = @"html";
+
+        [aView.textView setAutomaticQuoteSubstitutionEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
+        [aView.textView setAutomaticTextReplacementEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
+        [aView.textView setAutomaticDashSubstitutionEnabled:[[localDefaults valueForKey:JSDKeyAllowMacOSTextSubstitutions] boolValue]];
+        [aView.textView setImportsGraphics:NO];
+        [aView.textView setAllowsImageEditing:NO];
+        [aView.textView setUsesFontPanel:NO];
+        [aView.textView setUsesInspectorBar:NO];
+        [aView.textView setUsesFindBar:NO];
+        [aView.textView setUsesFindPanel:NO];
+    };
+
+    configureCommonViewSettings(self.sourceTextView);
+    configureCommonViewSettings(self.tidyTextView);
+
+
+    /* tidyTextView special settings. */
+
+    [self.tidyTextView.textView setAllowsUndo:NO];
+    [self.tidyTextView.textView setEditable:NO];
+    [self.tidyTextView.textView setRichText:NO];
+    [self.tidyTextView.textView setSelectable:YES];
+
+    /* sourceTextView shouldn't accept every drop type */
+    [self.sourceTextView.textView registerForDraggedTypes:@[NSFilenamesPboardType]];
 }
 
 

@@ -117,14 +117,14 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="exportRTF:" target="-1" id="0v1-f6-4hb"/>
-                                    <binding destination="236" name="enabled" keyPath="sharedDocumentController.currentDocument" id="WKC-Bx-tqT">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSIsNotNil</string>
-                                        </dictionary>
-                                    </binding>
                                     <binding destination="236" name="hidden" keyPath="self.featureExportsRTF" previousBinding="WKC-Bx-tqT" id="qLR-tt-WUH">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="236" name="enabled" keyPath="sharedDocumentController.currentDocument" id="WKC-Bx-tqT">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
                                         </dictionary>
                                     </binding>
                                 </connections>
@@ -241,13 +241,13 @@
                             <menuItem title="Tidy Options" id="DDY-2T-58z">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="toggleOptionsPanelIsVisible:" target="-1" id="NUf-ap-ZIp"/>
+                                    <action selector="toggleOptionsPanelIsVisible:" target="-1" id="jAO-3O-7EM"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Tidy Messages" id="jm7-pi-wMh">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="toggleMessagesPanelIsVisible:" target="-1" id="zOr-TW-4de"/>
+                                    <action selector="toggleMessagesPanelIsVisible:" target="-1" id="FOh-UJ-vfq"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Source Code" id="QIG-9u-3jn">
@@ -302,7 +302,7 @@
                                         <menuItem title="Vertical Source Code" id="ryP-vf-ZZn">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="toggleSourcePanelIsVertical:" target="-1" id="Ary-kb-vyM"/>
+                                                <action selector="toggleSourcePanelIsVertical:" target="-1" id="84P-ih-ad1"/>
                                             </connections>
                                         </menuItem>
                                     </items>

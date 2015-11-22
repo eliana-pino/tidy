@@ -17,6 +17,8 @@
 #import "PreferenceController.h"
 #import "JSDTidyModel.h"
 
+#import "TidyDocumentWindowController.h"
+
 #ifdef FEATURE_SUPPORTS_SERVICE
 	#import "TidyDocumentService.h"
 #endif
@@ -261,7 +263,6 @@
 {
 	return [NSDocumentController sharedDocumentController];
 }
-
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
   @property menuQuitTitle

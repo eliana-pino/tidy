@@ -200,6 +200,7 @@
 	[defaultValues setObject:@YES forKey:JSDKeyShowNewDocumentTidyOptions];
 	[defaultValues setObject:@NO  forKey:JSDKeyShowNewDocumentSideBySide];
 	[defaultValues setObject:@YES forKey:JSDKeyShowNewDocumentSyncInOut];
+    [defaultValues setObject:@NO forKey:JSDKeyShowWrapMarginNot];
 
 	/* File Saving Options */
 	[defaultValues setObject:@(kJSDSaveAsOnly) forKey:JSDKeySavingPrefStyle];
@@ -255,6 +256,10 @@
 																	   MGSFragariaDefaultsHighlightsCurrentLine
 																	   ]];
 
+    /* The tidyGroup needs to also avoid sharing the page guide column application-wide. */
+    NSMutableSet *managedTidy = [NSMutableSet setWithSet:managedGroup];
+    [managedTidy removeObject:MGSFragariaDefaultsPageGuideColumn];
+
 	/* The Global group will handle everything else. */
 	NSMutableSet *managedGlobal = [[NSMutableSet alloc] initWithArray:[[MGSFragariaView defaultsDictionary] allKeys]];
 	[managedGlobal minusSet:managedGroup];
@@ -262,7 +267,7 @@
 	/* Let the controllers know which Fragaria properties they handle. */
 	groupGlobal.managedProperties = managedGlobal;
 	groupSource.managedProperties = managedGroup;
-	groupTidy.managedProperties = managedGroup;
+    groupTidy.managedProperties = managedTidy;
 
 	/* And all of these properties should be persistent in user defaults. */
 	groupGlobal.persistent = YES;

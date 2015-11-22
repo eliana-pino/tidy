@@ -65,16 +65,8 @@
 
 /** 
  *  The TidyDocumentSourceViewController instance for this window controller.
- *  It is assigned to either sourceControllerHorizontal or sourceControllerVertical
- *  as appropriate.
  */
-@property (nonatomic, weak) TidyDocumentSourceViewController *sourceController;
-
-/** The horizontal TidyDocumentSourceViewController instance for this window controller. */
-@property (nonatomic, strong) TidyDocumentSourceViewController *sourceControllerHorizontal;
-
-/** The vertical TidyDocumentSourceViewController instance for this window controller. */
-@property (nonatomic, strong) TidyDocumentSourceViewController *sourceControllerVertical;
+@property (nonatomic, strong) TidyDocumentSourceViewController *sourceController;
 
 
 #pragma mark - Helpers
@@ -106,18 +98,10 @@
 /** Specifies whether or not the messages panel is visible. */
 @property (nonatomic, assign) BOOL messagesPanelIsVisible;
 
-/** Specifies whether or not the source panel is visible. */
-@property (nonatomic, assign) BOOL sourcePanelIsVertical;
 
 #pragma mark - Actions to support properties from Menus
 /** @name Actions to support properties from Menus */
 
-
-/** 
- *  Toggle visibility of the option panel.
- *  Provided so that menu actions can invoke the first responder.
- */
-- (IBAction)toggleOptionsPanelIsVisible:(id)sender;
 
 /**
  *  Toggle visibility of the messages panel.
@@ -126,7 +110,13 @@
 - (IBAction)toggleMessagesPanelIsVisible:(id)sender;
 
 /**
- *  Toggle orientation of the source panel.
+ *  Toggle visibility of the option panel.
+ *  Provided so that menu actions can invoke the first responder.
+ */
+- (IBAction)toggleOptionsPanelIsVisible:(id)sender;
+
+/**
+ *  Toggle aspect of the source panel.
  *  Provided so that menu actions can invoke the first responder.
  */
 - (IBAction)toggleSourcePanelIsVertical:(id)sender;
