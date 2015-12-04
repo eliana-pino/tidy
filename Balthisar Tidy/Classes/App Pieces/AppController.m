@@ -69,6 +69,16 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 + (void)initialize
 {
+	/* Support Cmd-Shift launch deletes all user defaults. */
+	NSUInteger launchFlag = [NSEvent modifierFlags] & NSDeviceIndependentModifierFlagsMask;
+	
+	if (launchFlag & (NSShiftKeyMask | NSCommandKeyMask))
+	{
+		NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+		[[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+	}
+
+	
 	static dispatch_once_t once;
 	dispatch_once(&once, ^{
 		
@@ -103,7 +113,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
 #ifdef FEATURE_SUPPORTS_SERVICE
-	
+
 	/* Register our services.
 	 */
 	TidyDocumentService *tidyService = [[TidyDocumentService alloc] init];
@@ -160,6 +170,7 @@
 	 * certain API matters in `libtidy` warn the user if the linker
 	 * connected us to an old version of `libtidy`.
 	 * - require 5.1.24 so that `indent-with-tabs` works properly.
+	 * - require 5.1.29 so that tidy.cfg files work with css-prefix.
 	 */
 	JSDTidyModel *localModel = [[JSDTidyModel alloc] init];
 	NSString *versionWant = LIBTIDY_V_WANT;
