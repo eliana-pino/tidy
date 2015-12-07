@@ -74,8 +74,17 @@
 	
 	if (launchFlag & (NSShiftKeyMask | NSCommandKeyMask))
 	{
-		NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
-		[[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+		NSAlert *alert = [[NSAlert alloc] init];
+		[alert setMessageText:JSDLocalizedString(@"defaults-delete-message", nil)];
+		[alert addButtonWithTitle:JSDLocalizedString(@"defaults-delete-button-delete", nil)];
+		[alert addButtonWithTitle:JSDLocalizedString(@"defaults-delete-button-cancel", nil)];
+		
+		NSInteger button = [alert runModal];
+		if (button == NSAlertFirstButtonReturn)
+		{
+			NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+			[[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+		}
 	}
 
 	
