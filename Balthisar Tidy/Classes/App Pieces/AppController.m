@@ -183,7 +183,7 @@
 		NSAlert *alert = [[NSAlert alloc] init];
 		[alert setMessageText:JSDLocalizedString(@"libTidy-compatability-message", nil)];
 		[alert setInformativeText:message];
-		[alert addButtonWithTitle:@"OK"];
+		[alert addButtonWithTitle:JSDLocalizedString(@"libTidy-compatability-button", nil)];
 		[alert runModal];
 	}
 }
