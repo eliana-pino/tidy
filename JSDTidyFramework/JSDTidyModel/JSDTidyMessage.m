@@ -85,6 +85,10 @@
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
   @property errorTypeNames
+    This array maintains the same order as TidyReportLevel, and
+    these will be used as key fields instead of an actual
+    TidyReportLevel so that we maintain independence from actual
+    enum values.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSArray *)errorTypeNames
 {
@@ -92,13 +96,13 @@
 	
 	if (!errorTypeNames)
 	{
-		errorTypeNames = @[@"messagesInfo",       // 0
-						   @"messagesWarning",    // 1
-						   @"messagesConfig",     // 2
-						   @"messagesAccess",     // 3
-						   @"messagesError",      // 4
-						   @"messagesDocument",   // 5
-						   @"messagesPanic"];     // 6
+		errorTypeNames = @[@"messagesInfo",       
+						   @"messagesWarning",    
+						   @"messagesConfig",     
+						   @"messagesAccess",     
+						   @"messagesError",      
+						   @"messagesDocument",   
+						   @"messagesPanic"];
 	}
 	
 	return errorTypeNames;
@@ -106,6 +110,8 @@
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
   @property errorImages
+    The key will be the errorTypeName of the error. We don't want
+    to use a possibly unstable enum value as a key.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSDictionary *)errorImages
 {
@@ -135,7 +141,10 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSImage *)levelImage
 {
-	return self.errorImages[self.errorTypeNames[self.level]];
+	/* It's possible TidyInfo (first enum) is not zero. */
+	int level = self.level - TidyInfo;
+	
+	return self.errorImages[self.errorTypeNames[level]];
 }
 
 
@@ -144,7 +153,10 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSString *)levelDescription
 {
-	return JSDLocalizedString(self.errorTypeNames[self.level], nil);
+	/* It's possible TidyInfo (first enum) is not zero. */
+	int level = self.level - TidyInfo;
+
+	return JSDLocalizedString(self.errorTypeNames[level], nil);
 }
 
 
