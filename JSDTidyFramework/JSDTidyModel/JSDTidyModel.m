@@ -779,7 +779,9 @@ BOOL tidyCallbackFilter2 ( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint co
 	/* Clean up. */
 
 	tidyBufFree(outBuffer);
+	free(outBuffer);
 	tidyBufFree(errBuffer);
+	free(errBuffer);
 	tidyRelease(newTidy);
 
 
