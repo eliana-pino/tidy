@@ -40,24 +40,12 @@
 {
 	if (self = [super init])
 	{
-		/* Localize the message.
-		 * We're localizing the string a couple of times, because the
-		 * message might arrive in the message parameter, or it might
-		 * arrive as one of the argumentss. For example, many messages
-		 * are simply %s, and once the args are applied we want to
-		 * localize this single string. In other cases, e.g.,
-		 * "replacing %s by %s" we want to localize that message before
-		 * applying the args. This new string won't be found in the
-		 * .strings file, so it will be used as is.
-		 */
-		
+		/* Get our localized format string from the message code. */
 		NSString *formatString = JSDLocalizedString(@(message), nil);
 		
-		NSString *intermediateString = [[NSString alloc] initWithFormat:formatString arguments:arguments];
-		
-		_message = JSDLocalizedString(intermediateString, nil);
-		
-		
+		/* And fill in the arguments from the va_list. */
+		_message = [[NSString alloc] initWithFormat:formatString arguments:arguments];
+
 		/* Set the rest of the remaining backing iVars */
 		
 		_level = level;
@@ -85,10 +73,10 @@
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
   @property errorTypeNames
-    This array maintains the same order as TidyReportLevel, and
-    these will be used as key fields instead of an actual
-    TidyReportLevel so that we maintain independence from actual
-    enum values.
+	This array maintains the same order as TidyReportLevel, and
+	these will be used as key fields instead of an actual
+	TidyReportLevel so that we maintain independence from actual
+	enum values.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSArray *)errorTypeNames
 {
@@ -96,12 +84,12 @@
 	
 	if (!errorTypeNames)
 	{
-		errorTypeNames = @[@"messagesInfo",       
-						   @"messagesWarning",    
-						   @"messagesConfig",     
-						   @"messagesAccess",     
-						   @"messagesError",      
-						   @"messagesDocument",   
+		errorTypeNames = @[@"messagesInfo",		  
+						   @"messagesWarning",	  
+						   @"messagesConfig",	  
+						   @"messagesAccess",	  
+						   @"messagesError",	  
+						   @"messagesDocument",	  
 						   @"messagesPanic"];
 	}
 	
@@ -110,8 +98,8 @@
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
   @property errorImages
-    The key will be the errorTypeName of the error. We don't want
-    to use a possibly unstable enum value as a key.
+	The key will be the errorTypeName of the error. We don't want
+	to use a possibly unstable enum value as a key.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (NSDictionary *)errorImages
 {
