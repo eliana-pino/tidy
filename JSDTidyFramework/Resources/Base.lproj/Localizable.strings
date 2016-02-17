@@ -120,6 +120,7 @@
 "tag-slide-style"                           = "--slide-style";
 "tag-sort-attributes"                       = "Sort Attributes";
 "tag-split"                                 = "--split";
+"tag-strict-tags-attributes"                = "Strict Tags and Attributes";
 "tag-tab-size"                              = "Tab Size";
 "tag-tidy-mark"                             = "Tidy <meta> Mark";
 "tag-uppercase-attributes"                  = "Uppercase Attributes";
@@ -201,7 +202,7 @@
 
 "description-drop-font-tags"              = "---Deprecated; {\\b do not use}. This option is destructive to {\\f0 <font>} tags, and it will be removed from future versions of Tidy. Use the {\\f0 clean} option instead.\\par If you do set this option despite the warning it will perform as {\\f0 clean} except styles will be inline instead of put into a CSS class. {\\f0 <font>} tags will be dropped completely and their styles will not be preserved.\\par If both {\\f0 clean} and this option are enabled, {\\f0 <font>} tags will still be dropped completely, and other styles will be preserved in a CSS class instead of inline.\\par See {\\f0 clean} for more information.";
 
-"description-drop-proprietary-attributes" = "*This option specifies if Tidy should strip out proprietary attributes, such as Microsoft data binding attributes.";
+"description-drop-proprietary-attributes" = "*This option specifies if Tidy should strip out proprietary attributes, such as Microsoft data binding attributes. Additionally attributes that aren’t permitted in the output version of HTML will be dropped if used with {\\f0\\b strict-tags-attributes}.";
 
 "description-enclose-block-text"          = "*This option specifies if Tidy should insert a {\\f0 <p>} element to enclose any text it finds in any element that allows mixed content for HTML transitional but not HTML strict.";
 
@@ -324,6 +325,8 @@
 "description-sort-attributes"             = "*This option specifies that tidy should sort attributes within an element using the specified sort algorithm. If set to {\\f0\\b alpha} the algorithm is an ascending alphabetic sort.";
 
 "description-split"                       = "---Currently not used. Tidy Classic only.";
+
+"description-strict-tags-attributes"      = "*This options ensures that tags and attributes are applicable for the version of HTML that Tidy outputs. When set to {\\f0\\b yes} (the default) and the output document type is a strict doctype, then Tidy will report errors. If the output document type is a loose or transitional doctype, then Tidy will report warnings.\\par Additionally if {\\f0\\b drop-proprietary-attributes} is enabled, then not applicable attributes will be dropped, too.\\par When set to {\\f0\\b no}, these checks are not performed.";
 
 "description-tab-size"                    = "*This option specifies the number of columns that Tidy uses between successive tab stops. It is used to map tabs to spaces when reading the input.";
 
