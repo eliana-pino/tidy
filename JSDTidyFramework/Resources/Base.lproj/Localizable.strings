@@ -1,32 +1,32 @@
 /* Tidy Categories */
-"category-0"	= "Markup Options";
-"category-1"	= "Diagnostic Options";
-"category-2"	= "Pretty Printing Options";
-"category-3"	= "Encoding Options";
-"category-4"	= "Miscellaneous Options";
+"category-0"    = "Markup Options";
+"category-1"    = "Diagnostic Options";
+"category-2"    = "Pretty Printing Options";
+"category-3"    = "Encoding Options";
+"category-4"    = "Miscellaneous Options";
 
 
 /* Severity Levels */
-"messagesInfo"			= "Information";
-"messagesWarning"		= "Warning";
-"messagesConfig"		= "Configuration";
-"messagesAccess"		= "Access";
-"messagesError"			= "Error";
-"messagesDocument"		= "Document";
-"messagesPanic"			= "PANIC!";
+"messagesInfo"          = "Information";
+"messagesWarning"       = "Warning";
+"messagesConfig"        = "Configuration";
+"messagesAccess"        = "Access";
+"messagesError"         = "Error";
+"messagesDocument"      = "Document";
+"messagesPanic"         = "PANIC!";
 
 
 /* Location Descriptions for messages array */
-"N/A"			= " ";
-"line"			= "Line";
-"column"		= "Column";
+"N/A"           = " ";
+"line"          = "Line";
+"column"        = "Column";
 
 
 /* 
-	Export settings byline.
-	Note that this is all one, proper string. Syntax highlighers (such
-	as XCode) may not display the syntax highlighting properly, making
-	you think, "WTF?" It's a good string, though.
+    Export settings byline.
+    Note that this is all one, proper string. Syntax highlighers (such
+    as XCode) may not display the syntax highlighting properly, making
+    you think, "WTF?" It's a good string, though.
  */
 
 "export-byline" = "# Tidy Options generated and exported by Balthisar Tidy for Mac OS X.
@@ -138,30 +138,30 @@
 
 
 /*
-	TidyOption descriptions
+    TidyOption descriptions
  
-	The following strings are intended to be used with JSDTidyOption's
-	`localizedHumanReadableDescription` property instead of being used
-	via NSLocalizedString (although NSLocalizedString will technically
-	work).
+    The following strings are intended to be used with JSDTidyOption's
+    `localizedHumanReadableDescription` property instead of being used
+    via NSLocalizedString (although NSLocalizedString will technically
+    work).
  
-	Using `localizedHumanReadableDescription` and prefixing an `*` to
-	the strings will treat them as RTF strings enabling simple use
-	of NSAttributedStrings.
+    Using `localizedHumanReadableDescription` and prefixing an `*` to
+    the strings will treat them as RTF strings enabling simple use
+    of NSAttributedStrings.
  
-	- Prefix * to strings to have them treated as RTF.
-	
-	- The RTF header is supplied automatically in JSDTidyOption.
+    - Prefix * to strings to have them treated as RTF.
+    
+    - The RTF header is supplied automatically in JSDTidyOption.
 
-	- \f0 is defined as Consolas font in JSDTidyOption.m.
-	
-	- \n newlines do not work if the string is RTF; instead use RTF's \\line
-	
-	NOTE: this flaggable mechanism exists because some localizations may not
-	be able to use RTF.
+    - \f0 is defined as Consolas font in JSDTidyOption.m.
+    
+    - \n newlines do not work if the string is RTF; instead use RTF's \\line
+    
+    NOTE: this flaggable mechanism exists because some localizations may not
+    be able to use RTF.
  
-	NOTE: items I've prefixed with --- have no special meaning; it's just
-	a reminder to me that I'm not using them in Balthisar Tidy.
+    NOTE: items I've prefixed with --- have no special meaning; it's just
+    a reminder to me that I'm not using them in Balthisar Tidy.
  */
 
 "description-accessibility-check"         = "*This option specifies what level of accessibility checking, if any, that Tidy should perform.\\par Level {\\f0\\b 0 (Tidy Classic)} is equivalent to Tidy Classic’s accessibility checking.\\par For more information on Tidy’s accessibility checking, visit {\\f0 http://www.html-tidy.org/accessibility/}.";
@@ -588,23 +588,9 @@
 "METADATA_MISSING_REDIRECT_AUTOREFRESH"         = "[13.2.1.3]: Metadata missing (redirect/auto-refresh).";
 "SKIPOVER_ASCII_ART"                            = "[13.10.1.1]: skip over ascii art.";
 "LAST_ACCESS_ERR"                               = "";
-
-
-/*
- * OTHER / MISC
- */
-
-"unknown option: %s"							= "unknown option: %s";
-"missing or malformed argument for option: %s"	= "missing or malformed argument for option: %s";
-"Doctype given is \"%s\""						= "Doctype given is \"%s\"";
-"HTML Proprietary"								= "HTML Proprietary";
-"Document content looks like %s"				= "Document content looks like %s, bro.";
-"No system identifier in emitted doctype"		= "No system identifier in emitted doctype";
-
-
-
-
-
-
-
-
+"STRING_UNKNOWN_OPTION"                         = "unknown option: %s";
+"STRING_MISSING_MALFORMED"                      = "missing or malformed argument for option: %s";
+"STRING_DOCTYPE_GIVEN"                          = "Doctype given is \"%s\"";
+"STRING_HTML_PROPRIETARY"                       = "HTML Proprietary";
+"STRING_CONTENT_LOOKS"                          = "Document content looks like %s";
+"STRING_NO_SYSID"                               = "No system identifier in emitted doctype";

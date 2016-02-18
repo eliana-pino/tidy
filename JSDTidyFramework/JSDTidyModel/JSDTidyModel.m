@@ -701,7 +701,7 @@ BOOL tidyCallbackFilter3( TidyDoc tdoc, TidyReportLevel lvl, uint line, uint col
 	 */
 	tidySetAppData(newTidy, (__bridge void *)(self));                          // Need to send a message from outside self to self.
 
-	tidySetReportFilter2(newTidy, (TidyReportFilter2)&tidyCallbackFilter3);
+	tidySetReportFilter3(newTidy, (TidyReportFilter3)&tidyCallbackFilter3);
 
 
 	/* Setup the error buffer to catch errors here instead of stdout */

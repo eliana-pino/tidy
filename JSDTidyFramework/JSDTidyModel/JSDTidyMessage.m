@@ -40,8 +40,12 @@
 {
 	if (self = [super init])
 	{
+        NSString *formatString;
 		/* Get our localized format string from the message code. */
-		NSString *formatString = JSDLocalizedString(@(message), nil);
+        if ( strcmp(message, "UNDEFINED") == 0 )
+            formatString = @"%s";
+        else
+            formatString = JSDLocalizedString(@(message), nil);
 		
 		/* And fill in the arguments from the va_list. */
 		_message = [[NSString alloc] initWithFormat:formatString arguments:arguments];
