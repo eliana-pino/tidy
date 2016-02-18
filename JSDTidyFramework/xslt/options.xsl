@@ -15,6 +15,7 @@
     - replace <em> with {\\b xxx} (same as strong)
     - replace <code> with {\\f0 xxx}
     - replace <var> with {\\f0\\b xxx}
+    - replace <a href> with {\\f0 href}
     
     This is an XSLT2.0 stylesheet! To use with saxon, try:
     saxon -s:source -xsl:options.xsl -o:output
@@ -26,77 +27,93 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
                 
+
 <xsl:output method="text" indent="no" />
 
-<!-- Capture the longest name for padding. We will add
-     two characters to allow for surrounding quotes. -->
+
+<!-- Capture the longest name for padding. We will add 14
+     characters to allow for surrounding quotes and prefix. -->
 <xsl:variable name="maxLength">
     <xsl:for-each select="options_strings/option/name">
         <xsl:sort select="string-length(.)" data-type="number" />
         <xsl:if test="position() = last()">
-            <xsl:value-of select="string-length(.)+2" />
+            <xsl:value-of select="string-length(.)+14" />
         </xsl:if>
     </xsl:for-each>
 </xsl:variable>
 
 
 <!-- Our MAIN template -->
-<xsl:template match="options_strings/option">
+<xsl:template match="/">
 
-    <!-- Capture name and surround it with quotes
-         prior to padding it. -->
-    <xsl:variable name="name">
-        <xsl:text>"</xsl:text>
-        <xsl:value-of select="name" />
-        <xsl:text>"</xsl:text>
-    </xsl:variable>
+    <xsl:for-each select="options_strings/option">
+        <xsl:sort select="name" />
 
-    <!-- Escape quotes in the string prior
-         to surrounding it with quotes. -->
-    <xsl:variable name="string1">
-        <xsl:call-template name="escapeQuote">
-            <xsl:with-param name="pText" select="string" />
+        <!-- Capture name and surround it with quotes and
+             prefix prior to padding it. -->
+        <xsl:variable name="name">
+            <xsl:text>"description-</xsl:text>
+            <xsl:value-of select="name" />
+            <xsl:text>"</xsl:text>
+        </xsl:variable>
+
+        <!-- Escape quotes in the string prior
+             to surrounding it with quotes. -->
+        <xsl:variable name="string1">
+            <xsl:call-template name="escapeQuote">
+                <xsl:with-param name="pText" select="string" />
+            </xsl:call-template>
+        </xsl:variable>
+    
+        <!-- Replace HTML with RTF -->
+        <xsl:variable name="string2">
+            <xsl:value-of select="replace($string1, '&lt;strong>(.*?)&lt;/strong>', '{\\\\b $1}')"/>
+        </xsl:variable>
+        <xsl:variable name="string3">
+            <xsl:value-of select="replace($string2, '&lt;em>(.*?)&lt;/em>', '{\\\\b $1}')"/>
+        </xsl:variable>
+        <xsl:variable name="string4">
+            <xsl:value-of select="replace($string3, '&lt;code>(.*?)&lt;/code>', '{\\\\f0 $1}')"/>
+        </xsl:variable>
+        <xsl:variable name="string5">
+            <xsl:value-of select="replace($string4, '&lt;var>(.*?)&lt;/var>', '{\\\\f0\\\\b $1}')"/>
+        </xsl:variable>
+        <xsl:variable name="string6">
+            <!-- We've escaped the quote above, so search for escaped quotes. -->
+            <xsl:value-of select="replace($string5, '&lt;a.*?href=\\&quot;(.*?)\\&quot;>.*?&lt;/a>', '{\\\\f0 $1}')"/>
+        </xsl:variable>
+        <xsl:variable name="string7">
+            <!-- Similar to above, but single quotes. -->
+            <xsl:value-of select="replace($string6, '&lt;a.*?href=''(.*?)''>.*?&lt;/a>', '{\\\\f0 $1}')"/>
+        </xsl:variable>
+
+        <xsl:variable name="string">
+            <xsl:value-of select="normalize-space(replace($string7, '\s*&lt;br/>', '\\\\par '))"/>
+        </xsl:variable>
+    
+    
+        <!-- Pad the name using a fixed length. -->
+        <xsl:call-template name="pad">
+            <xsl:with-param name="padChar" select="' '" />
+            <xsl:with-param name="padVar" select="$name" />
+            <xsl:with-param name="length" select="$maxLength" />
         </xsl:call-template>
-    </xsl:variable>
     
-    <!-- Replace HTML with RTF -->
-    <xsl:variable name="string2">
-        <xsl:value-of select="replace($string1, '&lt;strong>(.*?)&lt;/strong>', '{\\\\b $1}')"/>
-    </xsl:variable>
-    <xsl:variable name="string3">
-        <xsl:value-of select="replace($string2, '&lt;em>(.*?)&lt;/em>', '{\\\\b $1}')"/>
-    </xsl:variable>
-    <xsl:variable name="string4">
-        <xsl:value-of select="replace($string3, '&lt;code>(.*?)&lt;/code>', '{\\\\f0 $1}')"/>
-    </xsl:variable>
-    <xsl:variable name="string5">
-        <xsl:value-of select="replace($string4, '&lt;var>(.*?)&lt;/var>', '{\\\\f0\\\\b $1}')"/>
-    </xsl:variable>
-
-    <xsl:variable name="string">
-        <xsl:value-of select="replace($string5, '&lt;br/>', '\\\\par ')"/>
-    </xsl:variable>
-
-    <!-- Pad the name using a fixed length. -->
-    <xsl:call-template name="pad">
-        <xsl:with-param name="padChar" select="' '" />
-        <xsl:with-param name="padVar" select="$name" />
-        <xsl:with-param name="length" select="$maxLength" />
-    </xsl:call-template>
+        <!-- Output the string part with needed surroundings. -->
+        <!-- The preceding asterisk indicates to Tidy that there is RTF. -->
+        <xsl:text> = "*</xsl:text>
+            <xsl:choose>
+                <xsl:when test="$string = 'NULL'">
+                    <xsl:value-of select="''" />
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="$string" disable-output-escaping="yes" />
+                </xsl:otherwise>
+            </xsl:choose>
+        <xsl:text>";&#10;</xsl:text>
+        
+    </xsl:for-each>
     
-    <!-- Output the string part with needed surroundings. -->
-    <!-- The preceding asterisk indicates to Tidy that there is RTF. -->
-    <xsl:text> = "*</xsl:text>
-        <xsl:choose>
-            <xsl:when test="$string = 'NULL'">
-                <xsl:value-of select="''" />
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="$string" />
-            </xsl:otherwise>
-        </xsl:choose>
-    <xsl:text>";</xsl:text>
-
 </xsl:template>
 
 
