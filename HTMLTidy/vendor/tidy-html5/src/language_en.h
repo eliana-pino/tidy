@@ -593,9 +593,14 @@ static languageDefinition language_en = { whichPluralForm_en, {
      **    <code>, <em>, <strong>, <br/>, <p>
      **  Note that the xslt processor requires <br/> to be self closing!
      *********************************************************************/
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyXmlDecl,                  0,
         "This option specifies if Tidy should add the XML declaration when "
         "outputting XML or XHTML. "
@@ -603,13 +608,18 @@ static languageDefinition language_en = { whichPluralForm_en, {
         "Note that if the input already includes an <code>&lt;?xml ... ?&gt;</code> "
         "declaration then this option will be ignored. "
         "<br/>"
-        "If the encoding for the output is different from <code>ascii</code>, one "
-        "of the utf encodings or <code>raw</code>, the declaration is always added "
-        "as required by the XML standard. "
+        "If the encoding for the output is different from <var>ascii</var>, one "
+        "of the <var>utf*</var> encodings, or <var>raw</var>, then the "
+        "declaration is always added as required by the XML standard. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner!
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated.*/
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyXmlSpace,                 0,
         "This option specifies if Tidy should add "
         "<code>xml:space=\"preserve\"</code> to elements such as "
@@ -619,9 +629,14 @@ static languageDefinition language_en = { whichPluralForm_en, {
         "This is needed if the whitespace in such elements is to "
         "be parsed appropriately without having access to the DTD. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner!
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyAltText,                  0,
         "This option specifies the default <code>alt=</code> text Tidy uses for "
         "<code>&lt;img&gt;</code> attributes when the <code>alt=</code> attribute "
@@ -630,9 +645,14 @@ static languageDefinition language_en = { whichPluralForm_en, {
         "Use with care, as it is your responsibility to make your documents accessible "
         "to people who cannot see the images. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyXmlPIs,                   0,
         "This option specifies if Tidy should change the parsing of processing "
         "instructions to require <code>?&gt;</code> as the terminator rather than "
@@ -640,60 +660,85 @@ static languageDefinition language_en = { whichPluralForm_en, {
         "<br/>"
         "This option is automatically set if the input is in XML. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyMakeBare,                 0,
         "This option specifies if Tidy should strip Microsoft specific HTML "
         "from Word 2000 documents, and output spaces rather than non-breaking "
         "spaces where they exist in the input. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyCSSPrefix,                0,
         "This option specifies the prefix that Tidy uses for styles rules. "
         "<br/>"
-        "By default, <code>c</code> will be used. "
+        "By default, <var>c</var> will be used. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyMakeClean,                0,
         "This option specifies if Tidy should perform cleaning of some legacy "
         "presentational tags (currently <code>&lt;i&gt;</code>, "
         "<code>&lt;b&gt;</code>, <code>&lt;center&gt;</code> when enclosed within "
         "appropriate inline tags, and <code>&lt;font&gt;</code>). If set to "
-        "<code>yes</code> then legacy tags will be replaced with CSS "
+        "<var>yes</var> then legacy tags will be replaced with CSS "
         "<code>&lt;style&gt;</code> tags and structural markup as appropriate. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyGDocClean,                0,
         "This option specifies if Tidy should enable specific behavior for "
         "cleaning up HTML exported from Google Docs. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyDoctype,                  0,
         "This option specifies the DOCTYPE declaration generated by Tidy. "
         "<br/>"
-        "If set to <code>omit</code> the output won't contain a DOCTYPE "
+        "If set to <var>omit</var> the output won't contain a DOCTYPE "
         "declaration. Note this this also implies <code>numeric-entities</code> is "
-        "set to <code>yes</code>."
+        "set to <var>yes</var>."
         "<br/>"
-        "If set to <code>html5</code> the DOCTYPE is set to "
+        "If set to <var>html5</var> the DOCTYPE is set to "
         "<code>&lt;!DOCTYPE html&gt;</code>."
         "<br/>"
-        "If set to <code>auto</code> (the default) Tidy will use an educated guess "
+        "If set to <var>auto</var> (the default) Tidy will use an educated guess "
         "based upon the contents of the document."
         "<br/>"
-        "If set to <code>strict</code>, Tidy will set the DOCTYPE to the HTML4 or "
+        "If set to <var>strict</var>, Tidy will set the DOCTYPE to the HTML4 or "
         "XHTML1 strict DTD."
         "<br/>"
-        "If set to <code>loose</code>, the DOCTYPE is set to the HTML4 or XHTML1 "
+        "If set to <var>loose</var>, the DOCTYPE is set to the HTML4 or XHTML1 "
         "loose (transitional) DTD."
         "<br/>"
         "Alternatively, you can supply a string for the formal public identifier "
@@ -711,21 +756,36 @@ static languageDefinition language_en = { whichPluralForm_en, {
         "<br/>"
         "This option does not offer a validation of document conformance. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyDropEmptyElems,           0,
         "This option specifies if Tidy should discard empty elements. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyDropEmptyParas,           0,
         "This option specifies if Tidy should discard empty paragraphs. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyDropFontTags,             0,
         "Deprecated; <em>do not use</em>. This option is destructive to "
         "<code>&lt;font&gt;</code> tags, and it will be removed from future "
@@ -742,26 +802,41 @@ static languageDefinition language_en = { whichPluralForm_en, {
         "<br/>"
         "See <code>clean</code> for more information. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyDropPropAttrs,            0,
         "This option specifies if Tidy should strip out proprietary attributes, "
         "such as Microsoft data binding attributes. Additionally attributes "
         "that aren't permitted in the output version of HTML will be dropped "
         "if used with <code>strict-tags-attributes</code>. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyEncloseBlockText,         0,
         "This option specifies if Tidy should insert a <code>&lt;p&gt;</code> "
         "element to enclose any text it finds in any element that allows mixed "
         "content for HTML transitional but not HTML strict. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyEncloseBodyText,          0,
         "This option specifies if Tidy should enclose any text it finds in the "
         "body element within a <code>&lt;p&gt;</code> element."
@@ -769,42 +844,67 @@ static languageDefinition language_en = { whichPluralForm_en, {
         "This is useful when you want to take existing HTML and use it with a "
         "style sheet. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyEscapeCdata,              0,
         "This option specifies if Tidy should convert "
         "<code>&lt;![CDATA[]]&gt;</code> sections to normal text. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyFixComments,              0,
         "This option specifies if Tidy should replace unexpected hyphens with "
         "<code>=</code> characters when it comes across adjacent hyphens. "
         "<br/>"
-        "The default is <code>yes</code>. "
+        "The default is <var>yes</var>. "
         "<br/>"
         "This option is provided for users of Cold Fusion which uses the "
         "comment syntax: <code>&lt;!--- ---&gt;</code>. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyFixUri,                   0,
         "This option specifies if Tidy should check attribute values that carry "
         "URIs for illegal characters and if such are found, escape them as HTML4 "
         "recommends. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyHideComments,             0,
         "This option specifies if Tidy should print out comments. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyCoerceEndTags,            0,
         "This option specifies if Tidy should coerce a start tag into an end tag "
         "in cases where it looks like an end tag was probably intended; "
@@ -816,9 +916,14 @@ static languageDefinition language_en = { whichPluralForm_en, {
         "<br/>"
         "<code>&lt;span&gt;foo &lt;b&gt;bar&lt;/b&gt; baz&lt;/span&gt;</code> "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyOmitOptionalTags,         0,
         "This option specifies if Tidy should omit optional start tags and end tags "
         "when generating output. "
@@ -833,44 +938,74 @@ static languageDefinition language_en = { whichPluralForm_en, {
         "<br/>"
         "This option is ignored for XML output. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyHideEndTags,              0,
         "This option is an alias for <code>omit-optional-tags</code>. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyIndentCdata,              0,
         "This option specifies if Tidy should indent "
         "<code>&lt;![CDATA[]]&gt;</code> sections. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyXmlTags,                  0,
         "This option specifies if Tidy should use the XML parser rather than the "
         "error correcting HTML parser. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyJoinClasses,              0,
         "This option specifies if Tidy should combine class names to generate "
         "a single, new class name if multiple class assignments are detected on "
         "an element. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyJoinStyles,               0,
         "This option specifies if Tidy should combine styles to generate a single, "
         "new style if multiple style values are detected on an element. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyLogicalEmphasis,          0,
         "This option specifies if Tidy should replace any occurrence of "
         "<code>&lt;i&gt;</code> with <code>&lt;em&gt;</code> and any occurrence of "
@@ -879,18 +1014,28 @@ static languageDefinition language_en = { whichPluralForm_en, {
         "<br/>"
         "This option can be set independently of the <code>clean</code> option. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyLowerLiterals,            0,
         "This option specifies if Tidy should convert the value of an attribute "
         "that takes a list of predefined values to lower case. "
         "<br/>"
         "This is required for XHTML documents. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyMergeEmphasis,            0,
         "This option specifies if Tidy should merge nested <code>&lt;b&gt;</code> "
         "and <code>&lt;i&gt;</code> elements; for example, for the case "
@@ -899,31 +1044,41 @@ static languageDefinition language_en = { whichPluralForm_en, {
         "<br/>"
         "Tidy will output <code>&lt;b class=\"rtop-2\"&gt;foo bar baz&lt;/b&gt;</code>. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyMergeDivs,                0,
         "This option can be used to modify the behavior of <code>clean</code> when "
-        "set to <code>yes</code>."
+        "set to <var>yes</var>."
         "<br/>"
         "This option specifies if Tidy should merge nested <code>&lt;div&gt;</code> "
         "such as <code>&lt;div&gt;&lt;div&gt;...&lt;/div&gt;&lt;/div&gt;</code>. "
         "<br/>"
-        "If set to <code>auto</code> the attributes of the inner "
+        "If set to <var>auto</var> the attributes of the inner "
         "<code>&lt;div&gt;</code> are moved to the outer one. Nested "
         "<code>&lt;div&gt;</code> with <code>id</code> attributes are <em>not</em> "
         "merged. "
         "<br/>"
-        "If set to <code>yes</code> the attributes of the inner "
+        "If set to <var>yes</var> the attributes of the inner "
         "<code>&lt;div&gt;</code> are discarded with the exception of "
         "<code>class</code> and <code>style</code>. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyMergeSpans,               0,
         "This option can be used to modify the behavior of <code>clean</code> when "
-        "set to <code>yes</code>."
+        "set to <var>yes</var>."
         "<br/>"
         "This option specifies if Tidy should merge nested <code>&lt;span&gt;</code> "
         "such as <code>&lt;span&gt;&lt;span&gt;...&lt;/span&gt;&lt;/span&gt;</code>. "
@@ -931,16 +1086,26 @@ static languageDefinition language_en = { whichPluralForm_en, {
         "The algorithm is identical to the one used by <code>merge-divs</code>. "
     },
 #if SUPPORT_ASIAN_ENCODINGS
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyNCR,                      0,
         "This option specifies if Tidy should allow numeric character references. "
     },
 #endif
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyBlockTags,                0,
         "This option specifies new block-level tags. This option takes a space or "
         "comma separated list of tag names. "
@@ -954,9 +1119,14 @@ static languageDefinition language_en = { whichPluralForm_en, {
         "<br/>"
         "This option is ignored in XML mode. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyEmptyTags,                0,
         "This option specifies new empty inline tags. This option takes a space "
         "or comma separated list of tag names. "
@@ -968,9 +1138,14 @@ static languageDefinition language_en = { whichPluralForm_en, {
         "<br/>"
         "This option is ignored in XML mode. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyInlineTags,               0,
         "This option specifies new non-empty inline tags. This option takes a "
         "space or comma separated list of tag names. "
@@ -980,9 +1155,14 @@ static languageDefinition language_en = { whichPluralForm_en, {
         "<br/>"
         "This option is ignored in XML mode. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyPreTags,                  0,
         "This option specifies new tags that are to be processed in exactly the "
         "same way as HTML's <code>&lt;pre&gt;</code> element. This option takes a "
@@ -995,9 +1175,14 @@ static languageDefinition language_en = { whichPluralForm_en, {
         "<br/>"
         "This option is ignored in XML mode. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyNumEntities,              0,
         "This option specifies if Tidy should output entities other than the "
         "built-in HTML entities (<code>&amp;amp;</code>, <code>&amp;lt;</code>, "
@@ -1009,16 +1194,26 @@ static languageDefinition language_en = { whichPluralForm_en, {
         "Entities that can be represented in the output encoding are translated "
         "correspondingly. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyHtmlOut,                  0,
         "This option specifies if Tidy should generate pretty printed output, "
         "writing it as HTML. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyXhtmlOut,                 0,
         "This option specifies if Tidy should generate pretty printed output, "
         "writing it as extensible HTML. "
@@ -1033,9 +1228,14 @@ static languageDefinition language_en = { whichPluralForm_en, {
         "The original case of tags and attributes will be preserved, regardless of "
         "other options. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyXmlOut,                   0,
         "This option specifies if Tidy should pretty print output, writing it as "
         "well-formed XML. "
@@ -1046,16 +1246,26 @@ static languageDefinition language_en = { whichPluralForm_en, {
         "The original case of tags and attributes will be preserved, regardless of "
         "other options. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyQuoteAmpersand,           0,
         "This option specifies if Tidy should output unadorned <code>&amp;</code> "
         "characters as <code>&amp;amp;</code>. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyQuoteMarks,               0,
         "This option specifies if Tidy should output <code>&quot;</code> characters "
         "as <code>&amp;quot;</code> as is preferred by some editing environments. "
@@ -1064,44 +1274,69 @@ static languageDefinition language_en = { whichPluralForm_en, {
         "<code>&amp;#39;</code> since many web browsers don't yet support "
         "<code>&amp;apos;</code>. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyQuoteNbsp,                0,
         "This option specifies if Tidy should output non-breaking space characters "
         "as entities, rather than as the Unicode character value 160 (decimal). "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyDuplicateAttrs,           0,
         "This option specifies if Tidy should keep the first or last attribute, if "
         "an attribute is repeated, e.g. has two <code>align</code> attributes. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidySortAttributes,           0,
         "This option specifies that Tidy should sort attributes within an element "
-        "using the specified sort algorithm. If set to <code>alpha</code>, the "
+        "using the specified sort algorithm. If set to <var>alpha</var>, the "
         "algorithm is an ascending alphabetic sort. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyReplaceColor,             0,
         "This option specifies if Tidy should replace numeric values in color "
         "attributes with HTML/XHTML color names where defined, e.g. replace "
         "<code>#ffffff</code> with <code>white</code>. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyBodyOnly,                 0,
         "This option specifies if Tidy should print only the contents of the "
         "body tag as an HTML fragment. "
         "<br/>"
-        "If set to <code>auto</code>, this is performed only if the body tag has "
+        "If set to <var>auto</var>, this is performed only if the body tag has "
         "been inferred. "
         "<br/>"
         "Useful for incorporating existing whole pages as a portion of another "
@@ -1109,28 +1344,43 @@ static languageDefinition language_en = { whichPluralForm_en, {
         "<br/>"
         "This option has no effect if XML output is requested. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyUpperCaseAttrs,           0,
         "This option specifies if Tidy should output attribute names in upper "
         "case. "
         "<br/>"
-        "The default is <code>no</code>, which results in lower case attribute "
+        "The default is <var>no</var>, which results in lower case attribute "
         "names, except for XML input, where the original case is preserved. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyUpperCaseTags,            0,
         "This option specifies if Tidy should output tag names in upper case. "
         "<br/>"
-        "The default is <code>no</code> which results in lower case tag names, "
+        "The default is <var>no</var> which results in lower case tag names, "
         "except for XML input where the original case is preserved. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyWord2000,                 0,
         "This option specifies if Tidy should go to great pains to strip out all "
         "the surplus stuff Microsoft Word 2000 inserts when you save Word "
@@ -1138,74 +1388,114 @@ static languageDefinition language_en = { whichPluralForm_en, {
         "<br/>"
         "You should consider using Word's \"Save As: Web Page, Filtered\". "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyAccessibilityCheckLevel,  0,
         "This option specifies what level of accessibility checking, if any, "
         "that Tidy should perform. "
         "<br/>"
-        "Level <code>0 (Tidy Classic)</code> is equivalent to Tidy Classic's accessibility "
+        "Level <var>0 (Tidy Classic)</var> is equivalent to Tidy Classic's accessibility "
         "checking. "
         "<br/>"
         "For more information on Tidy's accessibility checking, visit "
         "<a href=\"http://www.html-tidy.org/accessibility/\"> Tidy's Accessibility Page</a>. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyShowErrors,               0,
         "This option specifies the number Tidy uses to determine if further errors "
-        "should be shown. If set to <code>0</code>, then no errors are shown. "
+        "should be shown. If set to <var>0</var>, then no errors are shown. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyShowInfo,                 0,
         "This option specifies if Tidy should display info-level messages. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyShowWarnings,             0,
         "This option specifies if Tidy should suppress warnings. This can be "
         "useful when a few errors are hidden in a flurry of warnings. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyBreakBeforeBR,            0,
         "This option specifies if Tidy should output a line break before each "
         "<code>&lt;br&gt;</code> element. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyIndentContent,            0,
         "This option specifies if Tidy should indent block-level tags. "
         "<br/>"
-        "If set to <code>auto</code> Tidy will decide whether or not to indent the "
+        "If set to <var>auto</var> Tidy will decide whether or not to indent the "
         "content of tags such as <code>&lt;title&gt;</code>, "
         "<code>&lt;h1&gt;</code>-<code>&lt;h6&gt;</code>, <code>&lt;li&gt;</code>, "
         "<code>&lt;td&gt;</code>, or <code>&lt;p&gt;</code> "
         "based on the content including a block-level element. "
         "<br/>"
-        "Setting <code>indent</code> to <code>yes</code> can expose layout bugs in "
+        "Setting <code>indent</code> to <var>yes</var> can expose layout bugs in "
         "some browsers. "
         "<br/>"
         "Use the option <code>indent-spaces</code> to control the number of spaces "
         "or tabs output per level of indent, and <code>indent-with-tabs</code> to "
         "specify whether spaces or tabs are used. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyIndentAttributes,         0,
         "This option specifies if Tidy should begin each attribute on a new line. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyIndentSpaces,             0,
         "This option specifies the number of spaces or tabs that Tidy uses to "
         "indent content when <code>indent</code> is enabled. "
@@ -1213,85 +1503,130 @@ static languageDefinition language_en = { whichPluralForm_en, {
         "Note that the default value for this option is dependent upon the value of "
         "<code>indent-with-tabs</code> (see also). "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyLiteralAttribs,           0,
         "This option specifies how Tidy deals with whitespace characters within "
         "attribute values. "
         "<br/>"
-        "If the value is <code>no</code> Tidy normalizes attribute values by "
+        "If the value is <var>no</var> Tidy normalizes attribute values by "
         "replacing any newline or tab with a single space, and further by replacing "
         "any contiguous whitespace with a single space. "
         "<br/>"
         "To force Tidy to preserve the original, literal values of all attributes "
         "and ensure that whitespace within attribute values is passed "
-        "through unchanged, set this option to <code>yes</code>. "
+        "through unchanged, set this option to <var>yes</var>. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyShowMarkup,               0,
         "This option specifies if Tidy should generate a pretty printed version "
         "of the markup. Note that Tidy won't generate a pretty printed version if "
         "it finds significant errors (see <code>force-output</code>). "
     },
 #if SUPPORT_ASIAN_ENCODINGS
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyPunctWrap,                0,
         "This option specifies if Tidy should line wrap after some Unicode or "
         "Chinese punctuation characters. "
     },
 #endif
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyBurstSlides,              0,
         "This option has no function and is deprecated. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyTabSize,                  0,
         "This option specifies the number of columns that Tidy uses between "
         "successive tab stops. It is used to map tabs to spaces when reading the "
         "input. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyVertSpace,                0,
         "This option specifies if Tidy should add some extra empty lines for "
         "readability. "
         "<br/>"
-        "The default is <code>no</code>. "
+        "The default is <var>no</var>. "
         "<br/>"
-        "If set to <code>auto</code> Tidy will eliminate nearly all newline "
+        "If set to <var>auto</var> Tidy will eliminate nearly all newline "
         "characters."
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyWrapLen,                  0,
         "This option specifies the right margin Tidy uses for line wrapping. "
         "<br/>"
         "Tidy tries to wrap lines so that they do not exceed this length. "
         "<br/>"
-        "Set <code>wrap</code> to <code>0</code>(zero) if you want to disable line "
+        "Set <code>wrap</code> to <var>0</var>(zero) if you want to disable line "
         "wrapping. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyWrapAsp,                  0,
         "This option specifies if Tidy should line wrap text contained within ASP "
         "pseudo elements, which look like: <code>&lt;% ... %&gt;</code>. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyWrapAttVals,              0,
         "This option specifies if Tidy should line-wrap attribute values, meaning "
         "that if the value of an attribute causes a line to exceed the width "
@@ -1306,25 +1641,40 @@ static languageDefinition language_en = { whichPluralForm_en, {
         "To force Tidy to preserve the original, literal values of all attributes, "
         "and ensure that whitespace characters within attribute values are passed "
         "through unchanged, set <code>literal-attributes</code> to "
-        "<code>yes</code>. "
+        "<var>yes</var>. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyWrapJste,                 0,
         "This option specifies if Tidy should line wrap text contained within "
         "JSTE pseudo elements, which look like: <code>&lt;# ... #&gt;</code>. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyWrapPhp,                  0,
         "This option specifies if Tidy should line wrap text contained within PHP "
         "pseudo elements, which look like: <code>&lt;?php ... ?&gt;</code>. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyWrapScriptlets,           0,
         "This option specifies if Tidy should line wrap string literals that "
         "appear in script attributes. "
@@ -1332,124 +1682,179 @@ static languageDefinition language_en = { whichPluralForm_en, {
         "Tidy wraps long script string literals by inserting a backslash character "
         "before the line break. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyWrapSection,              0,
         "This option specifies if Tidy should line wrap text contained within "
         "<code>&lt;![ ... ]&gt;</code> section tags. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyAsciiChars,               0,
         "Can be used to modify behavior of the <code>clean</code> option when set "
-        "to <code>yes</code>. "
+        "to <var>yes</var>. "
         "<br/>"
-        "If set to <code>yes</code> when <code>clean</code>, "
+        "If set to <var>yes</var> when <code>clean</code>, "
         "<code>&amp;emdash;</code>, <code>&amp;rdquo;</code>, and other named "
         "character entities are downgraded to their closest ASCII equivalents. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyCharEncoding,             0,
         "This option specifies the character encoding Tidy uses for both the input "
         "and output. "
         "<br/>"
-        "For <code>ascii</code> Tidy will accept Latin-1 (ISO-8859-1) character "
+        "For <var>ascii</var> Tidy will accept Latin-1 (ISO-8859-1) character "
         "values, but will use entities for all characters whose value &gt;127. "
         "<br/>"
-        "For <code>raw</code>, Tidy will output values above 127 without "
+        "For <var>raw</var>, Tidy will output values above 127 without "
         "translating them into entities. "
         "<br/>"
-        "For <code>latin1</code>, characters above 255 will be written as entities. "
+        "For <var>latin1</var>, characters above 255 will be written as entities. "
         "<br/>"
-        "For <code>utf8</code>, Tidy assumes that both input and output are encoded "
+        "For <var>utf8</var>, Tidy assumes that both input and output are encoded "
         "as UTF-8. "
         "<br/>"
-        "You can use <code>iso2022</code> for files encoded using the ISO-2022 "
+        "You can use <var>iso2022</var> for files encoded using the ISO-2022 "
         "family of encodings e.g. ISO-2022-JP. "
         "<br/>"
-        "For <code>mac</code> and <code>win1252</code>, Tidy will accept vendor "
+        "For <var>mac</var> and <var>win1252</var>, Tidy will accept vendor "
         "specific character values, but will use entities for all characters whose "
         "value &gt;127. "
         "<br/>"
         "For unsupported encodings, use an external utility to convert to and from "
         "UTF-8. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyInCharEncoding,           0,
         "This option specifies the character encoding Tidy uses for the input. See "
         "<code>char-encoding</code> for more info. "
     },
 #if SUPPORT_ASIAN_ENCODINGS
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyLanguage,                 0,
         "Currently not used, but this option specifies the language Tidy would use "
-        "if it were properly localized. For example: <code>en</code>. "
+        "if it were properly localized. For example: <var>en</var>. "
     },
 #endif
 #if SUPPORT_UTF16_ENCODINGS
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyOutputBOM,                0,
         "This option specifies if Tidy should write a Unicode Byte Order Mark "
         "character (BOM; also known as Zero Width No-Break Space; has value of "
         "U+FEFF) to the beginning of the output, and only applies to UTF-8 and "
         "UTF-16 output encodings. "
         "<br/>"
-        "If set to <code>auto</code> this option causes Tidy to write a BOM to "
+        "If set to <var>auto</var> this option causes Tidy to write a BOM to "
         "the output only if a BOM was present at the beginning of the input. "
         "<br/>"
         "A BOM is always written for XML/XHTML output using UTF-16 output "
         "encodings. "
     },
 #endif
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyOutCharEncoding,          0,
         "This option specifies the character encoding Tidy uses for the output. "
         "<br/>"
         "Note that this may only be different from <code>input-encoding</code> for "
-        "Latin encodings (<code>ascii</code>, <code>latin0</code>, "
-        "<code>latin1</code>, <code>mac</code>, <code>win1252</code>, "
-        "<code>ibm858</code>)."
+        "Latin encodings (<var>ascii</var>, <var>latin0</var>, "
+        "<var>latin1</var>, <var>mac</var>, <var>win1252</var>, "
+        "<var>ibm858</var>)."
         "<br/>"
         "See <code>char-encoding</code> for more information"
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyNewline,                  0,
         "The default is appropriate to the current platform. "
         "<br/>"
         "Genrally CRLF on PC-DOS, Windows and OS/2; CR on Classic Mac OS; and LF "
         "everywhere else (Linux, Mac OS X, and Unix). "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyErrFile,                  0,
         "This option specifies the error file Tidy uses for errors and warnings. "
         "Normally errors and warnings are output to <code>stderr</code>. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyFixBackslash,             0,
         "This option specifies if Tidy should replace backslash characters "
         "<code>\\</code> in URLs with forward slashes <code>/</code>. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyForceOutput,              0,
         "This option specifies if Tidy should produce output even if errors are "
         "encountered. "
@@ -1458,65 +1863,105 @@ static languageDefinition language_en = { whichPluralForm_en, {
         "means Tidy was not able to (or is not sure how to) fix the error, so the "
         "resulting output may not reflect your intention. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyEmacs,                    0,
         "This option specifies if Tidy should change the format for reporting "
         "errors and warnings to a format that is more easily parsed by GNU Emacs. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyEmacsFile,                0,
         "Used internally. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyKeepFileTimes,            0,
         "This option specifies if Tidy should keep the original modification time "
         "of files that Tidy modifies in place. "
         "<br/>"
-        "Setting the option to <code>yes</code> allows you to tidy files without "
+        "Setting the option to <var>yes</var> allows you to tidy files without "
         "changing the file modification date, which may be useful with certain "
         "tools that use the modification date for things such as automatic server "
         "deployment."
         "<br/>"
         "Note this feature is not supported on some platforms. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyOutFile,                  0,
         "This option specifies the output file Tidy uses for markup. Normally "
         "markup is written to <code>stdout</code>. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyQuiet,                    0,
         "This option specifies if Tidy should output the summary of the numbers "
         "of errors and warnings, or the welcome or informational messages. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidySlideStyle,               0,
         "This option has no function and is deprecated. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyMark,                     0,
         "This option specifies if Tidy should add a <code>meta</code> element to "
         "the document head to indicate that the document has been tidied. "
         "<br/>"
         "Tidy won't add a meta element if one is already present. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyWriteBack,                0,
         "This option specifies if Tidy should write back the tidied markup to the "
         "same file it read from. "
@@ -1524,66 +1969,96 @@ static languageDefinition language_en = { whichPluralForm_en, {
         "You are advised to keep copies of important files before tidying them, as "
         "on rare occasions the result may not be what you expect. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyDecorateInferredUL,       0,
         "This option specifies if Tidy should decorate inferred "
         "<code>&lt;ul&gt;</code> elements with some CSS markup to avoid indentation "
         "to the right. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyPreserveEntities,         0,
         "This option specifies if Tidy should preserve well-formed entities "
         "as found in the input. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyAnchorAsName,             0,
         "This option controls the deletion or addition of the <code>name</code> "
         "attribute in elements where it can serve as anchor. "
         "<br/>"
-        "If set to <code>yes</code> a <code>name</code> attribute, if not already "
+        "If set to <var>yes</var> a <code>name</code> attribute, if not already "
         "existing, is added along an existing <code>id</code> attribute if the DTD "
         "allows it. "
         "<br/>"
-        "If set to <code>no</code> any existing name attribute is removed if an "
+        "If set to <var>no</var> any existing name attribute is removed if an "
         "<code>id</code> attribute exists or has been added. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyPPrintTabs,               0,
         "This option specifies if Tidy should indent with tabs instead of spaces, "
-        "assuming <code>indent</code> is <code>yes</code>. "
+        "assuming <code>indent</code> is <var>yes</var>. "
         "<br/>"
-        "Set it to <code>yes</code> to indent using tabs instead of the default "
+        "Set it to <var>yes</var> to indent using tabs instead of the default "
         "spaces. "
         "<br/>"
         "Use the option <code>indent-spaces</code> to control the number of tabs "
         "output per level of indent. Note that when <code>indent-with-tabs</code> "
         "is enabled the default value of <code>indent-spaces</code> is reset to "
-        "<code>1</code>. "
+        "<var>1</var>. "
         "<br/>"
         "Note <code>tab-size</code> controls converting input tabs to spaces. Set "
         "it to zero to retain input tabs. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidySkipNested,               0,
         "This option specifies that Tidy should skip nested tags when parsing "
         "script and style data. "
     },
-    {/* Please use _only_ <code></code>, <em></em>, <strong></strong>, and <br/>.
-        It's very important that <br/> be self-closing in this manner! 
-        - The strings "Tidy" and "HTML Tidy" are the program name and must not be translated. */
+    {/* Important notes for translators:
+        - Use only <code></code>, <var></var>, <em></em>, <strong></strong>, and
+          <br/>.
+        - Entities, tags, attributes, etc., should be enclosed in <code></code>.
+        - Option values should be enclosed in <var></var>.
+        - It's very important that <br/> be self-closing!
+        - The strings "Tidy" and "HTML Tidy" are the program name and must not
+          be translated. */
       TidyStrictTagsAttr,           0,
         "This options ensures that tags and attributes are applicable for the "
-        "version of HTML that Tidy outputs. When set to <code>yes</code> (the "
+        "version of HTML that Tidy outputs. When set to <var>yes</var> (the "
         "default) and the output document type is a strict doctype, then Tidy "
         "will report errors. If the output document type is a loose or "
         "transitional doctype, then Tidy will report warnings. "
@@ -1591,7 +2066,7 @@ static languageDefinition language_en = { whichPluralForm_en, {
         "Additionally if <code>drop-proprietary-attributes</code> is enabled, "
         "then not applicable attributes will be dropped, too. "
         "<br/>"
-        "When set to <code>no</code>, these checks are not performed. "
+        "When set to <var>no</var>, these checks are not performed. "
     },
     
     /********************************************************
@@ -1675,7 +2150,9 @@ static languageDefinition language_en = { whichPluralForm_en, {
       TC_OPT_XMLSTRG,               0,   "output all of Tidy's strings in XML format"
     },
 
-    { TC_OPT_XMLOPTS,               0,   "output all option descriptions cleaned XML format"                       },
+    { TC_OPT_XMLERRS,               0,   "output error constants and strings in XML format"                        },
+
+    { TC_OPT_XMLOPTS,               0,   "output option descriptions in XML format"                                },
     
     { TC_STRING_CONF_HEADER,        0,   "Configuration File Settings:"                                            },
 
