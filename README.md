@@ -36,12 +36,42 @@ _Balthisar Tidy_ has been released with support for Mac OS X 10.10 and newer.
 Change Log
 ----------
 
-### Balthisar Tidy 3.0.1 (January 2016)
+### Balthisar Tidy 3.0.2 (February 2016)
 
+- New Features
+  - Update to HTML Tidy 5.1.41
+      - Adds a new option (`strict-tags-attributes`) to ensure that the tags and
+        attributes in documents match the version of HTML being generated.
+      - This is now the minimum supported version for `libtidy-balthisar.dylib` 
+        users is now 5.1.41 due to HTML Tidy API requirements.
+  - Update to the newest version of Sparkle (doesn't apply to App Store 
+    versions) in order to eliminate a man-in-the-middle attack vulnerability.
+    See [https://sparkle-project.org/documentation/security/](https://sparkle-project.org/documentation/security/).
+  - Updated to the latest [modern Fragaria](https://github.com/shysaur/Fragaria/),
+    which offers several minor improvements and faster performance of the text
+    editor.
+  - Holding Command-Shift while launching provides the opportunity to delete
+    all user defaults.
+    
 - Visible Changes
-  - About… window
-    - Incorrect information about NoodleKit removed and proper attribution given
-      for modern Fragaria.
+  - Incorrect information about NoodleKit removed from the About… window and
+    proper attribution given for modern Fragaria.
+  - Descriptions updated, e.g., `alt-text` and the new `strict-tags-attributes`.
+
+- Bug Fixes
+  - Fixes to the exporting Unix config file.
+    - "Config: missing or malformed argument for option: css-prefix" (fixed by updated `libtidy`)
+    - Warning: replacing invalid character code 128
+    - Warning: replacing invalid character code 153
+  - Fixed memory leaks identified by Instruments.
+  - Removed dependence on `libtidy` enum values.
+
+- Miscellaneous Fixes
+  - _Balthisar Tidy_’s (from the website) disk image has been updated to indicate
+    that while you can test it from the disk image without installing, some of the
+    features won’t work. In particular System Services and Action Helpers are
+    prevented by Mac OS X from running off of a disk image.
+
 
 ### Balthisar Tidy 3.0.0 (November 2015)
 
