@@ -5,8 +5,8 @@ blurb: This reference will introduce you to the different ways you can configure
 layout: template-logo-medium
 order: 9
 ---
-<%= partial 'markdown-links' %>
-<%= partial 'markdown-images' %>
+<%= md_links %>
+<%= md_images %>
 
 <%= current_page.data.title %>
 ==============================
@@ -43,8 +43,8 @@ to suit your working habits and aesthetic tastes:
 Explore
 -------
 
-All of these features and more are exposed in [Preferences][prefs_index], the
-[menus][menu_index], and the [toolbar][docu-toolbar].
+All of these features and more are exposed in [Preferences][prefs-index], the
+[menus][menu-index], and the [toolbar][docu-toolbar].
 
 
 <% if target_feature?(:feature_supports_themes) %>

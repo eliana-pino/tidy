@@ -4,8 +4,8 @@ blurb: Work with Tidy Messages directly in the source code editing area.
 layout: template-logo-medium
 order: 15
 ---
-<%= partial 'markdown-links' %>
-<%= partial 'markdown-images' %>
+<%= md_links %>
+<%= md_images %>
 
 <%= current_page.data.title %>
 ==============================
@@ -22,7 +22,7 @@ your source document.
    
 2. Also make sure that **Show Errors** is enabled in the **Editor** pane of
    **Preferences**.
-   ![editor pane][all-tidy-prefs-Editor].
+   ![editor pane](all-tidy-prefs-Editor).
 
 2. If your document contains errors or generates Tidy messages, you will see
    an icon representing the error level of the most severe error on that line
